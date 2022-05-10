@@ -490,7 +490,6 @@ namespace NipponPaint.OrderManager
             this.tabDetail1.Size = new System.Drawing.Size(1647, 489);
             this.tabDetail1.TabIndex = 0;
             this.tabDetail1.Text = "詳細１";
-            this.tabDetail1.Click += new System.EventHandler(this.tabDetail1_Click);
             // 
             // HgWeight
             // 
