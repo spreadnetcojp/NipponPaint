@@ -108,6 +108,7 @@ namespace NipponPaint.OrderManager.Dialogs
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                DialogResult result = MessageBox.Show("原料選択でｴﾗｰ", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             catch(Exception ex)
             {

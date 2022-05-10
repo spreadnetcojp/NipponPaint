@@ -689,6 +689,65 @@ namespace NipponPaint.OrderManager
             }
         }
         /// <summary>
+        /// ステータスを戻すボタン押下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnStatusResume_Click(object sender, EventArgs e)
+        {
+            // 詳細タブを開いていない時はスルー
+            if (tabMain.SelectedIndex != TAB_INDEX_DETAIL)
+            {
+                return;
+            }
+            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+            {
+                try
+                {
+                    PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                    var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
+                    var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                    var dgv = (DataGridView)sender;
+                    if (dgv.SelectedRows.Count > 0)
+                    {
+                        // 選択している行を取得
+                        var selectedRow = dgv.SelectedRows[0];
+                        int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
+                        int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
+                        // 行取得のSQLを作成
+                        var parameters = new List<ParameterItem>()
+                        {
+                            new ParameterItem("orderId", orderId),
+                        };
+                        switch (status)
+                        {
+                            case 0:
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                db.Execute(Sql.NpMain.Orders.StatusResume(), parameters);
+                                break;
+                            case 3:
+                                db.Execute(Sql.NpMain.Orders.StatusResume(), parameters);
+                                break;
+                            case 4:
+                                db.Execute(Sql.NpMain.Orders.StatusResume(), parameters);
+                                break;
+                            default:
+                                break;
+                        }
+                        
+                    }
+                    InitializeForm();
+                }
+                catch (Exception ex)
+                {
+                    PutLog(ex);
+                }
+            }
+        }
+        /// <summary>
         /// ロットNo.編集画面を開く
         /// </summary>
         /// <param name="sender"></param>
@@ -784,6 +843,21 @@ namespace NipponPaint.OrderManager
         {
 
             SelectDataGridViewRowByProductCode();
+            switch (tabMain.SelectedIndex)
+            {
+                case 0:
+                    pnlButtons.Enabled = false;
+                    break;
+                case 1:
+                    pnlButtons.Enabled = true;
+                    break;
+                case 2:
+                    pnlButtons.Enabled = false;
+                    break;
+                case 3:
+                    pnlButtons.Enabled = false;
+                    break;
+            }
         }
         /// <summary>
         /// 注文タブ内一覧の選択行変更イベント
@@ -797,43 +871,52 @@ namespace NipponPaint.OrderManager
             {
                 return;
             }
-            PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
-            // Statusで検索する
-            var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
-            var dgv = (DataGridView)sender;
-            if (dgv.SelectedRows.Count > 0)
+            try
             {
-                // 選択している行を取得
-                var selectedRow = dgv.SelectedRows[0];
-                int.TryParse(selectedRow.Cells[columnIndex].Value.ToString(), out int orderId);
-                switch (orderId)
+                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
+                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
+                // Statusを取得する
+                var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
+                // Order_idで検索する
+                var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                var dgv = (DataGridView)sender;
+                if (dgv.SelectedRows.Count > 0)
                 {
-                    case 0:
-                        BtnPrintEmergency.Enabled = false;
-                        BtnPrint.Enabled = false;
-                        break;
-                    case 1:
-                        BtnPrintEmergency.Enabled = true;
-                        BtnPrint.Enabled = false;
-                        break;
-                    case 2:
-                        BtnPrintEmergency.Enabled = true;
-                        BtnPrint.Enabled = false;
-                        break;
-                    case 3:
-                        BtnPrintEmergency.Enabled = true;
-                        BtnPrint.Enabled = true;
-                        break;
-                    case 4:
-                        BtnPrintEmergency.Enabled = true;
-                        BtnPrint.Enabled = true;
-                        break;
-                    default:
-                        BtnPrintEmergency.Enabled = true;
-                        BtnPrint.Enabled = false;
-                        break;
+                    // 選択している行を取得
+                    var selectedRow = dgv.SelectedRows[0];
+                    int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
+                    int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
 
+                    using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
+                    {
+                        // 行取得のSQLを作成
+                        var parameters = new List<ParameterItem>()
+                        {
+                            new ParameterItem("orderId", orderId),
+                        };
+                        var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(), parameters);
+                        // フォームで定義された、取得値設定先のコントロールを抽出する
+                        db.ToLabelTextBox(this.Controls, rec.Rows);
+                        //指定LotのTextBoxの入力値を有無を調べる
+                        if (string.IsNullOrEmpty(HgTintingDirection.Value))
+                        {
+                            BorderHgTintingDirection.Visible = false;
+                        }
+                        else
+                        {
+
+                            BorderHgTintingDirection.Visible = true;
+                        }
+                        //各種ボタンの表示制御
+                        ButtonsEnableSetting(status);
+
+
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                PutLog(ex);
             }
         }
         /// <summary>
@@ -851,14 +934,18 @@ namespace NipponPaint.OrderManager
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
+                // Statusを取得する
+                var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
-                var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
                     // 選択している行を取得
                     var selectedRow = dgv.SelectedRows[0];
-                    int.TryParse(selectedRow.Cells[columnIndex].Value.ToString(), out int orderId);
+                    int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
+                    int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
+
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
                         // 行取得のSQLを作成
@@ -879,6 +966,10 @@ namespace NipponPaint.OrderManager
 
                             BorderHgTintingDirection.Visible = true;
                         }
+                        //各種ボタンの表示制御
+                        ButtonsEnableSetting(status);
+
+
                     }
                 }
             }
@@ -893,7 +984,7 @@ namespace NipponPaint.OrderManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void GvDetail_GvFormulation(object sender, EventArgs e)
+        private void GvDetail_GvFormulation_SelectionChanged(object sender, EventArgs e)
         {
             // 配合タブを開いていない時はスルー
             if (tabMain.SelectedIndex != TAB_INDEX_FORMULATION)
@@ -903,14 +994,18 @@ namespace NipponPaint.OrderManager
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
+                // Statusと取得する
+                var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
-                var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
                     // 選択している行を取得
                     var selectedRow = dgv.SelectedRows[0];
-                    int.TryParse(selectedRow.Cells[columnIndex].Value.ToString(), out int orderId);
+                    int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
+                    int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
+
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
                         // 行取得のSQLを作成
@@ -931,23 +1026,12 @@ namespace NipponPaint.OrderManager
 
                             BorderHgTintingDirection.Visible = true;
                         }
+                        //各種ボタンの表示制御
+                        ButtonsEnableSetting(status);
                         GvWeight.Rows.Clear();
                         var cnt = 1;
                         foreach (DataColumn column in rec.Columns)
                         {
-                            //string columnName = "Colorant_" + cnt;
-                            //switch (column.ColumnName)
-                            //{
-                            //    case "White_Code":
-                            //        GvWeight.Rows.Add(rec.Rows[0]["White_Code"], rec.Rows[0]["White_Weight"]);
-                            //        break;
-                            //    case columnName:
-                            //        GvWeight.Rows.Add(rec.Rows[0]["Colorant_" + cnt], rec.Rows[0]["Weight_" + cnt]);
-                            //        cnt++;
-                            //        break;
-                            //    default:
-                            //        break;
-                            //}
                             if (column.ColumnName.Equals("White_Code"))
                             {
 
@@ -990,6 +1074,7 @@ namespace NipponPaint.OrderManager
                 PutLog(ex);
             }
         }
+        
         #endregion
 
         #region private functions
@@ -1034,8 +1119,14 @@ namespace NipponPaint.OrderManager
             this.tabMain.SelectedIndexChanged += new EventHandler(this.tabMain_SelectedIndexChanged);
             this.GvOrder.SelectionChanged += new EventHandler(this.GvOrder_SelectionChanged);
             this.GvDetail.SelectionChanged += new EventHandler(this.GvDetail_SelectionChanged);
-            this.GvFormulation.SelectionChanged += new EventHandler(this.GvDetail_GvFormulation);
+            this.GvFormulation.SelectionChanged += new EventHandler(this.GvDetail_GvFormulation_SelectionChanged);
             this.GvOrderNumber.SelectionChanged += new EventHandler(this.GvOrderNumber_SelectionChanged);
+            this.BtnStatusResume.Click += new System.EventHandler(this.BtnStatusResume_Click);
+            //各種ボタンの表示設定
+            if(tabMain.SelectedIndex != 1)
+            {
+                pnlButtons.Enabled = false;
+            }
             // DataGridViewの初期設定
             InitializeGridView(GvOrder);
             InitializeGridView(GvDetail);
@@ -1374,6 +1465,47 @@ namespace NipponPaint.OrderManager
 
         #endregion
 
+        #region ボタン表示制御
+        private void ButtonsEnableSetting(int status)
+        {
+            switch (status)
+            {
+                case 0:
+                    BtnPrintEmergency.Enabled = false;
+                    BtnPrint.Enabled = false;
+                    break;
+                case 1:
+                    BtnPrintEmergency.Enabled = true;
+                    BtnPrint.Enabled = false;
+                    break;
+                case 2:
+                    BtnPrintEmergency.Enabled = true;
+                    BtnPrint.Enabled = false;
+                    break;
+                case 3:
+                    BtnPrintEmergency.Enabled = true;
+                    BtnPrint.Enabled = true;
+                    break;
+                case 4:
+                    BtnPrintEmergency.Enabled = true;
+                    BtnPrint.Enabled = true;
+                    break;
+                default:
+                    BtnPrintEmergency.Enabled = true;
+                    BtnPrint.Enabled = false;
+                    break;
+            }
+        }
         #endregion
+
+        #endregion
+
+        private void tabDetail1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
+        
     }
 }

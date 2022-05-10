@@ -207,7 +207,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                DialogResult result = MessageBox.Show("選択されたキャップタイプは削除されます。続けますか？", "Confirm", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("選択されたキャップタイプは削除されます。続けますか？", "Confirm", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
                 switch (result)
                 {
                     case DialogResult.Yes:
