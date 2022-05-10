@@ -196,15 +196,15 @@ namespace NipponPaint.NpCommon
                                 break;
                         }
                         break;
-                    //case ComboBoxEx comboBoxEx:
-                    //    switch (comboBoxEx.BackColor.Name)
-                    //    {
-                    //        case "Window":
-                    //            comboBoxEx.BackColor = BACK_COLOR;
-                    //            comboBoxEx.ForeColor = FORE_COLOR;
-                    //            break;
-                    //    }
-                    //    break;
+                    case ComboBoxEx comboBoxEx:
+                        switch (comboBoxEx.BackColor.Name)
+                        {
+                            case "Window":
+                                comboBoxEx.BackColor = BACK_COLOR;
+                                comboBoxEx.ForeColor = FORE_COLOR;
+                                break;
+                        }
+                        break;
                     case DataGridView dg:
                         break;
                     default:

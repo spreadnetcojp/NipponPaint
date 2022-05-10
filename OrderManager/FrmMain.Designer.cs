@@ -222,6 +222,7 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemCOMPort = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemCCMSimulator = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemLabelSelection = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlButtons = new System.Windows.Forms.Panel();
             this.tabOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GvOrder)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -266,6 +267,7 @@ namespace NipponPaint.OrderManager
             this.pnlColorExplanation.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.menuStrip.SuspendLayout();
+            this.pnlButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabOrder
@@ -1367,7 +1369,7 @@ namespace NipponPaint.OrderManager
             // 
             this.BorderHgSamplePlates.BackColor = System.Drawing.Color.Transparent;
             this.BorderHgSamplePlates.BorderColor = System.Drawing.Color.Transparent;
-            this.BorderHgSamplePlates.Location = new System.Drawing.Point(1240, 311);
+            this.BorderHgSamplePlates.Location = new System.Drawing.Point(1240, 312);
             this.BorderHgSamplePlates.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.BorderHgSamplePlates.Name = "BorderHgSamplePlates";
             this.BorderHgSamplePlates.Size = new System.Drawing.Size(299, 36);
@@ -3397,19 +3399,11 @@ namespace NipponPaint.OrderManager
             // 
             // pnlFuncs
             // 
-            this.pnlFuncs.Controls.Add(this.BtnProcessDetail);
-            this.pnlFuncs.Controls.Add(this.BtnPrint);
-            this.pnlFuncs.Controls.Add(this.BtnStatusResume);
-            this.pnlFuncs.Controls.Add(this.BtnOrderStart);
-            this.pnlFuncs.Controls.Add(this.BtnDecidePerson);
-            this.pnlFuncs.Controls.Add(this.BtnOrderClose);
-            this.pnlFuncs.Controls.Add(this.BtnPrintEmergency);
-            this.pnlFuncs.Controls.Add(this.BtnPrintInstructions);
+            this.pnlFuncs.Controls.Add(this.pnlButtons);
             this.pnlFuncs.Controls.Add(this.panel1);
             this.pnlFuncs.Controls.Add(this.pnlColorExplanation);
             this.pnlFuncs.Controls.Add(this.panLogo);
             this.pnlFuncs.Controls.Add(this.splitter1);
-            this.pnlFuncs.Controls.Add(this.BorderBtnPrint);
             this.pnlFuncs.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlFuncs.Location = new System.Drawing.Point(0, 26);
             this.pnlFuncs.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -3419,7 +3413,7 @@ namespace NipponPaint.OrderManager
             // 
             // BtnProcessDetail
             // 
-            this.BtnProcessDetail.Location = new System.Drawing.Point(5, 906);
+            this.BtnProcessDetail.Location = new System.Drawing.Point(2, 398);
             this.BtnProcessDetail.Name = "BtnProcessDetail";
             this.BtnProcessDetail.Size = new System.Drawing.Size(216, 54);
             this.BtnProcessDetail.TabIndex = 20;
@@ -3428,7 +3422,7 @@ namespace NipponPaint.OrderManager
             // 
             // BtnPrint
             // 
-            this.BtnPrint.Location = new System.Drawing.Point(5, 511);
+            this.BtnPrint.Location = new System.Drawing.Point(2, 3);
             this.BtnPrint.Name = "BtnPrint";
             this.BtnPrint.Size = new System.Drawing.Size(216, 54);
             this.BtnPrint.TabIndex = 19;
@@ -3437,7 +3431,7 @@ namespace NipponPaint.OrderManager
             // 
             // BtnStatusResume
             // 
-            this.BtnStatusResume.Location = new System.Drawing.Point(5, 736);
+            this.BtnStatusResume.Location = new System.Drawing.Point(2, 228);
             this.BtnStatusResume.Name = "BtnStatusResume";
             this.BtnStatusResume.Size = new System.Drawing.Size(216, 54);
             this.BtnStatusResume.TabIndex = 18;
@@ -3446,7 +3440,7 @@ namespace NipponPaint.OrderManager
             // 
             // BtnOrderStart
             // 
-            this.BtnOrderStart.Location = new System.Drawing.Point(5, 680);
+            this.BtnOrderStart.Location = new System.Drawing.Point(2, 172);
             this.BtnOrderStart.Name = "BtnOrderStart";
             this.BtnOrderStart.Size = new System.Drawing.Size(216, 54);
             this.BtnOrderStart.TabIndex = 17;
@@ -3455,7 +3449,7 @@ namespace NipponPaint.OrderManager
             // 
             // BtnDecidePerson
             // 
-            this.BtnDecidePerson.Location = new System.Drawing.Point(5, 793);
+            this.BtnDecidePerson.Location = new System.Drawing.Point(2, 285);
             this.BtnDecidePerson.Name = "BtnDecidePerson";
             this.BtnDecidePerson.Size = new System.Drawing.Size(216, 54);
             this.BtnDecidePerson.TabIndex = 16;
@@ -3464,7 +3458,7 @@ namespace NipponPaint.OrderManager
             // 
             // BtnOrderClose
             // 
-            this.BtnOrderClose.Location = new System.Drawing.Point(5, 850);
+            this.BtnOrderClose.Location = new System.Drawing.Point(2, 342);
             this.BtnOrderClose.Name = "BtnOrderClose";
             this.BtnOrderClose.Size = new System.Drawing.Size(216, 54);
             this.BtnOrderClose.TabIndex = 15;
@@ -3473,7 +3467,7 @@ namespace NipponPaint.OrderManager
             // 
             // BtnPrintEmergency
             // 
-            this.BtnPrintEmergency.Location = new System.Drawing.Point(5, 623);
+            this.BtnPrintEmergency.Location = new System.Drawing.Point(2, 115);
             this.BtnPrintEmergency.Name = "BtnPrintEmergency";
             this.BtnPrintEmergency.Size = new System.Drawing.Size(216, 54);
             this.BtnPrintEmergency.TabIndex = 14;
@@ -3482,7 +3476,7 @@ namespace NipponPaint.OrderManager
             // 
             // BtnPrintInstructions
             // 
-            this.BtnPrintInstructions.Location = new System.Drawing.Point(5, 567);
+            this.BtnPrintInstructions.Location = new System.Drawing.Point(2, 59);
             this.BtnPrintInstructions.Name = "BtnPrintInstructions";
             this.BtnPrintInstructions.Size = new System.Drawing.Size(216, 54);
             this.BtnPrintInstructions.TabIndex = 12;
@@ -3838,7 +3832,7 @@ namespace NipponPaint.OrderManager
             // 
             this.BorderBtnPrint.BackColor = System.Drawing.Color.Transparent;
             this.BorderBtnPrint.BorderColor = System.Drawing.Color.Transparent;
-            this.BorderBtnPrint.Location = new System.Drawing.Point(3, 509);
+            this.BorderBtnPrint.Location = new System.Drawing.Point(0, 2);
             this.BorderBtnPrint.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.BorderBtnPrint.Name = "BorderBtnPrint";
             this.BorderBtnPrint.Size = new System.Drawing.Size(220, 58);
@@ -3965,6 +3959,22 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemLabelSelection.Size = new System.Drawing.Size(215, 22);
             this.ToolStripMenuItemLabelSelection.Text = "ラベル(仮)";
             // 
+            // pnlButtons
+            // 
+            this.pnlButtons.Controls.Add(this.BtnProcessDetail);
+            this.pnlButtons.Controls.Add(this.BtnPrint);
+            this.pnlButtons.Controls.Add(this.BorderBtnPrint);
+            this.pnlButtons.Controls.Add(this.BtnStatusResume);
+            this.pnlButtons.Controls.Add(this.BtnPrintInstructions);
+            this.pnlButtons.Controls.Add(this.BtnOrderStart);
+            this.pnlButtons.Controls.Add(this.BtnPrintEmergency);
+            this.pnlButtons.Controls.Add(this.BtnDecidePerson);
+            this.pnlButtons.Controls.Add(this.BtnOrderClose);
+            this.pnlButtons.Location = new System.Drawing.Point(3, 511);
+            this.pnlButtons.Name = "pnlButtons";
+            this.pnlButtons.Size = new System.Drawing.Size(220, 458);
+            this.pnlButtons.TabIndex = 1;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -4028,6 +4038,7 @@ namespace NipponPaint.OrderManager
             this.pnlMain.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.pnlButtons.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4225,6 +4236,7 @@ namespace NipponPaint.OrderManager
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel pnlButtons;
     }
 }
 

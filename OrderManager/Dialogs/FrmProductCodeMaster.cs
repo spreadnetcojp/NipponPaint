@@ -173,7 +173,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                DialogResult result = MessageBox.Show("[Selected Product No will be deleted, continue?]", "Confirm", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("[Selected Product No will be deleted, continue?]", "Confirm", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
                 switch (result)
                 {
                     case DialogResult.Yes:

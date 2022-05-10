@@ -461,10 +461,12 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // DateTimePicker
             // 
+            this.DateTimePicker.CalendarFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.DateTimePicker.Location = new System.Drawing.Point(6, 118);
             this.DateTimePicker.Name = "DateTimePicker";
             this.DateTimePicker.Size = new System.Drawing.Size(293, 30);
             this.DateTimePicker.TabIndex = 102;
+            this.DateTimePicker.Value = new System.DateTime(2022, 5, 9, 0, 0, 0, 0);
             // 
             // TxtCSAreaCode
             // 

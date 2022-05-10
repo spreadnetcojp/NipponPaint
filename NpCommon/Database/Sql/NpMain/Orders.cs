@@ -83,5 +83,19 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         #endregion
 
         #endregion
+
+        #region 更新系
+        /// <summary>
+        /// ステータスを戻す
+        /// </summary>
+        /// <returns></returns>
+        public static string StatusResume()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"UPDATE Orders SET Status = 1 FROM Orders WHERE order_id = @orderId");
+            return sql.ToString();
+        }
+
+        #endregion
     }
 }

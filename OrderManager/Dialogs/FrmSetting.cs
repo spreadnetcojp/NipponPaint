@@ -187,7 +187,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                DialogResult result = MessageBox.Show("CCMの品名を削除", "Confirm", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("CCMの品名を削除", "Confirm", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
                 switch (result)
                 {
                     case DialogResult.Yes:
