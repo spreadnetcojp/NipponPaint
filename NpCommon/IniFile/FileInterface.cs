@@ -55,7 +55,7 @@ namespace NipponPaint.NpCommon.IniFile
           string lpFileName);
     }
 
-    public class ReadFile
+    public class FileInterface
     {
         #region 定数
         #endregion
@@ -64,11 +64,11 @@ namespace NipponPaint.NpCommon.IniFile
         /// <summary>
         /// iniファイルフルパス
         /// </summary>
-        private string FilePath { get; set; }
+        public string FilePath { get; set; }
         #endregion
 
         #region コンストラクタ
-        public ReadFile(string filePath)
+        public FileInterface(string filePath)
         {
             FilePath = filePath;
         }
@@ -82,10 +82,10 @@ namespace NipponPaint.NpCommon.IniFile
         /// <param name="Key"></param>
         /// <param name="defaultVal"></param>
         /// <returns></returns>
-        public string GetItem(string Section, string Key, string defaultVal = "")
+        public string GetItem(string section, string Key, string defaultVal = "")
         {
             var sb = new StringBuilder(1024);
-            IniFileHandler.GetPrivateProfileString(Section, Key, defaultVal, sb, (uint)sb.Capacity, FilePath);
+            IniFileHandler.GetPrivateProfileString(section, Key, defaultVal, sb, (uint)sb.Capacity, FilePath);
             return sb.ToString();
         }
         /// <summary>
@@ -95,11 +95,43 @@ namespace NipponPaint.NpCommon.IniFile
         /// <param name="Key"></param>
         /// <param name="defaultVal"></param>
         /// <returns></returns>
-        public int GetItem(string Section, string Key, int defaultVal = 0)
+        public int GetItem(string section, string Key, int defaultVal = 0)
         {
             var sb = new StringBuilder(1024);
-            IniFileHandler.GetPrivateProfileString(Section, Key, defaultVal.ToString(), sb, (uint)sb.Capacity, FilePath);
+            IniFileHandler.GetPrivateProfileString(section, Key, defaultVal.ToString(), sb, (uint)sb.Capacity, FilePath);
             return int.Parse(sb.ToString());
+        }
+        /// <summary>
+        /// 整数値リストの取得
+        /// </summary>
+        /// <param name="Section"></param>
+        /// <param name="Key"></param>
+        /// <param name="defaultVal"></param>
+        /// <returns></returns>
+        public int[] GetItem(string section, string Key)
+        {
+            var result = new List<int>();
+            var sb = new StringBuilder(1024);
+            IniFileHandler.GetPrivateProfileString(section, Key, String.Empty, sb, (uint)sb.Capacity, FilePath);
+            var defaultVal = sb.ToString();
+            if (!string.IsNullOrEmpty(defaultVal))
+            {
+                foreach (var item in defaultVal.Split(','))
+                {
+                    result.Add(int.Parse((item)));
+                }
+            }
+            return result.ToArray();
+        }
+        /// <summary>
+        /// 整数値リストの保存
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="Key"></param>
+        /// <param name="values"></param>
+        public void SetItem(string section, string Key, int[] values)
+        {
+            IniFileHandler.WritePrivateProfileString(section, Key, string.Join(",", values), FilePath);
         }
         #endregion
 

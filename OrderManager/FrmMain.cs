@@ -139,12 +139,33 @@ namespace NipponPaint.OrderManager
         #endregion
 
         #region イベント
-
+        /// <summary>
+        /// 画面を開いた時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmMainShown(object sender, EventArgs e)
         {
             try
             {
                 PutLog(Sentence.Messages.OpenMainForm);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+        /// <summary>
+        /// 画面を閉じた後
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FrmMainClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                PutLog(Sentence.Messages.CloseMainForm);
+                CloseedForm();
             }
             catch (Exception ex)
             {
@@ -313,7 +334,7 @@ namespace NipponPaint.OrderManager
         private void GvOrder_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridView gv = (DataGridView)sender;
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
                 gv.Rows[e.RowIndex].Selected = true;
                 DataGridViewRow row = gv.SelectedRows[0];
@@ -737,7 +758,7 @@ namespace NipponPaint.OrderManager
                             default:
                                 break;
                         }
-                        
+
                     }
                     InitializeForm();
                 }
@@ -914,7 +935,7 @@ namespace NipponPaint.OrderManager
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -1037,9 +1058,9 @@ namespace NipponPaint.OrderManager
 
                                 GvWeight.Rows.Add(rec.Rows[0]["White_Code"], rec.Rows[0]["White_Weight"]);
                             }
-                            if(column.ColumnName.Equals("Colorant_" + cnt))
+                            if (column.ColumnName.Equals("Colorant_" + cnt))
                             {
-                                
+
                                 GvWeight.Rows.Add(rec.Rows[0]["Colorant_" + cnt], rec.Rows[0]["Weight_" + cnt]);
                                 cnt++;
                             }
@@ -1047,7 +1068,7 @@ namespace NipponPaint.OrderManager
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -1074,7 +1095,7 @@ namespace NipponPaint.OrderManager
                 PutLog(ex);
             }
         }
-        
+
         #endregion
 
         #region private functions
@@ -1087,6 +1108,7 @@ namespace NipponPaint.OrderManager
         {
             // イベントの追加
             this.Shown += new System.EventHandler(this.FrmMainShown);
+            this.FormClosed += new FormClosedEventHandler(this.FrmMainClosed);
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(this.FormKeyDown);
             this.GvOrder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
@@ -1123,19 +1145,21 @@ namespace NipponPaint.OrderManager
             this.GvOrderNumber.SelectionChanged += new EventHandler(this.GvOrderNumber_SelectionChanged);
             this.BtnStatusResume.Click += new System.EventHandler(this.BtnStatusResume_Click);
             //各種ボタンの表示設定
-            if(tabMain.SelectedIndex != 1)
+            if (tabMain.SelectedIndex != 1)
             {
                 pnlButtons.Enabled = false;
             }
             // DataGridViewの初期設定
-            InitializeGridView(GvOrder);
-            InitializeGridView(GvDetail);
-            InitializeGridView(GvFormulation);
-            InitializeGridView(GvWeight);
-            InitializeGridView(GvBarcode);
-            InitializeGridView(GvOrderNumber);
-            InitializeGridView(GvWeightDetail);
-            InitializeGridView(GvOutWeight);
+            var ViewSettingsOrderDetails = GridViewSettingCopy(ViewSettingsOrders);
+            var ViewSettingsFormulations = GridViewSettingCopy(ViewSettingsOrders);
+            InitializeGridView(GvOrder, ViewSettingsOrders);
+            InitializeGridView(GvDetail, ViewSettingsOrderDetails);
+            InitializeGridView(GvFormulation, ViewSettingsFormulations);
+            InitializeGridView(GvWeight, ViewSettingsWeights);
+            InitializeGridView(GvBarcode, ViewSettingsBarcodes);
+            InitializeGridView(GvOrderNumber, ViewSettingsOrderNumbers);
+            InitializeGridView(GvWeightDetail, ViewSettingsDetails);
+            InitializeGridView(GvOutWeight, ViewSettingsOutWeights);
             // DataGridViewの表示
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
@@ -1155,9 +1179,19 @@ namespace NipponPaint.OrderManager
                 GvOrder.Columns[cnt].Width = item.Width;
                 GvOrder.Columns[cnt].Visible = item.Visible;
                 GvOrder.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
+                cnt++;
+            }
+            cnt = 0;
+            foreach (var item in ViewSettingsOrderDetails)
+            {
                 GvDetail.Columns[cnt].Width = item.Width;
                 GvDetail.Columns[cnt].Visible = item.Visible;
                 GvDetail.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
+                cnt++;
+            }
+            cnt = 0;
+            foreach (var item in ViewSettingsFormulations)
+            {
                 GvFormulation.Columns[cnt].Width = item.Width;
                 GvFormulation.Columns[cnt].Visible = item.Visible;
                 GvFormulation.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
@@ -1242,6 +1276,23 @@ namespace NipponPaint.OrderManager
         }
         #endregion
 
+        #region 画面の終了
+        /// <summary>
+        /// 画面の終了
+        /// </summary>
+        private void CloseedForm()
+        {
+            SaveDataGridViewSetting(GvOrder);
+            SaveDataGridViewSetting(GvDetail);
+            SaveDataGridViewSetting(GvFormulation);
+            SaveDataGridViewSetting(GvWeight);
+            SaveDataGridViewSetting(GvBarcode);
+            SaveDataGridViewSetting(GvOrderNumber);
+            SaveDataGridViewSetting(GvWeightDetail);
+            SaveDataGridViewSetting(GvOutWeight);
+        }
+        #endregion
+
         #region DataGridViewの書式設定
         /// <summary>
         /// DataGridViewの書式設定
@@ -1294,7 +1345,7 @@ namespace NipponPaint.OrderManager
                     }
                     i++;
                 }
-                
+
                 row.Cells[COLUMN_PRODUCT_CODE].Style.ForeColor = Color.Black;
                 if (cnt == 10)
                 {
@@ -1394,9 +1445,9 @@ namespace NipponPaint.OrderManager
             DataRow[] ss = dt.Select("Status = " + 0);
             double total = 0;
             string strTotal = string.Empty;
-            foreach(DataRow row in ss)
+            foreach (DataRow row in ss)
             {
-                int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""),out int weight);
+                int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
                 int.TryParse(row[COLUMN_NUMBER_OF_CANS].ToString(), out int number);
                 total += weight * number;
             }
@@ -1495,6 +1546,18 @@ namespace NipponPaint.OrderManager
                     BtnPrint.Enabled = false;
                     break;
             }
+        }
+        #endregion
+
+        #region DataGirdViewの設定をコピーする
+        private List<GridViewSetting> GridViewSettingCopy(List<GridViewSetting> source)
+        {
+            var result = new List<GridViewSetting>();
+            foreach (var item in source)
+            {
+                result.Add(new GridViewSetting(item));
+            }
+            return result;
         }
         #endregion
 

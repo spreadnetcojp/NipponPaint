@@ -51,6 +51,23 @@ namespace NipponPaint.NpCommon.Settings
         /// 配置
         /// </summary>
         public DataGridViewContentAlignment alignment { get; set; } = DataGridViewContentAlignment.MiddleLeft;
+
+        #region コンストラクタ
+        public GridViewSetting()
+        {
+
+        }
+
+        public GridViewSetting(GridViewSetting item)
+        {
+            ColumnType = item.ColumnType;
+            ColumnName = item.ColumnName;
+            DisplayName = item.DisplayName;
+            Visible = item.Visible;
+            Width = item.Width;
+            alignment = item.alignment;
+        }
+        #endregion
         /// <summary>
         /// SQL文の文言
         /// </summary>

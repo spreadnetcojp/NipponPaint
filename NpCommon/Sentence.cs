@@ -55,6 +55,12 @@ namespace NipponPaint.NpCommon
             OpenMainForm,
 
             /// <summary>
+            /// 主画面を閉じました
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Info, Description = "主画面を閉じました")]
+            CloseMainForm,
+
+            /// <summary>
             /// データベースの読み込みを実行しました
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "データベースの読み込みを実行しました（SQL：{0}）")]
