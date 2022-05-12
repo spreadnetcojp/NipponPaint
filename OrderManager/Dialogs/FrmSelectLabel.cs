@@ -48,8 +48,8 @@ namespace NipponPaint.OrderManager.Dialogs
         {
            　try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 MessageBox.Show("設定内容を保存しました。");
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }
             catch(Exception ex)

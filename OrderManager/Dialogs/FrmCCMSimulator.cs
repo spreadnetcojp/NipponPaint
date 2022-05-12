@@ -107,8 +107,8 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 DialogResult result = MessageBox.Show("原料選択でｴﾗｰ", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch(Exception ex)
             {
@@ -124,7 +124,6 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 NumUpDownCorrection.Text = "0";
                 TxtKanjiColorName.Text = "";
                 TxtPaintName.Text = "";
@@ -142,6 +141,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 DrpColoarantSelect8.Text = "";
                 DrpColoarantSelect9.Text = "";
                 DrpColoarantSelect10.Text = "";
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch(Exception ex)
             {

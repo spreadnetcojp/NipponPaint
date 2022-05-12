@@ -51,7 +51,9 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // DropDownSelectFolder
             // 
+            this.DropDownSelectFolder.BackColor = System.Drawing.SystemColors.Window;
             this.DropDownSelectFolder.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.DropDownSelectFolder.ForeColor = System.Drawing.SystemColors.WindowText;
             this.DropDownSelectFolder.FormattingEnabled = true;
             this.DropDownSelectFolder.Location = new System.Drawing.Point(12, 12);
             this.DropDownSelectFolder.Name = "DropDownSelectFolder";
@@ -60,7 +62,9 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // TreeViewSelectFolder
             // 
+            this.TreeViewSelectFolder.BackColor = System.Drawing.SystemColors.Window;
             this.TreeViewSelectFolder.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TreeViewSelectFolder.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TreeViewSelectFolder.Location = new System.Drawing.Point(12, 53);
             this.TreeViewSelectFolder.Name = "TreeViewSelectFolder";
             this.TreeViewSelectFolder.Size = new System.Drawing.Size(522, 254);
