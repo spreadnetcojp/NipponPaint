@@ -20,6 +20,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NipponPaint.NpCommon;
+using NipponPaint.NpCommon.IniFile;
+using NipponPaint.NpCommon.Settings;
 #endregion
 
 namespace NipponPaint.OrderManager
@@ -30,12 +32,12 @@ namespace NipponPaint.OrderManager
     public class BaseForm : Form
     {
 
-        public NpCommon.IniFile.Settings Settings;
+        public Settings BaseSettings { get; set; }
 
         public BaseForm()
         {
             // アプリ定義ファイル読み込み
-            Settings = new NpCommon.IniFile.Settings();
+            BaseSettings = new Settings();
         }
 
         #region DataGridViewの初期設定
@@ -43,9 +45,19 @@ namespace NipponPaint.OrderManager
         /// DataGridViewの初期設定
         /// </summary>
         /// <param name="target"></param>
-        public void InitializeGridView(DataGridView target)
+        public void InitializeGridView(DataGridView target, List<GridViewSetting> viewSettings = null)
         {
-            
+            if (viewSettings != null)
+            {
+                var reader = new FileInterface(BaseSettings.FilePath);
+                var columnsWidth = reader.GetItem("GRID", target.Name);
+                var i = 0;
+                foreach (var columnWidth in columnsWidth)
+                {
+                    viewSettings[i].Width = columnWidth;
+                    i++;
+                }
+            }
             target.DefaultCellStyle.BackColor = System.Drawing.Color.Black;
             target.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
             target.Columns.Clear();
@@ -56,6 +68,19 @@ namespace NipponPaint.OrderManager
             target.AllowUserToDeleteRows = false;
             target.AllowUserToResizeRows = false;
             target.ReadOnly = true;
+        }
+        #endregion
+
+        #region DataGridViewの設定を保存する
+        public void SaveDataGridViewSetting(DataGridView target)
+        {
+            var columnsWidth = new List<int>();
+            foreach (DataGridViewColumn column in target.Columns)
+            {
+                columnsWidth.Add(column.Width);
+            }
+            var reader = new FileInterface(BaseSettings.FilePath);
+            reader.SetItem("GRID", target.Name, columnsWidth.ToArray());
         }
         #endregion
 
