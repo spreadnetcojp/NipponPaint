@@ -192,8 +192,8 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 MessageBox.Show("入力を決定しました。");
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }
             catch(Exception ex)

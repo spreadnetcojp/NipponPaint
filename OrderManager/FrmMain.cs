@@ -45,11 +45,7 @@ namespace NipponPaint.OrderManager
             Color.White,
             Color.White,
         };
-        private static List<string> HgNoteStrList = new List<string>()
-        {
-            "生",
-            "ネタ",
-        };
+        
         private const int COLUMN_STATUS = 0;
         //private int COLUMN_PRODUCT_NAME = 0;
         //private int COLUMN_COLOR_NAME = 0;
@@ -270,8 +266,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 DataGridViewFormatting((DataGridView)sender);
+                PutLog(Sentence.Messages.PreviewData);
             }
             catch (Exception ex)
             {
@@ -283,8 +279,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 DataGridViewFormatting((DataGridView)sender);
+                PutLog(Sentence.Messages.PreviewData);
             }
             catch (Exception ex)
             {
@@ -296,8 +292,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 DataGridViewFormatting((DataGridView)sender);
+                PutLog(Sentence.Messages.PreviewData);
             }
             catch (Exception ex)
             {
@@ -309,8 +305,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 DataGridViewFormatting((DataGridView)sender);
+                PutLog(Sentence.Messages.PreviewData);
             }
             catch (Exception ex)
             {
@@ -322,18 +318,13 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 var dgv = (DataGridView)sender;
+                PutLog(Sentence.Messages.SelectRow);
             }
             catch (Exception ex)
             {
                 PutLog(ex);
             }
-        }
-
-        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
         }
 
         private void Gv_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
@@ -430,8 +421,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 MessageBox.Show("作業指示書印刷がクリックされました");
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
@@ -447,8 +438,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 MessageBox.Show("緊急印刷がクリックされました");
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
@@ -490,7 +481,6 @@ namespace NipponPaint.OrderManager
                 {
                     //ctrlキーが押されている場合
                     case Keys.Control:
-                        PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                         FrmOrderClose frmOrderClose = new FrmOrderClose();
                         frmOrderClose.ShowDialog();
                         break;
@@ -799,8 +789,8 @@ namespace NipponPaint.OrderManager
                             break;
                     }
                 }
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 InitializeForm();
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
@@ -817,7 +807,6 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.LotRegister();
                 vm.Lot = HgTintingDirection.Value;
                 // Order_idで検索する
@@ -841,6 +830,7 @@ namespace NipponPaint.OrderManager
                 FrmLotRegister frmLotRegister = new FrmLotRegister(vm);
                 frmLotRegister.ShowDialog();
                 InitializeForm();
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
@@ -856,7 +846,6 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.SelectDataNumber();
                 // Order_idで検索する
                 var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
@@ -888,6 +877,7 @@ namespace NipponPaint.OrderManager
                         tabMain.SelectedIndex = TAB_INDEX_DETAIL;
                     }
                 }
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
@@ -922,6 +912,10 @@ namespace NipponPaint.OrderManager
                             BorderBtnPrint.Visible = true;
                         }
                     }
+                    else
+                    {
+                        BorderBtnPrint.Visible = false;
+                    }
                     break;
                 case 2:
                     BorderBtnPrint.Visible = false;
@@ -945,8 +939,6 @@ namespace NipponPaint.OrderManager
             }
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 // Statusを取得する
                 var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
@@ -1000,7 +992,8 @@ namespace NipponPaint.OrderManager
                             BorderBtnPrint.Visible = false;
                         }
                         //調色適用のLabelTextBoxコントロールに設定された値を取得する
-                        foreach (string item in HgNoteStrList)
+                        var items = BaseSettings.Display.HgNoteStrList;
+                        foreach (string item in items)
                         {
                             if (HgNote.Value.Contains(item))
                             {
@@ -1014,10 +1007,9 @@ namespace NipponPaint.OrderManager
                         }
                         //各種ボタンの表示制御
                         ButtonsEnableSetting(status);
-
-
                     }
                 }
+                PutLog(Sentence.Messages.SelectRow);
             }
             catch (Exception ex)
             {
@@ -1038,7 +1030,6 @@ namespace NipponPaint.OrderManager
             }
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 // Statusを取得する
                 var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
@@ -1092,7 +1083,8 @@ namespace NipponPaint.OrderManager
                             BorderBtnPrint.Visible = false;
                         }
                         //調色適用のLabelTextBoxコントロールに設定された値を取得する
-                        foreach(string item in HgNoteStrList)
+                        var items = BaseSettings.Display.HgNoteStrList;
+                        foreach (string item in items)
                         {
                             if (HgNote.Value.Contains(item))
                             {
@@ -1104,13 +1096,11 @@ namespace NipponPaint.OrderManager
                                 BorderHgNote.Visible = false;
                             }
                         }
-                        
                         //各種ボタンの表示制御
                         ButtonsEnableSetting(status);
-
-
                     }
                 }
+                PutLog(Sentence.Messages.SelectRow);
             }
             catch (Exception ex)
             {
@@ -1132,7 +1122,6 @@ namespace NipponPaint.OrderManager
             }
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 // Statusと取得する
                 var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
@@ -1186,7 +1175,8 @@ namespace NipponPaint.OrderManager
                             BorderBtnPrint.Visible = false;
                         }
                         //調色適用のLabelTextBoxコントロールに設定された値を取得する
-                        foreach (string item in HgNoteStrList)
+                        var items = BaseSettings.Display.HgNoteStrList;
+                        foreach (string item in items)
                         {
                             if (HgNote.Value.Contains(item))
                             {
@@ -1212,13 +1202,13 @@ namespace NipponPaint.OrderManager
                             }
                             if (column.ColumnName.Equals("Colorant_" + cnt))
                             {
-
                                 GvWeight.Rows.Add(rec.Rows[0]["Colorant_" + cnt], rec.Rows[0]["Weight_" + cnt]);
                                 cnt++;
                             }
                         }
                     }
                 }
+                PutLog(Sentence.Messages.SelectRow);
             }
             catch (Exception ex)
             {
@@ -1240,14 +1230,13 @@ namespace NipponPaint.OrderManager
             }
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
+                PutLog(Sentence.Messages.SelectRow);
             }
             catch (Exception ex)
             {
                 PutLog(ex);
             }
         }
-
         #endregion
 
         #region private functions
@@ -1288,7 +1277,6 @@ namespace NipponPaint.OrderManager
             this.GvOrder.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.GvDetail.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.GvFormulation.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
-            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             //ラベル(仮)のイベントハンドラー
             this.ToolStripMenuItemLabelSelection.Click += new EventHandler(this.ToolStripMenuItemLabelSelectionClick);
             this.BtnLotRegister.Click += new EventHandler(this.BtnLotRegisterClick);
@@ -1298,11 +1286,6 @@ namespace NipponPaint.OrderManager
             this.GvFormulation.SelectionChanged += new EventHandler(this.GvDetail_GvFormulation_SelectionChanged);
             this.GvOrderNumber.SelectionChanged += new EventHandler(this.GvOrderNumber_SelectionChanged);
             this.BtnStatusResume.Click += new System.EventHandler(this.BtnStatusResume_Click);
-            //各種ボタンの表示設定
-            if (tabMain.SelectedIndex != 1)
-            {
-                pnlButtons.Enabled = false;
-            }
             // DataGridViewの初期設定
             var ViewSettingsOrderDetails = GridViewSettingCopy(ViewSettingsOrders);
             var ViewSettingsFormulations = GridViewSettingCopy(ViewSettingsOrders);
@@ -1499,7 +1482,6 @@ namespace NipponPaint.OrderManager
                     }
                     i++;
                 }
-
                 row.Cells[COLUMN_PRODUCT_CODE].Style.ForeColor = Color.Black;
                 if (cnt == 10)
                 {

@@ -425,6 +425,7 @@ namespace NipponPaint.OrderManager
             this.GvDetail.AllowUserToAddRows = false;
             this.GvDetail.AllowUserToDeleteRows = false;
             this.GvDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GvDetail.ContextMenuStrip = this.contextMenuStrip;
             this.GvDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GvDetail.Location = new System.Drawing.Point(0, 0);
             this.GvDetail.Name = "GvDetail";
@@ -2487,6 +2488,7 @@ namespace NipponPaint.OrderManager
             this.GvFormulation.AllowUserToAddRows = false;
             this.GvFormulation.AllowUserToDeleteRows = false;
             this.GvFormulation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GvFormulation.ContextMenuStrip = this.contextMenuStrip;
             this.GvFormulation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GvFormulation.Location = new System.Drawing.Point(0, 0);
             this.GvFormulation.Name = "GvFormulation";

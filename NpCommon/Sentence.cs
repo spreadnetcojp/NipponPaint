@@ -95,6 +95,12 @@ namespace NipponPaint.NpCommon
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "{0}が未入力です")]
             NotEntryData,
+
+            /// <summary>
+            /// 一覧の行を選択しました。
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Info, Description = "一覧の行を選択しました")]
+            SelectRow,
         }
     }
 }
