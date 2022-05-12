@@ -30,7 +30,7 @@ namespace NipponPaint.OrderManager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.tabOrder = new System.Windows.Forms.TabPage();
             this.GvOrder = new System.Windows.Forms.DataGridView();
@@ -85,6 +85,7 @@ namespace NipponPaint.OrderManager
             this.button1 = new System.Windows.Forms.Button();
             this.BorderHgTintingDirection = new NipponPaint.NpCommon.FormControls.PanelBorder();
             this.BorderHgSamplePlates = new NipponPaint.NpCommon.FormControls.PanelBorder();
+            this.BorderHgNote = new NipponPaint.NpCommon.FormControls.PanelBorder();
             this.tabDetail2 = new System.Windows.Forms.TabPage();
             this.HgUnifiedArticleNumber = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.HgSsShippingDate_2 = new NipponPaint.NpCommon.FormControls.LabelTextBox();
@@ -174,6 +175,7 @@ namespace NipponPaint.OrderManager
             this.pnlButtons = new System.Windows.Forms.Panel();
             this.BtnBulkChangeStatus = new System.Windows.Forms.Button();
             this.BtnPrint = new System.Windows.Forms.Button();
+            this.BorderBtnPrint = new NipponPaint.NpCommon.FormControls.PanelBorder();
             this.BtnProcessDetail = new System.Windows.Forms.Button();
             this.BtnStatusResume = new System.Windows.Forms.Button();
             this.BtnPrintInstructions = new System.Windows.Forms.Button();
@@ -292,14 +294,14 @@ namespace NipponPaint.OrderManager
             // 
             this.GvOrder.AllowUserToAddRows = false;
             this.GvOrder.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.GvOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GvOrder.ContextMenuStrip = this.contextMenuStrip;
             this.GvOrder.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -491,6 +493,7 @@ namespace NipponPaint.OrderManager
             this.tabDetail1.Controls.Add(this.button1);
             this.tabDetail1.Controls.Add(this.BorderHgTintingDirection);
             this.tabDetail1.Controls.Add(this.BorderHgSamplePlates);
+            this.tabDetail1.Controls.Add(this.BorderHgNote);
             this.tabDetail1.Font = new System.Drawing.Font("メイリオ", 7F);
             this.tabDetail1.Location = new System.Drawing.Point(4, 32);
             this.tabDetail1.Name = "tabDetail1";
@@ -498,7 +501,6 @@ namespace NipponPaint.OrderManager
             this.tabDetail1.Size = new System.Drawing.Size(1647, 489);
             this.tabDetail1.TabIndex = 0;
             this.tabDetail1.Text = "詳細１";
-            this.tabDetail1.Click += new System.EventHandler(this.tabDetail1_Click);
             // 
             // HgWeight
             // 
@@ -1374,12 +1376,22 @@ namespace NipponPaint.OrderManager
             // BorderHgSamplePlates
             // 
             this.BorderHgSamplePlates.BackColor = System.Drawing.Color.Transparent;
-            this.BorderHgSamplePlates.BorderColor = System.Drawing.Color.Transparent;
-            this.BorderHgSamplePlates.Location = new System.Drawing.Point(1240, 312);
+            this.BorderHgSamplePlates.BorderColor = System.Drawing.Color.Red;
+            this.BorderHgSamplePlates.Location = new System.Drawing.Point(1240, 311);
             this.BorderHgSamplePlates.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.BorderHgSamplePlates.Name = "BorderHgSamplePlates";
             this.BorderHgSamplePlates.Size = new System.Drawing.Size(299, 36);
             this.BorderHgSamplePlates.TabIndex = 98;
+            // 
+            // BorderHgNote
+            // 
+            this.BorderHgNote.BackColor = System.Drawing.Color.Transparent;
+            this.BorderHgNote.BorderColor = System.Drawing.Color.Red;
+            this.BorderHgNote.Location = new System.Drawing.Point(0, 276);
+            this.BorderHgNote.Margin = new System.Windows.Forms.Padding(2, 5, 2, 5);
+            this.BorderHgNote.Name = "BorderHgNote";
+            this.BorderHgNote.Size = new System.Drawing.Size(1229, 36);
+            this.BorderHgNote.TabIndex = 99;
             // 
             // tabDetail2
             // 
@@ -3460,6 +3472,7 @@ namespace NipponPaint.OrderManager
             // 
             this.pnlButtons.Controls.Add(this.BtnBulkChangeStatus);
             this.pnlButtons.Controls.Add(this.BtnPrint);
+            this.pnlButtons.Controls.Add(this.BorderBtnPrint);
             this.pnlButtons.Controls.Add(this.BtnProcessDetail);
             this.pnlButtons.Controls.Add(this.BtnStatusResume);
             this.pnlButtons.Controls.Add(this.BtnPrintInstructions);
@@ -3489,6 +3502,16 @@ namespace NipponPaint.OrderManager
             this.BtnPrint.TabIndex = 21;
             this.BtnPrint.Text = "ラベル印刷(F4)";
             this.BtnPrint.UseVisualStyleBackColor = true;
+            // 
+            // BorderBtnPrint
+            // 
+            this.BorderBtnPrint.BackColor = System.Drawing.Color.Transparent;
+            this.BorderBtnPrint.BorderColor = System.Drawing.Color.Red;
+            this.BorderBtnPrint.Location = new System.Drawing.Point(0, 1);
+            this.BorderBtnPrint.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.BorderBtnPrint.Name = "BorderBtnPrint";
+            this.BorderBtnPrint.Size = new System.Drawing.Size(220, 52);
+            this.BorderBtnPrint.TabIndex = 99;
             // 
             // BtnProcessDetail
             // 
@@ -4013,7 +4036,6 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemCCMSimulator.Name = "ToolStripMenuItemCCMSimulator";
             this.ToolStripMenuItemCCMSimulator.Size = new System.Drawing.Size(215, 22);
             this.ToolStripMenuItemCCMSimulator.Text = "ＣＣＭシミュレーター(&D)";
-            this.ToolStripMenuItemCCMSimulator.Click += new System.EventHandler(this.ToolStripMenuItemCCMSimulator_Click);
             // 
             // ToolStripMenuItemLabelSelection
             // 
@@ -4280,6 +4302,7 @@ namespace NipponPaint.OrderManager
         private System.Windows.Forms.ToolStripMenuItem TsmiOrderClose;
         private NpCommon.FormControls.PanelBorder BorderHgTintingDirection;
         private NpCommon.FormControls.PanelBorder BorderHgSamplePlates;
+        private NpCommon.FormControls.PanelBorder BorderBtnPrint;
         private System.Windows.Forms.DataGridView GvDetail;
         private System.Windows.Forms.DataGridView GvFormulation;
         private System.Windows.Forms.Label label13;
@@ -4288,6 +4311,7 @@ namespace NipponPaint.OrderManager
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel pnlButtons;
+        private NpCommon.FormControls.PanelBorder BorderHgNote;
         private System.Windows.Forms.ToolStripMenuItem ヘルプHToolStripMenuItem;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button BtnTestCan;

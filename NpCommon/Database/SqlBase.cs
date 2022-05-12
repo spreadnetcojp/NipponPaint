@@ -1096,9 +1096,9 @@ namespace NipponPaint.NpCommon.Database
         }
         #endregion
 
-        #region 新規作成処理
+        #region 管理ツールの各種項目のデータを新規作成する
         /// <summary>
-        /// 新規作成処理
+        /// 管理ツールの各種項目のデータを新規作成する
         /// </summary>
         /// <param name="formControls"></param>
         public void Insert(Control.ControlCollection formControls, string tableName)
@@ -1198,7 +1198,13 @@ namespace NipponPaint.NpCommon.Database
         }
         #endregion
 
-        #region 削除処理
+        #region 管理ツールの各種項目のデータを削除する
+        /// <summary>
+        /// 管理ツールの各種項目のデータを削除する
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="tableName"></param>
+        /// <param name="keyName"></param>
         public void Delete(string value, string tableName, string keyName)
         {
             var param = new List<SqlParameter>();
@@ -1209,7 +1215,14 @@ namespace NipponPaint.NpCommon.Database
             Execute(sql, param);
             Commit();
         }
+        #endregion
 
+        #region データベース"NP_MAIN"のOrdersテーブルのStatusを変更する
+        public void StatusResume(string sql, List<ParameterItem> parameters = null)
+        {
+            Execute(sql, parameters);
+            Commit();
+        }
         #endregion
 
 
