@@ -45,7 +45,7 @@ namespace NipponPaint.OrderManager
             Color.White,
             Color.White,
         };
-        
+
         private const int COLUMN_STATUS = 0;
         //private int COLUMN_PRODUCT_NAME = 0;
         //private int COLUMN_COLOR_NAME = 0;
@@ -477,7 +477,7 @@ namespace NipponPaint.OrderManager
             try
             {
                 //クリック時にCtrlキーが押されているか判別する
-                switch(Control.ModifierKeys)
+                switch (Control.ModifierKeys)
                 {
                     //ctrlキーが押されている場合
                     case Keys.Control:
@@ -796,7 +796,7 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(ex);
             }
-            
+
         }
         /// <summary>
         /// ロットNo.編集画面を開く
@@ -903,14 +903,7 @@ namespace NipponPaint.OrderManager
                 case 1:
                     if (result)
                     {
-                        if (intResult == 0)
-                        {
-                            BorderBtnPrint.Visible = false;
-                        }
-                        else
-                        {
-                            BorderBtnPrint.Visible = true;
-                        }
+                        BorderBtnPrint.Visible = intResult != 0;
                     }
                     else
                     {
@@ -975,7 +968,7 @@ namespace NipponPaint.OrderManager
                         bool result = int.TryParse(HgSamplePlates.Value, out int intResult);
                         if (result)
                         {
-                            if(intResult == 0)
+                            if (intResult == 0)
                             {
                                 BorderHgSamplePlates.Visible = false;
                                 BorderBtnPrint.Visible = false;
@@ -1710,7 +1703,7 @@ namespace NipponPaint.OrderManager
                 default:
                     BtnPrint.Enabled = false;
                     BtnPrintEmergency.Enabled = true;
-                    
+
                     break;
             }
         }
