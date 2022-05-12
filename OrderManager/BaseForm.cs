@@ -47,6 +47,7 @@ namespace NipponPaint.OrderManager
         /// <param name="target"></param>
         public void InitializeGridView(DataGridView target, List<GridViewSetting> viewSettings = null)
         {
+            // INIに保存してある列幅を取得し、反映する
             if (viewSettings != null)
             {
                 var reader = new FileInterface(BaseSettings.FilePath);
@@ -58,6 +59,7 @@ namespace NipponPaint.OrderManager
                     i++;
                 }
             }
+            // 共通書式の設定
             target.DefaultCellStyle.BackColor = System.Drawing.Color.Black;
             target.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
             target.Columns.Clear();
@@ -72,6 +74,10 @@ namespace NipponPaint.OrderManager
         #endregion
 
         #region DataGridViewの設定を保存する
+        /// <summary>
+        /// DataGridViewの設定を保存する
+        /// </summary>
+        /// <param name="target"></param>
         public void SaveDataGridViewSetting(DataGridView target)
         {
             var columnsWidth = new List<int>();
