@@ -30,7 +30,7 @@ namespace NipponPaint.OrderManager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.tabOrder = new System.Windows.Forms.TabPage();
             this.GvOrder = new System.Windows.Forms.DataGridView();
@@ -148,6 +148,10 @@ namespace NipponPaint.OrderManager
             this.labelTextBox51 = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.GvWeight = new System.Windows.Forms.DataGridView();
             this.tabCan = new System.Windows.Forms.TabPage();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.BtnRemanufacturedCan = new System.Windows.Forms.Button();
+            this.BtnPrintTag = new System.Windows.Forms.Button();
+            this.BtnTestCan = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
             this.GvOutWeight = new System.Windows.Forms.DataGridView();
             this.GvWeightDetail = new System.Windows.Forms.DataGridView();
@@ -167,14 +171,16 @@ namespace NipponPaint.OrderManager
             this.splitCanLeft = new System.Windows.Forms.SplitContainer();
             this.splitCanRight = new System.Windows.Forms.SplitContainer();
             this.pnlFuncs = new System.Windows.Forms.Panel();
-            this.BtnProcessDetail = new System.Windows.Forms.Button();
+            this.pnlButtons = new System.Windows.Forms.Panel();
+            this.BtnBulkChangeStatus = new System.Windows.Forms.Button();
             this.BtnPrint = new System.Windows.Forms.Button();
+            this.BtnProcessDetail = new System.Windows.Forms.Button();
             this.BtnStatusResume = new System.Windows.Forms.Button();
+            this.BtnPrintInstructions = new System.Windows.Forms.Button();
             this.BtnOrderStart = new System.Windows.Forms.Button();
+            this.BtnPrintEmergency = new System.Windows.Forms.Button();
             this.BtnDecidePerson = new System.Windows.Forms.Button();
             this.BtnOrderClose = new System.Windows.Forms.Button();
-            this.BtnPrintEmergency = new System.Windows.Forms.Button();
-            this.BtnPrintInstructions = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.RdoTomorrowAfter = new System.Windows.Forms.RadioButton();
@@ -205,7 +211,6 @@ namespace NipponPaint.OrderManager
             this.label1 = new System.Windows.Forms.Label();
             this.panLogo = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.BorderBtnPrint = new NipponPaint.NpCommon.FormControls.PanelBorder();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.ファイルToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -222,7 +227,7 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemCOMPort = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemCCMSimulator = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemLabelSelection = new System.Windows.Forms.ToolStripMenuItem();
-            this.pnlButtons = new System.Windows.Forms.Panel();
+            this.ヘルプHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GvOrder)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -247,6 +252,7 @@ namespace NipponPaint.OrderManager
             this.pnlFormulation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GvWeight)).BeginInit();
             this.tabCan.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GvOutWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GvWeightDetail)).BeginInit();
@@ -261,13 +267,13 @@ namespace NipponPaint.OrderManager
             ((System.ComponentModel.ISupportInitialize)(this.splitCanRight)).BeginInit();
             this.splitCanRight.SuspendLayout();
             this.pnlFuncs.SuspendLayout();
+            this.pnlButtons.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlColorExplanation.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.menuStrip.SuspendLayout();
-            this.pnlButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabOrder
@@ -286,14 +292,14 @@ namespace NipponPaint.OrderManager
             // 
             this.GvOrder.AllowUserToAddRows = false;
             this.GvOrder.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.GvOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GvOrder.ContextMenuStrip = this.contextMenuStrip;
             this.GvOrder.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -3054,6 +3060,7 @@ namespace NipponPaint.OrderManager
             // 
             this.tabCan.BackColor = System.Drawing.SystemColors.Control;
             this.tabCan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabCan.Controls.Add(this.panel4);
             this.tabCan.Controls.Add(this.panel9);
             this.tabCan.Controls.Add(this.panel8);
             this.tabCan.Controls.Add(this.panel7);
@@ -3062,6 +3069,44 @@ namespace NipponPaint.OrderManager
             this.tabCan.Size = new System.Drawing.Size(1663, 932);
             this.tabCan.TabIndex = 3;
             this.tabCan.Text = "缶";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.BtnRemanufacturedCan);
+            this.panel4.Controls.Add(this.BtnPrintTag);
+            this.panel4.Controls.Add(this.BtnTestCan);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 880);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1661, 50);
+            this.panel4.TabIndex = 3;
+            // 
+            // BtnRemanufacturedCan
+            // 
+            this.BtnRemanufacturedCan.Location = new System.Drawing.Point(1445, 2);
+            this.BtnRemanufacturedCan.Name = "BtnRemanufacturedCan";
+            this.BtnRemanufacturedCan.Size = new System.Drawing.Size(216, 48);
+            this.BtnRemanufacturedCan.TabIndex = 22;
+            this.BtnRemanufacturedCan.Text = "缶の再製造";
+            this.BtnRemanufacturedCan.UseVisualStyleBackColor = true;
+            // 
+            // BtnPrintTag
+            // 
+            this.BtnPrintTag.Location = new System.Drawing.Point(1222, 2);
+            this.BtnPrintTag.Name = "BtnPrintTag";
+            this.BtnPrintTag.Size = new System.Drawing.Size(216, 48);
+            this.BtnPrintTag.TabIndex = 21;
+            this.BtnPrintTag.Text = "荷札印刷";
+            this.BtnPrintTag.UseVisualStyleBackColor = true;
+            // 
+            // BtnTestCan
+            // 
+            this.BtnTestCan.Location = new System.Drawing.Point(1000, 2);
+            this.BtnTestCan.Name = "BtnTestCan";
+            this.BtnTestCan.Size = new System.Drawing.Size(216, 48);
+            this.BtnTestCan.TabIndex = 20;
+            this.BtnTestCan.Text = "テスト缶仕上り";
+            this.BtnTestCan.UseVisualStyleBackColor = true;
             // 
             // panel9
             // 
@@ -3411,77 +3456,102 @@ namespace NipponPaint.OrderManager
             this.pnlFuncs.Size = new System.Drawing.Size(223, 965);
             this.pnlFuncs.TabIndex = 0;
             // 
-            // BtnProcessDetail
+            // pnlButtons
             // 
-            this.BtnProcessDetail.Location = new System.Drawing.Point(2, 398);
-            this.BtnProcessDetail.Name = "BtnProcessDetail";
-            this.BtnProcessDetail.Size = new System.Drawing.Size(216, 54);
-            this.BtnProcessDetail.TabIndex = 20;
-            this.BtnProcessDetail.Text = "処理No.詳細(F12)";
-            this.BtnProcessDetail.UseVisualStyleBackColor = true;
+            this.pnlButtons.Controls.Add(this.BtnBulkChangeStatus);
+            this.pnlButtons.Controls.Add(this.BtnPrint);
+            this.pnlButtons.Controls.Add(this.BtnProcessDetail);
+            this.pnlButtons.Controls.Add(this.BtnStatusResume);
+            this.pnlButtons.Controls.Add(this.BtnPrintInstructions);
+            this.pnlButtons.Controls.Add(this.BtnOrderStart);
+            this.pnlButtons.Controls.Add(this.BtnPrintEmergency);
+            this.pnlButtons.Controls.Add(this.BtnDecidePerson);
+            this.pnlButtons.Controls.Add(this.BtnOrderClose);
+            this.pnlButtons.Location = new System.Drawing.Point(3, 511);
+            this.pnlButtons.Name = "pnlButtons";
+            this.pnlButtons.Size = new System.Drawing.Size(220, 458);
+            this.pnlButtons.TabIndex = 1;
+            // 
+            // BtnBulkChangeStatus
+            // 
+            this.BtnBulkChangeStatus.Location = new System.Drawing.Point(2, 353);
+            this.BtnBulkChangeStatus.Name = "BtnBulkChangeStatus";
+            this.BtnBulkChangeStatus.Size = new System.Drawing.Size(216, 48);
+            this.BtnBulkChangeStatus.TabIndex = 22;
+            this.BtnBulkChangeStatus.Text = "ステータス一括変更(F11)";
+            this.BtnBulkChangeStatus.UseVisualStyleBackColor = true;
             // 
             // BtnPrint
             // 
             this.BtnPrint.Location = new System.Drawing.Point(2, 3);
             this.BtnPrint.Name = "BtnPrint";
-            this.BtnPrint.Size = new System.Drawing.Size(216, 54);
-            this.BtnPrint.TabIndex = 19;
+            this.BtnPrint.Size = new System.Drawing.Size(216, 48);
+            this.BtnPrint.TabIndex = 21;
             this.BtnPrint.Text = "ラベル印刷(F4)";
             this.BtnPrint.UseVisualStyleBackColor = true;
             // 
+            // BtnProcessDetail
+            // 
+            this.BtnProcessDetail.Location = new System.Drawing.Point(2, 403);
+            this.BtnProcessDetail.Name = "BtnProcessDetail";
+            this.BtnProcessDetail.Size = new System.Drawing.Size(216, 48);
+            this.BtnProcessDetail.TabIndex = 20;
+            this.BtnProcessDetail.Text = "処理No.詳細(F12)";
+            this.BtnProcessDetail.UseVisualStyleBackColor = true;
+            // 
             // BtnStatusResume
             // 
-            this.BtnStatusResume.Location = new System.Drawing.Point(2, 228);
+            this.BtnStatusResume.Location = new System.Drawing.Point(2, 203);
             this.BtnStatusResume.Name = "BtnStatusResume";
-            this.BtnStatusResume.Size = new System.Drawing.Size(216, 54);
+            this.BtnStatusResume.Size = new System.Drawing.Size(216, 48);
             this.BtnStatusResume.TabIndex = 18;
             this.BtnStatusResume.Text = "ステータスを戻す(F8)";
             this.BtnStatusResume.UseVisualStyleBackColor = true;
             // 
+            // BtnPrintInstructions
+            // 
+            this.BtnPrintInstructions.Location = new System.Drawing.Point(2, 53);
+            this.BtnPrintInstructions.Name = "BtnPrintInstructions";
+            this.BtnPrintInstructions.Size = new System.Drawing.Size(216, 48);
+            this.BtnPrintInstructions.TabIndex = 12;
+            this.BtnPrintInstructions.Text = "作業指示書の印刷(F5)";
+            this.BtnPrintInstructions.UseVisualStyleBackColor = true;
+            // 
             // BtnOrderStart
             // 
-            this.BtnOrderStart.Location = new System.Drawing.Point(2, 172);
+            this.BtnOrderStart.Location = new System.Drawing.Point(2, 153);
             this.BtnOrderStart.Name = "BtnOrderStart";
-            this.BtnOrderStart.Size = new System.Drawing.Size(216, 54);
+            this.BtnOrderStart.Size = new System.Drawing.Size(216, 48);
             this.BtnOrderStart.TabIndex = 17;
             this.BtnOrderStart.Text = "注文開始(F7)";
             this.BtnOrderStart.UseVisualStyleBackColor = true;
             // 
+            // BtnPrintEmergency
+            // 
+            this.BtnPrintEmergency.Location = new System.Drawing.Point(2, 103);
+            this.BtnPrintEmergency.Name = "BtnPrintEmergency";
+            this.BtnPrintEmergency.Size = new System.Drawing.Size(216, 48);
+            this.BtnPrintEmergency.TabIndex = 14;
+            this.BtnPrintEmergency.Text = "緊急印刷(F6)";
+            this.BtnPrintEmergency.UseVisualStyleBackColor = true;
+            // 
             // BtnDecidePerson
             // 
-            this.BtnDecidePerson.Location = new System.Drawing.Point(2, 285);
+            this.BtnDecidePerson.Location = new System.Drawing.Point(2, 253);
             this.BtnDecidePerson.Name = "BtnDecidePerson";
-            this.BtnDecidePerson.Size = new System.Drawing.Size(216, 54);
+            this.BtnDecidePerson.Size = new System.Drawing.Size(216, 48);
             this.BtnDecidePerson.TabIndex = 16;
             this.BtnDecidePerson.Text = "担当者を決定(F9)";
             this.BtnDecidePerson.UseVisualStyleBackColor = true;
             // 
             // BtnOrderClose
             // 
-            this.BtnOrderClose.Location = new System.Drawing.Point(2, 342);
+            this.BtnOrderClose.Location = new System.Drawing.Point(2, 303);
             this.BtnOrderClose.Name = "BtnOrderClose";
-            this.BtnOrderClose.Size = new System.Drawing.Size(216, 54);
+            this.BtnOrderClose.Size = new System.Drawing.Size(216, 48);
             this.BtnOrderClose.TabIndex = 15;
             this.BtnOrderClose.Text = "注文を閉じる(F10)";
             this.BtnOrderClose.UseVisualStyleBackColor = true;
-            // 
-            // BtnPrintEmergency
-            // 
-            this.BtnPrintEmergency.Location = new System.Drawing.Point(2, 115);
-            this.BtnPrintEmergency.Name = "BtnPrintEmergency";
-            this.BtnPrintEmergency.Size = new System.Drawing.Size(216, 54);
-            this.BtnPrintEmergency.TabIndex = 14;
-            this.BtnPrintEmergency.Text = "緊急印刷(F6)";
-            this.BtnPrintEmergency.UseVisualStyleBackColor = true;
-            // 
-            // BtnPrintInstructions
-            // 
-            this.BtnPrintInstructions.Location = new System.Drawing.Point(2, 59);
-            this.BtnPrintInstructions.Name = "BtnPrintInstructions";
-            this.BtnPrintInstructions.Size = new System.Drawing.Size(216, 54);
-            this.BtnPrintInstructions.TabIndex = 12;
-            this.BtnPrintInstructions.Text = "作業指示書の印刷(F5)";
-            this.BtnPrintInstructions.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -3828,16 +3898,6 @@ namespace NipponPaint.OrderManager
             this.splitter1.TabIndex = 0;
             this.splitter1.TabStop = false;
             // 
-            // BorderBtnPrint
-            // 
-            this.BorderBtnPrint.BackColor = System.Drawing.Color.Transparent;
-            this.BorderBtnPrint.BorderColor = System.Drawing.Color.Transparent;
-            this.BorderBtnPrint.Location = new System.Drawing.Point(0, 2);
-            this.BorderBtnPrint.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
-            this.BorderBtnPrint.Name = "BorderBtnPrint";
-            this.BorderBtnPrint.Size = new System.Drawing.Size(220, 58);
-            this.BorderBtnPrint.TabIndex = 99;
-            // 
             // pnlMain
             // 
             this.pnlMain.Controls.Add(this.tabMain);
@@ -3887,7 +3947,8 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemShipping,
             this.ToolStripMenuItemCOMPort,
             this.ToolStripMenuItemCCMSimulator,
-            this.ToolStripMenuItemLabelSelection});
+            this.ToolStripMenuItemLabelSelection,
+            this.ヘルプHToolStripMenuItem});
             this.設定ToolStripMenuItem.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
             this.設定ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
@@ -3952,6 +4013,7 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemCCMSimulator.Name = "ToolStripMenuItemCCMSimulator";
             this.ToolStripMenuItemCCMSimulator.Size = new System.Drawing.Size(215, 22);
             this.ToolStripMenuItemCCMSimulator.Text = "ＣＣＭシミュレーター(&D)";
+            this.ToolStripMenuItemCCMSimulator.Click += new System.EventHandler(this.ToolStripMenuItemCCMSimulator_Click);
             // 
             // ToolStripMenuItemLabelSelection
             // 
@@ -3959,21 +4021,11 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemLabelSelection.Size = new System.Drawing.Size(215, 22);
             this.ToolStripMenuItemLabelSelection.Text = "ラベル(仮)";
             // 
-            // pnlButtons
+            // ヘルプHToolStripMenuItem
             // 
-            this.pnlButtons.Controls.Add(this.BtnProcessDetail);
-            this.pnlButtons.Controls.Add(this.BtnPrint);
-            this.pnlButtons.Controls.Add(this.BorderBtnPrint);
-            this.pnlButtons.Controls.Add(this.BtnStatusResume);
-            this.pnlButtons.Controls.Add(this.BtnPrintInstructions);
-            this.pnlButtons.Controls.Add(this.BtnOrderStart);
-            this.pnlButtons.Controls.Add(this.BtnPrintEmergency);
-            this.pnlButtons.Controls.Add(this.BtnDecidePerson);
-            this.pnlButtons.Controls.Add(this.BtnOrderClose);
-            this.pnlButtons.Location = new System.Drawing.Point(3, 511);
-            this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(220, 458);
-            this.pnlButtons.TabIndex = 1;
+            this.ヘルプHToolStripMenuItem.Name = "ヘルプHToolStripMenuItem";
+            this.ヘルプHToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.ヘルプHToolStripMenuItem.Text = "ヘルプ(&H)";
             // 
             // FrmMain
             // 
@@ -4014,6 +4066,7 @@ namespace NipponPaint.OrderManager
             this.pnlFormulation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GvWeight)).EndInit();
             this.tabCan.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GvOutWeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GvWeightDetail)).EndInit();
@@ -4028,6 +4081,7 @@ namespace NipponPaint.OrderManager
             ((System.ComponentModel.ISupportInitialize)(this.splitCanRight)).EndInit();
             this.splitCanRight.ResumeLayout(false);
             this.pnlFuncs.ResumeLayout(false);
+            this.pnlButtons.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -4038,7 +4092,6 @@ namespace NipponPaint.OrderManager
             this.pnlMain.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            this.pnlButtons.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4112,7 +4165,6 @@ namespace NipponPaint.OrderManager
         private System.Windows.Forms.DataGridView GvOrderNumber;
         private System.Windows.Forms.Button BtnStatusResume;
         private System.Windows.Forms.Button BtnOrderStart;
-        private System.Windows.Forms.Button BtnPrint;
         private NipponPaint.NpCommon.FormControls.LabelTextBox ProductCode;
         private NipponPaint.NpCommon.FormControls.LabelTextBox HgDataNumber;
         private NipponPaint.NpCommon.FormControls.LabelTextBox OrderNumber;
@@ -4228,7 +4280,6 @@ namespace NipponPaint.OrderManager
         private System.Windows.Forms.ToolStripMenuItem TsmiOrderClose;
         private NpCommon.FormControls.PanelBorder BorderHgTintingDirection;
         private NpCommon.FormControls.PanelBorder BorderHgSamplePlates;
-        private NpCommon.FormControls.PanelBorder BorderBtnPrint;
         private System.Windows.Forms.DataGridView GvDetail;
         private System.Windows.Forms.DataGridView GvFormulation;
         private System.Windows.Forms.Label label13;
@@ -4237,6 +4288,13 @@ namespace NipponPaint.OrderManager
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel pnlButtons;
+        private System.Windows.Forms.ToolStripMenuItem ヘルプHToolStripMenuItem;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button BtnTestCan;
+        private System.Windows.Forms.Button BtnBulkChangeStatus;
+        private System.Windows.Forms.Button BtnPrint;
+        private System.Windows.Forms.Button BtnRemanufacturedCan;
+        private System.Windows.Forms.Button BtnPrintTag;
     }
 }
 
