@@ -32,6 +32,7 @@ namespace NipponPaint.NpCommon.IniFile
 
         #region プロパティ
         public Sections.DatabaseSection Database { get; set; }
+        public Sections.DisplaySection Display { get; set; }
         public string FilePath { get { return _filePath; } }
         #endregion
 
@@ -48,6 +49,7 @@ namespace NipponPaint.NpCommon.IniFile
             var folder = Path.GetDirectoryName(Application.ExecutablePath);
             _filePath = Path.Combine(folder, Constants.IniFiles.NP_COMMON);
             Database = new Sections.DatabaseSection(_filePath);
+            Display = new Sections.DisplaySection(_filePath);
         }
         #endregion
     }
