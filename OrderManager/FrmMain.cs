@@ -1499,15 +1499,5 @@ namespace NipponPaint.OrderManager
         #endregion
 
         #endregion
-
-        private void tabDetail1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ToolStripMenuItemCCMSimulator_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
