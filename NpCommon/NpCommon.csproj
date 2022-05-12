@@ -204,6 +204,7 @@
     <Compile Include="Funcs.cs" />
     <Compile Include="IniFile\FileInterface.cs" />
     <Compile Include="IniFile\Sections\DatabaseSection.cs" />
+    <Compile Include="IniFile\Sections\DisplaySection.cs" />
     <Compile Include="IniFile\Sections\GridSection.cs" />
     <Compile Include="IniFile\Sections\PrinterSection.cs" />
     <Compile Include="IniFile\Settings.cs" />
