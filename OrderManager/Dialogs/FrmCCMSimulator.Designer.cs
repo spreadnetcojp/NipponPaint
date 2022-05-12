@@ -546,6 +546,7 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // BtnClose
             // 
+            this.BtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.BtnClose.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.BtnClose.Location = new System.Drawing.Point(42, 141);
             this.BtnClose.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -557,7 +558,6 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // BtnCancel
             // 
-            this.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.BtnCancel.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.BtnCancel.Location = new System.Drawing.Point(42, 81);
             this.BtnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -882,7 +882,7 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.BtnCancel;
+            this.CancelButton = this.BtnClose;
             this.ClientSize = new System.Drawing.Size(1143, 742);
             this.ControlBox = false;
             this.Controls.Add(this.GrpBoxColorant);

@@ -498,7 +498,6 @@ namespace NipponPaint.OrderManager
             this.tabDetail1.Size = new System.Drawing.Size(1647, 489);
             this.tabDetail1.TabIndex = 0;
             this.tabDetail1.Text = "詳細１";
-            this.tabDetail1.Click += new System.EventHandler(this.tabDetail1_Click);
             // 
             // HgWeight
             // 
@@ -4013,7 +4012,6 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemCCMSimulator.Name = "ToolStripMenuItemCCMSimulator";
             this.ToolStripMenuItemCCMSimulator.Size = new System.Drawing.Size(215, 22);
             this.ToolStripMenuItemCCMSimulator.Text = "ＣＣＭシミュレーター(&D)";
-            this.ToolStripMenuItemCCMSimulator.Click += new System.EventHandler(this.ToolStripMenuItemCCMSimulator_Click);
             // 
             // ToolStripMenuItemLabelSelection
             // 

@@ -125,6 +125,23 @@ namespace NipponPaint.OrderManager.Dialogs
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                NumUpDownCorrection.Text = "0";
+                TxtKanjiColorName.Text = "";
+                TxtPaintName.Text = "";
+                DrpProductCodeLeft.Text = "";
+
+                DrpProductCodeRight.Text = "D";
+                DrpBaseSelect.Text = "";
+                DrpColoarantSelect1.Text = "";
+                DrpColoarantSelect2.Text = "";
+                DrpColoarantSelect3.Text = "";
+                DrpColoarantSelect4.Text = "";
+                DrpColoarantSelect5.Text = "";
+                DrpColoarantSelect6.Text = "";
+                DrpColoarantSelect7.Text = "";
+                DrpColoarantSelect8.Text = "";
+                DrpColoarantSelect9.Text = "";
+                DrpColoarantSelect10.Text = "";
             }
             catch(Exception ex)
             {
