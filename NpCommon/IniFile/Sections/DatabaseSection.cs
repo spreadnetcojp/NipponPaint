@@ -54,7 +54,7 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         /// <param name="filePath"></param>
         public DatabaseSection(string filePath)
         {
-            var reader = new ReadFile(filePath);
+            var reader = new FileInterface(filePath);
             NpOrder = reader.GetItem("DATABASE", "NP_ORDERConnStr", string.Format(DEFAULT_STRING, "ORDER_RF1"));
             NpMain = reader.GetItem("DATABASE", "NP_MAINConnStr", string.Format(DEFAULT_STRING, "NP_MAIN"));
             IosSup = reader.GetItem("DATABASE", "IOSSUPConnStr", string.Format(DEFAULT_STRING, "IOSSUP_RF1"));
