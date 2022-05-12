@@ -202,8 +202,9 @@
       <DependentUpon>TabCtrlPagePlantsSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Funcs.cs" />
-    <Compile Include="IniFile\ReadFile.cs" />
+    <Compile Include="IniFile\FileInterface.cs" />
     <Compile Include="IniFile\Sections\DatabaseSection.cs" />
+    <Compile Include="IniFile\Sections\DisplaySection.cs" />
     <Compile Include="IniFile\Sections\GridSection.cs" />
     <Compile Include="IniFile\Sections\PrinterSection.cs" />
     <Compile Include="IniFile\Settings.cs" />
@@ -277,7 +278,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="NpCommon.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -18,38 +18,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
 #endregion
 
-namespace NipponPaint.NpCommon.IniFile
+namespace NipponPaint.NpCommon.IniFile.Sections
 {
-    public class Settings
+    public class DisplaySection
     {
         #region 定数
         #endregion
 
         #region プロパティ
-        public Sections.DatabaseSection Database { get; set; }
-        public Sections.DisplaySection Display { get; set; }
-        public string FilePath { get { return _filePath; } }
+        public List<string> HgNoteStrList { get { return _hgNoteStrList; } }
         #endregion
 
         #region メンバ変数
-        private string _filePath;
+        private List<string> _hgNoteStrList = new List<string>();
+
         #endregion
 
         #region コンストラクタ
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public Settings()
+        /// <param name="filePath"></param>
+        public DisplaySection(string filePath)
         {
-            var folder = Path.GetDirectoryName(Application.ExecutablePath);
-            _filePath = Path.Combine(folder, Constants.IniFiles.NP_COMMON);
-            Database = new Sections.DatabaseSection(_filePath);
-            Display = new Sections.DisplaySection(_filePath);
+            var reader = new FileInterface(filePath);
+            var items = reader.GetItem("DISPLAY", "ToningAppKeyword", "");
+            if (!string.IsNullOrEmpty(items))
+            {
+                foreach (var item in items.Split(','))
+                {
+                    _hgNoteStrList.Add(item);
+                }
+            }
         }
         #endregion
     }
