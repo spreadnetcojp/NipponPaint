@@ -1505,7 +1505,9 @@ namespace NipponPaint.OrderManager
 
         }
 
-        
-        
+        private void ToolStripMenuItemCCMSimulator_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
