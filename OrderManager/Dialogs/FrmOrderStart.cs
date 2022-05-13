@@ -91,8 +91,8 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                this.Close();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                this.Close();
             }
             catch(Exception ex)
             {

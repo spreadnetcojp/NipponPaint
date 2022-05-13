@@ -221,8 +221,8 @@ namespace NipponPaint.OrderManager.Dialogs
                 VisibleSetting();
                 ValueSetting();
                 DataGridViewEnabled();
-                this.Close();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                this.Close();
             }
             catch (Exception ex)
             {

@@ -135,6 +135,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.LabelEdit();
                 //新規作成
                 vm.Parameter = 0;
@@ -142,7 +143,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 vm.LabelType = 0;
                 FrmLabelEdit frmLabelEdit = new FrmLabelEdit(vm);
                 frmLabelEdit.ShowDialog();
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             } 
             catch(Exception ex) 
             {
@@ -158,6 +158,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.LabelEdit();
                 //複製して新規作成
                 vm.Parameter = 1;
@@ -165,7 +166,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 vm.LabelType = labelType;
                 FrmLabelEdit frmLabelEdit = new FrmLabelEdit(vm);
                 frmLabelEdit.ShowDialog();
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
@@ -181,13 +181,13 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.LabelEdit();
                 vm.Parameter = 2;
                 int.TryParse(TxtLabelType.Value, out int labelType);
                 vm.LabelType = labelType;
                 FrmLabelEdit frmLabelEdit = new FrmLabelEdit(vm);
                 frmLabelEdit.ShowDialog();
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
