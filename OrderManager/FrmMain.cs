@@ -130,11 +130,11 @@ namespace NipponPaint.OrderManager
         {
             InitializeComponent();
             InitializeForm();
-            lblStatus1.BackColor = StatusBackColorList[0];
-            lblStatus2.BackColor = StatusBackColorList[1];
-            lblStatus3.BackColor = StatusBackColorList[2];
-            lblStatus4.BackColor = StatusBackColorList[3];
-            lblStatus5.BackColor = StatusBackColorList[4];
+            lblStatus1.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.WaitingForToning];
+            lblStatus2.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation];
+            lblStatus3.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.Ready];
+            lblStatus4.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress];
+            lblStatus5.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress];
             lblStatus5.ForeColor = Color.White;
         }
         #endregion
@@ -336,9 +336,9 @@ namespace NipponPaint.OrderManager
             {
                 gv.Rows[e.RowIndex].Selected = true;
                 DataGridViewRow row = gv.SelectedRows[0];
-                switch (int.Parse(row.Cells[COLUMN_STATUS].Value.ToString()))
+                switch ((Sql.NpMain.Orders.OrderStatus)int.Parse(row.Cells[COLUMN_STATUS].Value.ToString()))
                 {
-                    case 0:
+                    case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
                         TsmiDecide.Enabled = true;
                         TsmiOperatorDelete.Enabled = false;
                         TsmiOrderStart.Enabled = false;
@@ -348,7 +348,7 @@ namespace NipponPaint.OrderManager
                         TsmiCopyLabelPrint.Enabled = false;
                         TsmiOrderClose.Enabled = true;
                         break;
-                    case 1:
+                    case Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
                         TsmiDecide.Enabled = false;
                         TsmiOperatorDelete.Enabled = true;
                         TsmiOrderStart.Enabled = false;
@@ -358,7 +358,7 @@ namespace NipponPaint.OrderManager
                         TsmiCopyLabelPrint.Enabled = false;
                         TsmiOrderClose.Enabled = true;
                         break;
-                    case 2:
+                    case Sql.NpMain.Orders.OrderStatus.Ready:
                         TsmiDecide.Enabled = false;
                         TsmiOperatorDelete.Enabled = false;
                         TsmiOrderStart.Enabled = true;
@@ -368,7 +368,7 @@ namespace NipponPaint.OrderManager
                         TsmiCopyLabelPrint.Enabled = false;
                         TsmiOrderClose.Enabled = true;
                         break;
-                    case 3:
+                    case Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
                         TsmiDecide.Enabled = false;
                         TsmiOperatorDelete.Enabled = false;
                         TsmiOrderStart.Enabled = false;
@@ -378,7 +378,7 @@ namespace NipponPaint.OrderManager
                         TsmiCopyLabelPrint.Enabled = false;
                         TsmiOrderClose.Enabled = false;
                         break;
-                    case 4:
+                    case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
                         TsmiDecide.Enabled = false;
                         TsmiOperatorDelete.Enabled = false;
                         TsmiOrderStart.Enabled = false;
@@ -779,22 +779,22 @@ namespace NipponPaint.OrderManager
                                 {
                                     new ParameterItem("orderId", orderId),
                                 };
-                                switch (status)
+                                switch ((Sql.NpMain.Orders.OrderStatus)status)
                                 {
-                                    case 0:
+                                    case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
                                         break;
-                                    case 1:
+                                    case Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
                                         break;
-                                    case 2:
+                                    case Sql.NpMain.Orders.OrderStatus.Ready:
                                         db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
                                         //db.Execute(Sql.NpMain.Orders.StatusResume(), parameters);
                                         //db.Commit();
                                         break;
-                                    case 3:
+                                    case Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
                                         db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
                                         //db.Execute(Sql.NpMain.Orders.StatusResume(), parameters);
                                         break;
-                                    case 4:
+                                    case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
                                         db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
                                         //db.Execute(Sql.NpMain.Orders.StatusResume(), parameters);
                                         break;
@@ -842,7 +842,7 @@ namespace NipponPaint.OrderManager
                         {
                             new ParameterItem("orderId", orderId),
                         };
-                        var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(), parameters);
+                        var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(BaseSettings.Facility.Plant), parameters);
                         int.TryParse(rec.Rows[0]["HG_Data_Number"].ToString(), out int dataNumber);
                         vm.DataNumber = dataNumber;
                     }
@@ -879,7 +879,7 @@ namespace NipponPaint.OrderManager
                         {
                             new ParameterItem("orderId", orderId),
                         };
-                        var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(), parameters);
+                        var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(BaseSettings.Facility.Plant), parameters);
                         int.TryParse(rec.Rows[0]["HG_Data_Number"].ToString(), out int dataNumber);
                         vm.DataNumber = dataNumber;
                     }
@@ -971,7 +971,7 @@ namespace NipponPaint.OrderManager
                         {
                             new ParameterItem("orderId", orderId),
                         };
-                        var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(), parameters);
+                        var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(BaseSettings.Facility.Plant), parameters);
                         // フォームで定義された、取得値設定先のコントロールを抽出する
                         db.ToLabelTextBox(this.Controls, rec.Rows);
                         //指定LotのTextBoxコントロールの入力値を有無を調べる
@@ -1054,7 +1054,7 @@ namespace NipponPaint.OrderManager
                         {
                             new ParameterItem("orderId", orderId),
                         };
-                        var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(), parameters);
+                        var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(BaseSettings.Facility.Plant), parameters);
                         // フォームで定義された、取得値設定先のコントロールを抽出する
                         db.ToLabelTextBox(this.Controls, rec.Rows);
                         //指定LotのTextBoxコントロールの入力値を有無を調べる
@@ -1138,7 +1138,7 @@ namespace NipponPaint.OrderManager
                         {
                             new ParameterItem("orderId", orderId),
                         };
-                        var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(), parameters);
+                        var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(BaseSettings.Facility.Plant), parameters);
                         // フォームで定義された、取得値設定先のコントロールを抽出する
                         db.ToLabelTextBox(this.Controls, rec.Rows);
                         //指定LotのTextBoxコントロールの入力値を有無を調べる
@@ -1645,9 +1645,9 @@ namespace NipponPaint.OrderManager
         #region ボタン表示制御
         private void ButtonsEnableSetting(int status)
         {
-            switch (status)
+            switch ((Sql.NpMain.Orders.OrderStatus)status)
             {
-                case 0:
+                case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
                     BtnPrint.Enabled = false;
                     BtnPrintInstructions.Enabled = false;
                     BtnPrintEmergency.Enabled = false;
@@ -1655,9 +1655,9 @@ namespace NipponPaint.OrderManager
                     BtnStatusResume.Enabled = false;
                     BtnDecidePerson.Enabled = true;
                     BtnOrderClose.Enabled = true;
-                    BtnProcessDetail.Enabled = false;
+                    //BtnProcessDetail.Enabled = false;
                     break;
-                case 1:
+                case Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
                     BtnPrint.Enabled = false;
                     BtnPrintInstructions.Enabled = true;
                     BtnPrintEmergency.Enabled = true;
@@ -1665,9 +1665,9 @@ namespace NipponPaint.OrderManager
                     BtnStatusResume.Enabled = false;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
-                    BtnProcessDetail.Enabled = false;
+                    //BtnProcessDetail.Enabled = false;
                     break;
-                case 2:
+                case Sql.NpMain.Orders.OrderStatus.Ready:
                     BtnPrint.Enabled = false;
                     BtnPrintInstructions.Enabled = false;
                     BtnPrintEmergency.Enabled = false;
@@ -1675,9 +1675,9 @@ namespace NipponPaint.OrderManager
                     BtnStatusResume.Enabled = true;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
-                    BtnProcessDetail.Enabled = false;
+                    //BtnProcessDetail.Enabled = false;
                     break;
-                case 3:
+                case Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
                     BtnPrint.Enabled = true;
                     BtnPrintInstructions.Enabled = false;
                     BtnPrintEmergency.Enabled = false;
@@ -1685,9 +1685,9 @@ namespace NipponPaint.OrderManager
                     BtnStatusResume.Enabled = true;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
-                    BtnProcessDetail.Enabled = false;
+                    //BtnProcessDetail.Enabled = false;
                     break;
-                case 4:
+                case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
                     BtnPrint.Enabled = true;
                     BtnPrintInstructions.Enabled = false;
                     BtnPrintEmergency.Enabled = false;
@@ -1695,7 +1695,7 @@ namespace NipponPaint.OrderManager
                     BtnStatusResume.Enabled = true;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
-                    BtnProcessDetail.Enabled = false;
+                    //BtnProcessDetail.Enabled = false;
                     break;
                 default:
                     BtnPrint.Enabled = false;

@@ -56,7 +56,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     {
                         new ParameterItem("@dataNumber", dataNumber),
                     };
-                    var rec = db.Select(Sql.NpMain.Orders.GetDetailByDataNumber(), parameters);
+                    var rec = db.Select(Sql.NpMain.Orders.GetDetailByDataNumber(BaseSettings.Facility.Plant), parameters);
                     if (rec.Rows.Count > 0)
                     {
                         _vm.DataNumber = dataNumber;
