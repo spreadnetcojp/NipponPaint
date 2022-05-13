@@ -29,10 +29,7 @@ using System.Data;
 
 namespace NipponPaint.OrderManager.Dialogs
 {
-    /// <summary>
-    /// 注文開始ダイアログ
-    /// </summary>
-    public partial class FrmOrderCloseSelectItems : BaseForm
+    public partial class FrmOrderChangeStatusSelectItem : BaseForm
     {
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
@@ -49,20 +46,16 @@ namespace NipponPaint.OrderManager.Dialogs
         #endregion
 
         #region コンストラクタ
-        public FrmOrderCloseSelectItems(int selectedStatus)
+        public FrmOrderChangeStatusSelectItem()
         {
             InitializeComponent();
-            InitializeForm(selectedStatus);
+            InitializeForm();
         }
         #endregion
 
+
         #region イベント
-        /// <summary>
-        /// 注文を閉じるボタン
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnOrderCloseClick(object sender, EventArgs e)
+        private void BtnChangeStatusClick(object sender, EventArgs e)
         {
             try
             {
@@ -74,11 +67,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(ex);
             }
         }
-        /// <summary>
-        /// 閉じるボタン
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         public void BtnCloseClick(object sender, EventArgs e)
         {
             try
@@ -98,40 +86,40 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <summary>
         /// 画面の初期化
         /// </summary>
-        private void InitializeForm(int selectedStatus)
+        private void InitializeForm()
         {
             // イベントの追加
-            this.BtnOrderClose.Click += new EventHandler(this.BtnOrderCloseClick);
+            this.BtnChangeStatus.Click += new EventHandler(this.BtnChangeStatusClick);
             this.BtnClose.Click += new EventHandler(this.BtnCloseClick);
             // DataGridViewの初期設定
-            InitializeGridView(GvCloseOrders, ViewSettings);
+            InitializeGridView(GvChangeOrders, ViewSettings);
             // DataGridViewの表示
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
-                var result = db.Select(Sql.NpMain.Orders.GetPreviewCloseOrders(ViewSettings, selectedStatus));
-                GvCloseOrders.DataSource = result;
+                var result = db.Select(Sql.NpMain.Orders.GetPreviewCloseOrders(ViewSettings, -1));
+                GvChangeOrders.DataSource = result;
             }
             var cnt = 0;
             // DataGridViewのスタイル設定
-            GvCloseOrders.ColumnHeadersVisible = false;
-            GvCloseOrders.EditMode = DataGridViewEditMode.EditProgrammatically;
+            GvChangeOrders.ColumnHeadersVisible = false;
+            GvChangeOrders.EditMode = DataGridViewEditMode.EditProgrammatically;
             // チェックボックスカラム追加
             var checkboxColumn = new DataGridViewCheckBoxColumn();
             checkboxColumn.Name = "Selected";
             checkboxColumn.HeaderText = "選択";
             checkboxColumn.Width = 30;
-            GvCloseOrders.Columns.Insert(0, checkboxColumn);
+            GvChangeOrders.Columns.Insert(0, checkboxColumn);
             // カラム定義
             cnt++;
             foreach (var item in ViewSettings)
             {
-                GvCloseOrders.Columns[cnt].Width = item.Width;
-                GvCloseOrders.Columns[cnt].Visible = item.Visible;
-                GvCloseOrders.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
+                GvChangeOrders.Columns[cnt].Width = item.Width;
+                GvChangeOrders.Columns[cnt].Visible = item.Visible;
+                GvChangeOrders.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
                 cnt++;
             }
         }
         #endregion
+
     }
 }
-
