@@ -44,10 +44,10 @@ namespace NipponPaint.OrderManager.Dialogs
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-                var frmOrderCloseSelectItems = new FrmOrderCloseSelectItems(1);
+                var frmOrderCloseSelectItems = new FrmOrderCloseSelectItems(NpCommon.Database.Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation);
                 frmOrderCloseSelectItems.ShowDialog();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -62,10 +62,10 @@ namespace NipponPaint.OrderManager.Dialogs
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-                var frmOrderCloseSelectItems = new FrmOrderCloseSelectItems(3);
+                var frmOrderCloseSelectItems = new FrmOrderCloseSelectItems(NpCommon.Database.Sql.NpMain.Orders.OrderStatus.TestCanInProgress);
                 frmOrderCloseSelectItems.ShowDialog();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -80,10 +80,10 @@ namespace NipponPaint.OrderManager.Dialogs
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-                var frmOrderCloseSelectItems = new FrmOrderCloseSelectItems(4);
+                var frmOrderCloseSelectItems = new FrmOrderCloseSelectItems(NpCommon.Database.Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress);
                 frmOrderCloseSelectItems.ShowDialog();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }

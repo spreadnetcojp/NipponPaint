@@ -130,7 +130,7 @@ namespace NipponPaint.NpCommon
                         {
                             labelTextBox.DataReadOnly = readOnly;
                         }
-                        
+
                         switch (labelTextBox.TextBackColor.Name)
                         {
                             case "Window":
@@ -272,5 +272,31 @@ namespace NipponPaint.NpCommon
         }
         #endregion
 
+        public static DataTable ConvertDataTable(DataTable source)
+        {
+            DataTable dt = new DataTable();
+            foreach (DataColumn column in source.Columns)
+            {
+                dt.Columns.Add(column.ColumnName);
+            }
+            foreach (DataRow row in source.Rows)
+            {
+                var dr = dt.NewRow();
+                foreach (DataColumn column in source.Columns)
+                {
+                    switch (column.ColumnName)
+                    {
+                        case "StatusText":
+                            dr[column.ColumnName] = Messages.GetOrderStatusText((Database.Sql.NpMain.Orders.OrderStatus)row["Status"]);
+                            break;
+                        default:
+                            dr[column.ColumnName] = row[column.ColumnName];
+                            break;
+                    }
+                }
+                dt.Rows.Add(dr);
+            }
+            return dt;
+        }
     }
 }

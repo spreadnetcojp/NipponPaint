@@ -14,14 +14,29 @@
 
 #region using defines
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using NipponPaint.NpCommon.Settings;
+using System.ComponentModel.DataAnnotations;
 #endregion
 
 namespace NipponPaint.NpCommon.Database.Sql.NpMain
 {
     public static class Orders
     {
+        public enum OrderStatus
+        {
+            [Display(Description = "調色担当待ち")]
+            WaitingForToning = 0,
+            [Display(Description = "CCM配合待ち")]
+            WaitingForCCMformulation = 1,
+            [Display(Description = "準備完")]
+            Ready = 2,
+            [Display(Description = "テスト缶実施中")]
+            TestCanInProgress = 3,
+            [Display(Description = "製造缶実施中")]
+            ManufacturingCansInProgress = 4,
+        }
 
         #region 参照系
 
@@ -60,40 +75,24 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// </summary>
         /// <param name="viewSettings"></param>
         /// <returns></returns>
-        public static string GetPreviewCloseOrders(List<GridViewSetting> viewSettings, int selectedStatus)
+        public static string GetPreviewCloseOrders(OrderStatus selectedStatus)
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
             sql.Append($"  Order_id ");
             sql.Append($" ,Product_Code ");
-            sql.Append($" ,S.StatusText ");
-            //sql.Append($"  CASE O.Status ");
-            //sql.Append($"   WHEN 0 THEN '調色担当待ち' ");
-            //sql.Append($"   WHEN 1 THEN 'CCM配合待ち' ");
-            //sql.Append($"   WHEN 2 THEN '準備完' ");
-            //sql.Append($"   WHEN 3 THEN 'テスト缶実施中' ");
-            //sql.Append($"   WHEN 4 THEN '製造缶実施中' ");
-            //sql.Append($"   ELSE '' ");
-            //sql.Append($"  END AS ステータス ");
+            sql.Append($" ,Status ");
+            sql.Append($" ,'' AS StatusText ");
             sql.Append($" ,Operator_Name ");
             sql.Append($" ,HG_Product_Name ");
             sql.Append($" ,TRIM(TRIM('　' FROM HG_Volume_Code)) ");
             sql.Append($" ,Number_of_cans ");
             sql.Append($" ,Order_Number ");
-            sql.Append($"FROM Orders AS O ");
-            // 仮実装
-            sql.Append($"INNER JOIN EXOPMG..OrderStatus AS S ON O.Status = S.Status ");
+            sql.Append($"FROM Orders ");
             sql.Append($"WHERE HG_SS_Code = '51F' ");
-            if (selectedStatus > -1)
-            {
-                sql.Append($" AND O.Status = {selectedStatus} ");
-            }
-            else
-            {
-                sql.Append($" AND O.Status IN(0, 1, 2, 3, 4) ");
-            }
+            sql.Append($" AND Status = {(int)selectedStatus} ");
             sql.Append($"ORDER BY ");
-            sql.Append($"  O.Status ");
+            sql.Append($"  Status ");
             sql.Append($" ,HG_HG_Delivery_Code ");
             return sql.ToString();
         }
@@ -186,10 +185,10 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($"FROM Orders ");
             sql.Append($"WHERE ");
             sql.Append($"order_id = @orderId");
-            
+
             return sql.ToString();
-        }   
-            
+        }
+
         #endregion
     }
 }

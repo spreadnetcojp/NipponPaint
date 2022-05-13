@@ -103,6 +103,15 @@ namespace NipponPaint.NpCommon
         {
             return applicationType.GetApplied<DisplayAttribute>().First().Description;
         }
+        /// <summary>
+        /// オーダーステータスの取得
+        /// </summary>
+        /// <param name="applicationType"></param>
+        /// <returns></returns>
+        public static string GetOrderStatusText(Database.Sql.NpMain.Orders.OrderStatus OrderStatus)
+        {
+            return OrderStatus.GetApplied<DisplayAttribute>().First().Description;
+        }
 
     }
 }
