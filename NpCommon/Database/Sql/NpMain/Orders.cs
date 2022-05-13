@@ -126,10 +126,14 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// オーダーIDによるレコード取得
         /// </summary>
         /// <returns></returns>
-        public static string GetDetailByOrderId()
+        public static string GetDetailByOrderId(string plant)
         {
             var sql = new StringBuilder();
-            sql.Append($"SELECT * FROM Orders WHERE order_id = @orderId");
+            sql.Append($"SELECT ");
+            sql.Append($" O.* ");
+            sql.Append($"FROM Orders AS O ");
+            sql.Append($"INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = '{plant}')  AS P ON P.SS_Code = O.HG_SS_Code ");
+            sql.Append($"WHERE O.order_id = @orderId");
             return sql.ToString();
         }
         #endregion
@@ -140,10 +144,14 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// 処理Noによるレコード取得
         /// </summary>
         /// <returns></returns>
-        public static string GetDetailByDataNumber()
+        public static string GetDetailByDataNumber(string plant)
         {
             var sql = new StringBuilder();
-            sql.Append($"SELECT * FROM Orders WHERE HG_Data_Number = @dataNumber");
+            sql.Append($"SELECT ");
+            sql.Append($" O.* ");
+            sql.Append($"FROM Orders AS O ");
+            sql.Append($"INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = '{plant}')  AS P ON P.SS_Code = O.HG_SS_Code ");
+            sql.Append($"WHERE HG_Data_Number = @dataNumber");
             return sql.ToString();
         }
         #endregion
