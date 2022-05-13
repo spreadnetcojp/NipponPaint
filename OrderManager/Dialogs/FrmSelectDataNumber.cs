@@ -61,8 +61,8 @@ namespace NipponPaint.OrderManager.Dialogs
                     {
                         _vm.DataNumber = dataNumber;
                         _vm.SelectedProductCode = rec.Rows[0]["Product_Code"].ToString();
-                        PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                         this.DialogResult = DialogResult.OK;
+                        PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                         this.Close();
                     }
                     else
@@ -81,8 +81,8 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.DialogResult = DialogResult.Cancel;
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }
             catch (Exception ex)

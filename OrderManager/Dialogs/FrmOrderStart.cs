@@ -50,6 +50,11 @@ namespace NipponPaint.OrderManager.Dialogs
         #endregion
 
         #region イベント
+        /// <summary>
+        /// 注文開始ボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnOrderStartClick(object sender, EventArgs e)
         {
             try
@@ -60,8 +65,12 @@ namespace NipponPaint.OrderManager.Dialogs
             {
                 PutLog(ex);
             }
-
         }
+        /// <summary>
+        /// 注文を戻すボタン(F9)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnOrderBackClick(object sender, EventArgs e)
         {
             try
@@ -73,6 +82,11 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(ex);
             }
         }
+        /// <summary>
+        /// 閉じるボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnCloseClick(object sender, EventArgs e)
         {
             try
