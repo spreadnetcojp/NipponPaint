@@ -80,6 +80,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void BtnPrint_Click(object sender, EventArgs e)
         {
+            PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             //PrintDialogクラスの作成
             PrintDialog pdlg = new PrintDialog();
             pd = new PrintDocument();

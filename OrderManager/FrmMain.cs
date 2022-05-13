@@ -45,6 +45,7 @@ namespace NipponPaint.OrderManager
             Color.White,
             Color.White,
         };
+
         private const int COLUMN_STATUS = 0;
         //private int COLUMN_PRODUCT_NAME = 0;
         //private int COLUMN_COLOR_NAME = 0;
@@ -265,8 +266,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 DataGridViewFormatting((DataGridView)sender);
+                PutLog(Sentence.Messages.PreviewData);
             }
             catch (Exception ex)
             {
@@ -278,8 +279,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 DataGridViewFormatting((DataGridView)sender);
+                PutLog(Sentence.Messages.PreviewData);
             }
             catch (Exception ex)
             {
@@ -291,8 +292,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 DataGridViewFormatting((DataGridView)sender);
+                PutLog(Sentence.Messages.PreviewData);
             }
             catch (Exception ex)
             {
@@ -304,8 +305,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 DataGridViewFormatting((DataGridView)sender);
+                PutLog(Sentence.Messages.PreviewData);
             }
             catch (Exception ex)
             {
@@ -317,8 +318,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 var dgv = (DataGridView)sender;
+                PutLog(Sentence.Messages.SelectRow);
             }
             catch (Exception ex)
             {
@@ -326,12 +327,7 @@ namespace NipponPaint.OrderManager
             }
         }
 
-        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void GvOrder_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        private void Gv_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridView gv = (DataGridView)sender;
             if (e.RowIndex >= 0)
@@ -425,8 +421,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 MessageBox.Show("作業指示書印刷がクリックされました");
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
@@ -442,8 +438,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 MessageBox.Show("緊急印刷がクリックされました");
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
@@ -478,9 +474,29 @@ namespace NipponPaint.OrderManager
         {
             try
             {
+                //クリック時にCtrlキーが押されているか判別する
+                switch (Control.ModifierKeys)
+                {
+                    //ctrlキーが押されている場合
+                    case Keys.Control:
+                        FrmOrderClose frmOrderClose = new FrmOrderClose();
+                        frmOrderClose.ShowDialog();
+                        break;
+                    //ctrlキーが押されていない場合
+                    default:
+                        DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnOrderCloseClicked, OrderNumber.Value);
+                        switch (result)
+                        {
+                            case DialogResult.Yes:
+                                break;
+                            case DialogResult.No:
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                }
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-                FrmOrderClose frmOrderClose = new FrmOrderClose();
-                frmOrderClose.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -714,59 +730,73 @@ namespace NipponPaint.OrderManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnStatusResume_Click(object sender, EventArgs e)
+        private void BtnStatusResumeClick(object sender, EventArgs e)
         {
             // 詳細タブを開いていない時はスルー
             if (tabMain.SelectedIndex != TAB_INDEX_DETAIL)
             {
                 return;
             }
-            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+            try
             {
-                try
+                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                 {
-                    PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-                    var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
-                    var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
-                    var dgv = (DataGridView)sender;
-                    if (dgv.SelectedRows.Count > 0)
+                    DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
+                    switch (result)
                     {
-                        // 選択している行を取得
-                        var selectedRow = dgv.SelectedRows[0];
-                        int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
-                        int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
-                        // 行取得のSQLを作成
-                        var parameters = new List<ParameterItem>()
-                        {
-                            new ParameterItem("orderId", orderId),
-                        };
-                        switch (status)
-                        {
-                            case 0:
-                                break;
-                            case 1:
-                                break;
-                            case 2:
-                                db.Execute(Sql.NpMain.Orders.StatusResume(), parameters);
-                                break;
-                            case 3:
-                                db.Execute(Sql.NpMain.Orders.StatusResume(), parameters);
-                                break;
-                            case 4:
-                                db.Execute(Sql.NpMain.Orders.StatusResume(), parameters);
-                                break;
-                            default:
-                                break;
-                        }
-
+                        case DialogResult.Yes:
+                            var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
+                            var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                            var dgv = GvDetail;
+                            if (dgv.SelectedRows.Count > 0)
+                            {
+                                // 選択している行を取得
+                                var selectedRow = dgv.SelectedRows[0];
+                                int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
+                                int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
+                                // 行取得のSQLを作成
+                                var parameters = new List<ParameterItem>()
+                                {
+                                    new ParameterItem("orderId", orderId),
+                                };
+                                switch (status)
+                                {
+                                    case 0:
+                                        break;
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
+                                        //db.Execute(Sql.NpMain.Orders.StatusResume(), parameters);
+                                        //db.Commit();
+                                        break;
+                                    case 3:
+                                        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
+                                        //db.Execute(Sql.NpMain.Orders.StatusResume(), parameters);
+                                        break;
+                                    case 4:
+                                        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
+                                        //db.Execute(Sql.NpMain.Orders.StatusResume(), parameters);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            InitializeForm();
+                            break;
+                        case DialogResult.No:
+                            break;
+                        default:
+                            break;
                     }
-                    InitializeForm();
                 }
-                catch (Exception ex)
-                {
-                    PutLog(ex);
-                }
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+
         }
         /// <summary>
         /// ロットNo.編集画面を開く
@@ -777,7 +807,6 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.LotRegister();
                 vm.Lot = HgTintingDirection.Value;
                 // Order_idで検索する
@@ -801,6 +830,7 @@ namespace NipponPaint.OrderManager
                 FrmLotRegister frmLotRegister = new FrmLotRegister(vm);
                 frmLotRegister.ShowDialog();
                 InitializeForm();
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
@@ -816,7 +846,6 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.SelectDataNumber();
                 // Order_idで検索する
                 var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
@@ -848,6 +877,7 @@ namespace NipponPaint.OrderManager
                         tabMain.SelectedIndex = TAB_INDEX_DETAIL;
                     }
                 }
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
@@ -864,19 +894,27 @@ namespace NipponPaint.OrderManager
         {
 
             SelectDataGridViewRowByProductCode();
+            bool result = int.TryParse(HgSamplePlates.Value, out int intResult);
             switch (tabMain.SelectedIndex)
             {
                 case 0:
-                    pnlButtons.Enabled = false;
+                    BorderBtnPrint.Visible = false;
                     break;
                 case 1:
-                    pnlButtons.Enabled = true;
+                    if (result)
+                    {
+                        BorderBtnPrint.Visible = intResult != 0;
+                    }
+                    else
+                    {
+                        BorderBtnPrint.Visible = false;
+                    }
                     break;
                 case 2:
-                    pnlButtons.Enabled = false;
+                    BorderBtnPrint.Visible = false;
                     break;
                 case 3:
-                    pnlButtons.Enabled = false;
+                    BorderBtnPrint.Visible = false;
                     break;
             }
         }
@@ -894,8 +932,6 @@ namespace NipponPaint.OrderManager
             }
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 // Statusを取得する
                 var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
@@ -918,7 +954,7 @@ namespace NipponPaint.OrderManager
                         var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(), parameters);
                         // フォームで定義された、取得値設定先のコントロールを抽出する
                         db.ToLabelTextBox(this.Controls, rec.Rows);
-                        //指定LotのTextBoxの入力値を有無を調べる
+                        //指定LotのTextBoxコントロールの入力値を有無を調べる
                         if (string.IsNullOrEmpty(HgTintingDirection.Value))
                         {
                             BorderHgTintingDirection.Visible = false;
@@ -928,12 +964,37 @@ namespace NipponPaint.OrderManager
 
                             BorderHgTintingDirection.Visible = true;
                         }
+                        //塗板添付枚数のLabelTextBoxコントロールに設定された値を取得する
+                        bool result = int.TryParse(HgSamplePlates.Value, out int intResult);
+                        if (result)
+                        {
+                            BorderBtnPrint.Visible = intResult != 0;
+                            BorderHgSamplePlates.Visible = intResult != 0;
+                        }
+                        else
+                        {
+                            BorderHgSamplePlates.Visible = false;
+                            BorderBtnPrint.Visible = false;
+                        }
+                        //調色適用のLabelTextBoxコントロールに設定された値を取得する
+                        var items = BaseSettings.Display.HgNoteStrList;
+                        foreach (string item in items)
+                        {
+                            if (HgNote.Value.Contains(item))
+                            {
+                                BorderHgNote.Visible = true;
+                                break;
+                            }
+                            else
+                            {
+                                BorderHgNote.Visible = false;
+                            }
+                        }
                         //各種ボタンの表示制御
                         ButtonsEnableSetting(status);
-
-
                     }
                 }
+                PutLog(Sentence.Messages.SelectRow);
             }
             catch (Exception ex)
             {
@@ -954,7 +1015,6 @@ namespace NipponPaint.OrderManager
             }
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 // Statusを取得する
                 var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
@@ -977,7 +1037,7 @@ namespace NipponPaint.OrderManager
                         var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(), parameters);
                         // フォームで定義された、取得値設定先のコントロールを抽出する
                         db.ToLabelTextBox(this.Controls, rec.Rows);
-                        //指定LotのTextBoxの入力値を有無を調べる
+                        //指定LotのTextBoxコントロールの入力値を有無を調べる
                         if (string.IsNullOrEmpty(HgTintingDirection.Value))
                         {
                             BorderHgTintingDirection.Visible = false;
@@ -987,12 +1047,37 @@ namespace NipponPaint.OrderManager
 
                             BorderHgTintingDirection.Visible = true;
                         }
+                        //塗板添付枚数のLabelTextBoxコントロールに設定された値を取得する
+                        bool result = int.TryParse(HgSamplePlates.Value, out int intResult);
+                        if (result)
+                        {
+                            BorderBtnPrint.Visible = intResult != 0;
+                            BorderHgSamplePlates.Visible = intResult != 0;
+                        }
+                        else
+                        {
+                            BorderHgSamplePlates.Visible = false;
+                            BorderBtnPrint.Visible = false;
+                        }
+                        //調色適用のLabelTextBoxコントロールに設定された値を取得する
+                        var items = BaseSettings.Display.HgNoteStrList;
+                        foreach (string item in items)
+                        {
+                            if (HgNote.Value.Contains(item))
+                            {
+                                BorderHgNote.Visible = true;
+                                break;
+                            }
+                            else
+                            {
+                                BorderHgNote.Visible = false;
+                            }
+                        }
                         //各種ボタンの表示制御
                         ButtonsEnableSetting(status);
-
-
                     }
                 }
+                PutLog(Sentence.Messages.SelectRow);
             }
             catch (Exception ex)
             {
@@ -1014,7 +1099,6 @@ namespace NipponPaint.OrderManager
             }
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
                 // Statusと取得する
                 var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
@@ -1037,7 +1121,7 @@ namespace NipponPaint.OrderManager
                         var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(), parameters);
                         // フォームで定義された、取得値設定先のコントロールを抽出する
                         db.ToLabelTextBox(this.Controls, rec.Rows);
-                        //指定LotのTextBoxの入力値を有無を調べる
+                        //指定LotのTextBoxコントロールの入力値を有無を調べる
                         if (string.IsNullOrEmpty(HgTintingDirection.Value))
                         {
                             BorderHgTintingDirection.Visible = false;
@@ -1047,8 +1131,35 @@ namespace NipponPaint.OrderManager
 
                             BorderHgTintingDirection.Visible = true;
                         }
+                        //塗板添付枚数のLabelTextBoxコントロールに設定された値を取得する
+                        bool result = int.TryParse(HgSamplePlates.Value, out int intResult);
+                        if (result)
+                        {
+                            BorderBtnPrint.Visible = intResult != 0;
+                            BorderHgSamplePlates.Visible = intResult != 0;
+                        }
+                        else
+                        {
+                            BorderHgSamplePlates.Visible = false;
+                            BorderBtnPrint.Visible = false;
+                        }
+                        //調色適用のLabelTextBoxコントロールに設定された値を取得する
+                        var items = BaseSettings.Display.HgNoteStrList;
+                        foreach (string item in items)
+                        {
+                            if (HgNote.Value.Contains(item))
+                            {
+                                BorderHgNote.Visible = true;
+                                break;
+                            }
+                            else
+                            {
+                                BorderHgNote.Visible = false;
+                            }
+                        }
                         //各種ボタンの表示制御
                         ButtonsEnableSetting(status);
+                        //重量グリッドビューの設定
                         GvWeight.Rows.Clear();
                         var cnt = 1;
                         foreach (DataColumn column in rec.Columns)
@@ -1060,13 +1171,13 @@ namespace NipponPaint.OrderManager
                             }
                             if (column.ColumnName.Equals("Colorant_" + cnt))
                             {
-
                                 GvWeight.Rows.Add(rec.Rows[0]["Colorant_" + cnt], rec.Rows[0]["Weight_" + cnt]);
                                 cnt++;
                             }
                         }
                     }
                 }
+                PutLog(Sentence.Messages.SelectRow);
             }
             catch (Exception ex)
             {
@@ -1088,14 +1199,13 @@ namespace NipponPaint.OrderManager
             }
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((DataGridView)sender).Text);
+                PutLog(Sentence.Messages.SelectRow);
             }
             catch (Exception ex)
             {
                 PutLog(ex);
             }
         }
-
         #endregion
 
         #region private functions
@@ -1120,6 +1230,7 @@ namespace NipponPaint.OrderManager
             this.BtnPrintInstructions.Click += new EventHandler(this.BtnPrintInstructionsClick);
             this.BtnPrintEmergency.Click += new EventHandler(this.BtnPrintEmergencyClick);
             this.BtnOrderStart.Click += new EventHandler(this.BtnOrderStartClick);
+            this.BtnStatusResume.Click += new System.EventHandler(this.BtnStatusResumeClick);
             this.BtnOrderClose.Click += new EventHandler(this.BtnOrderCloseClick);
             this.BtnProcessDetail.Click += new EventHandler(this.BtnProcessDetailClick);
             this.ToolStripMenuItemCloseForm.Click += new EventHandler(this.ToolStripMenuItemCloseFormClick);
@@ -1133,8 +1244,9 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemShipping.Click += new EventHandler(this.ToolStripMenuItemShippingClick);
             this.ToolStripMenuItemCOMPort.Click += new EventHandler(this.ToolStripMenuItemCOMPortClick);
             this.ToolStripMenuItemCCMSimulator.Click += new EventHandler(this.ToolStripMenuItemCCMSimulatorClick);
-            this.GvOrder.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GvOrder_CellMouseUp);
-            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            this.GvOrder.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
+            this.GvDetail.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
+            this.GvFormulation.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             //ラベル(仮)のイベントハンドラー
             this.ToolStripMenuItemLabelSelection.Click += new EventHandler(this.ToolStripMenuItemLabelSelectionClick);
             this.BtnLotRegister.Click += new EventHandler(this.BtnLotRegisterClick);
@@ -1143,12 +1255,6 @@ namespace NipponPaint.OrderManager
             this.GvDetail.SelectionChanged += new EventHandler(this.GvDetail_SelectionChanged);
             this.GvFormulation.SelectionChanged += new EventHandler(this.GvDetail_GvFormulation_SelectionChanged);
             this.GvOrderNumber.SelectionChanged += new EventHandler(this.GvOrderNumber_SelectionChanged);
-            this.BtnStatusResume.Click += new System.EventHandler(this.BtnStatusResume_Click);
-            //各種ボタンの表示設定
-            if (tabMain.SelectedIndex != 1)
-            {
-                pnlButtons.Enabled = false;
-            }
             // DataGridViewの初期設定
             var ViewSettingsOrderDetails = GridViewSettingCopy(ViewSettingsOrders);
             var ViewSettingsFormulations = GridViewSettingCopy(ViewSettingsOrders);
@@ -1345,7 +1451,6 @@ namespace NipponPaint.OrderManager
                     }
                     i++;
                 }
-
                 row.Cells[COLUMN_PRODUCT_CODE].Style.ForeColor = Color.Black;
                 if (cnt == 10)
                 {
@@ -1522,28 +1627,59 @@ namespace NipponPaint.OrderManager
             switch (status)
             {
                 case 0:
-                    BtnPrintEmergency.Enabled = false;
                     BtnPrint.Enabled = false;
+                    BtnPrintInstructions.Enabled = false;
+                    BtnPrintEmergency.Enabled = false;
+                    BtnOrderStart.Enabled = false;
+                    BtnStatusResume.Enabled = false;
+                    BtnDecidePerson.Enabled = true;
+                    BtnOrderClose.Enabled = true;
+                    BtnProcessDetail.Enabled = false;
                     break;
                 case 1:
-                    BtnPrintEmergency.Enabled = true;
                     BtnPrint.Enabled = false;
+                    BtnPrintInstructions.Enabled = true;
+                    BtnPrintEmergency.Enabled = true;
+                    BtnOrderStart.Enabled = false;
+                    BtnStatusResume.Enabled = false;
+                    BtnDecidePerson.Enabled = false;
+                    BtnOrderClose.Enabled = true;
+                    BtnProcessDetail.Enabled = false;
                     break;
                 case 2:
-                    BtnPrintEmergency.Enabled = true;
                     BtnPrint.Enabled = false;
+                    BtnPrintInstructions.Enabled = false;
+                    BtnPrintEmergency.Enabled = false;
+                    BtnOrderStart.Enabled = true;
+                    BtnStatusResume.Enabled = true;
+                    BtnDecidePerson.Enabled = false;
+                    BtnOrderClose.Enabled = true;
+                    BtnProcessDetail.Enabled = false;
                     break;
                 case 3:
-                    BtnPrintEmergency.Enabled = true;
                     BtnPrint.Enabled = true;
+                    BtnPrintInstructions.Enabled = false;
+                    BtnPrintEmergency.Enabled = false;
+                    BtnOrderStart.Enabled = false;
+                    BtnStatusResume.Enabled = true;
+                    BtnDecidePerson.Enabled = false;
+                    BtnOrderClose.Enabled = true;
+                    BtnProcessDetail.Enabled = false;
                     break;
                 case 4:
-                    BtnPrintEmergency.Enabled = true;
                     BtnPrint.Enabled = true;
+                    BtnPrintInstructions.Enabled = false;
+                    BtnPrintEmergency.Enabled = false;
+                    BtnOrderStart.Enabled = false;
+                    BtnStatusResume.Enabled = true;
+                    BtnDecidePerson.Enabled = false;
+                    BtnOrderClose.Enabled = true;
+                    BtnProcessDetail.Enabled = false;
                     break;
                 default:
-                    BtnPrintEmergency.Enabled = true;
                     BtnPrint.Enabled = false;
+                    BtnPrintEmergency.Enabled = true;
+
                     break;
             }
         }
