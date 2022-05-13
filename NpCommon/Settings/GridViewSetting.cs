@@ -24,7 +24,8 @@ namespace NipponPaint.NpCommon.Settings
         {
             Numeric,
             String,
-            DateTime
+            DateTime,
+            Checkbox,
         }
         /// <summary>
         /// データの種類

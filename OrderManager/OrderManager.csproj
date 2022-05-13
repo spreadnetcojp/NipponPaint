@@ -92,6 +92,12 @@
     <Compile Include="Dialogs\FrmLabelSelection.Designer.cs">
       <DependentUpon>FrmLabelSelection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\FrmOrderChangeStatusSelectItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FrmOrderChangeStatusSelectItem.Designer.cs">
+      <DependentUpon>FrmOrderChangeStatusSelectItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\FrmSelectDataNumber.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FrmLabelSelection.resx">
       <DependentUpon>FrmLabelSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FrmOrderChangeStatusSelectItem.resx">
+      <DependentUpon>FrmOrderChangeStatusSelectItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FrmSelectDataNumber.resx">
       <DependentUpon>FrmSelectDataNumber.cs</DependentUpon>

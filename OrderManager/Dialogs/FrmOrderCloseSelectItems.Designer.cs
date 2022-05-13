@@ -43,23 +43,40 @@ namespace NipponPaint.OrderManager.Dialogs
         private void InitializeComponent()
         {
             this.PnlList = new System.Windows.Forms.Panel();
+            this.GvCloseOrders = new System.Windows.Forms.DataGridView();
             this.PnlBtnChk = new System.Windows.Forms.Panel();
             this.ChkSelectAll = new System.Windows.Forms.CheckBox();
             this.BtnClose = new System.Windows.Forms.Button();
             this.BtnOrderClose = new System.Windows.Forms.Button();
+            this.PnlList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GvCloseOrders)).BeginInit();
             this.PnlBtnChk.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlList
             // 
             this.PnlList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PnlList.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PnlList.Controls.Add(this.GvCloseOrders);
+            this.PnlList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlList.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.PnlList.Location = new System.Drawing.Point(0, 0);
             this.PnlList.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.PnlList.Name = "PnlList";
-            this.PnlList.Size = new System.Drawing.Size(800, 476);
+            this.PnlList.Size = new System.Drawing.Size(1184, 761);
             this.PnlList.TabIndex = 96;
+            // 
+            // GvCloseOrders
+            // 
+            this.GvCloseOrders.AllowUserToAddRows = false;
+            this.GvCloseOrders.AllowUserToDeleteRows = false;
+            this.GvCloseOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GvCloseOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GvCloseOrders.Location = new System.Drawing.Point(0, 0);
+            this.GvCloseOrders.Name = "GvCloseOrders";
+            this.GvCloseOrders.ReadOnly = true;
+            this.GvCloseOrders.RowTemplate.Height = 21;
+            this.GvCloseOrders.Size = new System.Drawing.Size(1182, 759);
+            this.GvCloseOrders.TabIndex = 0;
             // 
             // PnlBtnChk
             // 
@@ -68,10 +85,10 @@ namespace NipponPaint.OrderManager.Dialogs
             this.PnlBtnChk.Controls.Add(this.BtnClose);
             this.PnlBtnChk.Controls.Add(this.BtnOrderClose);
             this.PnlBtnChk.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PnlBtnChk.Location = new System.Drawing.Point(0, 475);
+            this.PnlBtnChk.Location = new System.Drawing.Point(0, 693);
             this.PnlBtnChk.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.PnlBtnChk.Name = "PnlBtnChk";
-            this.PnlBtnChk.Size = new System.Drawing.Size(800, 68);
+            this.PnlBtnChk.Size = new System.Drawing.Size(1184, 68);
             this.PnlBtnChk.TabIndex = 97;
             // 
             // ChkSelectAll
@@ -113,7 +130,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.BtnClose;
-            this.ClientSize = new System.Drawing.Size(800, 543);
+            this.ClientSize = new System.Drawing.Size(1184, 761);
             this.ControlBox = false;
             this.Controls.Add(this.PnlBtnChk);
             this.Controls.Add(this.PnlList);
@@ -121,7 +138,9 @@ namespace NipponPaint.OrderManager.Dialogs
             this.MaximizeBox = false;
             this.Name = "FrmOrderCloseSelectItems";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Orders to close";
+            this.Text = "注文を閉じる";
+            this.PnlList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GvCloseOrders)).EndInit();
             this.PnlBtnChk.ResumeLayout(false);
             this.PnlBtnChk.PerformLayout();
             this.ResumeLayout(false);
@@ -134,5 +153,6 @@ namespace NipponPaint.OrderManager.Dialogs
         private System.Windows.Forms.Button BtnClose;
         private System.Windows.Forms.Button BtnOrderClose;
         private System.Windows.Forms.CheckBox ChkSelectAll;
+        private System.Windows.Forms.DataGridView GvCloseOrders;
     }
 }

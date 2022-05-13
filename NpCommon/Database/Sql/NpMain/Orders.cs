@@ -46,9 +46,54 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
                 cnt++;
             }
             sql.Append($"FROM Orders ");
-            sql.Append($"WHERE HG_SS_Code = '51F' AND Status IN (0, 1, 2, 3, 4)");
+            sql.Append($"WHERE HG_SS_Code = '51F' AND Status IN (0, 1, 2, 3, 4) ");
             sql.Append($"ORDER BY ");
             sql.Append($"  Status ");
+            sql.Append($" ,HG_HG_Delivery_Code ");
+            return sql.ToString();
+        }
+        #endregion
+
+        #region 一覧データの取得
+        /// <summary>
+        /// 一覧データの取得
+        /// </summary>
+        /// <param name="viewSettings"></param>
+        /// <returns></returns>
+        public static string GetPreviewCloseOrders(List<GridViewSetting> viewSettings, int selectedStatus)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            sql.Append($"  Order_id ");
+            sql.Append($" ,Product_Code ");
+            sql.Append($" ,S.StatusText ");
+            //sql.Append($"  CASE O.Status ");
+            //sql.Append($"   WHEN 0 THEN '調色担当待ち' ");
+            //sql.Append($"   WHEN 1 THEN 'CCM配合待ち' ");
+            //sql.Append($"   WHEN 2 THEN '準備完' ");
+            //sql.Append($"   WHEN 3 THEN 'テスト缶実施中' ");
+            //sql.Append($"   WHEN 4 THEN '製造缶実施中' ");
+            //sql.Append($"   ELSE '' ");
+            //sql.Append($"  END AS ステータス ");
+            sql.Append($" ,Operator_Name ");
+            sql.Append($" ,HG_Product_Name ");
+            sql.Append($" ,TRIM(TRIM('　' FROM HG_Volume_Code)) ");
+            sql.Append($" ,Number_of_cans ");
+            sql.Append($" ,Order_Number ");
+            sql.Append($"FROM Orders AS O ");
+            // 仮実装
+            sql.Append($"INNER JOIN EXOPMG..OrderStatus AS S ON O.Status = S.Status ");
+            sql.Append($"WHERE HG_SS_Code = '51F' ");
+            if (selectedStatus > -1)
+            {
+                sql.Append($" AND O.Status = {selectedStatus} ");
+            }
+            else
+            {
+                sql.Append($" AND O.Status IN(0, 1, 2, 3, 4) ");
+            }
+            sql.Append($"ORDER BY ");
+            sql.Append($"  O.Status ");
             sql.Append($" ,HG_HG_Delivery_Code ");
             return sql.ToString();
         }

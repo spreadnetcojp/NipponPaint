@@ -34,12 +34,12 @@ namespace NipponPaint.OrderManager.Dialogs
         #endregion
 
         #region イベント
-        FrmOrderCloseSelectItems frmOrderCloseSelectItems = new FrmOrderCloseSelectItems();
         private void BtnOrderCloseCCMClick(object sender, EventArgs e)
         {
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                var frmOrderCloseSelectItems = new FrmOrderCloseSelectItems(1);
                 frmOrderCloseSelectItems.ShowDialog();
             }
             catch(Exception ex)
@@ -52,6 +52,7 @@ namespace NipponPaint.OrderManager.Dialogs
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                var frmOrderCloseSelectItems = new FrmOrderCloseSelectItems(3);
                 frmOrderCloseSelectItems.ShowDialog();
             }
             catch(Exception ex)
@@ -64,6 +65,7 @@ namespace NipponPaint.OrderManager.Dialogs
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                var frmOrderCloseSelectItems = new FrmOrderCloseSelectItems(4);
                 frmOrderCloseSelectItems.ShowDialog();
             }
             catch(Exception ex)

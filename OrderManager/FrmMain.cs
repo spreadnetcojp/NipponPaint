@@ -224,6 +224,8 @@ namespace NipponPaint.OrderManager
                         BtnOrderClose.PerformClick();
                         break;
                     case Keys.F11:
+                        // ステータス一括変更
+                        BtnOrderClose.PerformClick();
                         break;
                     case Keys.F12:
                         // 処理No.詳細
