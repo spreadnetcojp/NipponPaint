@@ -226,7 +226,7 @@ namespace NipponPaint.OrderManager
                         break;
                     case Keys.F11:
                         // ステータス一括変更
-                        BtnOrderClose.PerformClick();
+                        BtnBulkChangeStatus.PerformClick();
                         break;
                     case Keys.F12:
                         // 処理No.詳細
@@ -499,6 +499,24 @@ namespace NipponPaint.OrderManager
                         break;
                 }
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+        /// <summary>
+        /// ステータス一括変更(F11)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnBulkChangeStatusClick(object sender, EventArgs e)
+        {
+            try
+            {
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                var form = new FrmOrderChangeStatusSelectItem();
+                form.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -1234,6 +1252,7 @@ namespace NipponPaint.OrderManager
             this.BtnOrderStart.Click += new EventHandler(this.BtnOrderStartClick);
             this.BtnStatusResume.Click += new System.EventHandler(this.BtnStatusResumeClick);
             this.BtnOrderClose.Click += new EventHandler(this.BtnOrderCloseClick);
+            this.BtnBulkChangeStatus.Click += new EventHandler(this.BtnBulkChangeStatusClick);
             this.BtnProcessDetail.Click += new EventHandler(this.BtnProcessDetailClick);
             this.ToolStripMenuItemCloseForm.Click += new EventHandler(this.ToolStripMenuItemCloseFormClick);
             this.ToolStripMenuItemCanType.Click += new EventHandler(this.ToolStripMenuItemCanTypeClick);

@@ -46,10 +46,10 @@
             this.PnlBtnChk.Controls.Add(this.BtnClose);
             this.PnlBtnChk.Controls.Add(this.BtnChangeStatus);
             this.PnlBtnChk.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PnlBtnChk.Location = new System.Drawing.Point(0, 973);
+            this.PnlBtnChk.Location = new System.Drawing.Point(0, 693);
             this.PnlBtnChk.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.PnlBtnChk.Name = "PnlBtnChk";
-            this.PnlBtnChk.Size = new System.Drawing.Size(1200, 68);
+            this.PnlBtnChk.Size = new System.Drawing.Size(1184, 68);
             this.PnlBtnChk.TabIndex = 99;
             // 
             // ChkSelectAll
@@ -95,7 +95,7 @@
             this.PnlList.Location = new System.Drawing.Point(0, 0);
             this.PnlList.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.PnlList.Name = "PnlList";
-            this.PnlList.Size = new System.Drawing.Size(1200, 1041);
+            this.PnlList.Size = new System.Drawing.Size(1184, 761);
             this.PnlList.TabIndex = 98;
             // 
             // GvChangeOrders
@@ -108,14 +108,14 @@
             this.GvChangeOrders.Name = "GvChangeOrders";
             this.GvChangeOrders.ReadOnly = true;
             this.GvChangeOrders.RowTemplate.Height = 21;
-            this.GvChangeOrders.Size = new System.Drawing.Size(1198, 1039);
+            this.GvChangeOrders.Size = new System.Drawing.Size(1182, 759);
             this.GvChangeOrders.TabIndex = 0;
             // 
             // FrmOrderChangeStatusSelectItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 1041);
+            this.ClientSize = new System.Drawing.Size(1184, 761);
             this.Controls.Add(this.PnlBtnChk);
             this.Controls.Add(this.PnlList);
             this.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
