@@ -1290,14 +1290,14 @@ namespace NipponPaint.OrderManager
             // DataGridViewの表示
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
-                var result = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrders));
+                var result = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrders, BaseSettings.Facility.Plant));
                 ColorExplanation(result);
 
                 GvOrder.DataSource = result;
                 GvDetail.DataSource = result;
                 GvFormulation.DataSource = result;
 
-                result = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrderNumbers));
+                result = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrderNumbers, BaseSettings.Facility.Plant));
                 GvOrderNumber.DataSource = result;
             }
             var cnt = 0;

@@ -32,19 +32,26 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         /// <summary>
         /// 
         /// </summary>
-        public string NpOrder { get; set; }
+        public string NpOrder { get { return _npOrder; } }
         /// <summary>
         /// 
         /// </summary>
-        public string NpMain { get; set; }
+        public string NpMain { get { return _npMain; } }
         /// <summary>
         /// 
         /// </summary>
-        public string IosSup { get; set; }
+        public string IosSup { get { return _iosSup; } }
         /// <summary>
         /// 
         /// </summary>
-        public string SuperVision { get; set; }
+        public string SuperVision { get { return _superVision; } }
+        #endregion
+
+        #region メンバ変数
+        private string _npOrder;
+        private string _npMain;
+        private string _iosSup;
+        private string _superVision;
         #endregion
 
         #region コンストラクタ
@@ -55,10 +62,10 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         public DatabaseSection(string filePath)
         {
             var reader = new FileInterface(filePath);
-            NpOrder = reader.GetItem("DATABASE", "NP_ORDERConnStr", string.Format(DEFAULT_STRING, "ORDER_RF1"));
-            NpMain = reader.GetItem("DATABASE", "NP_MAINConnStr", string.Format(DEFAULT_STRING, "NP_MAIN"));
-            IosSup = reader.GetItem("DATABASE", "IOSSUPConnStr", string.Format(DEFAULT_STRING, "IOSSUP_RF1"));
-            SuperVision = reader.GetItem("DATABASE", "SPCConnStr", string.Format(DEFAULT_STRING, "SUPERVISION_PC"));
+            _npOrder = reader.GetItem("DATABASE", "NP_ORDERConnStr", string.Format(DEFAULT_STRING, "ORDER_RF1"));
+            _npMain = reader.GetItem("DATABASE", "NP_MAINConnStr", string.Format(DEFAULT_STRING, "NP_MAIN"));
+            _iosSup = reader.GetItem("DATABASE", "IOSSUPConnStr", string.Format(DEFAULT_STRING, "IOSSUP_RF1"));
+            _superVision = reader.GetItem("DATABASE", "SPCConnStr", string.Format(DEFAULT_STRING, "SUPERVISION_PC"));
         }
         #endregion
 

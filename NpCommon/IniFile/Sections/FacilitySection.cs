@@ -18,43 +18,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
 #endregion
 
-namespace NipponPaint.NpCommon.IniFile
+namespace NipponPaint.NpCommon.IniFile.Sections
 {
-    public class Settings
+    public class FacilitySection
     {
         #region 定数
         #endregion
 
         #region プロパティ
-        public Sections.DatabaseSection Database { get { return _database; } }
-        public Sections.DisplaySection Display { get { return _display; } }
-        public Sections.FacilitySection Facility { get { return _facility; } }
-        public string FilePath { get { return _filePath; } }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Plant { get { return _plant; } }
         #endregion
 
         #region メンバ変数
-        private string _filePath;
-        private Sections.DatabaseSection _database;
-        private Sections.DisplaySection _display;
-        private Sections.FacilitySection _facility;
+        private string _plant;
         #endregion
 
         #region コンストラクタ
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public Settings()
+        /// <param name="filePath"></param>
+        public FacilitySection(string filePath)
         {
-            var folder = Path.GetDirectoryName(Application.ExecutablePath);
-            _filePath = Path.Combine(folder, Constants.IniFiles.NP_COMMON);
-            _database = new Sections.DatabaseSection(_filePath);
-            _display = new Sections.DisplaySection(_filePath);
-            _facility = new Sections.FacilitySection(_filePath);
+            var reader = new FileInterface(filePath);
+            _plant = reader.GetItem("FACILITY", "Plant", string.Format("RF1"));
         }
         #endregion
     }
