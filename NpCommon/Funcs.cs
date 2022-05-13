@@ -272,6 +272,12 @@ namespace NipponPaint.NpCommon
         }
         #endregion
 
+        #region DataTableの変換
+        /// <summary>
+        /// DataTableの変換
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static DataTable ConvertDataTable(DataTable source)
         {
             DataTable dt = new DataTable();
@@ -298,5 +304,7 @@ namespace NipponPaint.NpCommon
             }
             return dt;
         }
+        #endregion
+
     }
 }
