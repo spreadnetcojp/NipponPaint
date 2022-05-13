@@ -101,6 +101,18 @@ namespace NipponPaint.NpCommon
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "一覧の行を選択しました")]
             SelectRow,
+
+            /// <summary>
+            /// 「注文を閉じる」ボタンをクリック
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Question, Description = "選択されたオーダーがクローズされます。続けてよいですか？ {0}")]
+            BtnOrderCloseClicked,
+
+            /// <summary>
+            /// 「ステータスを戻す」ボタンをクリック
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Question, Description = "オーダーのステータスを\"CCM配合待ち\"に変更しますか？ ")]
+            BtnStatusResumeClicked,
         }
     }
 }

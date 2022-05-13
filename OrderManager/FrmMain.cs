@@ -472,8 +472,6 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void BtnOrderCloseClick(object sender, EventArgs e)
         {
-            //注文番号のLabeltextBoxコントロールの値を取得する
-            string orderNumber = OrderNumber.Value;
             try
             {
                 //クリック時にCtrlキーが押されているか判別する
@@ -486,7 +484,7 @@ namespace NipponPaint.OrderManager
                         break;
                     //ctrlキーが押されていない場合
                     default:
-                        DialogResult result = MessageBox.Show("選択されたオーダーがクローズされます。続けてよいですか？ " + orderNumber, "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnOrderCloseClicked, OrderNumber.Value);
                         switch (result)
                         {
                             case DialogResult.Yes:
@@ -732,7 +730,7 @@ namespace NipponPaint.OrderManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnStatusResume_Click(object sender, EventArgs e)
+        private void BtnStatusResumeClick(object sender, EventArgs e)
         {
             // 詳細タブを開いていない時はスルー
             if (tabMain.SelectedIndex != TAB_INDEX_DETAIL)
@@ -743,7 +741,7 @@ namespace NipponPaint.OrderManager
             {
                 using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                 {
-                    DialogResult result = MessageBox.Show("オーダーのステータスを\"CCM配合待ち\"に変更しますか？", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
                     switch (result)
                     {
                         case DialogResult.Yes:
@@ -784,12 +782,14 @@ namespace NipponPaint.OrderManager
                                         break;
                                 }
                             }
+                            InitializeForm();
                             break;
                         case DialogResult.No:
                             break;
+                        default:
+                            break;
                     }
                 }
-                InitializeForm();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -968,16 +968,8 @@ namespace NipponPaint.OrderManager
                         bool result = int.TryParse(HgSamplePlates.Value, out int intResult);
                         if (result)
                         {
-                            if (intResult == 0)
-                            {
-                                BorderHgSamplePlates.Visible = false;
-                                BorderBtnPrint.Visible = false;
-                            }
-                            else
-                            {
-                                BorderHgSamplePlates.Visible = true;
-                                BorderBtnPrint.Visible = true;
-                            }
+                            BorderBtnPrint.Visible = intResult != 0;
+                            BorderHgSamplePlates.Visible = intResult != 0;
                         }
                         else
                         {
@@ -1059,16 +1051,8 @@ namespace NipponPaint.OrderManager
                         bool result = int.TryParse(HgSamplePlates.Value, out int intResult);
                         if (result)
                         {
-                            if (intResult == 0)
-                            {
-                                BorderHgSamplePlates.Visible = false;
-                                BorderBtnPrint.Visible = false;
-                            }
-                            else
-                            {
-                                BorderHgSamplePlates.Visible = true;
-                                BorderBtnPrint.Visible = true;
-                            }
+                            BorderBtnPrint.Visible = intResult != 0;
+                            BorderHgSamplePlates.Visible = intResult != 0;
                         }
                         else
                         {
@@ -1151,16 +1135,8 @@ namespace NipponPaint.OrderManager
                         bool result = int.TryParse(HgSamplePlates.Value, out int intResult);
                         if (result)
                         {
-                            if (intResult == 0)
-                            {
-                                BorderHgSamplePlates.Visible = false;
-                                BorderBtnPrint.Visible = false;
-                            }
-                            else
-                            {
-                                BorderHgSamplePlates.Visible = true;
-                                BorderBtnPrint.Visible = true;
-                            }
+                            BorderBtnPrint.Visible = intResult != 0;
+                            BorderHgSamplePlates.Visible = intResult != 0;
                         }
                         else
                         {
@@ -1254,6 +1230,7 @@ namespace NipponPaint.OrderManager
             this.BtnPrintInstructions.Click += new EventHandler(this.BtnPrintInstructionsClick);
             this.BtnPrintEmergency.Click += new EventHandler(this.BtnPrintEmergencyClick);
             this.BtnOrderStart.Click += new EventHandler(this.BtnOrderStartClick);
+            this.BtnStatusResume.Click += new System.EventHandler(this.BtnStatusResumeClick);
             this.BtnOrderClose.Click += new EventHandler(this.BtnOrderCloseClick);
             this.BtnProcessDetail.Click += new EventHandler(this.BtnProcessDetailClick);
             this.ToolStripMenuItemCloseForm.Click += new EventHandler(this.ToolStripMenuItemCloseFormClick);
@@ -1278,7 +1255,6 @@ namespace NipponPaint.OrderManager
             this.GvDetail.SelectionChanged += new EventHandler(this.GvDetail_SelectionChanged);
             this.GvFormulation.SelectionChanged += new EventHandler(this.GvDetail_GvFormulation_SelectionChanged);
             this.GvOrderNumber.SelectionChanged += new EventHandler(this.GvOrderNumber_SelectionChanged);
-            this.BtnStatusResume.Click += new System.EventHandler(this.BtnStatusResume_Click);
             // DataGridViewの初期設定
             var ViewSettingsOrderDetails = GridViewSettingCopy(ViewSettingsOrders);
             var ViewSettingsFormulations = GridViewSettingCopy(ViewSettingsOrders);
