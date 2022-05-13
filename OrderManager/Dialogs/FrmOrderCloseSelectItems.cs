@@ -50,6 +50,11 @@ namespace NipponPaint.OrderManager.Dialogs
         #endregion
 
         #region コンストラクタ
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="selectedStatus"></param>
+        /// <param name="plant"></param>
         public FrmOrderCloseSelectItems(Sql.NpMain.Orders.OrderStatus selectedStatus)
         {
             InitializeComponent();
@@ -109,7 +114,7 @@ namespace NipponPaint.OrderManager.Dialogs
             // DataGridViewの表示
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
-                var result = db.Select(Sql.NpMain.Orders.GetPreviewCloseOrders(selectedStatus));
+                var result = db.Select(Sql.NpMain.Orders.GetPreviewCloseOrders(selectedStatus, BaseSettings.Facility.Plant));
                 GvCloseOrders.DataSource = Funcs.ConvertDataTable(result);
             }
             var cnt = 0;

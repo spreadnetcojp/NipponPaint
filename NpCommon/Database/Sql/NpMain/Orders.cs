@@ -65,8 +65,9 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// 一覧データの取得
         /// </summary>
         /// <param name="viewSettings"></param>
+        /// <param name="plant"></param>
         /// <returns></returns>
-        public static string GetPreview(List<GridViewSetting> viewSettings)
+        public static string GetPreview(List<GridViewSetting> viewSettings, string plant)
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
@@ -80,8 +81,9 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
                 sql.Append(item.SqlSentence);
                 cnt++;
             }
-            sql.Append($"FROM Orders ");
-            sql.Append($"WHERE HG_SS_Code = '51F' AND Status IN (0, 1, 2, 3, 4) ");
+            sql.Append($"FROM Orders AS O ");
+            sql.Append($"INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = '{plant}')  AS P ON P.SS_Code = O.HG_SS_Code ");
+            sql.Append($"WHERE Status IN (0, 1, 2, 3, 4) ");
             sql.Append($"ORDER BY ");
             sql.Append($"  Status ");
             sql.Append($" ,HG_HG_Delivery_Code ");
@@ -95,7 +97,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// </summary>
         /// <param name="viewSettings"></param>
         /// <returns></returns>
-        public static string GetPreviewCloseOrders(OrderStatus selectedStatus)
+        public static string GetPreviewCloseOrders(OrderStatus selectedStatus, string plant)
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
@@ -108,9 +110,9 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($" ,TRIM(TRIM('　' FROM HG_Volume_Code)) ");
             sql.Append($" ,Number_of_cans ");
             sql.Append($" ,Order_Number ");
-            sql.Append($"FROM Orders ");
-            sql.Append($"WHERE HG_SS_Code = '51F' ");
-            sql.Append($" AND Status = {(int)selectedStatus} ");
+            sql.Append($"FROM Orders AS O ");
+            sql.Append($"INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = '{plant}')  AS P ON P.SS_Code = O.HG_SS_Code ");
+            sql.Append($"WHERE Status = {(int)selectedStatus} ");
             sql.Append($"ORDER BY ");
             sql.Append($"  Status ");
             sql.Append($" ,HG_HG_Delivery_Code ");
