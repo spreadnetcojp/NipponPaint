@@ -119,7 +119,7 @@ namespace NipponPaint.OrderManager
         /// ログ出力
         /// </summary>
         /// <param name="MessageId"></param>
-        public void PutLog(Exception ex, bool displayDialog = false)
+        public void PutLog(Exception ex, bool displayDialog = true)
         {
             Log.Write(Sentence.Messages.Exception, Log.ApplicationType.OrderManager, ex.Message);
             if (displayDialog)
