@@ -34,6 +34,11 @@ namespace NipponPaint.OrderManager.Dialogs
         #endregion
 
         #region イベント
+        /// <summary>
+        /// CCM配合待ち(ST1)オーダークローズ(C)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnOrderCloseCCMClick(object sender, EventArgs e)
         {
             try
@@ -47,6 +52,11 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(ex);
             }
         }
+        /// <summary>
+        /// CCM配合待ち(ST2)オーダークローズ(T)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void BtnOrderCloseTestCanClick(object sender, EventArgs e)
         {
             try
@@ -60,6 +70,11 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(ex);
             }
         }
+        /// <summary>
+        /// CCM配合待ち(ST3)オーダークローズ(M)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void BtnOrderCloseManufacturingCanClick(object sender, EventArgs e)
         {
             try

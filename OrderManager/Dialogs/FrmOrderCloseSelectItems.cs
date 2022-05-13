@@ -57,6 +57,11 @@ namespace NipponPaint.OrderManager.Dialogs
         #endregion
 
         #region イベント
+        /// <summary>
+        /// 注文を閉じるボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnOrderCloseClick(object sender, EventArgs e)
         {
             try
@@ -69,6 +74,11 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(ex);
             }
         }
+        /// <summary>
+        /// 閉じるボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void BtnCloseClick(object sender, EventArgs e)
         {
             try

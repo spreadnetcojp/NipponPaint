@@ -37,13 +37,18 @@ namespace NipponPaint.OrderManager.Dialogs
         #endregion
 
         #region イベント
+        /// <summary>
+        /// OKボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnOKClick(object sender, EventArgs e)
         {
             try
             {
                 RegistData();
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 MessageBox.Show("設定内容を保存しました。");
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }
             catch(Exception ex)
@@ -51,6 +56,11 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(ex);
             }
         }
+        /// <summary>
+        /// キャンセルボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void BtnCancelClick(object sender, EventArgs e)
         {
             try

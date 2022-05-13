@@ -45,9 +45,9 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((FrmLabelPrint)sender).Text);
                 this.GrpBoxNumberOfCan.Visible = false;
                 this.Height = 420;
+                PutLog(Sentence.Messages.ButtonClicked, ((FrmLabelPrint)sender).Text);
             }
             catch(Exception ex)
             {
@@ -58,12 +58,12 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((RadioButton)sender).Text);
                 if (RBtnProductLabelPrint.Checked == true)
                 {
                     this.GrpBoxNumberOfPrint.Visible = true;
                     this.GrpBoxNumberOfCan.Visible = false;
                 }
+                PutLog(Sentence.Messages.ButtonClicked, ((RadioButton)sender).Text);
             }
             catch(Exception ex)
             {
@@ -74,12 +74,12 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((RadioButton)sender).Text);
                 if (RBtnColorNameLabelPrint.Checked == true)
                 {
                     this.GrpBoxNumberOfPrint.Visible = true;
                     this.GrpBoxNumberOfCan.Visible = false;
                 }
+                PutLog(Sentence.Messages.ButtonClicked, ((RadioButton)sender).Text);
             }
             catch(Exception ex)
             {
@@ -90,12 +90,12 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((RadioButton)sender).Text);
                 if (RBtnReserveLabelPrint.Checked == true)
                 {
                     this.GrpBoxNumberOfPrint.Visible = true;
                     this.GrpBoxNumberOfCan.Visible = false;
                 }
+                PutLog(Sentence.Messages.ButtonClicked, ((RadioButton)sender).Text);
             }
             catch(Exception ex)
             {
@@ -106,13 +106,13 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((RadioButton)sender).Text);
                 if (RBtnNifudaLabelPrint.Checked == true)
                 {
                     this.GrpBoxNumberOfPrint.Visible = false;
                     this.GrpBoxNumberOfCan.Visible = true;
                     this.GrpBoxNumberOfCan.Location = new Point(470, 12);
                 }
+                PutLog(Sentence.Messages.ButtonClicked, ((RadioButton)sender).Text);
             }
             catch(Exception ex)
             {
