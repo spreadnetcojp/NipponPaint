@@ -24,19 +24,39 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
 {
     public static class Orders
     {
+        #region 定数
+        /// <summary>
+        /// オーダーステータス
+        /// </summary>
         public enum OrderStatus
         {
+            /// <summary>
+            /// 調色担当待ち
+            /// </summary>
             [Display(Description = "調色担当待ち")]
             WaitingForToning = 0,
+            /// <summary>
+            /// CCM配合待ち
+            /// </summary>
             [Display(Description = "CCM配合待ち")]
             WaitingForCCMformulation = 1,
+            /// <summary>
+            /// 準備完
+            /// </summary>
             [Display(Description = "準備完")]
             Ready = 2,
+            /// <summary>
+            /// テスト缶実施中
+            /// </summary>
             [Display(Description = "テスト缶実施中")]
             TestCanInProgress = 3,
+            /// <summary>
+            /// 製造缶実施中
+            /// </summary>
             [Display(Description = "製造缶実施中")]
             ManufacturingCansInProgress = 4,
         }
+        #endregion
 
         #region 参照系
 
