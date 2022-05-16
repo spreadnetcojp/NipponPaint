@@ -79,12 +79,12 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             /// <summary>
             /// 未使用
             /// </summary>
-            [Display(Description = "  ")]
+            [Display(Description = "未使用(4)")]
             DeliveryCode4 = 4,
             /// <summary>
             /// 未使用
             /// </summary>
-            [Display(Description = "  ")]
+            [Display(Description = "未使用(5)")]
             DeliveryCode5 = 5,
             /// <summary>
             /// 路線
