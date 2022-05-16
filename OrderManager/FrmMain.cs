@@ -55,8 +55,11 @@ namespace NipponPaint.OrderManager
         private const int COLUMN_PRODUCT_NAME = 5;
         private const int COLUMN_VOLUME_CODE = 6;
         private const int COLUMN_NUMBER_OF_CANS = 7;
-        private const int COLUMN_EXTIMED_DATE = 8;
-        private const int COLUMN_COLOR_SAMPLE = 11;
+        private const int COLUMN_SHIPPING_DATE = 8;
+        private const int COLUMN_VISIBLE_SHIPPING_DATE = 9;
+        private const int COLUMN_DELIVERY_DATE = 11;
+        private const int COLUMN_VISIBLE_DELIVERY_DATE = 12;
+        private const int COLUMN_COLOR_SAMPLE = 13;
 
         private const int TAB_INDEX_OREDR = 0;
         private const int TAB_INDEX_DETAIL = 1;
@@ -79,9 +82,11 @@ namespace NipponPaint.OrderManager
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Product_Name", DisplayName = "品名", Visible = true, Width = 500 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Volume_Code", DisplayName = "容量ｺｰﾄﾞ", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Number_of_cans", DisplayName = "缶数", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "FORMAT(Extimated_Date,'MM/dd')", DisplayName = "SS出荷予定日", Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "FORMAT(CONVERT(DATE,HG_SS_Shipping_Date), 'MM/dd')", DisplayName = "SS出荷予定日", Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "CONVERT(DATE,HG_SS_Shipping_Date)", DisplayName = "SS出荷予定日", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Name", DisplayName = "担当者", Visible = true, Width = 100 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "FORMAT(Delivery_Date,'MM/dd')", DisplayName = "納期", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "FORMAT(CONVERT(DATE,HG_Delivery_Date), 'MM/dd')", DisplayName = "納期", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "CONVERT(DATE,HG_Delivery_Date)", DisplayName = "納期", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Color_Sample", DisplayName = "標準色見本", Visible = true, Width = 300 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Color_Name", DisplayName = "色名", Visible = false, Width = 0 } },
         };
@@ -1110,7 +1115,7 @@ namespace NipponPaint.OrderManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void GvDetail_GvFormulation_SelectionChanged(object sender, EventArgs e)
+        private void GvFormulation_SelectionChanged(object sender, EventArgs e)
         {
             // 配合タブを開いていない時はスルー
             if (tabMain.SelectedIndex != TAB_INDEX_FORMULATION)
@@ -1186,12 +1191,13 @@ namespace NipponPaint.OrderManager
                         {
                             if (column.ColumnName.Equals("White_Code"))
                             {
-
-                                GvWeight.Rows.Add(rec.Rows[0]["White_Code"], rec.Rows[0]["White_Weight"]);
+                                double.TryParse(rec.Rows[0]["White_Weight"].ToString(), out double whiteWeight);
+                                GvWeight.Rows.Add(rec.Rows[0]["White_Code"], whiteWeight.ToString("F3"));
                             }
                             if (column.ColumnName.Equals("Colorant_" + cnt))
                             {
-                                GvWeight.Rows.Add(rec.Rows[0]["Colorant_" + cnt], rec.Rows[0]["Weight_" + cnt]);
+                                double.TryParse(rec.Rows[0]["Weight_" + cnt].ToString(), out double weight);
+                                GvWeight.Rows.Add(rec.Rows[0]["Colorant_" + cnt], weight.ToString("F3"));
                                 cnt++;
                             }
                         }
@@ -1274,7 +1280,7 @@ namespace NipponPaint.OrderManager
             this.tabMain.SelectedIndexChanged += new EventHandler(this.tabMain_SelectedIndexChanged);
             this.GvOrder.SelectionChanged += new EventHandler(this.GvOrder_SelectionChanged);
             this.GvDetail.SelectionChanged += new EventHandler(this.GvDetail_SelectionChanged);
-            this.GvFormulation.SelectionChanged += new EventHandler(this.GvDetail_GvFormulation_SelectionChanged);
+            this.GvFormulation.SelectionChanged += new EventHandler(this.GvFormulation_SelectionChanged);
             this.GvOrderNumber.SelectionChanged += new EventHandler(this.GvOrderNumber_SelectionChanged);
             // DataGridViewの初期設定
             var ViewSettingsOrderDetails = GridViewSettingCopy(ViewSettingsOrders);
@@ -1438,7 +1444,6 @@ namespace NipponPaint.OrderManager
                 return;
             }
             ViewGrid = new List<string>();
-            var cnt = 0;
             var rowHeight = 48;
             var fontSizeProductCode = 24;
             var fontSizeDefault = 12;
@@ -1473,12 +1478,20 @@ namespace NipponPaint.OrderManager
                     i++;
                 }
                 row.Cells[COLUMN_PRODUCT_CODE].Style.ForeColor = Color.Black;
-                if (cnt == 10)
+
+                DateTime.TryParse(row.Cells[COLUMN_VISIBLE_SHIPPING_DATE].Value.ToString(), out DateTime shippingDate);
+                DateTime.TryParse(row.Cells[COLUMN_VISIBLE_DELIVERY_DATE].Value.ToString(), out DateTime deliveryDate);
+                int.TryParse(row.Cells[COLUMN_DELIVERY_CODE].Value.ToString(), out int deliveryCode);
+                if (
+                    shippingDate <= DateTime.Today
+                    && DateTime.Today < deliveryDate
+                    && (Sql.NpMain.Orders.DeliveryCode)deliveryCode == Sql.NpMain.Orders.DeliveryCode.Reuse
+                   )
                 {
                     row.Cells[COLUMN_SHIPPING_ID].Style.BackColor = Color.Gold;
-                    row.Cells[COLUMN_EXTIMED_DATE].Style.BackColor = Color.Gold;
+                    row.Cells[COLUMN_SHIPPING_DATE].Style.BackColor = Color.Gold;
+                    row.Cells[COLUMN_DELIVERY_DATE].Style.BackColor = Color.Gold;
                 }
-                cnt++;
             }
         }
         #endregion

@@ -56,6 +56,57 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             [Display(Description = "製造缶実施中")]
             ManufacturingCansInProgress = 4,
         }
+        /// <summary>
+        /// 配送区分
+        /// </summary>
+        public enum DeliveryCode
+        {
+            /// <summary>
+            /// 区域1
+            /// </summary>
+            [Display(Description = "区域1")]
+            Area1 = 1,
+            /// <summary>
+            /// 区域2
+            /// </summary>
+            [Display(Description = "区域2")]
+            Area2 = 2,
+            /// <summary>
+            /// 使い
+            /// </summary>
+            [Display(Description = "使い")]
+            Reuse = 3,
+            /// <summary>
+            /// 未使用
+            /// </summary>
+            [Display(Description = "  ")]
+            DeliveryCode4 = 4,
+            /// <summary>
+            /// 未使用
+            /// </summary>
+            [Display(Description = "  ")]
+            DeliveryCode5 = 5,
+            /// <summary>
+            /// 路線
+            /// </summary>
+            [Display(Description = "路線")]
+            Route = 6,
+            /// <summary>
+            /// 区域A
+            /// </summary>
+            [Display(Description = "区域A")]
+            AreaA = 7,
+            /// <summary>
+            /// 区域B
+            /// </summary>
+            [Display(Description = "区域B")]
+            AreaB = 8,
+            /// <summary>
+            /// 特別便
+            /// </summary>
+            [Display(Description = "特別便")]
+            Special = 9,
+        }
         #endregion
 
         #region 参照系
@@ -169,7 +220,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($"UPDATE ");
             sql.Append($"Orders ");
             sql.Append($"SET ");
-            sql.Append($"Status = 1 ");
+            sql.Append($"Status = {(int)OrderStatus.WaitingForCCMformulation} ");
             sql.Append($",Formula_Release = 0 ");
             sql.Append($",White_Code = '' ");
             sql.Append($",White_Weight = 0 ");

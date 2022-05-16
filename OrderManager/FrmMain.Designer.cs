@@ -3067,7 +3067,7 @@ namespace NipponPaint.OrderManager
             this.GvWeight.Name = "GvWeight";
             this.GvWeight.ReadOnly = true;
             this.GvWeight.RowTemplate.Height = 21;
-            this.GvWeight.Size = new System.Drawing.Size(586, 458);
+            this.GvWeight.Size = new System.Drawing.Size(503, 455);
             this.GvWeight.TabIndex = 73;
             // 
             // tabCan
