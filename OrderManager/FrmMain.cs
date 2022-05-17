@@ -25,6 +25,7 @@ using NipponPaint.OrderManager.Dialogs;
 using NipponPaint.NpCommon.Settings;
 using Sql = NipponPaint.NpCommon.Database.Sql;
 using System.Data;
+using System.Linq;
 #endregion
 
 namespace NipponPaint.OrderManager
@@ -46,6 +47,12 @@ namespace NipponPaint.OrderManager
             Color.White,
         };
 
+        private static DataTable DataGridViewSource;
+
+        private const string Decimal_Place2 = "0.00";
+        private const string Decimal_Place3 = "0.000";
+
+
         private const int COLUMN_STATUS = 0;
         //private int COLUMN_PRODUCT_NAME = 0;
         //private int COLUMN_COLOR_NAME = 0;
@@ -55,8 +62,12 @@ namespace NipponPaint.OrderManager
         private const int COLUMN_PRODUCT_NAME = 5;
         private const int COLUMN_VOLUME_CODE = 6;
         private const int COLUMN_NUMBER_OF_CANS = 7;
-        private const int COLUMN_EXTIMED_DATE = 8;
-        private const int COLUMN_COLOR_SAMPLE = 11;
+        private const int COLUMN_SHIPPING_DATE = 8;
+        private const int COLUMN_VISIBLE_SHIPPING_DATE = 9;
+        private const int COLUMN_VISIBLE_OPERATOR = 10;
+        private const int COLUMN_DELIVERY_DATE = 11;
+        private const int COLUMN_VISIBLE_DELIVERY_DATE = 12;
+        private const int COLUMN_COLOR_SAMPLE = 13;
 
         private const int TAB_INDEX_OREDR = 0;
         private const int TAB_INDEX_DETAIL = 1;
@@ -79,11 +90,16 @@ namespace NipponPaint.OrderManager
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Product_Name", DisplayName = "品名", Visible = true, Width = 500 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Volume_Code", DisplayName = "容量ｺｰﾄﾞ", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Number_of_cans", DisplayName = "缶数", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "FORMAT(Extimated_Date,'MM/dd')", DisplayName = "SS出荷予定日", Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "FORMAT(CONVERT(DATE,HG_SS_Shipping_Date), 'MM/dd')", DisplayName = "SS出荷予定日", Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "CONVERT(DATE,HG_SS_Shipping_Date)", DisplayName = "SS出荷予定日日付型", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Name", DisplayName = "担当者", Visible = true, Width = 100 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "FORMAT(Delivery_Date,'MM/dd')", DisplayName = "納期", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "FORMAT(CONVERT(DATE,HG_Delivery_Date), 'MM/dd')", DisplayName = "納期", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "CONVERT(DATE,HG_Delivery_Date)", DisplayName = "納期日付型", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Color_Sample", DisplayName = "標準色見本", Visible = true, Width = 300 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Color_Name", DisplayName = "色名", Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Sum_up_Key", DisplayName = "順位コード", Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Code", DisplayName = "担当者コード", Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Sort_Order", DisplayName = "並び順", Visible = false, Width = 0 } },
         };
         private List<GridViewSetting> ViewSettingsWeights = new List<GridViewSetting>()
         {
@@ -745,6 +761,81 @@ namespace NipponPaint.OrderManager
                 PutLog(ex);
             }
         }
+
+        /// <summary>
+        /// 表示選択切り替え
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RdoCheckedChanged(object sender, EventArgs e)
+        {
+            //選択表示(Panel3)のグループ内のチェックされているラジオボタンを取得する
+            var rbtCheckInGroup = panel3.Controls.OfType<RadioButton>()
+                .SingleOrDefault(rb => rb.Checked == true);
+            switch (rbtCheckInGroup.Name)
+            {
+                case "RdoPreviewAll":
+                    DataGridViewSource.DefaultView.RowFilter = "";
+                    DataGridViewFormatting(GvOrder);
+                    DataGridViewFormatting(GvDetail);
+                    DataGridViewFormatting(GvFormulation);
+                    break;
+                case "RdoTodayBefore":
+                    DataGridViewSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
+                    DataGridViewFormatting(GvOrder);
+                    DataGridViewFormatting(GvDetail);
+                    DataGridViewFormatting(GvFormulation);
+                    break;
+                case "RdoTomorrowAfter":
+                    DataGridViewSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
+                    DataGridViewFormatting(GvOrder);
+                    DataGridViewFormatting(GvDetail);
+                    DataGridViewFormatting(GvFormulation);
+                    break;
+                default:
+                    DataGridViewSource.DefaultView.RowFilter = "";
+                    DataGridViewFormatting(GvOrder);
+                    DataGridViewFormatting(GvDetail);
+                    DataGridViewFormatting(GvFormulation);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// ソート順切り替え
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RdoSort_CheckedChanged(object sender, EventArgs e)
+        {
+            //ソート順(Panel2)のグループ内のチェックされているラジオボタンを取得する
+            var rbtCheckInGroup = panel2.Controls.OfType<RadioButton>()
+                .SingleOrDefault(rb => rb.Checked == true);
+            switch (rbtCheckInGroup.Name)
+            {
+                case "RdoSortKubun":
+                    DataGridViewSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
+                    DataGridViewFormatting(GvOrder);
+                    DataGridViewFormatting(GvDetail);
+                    DataGridViewFormatting(GvFormulation);
+                    break;
+                case "RdoSortRanking":
+                    DataGridViewSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [順位コード] , [並び順] , [品名] ASC";
+                    DataGridViewFormatting(GvOrder);
+                    DataGridViewFormatting(GvDetail);
+                    DataGridViewFormatting(GvFormulation);
+                    break;
+                case "RdoOrderPerson":
+                    DataGridViewSource.DefaultView.Sort = $"[担当者コード] , [Status] , [順位コード] , [並び順] , [品名] ASC";
+                    DataGridViewFormatting(GvOrder);
+                    DataGridViewFormatting(GvDetail);
+                    DataGridViewFormatting(GvFormulation);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         /// <summary>
         /// ステータスを戻すボタン押下
         /// </summary>
@@ -827,6 +918,7 @@ namespace NipponPaint.OrderManager
         {
             try
             {
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.LotRegister();
                 vm.Lot = HgTintingDirection.Value;
                 // Order_idで検索する
@@ -850,7 +942,6 @@ namespace NipponPaint.OrderManager
                 FrmLotRegister frmLotRegister = new FrmLotRegister(vm);
                 frmLotRegister.ShowDialog();
                 InitializeForm();
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
@@ -1110,7 +1201,7 @@ namespace NipponPaint.OrderManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void GvDetail_GvFormulation_SelectionChanged(object sender, EventArgs e)
+        private void GvFormulation_SelectionChanged(object sender, EventArgs e)
         {
             // 配合タブを開いていない時はスルー
             if (tabMain.SelectedIndex != TAB_INDEX_FORMULATION)
@@ -1186,12 +1277,13 @@ namespace NipponPaint.OrderManager
                         {
                             if (column.ColumnName.Equals("White_Code"))
                             {
-
-                                GvWeight.Rows.Add(rec.Rows[0]["White_Code"], rec.Rows[0]["White_Weight"]);
+                                double.TryParse(rec.Rows[0]["White_Weight"].ToString(), out double whiteWeight);
+                                GvWeight.Rows.Add(rec.Rows[0]["White_Code"], whiteWeight.ToString(Decimal_Place3));
                             }
-                            if (column.ColumnName.Equals("Colorant_" + cnt))
+                            if (column.ColumnName.Equals($"Colorant_{cnt}"))
                             {
-                                GvWeight.Rows.Add(rec.Rows[0]["Colorant_" + cnt], rec.Rows[0]["Weight_" + cnt]);
+                                double.TryParse(rec.Rows[0][$"Weight_{cnt}"].ToString(), out double weight);
+                                GvWeight.Rows.Add(rec.Rows[0][$"Colorant_{cnt}"], weight.ToString(Decimal_Place3));
                                 cnt++;
                             }
                         }
@@ -1254,6 +1346,12 @@ namespace NipponPaint.OrderManager
             this.BtnOrderClose.Click += new EventHandler(this.BtnOrderCloseClick);
             this.BtnBulkChangeStatus.Click += new EventHandler(this.BtnBulkChangeStatusClick);
             this.BtnProcessDetail.Click += new EventHandler(this.BtnProcessDetailClick);
+            this.RdoPreviewAll.CheckedChanged += new System.EventHandler(this.RdoCheckedChanged);
+            this.RdoTodayBefore.CheckedChanged += new System.EventHandler(this.RdoCheckedChanged);
+            this.RdoTomorrowAfter.CheckedChanged += new System.EventHandler(this.RdoCheckedChanged);
+            this.RdoSortKubun.CheckedChanged += new System.EventHandler(this.RdoSort_CheckedChanged);
+            this.RdoSortRanking.CheckedChanged += new System.EventHandler(this.RdoSort_CheckedChanged);
+            this.RdoOrderPerson.CheckedChanged += new System.EventHandler(this.RdoSort_CheckedChanged);
             this.ToolStripMenuItemCloseForm.Click += new EventHandler(this.ToolStripMenuItemCloseFormClick);
             this.ToolStripMenuItemCanType.Click += new EventHandler(this.ToolStripMenuItemCanTypeClick);
             this.ToolStripMenuItemCapType.Click += new EventHandler(this.ToolStripMenuItemCapTypeClick);
@@ -1274,7 +1372,7 @@ namespace NipponPaint.OrderManager
             this.tabMain.SelectedIndexChanged += new EventHandler(this.tabMain_SelectedIndexChanged);
             this.GvOrder.SelectionChanged += new EventHandler(this.GvOrder_SelectionChanged);
             this.GvDetail.SelectionChanged += new EventHandler(this.GvDetail_SelectionChanged);
-            this.GvFormulation.SelectionChanged += new EventHandler(this.GvDetail_GvFormulation_SelectionChanged);
+            this.GvFormulation.SelectionChanged += new EventHandler(this.GvFormulation_SelectionChanged);
             this.GvOrderNumber.SelectionChanged += new EventHandler(this.GvOrderNumber_SelectionChanged);
             // DataGridViewの初期設定
             var ViewSettingsOrderDetails = GridViewSettingCopy(ViewSettingsOrders);
@@ -1290,14 +1388,14 @@ namespace NipponPaint.OrderManager
             // DataGridViewの表示
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
-                var result = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrders, BaseSettings.Facility.Plant));
-                ColorExplanation(result);
+                DataGridViewSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrders, BaseSettings.Facility.Plant));
+                ColorExplanation(DataGridViewSource);
 
-                GvOrder.DataSource = result;
-                GvDetail.DataSource = result;
-                GvFormulation.DataSource = result;
+                GvOrder.DataSource = DataGridViewSource;
+                GvDetail.DataSource = DataGridViewSource;
+                GvFormulation.DataSource = DataGridViewSource;
 
-                result = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrderNumbers, BaseSettings.Facility.Plant));
+                var result = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrderNumbers, BaseSettings.Facility.Plant));
                 GvOrderNumber.DataSource = result;
             }
             var cnt = 0;
@@ -1438,7 +1536,6 @@ namespace NipponPaint.OrderManager
                 return;
             }
             ViewGrid = new List<string>();
-            var cnt = 0;
             var rowHeight = 48;
             var fontSizeProductCode = 24;
             var fontSizeDefault = 12;
@@ -1473,12 +1570,20 @@ namespace NipponPaint.OrderManager
                     i++;
                 }
                 row.Cells[COLUMN_PRODUCT_CODE].Style.ForeColor = Color.Black;
-                if (cnt == 10)
+
+                DateTime.TryParse(row.Cells[COLUMN_VISIBLE_SHIPPING_DATE].Value.ToString(), out DateTime shippingDate);
+                DateTime.TryParse(row.Cells[COLUMN_VISIBLE_DELIVERY_DATE].Value.ToString(), out DateTime deliveryDate);
+                int.TryParse(row.Cells[COLUMN_DELIVERY_CODE].Value.ToString(), out int deliveryCode);
+                if (
+                    shippingDate <= DateTime.Today
+                    && DateTime.Today < deliveryDate
+                    && (Sql.NpMain.Orders.DeliveryCode)deliveryCode == Sql.NpMain.Orders.DeliveryCode.Reuse
+                   )
                 {
-                    row.Cells[COLUMN_SHIPPING_ID].Style.BackColor = Color.Gold;
-                    row.Cells[COLUMN_EXTIMED_DATE].Style.BackColor = Color.Gold;
+                    row.Cells[COLUMN_SHIPPING_DATE].Style.BackColor = Color.Gold;
+                    row.Cells[COLUMN_VISIBLE_OPERATOR].Style.BackColor = Color.Gold;
+                    row.Cells[COLUMN_DELIVERY_DATE].Style.BackColor = Color.Gold;
                 }
-                cnt++;
             }
         }
         #endregion
@@ -1566,9 +1671,9 @@ namespace NipponPaint.OrderManager
         private void ColorExplanation(DataTable dt)
         {
             //調色担当待ち
-            DataRow[] beforeSS = dt.Select(string.Format("[{0}] <= #{1}#", "SS出荷予定日", DateTime.Today) + "AND Status = " + 0);
-            DataRow[] afterSS = dt.Select(string.Format("[{0}] > #{1}#", "SS出荷予定日", DateTime.Today) + "AND Status = " + 0);
-            DataRow[] ss = dt.Select("Status = " + 0);
+            DataRow[] beforeSS = dt.Select($"[SS出荷予定日日付型] <= #{DateTime.Today}# AND Status = 0");
+            DataRow[] afterSS = dt.Select($"#{DateTime.Today}# < [SS出荷予定日日付型] AND Status = 0");
+            DataRow[] ss = dt.Select("Status = 0");
             double total = 0;
             string strTotal = string.Empty;
             foreach (DataRow row in ss)
@@ -1579,12 +1684,12 @@ namespace NipponPaint.OrderManager
             }
             total = total / 1000;
             total = Math.Round(total, 2, MidpointRounding.AwayFromZero);
-            strTotal = string.Format("{0:F2}", total);
-            label6.Text = "[" + beforeSS.Length + "/" + afterSS.Length + "]";
-            label4.Text = strTotal + "t";
+            strTotal = total.ToString(Decimal_Place2);
+            label6.Text = $"[{beforeSS.Length}/{afterSS.Length}]";
+            label4.Text = $"{strTotal}t";
 
             //CCM配合待ち
-            DataRow[] ccm = dt.Select("Status = " + 1);
+            DataRow[] ccm = dt.Select("Status = 1");
             foreach (DataRow row in ccm)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -1593,12 +1698,12 @@ namespace NipponPaint.OrderManager
             }
             total = total / 1000;
             total = Math.Round(total, 2, MidpointRounding.AwayFromZero);
-            strTotal = string.Format("{0:F2}", total);
-            label7.Text = "[" + ccm.Length + "]";
-            label5.Text = strTotal + "t";
+            strTotal = total.ToString(Decimal_Place2);
+            label7.Text = $"[{ccm.Length}]";
+            label5.Text = $"{strTotal}t";
 
             //準備完
-            DataRow[] ready = dt.Select("Status = " + 2);
+            DataRow[] ready = dt.Select("Status = 2");
             foreach (DataRow row in ready)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -1607,12 +1712,12 @@ namespace NipponPaint.OrderManager
             }
             total = total / 1000;
             total = Math.Round(total, 2, MidpointRounding.AwayFromZero);
-            strTotal = string.Format("{0:F2}", total);
-            label8.Text = "[" + ready.Length + "]";
-            label11.Text = strTotal + "t";
+            strTotal = total.ToString(Decimal_Place2);
+            label8.Text = $"[{ready.Length}]";
+            label11.Text = $"{strTotal}t";
 
             //テスト缶実施中
-            DataRow[] testCan = dt.Select("Status = " + 3);
+            DataRow[] testCan = dt.Select("Status = 3");
             foreach (DataRow row in testCan)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -1621,12 +1726,12 @@ namespace NipponPaint.OrderManager
             }
             total = total / 1000;
             total = Math.Round(total, 2, MidpointRounding.AwayFromZero);
-            strTotal = string.Format("{0:F2}", total);
-            label9.Text = "[" + testCan.Length + "]";
-            label12.Text = strTotal + "t";
+            strTotal = total.ToString(Decimal_Place2);
+            label9.Text = $"[{testCan.Length}]";
+            label12.Text = $"{strTotal}t";
 
             //製造缶実施中
-            DataRow[] productCan = dt.Select("Status = " + 4);
+            DataRow[] productCan = dt.Select("Status = 4");
             foreach (DataRow row in productCan)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -1635,9 +1740,9 @@ namespace NipponPaint.OrderManager
             }
             total = total / 1000;
             total = Math.Round(total, 2, MidpointRounding.AwayFromZero);
-            strTotal = string.Format("{0:F2}", total);
-            label10.Text = "[" + productCan.Length + "]";
-            label13.Text = strTotal + "t";
+            strTotal = total.ToString(Decimal_Place2);
+            label10.Text = $"[{productCan.Length}]";
+            label13.Text = $"{strTotal}t";
         }
 
         #endregion
@@ -1719,5 +1824,7 @@ namespace NipponPaint.OrderManager
         #endregion
 
         #endregion
+
+
     }
 }
