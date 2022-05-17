@@ -539,6 +539,19 @@ namespace NipponPaint.OrderManager
                 PutLog(ex);
             }
         }
+        private void ToolStripMenuItemHelpFormClick(object sender, EventArgs e)
+        {
+            try
+            {
+                PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+                var form = new FrmHelp();
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
         /// <summary>
         /// メニューバーのファイルで「閉じる」を選択
         /// </summary>
@@ -1366,6 +1379,7 @@ namespace NipponPaint.OrderManager
             this.GvOrder.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.GvDetail.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.GvFormulation.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
+            this.ヘルプHToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemHelpFormClick);
             //ラベル(仮)のイベントハンドラー
             this.ToolStripMenuItemLabelSelection.Click += new EventHandler(this.ToolStripMenuItemLabelSelectionClick);
             this.BtnLotRegister.Click += new EventHandler(this.BtnLotRegisterClick);
@@ -1821,10 +1835,9 @@ namespace NipponPaint.OrderManager
             }
             return result;
         }
-        #endregion
 
         #endregion
 
-
+        #endregion
     }
 }
