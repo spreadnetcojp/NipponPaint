@@ -120,3 +120,4 @@ SupervisorIfSim/obj/Debug/SupervisorIfSim.Properties.Resources.resources
 OrderManager/bin/Debug/Log/OrderManager20220513.log
 OrderManager/obj/Debug/NipponPaint.OrderManager.Dialogs.FrmOrderChangeStatusSelectItem.resources
 .vs/NpToningSystem/project-colors.json
+NpCommon/obj/Debug/DesignTimeResolveAssemblyReferences.cache
