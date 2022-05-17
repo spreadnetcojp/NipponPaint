@@ -80,7 +80,6 @@ namespace NipponPaint.OrderManager.Dialogs
             // イベントの追加
             this.BtnOK.Click += new EventHandler(this.BtnOKClick);
             this.BtnCancel.Click += new EventHandler(this.BtnCancelClick);
-            Funcs.SetControlEnabled(this.Controls, true);
             //データ表示部の設定
             /// <summary>
             /// BaudRateのドロップダウン
