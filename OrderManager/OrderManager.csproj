@@ -86,6 +86,12 @@
     <Compile Include="Dialogs\FrmFontSelect.Designer.cs">
       <DependentUpon>FrmFontSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\FrmHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FrmHelp.Designer.cs">
+      <DependentUpon>FrmHelp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\FrmLabelSelection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FrmFontSelect.resx">
       <DependentUpon>FrmFontSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FrmHelp.resx">
+      <DependentUpon>FrmHelp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FrmLabelSelection.resx">
       <DependentUpon>FrmLabelSelection.cs</DependentUpon>
