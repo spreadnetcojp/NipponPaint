@@ -47,7 +47,7 @@ namespace NipponPaint.OrderManager
             Color.White,
         };
 
-        private static DataTable dt;
+        private static DataTable DataGridViewSource;
 
         private const string Decimal_Place2 = "0.00";
         private const string Decimal_Place3 = "0.000";
@@ -64,6 +64,7 @@ namespace NipponPaint.OrderManager
         private const int COLUMN_NUMBER_OF_CANS = 7;
         private const int COLUMN_SHIPPING_DATE = 8;
         private const int COLUMN_VISIBLE_SHIPPING_DATE = 9;
+        private const int COLUMN_VISIBLE_OPERATOR = 10;
         private const int COLUMN_DELIVERY_DATE = 11;
         private const int COLUMN_VISIBLE_DELIVERY_DATE = 12;
         private const int COLUMN_COLOR_SAMPLE = 13;
@@ -96,6 +97,9 @@ namespace NipponPaint.OrderManager
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "CONVERT(DATE,HG_Delivery_Date)", DisplayName = "納期日付型", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Color_Sample", DisplayName = "標準色見本", Visible = true, Width = 300 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Color_Name", DisplayName = "色名", Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Sum_up_Key", DisplayName = "順位コード", Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Code", DisplayName = "担当者コード", Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Sort_Order", DisplayName = "並び順", Visible = false, Width = 0 } },
         };
         private List<GridViewSetting> ViewSettingsWeights = new List<GridViewSetting>()
         {
@@ -758,6 +762,11 @@ namespace NipponPaint.OrderManager
             }
         }
 
+        /// <summary>
+        /// 表示選択切り替え
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RdoCheckedChanged(object sender, EventArgs e)
         {
             //選択表示(Panel3)のグループ内のチェックされているラジオボタンを取得する
@@ -766,28 +775,63 @@ namespace NipponPaint.OrderManager
             switch (rbtCheckInGroup.Name)
             {
                 case "RdoPreviewAll":
-                    dt.DefaultView.RowFilter = "";
+                    DataGridViewSource.DefaultView.RowFilter = "";
                     DataGridViewFormatting(GvOrder);
                     DataGridViewFormatting(GvDetail);
                     DataGridViewFormatting(GvFormulation);
                     break;
                 case "RdoTodayBefore":
-                    dt.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
+                    DataGridViewSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
                     DataGridViewFormatting(GvOrder);
                     DataGridViewFormatting(GvDetail);
                     DataGridViewFormatting(GvFormulation);
                     break;
                 case "RdoTomorrowAfter":
-                    dt.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
+                    DataGridViewSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
                     DataGridViewFormatting(GvOrder);
                     DataGridViewFormatting(GvDetail);
                     DataGridViewFormatting(GvFormulation);
                     break;
                 default:
-                    dt.DefaultView.RowFilter = "";
+                    DataGridViewSource.DefaultView.RowFilter = "";
                     DataGridViewFormatting(GvOrder);
                     DataGridViewFormatting(GvDetail);
                     DataGridViewFormatting(GvFormulation);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// ソート順切り替え
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RdoSort_CheckedChanged(object sender, EventArgs e)
+        {
+            //ソート順(Panel2)のグループ内のチェックされているラジオボタンを取得する
+            var rbtCheckInGroup = panel2.Controls.OfType<RadioButton>()
+                .SingleOrDefault(rb => rb.Checked == true);
+            switch (rbtCheckInGroup.Name)
+            {
+                case "RdoSortKubun":
+                    DataGridViewSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
+                    DataGridViewFormatting(GvOrder);
+                    DataGridViewFormatting(GvDetail);
+                    DataGridViewFormatting(GvFormulation);
+                    break;
+                case "RdoSortRanking":
+                    DataGridViewSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [順位コード] , [並び順] , [品名] ASC";
+                    DataGridViewFormatting(GvOrder);
+                    DataGridViewFormatting(GvDetail);
+                    DataGridViewFormatting(GvFormulation);
+                    break;
+                case "RdoOrderPerson":
+                    DataGridViewSource.DefaultView.Sort = $"[担当者コード] , [Status] , [順位コード] , [並び順] , [品名] ASC";
+                    DataGridViewFormatting(GvOrder);
+                    DataGridViewFormatting(GvDetail);
+                    DataGridViewFormatting(GvFormulation);
+                    break;
+                default:
                     break;
             }
         }
@@ -874,6 +918,7 @@ namespace NipponPaint.OrderManager
         {
             try
             {
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.LotRegister();
                 vm.Lot = HgTintingDirection.Value;
                 // Order_idで検索する
@@ -897,7 +942,6 @@ namespace NipponPaint.OrderManager
                 FrmLotRegister frmLotRegister = new FrmLotRegister(vm);
                 frmLotRegister.ShowDialog();
                 InitializeForm();
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
@@ -1305,6 +1349,9 @@ namespace NipponPaint.OrderManager
             this.RdoPreviewAll.CheckedChanged += new System.EventHandler(this.RdoCheckedChanged);
             this.RdoTodayBefore.CheckedChanged += new System.EventHandler(this.RdoCheckedChanged);
             this.RdoTomorrowAfter.CheckedChanged += new System.EventHandler(this.RdoCheckedChanged);
+            this.RdoSortKubun.CheckedChanged += new System.EventHandler(this.RdoSort_CheckedChanged);
+            this.RdoSortRanking.CheckedChanged += new System.EventHandler(this.RdoSort_CheckedChanged);
+            this.RdoOrderPerson.CheckedChanged += new System.EventHandler(this.RdoSort_CheckedChanged);
             this.ToolStripMenuItemCloseForm.Click += new EventHandler(this.ToolStripMenuItemCloseFormClick);
             this.ToolStripMenuItemCanType.Click += new EventHandler(this.ToolStripMenuItemCanTypeClick);
             this.ToolStripMenuItemCapType.Click += new EventHandler(this.ToolStripMenuItemCapTypeClick);
@@ -1341,12 +1388,12 @@ namespace NipponPaint.OrderManager
             // DataGridViewの表示
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
-                dt = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrders, BaseSettings.Facility.Plant));
-                ColorExplanation(dt);
+                DataGridViewSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrders, BaseSettings.Facility.Plant));
+                ColorExplanation(DataGridViewSource);
 
-                GvOrder.DataSource = dt;
-                GvDetail.DataSource = dt;
-                GvFormulation.DataSource = dt;
+                GvOrder.DataSource = DataGridViewSource;
+                GvDetail.DataSource = DataGridViewSource;
+                GvFormulation.DataSource = DataGridViewSource;
 
                 var result = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrderNumbers, BaseSettings.Facility.Plant));
                 GvOrderNumber.DataSource = result;
@@ -1533,8 +1580,8 @@ namespace NipponPaint.OrderManager
                     && (Sql.NpMain.Orders.DeliveryCode)deliveryCode == Sql.NpMain.Orders.DeliveryCode.Reuse
                    )
                 {
-                    row.Cells[COLUMN_SHIPPING_ID].Style.BackColor = Color.Gold;
                     row.Cells[COLUMN_SHIPPING_DATE].Style.BackColor = Color.Gold;
+                    row.Cells[COLUMN_VISIBLE_OPERATOR].Style.BackColor = Color.Gold;
                     row.Cells[COLUMN_DELIVERY_DATE].Style.BackColor = Color.Gold;
                 }
             }
@@ -1777,5 +1824,7 @@ namespace NipponPaint.OrderManager
         #endregion
 
         #endregion
+
+
     }
 }
