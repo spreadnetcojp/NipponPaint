@@ -29,11 +29,12 @@ namespace NipponPaint.NpCommon.IniFile.Sections
 
         #region プロパティ
         public List<string> HgNoteStrList { get { return _hgNoteStrList; } }
+        public List<string> ColorNameStrList { get { return _colorNameStrList; } }
         #endregion
 
         #region メンバ変数
         private List<string> _hgNoteStrList = new List<string>();
-
+        private List<string> _colorNameStrList = new List<string>();
         #endregion
 
         #region コンストラクタ
@@ -44,12 +45,20 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         public DisplaySection(string filePath)
         {
             var reader = new FileInterface(filePath);
-            var items = reader.GetItem("DISPLAY", "ToningAppKeyword", "");
-            if (!string.IsNullOrEmpty(items))
+            var toningItems = reader.GetItem("DISPLAY", "ToningAppKeyword", "");
+            if (!string.IsNullOrEmpty(toningItems))
             {
-                foreach (var item in items.Split(','))
+                foreach (var item in toningItems.Split(','))
                 {
                     _hgNoteStrList.Add(item);
+                }
+            }
+            var ColorNameItems = reader.GetItem("DISPLAY", "ColorNameKeyword", "");
+            if (!string.IsNullOrEmpty(ColorNameItems))
+            {
+                foreach (var item in ColorNameItems.Split(','))
+                {
+                    _colorNameStrList.Add(item);
                 }
             }
         }
