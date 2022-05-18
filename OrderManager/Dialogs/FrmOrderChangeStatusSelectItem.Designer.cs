@@ -113,13 +113,16 @@
             // 
             // FrmOrderChangeStatusSelectItem
             // 
+            this.AcceptButton = this.BtnClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 761);
+            this.ControlBox = false;
             this.Controls.Add(this.PnlBtnChk);
             this.Controls.Add(this.PnlList);
             this.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.Name = "FrmOrderChangeStatusSelectItem";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ステータス一括変更";
             this.PnlBtnChk.ResumeLayout(false);
             this.PnlBtnChk.PerformLayout();

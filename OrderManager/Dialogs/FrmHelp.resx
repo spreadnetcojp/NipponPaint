@@ -117,4 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>【F1】表示選択－全て：対象データが全てのオーダーを表示します。
+【F2】表示選択－今日以前：対象データが今日以前のオーダーを表示します。
+【F3】表示選択－明日以降：対象データが明日以降のオーダーを表示します。
+【F4】ラベル印刷：ラベル（テスト缶実施中or製造缶実施中）を印刷します。
+【F5】作業指示書の印刷：作業指示書を印刷します。
+【F6】緊急印刷：ラベル（CCM配合待ち)を印刷します。
+【F7】注文開始：注文を開始します。
+【F8】ステータスを戻す：当該行のステータスを差し戻します。
+【F9】担当者を決定：担当者を選択します。
+【F10】注文を閉じる：各オーダーを選択し、注文を閉じます。
+【F11】ステータス一括変更：各ステータスを一括で変更します。
+【F12】処理No.詳細：処理No.を指定します。
+</value>
+  </data>
 </root>

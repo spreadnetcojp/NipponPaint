@@ -466,7 +466,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DateTimePicker.Name = "DateTimePicker";
             this.DateTimePicker.Size = new System.Drawing.Size(293, 30);
             this.DateTimePicker.TabIndex = 102;
-            this.DateTimePicker.Value = new System.DateTime(2022, 5, 9, 0, 0, 0, 0);
+            this.DateTimePicker.Value = new System.DateTime(2022, 5, 16, 0, 0, 0, 0);
             // 
             // TxtCSAreaCode
             // 
@@ -512,7 +512,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownLabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.NumUpDownLabel.TextBackColor = System.Drawing.SystemColors.Window;
             this.NumUpDownLabel.TextForeColor = System.Drawing.SystemColors.WindowText;
-            this.NumUpDownLabel.Title = "ラベル(&P)";
+            this.NumUpDownLabel.Title = "ラベル(&V)";
             this.NumUpDownLabel.TitleControlName = "lblTitle";
             this.NumUpDownLabel.TitleSize = new System.Drawing.Size(154, 30);
             this.NumUpDownLabel.Value = new decimal(new int[] {

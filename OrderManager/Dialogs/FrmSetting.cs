@@ -556,7 +556,7 @@ namespace NipponPaint.OrderManager.Dialogs
         //OKボタン押下時の不完全動作
         private bool InvalidMeg()
         {
-            bool modeChangeFlg = true;
+            bool modeChangeFlg = false;
             MessageBox.Show("不完全データ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return modeChangeFlg;
         }

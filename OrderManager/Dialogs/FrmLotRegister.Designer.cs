@@ -49,6 +49,7 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // TxtLotRegister
             // 
+            this.TxtLotRegister.BackColor = System.Drawing.SystemColors.Control;
             this.TxtLotRegister.DatabaseColumnName = "HG_Tinting_Direction";
             this.TxtLotRegister.DataControlName = "txtData";
             this.TxtLotRegister.DataEnabled = true;
@@ -56,6 +57,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtLotRegister.DataTextLocation = new System.Drawing.Point(154, 0);
             this.TxtLotRegister.DataTextSize = new System.Drawing.Size(290, 30);
             this.TxtLotRegister.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TxtLotRegister.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtLotRegister.Id = "";
             this.TxtLotRegister.Label = "";
             this.TxtLotRegister.Location = new System.Drawing.Point(12, 12);
@@ -67,6 +69,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtLotRegister.TabIndex = 1;
             this.TxtLotRegister.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TxtLotRegister.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtLotRegister.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TxtLotRegister.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtLotRegister.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtLotRegister.Title = "指定LOT(&L)";

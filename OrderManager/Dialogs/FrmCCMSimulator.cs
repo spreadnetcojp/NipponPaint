@@ -124,12 +124,13 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                NumUpDownCorrection.Text = "0";
-                TxtKanjiColorName.Text = "";
-                TxtPaintName.Text = "";
-                DrpProductCodeLeft.Text = "";
-
+                NumUpDownCorrection.Value = 0;
+                TxtKanjiColorName.Value = "";
+                TxtPaintName.Value = "";
+                DrpProductCodeLeft.DropDown.Text = "K";
                 DrpProductCodeRight.Text = "D";
+                //DrpProductCodeLeft.DropDown.SelectedIndex = 9;
+                //DrpProductCodeRight.SelectedIndex = 11;
                 DrpBaseSelect.Text = "";
                 DrpColoarantSelect1.Text = "";
                 DrpColoarantSelect2.Text = "";
