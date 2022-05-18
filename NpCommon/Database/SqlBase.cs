@@ -1225,6 +1225,13 @@ namespace NipponPaint.NpCommon.Database
         }
         #endregion
 
+        #region データベース"NP_MAIN"のOrdersテーブルのOperatorを削除する
+        public void DeleteOperator(string sql, List<ParameterItem> parameters = null)
+        {
+            Execute(sql, parameters);
+            Commit();
+        }
+        #endregion
 
         #endregion
     }

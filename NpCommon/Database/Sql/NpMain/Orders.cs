@@ -172,7 +172,6 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         #endregion
 
         #region オーダーIDによるレコード取得
-
         /// <summary>
         /// オーダーIDによるレコード取得
         /// </summary>
@@ -210,6 +209,8 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         #endregion
 
         #region 更新系
+
+        #region ステータスを戻す
         /// <summary>
         /// ステータスを戻す
         /// </summary>
@@ -269,6 +270,27 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
 
             return sql.ToString();
         }
+        #endregion
+
+        #region オペレータ削除
+        /// <summary>
+        /// オペレータ削除
+        /// </summary>
+        /// <returns></returns>
+        public static string DeleteOperator()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"UPDATE ");
+            sql.Append($"Orders ");
+            sql.Append($"SET ");
+            sql.Append($"Status = {(int)OrderStatus.WaitingForToning} ");
+            sql.Append($",Operator_Code = '' ");
+            sql.Append($",Operator_Name = '' ");
+            sql.Append($"WHERE ");
+            sql.Append($"order_id = @orderId");
+            return sql.ToString();
+        }
+        #endregion
 
         #endregion
     }

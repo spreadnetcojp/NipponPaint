@@ -86,6 +86,7 @@ namespace NipponPaint.OrderManager
             this.BorderHgTintingDirection = new NipponPaint.NpCommon.FormControls.PanelBorder();
             this.BorderHgSamplePlates = new NipponPaint.NpCommon.FormControls.PanelBorder();
             this.BorderHgNote = new NipponPaint.NpCommon.FormControls.PanelBorder();
+            this.BorderHgVolumeCode = new NipponPaint.NpCommon.FormControls.PanelBorder();
             this.tabDetail2 = new System.Windows.Forms.TabPage();
             this.HgUnifiedArticleNumber = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.HgSsShippingDate_2 = new NipponPaint.NpCommon.FormControls.LabelTextBox();
@@ -230,7 +231,6 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemCCMSimulator = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemLabelSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.ヘルプHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BorderHgVolumeCode = new NipponPaint.NpCommon.FormControls.PanelBorder();
             this.tabOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GvOrder)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -1395,6 +1395,16 @@ namespace NipponPaint.OrderManager
             this.BorderHgNote.Name = "BorderHgNote";
             this.BorderHgNote.Size = new System.Drawing.Size(1229, 36);
             this.BorderHgNote.TabIndex = 99;
+            // 
+            // BorderHgVolumeCode
+            // 
+            this.BorderHgVolumeCode.BackColor = System.Drawing.Color.Transparent;
+            this.BorderHgVolumeCode.BorderColor = System.Drawing.Color.Red;
+            this.BorderHgVolumeCode.Location = new System.Drawing.Point(0, 206);
+            this.BorderHgVolumeCode.Margin = new System.Windows.Forms.Padding(2, 5, 2, 5);
+            this.BorderHgVolumeCode.Name = "BorderHgVolumeCode";
+            this.BorderHgVolumeCode.Size = new System.Drawing.Size(299, 36);
+            this.BorderHgVolumeCode.TabIndex = 100;
             // 
             // tabDetail2
             // 
@@ -4052,16 +4062,6 @@ namespace NipponPaint.OrderManager
             this.ヘルプHToolStripMenuItem.Name = "ヘルプHToolStripMenuItem";
             this.ヘルプHToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.ヘルプHToolStripMenuItem.Text = "ヘルプ(&H)";
-            // 
-            // BorderHgVolumeCode
-            // 
-            this.BorderHgVolumeCode.BackColor = System.Drawing.Color.Transparent;
-            this.BorderHgVolumeCode.BorderColor = System.Drawing.Color.Red;
-            this.BorderHgVolumeCode.Location = new System.Drawing.Point(0, 206);
-            this.BorderHgVolumeCode.Margin = new System.Windows.Forms.Padding(2, 5, 2, 5);
-            this.BorderHgVolumeCode.Name = "BorderHgVolumeCode";
-            this.BorderHgVolumeCode.Size = new System.Drawing.Size(299, 36);
-            this.BorderHgVolumeCode.TabIndex = 100;
             // 
             // FrmMain
             // 

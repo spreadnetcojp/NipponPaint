@@ -778,6 +778,174 @@ namespace NipponPaint.OrderManager
         }
 
         /// <summary>
+        /// ContextMenuの「担当者を決定」を選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmiDecide_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+
+        /// <summary>
+        /// ContextMenuの「オペレータ削除」を選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmiOperatorDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+                {
+                    DataGridView dgv = new DataGridView();
+                    switch (tabMain.SelectedIndex)
+                    {
+                        case TAB_INDEX_OREDR:
+                            dgv = GvOrder;
+                            break;
+                        case TAB_INDEX_DETAIL:
+                            dgv = GvDetail;
+                            break;
+                        case TAB_INDEX_FORMULATION:
+                            dgv = GvFormulation;
+                            break;
+                        default:
+                            break;
+                    }
+                    var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                    if (dgv.SelectedRows.Count > 0)
+                    {
+                        // 選択している行を取得
+                        var selectedRow = dgv.SelectedRows[0];
+                        int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
+                        // 行取得のSQLを作成
+                        var parameters = new List<ParameterItem>()
+                        {
+                            new ParameterItem("orderId", orderId),
+                        };
+                        db.DeleteOperator(Sql.NpMain.Orders.DeleteOperator(), parameters);
+                    }
+                }
+                InitializeForm();
+                PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+
+        /// <summary>
+        /// ContextMenuの「注文開始」を選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmiOrderStart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+
+        /// <summary>
+        /// ContextMenuの「作業指示書の印刷」を選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmiInstructionPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+
+        /// <summary>
+        /// ContextMenuの「製品ラベルのプリント」を選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmiProductLabelPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+
+        /// <summary>
+        /// ContextMenuの「色名ラベルのプリント」を選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmiColorLabelPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+
+        /// <summary>
+        /// ContextMenuの「控え板ラベル印刷」を選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmiCopyLabelPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+
+        /// <summary>
+        /// ContextMenuの「注文を閉じる」を選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmiOrderClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+
+        /// <summary>
         /// 表示選択切り替え
         /// </summary>
         /// <param name="sender"></param>
@@ -1317,6 +1485,23 @@ namespace NipponPaint.OrderManager
                                 BorderHgNote.Visible = false;
                             }
                         }
+                        //重量グリッドビューの設定
+                        GvWeight.Rows.Clear();
+                        var cnt = 1;
+                        foreach (DataColumn column in rec.Columns)
+                        {
+                            if (column.ColumnName.Equals("White_Code"))
+                            {
+                                double.TryParse(rec.Rows[0]["White_Weight"].ToString(), out double whiteWeight);
+                                GvWeight.Rows.Add(rec.Rows[0]["White_Code"], whiteWeight.ToString(Decimal_Place3));
+                            }
+                            if (column.ColumnName.Equals($"Colorant_{cnt}"))
+                            {
+                                double.TryParse(rec.Rows[0][$"Weight_{cnt}"].ToString(), out double weight);
+                                GvWeight.Rows.Add(rec.Rows[0][$"Colorant_{cnt}"], weight.ToString(Decimal_Place3));
+                                cnt++;
+                            }
+                        }
                         //容量コードのLabelTextBoxコントロールに設定された値を取得してProductNo_Masterに存在するか確認する
                         string productNo = HgProductNo.Value.Trim();
                         // 行取得のSQLを作成
@@ -1336,23 +1521,6 @@ namespace NipponPaint.OrderManager
                         }
                         //各種ボタンの表示制御
                         ButtonsEnableSetting(status);
-                        //重量グリッドビューの設定
-                        GvWeight.Rows.Clear();
-                        var cnt = 1;
-                        foreach (DataColumn column in rec.Columns)
-                        {
-                            if (column.ColumnName.Equals("White_Code"))
-                            {
-                                double.TryParse(rec.Rows[0]["White_Weight"].ToString(), out double whiteWeight);
-                                GvWeight.Rows.Add(rec.Rows[0]["White_Code"], whiteWeight.ToString(Decimal_Place3));
-                            }
-                            if (column.ColumnName.Equals($"Colorant_{cnt}"))
-                            {
-                                double.TryParse(rec.Rows[0][$"Weight_{cnt}"].ToString(), out double weight);
-                                GvWeight.Rows.Add(rec.Rows[0][$"Colorant_{cnt}"], weight.ToString(Decimal_Place3));
-                                cnt++;
-                            }
-                        }
                     }
                 }
                 PutLog(Sentence.Messages.SelectRow);
@@ -1429,6 +1597,14 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemShipping.Click += new EventHandler(this.ToolStripMenuItemShippingClick);
             this.ToolStripMenuItemCOMPort.Click += new EventHandler(this.ToolStripMenuItemCOMPortClick);
             this.ToolStripMenuItemCCMSimulator.Click += new EventHandler(this.ToolStripMenuItemCCMSimulatorClick);
+            this.TsmiDecide.Click += new System.EventHandler(this.TsmiDecide_Click);
+            this.TsmiOperatorDelete.Click += new System.EventHandler(this.TsmiOperatorDelete_Click);
+            this.TsmiOrderStart.Click += new System.EventHandler(this.TsmiOrderStart_Click);
+            this.TsmiInstructionPrint.Click += new System.EventHandler(this.TsmiInstructionPrint_Click);
+            this.TsmiProductLabelPrint.Click += new System.EventHandler(this.TsmiProductLabelPrint_Click);
+            this.TsmiColorLabelPrint.Click += new System.EventHandler(this.TsmiColorLabelPrint_Click);
+            this.TsmiCopyLabelPrint.Click += new System.EventHandler(this.TsmiCopyLabelPrint_Click);
+            this.TsmiOrderClose.Click += new System.EventHandler(this.TsmiOrderClose_Click);
             this.GvOrder.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.GvDetail.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.GvFormulation.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
@@ -1909,5 +2085,7 @@ namespace NipponPaint.OrderManager
         #endregion
 
         #endregion
+
+
     }
 }
