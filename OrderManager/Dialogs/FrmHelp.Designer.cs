@@ -42,7 +42,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(509, 450);
+            this.panel1.Size = new System.Drawing.Size(538, 432);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -65,15 +65,15 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(509, 23);
+            this.label2.Size = new System.Drawing.Size(538, 23);
             this.label2.TabIndex = 2;
-            this.label2.Text = "メイン画面のショートカットキー";
+            this.label2.Text = "ファンクションキー";
             // 
             // FrmHelp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 450);
+            this.ClientSize = new System.Drawing.Size(538, 432);
             this.Controls.Add(this.panel1);
             this.Name = "FrmHelp";
             this.ShowIcon = false;
