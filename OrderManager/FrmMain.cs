@@ -2084,6 +2084,31 @@ namespace NipponPaint.OrderManager
 
         #endregion
 
+        #region ラベル印刷
+        /// <summary>
+        /// ラベル印刷
+        /// ラベルプリンターでラベル出力を行います。
+        /// 失敗すると例外エラーとなるので、プリント処理では try～catch にて例外の補足を行ってください。
+        /// </summary>
+        private void PrintLabel()
+        {
+            var layoutFileName = string.Empty;
+            // 文字列型データ
+            var printPutData = string.Empty;
+            // 配列型データ
+            var printOutDataArray = new string[] { "A", "B" };
+            // リスト型データ
+            var printOutDataList = new List<string>() { "AA", "BB" };
+
+            using (var printer = new MlController.Ct4Lx(layoutFileName))
+            {
+                printer.Print(printPutData);
+                printer.Print(printOutDataArray);
+                printer.Print(printOutDataList);
+            }
+        }
+        #endregion
+
         #endregion
 
 

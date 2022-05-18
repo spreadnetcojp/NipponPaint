@@ -327,6 +327,10 @@
     <None Include="Product_Label\Label_ONE.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MlController\MlController.csproj">
+      <Project>{5454cd57-51c8-461a-b9a8-6b1184895a12}</Project>
+      <Name>MlController</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NpCommon\NpCommon.csproj">
       <Project>{38c0c8d0-5e89-449a-8f70-0d58d64c70ec}</Project>
       <Name>NpCommon</Name>
