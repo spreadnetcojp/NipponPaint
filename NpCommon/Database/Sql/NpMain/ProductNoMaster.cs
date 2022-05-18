@@ -63,8 +63,15 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
-
-        
+        #region 品名コードによるレコード件数取得
+        public static string GetCountByProductNo()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master ");
+            sql.Append($"where Product_No = @ProductNo");
+            return sql.ToString();
+        }
+        #endregion
 
         #region 更新系
     }

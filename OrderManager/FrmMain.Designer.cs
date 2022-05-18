@@ -230,6 +230,7 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemCCMSimulator = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemLabelSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.ヘルプHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BorderHgVolumeCode = new NipponPaint.NpCommon.FormControls.PanelBorder();
             this.tabOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GvOrder)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -495,6 +496,7 @@ namespace NipponPaint.OrderManager
             this.tabDetail1.Controls.Add(this.BorderHgTintingDirection);
             this.tabDetail1.Controls.Add(this.BorderHgSamplePlates);
             this.tabDetail1.Controls.Add(this.BorderHgNote);
+            this.tabDetail1.Controls.Add(this.BorderHgVolumeCode);
             this.tabDetail1.Font = new System.Drawing.Font("メイリオ", 7F);
             this.tabDetail1.Location = new System.Drawing.Point(4, 32);
             this.tabDetail1.Name = "tabDetail1";
@@ -4051,6 +4053,16 @@ namespace NipponPaint.OrderManager
             this.ヘルプHToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.ヘルプHToolStripMenuItem.Text = "ヘルプ(&H)";
             // 
+            // BorderHgVolumeCode
+            // 
+            this.BorderHgVolumeCode.BackColor = System.Drawing.Color.Transparent;
+            this.BorderHgVolumeCode.BorderColor = System.Drawing.Color.Red;
+            this.BorderHgVolumeCode.Location = new System.Drawing.Point(0, 206);
+            this.BorderHgVolumeCode.Margin = new System.Windows.Forms.Padding(2, 5, 2, 5);
+            this.BorderHgVolumeCode.Name = "BorderHgVolumeCode";
+            this.BorderHgVolumeCode.Size = new System.Drawing.Size(299, 36);
+            this.BorderHgVolumeCode.TabIndex = 100;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -4321,6 +4333,7 @@ namespace NipponPaint.OrderManager
         private System.Windows.Forms.Button BtnPrint;
         private System.Windows.Forms.Button BtnRemanufacturedCan;
         private System.Windows.Forms.Button BtnPrintTag;
+        private NpCommon.FormControls.PanelBorder BorderHgVolumeCode;
     }
 }
 
