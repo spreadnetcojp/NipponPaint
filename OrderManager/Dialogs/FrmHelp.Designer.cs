@@ -69,6 +69,17 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "ファンクションキー";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(5, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(482, 60);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "【F1】表示選択－全て：全てのオーダーを表示します。\r\n【F2】表示選択－今日以前：SS出荷予定日が今日以前のオーダーを表示します。\r\n【F3】表示選択－明日以降" +
+    "：SS出荷予定日が明日以降のオーダーを表示します。\r\n";
+            // 
             // FrmHelp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
