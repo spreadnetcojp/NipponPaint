@@ -26,6 +26,7 @@ namespace NipponPaint.NpCommon.Settings
             String,
             DateTime,
             Checkbox,
+            Blank,
         }
         /// <summary>
         /// データの種類
@@ -80,6 +81,8 @@ namespace NipponPaint.NpCommon.Settings
                 {
                     case ColumnModeType.String:
                         return $"TRIM(TRIM('　' FROM {ColumnName})) AS {DisplayName} ";
+                    case ColumnModeType.Blank:
+                        return $"'' AS {DisplayName} ";
                     default:
                         return $"{ColumnName} AS {DisplayName} ";
                 }

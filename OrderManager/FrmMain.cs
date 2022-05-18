@@ -54,6 +54,7 @@ namespace NipponPaint.OrderManager
 
 
         private const int COLUMN_STATUS = 0;
+        private const int COLUMN_STATUS_COLOR = 1;
         //private int COLUMN_PRODUCT_NAME = 0;
         //private int COLUMN_COLOR_NAME = 0;
         private const int COLUMN_DELIVERY_CODE = 2;
@@ -108,7 +109,8 @@ namespace NipponPaint.OrderManager
         };
         private List<GridViewSetting> ViewSettingsOrderNumbers = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Status", DisplayName = "Status", Visible = true, Width = 35, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Status", DisplayName = "Status", Visible = false, Width = 35, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Blank, ColumnName = "StatusColor", DisplayName = "StatusColor", Visible = true, Width = 35, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Product_Code", DisplayName = "製品コード", Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Number_of_cans", DisplayName = "缶数", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Order_Number", DisplayName = "注文番号", Visible = true, Width = 175, alignment = DataGridViewContentAlignment.MiddleCenter } },
@@ -310,7 +312,7 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                DataGridViewFormatting((DataGridView)sender);
+                GvOrderNumberFormatting((DataGridView)sender);
                 PutLog(Sentence.Messages.PreviewData);
             }
             catch (Exception ex)
@@ -1114,6 +1116,23 @@ namespace NipponPaint.OrderManager
                                 BorderHgNote.Visible = false;
                             }
                         }
+                        //容量コードのLabelTextBoxコントロールに設定された値を取得してProductNo_Masterに存在するか確認する
+                        string productNo = HgProductNo.Value.Trim();
+                        // 行取得のSQLを作成
+                        parameters = new List<ParameterItem>()
+                        {
+                            new ParameterItem("ProductNo", productNo),
+                        };
+                        rec = db.Select(Sql.NpMain.ProductNoMaster.GetCountByProductNo(), parameters);
+                        result = int.TryParse(rec.Rows[0]["Product_No_Count"].ToString(), out intResult);
+                        if (result)
+                        {
+                            BorderHgVolumeCode.Visible = 0 < intResult;
+                        }
+                        else
+                        {
+                            BorderHgVolumeCode.Visible = false;
+                        }
                         //各種ボタンの表示制御
                         ButtonsEnableSetting(status);
                     }
@@ -1196,6 +1215,23 @@ namespace NipponPaint.OrderManager
                             {
                                 BorderHgNote.Visible = false;
                             }
+                        }
+                        //容量コードのLabelTextBoxコントロールに設定された値を取得してProductNo_Masterに存在するか確認する
+                        string productNo = HgProductNo.Value.Trim();
+                        // 行取得のSQLを作成
+                        parameters = new List<ParameterItem>()
+                        {
+                            new ParameterItem("ProductNo", productNo),
+                        };
+                        rec = db.Select(Sql.NpMain.ProductNoMaster.GetCountByProductNo(), parameters);
+                        result = int.TryParse(rec.Rows[0]["Product_No_Count"].ToString(), out intResult);
+                        if (result)
+                        {
+                            BorderHgVolumeCode.Visible = 0 < intResult;
+                        }
+                        else
+                        {
+                            BorderHgVolumeCode.Visible = false;
                         }
                         //各種ボタンの表示制御
                         ButtonsEnableSetting(status);
@@ -1280,6 +1316,23 @@ namespace NipponPaint.OrderManager
                             {
                                 BorderHgNote.Visible = false;
                             }
+                        }
+                        //容量コードのLabelTextBoxコントロールに設定された値を取得してProductNo_Masterに存在するか確認する
+                        string productNo = HgProductNo.Value.Trim();
+                        // 行取得のSQLを作成
+                        parameters = new List<ParameterItem>()
+                        {
+                            new ParameterItem("ProductNo", productNo),
+                        };
+                        rec = db.Select(Sql.NpMain.ProductNoMaster.GetCountByProductNo(), parameters);
+                        result = int.TryParse(rec.Rows[0]["Product_No_Count"].ToString(), out intResult);
+                        if (result)
+                        {
+                            BorderHgVolumeCode.Visible = 0 < intResult;
+                        }
+                        else
+                        {
+                            BorderHgVolumeCode.Visible = false;
                         }
                         //各種ボタンの表示制御
                         ButtonsEnableSetting(status);
@@ -1461,7 +1514,7 @@ namespace NipponPaint.OrderManager
                 GvOrderNumber.Columns[cnt].Width = item.Width;
                 GvOrderNumber.Columns[cnt].Visible = item.Visible;
                 GvOrderNumber.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-                if (cnt <= 0)
+                if (cnt <= 1)
                 {
                     GvOrderNumber.Columns[cnt].HeaderText = string.Empty;
                 }
@@ -1602,6 +1655,23 @@ namespace NipponPaint.OrderManager
         }
         #endregion
 
+        private void GvOrderNumberFormatting(DataGridView dgv)
+        {
+            if (!dgv.Visible)
+            {
+                return;
+            }
+            //if (!ViewGrid.Contains(dgv.Name))
+            //{
+            //    ViewGrid.Add(dgv.Name);
+            //    return;
+            //}
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                row.Cells[COLUMN_STATUS].Style.BackColor = StatusBackColorList[int.Parse(row.Cells[COLUMN_STATUS].Value.ToString())];
+                row.Cells[COLUMN_STATUS_COLOR].Style.BackColor = row.Cells[COLUMN_STATUS].Style.BackColor;
+            }
+        }
         #region 製品コードでDataGridViewの該当行を探す
         /// <summary>
         /// 製品コードでDataGridViewの該当行を探す
