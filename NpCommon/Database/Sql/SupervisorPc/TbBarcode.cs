@@ -160,9 +160,9 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
         /// </summary>
         /// <param name="Parameters"></param>
         /// <returns></returns>
-        public static string Merge(out List<ParameterItem> parameters, DateTime entryTime)
+        public static string Merge(out List<ParameterItem> parameters)
         {
-            return Func.CreateMergeStatement(MAIN_TABLE, Fields, entryTime, out parameters);
+            return Func.CreateMergeStatement(MAIN_TABLE, Fields, out parameters);
         }
         #endregion
 

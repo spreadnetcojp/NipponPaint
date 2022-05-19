@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NipponPaint.SupervisorIfSim.Properties {
+namespace NipponPaint.SupervisorPcInterface.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace NipponPaint.SupervisorIfSim.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NipponPaint.SupervisorIfSim.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NipponPaint.SupervisorPcInterface.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
