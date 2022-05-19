@@ -81,10 +81,10 @@ namespace NipponPaint.NpCommon
             [Display(Description = "DatabaseManager")]
             Databasemanager,
             /// <summary>
-            /// Supervisor I/Fシミュレータ
+            /// Supervisor I/F
             /// </summary>
-            [Display(Description = "SupervisorInterfaceSim")]
-            SupervisorInterfaceSim,
+            [Display(Description = "SupervisorInterface")]
+            SupervisorInterface,
         }
         #endregion
 

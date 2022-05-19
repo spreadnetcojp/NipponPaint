@@ -22,20 +22,18 @@ using System.Threading.Tasks;
 
 namespace NipponPaint.NpCommon.IniFile.Sections
 {
-    public class DisplaySection
+    public class SupervisorInterfaceSection
     {
         #region 定数
-        private const string MySectionName = "DISPLAY";
+        private const string MySectionName = "SUPERVISOR_IF";
         #endregion
 
         #region プロパティ
-        public List<string> HgNoteStrList { get { return _hgNoteStrList; } }
-        public List<string> ColorNameStrList { get { return _colorNameStrList; } }
+        public int TickTime { get { return _tickTime; } }
         #endregion
 
         #region メンバ変数
-        private List<string> _hgNoteStrList = new List<string>();
-        private List<string> _colorNameStrList = new List<string>();
+        private int _tickTime = 10;
         #endregion
 
         #region コンストラクタ
@@ -43,25 +41,10 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         /// コンストラクタ
         /// </summary>
         /// <param name="filePath"></param>
-        public DisplaySection(string filePath)
+        public SupervisorInterfaceSection(string filePath)
         {
             var reader = new FileInterface(filePath);
-            var toningItems = reader.GetItem(MySectionName, "ToningAppKeyword", "");
-            if (!string.IsNullOrEmpty(toningItems))
-            {
-                foreach (var item in toningItems.Split(','))
-                {
-                    _hgNoteStrList.Add(item);
-                }
-            }
-            var ColorNameItems = reader.GetItem(MySectionName, "ColorNameKeyword", "");
-            if (!string.IsNullOrEmpty(ColorNameItems))
-            {
-                foreach (var item in ColorNameItems.Split(','))
-                {
-                    _colorNameStrList.Add(item);
-                }
-            }
+            _tickTime = int.Parse(reader.GetItem(MySectionName, "TickTime", _tickTime.ToString()));
         }
         #endregion
     }
