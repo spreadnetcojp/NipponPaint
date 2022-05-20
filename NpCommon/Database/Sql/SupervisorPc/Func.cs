@@ -25,7 +25,7 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
     public class Func
     {
 
-        public static string CreateMergeStatement(string tableName, List<MergeItemDefine> fields, DateTime entryTime, out List<ParameterItem> parameters)
+        public static string CreateMergeStatement(string tableName, List<MergeItemDefine> fields, out List<ParameterItem> parameters)
         {
             var SelectItems = new List<string>();
             var KeyItems = new List<string>();
@@ -58,7 +58,32 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
             sql.Append($"WHEN NOT MATCHED THEN INSERT ({string.Join(",", InsertFields)}) VALUES ({string.Join(",", InsertValues)}); ");
             return sql.ToString();
         }
+        public static string CreateInsertStatement(string tableName, List<MergeItemDefine> fields, out List<ParameterItem> parameters)
+        {
+            var KeyItems = new List<string>();
+            var InsertFields = new List<string>();
+            var InsertValues = new List<string>();
+            parameters = new List<ParameterItem>();
+            foreach (var field in fields)
+            {
+                parameters.Add(new ParameterItem($"{field.Field}", null));
+                if (field.IsKey)
+                {
+                    KeyItems.Add($"{tableName}.{field.Field} = @{field.Field}");
+                }
+                if (field.IsInsert)
+                {
+                    InsertFields.Add($"{field.Field}");
+                    InsertValues.Add($"@{field.Field}");
+                }
+            }
+            var sql = new StringBuilder();
+            sql.Append($"INSERT INTO {tableName} ");
+            sql.Append($" ({string.Join(",", InsertFields)}) VALUES ({string.Join(",", InsertValues)}) ");
+            sql.Append($"WHERE NOT EXISTS (SELECT * FROM {tableName} WHERE {string.Join(" AND ", KeyItems)} ");
+            return sql.ToString();
+        }
 
-       
+
     }
 }

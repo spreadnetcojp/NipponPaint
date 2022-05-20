@@ -121,12 +121,26 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
         /// </summary>
         /// <param name="Parameters"></param>
         /// <returns></returns>
-        public static string Merge(out List<ParameterItem> parameters, DateTime entryTime)
+        public static string Merge(out List<ParameterItem> parameters)
         {
-            return Func.CreateMergeStatement(MAIN_TABLE, Fields, entryTime, out parameters);
+            return Func.CreateMergeStatement(MAIN_TABLE, Fields, out parameters);
+        }
+        #endregion
+
+        #region インサート
+        /// <summary>
+        /// InsertFirst
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public static string InsertFirst(out List<ParameterItem> parameters)
+        {
+            return Func.CreateInsertStatement(MAIN_TABLE, Fields, out parameters);
         }
         #endregion
 
         #endregion
+
+
     }
 }
