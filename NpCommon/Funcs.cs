@@ -157,6 +157,13 @@ namespace NipponPaint.NpCommon
                                 labelCodeText.TextForeColor = FORE_COLOR;
                                 break;
                         }
+                        switch (labelCodeText.CodeBackColor.Name)
+                        {
+                            case "ffffffc0":
+                                labelCodeText.CodeBackColor = BACK_COLOR;
+                                labelCodeText.CodeForeColor = FORE_COLOR;
+                                break;
+                        }
                         break;
                     case LabelNumericUpDown labelNumericUpDown:
                         // LabelNumericUpDownコントロールへの設定

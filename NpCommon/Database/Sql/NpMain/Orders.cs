@@ -181,8 +181,12 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
             sql.Append($" O.* ");
+            sql.Append($",Can.Can_Description ");
+            sql.Append($",Cap.Cap_Description ");
             sql.Append($"FROM Orders AS O ");
             sql.Append($"INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = '{plant}')  AS P ON P.SS_Code = O.HG_SS_Code ");
+            sql.Append($"Left JOIN ORDER_{plant}..Can_types AS Can ON O.Can_Type = Can.Can_Type ");
+            sql.Append($"Left JOIN ORDER_{plant}..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type ");
             sql.Append($"WHERE O.order_id = @orderId");
             return sql.ToString();
         }
