@@ -1,0 +1,172 @@
+2022/05/20 13:56:20.255	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT Status AS Status ,Order_id AS Order_id ,HG_HG_Delivery_Code AS 運送区分 ,TRIM(TRIM('　' FROM HG_HG_Shipping_ID)) AS 配送ﾓｰﾄﾞ ,TRIM(TRIM('　' FROM Product_Code)) AS 製品ｺｰﾄﾞ ,TRIM(TRIM('　' FROM HG_Product_Name)) AS 品名 ,TRIM(TRIM('　' FROM HG_Volume_Code)) AS 容量ｺｰﾄﾞ ,Number_of_cans AS 缶数 ,FORMAT(CONVERT(DATE,HG_SS_Shipping_Date), 'MM/dd') AS SS出荷予定日 ,CONVERT(DATE,HG_SS_Shipping_Date) AS SS出荷予定日日付型 ,TRIM(TRIM('　' FROM Operator_Name)) AS 担当者 ,FORMAT(CONVERT(DATE,HG_Delivery_Date), 'MM/dd') AS 納期 ,CONVERT(DATE,HG_Delivery_Date) AS 納期日付型 ,TRIM(TRIM('　' FROM HG_Color_Sample)) AS 標準色見本 ,TRIM(TRIM('　' FROM Color_Name)) AS 色名 ,TRIM(TRIM('　' FROM HG_Sum_up_Key)) AS 順位コード ,TRIM(TRIM('　' FROM Operator_Code)) AS 担当者コード ,Sort_Order AS 並び順 FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code WHERE Status IN (0, 1, 2, 3, 4) ORDER BY   Status  ,HG_HG_Delivery_Code ）
+2022/05/20 14:00:42.921	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT Status AS Status ,Order_id AS Order_id ,HG_HG_Delivery_Code AS 運送区分 ,TRIM(TRIM('　' FROM HG_HG_Shipping_ID)) AS 配送ﾓｰﾄﾞ ,TRIM(TRIM('　' FROM Product_Code)) AS 製品ｺｰﾄﾞ ,TRIM(TRIM('　' FROM HG_Product_Name)) AS 品名 ,TRIM(TRIM('　' FROM HG_Volume_Code)) AS 容量ｺｰﾄﾞ ,Number_of_cans AS 缶数 ,FORMAT(CONVERT(DATE,HG_SS_Shipping_Date), 'MM/dd') AS SS出荷予定日 ,CONVERT(DATE,HG_SS_Shipping_Date) AS SS出荷予定日日付型 ,TRIM(TRIM('　' FROM Operator_Name)) AS 担当者 ,FORMAT(CONVERT(DATE,HG_Delivery_Date), 'MM/dd') AS 納期 ,CONVERT(DATE,HG_Delivery_Date) AS 納期日付型 ,TRIM(TRIM('　' FROM HG_Color_Sample)) AS 標準色見本 ,TRIM(TRIM('　' FROM Color_Name)) AS 色名 ,TRIM(TRIM('　' FROM HG_Sum_up_Key)) AS 順位コード ,TRIM(TRIM('　' FROM Operator_Code)) AS 担当者コード ,Sort_Order AS 並び順 FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code WHERE Status IN (0, 1, 2, 3, 4) ORDER BY   Status  ,HG_HG_Delivery_Code ）
+2022/05/20 14:01:19.108	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT Status AS Status ,Order_id AS Order_id ,HG_HG_Delivery_Code AS 運送区分 ,TRIM(TRIM('　' FROM HG_HG_Shipping_ID)) AS 配送ﾓｰﾄﾞ ,TRIM(TRIM('　' FROM Product_Code)) AS 製品ｺｰﾄﾞ ,TRIM(TRIM('　' FROM HG_Product_Name)) AS 品名 ,TRIM(TRIM('　' FROM HG_Volume_Code)) AS 容量ｺｰﾄﾞ ,Number_of_cans AS 缶数 ,FORMAT(CONVERT(DATE,HG_SS_Shipping_Date), 'MM/dd') AS SS出荷予定日 ,CONVERT(DATE,HG_SS_Shipping_Date) AS SS出荷予定日日付型 ,TRIM(TRIM('　' FROM Operator_Name)) AS 担当者 ,FORMAT(CONVERT(DATE,HG_Delivery_Date), 'MM/dd') AS 納期 ,CONVERT(DATE,HG_Delivery_Date) AS 納期日付型 ,TRIM(TRIM('　' FROM HG_Color_Sample)) AS 標準色見本 ,TRIM(TRIM('　' FROM Color_Name)) AS 色名 ,TRIM(TRIM('　' FROM HG_Sum_up_Key)) AS 順位コード ,TRIM(TRIM('　' FROM Operator_Code)) AS 担当者コード ,Sort_Order AS 並び順 FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code WHERE Status IN (0, 1, 2, 3, 4) ORDER BY   Status  ,HG_HG_Delivery_Code ）
+2022/05/20 14:01:21.689	OrderManager	情報	一覧を更新しました
+2022/05/20 14:01:21.691	OrderManager	情報	一覧を更新しました
+2022/05/20 14:01:21.692	OrderManager	情報	一覧を更新しました
+2022/05/20 14:01:21.693	OrderManager	情報	一覧を更新しました
+2022/05/20 14:01:21.706	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT Status AS Status ,Order_id AS Order_id ,'' AS StatusColor ,TRIM(TRIM('　' FROM Product_Code)) AS 製品コード ,Number_of_cans AS 缶数 ,TRIM(TRIM('　' FROM Order_Number)) AS 注文番号 ,Revision AS 補正 ,Formula_Release AS 配合受取 FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code WHERE Status IN (0, 1, 2, 3, 4) ORDER BY   Status  ,HG_HG_Delivery_Code ）
+2022/05/20 14:01:21.707	OrderManager	情報	一覧を更新しました
+2022/05/20 14:01:21.713	OrderManager	情報	主画面の初期化を完了しました
+2022/05/20 14:01:21.747	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:01:21.750	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:01:21.751	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:01:21.760	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:01:21.799	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:01:21.801	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:01:21.802	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:01:21.803	OrderManager	情報	一覧を更新しました
+2022/05/20 14:01:21.823	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:01:21.845	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:01:21.848	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:01:21.848	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:01:24.893	OrderManager	情報	一覧を更新しました
+2022/05/20 14:01:24.894	OrderManager	情報	一覧を更新しました
+2022/05/20 14:01:24.895	OrderManager	情報	一覧を更新しました
+2022/05/20 14:01:24.896	OrderManager	情報	一覧を更新しました
+2022/05/20 14:01:24.956	OrderManager	情報	主画面を開きました
+2022/05/20 14:04:25.022	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:25.024	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:25.027	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:25.197	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:25.797	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:25.802	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:25.806	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:25.870	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:26.182	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:26.184	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:26.190	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:26.270	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:26.825	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:26.827	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:26.833	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:27.080	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:27.473	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:27.476	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:27.478	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:27.566	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:27.902	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:27.906	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:27.912	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:27.989	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:28.294	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:28.296	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:28.297	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:28.374	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:28.660	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:28.662	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:28.663	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:28.750	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:29.050	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:29.052	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:29.052	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:29.250	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:29.401	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:29.403	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:29.408	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:29.461	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:31.320	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:31.322	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:31.326	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:31.398	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:32.002	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:32.004	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:32.005	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:32.230	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:32.540	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:32.542	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:32.545	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:32.622	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:33.875	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:04:33.879	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:04:33.885	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:04:34.089	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:25.822	OrderManager	情報	ボタンをクリックしました（機能：緊急印刷(F6)）
+2022/05/20 14:06:28.485	OrderManager	情報	ボタンをクリックしました（機能：緊急印刷(F6)）
+2022/05/20 14:06:43.386	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:06:43.389	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:06:43.394	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:43.567	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:44.116	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:06:44.118	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:06:44.125	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:44.229	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:44.939	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:06:44.941	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:06:44.946	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:45.038	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:45.403	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:06:45.405	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:06:45.411	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:45.494	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:45.819	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:06:45.821	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:06:45.826	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:45.943	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:46.594	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:06:46.597	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:06:46.599	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:46.783	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:47.121	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:06:47.123	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:06:47.123	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:06:47.246	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:07:01.267	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:07:01.269	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:07:01.274	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:07:01.561	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:07:04.664	OrderManager	情報	ボタンをクリックしました（機能：作業指示書の印刷(F5)）
+2022/05/20 14:09:16.643	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT Status AS Status ,Order_id AS Order_id ,HG_HG_Delivery_Code AS 運送区分 ,TRIM(TRIM('　' FROM HG_HG_Shipping_ID)) AS 配送ﾓｰﾄﾞ ,TRIM(TRIM('　' FROM Product_Code)) AS 製品ｺｰﾄﾞ ,TRIM(TRIM('　' FROM HG_Product_Name)) AS 品名 ,TRIM(TRIM('　' FROM HG_Volume_Code)) AS 容量ｺｰﾄﾞ ,Number_of_cans AS 缶数 ,FORMAT(CONVERT(DATE,HG_SS_Shipping_Date), 'MM/dd') AS SS出荷予定日 ,CONVERT(DATE,HG_SS_Shipping_Date) AS SS出荷予定日日付型 ,TRIM(TRIM('　' FROM Operator_Name)) AS 担当者 ,FORMAT(CONVERT(DATE,HG_Delivery_Date), 'MM/dd') AS 納期 ,CONVERT(DATE,HG_Delivery_Date) AS 納期日付型 ,TRIM(TRIM('　' FROM HG_Color_Sample)) AS 標準色見本 ,TRIM(TRIM('　' FROM Color_Name)) AS 色名 ,TRIM(TRIM('　' FROM HG_Sum_up_Key)) AS 順位コード ,TRIM(TRIM('　' FROM Operator_Code)) AS 担当者コード ,Sort_Order AS 並び順 FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code WHERE Status IN (0, 1, 2, 3, 4) ORDER BY   Status  ,HG_HG_Delivery_Code ）
+2022/05/20 14:09:16.649	OrderManager	情報	一覧を更新しました
+2022/05/20 14:09:16.651	OrderManager	情報	一覧を更新しました
+2022/05/20 14:09:16.652	OrderManager	情報	一覧を更新しました
+2022/05/20 14:09:16.653	OrderManager	情報	一覧を更新しました
+2022/05/20 14:09:16.661	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT Status AS Status ,Order_id AS Order_id ,'' AS StatusColor ,TRIM(TRIM('　' FROM Product_Code)) AS 製品コード ,Number_of_cans AS 缶数 ,TRIM(TRIM('　' FROM Order_Number)) AS 注文番号 ,Revision AS 補正 ,Formula_Release AS 配合受取 FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code WHERE Status IN (0, 1, 2, 3, 4) ORDER BY   Status  ,HG_HG_Delivery_Code ）
+2022/05/20 14:09:16.663	OrderManager	情報	一覧を更新しました
+2022/05/20 14:09:16.670	OrderManager	情報	主画面の初期化を完了しました
+2022/05/20 14:09:16.693	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:09:16.696	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:09:16.697	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:09:16.699	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:09:16.727	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:09:16.730	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:09:16.731	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:09:16.737	OrderManager	情報	一覧を更新しました
+2022/05/20 14:09:16.776	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:09:16.810	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:09:16.812	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:09:16.812	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:09:20.001	OrderManager	情報	一覧を更新しました
+2022/05/20 14:09:20.003	OrderManager	情報	一覧を更新しました
+2022/05/20 14:09:20.004	OrderManager	情報	一覧を更新しました
+2022/05/20 14:09:20.004	OrderManager	情報	一覧を更新しました
+2022/05/20 14:09:20.052	OrderManager	情報	主画面を開きました
+2022/05/20 14:11:15.224	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:11:15.227	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:11:15.231	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:15.470	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:15.848	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:11:15.851	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:11:15.855	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:15.942	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:17.162	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:11:17.164	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:11:17.168	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:17.260	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:17.747	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:11:17.750	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:11:17.754	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:17.822	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:18.131	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:11:18.133	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:11:18.141	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:18.200	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:21.549	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:11:21.552	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:11:21.555	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:21.630	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:23.292	OrderManager	情報	データベースの読み込みを実行しました（SQL：SELECT  O.* ,Can.Can_Description ,Cap.Cap_Description FROM Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = 'RF1')  AS P ON P.SS_Code = O.HG_SS_Code Left JOIN ORDER_RF1..Can_types AS Can ON O.Can_Type = Can.Can_Type Left JOIN ORDER_RF1..Cap_types AS Cap ON O.Cap_Type = Cap.Cap_Type WHERE O.order_id = @orderId）
+2022/05/20 14:11:23.293	OrderManager	情報	データベースの読み込みを実行しました（SQL：select COUNT(Product_No) as Product_No_Count FROM ProductNo_Master where Product_No = @ProductNo）
+2022/05/20 14:11:23.293	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:23.366	OrderManager	情報	一覧の行を選択しました
+2022/05/20 14:11:48.198	OrderManager	情報	主画面を閉じました

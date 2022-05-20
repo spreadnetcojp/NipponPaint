@@ -1804,12 +1804,10 @@ namespace NipponPaint.OrderManager
                 }
                 row.Cells[COLUMN_PRODUCT_CODE].Style.ForeColor = Color.Black;
 
-                DateTime.TryParse(row.Cells[COLUMN_VISIBLE_SHIPPING_DATE].Value.ToString(), out DateTime shippingDate);
                 DateTime.TryParse(row.Cells[COLUMN_VISIBLE_DELIVERY_DATE].Value.ToString(), out DateTime deliveryDate);
                 int.TryParse(row.Cells[COLUMN_DELIVERY_CODE].Value.ToString(), out int deliveryCode);
                 if (
-                    shippingDate <= DateTime.Today
-                    && DateTime.Today < deliveryDate
+                    DateTime.Today < deliveryDate
                     && (Sql.NpMain.Orders.DeliveryCode)deliveryCode == Sql.NpMain.Orders.DeliveryCode.Reuse
                    )
                 {
@@ -1938,7 +1936,6 @@ namespace NipponPaint.OrderManager
         {
             //調色担当待ち
             DataRow[] beforeSS = dt.Select($"[SS出荷予定日日付型] <= #{DateTime.Today}# AND Status = 0");
-            DataRow[] afterSS = dt.Select($"#{DateTime.Today}# < [SS出荷予定日日付型] AND Status = 0");
             DataRow[] ss = dt.Select("Status = 0");
             double total = 0;
             string strTotal = string.Empty;
@@ -1951,7 +1948,7 @@ namespace NipponPaint.OrderManager
             total = total / 1000;
             total = Math.Round(total, 2, MidpointRounding.AwayFromZero);
             strTotal = total.ToString(Decimal_Place2);
-            label6.Text = $"[{beforeSS.Length}/{afterSS.Length}]";
+            label6.Text = $"[{beforeSS.Length}/{ss.Length}]";
             label4.Text = $"{strTotal}t";
 
             //CCM配合待ち
