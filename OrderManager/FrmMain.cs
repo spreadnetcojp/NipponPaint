@@ -54,7 +54,7 @@ namespace NipponPaint.OrderManager
 
 
         private const int COLUMN_STATUS = 0;
-        private const int COLUMN_STATUS_COLOR = 1;
+        private const int COLUMN_STATUS_COLOR = 2;
         //private int COLUMN_PRODUCT_NAME = 0;
         //private int COLUMN_COLOR_NAME = 0;
         private const int COLUMN_DELIVERY_CODE = 2;
@@ -110,6 +110,7 @@ namespace NipponPaint.OrderManager
         private List<GridViewSetting> ViewSettingsOrderNumbers = new List<GridViewSetting>()
         {
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Status", DisplayName = "Status", Visible = false, Width = 35, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Order_id", DisplayName = "Order_id", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Blank, ColumnName = "StatusColor", DisplayName = "StatusColor", Visible = true, Width = 35, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Product_Code", DisplayName = "製品コード", Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Number_of_cans", DisplayName = "缶数", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
@@ -119,12 +120,12 @@ namespace NipponPaint.OrderManager
         };
         private List<GridViewSetting> ViewSettingsBarcodes = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "barcode", DisplayName = "バーコード", Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "can", DisplayName = "缶", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Status", DisplayName = "ステータス", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Test", DisplayName = "テスト", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Sample", DisplayName = "サンプル", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Saishin", DisplayName = "最新配合受取", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Barcode", DisplayName = "バーコード", Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Can_Number", DisplayName = "缶", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Status", DisplayName = "ステータス", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Test_Can", DisplayName = "テスト", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Sample_Present", DisplayName = "サンプル", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Formula_Release", DisplayName = "最新配合受取", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
         };
         private List<GridViewSetting> ViewSettingsDetails = new List<GridViewSetting>()
         {
@@ -276,6 +277,18 @@ namespace NipponPaint.OrderManager
                         }
                         break;
                 }
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+        private void GvBarcodeDataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                GvBarcodeFormatting((DataGridView)sender);
+                PutLog(Sentence.Messages.PreviewData);
             }
             catch (Exception ex)
             {
@@ -1186,31 +1199,7 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             SelectDataGridViewRowByProductCode();
-            bool result = int.TryParse(HgSamplePlates.Value, out int intResult);
-            switch (tabMain.SelectedIndex)
-            {
-                case 0:
-                    BorderBtnPrint.Visible = false;
-                    break;
-                case 1:
-                    if (result)
-                    {
-                        BorderBtnPrint.Visible = intResult != 0;
-                    }
-                    else
-                    {
-                        BorderBtnPrint.Visible = false;
-                    }
-                    break;
-                case 2:
-                    BorderBtnPrint.Visible = false;
-                    break;
-                case 3:
-                    BorderBtnPrint.Visible = false;
-                    break;
-            }
         }
         /// <summary>
         /// 注文タブ内一覧の選択行変更イベント
@@ -1571,6 +1560,7 @@ namespace NipponPaint.OrderManager
             this.GvDetail.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvDetailDataBindingComplete);
             this.GvFormulation.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvFormulationDataBindingComplete);
             this.GvOrderNumber.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderNumberDataBindingComplete);
+            this.GvBarcode.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvBarcodeDataBindingComplete);
             this.GvOrder.CellClick += new DataGridViewCellEventHandler(this.GvOrderCellClick);
             this.BtnPrint.Click += new EventHandler(this.BtnPrintClick);
             this.BtnPrintInstructions.Click += new EventHandler(this.BtnPrintInstructionsClick);
@@ -1690,7 +1680,7 @@ namespace NipponPaint.OrderManager
                 GvOrderNumber.Columns[cnt].Width = item.Width;
                 GvOrderNumber.Columns[cnt].Visible = item.Visible;
                 GvOrderNumber.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-                if (cnt <= 1)
+                if (cnt <= COLUMN_STATUS_COLOR)
                 {
                     GvOrderNumber.Columns[cnt].HeaderText = string.Empty;
                 }
@@ -1824,11 +1814,15 @@ namespace NipponPaint.OrderManager
                    )
                 {
                     row.Cells[COLUMN_SHIPPING_DATE].Style.BackColor = Color.Gold;
+                    row.Cells[COLUMN_SHIPPING_DATE].Style.ForeColor = Color.Black;
                     row.Cells[COLUMN_VISIBLE_OPERATOR].Style.BackColor = Color.Gold;
+                    row.Cells[COLUMN_VISIBLE_OPERATOR].Style.ForeColor = Color.Black;
                     row.Cells[COLUMN_DELIVERY_DATE].Style.BackColor = Color.Gold;
+                    row.Cells[COLUMN_DELIVERY_DATE].Style.ForeColor = Color.Black;
                 }
             }
         }
+
         #endregion
 
         private void GvOrderNumberFormatting(DataGridView dgv)
@@ -1846,6 +1840,18 @@ namespace NipponPaint.OrderManager
             {
                 row.Cells[COLUMN_STATUS].Style.BackColor = StatusBackColorList[int.Parse(row.Cells[COLUMN_STATUS].Value.ToString())];
                 row.Cells[COLUMN_STATUS_COLOR].Style.BackColor = row.Cells[COLUMN_STATUS].Style.BackColor;
+            }
+        }
+
+        private void GvBarcodeFormatting(DataGridView dgv)
+        {
+            if (!dgv.Visible)
+            {
+                return;
+            }
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                
             }
         }
         #region 製品コードでDataGridViewの該当行を探す

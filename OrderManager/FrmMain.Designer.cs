@@ -679,11 +679,11 @@ namespace NipponPaint.OrderManager
             this.HgCustomerCode.CodeReadOnly = false;
             this.HgCustomerCode.CodeText = "";
             this.HgCustomerCode.CodeTextSize = new System.Drawing.Size(80, 30);
-            this.HgCustomerCode.DatabaseColumnCode = "";
-            this.HgCustomerCode.DatabaseColumnName = "";
+            this.HgCustomerCode.DatabaseColumnCode = "HG_Customer_Code";
+            this.HgCustomerCode.DatabaseColumnName = "HG_Customer_Name_Kanji";
             this.HgCustomerCode.DataControlName = "txtData";
             this.HgCustomerCode.DataReadOnly = false;
-            this.HgCustomerCode.DataTextSize = new System.Drawing.Size(1069, 30);
+            this.HgCustomerCode.DataTextSize = new System.Drawing.Size(990, 30);
             this.HgCustomerCode.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.HgCustomerCode.Location = new System.Drawing.Point(3, 384);
             this.HgCustomerCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -704,11 +704,11 @@ namespace NipponPaint.OrderManager
             this.HgSupplementalAddition.CodeReadOnly = false;
             this.HgSupplementalAddition.CodeText = "";
             this.HgSupplementalAddition.CodeTextSize = new System.Drawing.Size(80, 30);
-            this.HgSupplementalAddition.DatabaseColumnCode = "";
-            this.HgSupplementalAddition.DatabaseColumnName = "";
+            this.HgSupplementalAddition.DatabaseColumnCode = "HG_Supplemental_Addition";
+            this.HgSupplementalAddition.DatabaseColumnName = "HG_Supplement_Dictation";
             this.HgSupplementalAddition.DataControlName = "txtData";
             this.HgSupplementalAddition.DataReadOnly = false;
-            this.HgSupplementalAddition.DataTextSize = new System.Drawing.Size(1069, 30);
+            this.HgSupplementalAddition.DataTextSize = new System.Drawing.Size(990, 30);
             this.HgSupplementalAddition.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.HgSupplementalAddition.Location = new System.Drawing.Point(3, 349);
             this.HgSupplementalAddition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -785,11 +785,11 @@ namespace NipponPaint.OrderManager
             this.HgGlossAddition.CodeReadOnly = false;
             this.HgGlossAddition.CodeText = "";
             this.HgGlossAddition.CodeTextSize = new System.Drawing.Size(80, 30);
-            this.HgGlossAddition.DatabaseColumnCode = "";
-            this.HgGlossAddition.DatabaseColumnName = "";
+            this.HgGlossAddition.DatabaseColumnCode = "HG_Gloss_Addition";
+            this.HgGlossAddition.DatabaseColumnName = "HG_Gloss_Dictation";
             this.HgGlossAddition.DataControlName = "txtData";
             this.HgGlossAddition.DataReadOnly = false;
-            this.HgGlossAddition.DataTextSize = new System.Drawing.Size(1069, 30);
+            this.HgGlossAddition.DataTextSize = new System.Drawing.Size(990, 30);
             this.HgGlossAddition.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.HgGlossAddition.Location = new System.Drawing.Point(3, 314);
             this.HgGlossAddition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -1431,10 +1431,10 @@ namespace NipponPaint.OrderManager
             this.tabDetail2.Controls.Add(this.HgComments);
             this.tabDetail2.Controls.Add(this.FormulaRelease);
             this.tabDetail2.Controls.Add(this.PrefillAmount);
-            this.tabDetail2.Location = new System.Drawing.Point(4, 22);
+            this.tabDetail2.Location = new System.Drawing.Point(4, 32);
             this.tabDetail2.Name = "tabDetail2";
             this.tabDetail2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDetail2.Size = new System.Drawing.Size(1647, 499);
+            this.tabDetail2.Size = new System.Drawing.Size(1647, 489);
             this.tabDetail2.TabIndex = 1;
             this.tabDetail2.Text = "詳細２";
             // 
@@ -1892,11 +1892,11 @@ namespace NipponPaint.OrderManager
             this.CapType.CodeReadOnly = false;
             this.CapType.CodeText = "";
             this.CapType.CodeTextSize = new System.Drawing.Size(80, 30);
-            this.CapType.DatabaseColumnCode = "";
-            this.CapType.DatabaseColumnName = "";
+            this.CapType.DatabaseColumnCode = "Cap_Type";
+            this.CapType.DatabaseColumnName = "Cap_Description";
             this.CapType.DataControlName = "txtData";
             this.CapType.DataReadOnly = false;
-            this.CapType.DataTextSize = new System.Drawing.Size(1379, 30);
+            this.CapType.DataTextSize = new System.Drawing.Size(1300, 30);
             this.CapType.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.CapType.Location = new System.Drawing.Point(3, 110);
             this.CapType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -1917,11 +1917,11 @@ namespace NipponPaint.OrderManager
             this.CanType.CodeReadOnly = false;
             this.CanType.CodeText = "";
             this.CanType.CodeTextSize = new System.Drawing.Size(80, 30);
-            this.CanType.DatabaseColumnCode = "";
-            this.CanType.DatabaseColumnName = "";
+            this.CanType.DatabaseColumnCode = "Can_Type";
+            this.CanType.DatabaseColumnName = "Can_Description";
             this.CanType.DataControlName = "txtData";
             this.CanType.DataReadOnly = false;
-            this.CanType.DataTextSize = new System.Drawing.Size(1379, 30);
+            this.CanType.DataTextSize = new System.Drawing.Size(1300, 30);
             this.CanType.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.CanType.Location = new System.Drawing.Point(3, 75);
             this.CanType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -3301,7 +3301,7 @@ namespace NipponPaint.OrderManager
             // 
             // labelTextBox12
             // 
-            this.labelTextBox12.DatabaseColumnName = null;
+            this.labelTextBox12.DatabaseColumnName = "Formula_Release";
             this.labelTextBox12.DataControlName = "txtData";
             this.labelTextBox12.DataEnabled = true;
             this.labelTextBox12.DataReadOnly = false;
@@ -3329,7 +3329,7 @@ namespace NipponPaint.OrderManager
             // 
             // labelTextBox11
             // 
-            this.labelTextBox11.DatabaseColumnName = null;
+            this.labelTextBox11.DatabaseColumnName = "Revision";
             this.labelTextBox11.DataControlName = "txtData";
             this.labelTextBox11.DataEnabled = true;
             this.labelTextBox11.DataReadOnly = false;
@@ -3357,7 +3357,7 @@ namespace NipponPaint.OrderManager
             // 
             // labelTextBox10
             // 
-            this.labelTextBox10.DatabaseColumnName = null;
+            this.labelTextBox10.DatabaseColumnName = "Number_of_cans";
             this.labelTextBox10.DataControlName = "txtData";
             this.labelTextBox10.DataEnabled = true;
             this.labelTextBox10.DataReadOnly = false;
@@ -3385,7 +3385,7 @@ namespace NipponPaint.OrderManager
             // 
             // labelTextBox9
             // 
-            this.labelTextBox9.DatabaseColumnName = null;
+            this.labelTextBox9.DatabaseColumnName = "Order_Number";
             this.labelTextBox9.DataControlName = "txtData";
             this.labelTextBox9.DataEnabled = true;
             this.labelTextBox9.DataReadOnly = false;

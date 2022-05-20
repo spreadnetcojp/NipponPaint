@@ -107,6 +107,17 @@ namespace NipponPaint.NpCommon.FormControls
             set { TxtData.ForeColor = value; }
         }
 
+        public Color CodeBackColor
+        {
+            get { return TxtCode.BackColor; }
+            set { TxtCode.BackColor = value; }
+        }
+        public Color CodeForeColor
+        {
+            get { return TxtCode.ForeColor; }
+            set { TxtCode.ForeColor = value; }
+        }
+
         public HorizontalAlignment TextAlignCode
         {
             get { return TxtCode.TextAlign; }
