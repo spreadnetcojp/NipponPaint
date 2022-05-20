@@ -25,7 +25,6 @@ namespace NipponPaint.NpCommon.IniFile.Sections
     public class DatabaseSection
     {
         #region 定数
-        private const string MySectionName = "DATABASE";
         private const string DEFAULT_STRING = @"Provider=SQLOLEDB;Password=cps_pwd2000;Persist Security Info=True;User ID=sa;Initial Catalog={0};Data Source=CPSCOLOR\SQLEXPRESS;Trusted_Connection=true";
         #endregion
 
@@ -63,10 +62,10 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         public DatabaseSection(string filePath)
         {
             var reader = new FileInterface(filePath);
-            _npOrder = reader.GetItem(MySectionName, "NP_ORDERConnStr", string.Format(DEFAULT_STRING, "ORDER_RF1"));
-            _npMain = reader.GetItem(MySectionName, "NP_MAINConnStr", string.Format(DEFAULT_STRING, "NP_MAIN"));
-            _iosSup = reader.GetItem(MySectionName, "IOSSUPConnStr", string.Format(DEFAULT_STRING, "IOSSUP_RF1"));
-            _superVision = reader.GetItem(MySectionName, "SPCConnStr", string.Format(DEFAULT_STRING, "SUPERVISION_PC"));
+            _npOrder = reader.GetItem("DATABASE", "NP_ORDERConnStr", string.Format(DEFAULT_STRING, "ORDER_RF1"));
+            _npMain = reader.GetItem("DATABASE", "NP_MAINConnStr", string.Format(DEFAULT_STRING, "NP_MAIN"));
+            _iosSup = reader.GetItem("DATABASE", "IOSSUPConnStr", string.Format(DEFAULT_STRING, "IOSSUP_RF1"));
+            _superVision = reader.GetItem("DATABASE", "SPCConnStr", string.Format(DEFAULT_STRING, "SUPERVISION_PC"));
         }
         #endregion
 

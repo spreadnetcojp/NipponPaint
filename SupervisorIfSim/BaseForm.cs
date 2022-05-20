@@ -52,7 +52,7 @@ namespace SupervisorIfSim
         /// <param name="MessageId"></param>
         public void PutLog(Sentence.Messages MessageId, object[] addtionalInfo = null, bool displayDialog = false)
         {
-            Log.Write(MessageId, Log.ApplicationType.SupervisorInterface, addtionalInfo);
+            Log.Write(MessageId, Log.ApplicationType.SupervisorInterfaceSim, addtionalInfo);
             if (displayDialog)
             {
                 Messages.ShowDialog(MessageId, addtionalInfo);
@@ -64,7 +64,7 @@ namespace SupervisorIfSim
         /// <param name="MessageId"></param>
         public void PutLog(Sentence.Messages MessageId, string addtionalInfo, bool displayDialog = false)
         {
-            Log.Write(MessageId, Log.ApplicationType.SupervisorInterface, addtionalInfo);
+            Log.Write(MessageId, Log.ApplicationType.SupervisorInterfaceSim, addtionalInfo);
             if (displayDialog)
             {
                 Messages.ShowDialog(MessageId, addtionalInfo);
@@ -76,7 +76,7 @@ namespace SupervisorIfSim
         /// <param name="MessageId"></param>
         public void PutLog(Exception ex, bool displayDialog = false)
         {
-            Log.Write(Sentence.Messages.Exception, Log.ApplicationType.SupervisorInterface, ex.Message);
+            Log.Write(Sentence.Messages.Exception, Log.ApplicationType.SupervisorInterfaceSim, ex.Message);
             if (displayDialog)
             {
                 Messages.ShowDialog(Sentence.Messages.Exception, ex.Message);

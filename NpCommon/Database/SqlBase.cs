@@ -118,8 +118,6 @@ namespace NipponPaint.NpCommon.Database
             if (transatctionUse == TransactionUse.Yes)
             {
                 _transaction = _connection.BeginTransaction();
-                // 初期状態でいったんロールバックしておく
-                _transaction.Rollback();
             }
             _registCount = 0;
             _applicationType = applicationType;

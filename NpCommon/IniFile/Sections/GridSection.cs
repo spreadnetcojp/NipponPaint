@@ -25,7 +25,6 @@ namespace NipponPaint.NpCommon.IniFile.Sections
     public class GridSection
     {
         #region 定数
-        private const string MySectionName = "GRID";
         #endregion
         #region プロパティ
         #endregion

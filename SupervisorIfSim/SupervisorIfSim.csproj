@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0100960E-F856-440A-9B2A-B30EABF50400}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>NipponPaint.SupervisorIfSim</RootNamespace>
+    <RootNamespace>SupervisorIfSim</RootNamespace>
     <AssemblyName>SupervisorIfSim</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -82,7 +82,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

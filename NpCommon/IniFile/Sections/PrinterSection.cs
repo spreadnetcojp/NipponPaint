@@ -25,7 +25,6 @@ namespace NipponPaint.NpCommon.IniFile.Sections
     public class PrinterSection
     {
         #region 定数
-        private const string MySectionName = "PRINTER";
         #endregion
         #region プロパティ
         #endregion

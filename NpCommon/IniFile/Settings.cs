@@ -34,7 +34,6 @@ namespace NipponPaint.NpCommon.IniFile
         public Sections.DatabaseSection Database { get { return _database; } }
         public Sections.DisplaySection Display { get { return _display; } }
         public Sections.FacilitySection Facility { get { return _facility; } }
-        public Sections.SupervisorInterfaceSection SupervisorInterface { get { return _supervisorInterface; } }
         public string FilePath { get { return _filePath; } }
         #endregion
 
@@ -43,7 +42,6 @@ namespace NipponPaint.NpCommon.IniFile
         private Sections.DatabaseSection _database;
         private Sections.DisplaySection _display;
         private Sections.FacilitySection _facility;
-        private Sections.SupervisorInterfaceSection _supervisorInterface;
         #endregion
 
         #region コンストラクタ
@@ -57,7 +55,6 @@ namespace NipponPaint.NpCommon.IniFile
             _database = new Sections.DatabaseSection(_filePath);
             _display = new Sections.DisplaySection(_filePath);
             _facility = new Sections.FacilitySection(_filePath);
-            _supervisorInterface = new Sections.SupervisorInterfaceSection(_filePath);
         }
         #endregion
     }

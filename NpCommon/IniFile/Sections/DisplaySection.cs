@@ -25,7 +25,6 @@ namespace NipponPaint.NpCommon.IniFile.Sections
     public class DisplaySection
     {
         #region 定数
-        private const string MySectionName = "DISPLAY";
         #endregion
 
         #region プロパティ
@@ -46,7 +45,7 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         public DisplaySection(string filePath)
         {
             var reader = new FileInterface(filePath);
-            var toningItems = reader.GetItem(MySectionName, "ToningAppKeyword", "");
+            var toningItems = reader.GetItem("DISPLAY", "ToningAppKeyword", "");
             if (!string.IsNullOrEmpty(toningItems))
             {
                 foreach (var item in toningItems.Split(','))
@@ -54,7 +53,7 @@ namespace NipponPaint.NpCommon.IniFile.Sections
                     _hgNoteStrList.Add(item);
                 }
             }
-            var ColorNameItems = reader.GetItem(MySectionName, "ColorNameKeyword", "");
+            var ColorNameItems = reader.GetItem("DISPLAY", "ColorNameKeyword", "");
             if (!string.IsNullOrEmpty(ColorNameItems))
             {
                 foreach (var item in ColorNameItems.Split(','))

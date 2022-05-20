@@ -25,7 +25,6 @@ namespace NipponPaint.NpCommon.IniFile.Sections
     public class FacilitySection
     {
         #region 定数
-        private const string MySectionName = "FACILITY";
         #endregion
 
         #region プロパティ
@@ -47,7 +46,7 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         public FacilitySection(string filePath)
         {
             var reader = new FileInterface(filePath);
-            _plant = reader.GetItem(MySectionName, "Plant", string.Format("RF1"));
+            _plant = reader.GetItem("FACILITY", "Plant", string.Format("RF1"));
         }
         #endregion
     }
