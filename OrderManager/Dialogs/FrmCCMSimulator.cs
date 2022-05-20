@@ -16,6 +16,7 @@
 using System;
 using System.Windows.Forms;
 using NipponPaint.NpCommon;
+using NipponPaint.NpCommon.FormControls;
 #endregion
 
 namespace NipponPaint.OrderManager.Dialogs
@@ -25,12 +26,18 @@ namespace NipponPaint.OrderManager.Dialogs
     /// </summary>
     public partial class FrmCCMSimulator : BaseForm
     {
+        static string productCodeLeft;
+        static string productCodeRight;
         #region コンストラクタ
         public FrmCCMSimulator(ViewModels.CCMSimulatorData vm)
         {
             InitializeComponent();
             InitializeForm();
             TxtKanjiColorName.Value = vm.KanjiColorName;
+            productCodeLeft = vm.ProductCodeLeft;
+            productCodeRight = vm.ProductCodeRight;
+            DrpProductCodeLeft.DropDown.Text = productCodeLeft;
+            DrpProductCodeRight.Text = productCodeRight;
             TxtPaintName.Value = vm.PaintName;
             TxtColorFileName.Value = vm.ColorFileName;
             TxtLine.Value = vm.Line;
@@ -93,7 +100,7 @@ namespace NipponPaint.OrderManager.Dialogs
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -107,10 +114,10 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                DialogResult result = MessageBox.Show("原料選択でｴﾗｰ", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                DialogResult result = MessageBox.Show("原料選択でｴﾗｰ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -127,8 +134,8 @@ namespace NipponPaint.OrderManager.Dialogs
                 NumUpDownCorrection.Value = 0;
                 TxtKanjiColorName.Value = "";
                 TxtPaintName.Value = "";
-                DrpProductCodeLeft.DropDown.Text = "K";
-                DrpProductCodeRight.Text = "D";
+                DrpProductCodeLeft.DropDown.Text = productCodeLeft;
+                DrpProductCodeRight.Text = productCodeRight;
                 //DrpProductCodeLeft.DropDown.SelectedIndex = 9;
                 //DrpProductCodeRight.SelectedIndex = 11;
                 DrpBaseSelect.Text = "";
@@ -144,7 +151,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 DrpColoarantSelect10.Text = "";
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -161,9 +168,167 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DrpBaseSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((ComboBox)sender).SelectedIndex > 0)
+            {
+                TxtBaseValue.Enabled = true;
+                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                frmKeyPad.ShowDialog();
+            }
+            else
+            {
+                TxtBaseValue.Enabled = false;
+            }
+        }
+        private void DrpColoarantSelect1SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((ComboBox)sender).SelectedIndex > 0)
+            {
+                TxtColoarantValue1.Enabled = true;
+                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                frmKeyPad.ShowDialog();
+            }
+            else
+            {
+                TxtColoarantValue1.Enabled = false;
+            }
+        }
+        private void DrpColoarantSelect2SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((ComboBox)sender).SelectedIndex > 0)
+            {
+                TxtColoarantValue2.Enabled = true;
+                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                frmKeyPad.ShowDialog();
+            }
+            else
+            {
+                TxtColoarantValue2.Enabled = false;
+            }
+        }
+        private void DrpColoarantSelect3SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((ComboBox)sender).SelectedIndex > 0)
+            {
+                TxtColoarantValue3.Enabled = true;
+                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                frmKeyPad.ShowDialog();
+            }
+            else
+            {
+                TxtColoarantValue3.Enabled = false;
+            }
+        }
+        private void DrpColoarantSelect4SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((ComboBox)sender).SelectedIndex > 0)
+            {
+                TxtColoarantValue4.Enabled = true;
+                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                frmKeyPad.ShowDialog();
+            }
+            else
+            {
+                TxtColoarantValue4.Enabled = false;
+            }
+        }
+        private void DrpColoarantSelect5SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((ComboBox)sender).SelectedIndex > 0)
+            {
+                TxtColoarantValue5.Enabled = true;
+                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                frmKeyPad.ShowDialog();
+            }
+            else
+            {
+                TxtColoarantValue5.Enabled = false;
+            }
+        }
+        private void DrpColoarantSelect6SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((ComboBox)sender).SelectedIndex > 0)
+            {
+                TxtColoarantValue6.Enabled = true;
+                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                frmKeyPad.ShowDialog();
+            }
+            else
+            {
+                TxtColoarantValue6.Enabled = false;
+            }
+        }
+        private void DrpColoarantSelect7SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((ComboBox)sender).SelectedIndex > 0)
+            {
+                TxtColoarantValue7.Enabled = true;
+                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                frmKeyPad.ShowDialog();
+            }
+            else
+            {
+                TxtColoarantValue7.Enabled = false;
+            }
+        }
+        private void DrpColoarantSelect8SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((ComboBox)sender).SelectedIndex > 0)
+            {
+                TxtColoarantValue8.Enabled = true;
+                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                frmKeyPad.ShowDialog();
+            }
+            else
+            {
+                TxtColoarantValue8.Enabled = false;
+            }
+        }
+        private void DrpColoarantSelect9SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((ComboBox)sender).SelectedIndex > 0)
+            {
+                TxtColoarantValue9.Enabled = true;
+                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                frmKeyPad.ShowDialog();
+            }
+            else
+            {
+                TxtColoarantValue9.Enabled = false;
+            }
+        }
+        private void DrpColoarantSelect10SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((ComboBox)sender).SelectedIndex > 0)
+            {
+                TxtColoarantValue10.Enabled = true;
+                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                frmKeyPad.ShowDialog();
+            }
+            else
+            {
+                TxtColoarantValue10.Enabled = false;
+            }
+        }
+
+        private void TxtBaseValueMouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                frmKeyPad.ShowDialog();
             }
         }
         #endregion
@@ -175,7 +340,7 @@ namespace NipponPaint.OrderManager.Dialogs
         private void InitializeForm()
         {
             //コントロールの配置
-            
+
             // イベントの追加
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(this.FormKeyDown);
@@ -183,9 +348,45 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnCCMDataSend.Click += new EventHandler(this.BtnCCMDataSendClick);
             this.BtnCancel.Click += new EventHandler(this.BtnCancelClick);
             this.BtnClose.Click += new EventHandler(this.BtnCloseClick);
+            this.DrpBaseSelect.SelectedIndexChanged += new System.EventHandler(this.DrpBaseSelectedIndexChanged);
+            this.DrpColoarantSelect1.SelectedIndexChanged += new System.EventHandler(this.DrpColoarantSelect1SelectedIndexChanged);
+            this.DrpColoarantSelect2.SelectedIndexChanged += new System.EventHandler(this.DrpColoarantSelect2SelectedIndexChanged);
+            this.DrpColoarantSelect3.SelectedIndexChanged += new System.EventHandler(this.DrpColoarantSelect3SelectedIndexChanged);
+            this.DrpColoarantSelect4.SelectedIndexChanged += new System.EventHandler(this.DrpColoarantSelect4SelectedIndexChanged);
+            this.DrpColoarantSelect5.SelectedIndexChanged += new System.EventHandler(this.DrpColoarantSelect5SelectedIndexChanged);
+            this.DrpColoarantSelect6.SelectedIndexChanged += new System.EventHandler(this.DrpColoarantSelect6SelectedIndexChanged);
+            this.DrpColoarantSelect7.SelectedIndexChanged += new System.EventHandler(this.DrpColoarantSelect7SelectedIndexChanged);
+            this.DrpColoarantSelect8.SelectedIndexChanged += new System.EventHandler(this.DrpColoarantSelect8SelectedIndexChanged);
+            this.DrpColoarantSelect9.SelectedIndexChanged += new System.EventHandler(this.DrpColoarantSelect9SelectedIndexChanged);
+            this.DrpColoarantSelect10.SelectedIndexChanged += new System.EventHandler(this.DrpColoarantSelect10SelectedIndexChanged);
+            this.TxtBaseValue.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
+            this.TxtColoarantValue1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
+            this.TxtColoarantValue2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
+            this.TxtColoarantValue3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
+            this.TxtColoarantValue4.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
+            this.TxtColoarantValue5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
+            this.TxtColoarantValue6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
+            this.TxtColoarantValue7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
+            this.TxtColoarantValue8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
+            this.TxtColoarantValue9.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
+            this.TxtColoarantValue10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
+
             Funcs.SetControlEnabled(this.Controls, true);
 
             //データ表示部の設定
+            //カレンダー初期値 年月日
+            DateTimePicker.Value = DateTime.Now;
+            TxtBaseValue.Enabled = false;
+            TxtColoarantValue1.Enabled = false;
+            TxtColoarantValue2.Enabled = false;
+            TxtColoarantValue3.Enabled = false;
+            TxtColoarantValue4.Enabled = false;
+            TxtColoarantValue5.Enabled = false;
+            TxtColoarantValue6.Enabled = false;
+            TxtColoarantValue7.Enabled = false;
+            TxtColoarantValue8.Enabled = false;
+            TxtColoarantValue9.Enabled = false;
+            TxtColoarantValue10.Enabled = false;
             /// <summary>
             /// 製品コード(左)のドロップダウン
             /// </summary>
@@ -214,7 +415,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 "V",
                 "W"
             });
-            DrpProductCodeLeft.DropDown.SelectedIndex = 9;
             /// <summary>
             /// 製品コード(右)のドロップダウン(コンボボックス)
             /// </summary>
@@ -254,7 +454,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 "Y",
                 "Z"
             });
-            DrpProductCodeRight.SelectedIndex = 11;
             /// <summary>
             /// ベースのドロップダウン
             /// </summary>

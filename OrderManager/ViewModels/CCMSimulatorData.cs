@@ -31,6 +31,14 @@ namespace NipponPaint.OrderManager.ViewModels
         /// </summary>
         public string PaintName { get; set; }
         /// <summary>
+        /// 製品コード左
+        /// </summary>
+        public string ProductCodeLeft { get; set; }
+        /// <summary>
+        /// 製品コード右
+        /// </summary>
+        public string ProductCodeRight { get; set; }
+        /// <summary>
         /// 既調色ファイル名
         /// </summary>
         public string ColorFileName { get; set; }
