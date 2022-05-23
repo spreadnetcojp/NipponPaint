@@ -763,6 +763,12 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.CCMSimulatorData();
+                string productCode = ProductCode.Value;
+                if(productCode.Length == 2)
+                {
+                    vm.ProductCodeLeft = productCode[0].ToString();
+                    vm.ProductCodeRight = productCode[1].ToString();
+                }
                 FrmCCMSimulator frmCCMSimulator = new FrmCCMSimulator(vm);
                 frmCCMSimulator.ShowDialog();
             }
