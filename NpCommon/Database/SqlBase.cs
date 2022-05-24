@@ -68,9 +68,9 @@ namespace NipponPaint.NpCommon.Database
             /// </summary>
             ORDER,
             /// <summary>
-            /// SupervisionPC
+            /// SupervisorPC
             /// </summary>
-            SUPERVISION,
+            SUPERVISOR,
         }
 
         private const int TIMEOUT_VALUE = 120;
@@ -108,8 +108,8 @@ namespace NipponPaint.NpCommon.Database
                 case DatabaseKind.ORDER:
                     catalog = settings.Database.NpOrder;
                     break;
-                case DatabaseKind.SUPERVISION:
-                    catalog = settings.Database.SuperVision;
+                case DatabaseKind.SUPERVISOR:
+                    catalog = settings.Database.SuperVisor;
                     break;
             }
             // コネクションを開く

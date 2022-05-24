@@ -60,13 +60,21 @@ namespace SupervisorPcInterface
         {
             var settings = new Settings();
             var dispenses = new DataTable();
-            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
+            using (var dbs = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
             {
-                dispenses = db.Select(Cans.GetPreviewDispensed(settings.Facility.Plant));
-            }
-            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISION, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
-            {
-                var barcodes = db.Select(TbBarcode.GetPreviewAll());
+                using (var dbn = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
+                {
+                    var barcodeRows = dbs.Select(TbBarcode.GetPreviewAll());
+                    foreach (DataRow barcodeRow in barcodeRows.Rows)
+                    {
+                        var barCode = barcodeRow[TbBarcode.BARCODE].ToString();
+                        var dispenseRows = dbn.Select(Cans.GetPreviewDispensedByBarcode(barCode, settings.Facility.Plant));
+                        foreach (DataRow dispenseRow in dispenseRows.Rows)
+                        {
+
+                        }
+                    }
+                }
             }
         }
 
