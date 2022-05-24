@@ -37,12 +37,20 @@ namespace SupervisorPcInterface
     {
         private Settings _settings;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public FrmMain()
         {
             InitializeComponent();
             _settings = new Settings();
         }
 
+        /// <summary>
+        /// 画面を開いた時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmMain_Shown(object sender, EventArgs e)
         {
             // タイマー開始前に実行する
@@ -52,12 +60,20 @@ namespace SupervisorPcInterface
             TickTimer.Enabled = true;
         }
 
+        /// <summary>
+        /// 周期処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TickTimer_Tick(object sender, EventArgs e)
         {
             // 周期実行
             Execute();
         }
 
+        /// <summary>
+        /// 周期処理の実行
+        /// </summary>
         private void Execute()
         {
             using (var dbs = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
@@ -65,6 +81,7 @@ namespace SupervisorPcInterface
                 try
                 {
                     PutLog(Sentence.Messages.StartSupervisorInterface);
+                    // TB_BARCODEからバーコードデータを取得
                     var barcodeRows = dbs.Select(TbBarcode.GetPreview());
                     using (var dbn = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
                     {
@@ -72,22 +89,22 @@ namespace SupervisorPcInterface
                         {
                             var barCode = barcodeRow[TbBarcode.BARCODE].ToString();
                             PutLog(Sentence.Messages.ExecuteSupervisorInterface, barCode);
+                            // バーコードをキーにERPのテーブルから情報収集
                             var dispenseRows = dbn.Select(Cans.GetPreviewDispensedByBarcode(barCode, _settings.Facility.Plant));
                             var cnt = 0;
-                            var updateDateTime = DateTime.Now;
-                            var parameters = new List<ParameterItem>();
-                            var sql = string.Empty;
+                            // SQLを作成してTB_BARCODE、TB_JOB、TB_FORMULAを更新
                             foreach (DataRow dispenseRow in dispenseRows.Rows)
                             {
+                                var updateDateTime = DateTime.Now;
                                 if (cnt == 0)
                                 {
-                                    sql = SetSqlBarcode(barcodeRow, dispenseRow, updateDateTime, out parameters);
-                                    dbs.Execute(sql, parameters);
-                                    sql = SetSqlJob(barcodeRow, dispenseRow, updateDateTime, out parameters);
-                                    dbs.Execute(sql, parameters);
+                                    //TB_BARCODE
+                                    dbs.Execute(SetSqlBarcode(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p0), p0);
+                                    //TB_JOB
+                                    dbs.Execute(SetSqlJob(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p1), p1);
                                 }
-                                sql = SetSqlFormura(barcodeRow, dispenseRow, updateDateTime, out parameters);
-                                dbs.Execute(sql, parameters);
+                                //TB_FORMULA
+                                dbs.Execute(SetSqlFormura(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p2), p2);
                                 cnt++;
                             }
                         }
@@ -103,6 +120,7 @@ namespace SupervisorPcInterface
             }
         }
 
+        #region 更新SQL作成
         /// <summary>
         /// TB_FORMURA更新
         /// </summary>
@@ -229,6 +247,8 @@ namespace SupervisorPcInterface
             // SQL返却
             return sql;
         }
+
+        #endregion
 
         #region ログ出力
         /// <summary>
