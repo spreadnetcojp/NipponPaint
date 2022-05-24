@@ -414,6 +414,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     TxtNormalVolume.Visible = false;
                     TxtMaxVolume.Visible = false;
                     // 編集用コントロール
+                    TxtCanType.TextAlign = HorizontalAlignment.Left;
                     TxtCanDescription.DataReadOnly = false;
                     DrpHoleSize.Visible = true;
                     NumEmptyCanWeight.Visible = true;
@@ -423,6 +424,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     //
                 default:
                     // 表示用コントロール
+                    TxtCanType.TextAlign = HorizontalAlignment.Right;
                     TxtCanType.Visible = true;
                     TxtHoleSize.Visible = true;
                     TxtEmptyCanWeight.Visible = true;
@@ -509,6 +511,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 {
                     //入力したフォームの内容をデータベースに新規登録する
                     db.Insert(this.Controls, "Can_types");
+                    db.Commit();
                 }
                 catch (Exception ex)
                 {
@@ -563,6 +566,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     {
                         //指定した1行のデータをデータベースから物理削除する
                         db.Delete(TxtCanType.Value, "Can_types", "Can_Type");
+                        db.Commit();
                     }
                     catch (Exception ex)
                     {

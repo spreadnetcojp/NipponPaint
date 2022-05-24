@@ -160,7 +160,7 @@ namespace NipponPaint.OrderManager.Dialogs
             }
         }
         /// <summary>
-        /// 新規作成ボタン(F5)
+        /// 新規ボタン(F5)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -426,12 +426,15 @@ namespace NipponPaint.OrderManager.Dialogs
                   //更新
                 case DialogEditButtons.Mode.Modify:
                     // 表示用コントロール
+                    //TxtCapType.Visible = false;
                     TxtCapSize.Visible = false;
                     TxtCapWeight.Visible = false;
                     TxtCappingMachine.Visible = false;
                     ChkManualCapping.Visible = true;
                     ChkManualCapping.Enabled = true;
                     // 編集用コントロール
+                    //TxtCapType.Visible = true;
+                    TxtCapType.TextAlign = HorizontalAlignment.Left;
                     TxtCapDescription.DataReadOnly = false;
                     DrpCapSize.Visible = true;
                     NumCapWeight.Visible = true;
@@ -448,6 +451,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 default:
                     // 表示用コントロール
                     TxtCapType.Visible = true;
+                    TxtCapType.TextAlign = HorizontalAlignment.Right;
                     TxtCapSize.Visible = true;
                     TxtCapWeight.Visible = true;
                     if (TxtCappingMachine.Value != "1")
@@ -541,6 +545,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 {
                     //入力したフォームの内容をデータベースに新規登録する
                     db.Insert(this.Controls, "Cap_types");
+                    db.Commit();
                 }
                 catch (Exception ex)
                 {
@@ -589,12 +594,13 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             using (var db = new SqlBase(SqlBase.DatabaseKind.ORDER, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
             {
-                if (!string.IsNullOrEmpty(TxtCapType.Value))
+                if (!string.IsNullOrEmpty(TxtCapType.Value))   //TxtCapType1
                 {                    
                     try
                     {
                         //指定した1行のデータをデータベースから物理削除する
-                        db.Delete(TxtCapType.Value, "Cap_types", "Cap_Type");
+                        db.Delete(TxtCapType.Value, "Cap_types", "Cap_Type");  //TxtCapType1
+                        db.Commit();
                     }
                     catch (Exception ex)
                     {
