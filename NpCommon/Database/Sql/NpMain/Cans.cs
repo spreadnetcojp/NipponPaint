@@ -1,4 +1,4 @@
-﻿﻿//*****************************************************************************
+﻿//*****************************************************************************
 //
 //  システム名：調色工場用自動計量システム NpCommon
 //
@@ -26,6 +26,11 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
     public static class Cans
     {
         #region 注文番号による一覧データ取得
+        /// <summary>
+        /// 注文番号による一覧データ取得
+        /// </summary>
+        /// <param name="viewSettings"></param>
+        /// <returns></returns>
         public static string GetPreviewByOrderId(List<GridViewSetting> viewSettings)
         {
             var sql = new StringBuilder();
@@ -47,5 +52,16 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             return sql.ToString();
         }
         #endregion
+
+        public static string GetPreviewDispensed()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT Cans_id, Order_id, White_Code  AS Code, 0  As Row_Index, White_Weight AS Weight, White_Dispensed AS Dispensed FROM Cans WHERE White_Code  <> '' ");
+            for (var cnt = 1; cnt < 20; cnt++)
+            {
+                sql.Append($"UNION ALL SELECT Cans_id, Order_id, Colorant_{cnt} AS Code, {cnt} As Row_Index, Weight_{cnt} AS Weight, Dispensed_{cnt} AS Dispensed FROM Cans WHERE Colorant_{cnt} <> '' ");
+            }
+            return sql.ToString();
+        }
     }
 }
