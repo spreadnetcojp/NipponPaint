@@ -155,7 +155,13 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($"  Order_id ");
             sql.Append($" ,Product_Code ");
             sql.Append($" ,Status ");
-            sql.Append($" ,'' AS StatusText ");
+            sql.Append($" ,CASE Status ");
+            sql.Append($"   WHEN {(int)OrderStatus.WaitingForToning}            THEN N'{Messages.GetOrderStatusText(OrderStatus.WaitingForToning)}' ");
+            sql.Append($"   WHEN {(int)OrderStatus.WaitingForCCMformulation}    THEN N'{Messages.GetOrderStatusText(OrderStatus.WaitingForCCMformulation)}' ");
+            sql.Append($"   WHEN {(int)OrderStatus.Ready}                       THEN N'{Messages.GetOrderStatusText(OrderStatus.Ready)}' ");
+            sql.Append($"   WHEN {(int)OrderStatus.TestCanInProgress}           THEN N'{Messages.GetOrderStatusText(OrderStatus.TestCanInProgress)}' ");
+            sql.Append($"   WHEN {(int)OrderStatus.ManufacturingCansInProgress} THEN N'{Messages.GetOrderStatusText(OrderStatus.ManufacturingCansInProgress)}' ");
+            sql.Append($"  END AS StatusText ");
             sql.Append($" ,Operator_Name ");
             sql.Append($" ,HG_Product_Name ");
             sql.Append($" ,TRIM(TRIM('　' FROM HG_Volume_Code)) ");
