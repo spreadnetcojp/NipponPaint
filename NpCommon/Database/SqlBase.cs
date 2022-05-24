@@ -68,9 +68,9 @@ namespace NipponPaint.NpCommon.Database
             /// </summary>
             ORDER,
             /// <summary>
-            /// SupervisionPC
+            /// SupervisorPC
             /// </summary>
-            SUPERVISION,
+            SUPERVISOR,
         }
 
         private const int TIMEOUT_VALUE = 120;
@@ -108,8 +108,8 @@ namespace NipponPaint.NpCommon.Database
                 case DatabaseKind.ORDER:
                     catalog = settings.Database.NpOrder;
                     break;
-                case DatabaseKind.SUPERVISION:
-                    catalog = settings.Database.SuperVision;
+                case DatabaseKind.SUPERVISOR:
+                    catalog = settings.Database.SuperVisor;
                     break;
             }
             // コネクションを開く
@@ -118,8 +118,6 @@ namespace NipponPaint.NpCommon.Database
             if (transatctionUse == TransactionUse.Yes)
             {
                 _transaction = _connection.BeginTransaction();
-                // 初期状態でいったんロールバックしておく
-                _transaction.Rollback();
             }
             _registCount = 0;
             _applicationType = applicationType;
@@ -247,8 +245,9 @@ namespace NipponPaint.NpCommon.Database
         /// <returns></returns>
         public int Execute(string sql, List<SqlParameter> parameters = null)
         {
+
             var result = -1;
-            using (SqlCommand cmd = new SqlCommand(sql, _connection, _transaction))
+            using (SqlCommand cmd = new SqlCommand(sql, _connection))
             {
                 if (parameters != null)
                 {
@@ -257,6 +256,7 @@ namespace NipponPaint.NpCommon.Database
                         cmd.Parameters.Add(param);
                     }
                 }
+                cmd.Transaction = _transaction;
                 result = cmd.ExecuteNonQuery();
             }
             _registCount += result;
@@ -288,6 +288,7 @@ namespace NipponPaint.NpCommon.Database
                         cmd.Parameters.AddWithValue(param.Key, param.Value);
                     }
                 }
+                cmd.Transaction = _transaction;
                 using (var reader = cmd.ExecuteReader())
                 {
                     dt.Load(reader);
@@ -1196,7 +1197,6 @@ namespace NipponPaint.NpCommon.Database
             // 更新のSQLを作成
             var sql = $"INSERT INTO {tableName}  ({string.Join(",", fields)}) VALUES ({string.Join(",", values)})";
             Execute(sql, param);
-            Commit();
         }
         #endregion
 
@@ -1215,7 +1215,6 @@ namespace NipponPaint.NpCommon.Database
             var sql = $"Delete from {tableName} Where {keyName} = @Code";
 
             Execute(sql, param);
-            Commit();
         }
         #endregion
 
@@ -1223,7 +1222,6 @@ namespace NipponPaint.NpCommon.Database
         public void StatusResume(string sql, List<ParameterItem> parameters = null)
         {
             Execute(sql, parameters);
-            Commit();
         }
         #endregion
 
@@ -1231,7 +1229,6 @@ namespace NipponPaint.NpCommon.Database
         public void DeleteOperator(string sql, List<ParameterItem> parameters = null)
         {
             Execute(sql, parameters);
-            Commit();
         }
         #endregion
 

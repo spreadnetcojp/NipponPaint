@@ -760,7 +760,7 @@ namespace SupervisorIfSim.Dialogs
         /// <param name="e"></param>
         private void BtnSaveAll_Click(object sender, EventArgs e)
         {
-            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISION, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
+            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
             {
                 try
                 {
@@ -791,7 +791,7 @@ namespace SupervisorIfSim.Dialogs
         /// <param name="e"></param>
         private void BtnSaveBarcode_Click(object sender, EventArgs e)
         {
-            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISION, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
+            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
             {
                 try
                 {
@@ -822,7 +822,7 @@ namespace SupervisorIfSim.Dialogs
         /// <param name="e"></param>
         private void BtnSaveFormula_Click(object sender, EventArgs e)
         {
-            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISION, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
+            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
             {
                 try
                 {
@@ -853,7 +853,7 @@ namespace SupervisorIfSim.Dialogs
         /// <param name="e"></param>
         private void BtnSaveJob_Click(object sender, EventArgs e)
         {
-            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISION, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
+            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
             {
                 try
                 {
@@ -1217,7 +1217,7 @@ namespace SupervisorIfSim.Dialogs
         /// </summary>
         private void PreviewData(string barCode, string processCode)
         {
-            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISION, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
+            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
             {
                 var result = db.Select(TbBarcode.GetPreviewAll(barCode, processCode));
                 if (result.Rows.Count > 0)
