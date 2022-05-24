@@ -75,11 +75,12 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// バーコードで調合状況を取得
         /// </summary>
         /// <returns></returns>
-        public static string GetPreviewDispensedByBarcode(string barCode, string plant)
+        public static string GetPreviewDispensedData(string plant)
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
-            sql.Append($"  TB0.Code ");
+            sql.Append($"  TB0.Barcode ");
+            sql.Append($" ,TB0.Code ");
             sql.Append($" ,TB0.Weight ");
             sql.Append($" ,TB0.Dispensed ");
             sql.Append($" ,TB1.Errors_1 ");
@@ -92,7 +93,6 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($"FROM ({GetPreviewDispensed(plant)}) AS TB0 ");
             sql.Append($"INNER JOIN Cans   AS TB1 ON TB1.Cans_id  = TB0.Cans_id ");
             sql.Append($"INNER JOIN Orders AS TB2 ON TB2.Order_id = TB0.Order_id ");
-            sql.Append($"WHERE TB0.Barcode = '{barCode}' ");
             sql.Append($"ORDER BY ");
             sql.Append($"  TB0.Order_id ");
             sql.Append($" ,TB0.Barcode ");
