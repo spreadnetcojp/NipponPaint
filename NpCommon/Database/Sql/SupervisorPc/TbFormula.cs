@@ -47,22 +47,22 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
 
         public static List<MergeItemDefine> Fields = new List<MergeItemDefine>()
         {
-            new MergeItemDefine(){ Field = PRD_BARCODE, IsKey = true, IsInsert = true, IsUpdate = false },
-            new MergeItemDefine(){ Field = PRD_PROCESS_CODE, IsKey = true, IsInsert = true, IsUpdate = false },
-            new MergeItemDefine(){ Field = PRD_TIME_INSERTED, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = PRD_STATUS, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = PRD_CODE, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = PRD_DESC, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = PRD_UM, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = PRD_SPECIFIC_GRAVITY, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = PRD_QTY_REQ, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = PRD_QTY_DISP, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = PRD_START_DISP, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = PRD_END_DISP, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = PRD_PRIORITY, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = PRD_NUM, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = PRD_ISPREFILLED, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = PRD_PREFILLED_QTY, IsKey = false, IsInsert = true, IsUpdate = true },
+            new MergeItemDefine(){ IsKey = true, IsInsert = true, IsUpdate = false, Field = PRD_BARCODE },
+            new MergeItemDefine(){ IsKey = true, IsInsert = true, IsUpdate = false, Field = PRD_PROCESS_CODE },
+            new MergeItemDefine(){ IsKey = true, IsInsert = true, IsUpdate = false, Field = PRD_CODE },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = false, Field = PRD_TIME_INSERTED },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = false, Field = PRD_STATUS },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = PRD_DESC },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = PRD_UM },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = PRD_SPECIFIC_GRAVITY },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = PRD_QTY_REQ },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = false, Field = PRD_QTY_DISP },
+            new MergeItemDefine(){ IsKey = false, IsInsert = false, IsUpdate = false, Field = PRD_START_DISP },
+            new MergeItemDefine(){ IsKey = false, IsInsert = false, IsUpdate = false, Field = PRD_END_DISP },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = PRD_PRIORITY },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = PRD_NUM },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = PRD_ISPREFILLED },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = PRD_PREFILLED_QTY },
         };
         #endregion
 

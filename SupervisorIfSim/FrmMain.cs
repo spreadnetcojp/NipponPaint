@@ -311,7 +311,7 @@ namespace SupervisorIfSim
         /// </summary>
         private void PreviewData()
         {
-            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISION, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
+            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
             {
                 var selectedIndex = -1;
                 if (GvMain.SelectedRows.Count > 0)
