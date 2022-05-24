@@ -35,9 +35,12 @@ namespace SupervisorPcInterface
 {
     public partial class FrmMain : Form
     {
+        private Settings _settings;
+
         public FrmMain()
         {
             InitializeComponent();
+            _settings = new Settings();
         }
 
         private void FrmMain_Shown(object sender, EventArgs e)
@@ -45,8 +48,7 @@ namespace SupervisorPcInterface
             // タイマー開始前に実行する
             Execute();
             // 周期実行ON
-            var settings = new NipponPaint.NpCommon.IniFile.Settings();
-            TickTimer.Interval = settings.SupervisorInterface.TickTime * 1000;
+            TickTimer.Interval = _settings.SupervisorInterface.TickTime * 1000;
             TickTimer.Enabled = true;
         }
 
@@ -58,18 +60,19 @@ namespace SupervisorPcInterface
 
         private void Execute()
         {
-            var settings = new Settings();
             using (var dbs = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
             {
-                var barcodeRows = dbs.Select(TbBarcode.GetPreviewAll());
                 try
                 {
+                    PutLog(Sentence.Messages.StartSupervisorInterface);
+                    var barcodeRows = dbs.Select(TbBarcode.GetPreview());
                     using (var dbn = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
                     {
                         foreach (DataRow barcodeRow in barcodeRows.Rows)
                         {
                             var barCode = barcodeRow[TbBarcode.BARCODE].ToString();
-                            var dispenseRows = dbn.Select(Cans.GetPreviewDispensedByBarcode(barCode, settings.Facility.Plant));
+                            PutLog(Sentence.Messages.ExecuteSupervisorInterface, barCode);
+                            var dispenseRows = dbn.Select(Cans.GetPreviewDispensedByBarcode(barCode, _settings.Facility.Plant));
                             var cnt = 0;
                             var updateDateTime = DateTime.Now;
                             var parameters = new List<ParameterItem>();
@@ -90,10 +93,12 @@ namespace SupervisorPcInterface
                         }
                     }
                     dbs.Commit();
+                    PutLog(Sentence.Messages.EndSupervisorInterface);
                 }
-                catch
+                catch (Exception ex)
                 {
                     dbs.Rollback();
+                    PutLog(ex, false);
                 }
             }
         }
@@ -224,6 +229,45 @@ namespace SupervisorPcInterface
             // SQL返却
             return sql;
         }
+
+        #region ログ出力
+        /// <summary>
+        /// ログ出力
+        /// </summary>
+        /// <param name="MessageId"></param>
+        private void PutLog(Sentence.Messages MessageId, object[] addtionalInfo = null, bool displayDialog = false)
+        {
+            Log.Write(MessageId, Log.ApplicationType.SupervisorInterface, addtionalInfo);
+            if (displayDialog)
+            {
+                Messages.ShowDialog(MessageId, addtionalInfo);
+            }
+        }
+        /// <summary>
+        /// ログ出力
+        /// </summary>
+        /// <param name="MessageId"></param>
+        private void PutLog(Sentence.Messages MessageId, string addtionalInfo, bool displayDialog = false)
+        {
+            Log.Write(MessageId, Log.ApplicationType.SupervisorInterface, addtionalInfo);
+            if (displayDialog)
+            {
+                Messages.ShowDialog(MessageId, addtionalInfo);
+            }
+        }
+        /// <summary>
+        /// ログ出力
+        /// </summary>
+        /// <param name="MessageId"></param>
+        private void PutLog(Exception ex, bool displayDialog = true)
+        {
+            Log.Write(Sentence.Messages.Exception, Log.ApplicationType.SupervisorInterface, ex.Message);
+            if (displayDialog)
+            {
+                Messages.ShowDialog(Sentence.Messages.Exception, ex.Message);
+            }
+        }
+        #endregion
 
     }
 }
