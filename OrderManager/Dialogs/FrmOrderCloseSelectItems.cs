@@ -114,8 +114,7 @@ namespace NipponPaint.OrderManager.Dialogs
             // DataGridViewの表示
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
-                var result = db.Select(Sql.NpMain.Orders.GetPreviewCloseOrders(selectedStatus, BaseSettings.Facility.Plant));
-                GvCloseOrders.DataSource = Funcs.ConvertDataTable(result);
+                GvCloseOrders.DataSource = db.Select(Sql.NpMain.Orders.GetPreviewCloseOrders(selectedStatus, BaseSettings.Facility.Plant));
             }
             var cnt = 0;
             // DataGridViewのスタイル設定
