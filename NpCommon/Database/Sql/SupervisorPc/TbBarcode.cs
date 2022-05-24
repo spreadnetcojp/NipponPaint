@@ -71,6 +71,27 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
         #endregion
 
         #region 参照系
+
+        /// <summary>
+        /// 一覧取得
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPreview()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            sql.Append($"  {BARCODE} ");
+            sql.Append($" ,{PROCESS_CODE} ");
+            sql.Append($" ,{BRC_TIME_INSERTED} ");
+            sql.Append($" ,{BRC_TIME_PROCESSED} ");
+            sql.Append($" ,{BRC_STATUS} ");
+            sql.Append($" ,{BRC_ERR_1} ");
+            sql.Append($" ,{BRC_ERR_2} ");
+            sql.Append($" ,{BRC_ERR_3} ");
+            sql.Append($"FROM {MAIN_TABLE} ");
+            return sql.ToString();
+        }
+
         /// <summary>
         /// 一覧取得
         /// </summary>

@@ -113,6 +113,13 @@ namespace NipponPaint.NpCommon
             {
                 messageText = string.Format(messageInfo.Description, addtionalInfo);
             }
+#if DEBUG
+#else
+            if (messageInfo.Order == (int)Log.LogType.Debug)
+            {
+                return messageText;
+            }
+#endif
             // ファイルパスの生成
             string folderPath = Path.Combine(Application.StartupPath, "Log");
             if (!Directory.Exists(folderPath))

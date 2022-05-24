@@ -35,69 +35,92 @@ namespace SupervisorPcInterface
 {
     public partial class FrmMain : Form
     {
+        private Settings _settings;
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public FrmMain()
         {
             InitializeComponent();
+            _settings = new Settings();
         }
 
+        /// <summary>
+        /// 画面を開いた時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmMain_Shown(object sender, EventArgs e)
         {
             // タイマー開始前に実行する
             Execute();
             // 周期実行ON
-            var settings = new NipponPaint.NpCommon.IniFile.Settings();
-            TickTimer.Interval = settings.SupervisorInterface.TickTime * 1000;
+            TickTimer.Interval = _settings.SupervisorInterface.TickTime * 1000;
             TickTimer.Enabled = true;
         }
 
+        /// <summary>
+        /// 周期処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TickTimer_Tick(object sender, EventArgs e)
         {
             // 周期実行
             Execute();
         }
 
+        /// <summary>
+        /// 周期処理の実行
+        /// </summary>
         private void Execute()
         {
-            var settings = new Settings();
             using (var dbs = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
             {
-                var barcodeRows = dbs.Select(TbBarcode.GetPreviewAll());
                 try
                 {
+                    PutLog(Sentence.Messages.StartSupervisorInterface);
+                    // TB_BARCODEからバーコードデータを取得
+                    var barcodeRows = dbs.Select(TbBarcode.GetPreview());
                     using (var dbn = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
                     {
                         foreach (DataRow barcodeRow in barcodeRows.Rows)
                         {
                             var barCode = barcodeRow[TbBarcode.BARCODE].ToString();
-                            var dispenseRows = dbn.Select(Cans.GetPreviewDispensedByBarcode(barCode, settings.Facility.Plant));
+                            PutLog(Sentence.Messages.ExecuteSupervisorInterface, barCode);
+                            // バーコードをキーにERPのテーブルから情報収集
+                            var dispenseRows = dbn.Select(Cans.GetPreviewDispensedByBarcode(barCode, _settings.Facility.Plant));
                             var cnt = 0;
-                            var updateDateTime = DateTime.Now;
-                            var parameters = new List<ParameterItem>();
-                            var sql = string.Empty;
+                            // SQLを作成してTB_BARCODE、TB_JOB、TB_FORMULAを更新
                             foreach (DataRow dispenseRow in dispenseRows.Rows)
                             {
+                                var updateDateTime = DateTime.Now;
                                 if (cnt == 0)
                                 {
-                                    sql = SetSqlBarcode(barcodeRow, dispenseRow, updateDateTime, out parameters);
-                                    dbs.Execute(sql, parameters);
-                                    sql = SetSqlJob(barcodeRow, dispenseRow, updateDateTime, out parameters);
-                                    dbs.Execute(sql, parameters);
+                                    //TB_BARCODE
+                                    dbs.Execute(SetSqlBarcode(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p0), p0);
+                                    //TB_JOB
+                                    dbs.Execute(SetSqlJob(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p1), p1);
                                 }
-                                sql = SetSqlFormura(barcodeRow, dispenseRow, updateDateTime, out parameters);
-                                dbs.Execute(sql, parameters);
+                                //TB_FORMULA
+                                dbs.Execute(SetSqlFormura(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p2), p2);
                                 cnt++;
                             }
                         }
                     }
                     dbs.Commit();
+                    PutLog(Sentence.Messages.EndSupervisorInterface);
                 }
-                catch
+                catch (Exception ex)
                 {
                     dbs.Rollback();
+                    PutLog(ex, false);
                 }
             }
         }
 
+        #region 更新SQL作成
         /// <summary>
         /// TB_FORMURA更新
         /// </summary>
@@ -224,6 +247,47 @@ namespace SupervisorPcInterface
             // SQL返却
             return sql;
         }
+
+        #endregion
+
+        #region ログ出力
+        /// <summary>
+        /// ログ出力
+        /// </summary>
+        /// <param name="MessageId"></param>
+        private void PutLog(Sentence.Messages MessageId, object[] addtionalInfo = null, bool displayDialog = false)
+        {
+            Log.Write(MessageId, Log.ApplicationType.SupervisorInterface, addtionalInfo);
+            if (displayDialog)
+            {
+                Messages.ShowDialog(MessageId, addtionalInfo);
+            }
+        }
+        /// <summary>
+        /// ログ出力
+        /// </summary>
+        /// <param name="MessageId"></param>
+        private void PutLog(Sentence.Messages MessageId, string addtionalInfo, bool displayDialog = false)
+        {
+            Log.Write(MessageId, Log.ApplicationType.SupervisorInterface, addtionalInfo);
+            if (displayDialog)
+            {
+                Messages.ShowDialog(MessageId, addtionalInfo);
+            }
+        }
+        /// <summary>
+        /// ログ出力
+        /// </summary>
+        /// <param name="MessageId"></param>
+        private void PutLog(Exception ex, bool displayDialog = true)
+        {
+            Log.Write(Sentence.Messages.Exception, Log.ApplicationType.SupervisorInterface, ex.Message);
+            if (displayDialog)
+            {
+                Messages.ShowDialog(Sentence.Messages.Exception, ex.Message);
+            }
+        }
+        #endregion
 
     }
 }
