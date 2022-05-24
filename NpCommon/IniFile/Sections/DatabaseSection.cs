@@ -45,14 +45,14 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         /// <summary>
         /// 
         /// </summary>
-        public string SuperVision { get { return _superVision; } }
+        public string SuperVisor { get { return _superVisisor; } }
         #endregion
 
         #region メンバ変数
         private string _npOrder;
         private string _npMain;
         private string _iosSup;
-        private string _superVision;
+        private string _superVisisor;
         #endregion
 
         #region コンストラクタ
@@ -66,7 +66,7 @@ namespace NipponPaint.NpCommon.IniFile.Sections
             _npOrder = reader.GetItem(MySectionName, "NP_ORDERConnStr", string.Format(DEFAULT_STRING, "ORDER_RF1"));
             _npMain = reader.GetItem(MySectionName, "NP_MAINConnStr", string.Format(DEFAULT_STRING, "NP_MAIN"));
             _iosSup = reader.GetItem(MySectionName, "IOSSUPConnStr", string.Format(DEFAULT_STRING, "IOSSUP_RF1"));
-            _superVision = reader.GetItem(MySectionName, "SPCConnStr", string.Format(DEFAULT_STRING, "SUPERVISION_PC"));
+            _superVisisor = reader.GetItem(MySectionName, "SPCConnStr", string.Format(DEFAULT_STRING, "SUPERVISOR_PC"));
         }
         #endregion
 
