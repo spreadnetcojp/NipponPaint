@@ -53,6 +53,7 @@ namespace SupervisorPcInterface
         /// <param name="e"></param>
         private void FrmMain_Shown(object sender, EventArgs e)
         {
+            LblStatus.Refresh();
             // タイマー開始前に実行する
             Execute();
             // 周期実行ON
@@ -85,15 +86,17 @@ namespace SupervisorPcInterface
                     var barcodeRows = dbs.Select(TbBarcode.GetPreview());
                     using (var dbn = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
                     {
+                        // ERPのテーブルから情報収集
+                        var dispenseDatas = dbn.Select(Cans.GetPreviewDispensedData(_settings.Facility.Plant));
                         foreach (DataRow barcodeRow in barcodeRows.Rows)
                         {
                             var barCode = barcodeRow[TbBarcode.BARCODE].ToString();
-                            PutLog(Sentence.Messages.ExecuteSupervisorInterface, barCode);
                             // バーコードをキーにERPのテーブルから情報収集
-                            var dispenseRows = dbn.Select(Cans.GetPreviewDispensedByBarcode(barCode, _settings.Facility.Plant));
+                            var dispenseRows = dispenseDatas.Select($"Barcode = '{barCode}'");
+                            //PutLog(Sentence.Messages.ExecuteSupervisorInterface, new string[] { barCode, dispenseRows.Count().ToString() });
                             var cnt = 0;
                             // SQLを作成してTB_BARCODE、TB_JOB、TB_FORMULAを更新
-                            foreach (DataRow dispenseRow in dispenseRows.Rows)
+                            foreach (DataRow dispenseRow in dispenseRows)
                             {
                                 var updateDateTime = DateTime.Now;
                                 if (cnt == 0)
@@ -111,6 +114,7 @@ namespace SupervisorPcInterface
                     }
                     dbs.Commit();
                     PutLog(Sentence.Messages.EndSupervisorInterface);
+                    LblStatus.Text = $"前回処理時刻：{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}";
                 }
                 catch (Exception ex)
                 {

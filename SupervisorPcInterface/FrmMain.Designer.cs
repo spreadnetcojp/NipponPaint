@@ -31,17 +31,29 @@ namespace SupervisorPcInterface
         {
             this.components = new System.ComponentModel.Container();
             this.TickTimer = new System.Windows.Forms.Timer(this.components);
+            this.LblStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TickTimer
             // 
             this.TickTimer.Tick += new System.EventHandler(this.TickTimer_Tick);
             // 
+            // LblStatus
+            // 
+            this.LblStatus.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LblStatus.Location = new System.Drawing.Point(2, 19);
+            this.LblStatus.Name = "LblStatus";
+            this.LblStatus.Size = new System.Drawing.Size(281, 23);
+            this.LblStatus.TabIndex = 0;
+            this.LblStatus.Text = "起動時初回処理中";
+            this.LblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(184, 61);
+            this.ClientSize = new System.Drawing.Size(284, 61);
+            this.Controls.Add(this.LblStatus);
             this.MaximizeBox = false;
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -54,6 +66,7 @@ namespace SupervisorPcInterface
         #endregion
 
         private System.Windows.Forms.Timer TickTimer;
+        private System.Windows.Forms.Label LblStatus;
     }
 }
 

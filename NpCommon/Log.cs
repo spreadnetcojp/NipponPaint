@@ -64,6 +64,11 @@ namespace NipponPaint.NpCommon
             /// </summary>
             [Display(Description = "デバッグ")]
             Debug,
+            /// <summary>
+            /// ログ対象外
+            /// </summary>
+            [Display(Description = "ログ対象外")]
+            NotApplicableLog,
         }
         /// <summary>
         /// アプリケーション種別
@@ -112,6 +117,10 @@ namespace NipponPaint.NpCommon
             else
             {
                 messageText = string.Format(messageInfo.Description, addtionalInfo);
+            }
+            if (messageInfo.Order == (int)Log.LogType.NotApplicableLog)
+            {
+                return messageText;
             }
 #if DEBUG
 #else
