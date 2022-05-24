@@ -103,6 +103,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.Controls.Add(this.PnlBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmOrderClose";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "注文を閉じる";

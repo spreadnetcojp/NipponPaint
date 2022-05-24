@@ -1613,6 +1613,12 @@ namespace NipponPaint.OrderManager
             this.GvDetail.SelectionChanged += new EventHandler(this.GvDetail_SelectionChanged);
             this.GvFormulation.SelectionChanged += new EventHandler(this.GvFormulation_SelectionChanged);
             this.GvOrderNumber.SelectionChanged += new EventHandler(this.GvOrderNumber_SelectionChanged);
+            // ラベルの固定文言を設定
+            lblStatus1.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.WaitingForToning);
+            lblStatus2.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation);
+            lblStatus3.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.Ready);
+            lblStatus4.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.TestCanInProgress);
+            lblStatus5.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress);
             // DataGridViewの初期設定
             var ViewSettingsOrderDetails = GridViewSettingCopy(ViewSettingsOrders);
             var ViewSettingsFormulations = GridViewSettingCopy(ViewSettingsOrders);
