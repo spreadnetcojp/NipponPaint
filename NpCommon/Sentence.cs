@@ -63,13 +63,13 @@ namespace NipponPaint.NpCommon
             /// <summary>
             /// データベースの読み込みを実行しました
             /// </summary>
-            [Display(Order = (int)Log.LogType.Info, Description = "データベースの読み込みを実行しました（SQL：{0}）")]
+            [Display(Order = (int)Log.LogType.Debug, Description = "データベースの読み込みを実行しました（SQL：{0}）")]
             SelectedDatabase,
 
             /// <summary>
             /// データベースへの登録を実行しました
             /// </summary>
-            [Display(Order = (int)Log.LogType.Info, Description = "データベースへの登録を実行しました（SQL：{0}）")]
+            [Display(Order = (int)Log.LogType.Debug, Description = "データベースへの登録を実行しました（SQL：{0}）")]
             RegistedDatabase,
 
             /// <summary>
@@ -116,6 +116,26 @@ namespace NipponPaint.NpCommon
 
             [Display(Order = (int)Log.LogType.Error, Description = "原料選択でｴﾗｰ")]
             SelectMaterialError,
+
+            #region Supervisor I/F
+
+            /// <summary>
+            /// Supervisor I/F 処理開始
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Info, Description = "Supervisor I/F 処理を開始します")]
+            StartSupervisorInterface,
+            /// <summary>
+            /// Supervisor I/F 処理実行
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Info, Description = "Supervisor I/F 処理を実行します（バーコード：{0}）")]
+            ExecuteSupervisorInterface,
+            /// <summary>
+            /// Supervisor I/F 処理終了
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Info, Description = "Supervisor I/F 処理を終了します")]
+            EndSupervisorInterface,
+            #endregion
+
         }
     }
 }
