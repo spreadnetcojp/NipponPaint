@@ -59,10 +59,10 @@ namespace SupervisorPcInterface
         private void Execute()
         {
             var settings = new Settings();
-            var cans = new DataTable();
+            var dispenses = new DataTable();
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
             {
-                cans = db.Select(Cans.GetPreviewDispensed(settings.Facility.Plant));
+                dispenses = db.Select(Cans.GetPreviewDispensed(settings.Facility.Plant));
             }
             using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISION, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
             {

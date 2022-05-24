@@ -61,10 +61,10 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public static string GetPreviewDispensed(string plant)
         {
             var sql = new StringBuilder();
-            sql.Append($"SELECT C.Cans_id, C.Order_id, C.White_Code AS Code, 0 As Row_Index, C.White_Weight AS Weight, C.White_Dispensed AS Dispensed FROM {SelectCans(plant)} WHERE C.White_Code  <> '' ");
+            sql.Append($"SELECT C.Cans_id, C.Barcode, C.Order_id, C.White_Code AS Code, 0 As Row_Index, C.White_Weight AS Weight, C.White_Dispensed AS Dispensed FROM {SelectCans(plant)} WHERE C.White_Code  <> '' ");
             for (var cnt = 1; cnt < 20; cnt++)
             {
-                sql.Append($"UNION ALL SELECT C.Cans_id, C.Order_id, C.Colorant_{cnt} AS Code, {cnt} As Row_Index, C.Weight_{cnt} AS Weight, C.Dispensed_{cnt} AS Dispensed FROM {SelectCans(plant)} WHERE C.Colorant_{cnt} <> '' ");
+                sql.Append($"UNION ALL SELECT C.Cans_id, C.Barcode, C.Order_id, C.Colorant_{cnt} AS Code, {cnt} As Row_Index, C.Weight_{cnt} AS Weight, C.Dispensed_{cnt} AS Dispensed FROM {SelectCans(plant)} WHERE C.Colorant_{cnt} <> '' ");
             }
             return sql.ToString();
         }
