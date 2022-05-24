@@ -23,9 +23,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NipponPaint.NpCommon;
-using NipponPaint.NpCommon.Settings;
+using NipponPaint.NpCommon.IniFile;
 using NipponPaint.NpCommon.Database;
 using NipponPaint.NpCommon.Database.Sql.SupervisorPc;
+using NipponPaint.NpCommon.Database.Sql.NpMain;
 using Sql = NipponPaint.NpCommon.Database.Sql;
 #endregion
 
@@ -57,6 +58,12 @@ namespace SupervisorPcInterface
 
         private void Execute()
         {
+            var settings = new Settings();
+            var cans = new DataTable();
+            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
+            {
+                cans = db.Select(Cans.GetPreviewDispensed(settings.Facility.Plant));
+            }
             using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISION, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
             {
                 var barcodes = db.Select(TbBarcode.GetPreviewAll());

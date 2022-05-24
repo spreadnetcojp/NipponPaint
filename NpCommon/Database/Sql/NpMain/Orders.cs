@@ -132,8 +132,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
                 sql.Append(item.SqlSentence);
                 cnt++;
             }
-            sql.Append($"FROM Orders AS O ");
-            sql.Append($"INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = '{plant}')  AS P ON P.SS_Code = O.HG_SS_Code ");
+            sql.Append($"FROM {SelectOrders(plant)} ");
             sql.Append($"WHERE Status IN (0, 1, 2, 3, 4) ");
             sql.Append($"ORDER BY ");
             sql.Append($"  Status ");
@@ -212,6 +211,38 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($"FROM Orders AS O ");
             sql.Append($"INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = '{plant}')  AS P ON P.SS_Code = O.HG_SS_Code ");
             sql.Append($"WHERE HG_Data_Number = @dataNumber");
+            return sql.ToString();
+        }
+        #endregion
+
+        #region 調合状況の取得
+        /// <summary>
+        /// 調合状況の取得
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPreviewDispensed(string plant)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT O.Order_id, O.White_Code AS Code, 0 As Row_Index, O.White_Weight AS Weight FROM {SelectOrders(plant)} WHERE O.White_Code  <> '' ");
+            for (var cnt = 1; cnt < 20; cnt++)
+            {
+                sql.Append($"UNION ALL SELECT O.Order_id, O.Colorant_{cnt} AS Code, {cnt} As Row_Index, O.Weight_{cnt} AS Weight FROM {SelectOrders(plant)} WHERE O.Colorant_{cnt} <> ''");
+            }
+            return sql.ToString();
+        }
+        #endregion
+
+        #region Ordersテーブルをplantで抽出
+        /// <summary>
+        /// Ordersテーブルをplantで抽出
+        /// 単体では使用せず、FROM句のあとに呼び出す
+        /// </summary>
+        /// <param name="plant"></param>
+        /// <returns></returns>
+        private static string SelectOrders(string plant)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"Orders AS O INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = '{plant}')  AS P ON P.SS_Code = O.HG_SS_Code ");
             return sql.ToString();
         }
         #endregion
