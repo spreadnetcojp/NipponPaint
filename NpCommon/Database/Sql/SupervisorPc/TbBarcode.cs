@@ -39,14 +39,14 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
 
         public static List<MergeItemDefine> Fields = new List<MergeItemDefine>()
         {
-            new MergeItemDefine(){ Field = BARCODE, IsKey = true, IsInsert = true, IsUpdate = false },
-            new MergeItemDefine(){ Field = PROCESS_CODE, IsKey = true, IsInsert = true, IsUpdate = false },
-            new MergeItemDefine(){ Field = BRC_TIME_INSERTED, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = BRC_TIME_PROCESSED, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = BRC_STATUS, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = BRC_ERR_1, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = BRC_ERR_2, IsKey = false, IsInsert = true, IsUpdate = true },
-            new MergeItemDefine(){ Field = BRC_ERR_3, IsKey = false, IsInsert = true, IsUpdate = true },
+            new MergeItemDefine(){ IsKey = true, IsInsert = true, IsUpdate = false, Field = BARCODE },
+            new MergeItemDefine(){ IsKey = true, IsInsert = true, IsUpdate = false, Field = PROCESS_CODE },
+            new MergeItemDefine(){ IsKey = false, IsInsert = false, IsUpdate = false, Field = BRC_TIME_INSERTED },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = BRC_TIME_PROCESSED },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = BRC_STATUS },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = BRC_ERR_1 },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = BRC_ERR_2 },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = BRC_ERR_3 },
         };
         #endregion
 
@@ -153,6 +153,26 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
         #endregion
 
         #region 更新系
+
+        #region ERP側の更新
+        /// <summary>
+        /// ERP側の更新
+        /// </summary>
+        /// <returns></returns>
+        public static string Update()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"UPDATE {MAIN_TABLE} SET ");
+            sql.Append($"  {BRC_TIME_PROCESSED} = @{BRC_TIME_PROCESSED} ");
+            sql.Append($" ,{BRC_STATUS}         = @{BRC_STATUS} ");
+            sql.Append($" ,{BRC_ERR_1}          = @{BRC_ERR_1} ");
+            sql.Append($" ,{BRC_ERR_2}          = @{BRC_ERR_2} ");
+            sql.Append($" ,{BRC_ERR_3}          = @{BRC_ERR_3} ");
+            sql.Append($"WHERE {BARCODE}      = @{BARCODE} ");
+            sql.Append($"  AND {PROCESS_CODE} = @{PROCESS_CODE} ");
+            return sql.ToString();
+        }
+        #endregion
 
         #region マージ
         /// <summary>
