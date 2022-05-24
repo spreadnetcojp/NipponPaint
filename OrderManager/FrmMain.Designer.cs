@@ -30,7 +30,7 @@ namespace NipponPaint.OrderManager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.tabOrder = new System.Windows.Forms.TabPage();
             this.GvOrder = new System.Windows.Forms.DataGridView();
@@ -158,10 +158,10 @@ namespace NipponPaint.OrderManager
             this.GvOutWeight = new System.Windows.Forms.DataGridView();
             this.GvWeightDetail = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.labelTextBox83 = new NipponPaint.NpCommon.FormControls.LabelTextBox();
-            this.labelTextBox82 = new NipponPaint.NpCommon.FormControls.LabelTextBox();
-            this.labelTextBox81 = new NipponPaint.NpCommon.FormControls.LabelTextBox();
-            this.labelTextBox80 = new NipponPaint.NpCommon.FormControls.LabelTextBox();
+            this.CansFormulaRelease = new NipponPaint.NpCommon.FormControls.LabelTextBox();
+            this.OutWeight = new NipponPaint.NpCommon.FormControls.LabelTextBox();
+            this.TargetWeight = new NipponPaint.NpCommon.FormControls.LabelTextBox();
+            this.Barcode = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.labelTextBox12 = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.labelTextBox11 = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.labelTextBox10 = new NipponPaint.NpCommon.FormControls.LabelTextBox();
@@ -295,14 +295,14 @@ namespace NipponPaint.OrderManager
             // 
             this.GvOrder.AllowUserToAddRows = false;
             this.GvOrder.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.GvOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GvOrder.ContextMenuStrip = this.contextMenuStrip;
             this.GvOrder.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -675,7 +675,9 @@ namespace NipponPaint.OrderManager
             // 
             // HgCustomerCode
             // 
+            this.HgCustomerCode.CodeBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.HgCustomerCode.CodeControlName = "txtCode";
+            this.HgCustomerCode.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.HgCustomerCode.CodeReadOnly = false;
             this.HgCustomerCode.CodeText = "";
             this.HgCustomerCode.CodeTextSize = new System.Drawing.Size(80, 30);
@@ -700,7 +702,9 @@ namespace NipponPaint.OrderManager
             // 
             // HgSupplementalAddition
             // 
+            this.HgSupplementalAddition.CodeBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.HgSupplementalAddition.CodeControlName = "txtCode";
+            this.HgSupplementalAddition.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.HgSupplementalAddition.CodeReadOnly = false;
             this.HgSupplementalAddition.CodeText = "";
             this.HgSupplementalAddition.CodeTextSize = new System.Drawing.Size(80, 30);
@@ -781,7 +785,9 @@ namespace NipponPaint.OrderManager
             // 
             // HgGlossAddition
             // 
+            this.HgGlossAddition.CodeBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.HgGlossAddition.CodeControlName = "txtCode";
+            this.HgGlossAddition.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.HgGlossAddition.CodeReadOnly = false;
             this.HgGlossAddition.CodeText = "";
             this.HgGlossAddition.CodeTextSize = new System.Drawing.Size(80, 30);
@@ -1431,10 +1437,10 @@ namespace NipponPaint.OrderManager
             this.tabDetail2.Controls.Add(this.HgComments);
             this.tabDetail2.Controls.Add(this.FormulaRelease);
             this.tabDetail2.Controls.Add(this.PrefillAmount);
-            this.tabDetail2.Location = new System.Drawing.Point(4, 32);
+            this.tabDetail2.Location = new System.Drawing.Point(4, 22);
             this.tabDetail2.Name = "tabDetail2";
             this.tabDetail2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDetail2.Size = new System.Drawing.Size(1647, 489);
+            this.tabDetail2.Size = new System.Drawing.Size(1647, 499);
             this.tabDetail2.TabIndex = 1;
             this.tabDetail2.Text = "詳細２";
             // 
@@ -1888,7 +1894,9 @@ namespace NipponPaint.OrderManager
             // 
             // CapType
             // 
+            this.CapType.CodeBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.CapType.CodeControlName = "txtCode";
+            this.CapType.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.CapType.CodeReadOnly = false;
             this.CapType.CodeText = "";
             this.CapType.CodeTextSize = new System.Drawing.Size(80, 30);
@@ -1913,7 +1921,9 @@ namespace NipponPaint.OrderManager
             // 
             // CanType
             // 
+            this.CanType.CodeBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.CanType.CodeControlName = "txtCode";
+            this.CanType.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.CanType.CodeReadOnly = false;
             this.CanType.CodeText = "";
             this.CanType.CodeTextSize = new System.Drawing.Size(80, 30);
@@ -3150,11 +3160,11 @@ namespace NipponPaint.OrderManager
             this.GvOutWeight.AllowUserToDeleteRows = false;
             this.GvOutWeight.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GvOutWeight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GvOutWeight.Location = new System.Drawing.Point(632, 0);
+            this.GvOutWeight.Location = new System.Drawing.Point(780, 0);
             this.GvOutWeight.Name = "GvOutWeight";
             this.GvOutWeight.ReadOnly = true;
             this.GvOutWeight.RowTemplate.Height = 21;
-            this.GvOutWeight.Size = new System.Drawing.Size(1029, 383);
+            this.GvOutWeight.Size = new System.Drawing.Size(881, 383);
             this.GvOutWeight.TabIndex = 1;
             // 
             // GvWeightDetail
@@ -3167,16 +3177,16 @@ namespace NipponPaint.OrderManager
             this.GvWeightDetail.Name = "GvWeightDetail";
             this.GvWeightDetail.ReadOnly = true;
             this.GvWeightDetail.RowTemplate.Height = 21;
-            this.GvWeightDetail.Size = new System.Drawing.Size(632, 383);
+            this.GvWeightDetail.Size = new System.Drawing.Size(780, 383);
             this.GvWeightDetail.TabIndex = 0;
             // 
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.Black;
-            this.panel8.Controls.Add(this.labelTextBox83);
-            this.panel8.Controls.Add(this.labelTextBox82);
-            this.panel8.Controls.Add(this.labelTextBox81);
-            this.panel8.Controls.Add(this.labelTextBox80);
+            this.panel8.Controls.Add(this.CansFormulaRelease);
+            this.panel8.Controls.Add(this.OutWeight);
+            this.panel8.Controls.Add(this.TargetWeight);
+            this.panel8.Controls.Add(this.Barcode);
             this.panel8.Controls.Add(this.labelTextBox12);
             this.panel8.Controls.Add(this.labelTextBox11);
             this.panel8.Controls.Add(this.labelTextBox10);
@@ -3187,117 +3197,117 @@ namespace NipponPaint.OrderManager
             this.panel8.Size = new System.Drawing.Size(1661, 172);
             this.panel8.TabIndex = 1;
             // 
-            // labelTextBox83
+            // CansFormulaRelease
             // 
-            this.labelTextBox83.DatabaseColumnName = null;
-            this.labelTextBox83.DataControlName = "txtData";
-            this.labelTextBox83.DataEnabled = true;
-            this.labelTextBox83.DataReadOnly = false;
-            this.labelTextBox83.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox83.DataTextSize = new System.Drawing.Size(139, 30);
-            this.labelTextBox83.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelTextBox83.Id = "";
-            this.labelTextBox83.Label = "";
-            this.labelTextBox83.Location = new System.Drawing.Point(646, 129);
-            this.labelTextBox83.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.labelTextBox83.MaxByteLength = 65535;
-            this.labelTextBox83.MaxLength = 0;
-            this.labelTextBox83.Name = "labelTextBox83";
-            this.labelTextBox83.Size = new System.Drawing.Size(293, 30);
-            this.labelTextBox83.TabIndex = 23;
-            this.labelTextBox83.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.labelTextBox83.TextBackColor = System.Drawing.SystemColors.Window;
-            this.labelTextBox83.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelTextBox83.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelTextBox83.TextForeColor = System.Drawing.SystemColors.WindowText;
-            this.labelTextBox83.Title = "吐出された配合ﾘﾘｰｽ";
-            this.labelTextBox83.TitleControlName = "lblTitle";
-            this.labelTextBox83.TitleSize = new System.Drawing.Size(154, 30);
-            this.labelTextBox83.Value = "";
+            this.CansFormulaRelease.DatabaseColumnName = "Formula_Release";
+            this.CansFormulaRelease.DataControlName = "txtData";
+            this.CansFormulaRelease.DataEnabled = true;
+            this.CansFormulaRelease.DataReadOnly = false;
+            this.CansFormulaRelease.DataTextLocation = new System.Drawing.Point(154, 0);
+            this.CansFormulaRelease.DataTextSize = new System.Drawing.Size(139, 30);
+            this.CansFormulaRelease.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.CansFormulaRelease.Id = "";
+            this.CansFormulaRelease.Label = "";
+            this.CansFormulaRelease.Location = new System.Drawing.Point(789, 129);
+            this.CansFormulaRelease.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CansFormulaRelease.MaxByteLength = 65535;
+            this.CansFormulaRelease.MaxLength = 0;
+            this.CansFormulaRelease.Name = "CansFormulaRelease";
+            this.CansFormulaRelease.Size = new System.Drawing.Size(293, 30);
+            this.CansFormulaRelease.TabIndex = 23;
+            this.CansFormulaRelease.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.CansFormulaRelease.TextBackColor = System.Drawing.SystemColors.Window;
+            this.CansFormulaRelease.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.CansFormulaRelease.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.CansFormulaRelease.TextForeColor = System.Drawing.SystemColors.WindowText;
+            this.CansFormulaRelease.Title = "吐出された配合ﾘﾘｰｽ";
+            this.CansFormulaRelease.TitleControlName = "lblTitle";
+            this.CansFormulaRelease.TitleSize = new System.Drawing.Size(154, 30);
+            this.CansFormulaRelease.Value = "";
             // 
-            // labelTextBox82
+            // OutWeight
             // 
-            this.labelTextBox82.DatabaseColumnName = null;
-            this.labelTextBox82.DataControlName = "txtData";
-            this.labelTextBox82.DataEnabled = true;
-            this.labelTextBox82.DataReadOnly = false;
-            this.labelTextBox82.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox82.DataTextSize = new System.Drawing.Size(139, 30);
-            this.labelTextBox82.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelTextBox82.Id = "";
-            this.labelTextBox82.Label = "";
-            this.labelTextBox82.Location = new System.Drawing.Point(646, 88);
-            this.labelTextBox82.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.labelTextBox82.MaxByteLength = 65535;
-            this.labelTextBox82.MaxLength = 0;
-            this.labelTextBox82.Name = "labelTextBox82";
-            this.labelTextBox82.Size = new System.Drawing.Size(293, 30);
-            this.labelTextBox82.TabIndex = 22;
-            this.labelTextBox82.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.labelTextBox82.TextBackColor = System.Drawing.SystemColors.Window;
-            this.labelTextBox82.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelTextBox82.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelTextBox82.TextForeColor = System.Drawing.SystemColors.WindowText;
-            this.labelTextBox82.Title = "出力重量[g]";
-            this.labelTextBox82.TitleControlName = "lblTitle";
-            this.labelTextBox82.TitleSize = new System.Drawing.Size(154, 30);
-            this.labelTextBox82.Value = "";
+            this.OutWeight.DatabaseColumnName = "OUT_Weight";
+            this.OutWeight.DataControlName = "txtData";
+            this.OutWeight.DataEnabled = true;
+            this.OutWeight.DataReadOnly = false;
+            this.OutWeight.DataTextLocation = new System.Drawing.Point(154, 0);
+            this.OutWeight.DataTextSize = new System.Drawing.Size(139, 30);
+            this.OutWeight.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.OutWeight.Id = "";
+            this.OutWeight.Label = "";
+            this.OutWeight.Location = new System.Drawing.Point(789, 88);
+            this.OutWeight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.OutWeight.MaxByteLength = 65535;
+            this.OutWeight.MaxLength = 0;
+            this.OutWeight.Name = "OutWeight";
+            this.OutWeight.Size = new System.Drawing.Size(293, 30);
+            this.OutWeight.TabIndex = 22;
+            this.OutWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.OutWeight.TextBackColor = System.Drawing.SystemColors.Window;
+            this.OutWeight.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.OutWeight.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.OutWeight.TextForeColor = System.Drawing.SystemColors.WindowText;
+            this.OutWeight.Title = "出力重量[g]";
+            this.OutWeight.TitleControlName = "lblTitle";
+            this.OutWeight.TitleSize = new System.Drawing.Size(154, 30);
+            this.OutWeight.Value = "";
             // 
-            // labelTextBox81
+            // TargetWeight
             // 
-            this.labelTextBox81.DatabaseColumnName = null;
-            this.labelTextBox81.DataControlName = "txtData";
-            this.labelTextBox81.DataEnabled = true;
-            this.labelTextBox81.DataReadOnly = false;
-            this.labelTextBox81.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox81.DataTextSize = new System.Drawing.Size(139, 30);
-            this.labelTextBox81.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelTextBox81.Id = "";
-            this.labelTextBox81.Label = "";
-            this.labelTextBox81.Location = new System.Drawing.Point(646, 48);
-            this.labelTextBox81.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.labelTextBox81.MaxByteLength = 65535;
-            this.labelTextBox81.MaxLength = 0;
-            this.labelTextBox81.Name = "labelTextBox81";
-            this.labelTextBox81.Size = new System.Drawing.Size(293, 30);
-            this.labelTextBox81.TabIndex = 21;
-            this.labelTextBox81.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.labelTextBox81.TextBackColor = System.Drawing.SystemColors.Window;
-            this.labelTextBox81.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelTextBox81.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelTextBox81.TextForeColor = System.Drawing.SystemColors.WindowText;
-            this.labelTextBox81.Title = "目標重量[g]";
-            this.labelTextBox81.TitleControlName = "lblTitle";
-            this.labelTextBox81.TitleSize = new System.Drawing.Size(154, 30);
-            this.labelTextBox81.Value = "";
+            this.TargetWeight.DatabaseColumnName = "Target_Weight";
+            this.TargetWeight.DataControlName = "txtData";
+            this.TargetWeight.DataEnabled = true;
+            this.TargetWeight.DataReadOnly = false;
+            this.TargetWeight.DataTextLocation = new System.Drawing.Point(154, 0);
+            this.TargetWeight.DataTextSize = new System.Drawing.Size(139, 30);
+            this.TargetWeight.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TargetWeight.Id = "";
+            this.TargetWeight.Label = "";
+            this.TargetWeight.Location = new System.Drawing.Point(789, 48);
+            this.TargetWeight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TargetWeight.MaxByteLength = 65535;
+            this.TargetWeight.MaxLength = 0;
+            this.TargetWeight.Name = "TargetWeight";
+            this.TargetWeight.Size = new System.Drawing.Size(293, 30);
+            this.TargetWeight.TabIndex = 21;
+            this.TargetWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.TargetWeight.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TargetWeight.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.TargetWeight.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TargetWeight.TextForeColor = System.Drawing.SystemColors.WindowText;
+            this.TargetWeight.Title = "目標重量[g]";
+            this.TargetWeight.TitleControlName = "lblTitle";
+            this.TargetWeight.TitleSize = new System.Drawing.Size(154, 30);
+            this.TargetWeight.Value = "";
             // 
-            // labelTextBox80
+            // Barcode
             // 
-            this.labelTextBox80.DatabaseColumnName = null;
-            this.labelTextBox80.DataControlName = "txtData";
-            this.labelTextBox80.DataEnabled = true;
-            this.labelTextBox80.DataReadOnly = false;
-            this.labelTextBox80.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox80.DataTextSize = new System.Drawing.Size(139, 30);
-            this.labelTextBox80.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelTextBox80.Id = "";
-            this.labelTextBox80.Label = "";
-            this.labelTextBox80.Location = new System.Drawing.Point(646, 9);
-            this.labelTextBox80.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.labelTextBox80.MaxByteLength = 65535;
-            this.labelTextBox80.MaxLength = 0;
-            this.labelTextBox80.Name = "labelTextBox80";
-            this.labelTextBox80.Size = new System.Drawing.Size(293, 30);
-            this.labelTextBox80.TabIndex = 20;
-            this.labelTextBox80.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.labelTextBox80.TextBackColor = System.Drawing.SystemColors.Window;
-            this.labelTextBox80.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelTextBox80.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelTextBox80.TextForeColor = System.Drawing.SystemColors.WindowText;
-            this.labelTextBox80.Title = "バーコード";
-            this.labelTextBox80.TitleControlName = "lblTitle";
-            this.labelTextBox80.TitleSize = new System.Drawing.Size(154, 30);
-            this.labelTextBox80.Value = "";
+            this.Barcode.DatabaseColumnName = "Barcode";
+            this.Barcode.DataControlName = "txtData";
+            this.Barcode.DataEnabled = true;
+            this.Barcode.DataReadOnly = false;
+            this.Barcode.DataTextLocation = new System.Drawing.Point(154, 0);
+            this.Barcode.DataTextSize = new System.Drawing.Size(246, 30);
+            this.Barcode.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Barcode.Id = "";
+            this.Barcode.Label = "";
+            this.Barcode.Location = new System.Drawing.Point(789, 9);
+            this.Barcode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Barcode.MaxByteLength = 65535;
+            this.Barcode.MaxLength = 0;
+            this.Barcode.Name = "Barcode";
+            this.Barcode.Size = new System.Drawing.Size(400, 30);
+            this.Barcode.TabIndex = 20;
+            this.Barcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.Barcode.TextBackColor = System.Drawing.SystemColors.Window;
+            this.Barcode.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Barcode.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Barcode.TextForeColor = System.Drawing.SystemColors.WindowText;
+            this.Barcode.Title = "バーコード";
+            this.Barcode.TitleControlName = "lblTitle";
+            this.Barcode.TitleSize = new System.Drawing.Size(154, 30);
+            this.Barcode.Value = "";
             // 
             // labelTextBox12
             // 
@@ -3427,11 +3437,11 @@ namespace NipponPaint.OrderManager
             this.GvBarcode.AllowUserToDeleteRows = false;
             this.GvBarcode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GvBarcode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GvBarcode.Location = new System.Drawing.Point(632, 0);
+            this.GvBarcode.Location = new System.Drawing.Point(780, 0);
             this.GvBarcode.Name = "GvBarcode";
             this.GvBarcode.ReadOnly = true;
             this.GvBarcode.RowTemplate.Height = 21;
-            this.GvBarcode.Size = new System.Drawing.Size(1029, 375);
+            this.GvBarcode.Size = new System.Drawing.Size(881, 375);
             this.GvBarcode.TabIndex = 1;
             // 
             // GvOrderNumber
@@ -3444,7 +3454,7 @@ namespace NipponPaint.OrderManager
             this.GvOrderNumber.Name = "GvOrderNumber";
             this.GvOrderNumber.ReadOnly = true;
             this.GvOrderNumber.RowTemplate.Height = 21;
-            this.GvOrderNumber.Size = new System.Drawing.Size(632, 375);
+            this.GvOrderNumber.Size = new System.Drawing.Size(780, 375);
             this.GvOrderNumber.TabIndex = 0;
             // 
             // splitCanMain
@@ -4286,10 +4296,10 @@ namespace NipponPaint.OrderManager
         private NipponPaint.NpCommon.FormControls.LabelTextBox labelTextBox75;
         private NipponPaint.NpCommon.FormControls.LabelTextBox labelTextBox74;
         private NipponPaint.NpCommon.FormControls.LabelTextBox labelTextBox73;
-        private NipponPaint.NpCommon.FormControls.LabelTextBox labelTextBox83;
-        private NipponPaint.NpCommon.FormControls.LabelTextBox labelTextBox82;
-        private NipponPaint.NpCommon.FormControls.LabelTextBox labelTextBox81;
-        private NipponPaint.NpCommon.FormControls.LabelTextBox labelTextBox80;
+        private NipponPaint.NpCommon.FormControls.LabelTextBox CansFormulaRelease;
+        private NipponPaint.NpCommon.FormControls.LabelTextBox OutWeight;
+        private NipponPaint.NpCommon.FormControls.LabelTextBox TargetWeight;
+        private NipponPaint.NpCommon.FormControls.LabelTextBox Barcode;
         private NipponPaint.NpCommon.FormControls.LabelTextBox labelTextBox12;
         private NipponPaint.NpCommon.FormControls.LabelTextBox labelTextBox11;
         private NipponPaint.NpCommon.FormControls.LabelTextBox labelTextBox10;

@@ -25,6 +25,8 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
 {
     public static class Cans
     {
+        #region 参照系
+
         #region 注文番号による一覧データ取得
         /// <summary>
         /// 注文番号による一覧データ取得
@@ -117,5 +119,19 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
+        #region バーコードによるレコード取得
+        public static string GetDetailByBarcode()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            sql.Append($" * ");
+            sql.Append($"FROM Cans AS C ");
+            sql.Append($"LEFT JOIN Orders AS O ON O.Order_id = C.Order_id ");
+            sql.Append($"WHERE Barcode = @barcode");
+            return sql.ToString();
+        }
+        #endregion
+
+        #endregion
     }
 }
