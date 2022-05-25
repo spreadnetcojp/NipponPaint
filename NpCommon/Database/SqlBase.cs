@@ -322,6 +322,10 @@ namespace NipponPaint.NpCommon.Database
         public void ToLabelTextBox(Control.ControlCollection formControls, DataRowCollection rows)
         {
             // データベースから取得した値を、画面上のLabelTextBoxコントロールにセットする
+            if (rows == null || rows.Count < 1)
+            {
+                return;
+            }
             var controls = new List<Control>();
             Funcs.FindControls(formControls, controls);
             foreach (var control in controls)
@@ -423,10 +427,14 @@ namespace NipponPaint.NpCommon.Database
         #endregion
 
         #region データベースから取得した値を、画面缶タブ上バーコード一覧のLabelTextBoxコントロールにセットする
-        public void ToLabelTextBoxBarcode(List<Control> controls , DataRowCollection rows)
+        public void ToLabelTextBoxBarcode(List<Control> controls, DataRowCollection rows)
         {
             // データベースから取得した値を、画面上のLabelTextBoxコントロールにセットする
-            foreach(Control control in controls)
+            if (rows == null || rows.Count < 1)
+            {
+                return;
+            }
+            foreach (Control control in controls)
             {
                 switch (control)
                 {

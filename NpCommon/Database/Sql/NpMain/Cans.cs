@@ -44,7 +44,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
                 {
                     sql.Append(",");
                 }
-                sql.Append(item.SqlSentence);
+                sql.Append($"{item.SqlSentence}");
                 cnt++;
             }
             sql.Append($"FROM {SelectCans(plant)} ");
@@ -63,41 +63,72 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public static string GetPreviewDispensed(string plant)
         {
             var sql = new StringBuilder();
-            sql.Append($"SELECT C.Cans_id, C.Barcode, C.Order_id, C.White_Code AS Code, 0 As Row_Index, C.White_Weight AS Weight, C.White_Dispensed AS Dispensed FROM {SelectCans(plant)} WHERE C.White_Code  <> '' ");
+            sql.Append($"SELECT C.Cans_id, C.Barcode, C.Order_id, C.White_Code AS Code, 0 As Row_Index, C.White_Weight AS Weight, C.White_Dispensed AS Dispensed FROM {SelectCans(plant)}  ");
             for (var cnt = 1; cnt < 20; cnt++)
             {
-                sql.Append($"UNION ALL SELECT C.Cans_id, C.Barcode, C.Order_id, C.Colorant_{cnt} AS Code, {cnt} As Row_Index, C.Weight_{cnt} AS Weight, C.Dispensed_{cnt} AS Dispensed FROM {SelectCans(plant)} WHERE C.Colorant_{cnt} <> '' ");
+                sql.Append($"UNION ALL SELECT C.Cans_id, C.Barcode, C.Order_id, C.Colorant_{cnt} AS Code, {cnt} As Row_Index, C.Weight_{cnt} AS Weight, C.Dispensed_{cnt} AS Dispensed FROM {SelectCans(plant)} ");
             }
             return sql.ToString();
         }
         #endregion
 
+        //#region バーコードで調合状況を取得
+        ///// <summary>
+        ///// バーコードで調合状況を取得
+        ///// </summary>
+        ///// <returns></returns>
+        //public static string GetPreviewDispensedData(string plant)
+        //{
+        //    var sql = new StringBuilder();
+        //    sql.Append($"SELECT ");
+        //    sql.Append($"  TB0.Barcode ");
+        //    sql.Append($" ,TB0.Code ");
+        //    sql.Append($" ,TB0.Weight ");
+        //    sql.Append($" ,TB0.Dispensed ");
+        //    sql.Append($" ,TB1.Errors_1 ");
+        //    sql.Append($" ,TB1.Errors_2 ");
+        //    sql.Append($" ,TB1.Errors_3 ");
+        //    sql.Append($" ,TB2.Mixing_Time ");
+        //    sql.Append($" ,TB2.Mixing_Speed ");
+        //    sql.Append($" ,TB2.Cap_Type ");
+        //    sql.Append($" ,TB1.Can_Number ");
+        //    sql.Append($"FROM ({GetPreviewDispensed(plant)}) AS TB0 ");
+        //    sql.Append($"INNER JOIN Cans   AS TB1 ON TB1.Cans_id  = TB0.Cans_id ");
+        //    sql.Append($"INNER JOIN Orders AS TB2 ON TB2.Order_id = TB0.Order_id ");
+        //    sql.Append($"WHERE TB0.Barcode = @barcode");
+        //    sql.Append($"ORDER BY ");
+        //    sql.Append($"  TB0.Order_id ");
+        //    sql.Append($" ,TB0.Barcode ");
+        //    return sql.ToString();
+        //}
+        //#endregion
         #region バーコードで調合状況を取得
         /// <summary>
         /// バーコードで調合状況を取得
         /// </summary>
         /// <returns></returns>
-        public static string GetPreviewDispensedData(string plant)
+        public static string GetPreviewDispensedData(List<GridViewSetting> viewSettings, string plant)
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
-            sql.Append($"  TB0.Barcode ");
-            sql.Append($" ,TB0.Code ");
-            sql.Append($" ,TB0.Weight ");
-            sql.Append($" ,TB0.Dispensed ");
-            sql.Append($" ,TB1.Errors_1 ");
-            sql.Append($" ,TB1.Errors_2 ");
-            sql.Append($" ,TB1.Errors_3 ");
-            sql.Append($" ,TB2.Mixing_Time ");
-            sql.Append($" ,TB2.Mixing_Speed ");
-            sql.Append($" ,TB2.Cap_Type ");
-            sql.Append($" ,TB1.Can_Number ");
+            int cnt = 0;
+            foreach (var item in viewSettings)
+            {
+                if (cnt > 0)
+                {
+                    sql.Append(",");
+                }
+                sql.Append($"{item.SqlSentence}");
+                cnt++;
+            }
             sql.Append($"FROM ({GetPreviewDispensed(plant)}) AS TB0 ");
-            sql.Append($"INNER JOIN Cans   AS TB1 ON TB1.Cans_id  = TB0.Cans_id ");
-            sql.Append($"INNER JOIN Orders AS TB2 ON TB2.Order_id = TB0.Order_id ");
+            //sql.Append($"INNER JOIN Cans   AS TB1 ON TB1.Cans_id  = TB0.Cans_id ");
+            sql.Append($"INNER JOIN ({Orders.GetPreviewDispensed(plant)}) AS TB2 ON TB2.Order_id = TB0.Order_id AND TB2.Code = TB0.Code AND TB0.Row_Index = TB2.Row_Index ");
+            sql.Append($"WHERE TB0.Barcode = @barcode ");
             sql.Append($"ORDER BY ");
             sql.Append($"  TB0.Order_id ");
             sql.Append($" ,TB0.Barcode ");
+            sql.Append($" ,TB0.Row_Index ");
             return sql.ToString();
         }
         #endregion

@@ -223,10 +223,10 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public static string GetPreviewDispensed(string plant)
         {
             var sql = new StringBuilder();
-            sql.Append($"SELECT O.Order_id, O.White_Code AS Code, 0 As Row_Index, O.White_Weight AS Weight FROM {SelectOrders(plant)} WHERE O.White_Code  <> '' ");
+            sql.Append($"SELECT O.Order_id, O.White_Code AS Code, 0 As Row_Index, O.White_Weight AS Weight FROM {SelectOrders(plant)} ");
             for (var cnt = 1; cnt < 20; cnt++)
             {
-                sql.Append($"UNION ALL SELECT O.Order_id, O.Colorant_{cnt} AS Code, {cnt} As Row_Index, O.Weight_{cnt} AS Weight FROM {SelectOrders(plant)} WHERE O.Colorant_{cnt} <> ''");
+                sql.Append($"UNION ALL SELECT O.Order_id, O.Colorant_{cnt} AS Code, {cnt} As Row_Index, O.Weight_{cnt} AS Weight FROM {SelectOrders(plant)} ");
             }
             return sql.ToString();
         }
