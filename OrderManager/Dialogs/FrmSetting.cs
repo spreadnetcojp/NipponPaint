@@ -475,6 +475,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 {
                     //入力したフォームの内容をデータベースに新規登録する
                     db.Insert(this.Controls, "Formal");
+                    db.Commit();
                 }
                 catch (Exception ex)
                 {
@@ -527,6 +528,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     {
                         //指定した1行のデータをデータベースから物理削除する
                         db.Delete(TxtCCMPaintName.Value, "Formal", "CCM_Paint_Name");
+                        db.Commit();
                     }
                     catch (Exception ex)
                     {

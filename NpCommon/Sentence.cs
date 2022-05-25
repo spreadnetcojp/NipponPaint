@@ -63,13 +63,13 @@ namespace NipponPaint.NpCommon
             /// <summary>
             /// データベースの読み込みを実行しました
             /// </summary>
-            [Display(Order = (int)Log.LogType.Debug, Description = "データベースの読み込みを実行しました（SQL：{0}）")]
+            [Display(Order = (int)Log.LogType.NotApplicableLog, Description = "データベースの読み込みを実行しました（SQL：{0}）")]
             SelectedDatabase,
 
             /// <summary>
             /// データベースへの登録を実行しました
             /// </summary>
-            [Display(Order = (int)Log.LogType.Debug, Description = "データベースへの登録を実行しました（SQL：{0}）")]
+            [Display(Order = (int)Log.LogType.NotApplicableLog, Description = "データベースへの登録を実行しました（SQL：{0}）")]
             RegistedDatabase,
 
             /// <summary>
@@ -127,7 +127,7 @@ namespace NipponPaint.NpCommon
             /// <summary>
             /// Supervisor I/F 処理実行
             /// </summary>
-            [Display(Order = (int)Log.LogType.Info, Description = "Supervisor I/F 処理を実行します（バーコード：{0}）")]
+            [Display(Order = (int)Log.LogType.Info, Description = "Supervisor I/F 処理を実行します（バーコード：{0}、件数：{1}）")]
             ExecuteSupervisorInterface,
             /// <summary>
             /// Supervisor I/F 処理終了
