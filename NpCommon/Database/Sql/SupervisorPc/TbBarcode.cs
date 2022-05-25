@@ -93,7 +93,8 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
             sql.Append($"FROM {MAIN_TABLE} AS B ");
             sql.Append($"LEFT JOIN {TbJob.MAIN_TABLE} AS J ON J.{TbJob.JOB_BARCODE} = B.{BARCODE} AND J.{TbJob.JOB_PROCESS_CODE} = B.{PROCESS_CODE} ");
             sql.Append($") AS TB0 ");
-            sql.Append($"WHERE JOB_STATUS<> 1 ");
+            // TB_JOBのJOB_STATUSが1(缶は良好にラインを終了)以外のレコードを取得
+            sql.Append($"WHERE JOB_STATUS <> 1 ");
             return sql.ToString();
         }
 
