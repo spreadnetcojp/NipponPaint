@@ -79,16 +79,21 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
         public static string GetPreview()
         {
             var sql = new StringBuilder();
+            sql.Append($"SELECT * FROM( ");
             sql.Append($"SELECT ");
-            sql.Append($"  {BARCODE} ");
-            sql.Append($" ,{PROCESS_CODE} ");
-            sql.Append($" ,{BRC_TIME_INSERTED} ");
-            sql.Append($" ,{BRC_TIME_PROCESSED} ");
-            sql.Append($" ,{BRC_STATUS} ");
-            sql.Append($" ,{BRC_ERR_1} ");
-            sql.Append($" ,{BRC_ERR_2} ");
-            sql.Append($" ,{BRC_ERR_3} ");
-            sql.Append($"FROM {MAIN_TABLE} ");
+            sql.Append($"  B.{BARCODE} ");
+            sql.Append($" ,B.{PROCESS_CODE} ");
+            sql.Append($" ,B.{BRC_TIME_INSERTED} ");
+            sql.Append($" ,B.{BRC_TIME_PROCESSED} ");
+            sql.Append($" ,B.{BRC_STATUS} ");
+            sql.Append($" ,B.{BRC_ERR_1} ");
+            sql.Append($" ,B.{BRC_ERR_2} ");
+            sql.Append($" ,B.{BRC_ERR_3} ");
+            sql.Append($" ,ISNULL(J.{TbJob.JOB_STATUS}, 0) AS {TbJob.JOB_STATUS} ");
+            sql.Append($"FROM {MAIN_TABLE} AS B ");
+            sql.Append($"LEFT JOIN {TbJob.MAIN_TABLE} AS J ON J.{TbJob.JOB_BARCODE} = B.{BARCODE} AND J.{TbJob.JOB_PROCESS_CODE} = B.{PROCESS_CODE} ");
+            sql.Append($") AS TB0 ");
+            sql.Append($"WHERE JOB_STATUS<> 1 ");
             return sql.ToString();
         }
 
