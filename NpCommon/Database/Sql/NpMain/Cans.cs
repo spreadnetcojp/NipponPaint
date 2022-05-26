@@ -72,42 +72,42 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
-        //#region バーコードで調合状況を取得
-        ///// <summary>
-        ///// バーコードで調合状況を取得
-        ///// </summary>
-        ///// <returns></returns>
-        //public static string GetPreviewDispensedData(string plant)
-        //{
-        //    var sql = new StringBuilder();
-        //    sql.Append($"SELECT ");
-        //    sql.Append($"  TB0.Barcode ");
-        //    sql.Append($" ,TB0.Code ");
-        //    sql.Append($" ,TB0.Weight ");
-        //    sql.Append($" ,TB0.Dispensed ");
-        //    sql.Append($" ,TB1.Errors_1 ");
-        //    sql.Append($" ,TB1.Errors_2 ");
-        //    sql.Append($" ,TB1.Errors_3 ");
-        //    sql.Append($" ,TB2.Mixing_Time ");
-        //    sql.Append($" ,TB2.Mixing_Speed ");
-        //    sql.Append($" ,TB2.Cap_Type ");
-        //    sql.Append($" ,TB1.Can_Number ");
-        //    sql.Append($"FROM ({GetPreviewDispensed(plant)}) AS TB0 ");
-        //    sql.Append($"INNER JOIN Cans   AS TB1 ON TB1.Cans_id  = TB0.Cans_id ");
-        //    sql.Append($"INNER JOIN Orders AS TB2 ON TB2.Order_id = TB0.Order_id ");
-        //    sql.Append($"WHERE TB0.Barcode = @barcode");
-        //    sql.Append($"ORDER BY ");
-        //    sql.Append($"  TB0.Order_id ");
-        //    sql.Append($" ,TB0.Barcode ");
-        //    return sql.ToString();
-        //}
-        //#endregion
         #region バーコードで調合状況を取得
         /// <summary>
         /// バーコードで調合状況を取得
         /// </summary>
         /// <returns></returns>
-        public static string GetPreviewDispensedData(List<GridViewSetting> viewSettings, string plant)
+        public static string GetPreviewDispensedData(string plant)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            sql.Append($"  TB0.Barcode ");
+            sql.Append($" ,TB0.Code ");
+            sql.Append($" ,TB0.Weight ");
+            sql.Append($" ,TB0.Dispensed ");
+            sql.Append($" ,TB1.Errors_1 ");
+            sql.Append($" ,TB1.Errors_2 ");
+            sql.Append($" ,TB1.Errors_3 ");
+            sql.Append($" ,TB2.Mixing_Time ");
+            sql.Append($" ,TB2.Mixing_Speed ");
+            sql.Append($" ,TB2.Cap_Type ");
+            sql.Append($" ,TB1.Can_Number ");
+            sql.Append($"FROM ({GetPreviewDispensed(plant)}) AS TB0 ");
+            sql.Append($"INNER JOIN Cans   AS TB1 ON TB1.Cans_id  = TB0.Cans_id ");
+            sql.Append($"INNER JOIN Orders AS TB2 ON TB2.Order_id = TB0.Order_id ");
+            sql.Append($"WHERE TB0.Barcode = @barcode");
+            sql.Append($"ORDER BY ");
+            sql.Append($"  TB0.Order_id ");
+            sql.Append($" ,TB0.Barcode ");
+            return sql.ToString();
+        }
+        #endregion
+        #region バーコードで調合状況を取得
+        /// <summary>
+        /// バーコードで調合状況を取得
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPreviewDispensedData2(List<GridViewSetting> viewSettings, string plant)
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
