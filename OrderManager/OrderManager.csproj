@@ -104,6 +104,12 @@
     <Compile Include="Dialogs\FrmOrderChangeStatusSelectItem.Designer.cs">
       <DependentUpon>FrmOrderChangeStatusSelectItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\FrmRemanufacturedCan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FrmRemanufacturedCan.Designer.cs">
+      <DependentUpon>FrmRemanufacturedCan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\FrmSelectDataNumber.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,7 @@
     <Compile Include="ViewModels\CCMSimulatorData.cs" />
     <Compile Include="ViewModels\LabelEdit.cs" />
     <Compile Include="ViewModels\LabelTypeData.cs" />
+    <Compile Include="ViewModels\RemanufacturedCanData.cs" />
     <Compile Include="ViewModels\SelectDataNumber.cs" />
     <Compile Include="ViewModels\InitialSettingData.cs" />
     <Compile Include="ViewModels\LabelPrintData.cs" />
@@ -247,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FrmOrderChangeStatusSelectItem.resx">
       <DependentUpon>FrmOrderChangeStatusSelectItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FrmRemanufacturedCan.resx">
+      <DependentUpon>FrmRemanufacturedCan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FrmSelectDataNumber.resx">
       <DependentUpon>FrmSelectDataNumber.cs</DependentUpon>

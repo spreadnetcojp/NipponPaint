@@ -1263,6 +1263,14 @@ namespace NipponPaint.NpCommon.Database
         }
         #endregion
 
+
+        #region データベース"NP_MAIN"のCansテーブルを更新する
+        public void RemanufacturedCan(string sql, List<ParameterItem> parameters = null)
+        {
+            Execute(sql, parameters);
+        }
         #endregion
+        #endregion
+
     }
 }

@@ -853,7 +853,7 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.CCMSimulatorData();
                 string productCode = ProductCode.Value;
-                if(productCode.Length == 2)
+                if (productCode.Length == 2)
                 {
                     vm.ProductCodeLeft = productCode[0].ToString();
                     vm.ProductCodeRight = productCode[1].ToString();
@@ -1047,6 +1047,65 @@ namespace NipponPaint.OrderManager
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+
+        /// <summary>
+        /// 缶タブの「テスト仕上がり」を選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnTestCan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+
+        /// <summary>
+        /// 缶タブの「荷札印刷」を選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnPrintTag_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
+
+        /// <summary>
+        /// 缶タブの「缶の再製造」を選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnRemanufacturedCan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                var vm = new ViewModels.RemanufacturedCanData();
+                vm.DataSource = GvBarcodeDataCource;
+                foreach (DataGridViewRow row in GvBarcode.SelectedRows)
+                {
+                    vm.SelectedIndex = row.Index;
+                }
+                FrmRemanufacturedCan frmRemanufacturedCan = new FrmRemanufacturedCan(vm);
+                frmRemanufacturedCan.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -1710,6 +1769,9 @@ namespace NipponPaint.OrderManager
             this.BtnOrderClose.Click += new EventHandler(this.BtnOrderCloseClick);
             this.BtnBulkChangeStatus.Click += new EventHandler(this.BtnBulkChangeStatusClick);
             this.BtnProcessDetail.Click += new EventHandler(this.BtnProcessDetailClick);
+            this.BtnRemanufacturedCan.Click += new System.EventHandler(this.BtnRemanufacturedCan_Click);
+            this.BtnPrintTag.Click += new System.EventHandler(this.BtnPrintTag_Click);
+            this.BtnTestCan.Click += new System.EventHandler(this.BtnTestCan_Click);
             this.RdoPreviewAll.CheckedChanged += new System.EventHandler(this.RdoCheckedChanged);
             this.RdoTodayBefore.CheckedChanged += new System.EventHandler(this.RdoCheckedChanged);
             this.RdoTomorrowAfter.CheckedChanged += new System.EventHandler(this.RdoCheckedChanged);
@@ -1992,7 +2054,7 @@ namespace NipponPaint.OrderManager
             }
             foreach (DataGridViewRow row in dgv.Rows)
             {
-                
+
             }
         }
         #region 製品コードでDataGridViewの該当行を探す
@@ -2214,6 +2276,27 @@ namespace NipponPaint.OrderManager
 
                     break;
             }
+            if (tabMain.SelectedIndex == TAB_INDEX_CAN)
+            {
+                switch ((Sql.NpMain.Orders.OrderStatus)status)
+                {
+                    case Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
+                        BtnTestCan.Enabled = true;
+                        BtnPrintTag.Enabled = true;
+                        BtnRemanufacturedCan.Enabled = false;
+                        break;
+                    case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
+                        BtnTestCan.Enabled = false;
+                        BtnPrintTag.Enabled = false;
+                        BtnRemanufacturedCan.Enabled = true;
+                        break;
+                    default:
+                        BtnTestCan.Enabled = false;
+                        BtnPrintTag.Enabled = false;
+                        BtnRemanufacturedCan.Enabled = false;
+                        break;
+                }
+            }
         }
         #endregion
 
@@ -2253,6 +2336,7 @@ namespace NipponPaint.OrderManager
                 printer.Print(printOutDataList);
             }
         }
+
         #endregion
 
         #endregion
