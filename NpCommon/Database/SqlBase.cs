@@ -322,6 +322,10 @@ namespace NipponPaint.NpCommon.Database
         public void ToLabelTextBox(Control.ControlCollection formControls, DataRowCollection rows)
         {
             // データベースから取得した値を、画面上のLabelTextBoxコントロールにセットする
+            if (rows == null || rows.Count < 1)
+            {
+                return;
+            }
             var controls = new List<Control>();
             Funcs.FindControls(formControls, controls);
             foreach (var control in controls)
@@ -332,7 +336,10 @@ namespace NipponPaint.NpCommon.Database
                         // LabelTextBoxコントロールへの設定
                         if (!string.IsNullOrEmpty(labelTextBox.DatabaseColumnName))
                         {
-                            labelTextBox.Value = rows[0][labelTextBox.DatabaseColumnName].ToString().Trim();
+                            if (rows[0].Table.Columns.Contains(labelTextBox.DatabaseColumnName))
+                            {
+                                labelTextBox.Value = rows[0][labelTextBox.DatabaseColumnName].ToString().Trim();
+                            }
                         }
                         break;
                     case LabelCodeText labelCodeText:
@@ -413,6 +420,30 @@ namespace NipponPaint.NpCommon.Database
                         }
                         break;
                     default:
+                        break;
+                }
+            }
+        }
+        #endregion
+
+        #region データベースから取得した値を、画面缶タブ上バーコード一覧のLabelTextBoxコントロールにセットする
+        public void ToLabelTextBoxBarcode(List<Control> controls, DataRowCollection rows)
+        {
+            // データベースから取得した値を、画面上のLabelTextBoxコントロールにセットする
+            if (rows == null || rows.Count < 1)
+            {
+                return;
+            }
+            foreach (Control control in controls)
+            {
+                switch (control)
+                {
+                    case LabelTextBox labelTextBox:
+                        // LabelTextBoxコントロールへの設定
+                        if (!string.IsNullOrEmpty(labelTextBox.DatabaseColumnName))
+                        {
+                            labelTextBox.Value = rows[0][labelTextBox.DatabaseColumnName].ToString().Trim();
+                        }
                         break;
                 }
             }
@@ -1232,6 +1263,14 @@ namespace NipponPaint.NpCommon.Database
         }
         #endregion
 
+
+        #region データベース"NP_MAIN"のCansテーブルを更新する
+        public void RemanufacturedCan(string sql, List<ParameterItem> parameters = null)
+        {
+            Execute(sql, parameters);
+        }
         #endregion
+        #endregion
+
     }
 }

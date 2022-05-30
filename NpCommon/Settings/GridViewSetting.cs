@@ -20,6 +20,9 @@ namespace NipponPaint.NpCommon.Settings
 {
     public class GridViewSetting
     {
+        private const string FALSE = "○";
+        private const string TRUE = "●";
+
         public enum ColumnModeType
         {
             Numeric,
@@ -27,6 +30,7 @@ namespace NipponPaint.NpCommon.Settings
             DateTime,
             Checkbox,
             Blank,
+            Bit,
         }
         /// <summary>
         /// データの種類
@@ -83,6 +87,8 @@ namespace NipponPaint.NpCommon.Settings
                         return $"TRIM(TRIM('　' FROM {ColumnName})) AS {DisplayName} ";
                     case ColumnModeType.Blank:
                         return $"'' AS {DisplayName} ";
+                    case ColumnModeType.Bit:
+                        return $"case {ColumnName} when 0 then N'{FALSE}' else N'{TRUE}' End AS {DisplayName}";
                     default:
                         return $"{ColumnName} AS {DisplayName} ";
                 }
