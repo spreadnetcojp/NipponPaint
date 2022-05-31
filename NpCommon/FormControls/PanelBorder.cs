@@ -24,11 +24,10 @@ namespace NipponPaint.NpCommon.FormControls
         public Color BorderColor
         {
             get { return this._borderColor; }
-            set
-            {
-                this._borderColor = value;
-            }
+            set { this._borderColor = value; }
         }
+        public int BorderWidth { get; set; } = 0;
+
 
         /// <summary>
         /// OnPaintイベント
@@ -40,7 +39,7 @@ namespace NipponPaint.NpCommon.FormControls
             int right = this.ClientRectangle.Right - 1;
             int bottom = this.ClientRectangle.Bottom - 1;
 
-            Pen pen = new Pen(this._borderColor,10);
+            Pen pen = new Pen(this._borderColor, BorderWidth);
 
             // 四角を描画
             Graphics g = this.CreateGraphics();

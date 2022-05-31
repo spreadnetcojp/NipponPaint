@@ -94,6 +94,12 @@
     <Compile Include="FormControls\LabelTextButton.Designer.cs">
       <DependentUpon>LabelTextButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormControls\LabelTextSeparate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormControls\LabelTextSeparate.Designer.cs">
+      <DependentUpon>LabelTextSeparate.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormControls\PanelBorder.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -223,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormControls\LabelTextButton.resx">
       <DependentUpon>LabelTextButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormControls\LabelTextSeparate.resx">
+      <DependentUpon>LabelTextSeparate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormControls\PanelBorder.resx">
       <DependentUpon>PanelBorder.cs</DependentUpon>

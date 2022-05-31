@@ -47,6 +47,9 @@ namespace NipponPaint.NpCommon
                     case LabelTextBoxDb labelTextBoxDb:
                         result.Add(labelTextBoxDb);
                         break;
+                    case LabelTextSeparate labelTextSeparate:
+                        result.Add(labelTextSeparate);
+                        break;
                     case LabelNumericUpDown labelNumericUpDown:
                         result.Add(labelNumericUpDown);
                         break;
@@ -136,6 +139,19 @@ namespace NipponPaint.NpCommon
                             case "Window":
                                 labelTextBox.TextBackColor = BACK_COLOR;
                                 labelTextBox.TextForeColor = FORE_COLOR;
+                                break;
+                        }
+                        break;
+                    case LabelTextSeparate labelTextSeparate:
+                        // LabelTextSeparateコントロールへの設定
+                        switch (labelTextSeparate.PanelBackColor.Name)
+                        {
+                            case "Window":
+                                labelTextSeparate.PanelBackColor = BACK_COLOR;
+                                labelTextSeparate.Label1BackColor = BACK_COLOR;
+                                labelTextSeparate.Label2BackColor = BACK_COLOR;
+                                labelTextSeparate.Label1ForeColor = FORE_COLOR;
+                                labelTextSeparate.Label2ForeColor = FORE_COLOR;
                                 break;
                         }
                         break;

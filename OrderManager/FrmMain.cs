@@ -79,6 +79,9 @@ namespace NipponPaint.OrderManager
         private const int TAB_INDEX_FORMULATION = 2;
         private const int TAB_INDEX_CAN = 3;
 
+        private const int COLOR_NAME_LOWER_LIMIT = 0;
+        private const int COLOR_NAME_HIGH_LIMIT = 14;
+
         private List<string> ViewGrid = new List<string>();
         //private const Log.ApplicationType MyApp = Log.ApplicationType.OrderManager;
 
@@ -232,6 +235,7 @@ namespace NipponPaint.OrderManager
         #region メンバ変数
         private string selectProductCode = string.Empty;
         private int selectingTabIndex = 0;
+        private Dictionary<string, int> tbColorNameSetting = new Dictionary<string, int>();
         #endregion
 
         #region コンストラクタ
@@ -1343,7 +1347,47 @@ namespace NipponPaint.OrderManager
                 PutLog(ex);
             }
         }
-        //
+
+        /// <summary>
+        /// <(&J)　色名セパレータを一つ後ろに移動する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSeparaterBack_Click(object sender, EventArgs e)
+        {
+            int ColorNamelength = SetString(0);
+            //tbColorNameSettingに既に変更を保存したプロダクトコードが存在する場合は値を更新する
+            //存在しない場合は新規で変更を保存する
+            if (tbColorNameSetting.ContainsKey(ProductCode.Value))
+            {
+                tbColorNameSetting[ProductCode.Value] = ColorNamelength;
+            }
+            else
+            {
+                tbColorNameSetting.Add(ProductCode.Value, ColorNamelength);
+            }
+        }
+
+        /// <summary>
+        /// >(&K) 色名セパレータを一つ前に移動する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSeperateForward_Click(object sender, EventArgs e)
+        {
+            int ColorNamelength = SetString(1);
+            //tbColorNameSettingに既に変更を保存したプロダクトコードが存在する場合は値を更新する
+            //存在しない場合は新規で変更を保存する
+            if (tbColorNameSetting.ContainsKey(ProductCode.Value))
+            {
+                tbColorNameSetting[ProductCode.Value] = ColorNamelength;
+            }
+            else
+            {
+                tbColorNameSetting.Add(ProductCode.Value, ColorNamelength);
+            }
+        }
+
         /// <summary>
         /// タブ選択変更イベント
         /// </summary>
@@ -1462,6 +1506,20 @@ namespace NipponPaint.OrderManager
                         var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(BaseSettings.Facility.Plant), parameters);
                         // フォームで定義された、取得値設定先のコントロールを抽出する
                         db.ToLabelTextBox(this.Controls, rec.Rows);
+
+                        //改行場所を変更済みの色名があれば適用する
+                        if (tbColorNameSetting.ContainsKey(ProductCode.Value))
+                        {
+                            ColorName.Lbl1Value = rec.Rows[0][ColorName.DatabaseColumnName].ToString().Trim().Substring(0, tbColorNameSetting[ProductCode.Value]);
+                            ColorName.Lbl2Value = rec.Rows[0][ColorName.DatabaseColumnName].ToString().Trim().Substring(tbColorNameSetting[ProductCode.Value]);
+                        }
+                        else
+                        {
+                            ; //何もしない
+                        }
+                        //LabelTextSeperateコントロールのLabelへ文字数を設定する
+                        ColorName.WordCount = $"({ColorName.Lbl1Value.Length}/{ColorName.Lbl2Value.Length})";
+
                         //指定LotのTextBoxコントロールの入力値を有無を調べる
                         if (string.IsNullOrEmpty(HgTintingDirection.Value))
                         {
@@ -1797,6 +1855,8 @@ namespace NipponPaint.OrderManager
             this.TsmiColorLabelPrint.Click += new System.EventHandler(this.TsmiColorLabelPrint_Click);
             this.TsmiCopyLabelPrint.Click += new System.EventHandler(this.TsmiCopyLabelPrint_Click);
             this.TsmiOrderClose.Click += new System.EventHandler(this.TsmiOrderClose_Click);
+            this.BtnSeperateForward.Click += new System.EventHandler(this.BtnSeperateForward_Click);
+            this.BtnSeparaterBack.Click += new System.EventHandler(this.BtnSeparaterBack_Click);
             this.GvOrder.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.GvDetail.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.GvFormulation.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
@@ -2336,11 +2396,36 @@ namespace NipponPaint.OrderManager
                 printer.Print(printOutDataList);
             }
         }
-
         #endregion
 
+        private int SetString(int param)
+        {
+            switch (param)
+            {
+                case 0:
+                    
+                    if (COLOR_NAME_LOWER_LIMIT < ColorName.Lbl1Value.Length && ColorName.Lbl2Value.Length < COLOR_NAME_HIGH_LIMIT)
+                    {
+                        ColorName.Lbl2Value = $"{ColorName.Lbl1Value.Substring(ColorName.Lbl1Value.Length - 1, 1)}{ColorName.Lbl2Value}";
+                        ColorName.Lbl1Value = $"{ColorName.Lbl1Value.Substring(0, ColorName.Lbl1Value.Length - 1)}";
+                    }
+                    break;
+                case 1:
+                    if (COLOR_NAME_LOWER_LIMIT < ColorName.Lbl2Value.Length && ColorName.Lbl1Value.Length < COLOR_NAME_HIGH_LIMIT)
+                    {
+                        ColorName.Lbl1Value = $"{ColorName.Lbl1Value}{ColorName.Lbl2Value.Substring(0, 1)}";
+                        ColorName.Lbl2Value = ColorName.Lbl2Value.Substring(1, ColorName.Lbl2Value.Length - 1);
+                    }
+                    break;
+            }
+            //LabelTextSeperateコントロールのLabelへ文字数を設定する
+            ColorName.WordCount = $"({ColorName.Lbl1Value.Length}/{ColorName.Lbl2Value.Length})";
+            return ColorName.Lbl1Value.Length;
+
+
+        }
         #endregion
 
-
+        
     }
 }
