@@ -25,6 +25,11 @@ namespace NipponPaint.OrderManager.Dialogs
     /// </summary>
     public partial class FrmKeyPad : BaseForm
     {
+        #region 定数
+        private const int NumLabelMaxValue = 25000;
+        private const int NumLabelMinValue = 0;
+        #endregion
+
         #region コンストラクタ
         public FrmKeyPad()
         {
@@ -32,14 +37,13 @@ namespace NipponPaint.OrderManager.Dialogs
             InitializeForm();
         }
         #endregion
-        #region イベント
 
+        #region イベント
         /// <summary>
         /// 演算処理
         /// </summary>
         public bool LabelOverWrite = true;　　　　//NumLabelの上書きをする場合はtrue
         private bool NumPeriod = false;          //「.」の有無判定
-
         /// <summary>
         /// キー操作
         /// </summary>
@@ -161,258 +165,41 @@ namespace NipponPaint.OrderManager.Dialogs
             }
         }
         /// <summary>
-        /// 「0」入力ボタン
+        /// 「0」から「9」のボタンそれぞれの挙動まとめ
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnInput0Click(object sender, EventArgs e)
+        private void BtnInputClick(object sender, EventArgs e)
         {
             try
             {
-                if(LabelOverWrite == true)
+                var Button = sender as Button;
+                //「0」とそれ以外
+                switch (Button.Text)
                 {
-                    NumLabel.Text = BtnInput0.Text;
+                    case "0":
+                        if (LabelOverWrite == true)
+                        {
+                            NumLabel.Text = Button.Text;
+                        }
+                        else
+                        {
+                            NumLabel.Text += Button.Text;
+                        }
+                        break;
+                    default:
+                        if (LabelOverWrite == true)
+                        {
+                            NumLabel.Text = Button.Text;
+                            LabelOverWrite = false;
+                        }
+                        else
+                        {
+                            NumLabel.Text += Button.Text;
+                        }
+                        break;
                 }
-                else
-                {
-                    NumLabel.Text += BtnInput0.Text;
-                }
-                
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-            }
-            catch(Exception ex)
-            {
-                PutLog(ex);
-            }
-        }
-        /// <summary>
-        /// 「１」入力ボタン
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnInput1Click(object sender, EventArgs e)
-        {
-            try
-            {
-                
-                textInput(sender);
-                //if(LabelOverWrite == true)
-                //{
-                //    NumLabel.Text = BtnInput1.Text;
-                //    LabelOverWrite = false;
-                //}
-                //else
-                //{
-                //    NumLabel.Text += BtnInput1.Text;
-                //}
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-            }
-            catch(Exception ex)
-            {
-                PutLog(ex);
-            }
-        }
-        /// <summary>
-        /// 「2」入力ボタン
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnInput2Click(object sender, EventArgs e)
-        {
-            try
-            {
-                textInput(sender);
-                //if (LabelOverWrite == true)
-                //{
-                //    NumLabel.Text = BtnInput2.Text;
-                //    LabelOverWrite = false;
-                //}
-                //else
-                //{
-                //    NumLabel.Text += BtnInput2.Text;
-                //}
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-            }
-            catch(Exception ex)
-            {
-                PutLog(ex);
-            }
-        }
-        /// <summary>
-        /// 「3」入力ボタン
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnInput3Click(object sender, EventArgs e)
-        {
-            try
-            {
-                textInput(sender);
-                //if (LabelOverWrite == true)
-                //{
-                //    NumLabel.Text = BtnInput3.Text;
-                //    LabelOverWrite = false;
-                //}
-                //else
-                //{
-                //    NumLabel.Text += BtnInput3.Text;
-                //}
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-            }
-            catch(Exception ex)
-            {
-                PutLog(ex);
-            }
-        }
-        /// <summary>
-        /// 「4」入力ボタン
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnInput4Click(object sender, EventArgs e)
-        {
-            try
-            {
-                textInput(sender);
-                //if (LabelOverWrite == true)
-                //{
-                //    NumLabel.Text = BtnInput4.Text;
-                //    LabelOverWrite = false;
-                //}
-                //else
-                //{
-                //    NumLabel.Text += BtnInput4.Text;
-                //}
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-            }
-            catch(Exception ex)
-            {
-                PutLog(ex);
-            }
-        }
-        /// <summary>
-        /// 「5」入力ボタン
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnInput5Click(object sender, EventArgs e)
-        {
-            try
-            {
-                textInput(sender);
-                //if (LabelOverWrite == true)
-                //{
-                //    NumLabel.Text = BtnInput5.Text;
-                //    LabelOverWrite = false;
-                //}
-                //else
-                //{
-                //    NumLabel.Text += BtnInput5.Text;
-                //}
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-            }
-            catch(Exception ex)
-            {
-                PutLog(ex);
-            }
-        }
-        /// <summary>
-        /// 「6」入力ボタン
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnInput6Click(object sender, EventArgs e)
-        {
-            try
-            {
-                textInput(sender);
-                //if (LabelOverWrite == true)
-                //{
-                //    NumLabel.Text = BtnInput6.Text;
-                //    LabelOverWrite = false;
-                //}
-                //else
-                //{
-                //    NumLabel.Text += BtnInput6.Text;
-                //}
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-            }
-            catch(Exception ex)
-            {
-                PutLog(ex);
-            }
-        }
-        /// <summary>
-        /// 「7」入力ボタン
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnInput7Click(object sender, EventArgs e)
-        {
-            try
-            {
-                textInput(sender);
-                //if (LabelOverWrite == true)
-                //{
-                //    NumLabel.Text = BtnInput7.Text;
-                //    LabelOverWrite = false;
-                //}
-                //else
-                //{
-                //    NumLabel.Text += BtnInput7.Text;
-                //}
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-            }
-            catch(Exception ex)
-            {
-                PutLog(ex);
-            }
-        }
-        /// <summary>
-        /// 「8」入力ボタン
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnInput8Click(object sender, EventArgs e)
-        {
-            try
-            {
-                textInput(sender);
-                //if (LabelOverWrite == true)
-                //{
-                //    NumLabel.Text = BtnInput8.Text;
-                //    LabelOverWrite = false;
-                //}
-                //else
-                //{
-                //    NumLabel.Text += BtnInput8.Text;
-                //}
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-            }
-            catch (Exception ex)
-            {
-                PutLog(ex);
-            }
-        }
-        /// <summary>
-        /// 「9」入力ボタン
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnInput9Click(object sender, EventArgs e)
-        {
-            try
-            {
-                textInput(sender);
-                //if (LabelOverWrite == true)
-                //{
-                //    NumLabel.Text = BtnInput9.Text;
-                //    LabelOverWrite = false;
-                //}
-                //else
-                //{
-                //    NumLabel.Text += BtnInput9.Text;
-                //}
+                Validation();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch(Exception ex)
@@ -459,6 +246,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 {
                     NumLabel.Text = "-" + NumLabel.Text;
                 }
+                Validation();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch(Exception ex)
@@ -478,6 +266,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 NumLabel.Text = "0";　　　　　//全文字削除し、「0」を表示
                 LabelOverWrite = true;　　　　//全文字削除したあとの「0」の連打防止
                 NumPeriod = false;
+                Validation();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch(Exception ex)
@@ -502,6 +291,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     LabelOverWrite = true;　　　 //最後の1文字を削除して「0」表示になったあとに「0」の連打防止
                     NumPeriod = false;
                 }
+                Validation();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch(Exception ex)
@@ -509,6 +299,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(ex);
             }
         }
+        
         /// <summary>
         /// 「OK」入力ボタン
         /// </summary>
@@ -555,16 +346,16 @@ namespace NipponPaint.OrderManager.Dialogs
             // イベントの追加
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(this.FormKeyDown);
-            this.BtnInput0.Click += new EventHandler(this.BtnInput0Click);
-            this.BtnInput1.Click += new EventHandler(this.BtnInput1Click);
-            this.BtnInput2.Click += new EventHandler(this.BtnInput2Click);
-            this.BtnInput3.Click += new EventHandler(this.BtnInput3Click);
-            this.BtnInput4.Click += new EventHandler(this.BtnInput4Click);
-            this.BtnInput5.Click += new EventHandler(this.BtnInput5Click);
-            this.BtnInput6.Click += new EventHandler(this.BtnInput6Click);
-            this.BtnInput7.Click += new EventHandler(this.BtnInput7Click);
-            this.BtnInput8.Click += new EventHandler(this.BtnInput8Click);
-            this.BtnInput9.Click += new EventHandler(this.BtnInput9Click);
+            this.BtnInput0.Click += new EventHandler(this.BtnInputClick);
+            this.BtnInput1.Click += new EventHandler(this.BtnInputClick);
+            this.BtnInput2.Click += new EventHandler(this.BtnInputClick);
+            this.BtnInput3.Click += new EventHandler(this.BtnInputClick);
+            this.BtnInput4.Click += new EventHandler(this.BtnInputClick);
+            this.BtnInput5.Click += new EventHandler(this.BtnInputClick);
+            this.BtnInput6.Click += new EventHandler(this.BtnInputClick);
+            this.BtnInput7.Click += new EventHandler(this.BtnInputClick);
+            this.BtnInput8.Click += new EventHandler(this.BtnInputClick);
+            this.BtnInput9.Click += new EventHandler(this.BtnInputClick);
             this.BtnInputPeriod.Click += new EventHandler(this.BtnPeriodClick);
             this.BtnInputPlusMinus.Click += new EventHandler(this.BtnInputPlusMinusClick);
             this.BtnCA.Click += new EventHandler(this.BtnCAClick);
@@ -574,37 +365,27 @@ namespace NipponPaint.OrderManager.Dialogs
             this.ActiveControl = this.BtnOK;  //最初からフォーカスをOKボタンに照準
         }
         /// <summary>
-        /// 「0」～「9」のボタン動作をまとめた挙動
+        /// 入力値の最小値と最大値の決定
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void textInput(object sender)
+        private void Validation()
         {
-            var Button = sender as Button;
-            //string num = sender.
-            switch (Button.Text)
+            bool boolResult = decimal.TryParse(NumLabel.Text, out decimal InputValue);　　　//stringから数値に変換　　　
+            if (boolResult)
             {
-                case "0":
-                    if (LabelOverWrite == true)
-                    {
-                        NumLabel.Text = Button.Text;
-                    }
-                    else
-                    {
-                        NumLabel.Text += Button.Text;
-                    }
-                    break;
-                default:
-                    if (LabelOverWrite == true)
-                    {
-                        NumLabel.Text = Button.Text;
-                        LabelOverWrite = false;
-                    }
-                    else
-                    {
-                        NumLabel.Text += Button.Text;
-                    }
-                    break;
+                if (NumLabelMinValue <= InputValue && InputValue <= NumLabelMaxValue)　　　　//入力値が「0」以上かつ「25000」未満のときはOKボタン使用可能
+                {
+                    BtnOK.Enabled = true;
+                }
+                else
+                {
+                    BtnOK.Enabled = false;
+                }
+            }
+            else
+            {
+                ; //何もしない
             }
         }
         #endregion
