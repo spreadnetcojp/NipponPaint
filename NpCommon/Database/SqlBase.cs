@@ -74,8 +74,6 @@ namespace NipponPaint.NpCommon.Database
         }
 
         private const int TIMEOUT_VALUE = 120;
-        private const int COLOR_NAME_LOWER_LIMIT = 0;
-        private const int COLOR_NAME_HIGH_LIMIT = 14;
         #endregion
 
         #region メンバ変数
@@ -359,33 +357,8 @@ namespace NipponPaint.NpCommon.Database
                         // LabelTextSeparateコントロールへの設定
                         if (!string.IsNullOrEmpty(labelTextSeparate.DatabaseColumnName))
                         {
-                            int strLength = rows[0][labelTextSeparate.DatabaseColumnName].ToString().Trim().Length;
-                            int seprateIndex = rows[0][labelTextSeparate.DatabaseColumnName].ToString().Trim().IndexOf('　');
-                            if(strLength <= COLOR_NAME_LOWER_LIMIT)
-                            {
-                                labelTextSeparate.Lbl1Value = string.Empty;
-                                labelTextSeparate.Lbl2Value = string.Empty;
-                                return;
-                            }
-                            if (strLength > COLOR_NAME_HIGH_LIMIT)
-                            {
-                                if (seprateIndex < COLOR_NAME_LOWER_LIMIT || COLOR_NAME_HIGH_LIMIT < seprateIndex + 1)
-                                {
-
-                                    labelTextSeparate.Lbl1Value = rows[0][labelTextSeparate.DatabaseColumnName].ToString().Trim().Substring(0, COLOR_NAME_HIGH_LIMIT);
-                                    labelTextSeparate.Lbl2Value = rows[0][labelTextSeparate.DatabaseColumnName].ToString().Trim().Substring(COLOR_NAME_HIGH_LIMIT);
-                                }
-                                else
-                                {
-                                    labelTextSeparate.Lbl1Value = rows[0][labelTextSeparate.DatabaseColumnName].ToString().Trim().Substring(0, seprateIndex + 1);
-                                    labelTextSeparate.Lbl2Value = rows[0][labelTextSeparate.DatabaseColumnName].ToString().Trim().Substring(seprateIndex + 1);
-                                }
-                            }
-                            else
-                            {
-                                labelTextSeparate.Lbl1Value = rows[0][labelTextSeparate.DatabaseColumnName].ToString().Trim();
-                                labelTextSeparate.Lbl2Value = string.Empty;
-                            }
+                            labelTextSeparate.Value = rows[0][labelTextSeparate.DatabaseColumnName].ToString().Trim();
+                            
                         }
                         break;
                     default:

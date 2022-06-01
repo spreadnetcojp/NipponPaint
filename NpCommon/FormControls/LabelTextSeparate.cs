@@ -12,6 +12,10 @@ namespace NipponPaint.NpCommon.FormControls
 {
     public partial class LabelTextSeparate : UserControl
     {
+        #region 定数
+        private const int COLOR_NAME_LOWER_LIMIT = 0;
+        private const int COLOR_NAME_HIGH_LIMIT = 14;
+        #endregion
 
         public string TitleControlName
         {
@@ -100,11 +104,76 @@ namespace NipponPaint.NpCommon.FormControls
             get { return LblData2.ForeColor; }
             set { LblData2.ForeColor = value; }
         }
+        public string Value { get; set; } = string.Empty;
 
         public string DatabaseColumnName { get; set; } = string.Empty;
         public LabelTextSeparate()
         {
             InitializeComponent();
+        }
+
+        //データベースから取得した値を分割する
+        public void ValueChanged()
+        {
+            int strLength = Value.Trim().Length;
+            int seprateIndex = Value.Trim().IndexOf('　');
+            int length = 0;
+            if (seprateIndex > -1)
+            {
+
+                length = Value.Trim().Substring(seprateIndex).Length;
+            }
+            if (strLength <= COLOR_NAME_LOWER_LIMIT)
+            {
+                Lbl1Value = string.Empty;
+                Lbl2Value = string.Empty;
+                return;
+            }
+            if (strLength > COLOR_NAME_HIGH_LIMIT)
+            {
+                if (seprateIndex < COLOR_NAME_LOWER_LIMIT || COLOR_NAME_HIGH_LIMIT < seprateIndex + 1 || length > COLOR_NAME_HIGH_LIMIT)
+                {
+                    Lbl1Value = Value.Trim().Substring(0, COLOR_NAME_HIGH_LIMIT);
+                    Lbl2Value = Value.Trim().Substring(COLOR_NAME_HIGH_LIMIT);
+                }
+                else
+                {
+                    Lbl1Value = Value.Trim().Substring(0, seprateIndex + 1);
+                    Lbl2Value = Value.Trim().Substring(seprateIndex + 1);
+                }
+            }
+            else
+            {
+                Lbl1Value = Value.Trim();
+                Lbl2Value = string.Empty;
+            }
+        }
+        //文字列を任意の場所で分割する
+        public int SetString(int param)
+        {
+            switch (param)
+            {
+                case 0:
+
+                    if (COLOR_NAME_LOWER_LIMIT < Lbl1Value.Length && Lbl2Value.Length < COLOR_NAME_HIGH_LIMIT)
+                    {
+                        Lbl2Value = $"{Lbl1Value.Substring(Lbl1Value.Length - 1, 1)}{Lbl2Value}";
+                        Lbl1Value = $"{Lbl1Value.Substring(0, Lbl1Value.Length - 1)}";
+                    }
+                    break;
+                case 1:
+                    if (COLOR_NAME_LOWER_LIMIT < Lbl2Value.Length && Lbl1Value.Length < COLOR_NAME_HIGH_LIMIT)
+                    {
+                        Lbl1Value = $"{Lbl1Value}{Lbl2Value.Substring(0, 1)}";
+                        Lbl2Value = Lbl2Value.Substring(1, Lbl2Value.Length - 1);
+                    }
+                    break;
+            }
+            //LabelTextSeperateコントロールのLabelへ文字数を設定する
+            WordCount = $"({Lbl1Value.Length}/{Lbl2Value.Length})";
+            return Lbl1Value.Length;
+
+
         }
     }
 }
