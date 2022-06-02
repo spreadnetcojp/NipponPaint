@@ -232,6 +232,7 @@ namespace NipponPaint.OrderManager
         #region メンバ変数
         private string selectProductCode = string.Empty;
         private int selectingTabIndex = 0;
+        private Dictionary<string, int> tbColorNameSetting = new Dictionary<string, int>();
         #endregion
 
         #region コンストラクタ
@@ -1343,7 +1344,47 @@ namespace NipponPaint.OrderManager
                 PutLog(ex);
             }
         }
-        //
+
+        /// <summary>
+        /// <(&J)　色名セパレータを一つ後ろに移動する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSeparaterBack_Click(object sender, EventArgs e)
+        {
+            int ColorNamelength = ColorName.SetString(0);
+            //tbColorNameSettingに既に変更を保存したプロダクトコードが存在する場合は値を更新する
+            //存在しない場合は新規で変更を保存する
+            if (tbColorNameSetting.ContainsKey(ProductCode.Value))
+            {
+                tbColorNameSetting[ProductCode.Value] = ColorNamelength;
+            }
+            else
+            {
+                tbColorNameSetting.Add(ProductCode.Value, ColorNamelength);
+            }
+        }
+
+        /// <summary>
+        /// >(&K) 色名セパレータを一つ前に移動する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSeperateForward_Click(object sender, EventArgs e)
+        {
+            int ColorNamelength = ColorName.SetString(1);
+            //tbColorNameSettingに既に変更を保存したプロダクトコードが存在する場合は値を更新する
+            //存在しない場合は新規で変更を保存する
+            if (tbColorNameSetting.ContainsKey(ProductCode.Value))
+            {
+                tbColorNameSetting[ProductCode.Value] = ColorNamelength;
+            }
+            else
+            {
+                tbColorNameSetting.Add(ProductCode.Value, ColorNamelength);
+            }
+        }
+
         /// <summary>
         /// タブ選択変更イベント
         /// </summary>
@@ -1462,6 +1503,21 @@ namespace NipponPaint.OrderManager
                         var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(BaseSettings.Facility.Plant), parameters);
                         // フォームで定義された、取得値設定先のコントロールを抽出する
                         db.ToLabelTextBox(this.Controls, rec.Rows);
+                        //コントロールに設定した値にセパレータを設定する
+                        ColorName.ValueChanged();
+                        //改行場所を変更済みの色名があれば適用する
+                        if (tbColorNameSetting.ContainsKey(ProductCode.Value))
+                        {
+                            ColorName.Lbl1Value = ColorName.Value.Trim().Substring(0, tbColorNameSetting[ProductCode.Value]);
+                            ColorName.Lbl2Value = ColorName.Value.Trim().Substring(tbColorNameSetting[ProductCode.Value]);
+                        }
+                        else
+                        {
+                            ; //何もしない
+                        }
+                        //LabelTextSeperateコントロールのLabelへ文字数を設定する
+                        ColorName.WordCount = $"({ColorName.Lbl1Value.Length}/{ColorName.Lbl2Value.Length})";
+
                         //指定LotのTextBoxコントロールの入力値を有無を調べる
                         if (string.IsNullOrEmpty(HgTintingDirection.Value))
                         {
@@ -1797,6 +1853,8 @@ namespace NipponPaint.OrderManager
             this.TsmiColorLabelPrint.Click += new System.EventHandler(this.TsmiColorLabelPrint_Click);
             this.TsmiCopyLabelPrint.Click += new System.EventHandler(this.TsmiCopyLabelPrint_Click);
             this.TsmiOrderClose.Click += new System.EventHandler(this.TsmiOrderClose_Click);
+            this.BtnSeperateForward.Click += new System.EventHandler(this.BtnSeperateForward_Click);
+            this.BtnSeparaterBack.Click += new System.EventHandler(this.BtnSeparaterBack_Click);
             this.GvOrder.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.GvDetail.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.GvFormulation.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
@@ -2336,11 +2394,11 @@ namespace NipponPaint.OrderManager
                 printer.Print(printOutDataList);
             }
         }
-
         #endregion
 
+        
         #endregion
 
-
+        
     }
 }

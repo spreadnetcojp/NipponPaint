@@ -50,6 +50,8 @@ namespace NipponPaint.OrderManager
             this.pnlDetailItems = new System.Windows.Forms.Panel();
             this.tabDetailSub = new System.Windows.Forms.TabControl();
             this.tabDetail1 = new System.Windows.Forms.TabPage();
+            this.ColorName = new NipponPaint.NpCommon.FormControls.LabelTextSeparate();
+            this.labelCodeText1 = new NipponPaint.NpCommon.FormControls.LabelCodeText();
             this.HgWeight = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.TotalWeight = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.HgOrderInputTime = new NipponPaint.NpCommon.FormControls.LabelTextBox();
@@ -69,7 +71,6 @@ namespace NipponPaint.OrderManager
             this.IndexNumber = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.TintedColor = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.HgProductName = new NipponPaint.NpCommon.FormControls.LabelTextBox();
-            this.HgColorName = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.CcmColorName = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.HgTintingDirection = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.HgDeliveryCode = new NipponPaint.NpCommon.FormControls.LabelTextBox();
@@ -81,8 +82,8 @@ namespace NipponPaint.OrderManager
             this.OrderNumber = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.ProductCode = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.BtnLotRegister = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnSeperateForward = new System.Windows.Forms.Button();
+            this.BtnSeparaterBack = new System.Windows.Forms.Button();
             this.BorderHgTintingDirection = new NipponPaint.NpCommon.FormControls.PanelBorder();
             this.BorderHgSamplePlates = new NipponPaint.NpCommon.FormControls.PanelBorder();
             this.BorderHgNote = new NipponPaint.NpCommon.FormControls.PanelBorder();
@@ -460,6 +461,8 @@ namespace NipponPaint.OrderManager
             // 
             this.tabDetail1.BackColor = System.Drawing.SystemColors.Control;
             this.tabDetail1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabDetail1.Controls.Add(this.ColorName);
+            this.tabDetail1.Controls.Add(this.labelCodeText1);
             this.tabDetail1.Controls.Add(this.HgWeight);
             this.tabDetail1.Controls.Add(this.TotalWeight);
             this.tabDetail1.Controls.Add(this.HgOrderInputTime);
@@ -479,7 +482,6 @@ namespace NipponPaint.OrderManager
             this.tabDetail1.Controls.Add(this.IndexNumber);
             this.tabDetail1.Controls.Add(this.TintedColor);
             this.tabDetail1.Controls.Add(this.HgProductName);
-            this.tabDetail1.Controls.Add(this.HgColorName);
             this.tabDetail1.Controls.Add(this.CcmColorName);
             this.tabDetail1.Controls.Add(this.HgTintingDirection);
             this.tabDetail1.Controls.Add(this.HgDeliveryCode);
@@ -491,8 +493,8 @@ namespace NipponPaint.OrderManager
             this.tabDetail1.Controls.Add(this.OrderNumber);
             this.tabDetail1.Controls.Add(this.ProductCode);
             this.tabDetail1.Controls.Add(this.BtnLotRegister);
-            this.tabDetail1.Controls.Add(this.button2);
-            this.tabDetail1.Controls.Add(this.button1);
+            this.tabDetail1.Controls.Add(this.BtnSeperateForward);
+            this.tabDetail1.Controls.Add(this.BtnSeparaterBack);
             this.tabDetail1.Controls.Add(this.BorderHgTintingDirection);
             this.tabDetail1.Controls.Add(this.BorderHgSamplePlates);
             this.tabDetail1.Controls.Add(this.BorderHgNote);
@@ -505,9 +507,61 @@ namespace NipponPaint.OrderManager
             this.tabDetail1.TabIndex = 0;
             this.tabDetail1.Text = "詳細１";
             // 
+            // ColorName
+            // 
+            this.ColorName.DatabaseColumnName = "Color_Name";
+            this.ColorName.DataControlName = "PnlData";
+            this.ColorName.DatePanelSize = new System.Drawing.Size(1065, 26);
+            this.ColorName.Font = new System.Drawing.Font("メイリオ", 9F);
+            this.ColorName.Label1BackColor = System.Drawing.Color.White;
+            this.ColorName.Label1ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ColorName.Label2BackColor = System.Drawing.Color.White;
+            this.ColorName.Label2ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ColorName.Lbl1Value = "";
+            this.ColorName.Lbl2Value = "";
+            this.ColorName.Location = new System.Drawing.Point(3, 139);
+            this.ColorName.Margin = new System.Windows.Forms.Padding(4);
+            this.ColorName.Name = "ColorName";
+            this.ColorName.PanelBackColor = System.Drawing.SystemColors.Window;
+            this.ColorName.PanelBorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ColorName.Size = new System.Drawing.Size(1223, 30);
+            this.ColorName.TabIndex = 105;
+            this.ColorName.TextBorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ColorName.Title = "色名";
+            this.ColorName.TitleControlName = "LblTitle";
+            this.ColorName.TitleSize = new System.Drawing.Size(154, 30);
+            this.ColorName.WordCount = "(**/**)";
+            // 
+            // labelCodeText1
+            // 
+            this.labelCodeText1.CodeBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.labelCodeText1.CodeControlName = "txtCode";
+            this.labelCodeText1.CodeForeColor = System.Drawing.SystemColors.WindowText;
+            this.labelCodeText1.CodeReadOnly = false;
+            this.labelCodeText1.CodeText = "";
+            this.labelCodeText1.CodeTextSize = new System.Drawing.Size(50, 30);
+            this.labelCodeText1.DatabaseColumnCode = "HG_HG_Delivery_Code";
+            this.labelCodeText1.DatabaseColumnName = "HG_HG_Shipping_ID";
+            this.labelCodeText1.DataControlName = "txtData";
+            this.labelCodeText1.DataReadOnly = false;
+            this.labelCodeText1.DataTextSize = new System.Drawing.Size(90, 30);
+            this.labelCodeText1.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelCodeText1.Location = new System.Drawing.Point(623, 69);
+            this.labelCodeText1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelCodeText1.Name = "labelCodeText1";
+            this.labelCodeText1.Size = new System.Drawing.Size(293, 30);
+            this.labelCodeText1.TabIndex = 101;
+            this.labelCodeText1.TextAlignCode = System.Windows.Forms.HorizontalAlignment.Left;
+            this.labelCodeText1.TextAlignData = System.Windows.Forms.HorizontalAlignment.Left;
+            this.labelCodeText1.TextBackColor = System.Drawing.SystemColors.Window;
+            this.labelCodeText1.TextForeColor = System.Drawing.SystemColors.WindowText;
+            this.labelCodeText1.Title = "配送モード";
+            this.labelCodeText1.TitleControlName = "lblTitle";
+            this.labelCodeText1.TitleSize = new System.Drawing.Size(154, 30);
+            // 
             // HgWeight
             // 
-            this.HgWeight.DatabaseColumnName = "HG_Weight";
+            this.HgWeight.DatabaseColumnName = "Prefill_Amount";
             this.HgWeight.DataControlName = "txtData";
             this.HgWeight.DataEnabled = true;
             this.HgWeight.DataReadOnly = false;
@@ -1008,7 +1062,7 @@ namespace NipponPaint.OrderManager
             // 
             // HgProductName
             // 
-            this.HgProductName.DatabaseColumnName = "HG_Product_Name";
+            this.HgProductName.DatabaseColumnName = "Paint_Name";
             this.HgProductName.DataControlName = "txtData";
             this.HgProductName.DataEnabled = true;
             this.HgProductName.DataReadOnly = false;
@@ -1033,34 +1087,6 @@ namespace NipponPaint.OrderManager
             this.HgProductName.TitleControlName = "lblTitle";
             this.HgProductName.TitleSize = new System.Drawing.Size(154, 30);
             this.HgProductName.Value = "";
-            // 
-            // HgColorName
-            // 
-            this.HgColorName.DatabaseColumnName = "HG_Color_Name";
-            this.HgColorName.DataControlName = "txtData";
-            this.HgColorName.DataEnabled = true;
-            this.HgColorName.DataReadOnly = false;
-            this.HgColorName.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.HgColorName.DataTextSize = new System.Drawing.Size(1069, 30);
-            this.HgColorName.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.HgColorName.Id = "";
-            this.HgColorName.Label = "";
-            this.HgColorName.Location = new System.Drawing.Point(3, 139);
-            this.HgColorName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.HgColorName.MaxByteLength = 65535;
-            this.HgColorName.MaxLength = 0;
-            this.HgColorName.Name = "HgColorName";
-            this.HgColorName.Size = new System.Drawing.Size(1223, 30);
-            this.HgColorName.TabIndex = 77;
-            this.HgColorName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.HgColorName.TextBackColor = System.Drawing.SystemColors.Window;
-            this.HgColorName.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.HgColorName.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.HgColorName.TextForeColor = System.Drawing.SystemColors.WindowText;
-            this.HgColorName.Title = "色名（6/0）";
-            this.HgColorName.TitleControlName = "lblTitle";
-            this.HgColorName.TitleSize = new System.Drawing.Size(154, 30);
-            this.HgColorName.Value = "";
             // 
             // CcmColorName
             // 
@@ -1352,30 +1378,31 @@ namespace NipponPaint.OrderManager
             this.BtnLotRegister.Text = "...(&L)";
             this.BtnLotRegister.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // BtnSeperateForward
             // 
-            this.button2.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button2.Location = new System.Drawing.Point(1299, 140);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(57, 30);
-            this.button2.TabIndex = 32;
-            this.button2.Text = ">(&K)";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BtnSeperateForward.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BtnSeperateForward.Location = new System.Drawing.Point(1299, 140);
+            this.BtnSeperateForward.Name = "BtnSeperateForward";
+            this.BtnSeperateForward.Size = new System.Drawing.Size(57, 30);
+            this.BtnSeperateForward.TabIndex = 32;
+            this.BtnSeperateForward.Text = ">(&K)";
+            this.BtnSeperateForward.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // BtnSeparaterBack
             // 
-            this.button1.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(1242, 140);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(57, 30);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "<(&J)";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnSeparaterBack.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.BtnSeparaterBack.Location = new System.Drawing.Point(1242, 140);
+            this.BtnSeparaterBack.Name = "BtnSeparaterBack";
+            this.BtnSeparaterBack.Size = new System.Drawing.Size(57, 30);
+            this.BtnSeparaterBack.TabIndex = 31;
+            this.BtnSeparaterBack.Text = "<(&J)";
+            this.BtnSeparaterBack.UseVisualStyleBackColor = true;
             // 
             // BorderHgTintingDirection
             // 
             this.BorderHgTintingDirection.BackColor = System.Drawing.Color.Transparent;
             this.BorderHgTintingDirection.BorderColor = System.Drawing.Color.Red;
+            this.BorderHgTintingDirection.BorderWidth = 10;
             this.BorderHgTintingDirection.Location = new System.Drawing.Point(930, 66);
             this.BorderHgTintingDirection.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.BorderHgTintingDirection.Name = "BorderHgTintingDirection";
@@ -1386,6 +1413,7 @@ namespace NipponPaint.OrderManager
             // 
             this.BorderHgSamplePlates.BackColor = System.Drawing.Color.Transparent;
             this.BorderHgSamplePlates.BorderColor = System.Drawing.Color.Red;
+            this.BorderHgSamplePlates.BorderWidth = 10;
             this.BorderHgSamplePlates.Location = new System.Drawing.Point(1240, 311);
             this.BorderHgSamplePlates.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.BorderHgSamplePlates.Name = "BorderHgSamplePlates";
@@ -1396,6 +1424,7 @@ namespace NipponPaint.OrderManager
             // 
             this.BorderHgNote.BackColor = System.Drawing.Color.Transparent;
             this.BorderHgNote.BorderColor = System.Drawing.Color.Red;
+            this.BorderHgNote.BorderWidth = 10;
             this.BorderHgNote.Location = new System.Drawing.Point(0, 276);
             this.BorderHgNote.Margin = new System.Windows.Forms.Padding(2, 5, 2, 5);
             this.BorderHgNote.Name = "BorderHgNote";
@@ -1406,6 +1435,7 @@ namespace NipponPaint.OrderManager
             // 
             this.BorderHgVolumeCode.BackColor = System.Drawing.Color.Transparent;
             this.BorderHgVolumeCode.BorderColor = System.Drawing.Color.Red;
+            this.BorderHgVolumeCode.BorderWidth = 10;
             this.BorderHgVolumeCode.Location = new System.Drawing.Point(0, 206);
             this.BorderHgVolumeCode.Margin = new System.Windows.Forms.Padding(2, 5, 2, 5);
             this.BorderHgVolumeCode.Name = "BorderHgVolumeCode";
@@ -1437,10 +1467,10 @@ namespace NipponPaint.OrderManager
             this.tabDetail2.Controls.Add(this.HgComments);
             this.tabDetail2.Controls.Add(this.FormulaRelease);
             this.tabDetail2.Controls.Add(this.PrefillAmount);
-            this.tabDetail2.Location = new System.Drawing.Point(4, 22);
+            this.tabDetail2.Location = new System.Drawing.Point(4, 32);
             this.tabDetail2.Name = "tabDetail2";
             this.tabDetail2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDetail2.Size = new System.Drawing.Size(1647, 499);
+            this.tabDetail2.Size = new System.Drawing.Size(1647, 489);
             this.tabDetail2.TabIndex = 1;
             this.tabDetail2.Text = "詳細２";
             // 
@@ -3531,11 +3561,13 @@ namespace NipponPaint.OrderManager
             // 
             this.BorderBtnPrint.BackColor = System.Drawing.Color.Transparent;
             this.BorderBtnPrint.BorderColor = System.Drawing.Color.Red;
+            this.BorderBtnPrint.BorderWidth = 10;
             this.BorderBtnPrint.Location = new System.Drawing.Point(0, 1);
             this.BorderBtnPrint.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.BorderBtnPrint.Name = "BorderBtnPrint";
             this.BorderBtnPrint.Size = new System.Drawing.Size(220, 52);
             this.BorderBtnPrint.TabIndex = 99;
+            this.BorderBtnPrint.Visible = false;
             // 
             // BtnProcessDetail
             // 
@@ -4187,8 +4219,8 @@ namespace NipponPaint.OrderManager
         private System.Windows.Forms.TabControl tabDetailSub;
         private System.Windows.Forms.TabPage tabDetail1;
         private System.Windows.Forms.Button BtnLotRegister;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnSeperateForward;
+        private System.Windows.Forms.Button BtnSeparaterBack;
         private System.Windows.Forms.TabPage tabDetail2;
         private System.Windows.Forms.TabPage tabDetail3;
         private System.Windows.Forms.TabPage tabFormulation;
@@ -4221,7 +4253,6 @@ namespace NipponPaint.OrderManager
         private NipponPaint.NpCommon.FormControls.LabelTextBox HgTruckCompanyName_1;
         private NipponPaint.NpCommon.FormControls.LabelTextBox HgProductNo;
         private NipponPaint.NpCommon.FormControls.LabelTextBox CcmColorName;
-        private NipponPaint.NpCommon.FormControls.LabelTextBox HgColorName;
         private NipponPaint.NpCommon.FormControls.LabelTextBox HgProductName;
         private NipponPaint.NpCommon.FormControls.LabelTextBox IndexNumber;
         private NipponPaint.NpCommon.FormControls.LabelTextBox TintedColor;
@@ -4344,6 +4375,8 @@ namespace NipponPaint.OrderManager
         private System.Windows.Forms.Button BtnRemanufacturedCan;
         private System.Windows.Forms.Button BtnPrintTag;
         private NpCommon.FormControls.PanelBorder BorderHgVolumeCode;
+        private NpCommon.FormControls.LabelCodeText labelCodeText1;
+        private NpCommon.FormControls.LabelTextSeparate ColorName;
     }
 }
 

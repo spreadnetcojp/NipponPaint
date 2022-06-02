@@ -353,6 +353,14 @@ namespace NipponPaint.NpCommon.Database
                             labelCodeText.Text = rows[0][labelCodeText.DatabaseColumnName].ToString().Trim();
                         }
                         break;
+                    case LabelTextSeparate labelTextSeparate:
+                        // LabelTextSeparateコントロールへの設定
+                        if (!string.IsNullOrEmpty(labelTextSeparate.DatabaseColumnName))
+                        {
+                            labelTextSeparate.Value = rows[0][labelTextSeparate.DatabaseColumnName].ToString().Trim();
+                            
+                        }
+                        break;
                     default:
                         break;
                 }
