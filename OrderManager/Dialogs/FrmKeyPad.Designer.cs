@@ -42,7 +42,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.NumLabel = new System.Windows.Forms.Label();
             this.BtnInput7 = new System.Windows.Forms.Button();
             this.BtnInputPlusMinus = new System.Windows.Forms.Button();
             this.BtnInput0 = new System.Windows.Forms.Button();
@@ -61,14 +61,15 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // NumLabel
             // 
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(12, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(198, 23);
-            this.label1.TabIndex = 7;
+            this.NumLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NumLabel.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.NumLabel.Location = new System.Drawing.Point(12, 12);
+            this.NumLabel.Name = "NumLabel";
+            this.NumLabel.Size = new System.Drawing.Size(198, 23);
+            this.NumLabel.TabIndex = 7;
+            this.NumLabel.Text = "0";
             // 
             // BtnInput7
             // 
@@ -82,6 +83,7 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // BtnInputPlusMinus
             // 
+            this.BtnInputPlusMinus.Enabled = false;
             this.BtnInputPlusMinus.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.BtnInputPlusMinus.Location = new System.Drawing.Point(148, 199);
             this.BtnInputPlusMinus.Name = "BtnInputPlusMinus";
@@ -212,6 +214,7 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // BtnCancel
             // 
+            this.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.BtnCancel.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.BtnCancel.Location = new System.Drawing.Point(114, 297);
             this.BtnCancel.Name = "BtnCancel";
@@ -254,7 +257,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.Controls.Add(this.BtnInput0);
             this.Controls.Add(this.BtnInputPlusMinus);
             this.Controls.Add(this.BtnInput7);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.NumLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "FrmKeyPad";
@@ -266,7 +269,7 @@ namespace NipponPaint.OrderManager.Dialogs
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label NumLabel;
         private System.Windows.Forms.Button BtnInput7;
         private System.Windows.Forms.Button BtnInputPlusMinus;
         private System.Windows.Forms.Button BtnInput0;
