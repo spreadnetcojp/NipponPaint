@@ -89,7 +89,7 @@ namespace NipponPaint.NpCommon.FormControls
                 {
                     if (!string.IsNullOrEmpty(ValueMemberField))
                     {
-                        var recs = db.Select($"SELECT {ValueMemberField}, CONVERT(varchar,{ValueMemberField}) + ' - ' + {DisplayMemberField} As {DisplayMemberField} FROM {TableName} Order by {ValueMemberField}");
+                        var recs = db.Select($"SELECT {ValueMemberField}, CONVERT(varchar,{ValueMemberField}) + ' - ' + {DisplayMemberField} As {DisplayMemberField} FROM {TableName} WHERE {ValueMemberField} <> 0 Order by {ValueMemberField}");
                         DropDownData.DataSource = recs;
                         DropDownData.DisplayMember = DisplayMemberField;
                         DropDownData.ValueMember = ValueMemberField;

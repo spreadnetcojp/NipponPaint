@@ -13,6 +13,7 @@
 //*****************************************************************************
 
 #region using defines
+using System.Data;
 #endregion
 
 namespace NipponPaint.OrderManager.ViewModels
@@ -88,18 +89,28 @@ namespace NipponPaint.OrderManager.ViewModels
         /// </summary>
         public int MixingSpeed { get; set; }
 
-        public OrderStartData()
+        public OrderStartData(DataTable orderData)
         {
-            OrderNumber = "51F0011000059";
-            ColorName = "596-1910-00447 K19-90A";
-            ProductCode = "JL";
-            NumberOfCan = 10;
-            ItemName = "ﾘｼﾝﾍﾞｰｽ";
-            FormalItemName = "ﾘｼﾝﾍﾞｰｽ";
-            WhiteCode = "NLB";
-            Revision = 0;
-            TotalWeight = 3.2;
-            Overfilling = 0.0;
+            //OrderNumber = "51F0011000059";
+            //ColorName = "596-1910-00447 K19-90A";
+            //ProductCode = "JL";
+            //NumberOfCan = 10;
+            //ItemName = "ﾘｼﾝﾍﾞｰｽ";
+            //FormalItemName = "ﾘｼﾝﾍﾞｰｽ";
+            //WhiteCode = "NLB";
+            //Revision = 0;
+            //TotalWeight = 3.2;
+            //Overfilling = 0.0;
+            OrderNumber = orderData.Rows[0]["OrderNumber"].ToString();
+            ColorName = orderData.Rows[0]["ColorName"].ToString();
+            ProductCode = orderData.Rows[0]["ProductCode"].ToString();
+            NumberOfCan = int.Parse(orderData.Rows[0]["NumberOfCan"].ToString());
+            ItemName = orderData.Rows[0]["ItemName"].ToString();
+            FormalItemName = orderData.Rows[0]["ItemName"].ToString();
+            WhiteCode = orderData.Rows[0]["WhiteCode"].ToString();
+            Revision = int.Parse(orderData.Rows[0]["Revision"].ToString());
+            TotalWeight = double.Parse(orderData.Rows[0]["TotalWeight"].ToString());
+            Overfilling = double.Parse(orderData.Rows[0]["Overfilling"].ToString());
             FilledWeight = 20000;
             WeightToleranceMin = +2.0;
             WeightToleranceMax = -2.0;

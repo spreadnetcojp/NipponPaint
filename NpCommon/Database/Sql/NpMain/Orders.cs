@@ -197,6 +197,31 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
+        #region オーダーIDによるレコード取得（注文開始画面表示用）
+        /// <summary>
+        /// オーダーIDによるレコード取得
+        /// </summary>
+        /// <returns></returns>
+        public static string GetDetailOrderStartByOrderId()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            sql.Append($"  Order_Number   AS OrderNumber ");
+            sql.Append($" ,Color_Name     AS ColorName ");
+            sql.Append($" ,Product_Code   AS ProductCode ");
+            sql.Append($" ,Number_of_cans AS NumberOfCan ");
+            sql.Append($" ,Paint_Name     AS ItemName ");
+            sql.Append($" ,Paint_Name     AS FormalItemName ");
+            sql.Append($" ,White_Code     AS WhiteCode ");
+            sql.Append($" ,Revision       AS Revision ");
+            sql.Append($" ,Total_Weight   AS TotalWeight ");
+            sql.Append($" ,Overfilling    AS Overfilling ");
+            sql.Append($"FROM Orders ");
+            sql.Append($"WHERE order_id = @orderId ");
+            return sql.ToString();
+        }
+        #endregion
+
         #region 処理Noによるレコード取得
 
         /// <summary>
