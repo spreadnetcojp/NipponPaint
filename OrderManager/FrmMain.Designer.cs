@@ -530,6 +530,7 @@ namespace NipponPaint.OrderManager
             this.ColorName.Title = "色名";
             this.ColorName.TitleControlName = "LblTitle";
             this.ColorName.TitleSize = new System.Drawing.Size(154, 30);
+            this.ColorName.Value = "";
             this.ColorName.WordCount = "(**/**)";
             // 
             // labelCodeText1
@@ -1467,10 +1468,10 @@ namespace NipponPaint.OrderManager
             this.tabDetail2.Controls.Add(this.HgComments);
             this.tabDetail2.Controls.Add(this.FormulaRelease);
             this.tabDetail2.Controls.Add(this.PrefillAmount);
-            this.tabDetail2.Location = new System.Drawing.Point(4, 32);
+            this.tabDetail2.Location = new System.Drawing.Point(4, 22);
             this.tabDetail2.Name = "tabDetail2";
             this.tabDetail2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDetail2.Size = new System.Drawing.Size(1647, 489);
+            this.tabDetail2.Size = new System.Drawing.Size(1647, 499);
             this.tabDetail2.TabIndex = 1;
             this.tabDetail2.Text = "詳細２";
             // 
@@ -4115,6 +4116,7 @@ namespace NipponPaint.OrderManager
             this.Controls.Add(this.menuStrip);
             this.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.MaximizeBox = false;
             this.Name = "FrmMain";
