@@ -16,6 +16,7 @@
 using System;
 using System.Windows.Forms;
 using NipponPaint.NpCommon;
+using NipponPaint.NpCommon.Database;
 #endregion
 
 namespace NipponPaint.OrderManager.Dialogs
@@ -46,6 +47,9 @@ namespace NipponPaint.OrderManager.Dialogs
             NumUpDownQualitySample.Value = vm.QualitySample;
             NumUpDownMixingTime.Value = vm.MixingTime;
             NumUpDownMixingSpeed.Value = vm.MixingSpeed;
+            DropDownLabelType.InitializeDropdownItems(SqlBase.DatabaseKind.ORDER, Log.ApplicationType.OrderManager);
+            DropDownCanType.InitializeDropdownItems(SqlBase.DatabaseKind.ORDER, Log.ApplicationType.OrderManager);
+            DropDownCapType.InitializeDropdownItems(SqlBase.DatabaseKind.ORDER, Log.ApplicationType.OrderManager);
         }
         #endregion
 

@@ -579,7 +579,25 @@ namespace NipponPaint.OrderManager
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-                var vm = new ViewModels.OrderStartData();
+                // Order_idで検索する
+                var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                var orderData = new DataTable();
+                if (GvOrder.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow row = GvOrder.SelectedRows[0];
+                    int.TryParse(row.Cells[columnIndex].Value.ToString(), out int orderId);
+                    using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
+                    {
+                        var parameters = new List<ParameterItem>()
+                        {
+                            new ParameterItem("orderId", orderId),
+                        };
+                        // 選択している注文データ取得
+                        orderData = db.Select(Sql.NpMain.Orders.GetDetailOrderStartByOrderId(), parameters);
+                    }
+                }
+                // 注文データを元にビューモデル作成
+                var vm = new ViewModels.OrderStartData(orderData);
                 FrmOrderStart frmOrderStart = new FrmOrderStart(vm);
                 frmOrderStart.ShowDialog();
             }
@@ -2396,9 +2414,9 @@ namespace NipponPaint.OrderManager
         }
         #endregion
 
-        
+
         #endregion
 
-        
+
     }
 }

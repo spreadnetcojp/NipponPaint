@@ -120,7 +120,7 @@ namespace NipponPaint.OrderManager.Dialogs
             // DropDownCapType
             // 
             this.DropDownCapType.DatabaseColumnName = "";
-            this.DropDownCapType.DisplayMemberField = "";
+            this.DropDownCapType.DisplayMemberField = "Cap_Description";
             this.DropDownCapType.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.DropDownCapType.Id = null;
             this.DropDownCapType.Location = new System.Drawing.Point(12, 327);
@@ -128,11 +128,13 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DropDownCapType.Name = "DropDownCapType";
             this.DropDownCapType.Size = new System.Drawing.Size(719, 31);
             this.DropDownCapType.TabIndex = 22;
-            this.DropDownCapType.TableName = "";
+            this.DropDownCapType.TableName = "Cap_types";
+            this.DropDownCapType.TextBackColor = System.Drawing.SystemColors.Window;
+            this.DropDownCapType.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.DropDownCapType.Title = "キャップタイプ(&A)";
             this.DropDownCapType.TitleControlName = "lblTitle";
             this.DropDownCapType.TitleSize = new System.Drawing.Size(154, 31);
-            this.DropDownCapType.ValueMemberField = "";
+            this.DropDownCapType.ValueMemberField = "Cap_Type";
             // 
             // NumUpDownQualitySample
             // 
@@ -156,6 +158,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownQualitySample.Size = new System.Drawing.Size(293, 30);
             this.NumUpDownQualitySample.TabIndex = 96;
             this.NumUpDownQualitySample.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.NumUpDownQualitySample.TextBackColor = System.Drawing.SystemColors.Window;
+            this.NumUpDownQualitySample.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.NumUpDownQualitySample.Title = "ｸｵﾘﾃｨｻﾝﾌﾟﾙ[g](&Q)";
             this.NumUpDownQualitySample.TitleControlName = "lblTitle";
             this.NumUpDownQualitySample.TitleSize = new System.Drawing.Size(154, 30);
@@ -187,6 +191,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownMixingTime.Size = new System.Drawing.Size(293, 30);
             this.NumUpDownMixingTime.TabIndex = 95;
             this.NumUpDownMixingTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.NumUpDownMixingTime.TextBackColor = System.Drawing.SystemColors.Window;
+            this.NumUpDownMixingTime.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.NumUpDownMixingTime.Title = "ﾐｷｼﾝｸﾞﾀｲﾑ[s](&J)";
             this.NumUpDownMixingTime.TitleControlName = "lblTitle";
             this.NumUpDownMixingTime.TitleSize = new System.Drawing.Size(154, 30);
@@ -218,6 +224,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownMixingSpeed.Size = new System.Drawing.Size(293, 30);
             this.NumUpDownMixingSpeed.TabIndex = 94;
             this.NumUpDownMixingSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.NumUpDownMixingSpeed.TextBackColor = System.Drawing.SystemColors.Window;
+            this.NumUpDownMixingSpeed.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.NumUpDownMixingSpeed.Title = "ﾐｷｼﾝｸﾞｽﾋﾟｰﾄﾞ(回/分)(&K)";
             this.NumUpDownMixingSpeed.TitleControlName = "lblTitle";
             this.NumUpDownMixingSpeed.TitleSize = new System.Drawing.Size(190, 30);
@@ -301,6 +309,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownFilledWeight.Size = new System.Drawing.Size(293, 30);
             this.NumUpDownFilledWeight.TabIndex = 92;
             this.NumUpDownFilledWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.NumUpDownFilledWeight.TextBackColor = System.Drawing.SystemColors.Window;
+            this.NumUpDownFilledWeight.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.NumUpDownFilledWeight.Title = "充填済み重量(g)(&H)";
             this.NumUpDownFilledWeight.TitleControlName = "lblTitle";
             this.NumUpDownFilledWeight.TitleSize = new System.Drawing.Size(154, 30);
@@ -332,6 +342,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownOverfilling.Size = new System.Drawing.Size(293, 30);
             this.NumUpDownOverfilling.TabIndex = 91;
             this.NumUpDownOverfilling.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.NumUpDownOverfilling.TextBackColor = System.Drawing.SystemColors.Window;
+            this.NumUpDownOverfilling.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.NumUpDownOverfilling.Title = "超過[%](&V)";
             this.NumUpDownOverfilling.TitleControlName = "lblTitle";
             this.NumUpDownOverfilling.TitleSize = new System.Drawing.Size(154, 30);
@@ -386,7 +398,7 @@ namespace NipponPaint.OrderManager.Dialogs
             // DropDownCanType
             // 
             this.DropDownCanType.DatabaseColumnName = "";
-            this.DropDownCanType.DisplayMemberField = "";
+            this.DropDownCanType.DisplayMemberField = "Can_Description";
             this.DropDownCanType.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.DropDownCanType.Id = null;
             this.DropDownCanType.Location = new System.Drawing.Point(12, 292);
@@ -394,16 +406,18 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DropDownCanType.Name = "DropDownCanType";
             this.DropDownCanType.Size = new System.Drawing.Size(719, 31);
             this.DropDownCanType.TabIndex = 23;
-            this.DropDownCanType.TableName = "";
+            this.DropDownCanType.TableName = "Can_types";
+            this.DropDownCanType.TextBackColor = System.Drawing.SystemColors.Window;
+            this.DropDownCanType.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.DropDownCanType.Title = "缶タイプ(&T)";
             this.DropDownCanType.TitleControlName = "lblTitle";
             this.DropDownCanType.TitleSize = new System.Drawing.Size(154, 31);
-            this.DropDownCanType.ValueMemberField = "";
+            this.DropDownCanType.ValueMemberField = "Can_Type";
             // 
             // DropDownLabelType
             // 
-            this.DropDownLabelType.DatabaseColumnName = "";
-            this.DropDownLabelType.DisplayMemberField = "";
+            this.DropDownLabelType.DatabaseColumnName = "Label_Type";
+            this.DropDownLabelType.DisplayMemberField = "Label_Description";
             this.DropDownLabelType.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.DropDownLabelType.Id = null;
             this.DropDownLabelType.Location = new System.Drawing.Point(12, 222);
@@ -411,11 +425,13 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DropDownLabelType.Name = "DropDownLabelType";
             this.DropDownLabelType.Size = new System.Drawing.Size(719, 31);
             this.DropDownLabelType.TabIndex = 21;
-            this.DropDownLabelType.TableName = "";
+            this.DropDownLabelType.TableName = "Labels";
+            this.DropDownLabelType.TextBackColor = System.Drawing.SystemColors.Window;
+            this.DropDownLabelType.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.DropDownLabelType.Title = "ラベルタイプ(&L)";
             this.DropDownLabelType.TitleControlName = "lblTitle";
             this.DropDownLabelType.TitleSize = new System.Drawing.Size(154, 31);
-            this.DropDownLabelType.ValueMemberField = "";
+            this.DropDownLabelType.ValueMemberField = "Label_Type";
             // 
             // TxtWhiteCode
             // 
@@ -437,6 +453,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtWhiteCode.TabIndex = 15;
             this.TxtWhiteCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TxtWhiteCode.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtWhiteCode.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TxtWhiteCode.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtWhiteCode.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtWhiteCode.Title = "白コード(&W)";
@@ -464,6 +481,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtRevision.TabIndex = 12;
             this.TxtRevision.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtRevision.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtRevision.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TxtRevision.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtRevision.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtRevision.Title = "補正(&R)";
@@ -491,6 +509,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtTotalWeight.TabIndex = 9;
             this.TxtTotalWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtTotalWeight.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtTotalWeight.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TxtTotalWeight.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtTotalWeight.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtTotalWeight.Title = "合計重量[g](&U)";
@@ -518,6 +537,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtColorName.TabIndex = 5;
             this.TxtColorName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TxtColorName.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtColorName.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TxtColorName.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtColorName.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtColorName.Title = "色名(&C)";
@@ -545,6 +565,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtProductCode.TabIndex = 4;
             this.TxtProductCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TxtProductCode.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtProductCode.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TxtProductCode.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtProductCode.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtProductCode.Title = "製品コード(&P)";
@@ -572,6 +593,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtNumberOfCan.TabIndex = 3;
             this.TxtNumberOfCan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtNumberOfCan.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtNumberOfCan.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TxtNumberOfCan.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtNumberOfCan.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtNumberOfCan.Title = "缶数(&N)";
@@ -599,6 +621,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtPaintName.TabIndex = 2;
             this.TxtPaintName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TxtPaintName.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtPaintName.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TxtPaintName.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtPaintName.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtPaintName.Title = "品名(&M)";
@@ -626,6 +649,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtFormalPaintName.TabIndex = 1;
             this.TxtFormalPaintName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TxtFormalPaintName.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtFormalPaintName.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TxtFormalPaintName.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtFormalPaintName.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtFormalPaintName.Title = "正式品種名(&F)";
@@ -653,6 +677,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtOrderNumber.TabIndex = 0;
             this.TxtOrderNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TxtOrderNumber.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtOrderNumber.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TxtOrderNumber.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtOrderNumber.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtOrderNumber.Title = "注文番号(&O)";
