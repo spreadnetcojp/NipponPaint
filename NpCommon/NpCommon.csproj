@@ -88,6 +88,12 @@
     <Compile Include="FormControls\ComboBoxEx.Designer.cs">
       <DependentUpon>ComboBoxEx.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormControls\LabelStatusRadioButtons.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormControls\LabelStatusRadioButtons.Designer.cs">
+      <DependentUpon>LabelStatusRadioButtons.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormControls\LabelTextButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -226,6 +232,9 @@
   <ItemGroup>
     <EmbeddedResource Include="FormControls\CheckTextButton.resx">
       <DependentUpon>CheckTextButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormControls\LabelStatusRadioButtons.resx">
+      <DependentUpon>LabelStatusRadioButtons.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormControls\LabelTextButton.resx">
       <DependentUpon>LabelTextButton.cs</DependentUpon>

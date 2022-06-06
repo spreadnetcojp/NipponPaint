@@ -358,6 +358,42 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
+        #region
+        /// <summary>
+        /// 注文開始
+        /// </summary>
+        /// <returns></returns>
+        public static string StartOrder()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"UPDATE ");
+            sql.Append($"Orders ");
+            sql.Append($"SET ");
+            sql.Append($" Label_Type         = @LabelType ");
+            sql.Append($",Label_Description  = @LabelDescription ");
+            sql.Append($",Can_Type           = @CanType ");
+            sql.Append($",Can_Description    = @CanDescription ");
+            sql.Append($",Can_Weight         = @CanWeight ");
+            sql.Append($",Can_Nominal        = @CanNominal ");
+            sql.Append($",Can_Available      = @CanAvailable ");
+            sql.Append($",Cap_Type           = @CapType ");
+            sql.Append($",Cap_Description    = @CapDescription ");
+            sql.Append($",Cap_Weight         = @CapWeight ");
+            sql.Append($",Hole_Size          = @CapHoleSize ");
+            sql.Append($",Capping_Machine    = @CappingMachine ");
+            sql.Append($",Status             = @Status ");
+            sql.Append($",Overfilling        = @Overfilling ");
+            sql.Append($",Prefill_Amount     = @PrefillAmount ");
+            sql.Append($",P_Weight_Tolerance = @PWeightTolerance ");
+            sql.Append($",N_Weight_Tolerance = @NWeightTolerance ");
+            sql.Append($",Quality_Sample     = @QualitySample ");
+            sql.Append($",Mixing_Time        = @MixingTime ");
+            sql.Append($",Mixing_Speed       = @MixingSpeed ");
+            sql.Append($"WHERE Order_Number  = @OrderNumber ");
+            return sql.ToString();
+        }
+        #endregion
+
         #endregion
     }
 }

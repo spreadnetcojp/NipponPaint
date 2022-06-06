@@ -16,6 +16,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Data;
 using NipponPaint.NpCommon.Database;
 #endregion
 
@@ -104,9 +105,24 @@ namespace NipponPaint.NpCommon.FormControls
                         DropDownData.MaxDropDownItems = 8;
                     }
                 }
-                   
+
             }
         }
 
+        /// <summary>
+        /// ドロップダウンリストの詳細データ取得
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="selectValue"></param>
+        /// <returns></returns>
+        public DataTable DropdownItemValue(SqlBase db, int selectValue)
+        {
+            if (!string.IsNullOrEmpty(DisplayMemberField))
+            {
+                var itemData = db.Select($"SELECT * FROM {TableName} WHERE {ValueMemberField} = {selectValue} ");
+                return itemData;
+            }
+            return null;
+        }
     }
 }
