@@ -79,6 +79,11 @@ namespace NipponPaint.OrderManager
         private const int TAB_INDEX_FORMULATION = 2;
         private const int TAB_INDEX_CAN = 3;
 
+        //GvOrderの各種文字サイズと行高さ
+        private const int GVORDER_ROW_HEIGHT = 32;
+        private const int GVORDER_FONTSIZE_PRODUCTCODE = 16;
+        private const int GVORDER_FONTSIZE_DEFAULT = 8;
+
         private List<string> ViewGrid = new List<string>();
         //private const Log.ApplicationType MyApp = Log.ApplicationType.OrderManager;
 
@@ -2056,9 +2061,9 @@ namespace NipponPaint.OrderManager
             switch (dgv.Name)
             {
                 case "GvOrder":
-                    rowHeight = 32;
-                    fontSizeProductCode = 16;
-                    fontSizeDefault = 8;
+                    rowHeight = GVORDER_ROW_HEIGHT;
+                    fontSizeProductCode = GVORDER_FONTSIZE_PRODUCTCODE;
+                    fontSizeDefault = GVORDER_FONTSIZE_DEFAULT;
                     break;
             }
             foreach (DataGridViewRow row in dgv.Rows)
