@@ -107,6 +107,38 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             [Display(Description = "特別便")]
             Special = 9,
         }
+        // テーブル
+        private const string MAIN_TABLE = "Orders";
+        // カラム
+        private const string COLUMN_ORDER_ID = "Order_id";
+        private const string COLUMN_ORDER_NUMBER = "Order_Number";
+        private const string COLUMN_COLOR_NAME = "Color_Name";
+        private const string COLUMN_PRODUCT_CODE = "Product_Code";
+        private const string COLUMN_NUMBER_OF_CAN = "Number_of_cans";
+        private const string COLUMN_PAINT_NAME = "Paint_Name";
+        private const string COLUMN_WHITE_CODE = "White_Code";
+        private const string COLUMN_REVISION = "Revision";
+        private const string COLUMN_TOTAL_WEIGHT = "Total_Weight";
+        private const string COLUMN_OVERFILLING = "Overfilling";
+        private const string COLUMN_LABEL_TYPE = "Label_Type";
+        private const string COLUMN_LABEL_DESCRIPTION = "Label_Description";
+        private const string COLUMN_CAN_TYPE = "Can_Type";
+        private const string COLUMN_CAN_DESCRIPTION = "Can_Description";
+        private const string COLUMN_CAN_WEIGHT = "Can_Weight";
+        private const string COLUMN_CAN_NOMINAL = "Can_Nominal";
+        private const string COLUMN_CAN_AVAILABLE = "Can_Available";
+        private const string COLUMN_CAP_TYPE = "Cap_Type";
+        private const string COLUMN_CAP_DESCRIPTION = "Cap_Description";
+        private const string COLUMN_CAP_WEIGHT = "Cap_Weight";
+        private const string COLUMN_HOLE_SIZE = "Hole_Size";
+        private const string COLUMN_CAPPING_MACHINE = "Capping_Machine";
+        private const string COLUMN_STATUS = "Status";
+        private const string COLUMN_PREFILL_AMOUNT = "Prefill_Amount";
+        private const string COLUMN_P_WEIGHT_TOLERANCE = "P_Weight_Tolerance";
+        private const string COLUMN_N_WEIGHT_TOLERANCE = "N_Weight_Tolerance";
+        private const string COLUMN_QUALITY_SAMPLE = "Quality_Sample";
+        private const string COLUMN_MIXING_TIME = "Mixing_Time";
+        private const string COLUMN_MIXING_SPEED = "Mixing_Speed";
         #endregion
 
         #region 参照系
@@ -206,18 +238,18 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
-            sql.Append($"  Order_Number   AS OrderNumber ");
-            sql.Append($" ,Color_Name     AS ColorName ");
-            sql.Append($" ,Product_Code   AS ProductCode ");
-            sql.Append($" ,Number_of_cans AS NumberOfCan ");
-            sql.Append($" ,Paint_Name     AS ItemName ");
-            sql.Append($" ,Paint_Name     AS FormalItemName ");
-            sql.Append($" ,White_Code     AS WhiteCode ");
-            sql.Append($" ,Revision       AS Revision ");
-            sql.Append($" ,Total_Weight   AS TotalWeight ");
-            sql.Append($" ,Overfilling    AS Overfilling ");
-            sql.Append($"FROM Orders ");
-            sql.Append($"WHERE order_id = @orderId ");
+            sql.Append($"  {COLUMN_ORDER_NUMBER}   AS OrderNumber ");
+            sql.Append($" ,{COLUMN_COLOR_NAME}     AS ColorName ");
+            sql.Append($" ,{COLUMN_PRODUCT_CODE}   AS ProductCode ");
+            sql.Append($" ,{COLUMN_NUMBER_OF_CAN}  AS NumberOfCan ");
+            sql.Append($" ,{COLUMN_PAINT_NAME}     AS ItemName ");
+            sql.Append($" ,{COLUMN_PAINT_NAME}     AS FormalItemName ");
+            sql.Append($" ,{COLUMN_WHITE_CODE}     AS WhiteCode ");
+            sql.Append($" ,{COLUMN_REVISION}       AS Revision ");
+            sql.Append($" ,{COLUMN_TOTAL_WEIGHT}   AS TotalWeight ");
+            sql.Append($" ,{COLUMN_OVERFILLING}    AS Overfilling ");
+            sql.Append($"FROM {MAIN_TABLE} ");
+            sql.Append($"WHERE {COLUMN_ORDER_ID} = @orderId ");
             return sql.ToString();
         }
         #endregion
@@ -367,29 +399,29 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         {
             var sql = new StringBuilder();
             sql.Append($"UPDATE ");
-            sql.Append($"Orders ");
+            sql.Append($"{MAIN_TABLE} ");
             sql.Append($"SET ");
-            sql.Append($" Label_Type         = @LabelType ");
-            sql.Append($",Label_Description  = @LabelDescription ");
-            sql.Append($",Can_Type           = @CanType ");
-            sql.Append($",Can_Description    = @CanDescription ");
-            sql.Append($",Can_Weight         = @CanWeight ");
-            sql.Append($",Can_Nominal        = @CanNominal ");
-            sql.Append($",Can_Available      = @CanAvailable ");
-            sql.Append($",Cap_Type           = @CapType ");
-            sql.Append($",Cap_Description    = @CapDescription ");
-            sql.Append($",Cap_Weight         = @CapWeight ");
-            sql.Append($",Hole_Size          = @CapHoleSize ");
-            sql.Append($",Capping_Machine    = @CappingMachine ");
-            sql.Append($",Status             = @Status ");
-            sql.Append($",Overfilling        = @Overfilling ");
-            sql.Append($",Prefill_Amount     = @PrefillAmount ");
-            sql.Append($",P_Weight_Tolerance = @PWeightTolerance ");
-            sql.Append($",N_Weight_Tolerance = @NWeightTolerance ");
-            sql.Append($",Quality_Sample     = @QualitySample ");
-            sql.Append($",Mixing_Time        = @MixingTime ");
-            sql.Append($",Mixing_Speed       = @MixingSpeed ");
-            sql.Append($"WHERE Order_Number  = @OrderNumber ");
+            sql.Append($" {COLUMN_LABEL_TYPE}         = @LabelType ");
+            sql.Append($",{COLUMN_LABEL_DESCRIPTION}  = @LabelDescription ");
+            sql.Append($",{COLUMN_CAN_TYPE}           = @CanType ");
+            sql.Append($",{COLUMN_CAN_DESCRIPTION}    = @CanDescription ");
+            sql.Append($",{COLUMN_CAN_WEIGHT}         = @CanWeight ");
+            sql.Append($",{COLUMN_CAN_NOMINAL}        = @CanNominal ");
+            sql.Append($",{COLUMN_CAN_AVAILABLE}      = @CanAvailable ");
+            sql.Append($",{COLUMN_CAP_TYPE}           = @CapType ");
+            sql.Append($",{COLUMN_CAP_DESCRIPTION}    = @CapDescription ");
+            sql.Append($",{COLUMN_CAP_WEIGHT}         = @CapWeight ");
+            sql.Append($",{COLUMN_HOLE_SIZE}          = @CapHoleSize ");
+            sql.Append($",{COLUMN_CAPPING_MACHINE}    = @CappingMachine ");
+            sql.Append($",{COLUMN_STATUS}             = @Status ");
+            sql.Append($",{COLUMN_OVERFILLING}        = @Overfilling ");
+            sql.Append($",{COLUMN_PREFILL_AMOUNT}     = @PrefillAmount ");
+            sql.Append($",{COLUMN_P_WEIGHT_TOLERANCE} = @PWeightTolerance ");
+            sql.Append($",{COLUMN_N_WEIGHT_TOLERANCE} = @NWeightTolerance ");
+            sql.Append($",{COLUMN_QUALITY_SAMPLE}     = @QualitySample ");
+            sql.Append($",{COLUMN_MIXING_TIME}        = @MixingTime ");
+            sql.Append($",{COLUMN_MIXING_SPEED}       = @MixingSpeed ");
+            sql.Append($"WHERE {COLUMN_ORDER_NUMBER} = @OrderNumber ");
             return sql.ToString();
         }
         #endregion

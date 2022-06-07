@@ -700,7 +700,6 @@ namespace NipponPaint.OrderManager.Dialogs
             this.Name = "FrmOrderStart";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "注文開始";
-            this.Load += new System.EventHandler(this.FrmOrderStart_Load);
             this.PnlBtn.ResumeLayout(false);
             this.ResumeLayout(false);
 

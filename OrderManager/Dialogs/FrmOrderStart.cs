@@ -65,62 +65,17 @@ namespace NipponPaint.OrderManager.Dialogs
         /// 信頼できる配合
         /// </summary>
         private const int STATUS_PRODUCTION = 4;
-        //　▼ DBカラムnumber
         /// <summary>
-        /// ラベルタイプ
+        /// ラベルデータ
         /// </summary>
-        private const int COLUMN_LABEL_TYPE = 0;
-        /// <summary>
-        /// ラベル詳細
-        /// </summary>
-        private const int COLUMN_LABLE_DESCRIPTION = 1;
-        /// <summary>
-        /// 缶タイプ
-        /// </summary>
-        private const int COLUMN_CAN_TYPE = 0;
-        /// <summary>
-        /// 缶詳細
-        /// </summary>
-        private const int COLUMN_CAN_DESCRIPTION = 1;
-        /// <summary>
-        /// 缶サイズ[mm]
-        /// </summary>
-        private const int COLUMN_CAN_HOLE_SIZE = 2;
-        /// <summary>
-        /// 空缶重量[g]
-        /// </summary>
-        private const int COLUMN_CAN_AVAILABLE_VOLUME = 3;
-        /// <summary>
-        /// 通常容量[ml]
-        /// </summary>
-        private const int COLUMN_CAN_WEIGHT = 4;
-        /// <summary>
-        /// 最大容量[ml]
-        /// </summary>
-        private const int COLUMN_NOMINAL_VOLUME = 5;
-        /// <summary>
-        /// キャップタイプ
-        /// </summary>
-        private const int COLUMN_CAP_TYPE = 0;
-        /// <summary>
-        /// キャップ詳細
-        /// </summary>
-        private const int COLUMN_CAP_DESCRIPTION = 1;
-        /// <summary>
-        /// キャップサイズ[mm]
-        /// </summary>
-        private const int COLUMN_CAP_HOLE_SIZE = 2;
-        /// <summary>
-        /// キャップ重量[g]
-        /// </summary>
-        private const int COLUMN_CAP_WEIGHT = 3;
-        /// <summary>
-        /// キャッパー
-        /// </summary>
-        private const int COLUMN_CAP_CAPPING_MACHINE = 4;
-        //　▲ DBカラムnumber
         private DataTable labelData = new DataTable();
+        /// <summary>
+        /// 缶データ
+        /// </summary>
         private DataTable canData = new DataTable();
+        /// <summary>
+        /// キャップデータ
+        /// </summary>
         private DataTable capData = new DataTable();
         #endregion
 
@@ -167,17 +122,17 @@ namespace NipponPaint.OrderManager.Dialogs
                     {
                         new ParameterItem("@Status", status),
                         new ParameterItem("@LabelType", labelSelectValue),
-                        new ParameterItem("@LabelDescription", labelData.Rows[0].ItemArray[COLUMN_LABLE_DESCRIPTION]),
+                        new ParameterItem("@LabelDescription", labelData.Rows[0][NpCommon.Database.Sql.Order.Labels.COLUMN_LABLE_DESCRIPTION]),
                         new ParameterItem("@CanType", canSelectValue),
-                        new ParameterItem("@CanDescription", canData.Rows[0].ItemArray[COLUMN_CAN_DESCRIPTION]),
-                        new ParameterItem("@CanWeight", canData.Rows[0].ItemArray[COLUMN_CAN_WEIGHT]),
-                        new ParameterItem("@CanNominal", canData.Rows[0].ItemArray[COLUMN_NOMINAL_VOLUME]),
-                        new ParameterItem("@CanAvailable", canData.Rows[0].ItemArray[COLUMN_CAN_AVAILABLE_VOLUME]),
+                        new ParameterItem("@CanDescription", canData.Rows[0][NpCommon.Database.Sql.Order.CanTypes.COLUMN_CAN_DESCRIPTION]),
+                        new ParameterItem("@CanWeight", canData.Rows[0][NpCommon.Database.Sql.Order.CanTypes.COLUMN_CAN_WEIGHT]),
+                        new ParameterItem("@CanNominal", canData.Rows[0][NpCommon.Database.Sql.Order.CanTypes.COLUMN_NOMINAL_VOLUME]),
+                        new ParameterItem("@CanAvailable", canData.Rows[0][NpCommon.Database.Sql.Order.CanTypes.COLUMN_AVAILABLE_VOLUME]),
                         new ParameterItem("@CapType", capSelectValue),
-                        new ParameterItem("@CapDescription", capData.Rows[0].ItemArray[COLUMN_CAP_DESCRIPTION]),
-                        new ParameterItem("@CapWeight", capData.Rows[0].ItemArray[COLUMN_CAP_WEIGHT]),
-                        new ParameterItem("@CapHoleSize", capData.Rows[0].ItemArray[COLUMN_CAP_HOLE_SIZE]),
-                        new ParameterItem("@CappingMachine", capData.Rows[0].ItemArray[COLUMN_CAP_CAPPING_MACHINE]),
+                        new ParameterItem("@CapDescription", capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_CAP_DESCRIPTION]),
+                        new ParameterItem("@CapWeight", capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_CAP_WEIGHT]),
+                        new ParameterItem("@CapHoleSize", capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_HOLE_SIZE]),
+                        new ParameterItem("@CappingMachine", capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_CAPPING_MACHINE]),
                         new ParameterItem("@Overfilling", NumUpDownOverfilling.Value),
                         new ParameterItem("@PrefillAmount", NumUpDownFilledWeight.Value),
                         new ParameterItem("@PWeightTolerance", NumUpDownWeightTolerance.ValueLeft),
@@ -248,10 +203,5 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnClose.Click += new EventHandler(this.BtnCloseClick);
         }
         #endregion
-
-        private void FrmOrderStart_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

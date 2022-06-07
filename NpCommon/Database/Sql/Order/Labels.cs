@@ -14,35 +14,30 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace NipponPaint.NpCommon.FormControls
+namespace NipponPaint.NpCommon.Database.Sql.Order
 {
-    public partial class LabelStatusRadioButtons : UserControl
+    public static class Labels
     {
-        /// <summary>
-        /// テスト缶ステータス
-        /// </summary>
-        public RadioButton Rbt1CheckState
-        {
-            get { return Rbt1; }
-        }
-        /// <summary>
-        /// 信頼できる配合ステータス
-        /// </summary>
-        public RadioButton Rbt2CheckState
-        {
-            get { return Rbt2; }
-        }
-        public LabelStatusRadioButtons()
-        {
-            InitializeComponent();
-        }
+        #region 定数
+        // テーブル
+        private const string MAIN_TABLE = "Labels";
+        // カラム
+        public const string COLUMN_LABEL_TYPE = "Label_Type";
+        public const string COLUMN_LABLE_DESCRIPTION = "Label_Description";
+        public const string COLUMN_JIS_LOGO = "JIS_Logo";
+        public const string COLUMN_FLA_LOGO = "FLA_Logo";
+        public const string COLUMN_TOX_LOGO = "TOX_Logo";
+        public const string COLUMN_NPC_LOGO = "NPC_Logo";
+        #endregion
+
+        #region 参照系
+        #endregion
+
+        #region 更新系
+        #endregion
     }
 }
