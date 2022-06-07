@@ -22,6 +22,17 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
 {
     public static class CapTypes
     {
+        #region 定数
+        // テーブル
+        private const string MAIN_TABLE = "Cap_types";
+        // カラム
+        public const string COLUMN_CAP_TYPE = "Cap_Type";
+        public const string COLUMN_CAP_DESCRIPTION = "Cap_Description";
+        public const string COLUMN_HOLE_SIZE = "Hole_Size";
+        public const string COLUMN_CAP_WEIGHT = "Cap_Weight";
+        public const string COLUMN_CAPPING_MACHINE = "Capping_Machine";
+        #endregion
+
         #region 参照系
 
         #region 一覧データの取得
@@ -43,8 +54,8 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
                 sql.Append(item.SqlSentence);
                 cnt++;
             }
-            sql.Append($"FROM Cap_Types ");
-            sql.Append($"ORDER BY Cap_Type ");
+            sql.Append($"FROM {MAIN_TABLE} ");
+            sql.Append($"ORDER BY {COLUMN_CAP_TYPE} ");
             return sql.ToString();
         }
         #endregion
@@ -58,7 +69,7 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
         public static string GetDetail()
         {
             var sql = new StringBuilder();
-            sql.Append($"SELECT * FROM Cap_Types WHERE Cap_Type = @capType");
+            sql.Append($"SELECT * FROM {MAIN_TABLE} WHERE {COLUMN_CAP_TYPE} = @capType");
             return sql.ToString();
         }
         #endregion

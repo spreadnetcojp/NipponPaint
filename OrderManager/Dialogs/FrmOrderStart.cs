@@ -15,8 +15,11 @@
 #region using defines
 using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Data;
 using NipponPaint.NpCommon;
 using NipponPaint.NpCommon.Database;
+
 #endregion
 
 namespace NipponPaint.OrderManager.Dialogs
@@ -53,6 +56,29 @@ namespace NipponPaint.OrderManager.Dialogs
         }
         #endregion
 
+        #region 定数
+        /// <summary>
+        /// テスト缶
+        /// </summary>
+        private const int STATUS_TEST = 3;
+        /// <summary>
+        /// 信頼できる配合
+        /// </summary>
+        private const int STATUS_PRODUCTION = 4;
+        /// <summary>
+        /// ラベルデータ
+        /// </summary>
+        private DataTable labelData = new DataTable();
+        /// <summary>
+        /// 缶データ
+        /// </summary>
+        private DataTable canData = new DataTable();
+        /// <summary>
+        /// キャップデータ
+        /// </summary>
+        private DataTable capData = new DataTable();
+        #endregion
+
         #region イベント
         /// <summary>
         /// 注文開始ボタン
@@ -64,8 +90,67 @@ namespace NipponPaint.OrderManager.Dialogs
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                // ラジオボタン選択・テスト缶or信頼できる配合でStatus変化
+                int status = 0;
+                if (labelStatusRadioButtons1.Rbt1CheckState.Checked == true)
+                {
+                    status = STATUS_TEST;
+                }
+                else if (labelStatusRadioButtons1.Rbt2CheckState.Checked == true)
+                {
+                    status = STATUS_PRODUCTION;
+                }
+                // ラベルタイプ取得
+                int.TryParse(DropDownLabelType.SelectedValue.ToString(), out int labelSelectValue);
+                // 缶タイプ取得
+                int.TryParse(DropDownCanType.SelectedValue.ToString(), out int canSelectValue);
+                // キャップタイプ取得
+                int.TryParse(DropDownCapType.SelectedValue.ToString(), out int capSelectValue);
+                using (var db = new SqlBase(SqlBase.DatabaseKind.ORDER, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
+                {
+                    // ラベルタイプデータ取得
+                    labelData = DropDownLabelType.DropdownItemValue(db, labelSelectValue);
+                    // 缶タイプデータ取得
+                    canData = DropDownCanType.DropdownItemValue(db, canSelectValue);
+                    // キャップタイプデータ取得
+                    capData = DropDownCapType.DropdownItemValue(db, capSelectValue);
+                }
+                if (status == STATUS_TEST || status == STATUS_PRODUCTION)
+                {
+                    // 注文開始更新用パラメータ作成
+                    var parameters = new List<ParameterItem>()
+                    {
+                        new ParameterItem("@Status", status),
+                        new ParameterItem("@LabelType", labelSelectValue),
+                        new ParameterItem("@LabelDescription", labelData.Rows[0][NpCommon.Database.Sql.Order.Labels.COLUMN_LABLE_DESCRIPTION]),
+                        new ParameterItem("@CanType", canSelectValue),
+                        new ParameterItem("@CanDescription", canData.Rows[0][NpCommon.Database.Sql.Order.CanTypes.COLUMN_CAN_DESCRIPTION]),
+                        new ParameterItem("@CanWeight", canData.Rows[0][NpCommon.Database.Sql.Order.CanTypes.COLUMN_CAN_WEIGHT]),
+                        new ParameterItem("@CanNominal", canData.Rows[0][NpCommon.Database.Sql.Order.CanTypes.COLUMN_NOMINAL_VOLUME]),
+                        new ParameterItem("@CanAvailable", canData.Rows[0][NpCommon.Database.Sql.Order.CanTypes.COLUMN_AVAILABLE_VOLUME]),
+                        new ParameterItem("@CapType", capSelectValue),
+                        new ParameterItem("@CapDescription", capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_CAP_DESCRIPTION]),
+                        new ParameterItem("@CapWeight", capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_CAP_WEIGHT]),
+                        new ParameterItem("@CapHoleSize", capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_HOLE_SIZE]),
+                        new ParameterItem("@CappingMachine", capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_CAPPING_MACHINE]),
+                        new ParameterItem("@Overfilling", NumUpDownOverfilling.Value),
+                        new ParameterItem("@PrefillAmount", NumUpDownFilledWeight.Value),
+                        new ParameterItem("@PWeightTolerance", NumUpDownWeightTolerance.ValueLeft),
+                        new ParameterItem("@NWeightTolerance", NumUpDownWeightTolerance.ValueRight),
+                        new ParameterItem("@QualitySample", NumUpDownQualitySample.Value),
+                        new ParameterItem("@MixingTime", NumUpDownMixingTime.Value),
+                        new ParameterItem("@MixingSpeed", NumUpDownMixingSpeed.Value),
+                        new ParameterItem("@OrderNumber", TxtOrderNumber.Value),
+                    };
+                    using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+                    {
+                        db.Execute(NpCommon.Database.Sql.NpMain.Orders.StartOrder(), parameters);
+                        db.Commit();
+                        this.Close();
+                    }
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -81,7 +166,7 @@ namespace NipponPaint.OrderManager.Dialogs
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -98,7 +183,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
