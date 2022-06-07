@@ -49,6 +49,10 @@ namespace NipponPaint.OrderManager.ViewModels
         /// </summary>
         public string FormalItemName { get; set; }
         /// <summary>
+        /// テスト缶・信頼できる配合
+        /// </summary>
+        public int Status { get; set; }
+        /// <summary>
         /// 白コード
         /// </summary>
         public string WhiteCode { get; set; }

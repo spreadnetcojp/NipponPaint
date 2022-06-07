@@ -22,6 +22,18 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
 {
     public static class CanTypes
     {
+        #region　定数
+        // テーブル
+        private const string MAIN_TABLE = "Can_types";
+        // カラム
+        public const string COLUMN_CAN_TYPE = "Cap_Type";
+        public const string COLUMN_CAN_DESCRIPTION = "Can_Description";
+        public const string COLUMN_HOLE_SIZE = "Hole_Size";
+        public const string COLUMN_AVAILABLE_VOLUME = "Available_Volume";
+        public const string COLUMN_CAN_WEIGHT = "Can_Weight";
+        public const string COLUMN_NOMINAL_VOLUME = "Nominal_Volume";
+        #endregion
+
         #region 参照系
 
         #region 一覧データの取得
@@ -43,8 +55,8 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
                 sql.Append(item.SqlSentence);
                 cnt++;
             }
-            sql.Append($"FROM Can_Types ");
-            sql.Append($"ORDER BY Can_Type ");
+            sql.Append($"FROM {MAIN_TABLE} ");
+            sql.Append($"ORDER BY {COLUMN_CAN_TYPE} ");
             return sql.ToString();
         }
         #endregion
@@ -57,7 +69,7 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
         public static string GetDetail()
         {
             var sql = new StringBuilder();
-            sql.Append($"SELECT * FROM Can_Types WHERE Can_Type = @canType");
+            sql.Append($"SELECT * FROM {MAIN_TABLE} WHERE {COLUMN_CAN_TYPE} = @canType");
             return sql.ToString();
         }
         #endregion

@@ -53,8 +53,6 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownWeightTolerance = new NipponPaint.NpCommon.FormControls.LabelNumericUpDownMulti();
             this.NumUpDownFilledWeight = new NipponPaint.NpCommon.FormControls.LabelNumericUpDown();
             this.NumUpDownOverfilling = new NipponPaint.NpCommon.FormControls.LabelNumericUpDown();
-            this.ChkTestCan = new NipponPaint.NpCommon.FormControls.LabelCheckBoxSingle();
-            this.ChkTrustableCombination = new NipponPaint.NpCommon.FormControls.LabelCheckBoxSingle();
             this.ChkHandCapping = new NipponPaint.NpCommon.FormControls.LabelCheckBoxSingle();
             this.DropDownCanType = new NipponPaint.NpCommon.FormControls.LabelDropDown();
             this.DropDownLabelType = new NipponPaint.NpCommon.FormControls.LabelDropDown();
@@ -67,6 +65,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtPaintName = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.TxtFormalPaintName = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.TxtOrderNumber = new NipponPaint.NpCommon.FormControls.LabelTextBox();
+            this.labelStatusRadioButtons1 = new NipponPaint.NpCommon.FormControls.LabelStatusRadioButtons();
             this.PnlBtn.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -352,34 +351,6 @@ namespace NipponPaint.OrderManager.Dialogs
             0,
             0,
             0});
-            // 
-            // ChkTestCan
-            // 
-            this.ChkTestCan.DatabaseColumnName = "";
-            this.ChkTestCan.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ChkTestCan.Id = 0;
-            this.ChkTestCan.Location = new System.Drawing.Point(12, 432);
-            this.ChkTestCan.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ChkTestCan.Name = "ChkTestCan";
-            this.ChkTestCan.Size = new System.Drawing.Size(293, 30);
-            this.ChkTestCan.TabIndex = 26;
-            this.ChkTestCan.Title = "テスト缶(&S)";
-            this.ChkTestCan.TitleControlName = "lblTitle";
-            this.ChkTestCan.TitleSize = new System.Drawing.Size(154, 30);
-            // 
-            // ChkTrustableCombination
-            // 
-            this.ChkTrustableCombination.DatabaseColumnName = "";
-            this.ChkTrustableCombination.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ChkTrustableCombination.Id = 0;
-            this.ChkTrustableCombination.Location = new System.Drawing.Point(12, 467);
-            this.ChkTrustableCombination.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.ChkTrustableCombination.Name = "ChkTrustableCombination";
-            this.ChkTrustableCombination.Size = new System.Drawing.Size(293, 30);
-            this.ChkTrustableCombination.TabIndex = 25;
-            this.ChkTrustableCombination.Title = "信頼できる配合(&B)";
-            this.ChkTrustableCombination.TitleControlName = "lblTitle";
-            this.ChkTrustableCombination.TitleSize = new System.Drawing.Size(154, 30);
             // 
             // ChkHandCapping
             // 
@@ -685,6 +656,15 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtOrderNumber.TitleSize = new System.Drawing.Size(154, 30);
             this.TxtOrderNumber.Value = "";
             // 
+            // labelStatusRadioButtons1
+            // 
+            this.labelStatusRadioButtons1.Font = new System.Drawing.Font("メイリオ", 11.25F);
+            this.labelStatusRadioButtons1.Location = new System.Drawing.Point(12, 433);
+            this.labelStatusRadioButtons1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.labelStatusRadioButtons1.Name = "labelStatusRadioButtons1";
+            this.labelStatusRadioButtons1.Size = new System.Drawing.Size(342, 62);
+            this.labelStatusRadioButtons1.TabIndex = 97;
+            // 
             // FrmOrderStart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -692,6 +672,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.CancelButton = this.BtnClose;
             this.ClientSize = new System.Drawing.Size(742, 826);
             this.ControlBox = false;
+            this.Controls.Add(this.labelStatusRadioButtons1);
             this.Controls.Add(this.DropDownCapType);
             this.Controls.Add(this.NumUpDownQualitySample);
             this.Controls.Add(this.NumUpDownMixingTime);
@@ -700,8 +681,6 @@ namespace NipponPaint.OrderManager.Dialogs
             this.Controls.Add(this.NumUpDownFilledWeight);
             this.Controls.Add(this.NumUpDownOverfilling);
             this.Controls.Add(this.PnlBtn);
-            this.Controls.Add(this.ChkTestCan);
-            this.Controls.Add(this.ChkTrustableCombination);
             this.Controls.Add(this.ChkHandCapping);
             this.Controls.Add(this.DropDownCanType);
             this.Controls.Add(this.DropDownLabelType);
@@ -741,8 +720,6 @@ namespace NipponPaint.OrderManager.Dialogs
         private NipponPaint.NpCommon.FormControls.LabelDropDown DropDownCapType;
         private NipponPaint.NpCommon.FormControls.LabelDropDown DropDownCanType;
         private NipponPaint.NpCommon.FormControls.LabelCheckBoxSingle ChkHandCapping;
-        private NipponPaint.NpCommon.FormControls.LabelCheckBoxSingle ChkTrustableCombination;
-        private NipponPaint.NpCommon.FormControls.LabelCheckBoxSingle ChkTestCan;
         private System.Windows.Forms.Panel PnlBtn;
         private System.Windows.Forms.Button BtnOrderStart;
         private System.Windows.Forms.Button BtnClose;
@@ -753,5 +730,6 @@ namespace NipponPaint.OrderManager.Dialogs
         private NipponPaint.NpCommon.FormControls.LabelNumericUpDown NumUpDownMixingSpeed;
         private NipponPaint.NpCommon.FormControls.LabelNumericUpDown NumUpDownMixingTime;
         private NipponPaint.NpCommon.FormControls.LabelNumericUpDown NumUpDownQualitySample;
+        private NpCommon.FormControls.LabelStatusRadioButtons labelStatusRadioButtons1;
     }
 }
