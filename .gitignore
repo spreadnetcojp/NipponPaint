@@ -252,3 +252,17 @@ serialDLL/serialApp/serialApp/obj/Debug/net6.0/serialApp.GeneratedMSBuildEditorC
 serialDLL/serialApp/serialApp/obj/project.assets.json
 serialDLL/serialApp/serialApp/obj/serialApp.csproj.nuget.dgspec.json
 serialDLL/serialApp/serialApp/obj/serialApp.csproj.nuget.g.props
+ftpDLL/ftpApp/ftpApp/obj/Debug/net6.0/ftpApp.assets.cache
+ftpDLL/ftpApp/ftpApp/obj/ftpApp.csproj.nuget.dgspec.json
+ftpDLL/ftpApp/ftpApp/obj/ftpApp.csproj.nuget.g.props
+ftpDLL/ftpApp/ftpApp/obj/project.assets.json
+ftpDLL/ftpSim/ftpSim/obj/Debug/net6.0/ftpSim.assets.cache
+ftpDLL/ftpSim/ftpSim/obj/ftpSim.csproj.nuget.dgspec.json
+ftpDLL/ftpSim/ftpSim/obj/ftpSim.csproj.nuget.g.props
+ftpDLL/ftpSim/ftpSim/obj/project.assets.json
+serialDLL/serialApp/serialApp/obj/Debug/net6.0/serialApp.assets.cache
+serialDLL/serialApp/serialApp/obj/Debug/net6.0/serialApp.csproj.AssemblyReference.cache
+serialDLL/serialApp/serialApp/obj/Debug/net6.0/serialApp.GeneratedMSBuildEditorConfig.editorconfig
+serialDLL/serialApp/serialApp/obj/project.assets.json
+serialDLL/serialApp/serialApp/obj/serialApp.csproj.nuget.dgspec.json
+serialDLL/serialApp/serialApp/obj/serialApp.csproj.nuget.g.props
