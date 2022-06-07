@@ -62,6 +62,8 @@ namespace NipponPaint.NpCommon.FormControls
             this.DropDownData.Name = "DropDownData";
             this.DropDownData.Size = new System.Drawing.Size(139, 31);
             this.DropDownData.TabIndex = 4;
+            this.DropDownData.SelectedIndexChanged += new System.EventHandler(this.DropDownData_SelectedIndexChanged);
+            this.DropDownData.SelectedValueChanged += new System.EventHandler(this.DropDownData_SelectedValueChanged);
             // 
             // LabelDropDown
             // 

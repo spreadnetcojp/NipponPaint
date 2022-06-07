@@ -13,6 +13,7 @@
 //*****************************************************************************
 
 #region using defines
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
@@ -24,6 +25,11 @@ namespace NipponPaint.NpCommon.FormControls
 {
     public partial class LabelDropDown : UserControl
     {
+        #region イベント定義
+        public event EventHandler SelectedValueChanged;
+        public event EventHandler SelectedIndexChanged;
+        #endregion
+
         public ComboBox DropDown
         {
             get { return DropDownData; }
@@ -124,5 +130,27 @@ namespace NipponPaint.NpCommon.FormControls
             }
             return null;
         }
+
+        #region イベント発生処理
+        /// <summary>
+        /// ドロップダウンの選択値を変更した時のイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DropDownData_SelectedValueChanged(object sender, System.EventArgs e)
+        {
+            SelectedValueChanged(this, e);
+        }
+
+        /// <summary>
+        /// ドロップダウンの選択イベントを変更した時のイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DropDownData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedIndexChanged(this, e);
+        }
+        #endregion
     }
 }
