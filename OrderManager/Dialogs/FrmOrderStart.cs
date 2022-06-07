@@ -45,14 +45,17 @@ namespace NipponPaint.OrderManager.Dialogs
             TxtTotalWeight.Value = vm.TotalWeight.ToString();
             NumUpDownOverfilling.Value = (decimal)vm.Overfilling;
             NumUpDownFilledWeight.Value = vm.FilledWeight;
-            NumUpDownWeightTolerance.LeftSide.Value = (decimal)vm.WeightToleranceMin;
-            NumUpDownWeightTolerance.RightSide.Value = (decimal)vm.WeightToleranceMax;
+            NumUpDownWeightTolerance.ValueLeft = (decimal)vm.WeightToleranceMin;
+            NumUpDownWeightTolerance.ValueRight = (decimal)vm.WeightToleranceMax;
             NumUpDownQualitySample.Value = vm.QualitySample;
             NumUpDownMixingTime.Value = vm.MixingTime;
             NumUpDownMixingSpeed.Value = vm.MixingSpeed;
             DropDownLabelType.InitializeDropdownItems(SqlBase.DatabaseKind.ORDER, Log.ApplicationType.OrderManager);
             DropDownCanType.InitializeDropdownItems(SqlBase.DatabaseKind.ORDER, Log.ApplicationType.OrderManager);
+            DropDownCanType.SelectedValue = vm.CanType;
             DropDownCapType.InitializeDropdownItems(SqlBase.DatabaseKind.ORDER, Log.ApplicationType.OrderManager);
+            DropDownCapType.SelectedValue = vm.CapType;
+            labelStatusRadioButtons1.Rbt1CheckState.Checked = true;
         }
         #endregion
 
@@ -65,6 +68,10 @@ namespace NipponPaint.OrderManager.Dialogs
         /// 信頼できる配合
         /// </summary>
         private const int STATUS_PRODUCTION = 4;
+        /// <summary>
+        /// 
+        /// </summary>
+        private const int CAPPING_MACHINE_SYUDOU = 128;
         /// <summary>
         /// ラベルデータ
         /// </summary>
@@ -192,6 +199,7 @@ namespace NipponPaint.OrderManager.Dialogs
 
         #region private functions
 
+        #region 画面の初期化
         /// <summary>
         /// 画面の初期化
         /// </summary>
@@ -201,7 +209,32 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnOrderStart.Click += new EventHandler(this.BtnOrderStartClick);
             this.BtnOrderBack.Click += new EventHandler(this.BtnOrderBackClick);
             this.BtnClose.Click += new EventHandler(this.BtnCloseClick);
+            SetCappingMachineCheckedChanged();
+
+
         }
+        #endregion
+
+        #region
+        private void SetCappingMachineCheckedChanged()
+        {
+            //if (capType == 0)
+            //{
+            //    return;
+            //}
+            //using (var db = new SqlBase(SqlBase.DatabaseKind.ORDER, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
+            //{
+            //    capData = DropDownCapType.DropdownItemValue(db, capType);
+            //}
+            //var cappingMachine = Funcs.StrToInt(capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_CAPPING_MACHINE].ToString());
+            //if (cappingMachine == CAPPING_MACHINE_SYUDOU)
+            //{
+            //    ChkHandCapping.CheckState.Checked = true;
+            //}
+            ChkHandCapping.CheckState.Checked = true;
+        }
+        #endregion
+
         #endregion
     }
 }

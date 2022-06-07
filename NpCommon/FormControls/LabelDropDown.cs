@@ -59,6 +59,7 @@ namespace NipponPaint.NpCommon.FormControls
         public object SelectedValue
         {
             get { return DropDownData.SelectedValue; }
+            set { DropDownData.SelectedValue = value; }
         }
 
         public object SelectedText

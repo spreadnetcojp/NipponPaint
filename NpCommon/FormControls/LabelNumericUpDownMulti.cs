@@ -147,17 +147,39 @@ namespace NipponPaint.NpCommon.FormControls
 
         public void NumUpDownDataLeft_ValueChanged(object sender, System.EventArgs e)
         {
-            if(NumUpDownDataRight.Value < NumUpDownDataLeft.Value)
+            switch (this.Name)
             {
-                NumUpDownDataRight.Value = NumUpDownDataLeft.Value;
+                case "NumUpDownWeightTolerance":
+                    if (NumUpDownDataRight.Value > NumUpDownDataLeft.Value)
+                    {
+                        NumUpDownDataRight.Value = NumUpDownDataLeft.Value;
+                    }
+                    break;
+                default:
+                    if (NumUpDownDataRight.Value < NumUpDownDataLeft.Value)
+                    {
+                        NumUpDownDataRight.Value = NumUpDownDataLeft.Value;
+                    }
+                    break;
             }
         }
 
         public void NumUpDownDataRight_ValueChanged(object sender, System.EventArgs e)
         {
-            if(NumUpDownDataRight.Value < NumUpDownDataLeft.Value)
+            switch (this.Name)
             {
-                NumUpDownDataLeft.Value = NumUpDownDataRight.Value;
+                case "NumUpDownWeightTolerance":
+                    if (NumUpDownDataRight.Value > NumUpDownDataLeft.Value)
+                    {
+                        NumUpDownDataLeft.Value = NumUpDownDataRight.Value;
+                    }
+                    break;
+                default:
+                    if (NumUpDownDataRight.Value < NumUpDownDataLeft.Value)
+                    {
+                        NumUpDownDataLeft.Value = NumUpDownDataRight.Value;
+                    }
+                    break;
             }
         }
     }
