@@ -144,7 +144,7 @@ namespace NipponPaint.NpCommon.FormControls
         }
 
         #region 定数
-        private const string RightPriority = "Right";
+        private const string RightLow = "Right";
         #endregion
 
         public void InitializeForm()
@@ -157,7 +157,7 @@ namespace NipponPaint.NpCommon.FormControls
         {
             switch (LeftAndRightHighAndLowControlle)
             {
-                case RightPriority:
+                case RightLow:
                     if (NumUpDownDataRight.Value > NumUpDownDataLeft.Value)
                     {
                         NumUpDownDataRight.Value = NumUpDownDataLeft.Value;
@@ -176,7 +176,7 @@ namespace NipponPaint.NpCommon.FormControls
         {
             switch (LeftAndRightHighAndLowControlle)
             {
-                case RightPriority:
+                case RightLow:
                     if (NumUpDownDataRight.Value > NumUpDownDataLeft.Value)
                     {
                         NumUpDownDataLeft.Value = NumUpDownDataRight.Value;
