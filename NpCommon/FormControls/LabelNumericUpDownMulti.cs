@@ -104,6 +104,8 @@ namespace NipponPaint.NpCommon.FormControls
             set { NumUpDownDataRight.Maximum = value; }
         }
 
+        public string LeftAndRightPriorityControlle { get; set; } = "Left";
+
         public string DatabaseColumnNameLeft { get; set; } = string.Empty;
         public string DatabaseColumnNameRight { get; set; } = string.Empty;
 
@@ -139,6 +141,10 @@ namespace NipponPaint.NpCommon.FormControls
 
         }
 
+        #region 定数
+        private const string RightPriority = "Right";
+        #endregion
+
         public void InitializeForm()
         {
             this.NumUpDownDataLeft.ValueChanged += new System.EventHandler(this.NumUpDownDataLeft_ValueChanged);
@@ -147,9 +153,9 @@ namespace NipponPaint.NpCommon.FormControls
 
         public void NumUpDownDataLeft_ValueChanged(object sender, System.EventArgs e)
         {
-            switch (this.Name)
+            switch (LeftAndRightPriorityControlle)
             {
-                case "NumUpDownWeightTolerance":
+                case RightPriority:
                     if (NumUpDownDataRight.Value > NumUpDownDataLeft.Value)
                     {
                         NumUpDownDataRight.Value = NumUpDownDataLeft.Value;
