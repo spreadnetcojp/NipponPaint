@@ -13,8 +13,6 @@ namespace NipponPaint.NpCommon.FormControls
     public partial class LabelTextSeparate : UserControl
     {
         #region 定数
-        private const int COLOR_NAME_LOWER_LIMIT = 0;
-        private const int COLOR_NAME_HIGH_LIMIT = 14;
         #endregion
 
         public string TitleControlName
@@ -107,9 +105,14 @@ namespace NipponPaint.NpCommon.FormControls
         public string Value { get; set; } = string.Empty;
 
         public string DatabaseColumnName { get; set; } = string.Empty;
+
+        public int SeparaterHighLimit { get; set; } = 0;
+
+        public int SeparaterLowLimit { get; set; } = 0;
         public LabelTextSeparate()
         {
             InitializeComponent();
+
         }
 
         //データベースから取得した値を分割する
@@ -123,18 +126,18 @@ namespace NipponPaint.NpCommon.FormControls
 
                 length = Value.Trim().Substring(seprateIndex).Length;
             }
-            if (strLength <= COLOR_NAME_LOWER_LIMIT)
+            if (strLength <= SeparaterLowLimit)
             {
                 Lbl1Value = string.Empty;
                 Lbl2Value = string.Empty;
                 return;
             }
-            if (strLength > COLOR_NAME_HIGH_LIMIT)
+            if (strLength > SeparaterHighLimit)
             {
-                if (seprateIndex < COLOR_NAME_LOWER_LIMIT || COLOR_NAME_HIGH_LIMIT < seprateIndex + 1 || length > COLOR_NAME_HIGH_LIMIT)
+                if (seprateIndex < SeparaterLowLimit || SeparaterHighLimit < seprateIndex + 1 || length > SeparaterHighLimit)
                 {
-                    Lbl1Value = Value.Trim().Substring(0, COLOR_NAME_HIGH_LIMIT);
-                    Lbl2Value = Value.Trim().Substring(COLOR_NAME_HIGH_LIMIT);
+                    Lbl1Value = Value.Trim().Substring(0, SeparaterHighLimit);
+                    Lbl2Value = Value.Trim().Substring(SeparaterHighLimit);
                 }
                 else
                 {
@@ -155,14 +158,14 @@ namespace NipponPaint.NpCommon.FormControls
             {
                 case 0:
 
-                    if (COLOR_NAME_LOWER_LIMIT < Lbl1Value.Length && Lbl2Value.Length < COLOR_NAME_HIGH_LIMIT)
+                    if (SeparaterLowLimit < Lbl1Value.Length && Lbl2Value.Length < SeparaterHighLimit)
                     {
                         Lbl2Value = $"{Lbl1Value.Substring(Lbl1Value.Length - 1, 1)}{Lbl2Value}";
                         Lbl1Value = $"{Lbl1Value.Substring(0, Lbl1Value.Length - 1)}";
                     }
                     break;
                 case 1:
-                    if (COLOR_NAME_LOWER_LIMIT < Lbl2Value.Length && Lbl1Value.Length < COLOR_NAME_HIGH_LIMIT)
+                    if (SeparaterLowLimit < Lbl2Value.Length && Lbl1Value.Length < SeparaterHighLimit)
                     {
                         Lbl1Value = $"{Lbl1Value}{Lbl2Value.Substring(0, 1)}";
                         Lbl2Value = Lbl2Value.Substring(1, Lbl2Value.Length - 1);

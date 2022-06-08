@@ -84,6 +84,10 @@ namespace NipponPaint.OrderManager
         private const int GVORDER_FONTSIZE_PRODUCTCODE = 16;
         private const int GVORDER_FONTSIZE_DEFAULT = 8;
 
+        ////色名セパレータの1行あたりの文字数
+        private const int COLOR_NAME_LOW_LIMIT = 0;
+        private const int COLOR_NAME_HIGH_LIMIT = 14;
+
         private List<string> ViewGrid = new List<string>();
         //private const Log.ApplicationType MyApp = Log.ApplicationType.OrderManager;
 
@@ -1897,6 +1901,11 @@ namespace NipponPaint.OrderManager
             lblStatus3.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.Ready);
             lblStatus4.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.TestCanInProgress);
             lblStatus5.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress);
+
+            //セパレータの文字数設定
+            ColorName.SeparaterLowLimit = COLOR_NAME_LOW_LIMIT;
+            ColorName.SeparaterHighLimit = COLOR_NAME_HIGH_LIMIT;
+
             // DataGridViewの初期設定
             var ViewSettingsOrderDetails = GridViewSettingCopy(ViewSettingsOrders);
             var ViewSettingsFormulations = GridViewSettingCopy(ViewSettingsOrders);
