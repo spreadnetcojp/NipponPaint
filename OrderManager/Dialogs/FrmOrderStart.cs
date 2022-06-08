@@ -69,9 +69,9 @@ namespace NipponPaint.OrderManager.Dialogs
         /// </summary>
         private const int STATUS_PRODUCTION = 4;
         /// <summary>
-        /// 
+        /// 手動キャッピング
         /// </summary>
-        private const int CAPPING_MACHINE_SYUDOU = 128;
+        private const int CAPPING_MACHINE_MANUAL = 128;
         /// <summary>
         /// ラベルデータ
         /// </summary>
@@ -209,32 +209,45 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnOrderStart.Click += new EventHandler(this.BtnOrderStartClick);
             this.BtnOrderBack.Click += new EventHandler(this.BtnOrderBackClick);
             this.BtnClose.Click += new EventHandler(this.BtnCloseClick);
-            SetCappingMachineCheckedChanged();
-
-
+            this.DropDownCapType.SelectedIndexChanged += new EventHandler(this.DropDownCapTypeSelectedIndexChanged);
         }
         #endregion
 
-        #region
-        private void SetCappingMachineCheckedChanged()
+        #region　キャップタイプに連動した、手動キャッピングのチェック処理
+        /// <summary>
+        /// キャップタイプに連動した、手動キャッピングのチェック処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DropDownCapTypeSelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (capType == 0)
-            //{
-            //    return;
-            //}
-            //using (var db = new SqlBase(SqlBase.DatabaseKind.ORDER, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
-            //{
-            //    capData = DropDownCapType.DropdownItemValue(db, capType);
-            //}
-            //var cappingMachine = Funcs.StrToInt(capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_CAPPING_MACHINE].ToString());
-            //if (cappingMachine == CAPPING_MACHINE_SYUDOU)
-            //{
-            //    ChkHandCapping.CheckState.Checked = true;
-            //}
-            ChkHandCapping.CheckState.Checked = true;
+            if (DropDownCapType.SelectedValue == null)
+            {
+                return;
+            }
+            int.TryParse(DropDownCapType.SelectedValue.ToString(), out int capType);
+            using (var db = new SqlBase(SqlBase.DatabaseKind.ORDER, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
+            {
+                capData = DropDownCapType.DropdownItemValue(db, capType);
+            }
+            if (capData.Rows.Count > 0)
+            {
+                var cappingMachine = Funcs.StrToInt(capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_CAPPING_MACHINE].ToString());
+                switch (cappingMachine)
+                {
+                    case CAPPING_MACHINE_MANUAL:
+                        ChkHandCapping.CheckState.Checked = true;
+                        ChkHandCapping.Enabled = false;
+                        break;
+                    default:
+                        ChkHandCapping.CheckState.Checked = false;
+                        ChkHandCapping.Enabled = true;
+                        break;
+                }
+            }
         }
-        #endregion
-
-        #endregion
     }
+    #endregion
+
+    #endregion
 }
