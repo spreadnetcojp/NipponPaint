@@ -21,6 +21,18 @@ namespace NipponPaint.NpCommon.FormControls
 {
     public partial class LabelNumericUpDownMulti : UserControl
     {
+        public enum LeftAndRightHighAndLowControlType
+        {
+            /// <summary>
+            /// 左
+            /// </summary>
+            Left,
+            /// <summary>
+            /// 右
+            /// </summary>
+            Right,
+        }
+
         public int Id { get; set; }
         public NumericUpDown LeftSide
         {
@@ -106,7 +118,7 @@ namespace NipponPaint.NpCommon.FormControls
         /// <summary>
         /// 左右の数値の大小（デフォルトは Left < Right)
         /// </summary>
-        public string LeftAndRightHighAndLowControlle { get; set; } = "Left";
+        public LeftAndRightHighAndLowControlType LeftAndRightHighAndLowControl { get; set; } = LeftAndRightHighAndLowControlType.Left;
 
         public string DatabaseColumnNameLeft { get; set; } = string.Empty;
         public string DatabaseColumnNameRight { get; set; } = string.Empty;
@@ -143,10 +155,6 @@ namespace NipponPaint.NpCommon.FormControls
 
         }
 
-        #region 定数
-        private const string RightLow = "Right";
-        #endregion
-
         public void InitializeForm()
         {
             this.NumUpDownDataLeft.ValueChanged += new System.EventHandler(this.NumUpDownDataLeft_ValueChanged);
@@ -155,9 +163,9 @@ namespace NipponPaint.NpCommon.FormControls
 
         public void NumUpDownDataLeft_ValueChanged(object sender, System.EventArgs e)
         {
-            switch (LeftAndRightHighAndLowControlle)
+            switch (LeftAndRightHighAndLowControl)
             {
-                case RightLow:
+                case LeftAndRightHighAndLowControlType.Right:
                     if (NumUpDownDataRight.Value > NumUpDownDataLeft.Value)
                     {
                         NumUpDownDataRight.Value = NumUpDownDataLeft.Value;
@@ -174,9 +182,9 @@ namespace NipponPaint.NpCommon.FormControls
 
         public void NumUpDownDataRight_ValueChanged(object sender, System.EventArgs e)
         {
-            switch (LeftAndRightHighAndLowControlle)
+            switch (LeftAndRightHighAndLowControl)
             {
-                case RightLow:
+                case LeftAndRightHighAndLowControlType.Right:
                     if (NumUpDownDataRight.Value > NumUpDownDataLeft.Value)
                     {
                         NumUpDownDataLeft.Value = NumUpDownDataRight.Value;

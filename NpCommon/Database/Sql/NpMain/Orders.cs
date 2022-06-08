@@ -249,7 +249,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($" ,o.{COLUMN_TOTAL_WEIGHT}                  AS TotalWeight ");
             sql.Append($" ,d.{Order.Defaults.COLUMN_CAN_TYPE}       AS CanType ");
             sql.Append($" ,d.{Order.Defaults.COLUMN_CAP_TYPE}       AS CapType ");
-            sql.Append($" ,d.{Order.Defaults.COLUMN_OVERFILLING} ");
+            sql.Append($" ,d.{Order.Defaults.COLUMN_OVERFILLING}    AS Overfilling ");
             sql.Append($" ,d.{Order.Defaults.COLUMN_PREFILL_AMOUNT} AS PrefillAmount ");
             sql.Append($" ,d.{Order.Defaults.COLUMN_MIXING_TIME}    AS MixingTime ");
             sql.Append($" ,d.{Order.Defaults.COLUMN_MIXING_SPEED}   AS MixingSpeed ");
