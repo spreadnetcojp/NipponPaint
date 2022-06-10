@@ -161,6 +161,11 @@ namespace NipponPaint.NpCommon.FormControls
             this.NumUpDownDataRight.ValueChanged += new System.EventHandler(this.NumUpDownDataRight_ValueChanged);
         }
 
+        /// <summary>
+        /// 左右の数値の大小をコントロール
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void NumUpDownDataLeft_ValueChanged(object sender, System.EventArgs e)
         {
             switch (LeftAndRightHighAndLowControl)
@@ -171,15 +176,22 @@ namespace NipponPaint.NpCommon.FormControls
                         NumUpDownDataRight.Value = NumUpDownDataLeft.Value;
                     }
                     break;
-                default:
+                case LeftAndRightHighAndLowControlType.Left:
                     if (NumUpDownDataRight.Value < NumUpDownDataLeft.Value)
                     {
                         NumUpDownDataRight.Value = NumUpDownDataLeft.Value;
                     }
                     break;
+                default:
+                    break;
             }
         }
 
+        /// <summary>
+        /// 左右の数値の大小をコントロール
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void NumUpDownDataRight_ValueChanged(object sender, System.EventArgs e)
         {
             switch (LeftAndRightHighAndLowControl)
@@ -190,11 +202,13 @@ namespace NipponPaint.NpCommon.FormControls
                         NumUpDownDataLeft.Value = NumUpDownDataRight.Value;
                     }
                     break;
-                default:
+                case LeftAndRightHighAndLowControlType.Left:
                     if (NumUpDownDataRight.Value < NumUpDownDataLeft.Value)
                     {
                         NumUpDownDataLeft.Value = NumUpDownDataRight.Value;
                     }
+                    break;
+                default:
                     break;
             }
         }

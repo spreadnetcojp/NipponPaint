@@ -237,13 +237,13 @@ namespace NipponPaint.OrderManager.Dialogs
                 {
                     case CAPPING_MACHINE_MANUAL:
                         ChkHandCapping.CheckState.Checked = true;
-                        ChkHandCapping.Enabled = false;
                         break;
                     default:
                         ChkHandCapping.CheckState.Checked = false;
-                        ChkHandCapping.Enabled = true;
                         break;
                 }
+                // キャップタイプの初期設定で手動キャッピングがONになっているものは編集不可
+                ChkHandCapping.Enabled = !ChkHandCapping.CheckState.Checked;
             }
         }
     }
