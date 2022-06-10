@@ -63,8 +63,10 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // NumLabel
             // 
+            this.NumLabel.BackColor = System.Drawing.Color.MidnightBlue;
             this.NumLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NumLabel.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.NumLabel.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.NumLabel.ForeColor = System.Drawing.Color.Aqua;
             this.NumLabel.Location = new System.Drawing.Point(12, 12);
             this.NumLabel.Name = "NumLabel";
             this.NumLabel.Size = new System.Drawing.Size(198, 23);

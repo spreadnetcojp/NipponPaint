@@ -74,7 +74,7 @@ namespace NipponPaint.OrderManager
         private const int COLUMN_VISIBLE_DELIVERY_DATE = 12;
         private const int COLUMN_COLOR_SAMPLE = 13;
 
-        private const int TAB_INDEX_OREDR = 0;
+        private const int TAB_INDEX_ORDER = 0;
         private const int TAB_INDEX_DETAIL = 1;
         private const int TAB_INDEX_FORMULATION = 2;
         private const int TAB_INDEX_CAN = 3;
@@ -880,11 +880,30 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.CCMSimulatorData();
-                string productCode = ProductCode.Value;
-                if (productCode.Length == 2)
+                int selectedindex = tabMain.SelectedIndex;
+                var productCodeColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Product_Code");
+                var productCode2ColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == "Product_Code");
+                string CodeP = string.Empty;
+                switch(selectedindex)
                 {
-                    vm.ProductCodeLeft = productCode[0].ToString();
-                    vm.ProductCodeRight = productCode[1].ToString();
+                    case TAB_INDEX_ORDER:
+                        CodeP = GvOrder.SelectedRows[0].Cells[productCodeColumnIndex].Value.ToString();
+                        break;
+                    case TAB_INDEX_DETAIL:
+                        CodeP = GvDetail.SelectedRows[0].Cells[productCodeColumnIndex].Value.ToString();
+                        break;
+                    case TAB_INDEX_FORMULATION:
+                        CodeP = GvFormulation.SelectedRows[0].Cells[productCodeColumnIndex].Value.ToString();
+                        break;
+                    case TAB_INDEX_CAN:
+                        CodeP = GvOrderNumber.SelectedRows[0].Cells[productCode2ColumnIndex].Value.ToString();
+                        break;
+                }
+                string productCode = CodeP;
+                if(productCode.Length == 2)
+                {
+                    vm.ProductCodeLeft = productCode[0].ToString();     　//CCMシミュレーター画面にて選択している製品コードの1文字目を表示
+                    vm.ProductCodeRight = productCode[1].ToString();    　//CCMシミュレーター画面にて選択している製品コードの2文字目を表示
                 }
                 FrmCCMSimulator frmCCMSimulator = new FrmCCMSimulator(vm);
                 frmCCMSimulator.ShowDialog();
@@ -944,7 +963,7 @@ namespace NipponPaint.OrderManager
                     DataGridView dgv = new DataGridView();
                     switch (tabMain.SelectedIndex)
                     {
-                        case TAB_INDEX_OREDR:
+                        case TAB_INDEX_ORDER:
                             dgv = GvOrder;
                             break;
                         case TAB_INDEX_DETAIL:
@@ -1424,7 +1443,7 @@ namespace NipponPaint.OrderManager
             //変更前に選択していたタブを取得
             switch (selectingTabIndex)
             {
-                case TAB_INDEX_OREDR:
+                case TAB_INDEX_ORDER:
                     gdvSelectedIndex = GvOrder.CurrentRow.Index;
                     break;
                 case TAB_INDEX_DETAIL:
@@ -1443,7 +1462,7 @@ namespace NipponPaint.OrderManager
             //現在選択中のタブを取得する
             switch (tabMain.SelectedIndex)
             {
-                case TAB_INDEX_OREDR:
+                case TAB_INDEX_ORDER:
                     GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[2];
                     break;
                 case TAB_INDEX_DETAIL:
@@ -1470,7 +1489,7 @@ namespace NipponPaint.OrderManager
         private void GvOrder_SelectionChanged(object sender, EventArgs e)
         {
             // 注文タブを開いていない時はスルー
-            if (tabMain.SelectedIndex != TAB_INDEX_OREDR)
+            if (tabMain.SelectedIndex != TAB_INDEX_ORDER)
             {
                 return;
             }
