@@ -285,6 +285,8 @@ namespace NipponPaint.OrderManager.Dialogs
             {
                 NumLabel.Text = NumLabel.Text.Remove(NumLabel.Text.Length - 1);　　　　　//打ち込んだ数列の最後の1文字だけ削除
                 decimal.TryParse(NumLabel.Text.ToString(), out decimal intNumLabel);
+                bool existPeriod = NumLabel.Text.ToString().Contains(".");              //「.」を削除したあとに再度「.」を打てるようにする
+                NumPeriod = existPeriod;
                 if (string.IsNullOrEmpty(NumLabel.Text) || intNumLabel == 0)
                 {
                     NumLabel.Text = "0";　　　　　//最後の1文字を削除後、「0」を表示
@@ -299,7 +301,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(ex);
             }
         }
-        
         /// <summary>
         /// 「OK」入力ボタン
         /// </summary>
@@ -362,10 +363,10 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnC.Click += new EventHandler(this.BtnCClick);
             this.BtnOK.Click += new EventHandler(this.BtnOKClick);
             this.BtnCancel.Click += new EventHandler(this.BtnCancelClick);
-            this.ActiveControl = this.BtnOK;  //最初からフォーカスをOKボタンに照準
+            this.ActiveControl = BtnOK;  //最初からフォーカスをOKボタンに標準
         }
         /// <summary>
-        /// 入力値の最小値と最大値の決定
+        /// 入力値の最大値と最小値の決定
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -374,13 +375,15 @@ namespace NipponPaint.OrderManager.Dialogs
             bool boolResult = decimal.TryParse(NumLabel.Text, out decimal InputValue);　　　//stringから数値に変換　　　
             if (boolResult)
             {
-                if (NumLabelMinValue <= InputValue && InputValue <= NumLabelMaxValue)　　　　//入力値が「0」以上かつ「25000」未満のときはOKボタン使用可能
+                if (NumLabelMinValue <= InputValue && InputValue <= NumLabelMaxValue)　　　　//入力値が「0」以上及び「25000」未満のときはOKボタン使用可能
                 {
                     BtnOK.Enabled = true;
+                    NumLabel.ForeColor = System.Drawing.Color.Aqua;
                 }
                 else
                 {
                     BtnOK.Enabled = false;
+                    NumLabel.ForeColor = System.Drawing.Color.Yellow;       //入力値が「0」以下及び「25000」超過の時は数値の文字色が黄色に変化する
                 }
             }
             else
