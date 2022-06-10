@@ -136,8 +136,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 TxtPaintName.Value = "";
                 DrpProductCodeLeft.DropDown.Text = productCodeLeft;
                 DrpProductCodeRight.Text = productCodeRight;
-                //DrpProductCodeLeft.DropDown.SelectedIndex = 9;
-                //DrpProductCodeRight.SelectedIndex = 11;
                 DrpBaseSelect.Text = "";
                 DrpColoarantSelect1.Text = "";
                 DrpColoarantSelect2.Text = "";
