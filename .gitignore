@@ -401,3 +401,16 @@ serialDLL/serialApp/serialApp/obj/serialApp.csproj.nuget.dgspec.json
 *.txt
 *.editorconfig
 *.json
+.vs/NpToningSystem/FileContentIndex/793a2ff4-deea-4769-8a27-9d5b0b9f9ed6.vsidx
+.vs/NpToningSystem/FileContentIndex/922d97f9-416f-456e-8a82-293b421cedc4.vsidx
+ftpDLL/ftpApp/ftpApp/obj/Debug/net6.0/apphost.exe
+ftpDLL/ftpApp/ftpApp/obj/Debug/net6.0/ftpApp.assets.cache
+ftpDLL/ftpApp/ftpApp/obj/Debug/net6.0/ftpApp.csproj.FileListAbsolute.txt
+ftpDLL/ftpSim/ftpSim/obj/Debug/net6.0/apphost.exe
+ftpDLL/ftpSim/ftpSim/obj/Debug/net6.0/ftpSim.assets.cache
+ftpDLL/ftpSim/ftpSim/obj/Debug/net6.0/ftpSim.csproj.FileListAbsolute.txt
+serialDLL/serialApp/serialApp/obj/Debug/net6.0/apphost.exe
+serialDLL/serialApp/serialApp/obj/Debug/net6.0/serialApp.assets.cache
+serialDLL/serialApp/serialApp/obj/Debug/net6.0/serialApp.csproj.AssemblyReference.cache
+serialDLL/serialApp/serialApp/obj/Debug/net6.0/serialApp.csproj.FileListAbsolute.txt
+serialDLL/serialApp/serialApp/obj/Debug/net6.0/serialApp.GeneratedMSBuildEditorConfig.editorconfig
