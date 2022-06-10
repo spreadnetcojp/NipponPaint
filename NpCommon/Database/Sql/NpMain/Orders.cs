@@ -238,17 +238,23 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
-            sql.Append($"  {COLUMN_ORDER_NUMBER}   AS OrderNumber ");
-            sql.Append($" ,{COLUMN_COLOR_NAME}     AS ColorName ");
-            sql.Append($" ,{COLUMN_PRODUCT_CODE}   AS ProductCode ");
-            sql.Append($" ,{COLUMN_NUMBER_OF_CAN}  AS NumberOfCan ");
-            sql.Append($" ,{COLUMN_PAINT_NAME}     AS ItemName ");
-            sql.Append($" ,{COLUMN_PAINT_NAME}     AS FormalItemName ");
-            sql.Append($" ,{COLUMN_WHITE_CODE}     AS WhiteCode ");
-            sql.Append($" ,{COLUMN_REVISION}       AS Revision ");
-            sql.Append($" ,{COLUMN_TOTAL_WEIGHT}   AS TotalWeight ");
-            sql.Append($" ,{COLUMN_OVERFILLING}    AS Overfilling ");
-            sql.Append($"FROM {MAIN_TABLE} ");
+            sql.Append($"  o.{COLUMN_ORDER_NUMBER}                  AS OrderNumber ");
+            sql.Append($" ,o.{COLUMN_COLOR_NAME}                    AS ColorName ");
+            sql.Append($" ,o.{COLUMN_PRODUCT_CODE}                  AS ProductCode ");
+            sql.Append($" ,o.{COLUMN_NUMBER_OF_CAN}                 AS NumberOfCan ");
+            sql.Append($" ,o.{COLUMN_PAINT_NAME}                    AS ItemName ");
+            sql.Append($" ,o.{COLUMN_PAINT_NAME}                    AS FormalItemName ");
+            sql.Append($" ,o.{COLUMN_WHITE_CODE}                    AS WhiteCode ");
+            sql.Append($" ,o.{COLUMN_REVISION}                      AS Revision ");
+            sql.Append($" ,o.{COLUMN_TOTAL_WEIGHT}                  AS TotalWeight ");
+            sql.Append($" ,d.{Order.Defaults.COLUMN_CAN_TYPE}       AS CanType ");
+            sql.Append($" ,d.{Order.Defaults.COLUMN_CAP_TYPE}       AS CapType ");
+            sql.Append($" ,d.{Order.Defaults.COLUMN_OVERFILLING}    AS Overfilling ");
+            sql.Append($" ,d.{Order.Defaults.COLUMN_PREFILL_AMOUNT} AS PrefillAmount ");
+            sql.Append($" ,d.{Order.Defaults.COLUMN_MIXING_TIME}    AS MixingTime ");
+            sql.Append($" ,d.{Order.Defaults.COLUMN_MIXING_SPEED}   AS MixingSpeed ");
+            sql.Append($"FROM NP_MAIN.dbo.{MAIN_TABLE} o ");
+            sql.Append($"LEFT JOIN ORDER_RF1.dbo.{Order.Defaults.MAIN_TABLE} d ON o.{COLUMN_WHITE_CODE} = d.White_Code ");
             sql.Append($"WHERE {COLUMN_ORDER_ID} = @orderId ");
             return sql.ToString();
         }

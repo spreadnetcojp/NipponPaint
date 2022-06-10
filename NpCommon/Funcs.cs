@@ -329,5 +329,30 @@ namespace NipponPaint.NpCommon
         }
         #endregion
 
+        #region stringからintへ変換（TryParse)
+        /// <summary>
+        /// stringからintへ変換（TryParse)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static int StrToInt(string value)
+        {
+            int.TryParse(value, out int intVal);
+            return intVal;
+        }
+        #endregion
+
+        #region stringからdoubleへ変換（TryParse)
+        /// <summary>
+        /// stringからdoubleへ変換（TryParse)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static double StrToDouble(string value)
+        {
+            double.TryParse(value, out double doubleVal);
+            return doubleVal;
+        }
+        #endregion
     }
 }

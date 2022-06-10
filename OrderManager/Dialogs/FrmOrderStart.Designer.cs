@@ -125,6 +125,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DropDownCapType.Location = new System.Drawing.Point(12, 327);
             this.DropDownCapType.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DropDownCapType.Name = "DropDownCapType";
+            this.DropDownCapType.SelectedValue = null;
             this.DropDownCapType.Size = new System.Drawing.Size(719, 31);
             this.DropDownCapType.TabIndex = 22;
             this.DropDownCapType.TableName = "Cap_types";
@@ -240,6 +241,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownWeightTolerance.DatabaseColumnNameRight = "";
             this.NumUpDownWeightTolerance.DecimalPlacesLeft = 1;
             this.NumUpDownWeightTolerance.DecimalPlacesRight = 1;
+            this.NumUpDownWeightTolerance.LeftAndRightHighAndLowControl = NpCommon.FormControls.LabelNumericUpDownMulti.LeftAndRightHighAndLowControlType.Right;
             this.NumUpDownWeightTolerance.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.NumUpDownWeightTolerance.Id = 0;
             this.NumUpDownWeightTolerance.Location = new System.Drawing.Point(12, 607);
@@ -375,6 +377,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DropDownCanType.Location = new System.Drawing.Point(12, 292);
             this.DropDownCanType.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DropDownCanType.Name = "DropDownCanType";
+            this.DropDownCanType.SelectedValue = null;
             this.DropDownCanType.Size = new System.Drawing.Size(719, 31);
             this.DropDownCanType.TabIndex = 23;
             this.DropDownCanType.TableName = "Can_types";
@@ -394,6 +397,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DropDownLabelType.Location = new System.Drawing.Point(12, 222);
             this.DropDownLabelType.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DropDownLabelType.Name = "DropDownLabelType";
+            this.DropDownLabelType.SelectedValue = null;
             this.DropDownLabelType.Size = new System.Drawing.Size(719, 31);
             this.DropDownLabelType.TabIndex = 21;
             this.DropDownLabelType.TableName = "Labels";

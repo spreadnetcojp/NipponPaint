@@ -21,6 +21,18 @@ namespace NipponPaint.NpCommon.FormControls
 {
     public partial class LabelNumericUpDownMulti : UserControl
     {
+        public enum LeftAndRightHighAndLowControlType
+        {
+            /// <summary>
+            /// 左
+            /// </summary>
+            Left,
+            /// <summary>
+            /// 右
+            /// </summary>
+            Right,
+        }
+
         public int Id { get; set; }
         public NumericUpDown LeftSide
         {
@@ -103,6 +115,10 @@ namespace NipponPaint.NpCommon.FormControls
             get { return NumUpDownDataRight.Maximum; }
             set { NumUpDownDataRight.Maximum = value; }
         }
+        /// <summary>
+        /// 左右の数値の大小（デフォルトは Left < Right)
+        /// </summary>
+        public LeftAndRightHighAndLowControlType LeftAndRightHighAndLowControl { get; set; } = LeftAndRightHighAndLowControlType.Left;
 
         public string DatabaseColumnNameLeft { get; set; } = string.Empty;
         public string DatabaseColumnNameRight { get; set; } = string.Empty;
@@ -145,19 +161,55 @@ namespace NipponPaint.NpCommon.FormControls
             this.NumUpDownDataRight.ValueChanged += new System.EventHandler(this.NumUpDownDataRight_ValueChanged);
         }
 
+        /// <summary>
+        /// 左右の数値の大小をコントロール
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void NumUpDownDataLeft_ValueChanged(object sender, System.EventArgs e)
         {
-            if(NumUpDownDataRight.Value < NumUpDownDataLeft.Value)
+            switch (LeftAndRightHighAndLowControl)
             {
-                NumUpDownDataRight.Value = NumUpDownDataLeft.Value;
+                case LeftAndRightHighAndLowControlType.Right:
+                    if (NumUpDownDataRight.Value > NumUpDownDataLeft.Value)
+                    {
+                        NumUpDownDataRight.Value = NumUpDownDataLeft.Value;
+                    }
+                    break;
+                case LeftAndRightHighAndLowControlType.Left:
+                    if (NumUpDownDataRight.Value < NumUpDownDataLeft.Value)
+                    {
+                        NumUpDownDataRight.Value = NumUpDownDataLeft.Value;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
+        /// <summary>
+        /// 左右の数値の大小をコントロール
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void NumUpDownDataRight_ValueChanged(object sender, System.EventArgs e)
         {
-            if(NumUpDownDataRight.Value < NumUpDownDataLeft.Value)
+            switch (LeftAndRightHighAndLowControl)
             {
-                NumUpDownDataLeft.Value = NumUpDownDataRight.Value;
+                case LeftAndRightHighAndLowControlType.Right:
+                    if (NumUpDownDataRight.Value > NumUpDownDataLeft.Value)
+                    {
+                        NumUpDownDataLeft.Value = NumUpDownDataRight.Value;
+                    }
+                    break;
+                case LeftAndRightHighAndLowControlType.Left:
+                    if (NumUpDownDataRight.Value < NumUpDownDataLeft.Value)
+                    {
+                        NumUpDownDataLeft.Value = NumUpDownDataRight.Value;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }

@@ -37,9 +37,17 @@ namespace NipponPaint.OrderManager.ViewModels
         /// </summary>
         public string ProductCode { get; set; }
         /// <summary>
+        /// 缶タイプ
+        /// </summary>
+        public int CanType { get; set; }
+        /// <summary>
         /// 缶数
         /// </summary>
         public int NumberOfCan { get; set; }
+        /// <summary>
+        /// キャップタイプ
+        /// </summary>
+        public int CapType { get; set; }
         /// <summary>
         /// 品名
         /// </summary>
@@ -95,32 +103,24 @@ namespace NipponPaint.OrderManager.ViewModels
 
         public OrderStartData(DataTable orderData)
         {
-            //OrderNumber = "51F0011000059";
-            //ColorName = "596-1910-00447 K19-90A";
-            //ProductCode = "JL";
-            //NumberOfCan = 10;
-            //ItemName = "ﾘｼﾝﾍﾞｰｽ";
-            //FormalItemName = "ﾘｼﾝﾍﾞｰｽ";
-            //WhiteCode = "NLB";
-            //Revision = 0;
-            //TotalWeight = 3.2;
-            //Overfilling = 0.0;
             OrderNumber = orderData.Rows[0]["OrderNumber"].ToString();
             ColorName = orderData.Rows[0]["ColorName"].ToString();
             ProductCode = orderData.Rows[0]["ProductCode"].ToString();
-            NumberOfCan = int.Parse(orderData.Rows[0]["NumberOfCan"].ToString());
+            NumberOfCan = NpCommon.Funcs.StrToInt(orderData.Rows[0]["NumberOfCan"].ToString());
             ItemName = orderData.Rows[0]["ItemName"].ToString();
             FormalItemName = orderData.Rows[0]["ItemName"].ToString();
             WhiteCode = orderData.Rows[0]["WhiteCode"].ToString();
-            Revision = int.Parse(orderData.Rows[0]["Revision"].ToString());
-            TotalWeight = double.Parse(orderData.Rows[0]["TotalWeight"].ToString());
-            Overfilling = double.Parse(orderData.Rows[0]["Overfilling"].ToString());
-            FilledWeight = 20000;
+            Revision = NpCommon.Funcs.StrToInt(orderData.Rows[0]["Revision"].ToString());
+            CanType = NpCommon.Funcs.StrToInt(orderData.Rows[0]["CanType"].ToString());
+            CapType = NpCommon.Funcs.StrToInt(orderData.Rows[0]["CapType"].ToString());
+            TotalWeight = NpCommon.Funcs.StrToDouble(orderData.Rows[0]["TotalWeight"].ToString());
+            Overfilling = NpCommon.Funcs.StrToDouble(orderData.Rows[0]["Overfilling"].ToString());
+            FilledWeight = NpCommon.Funcs.StrToInt(orderData.Rows[0]["PrefillAmount"].ToString());
             WeightToleranceMin = +2.0;
             WeightToleranceMax = -2.0;
             QualitySample = 0;
-            MixingTime = 120;
-            MixingSpeed = 100;
+            MixingTime = NpCommon.Funcs.StrToInt(orderData.Rows[0]["MixingTime"].ToString());
+            MixingSpeed = NpCommon.Funcs.StrToInt(orderData.Rows[0]["MixingSpeed"].ToString());
         }
     }
 }

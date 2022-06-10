@@ -59,6 +59,7 @@ namespace NipponPaint.NpCommon.FormControls
         public object SelectedValue
         {
             get { return DropDownData.SelectedValue; }
+            set { DropDownData.SelectedValue = value; }
         }
 
         public object SelectedText
@@ -139,7 +140,10 @@ namespace NipponPaint.NpCommon.FormControls
         /// <param name="e"></param>
         private void DropDownData_SelectedValueChanged(object sender, System.EventArgs e)
         {
-            SelectedValueChanged(this, e);
+            if (this.SelectedValueChanged != null)
+            {
+                SelectedValueChanged(this, e);
+            }
         }
 
         /// <summary>
@@ -149,7 +153,10 @@ namespace NipponPaint.NpCommon.FormControls
         /// <param name="e"></param>
         private void DropDownData_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedIndexChanged(this, e);
+            if (this.SelectedIndexChanged != null)
+            {
+                SelectedIndexChanged(this, e);
+            }
         }
         #endregion
     }

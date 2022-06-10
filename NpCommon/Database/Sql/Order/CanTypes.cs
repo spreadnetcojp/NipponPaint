@@ -26,7 +26,7 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
         // テーブル
         private const string MAIN_TABLE = "Can_types";
         // カラム
-        public const string COLUMN_CAN_TYPE = "Cap_Type";
+        public const string COLUMN_CAN_TYPE = "Can_Type";
         public const string COLUMN_CAN_DESCRIPTION = "Can_Description";
         public const string COLUMN_HOLE_SIZE = "Hole_Size";
         public const string COLUMN_AVAILABLE_VOLUME = "Available_Volume";
