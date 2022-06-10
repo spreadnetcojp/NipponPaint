@@ -120,7 +120,7 @@ namespace NipponPaint.NpCommon
             /// <summary>
             /// 「注文を戻す」ボタンをクリック
             /// </summary>
-            [Display(Order = (int)Log.LogType.Question, Description = "選択された注文を戻しますか？ ")]
+            [Display(Order = (int)Log.LogType.Question, Description = "選択された注文を戻しますか？")]
             BtnOrderBackClick,
 
             #region Supervisor I/F
