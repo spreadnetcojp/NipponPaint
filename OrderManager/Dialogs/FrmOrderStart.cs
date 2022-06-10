@@ -34,6 +34,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             InitializeComponent();
             InitializeForm();
+            TxtOrderId.Value = vm.OrderID.ToString();
             TxtOrderNumber.Value = vm.OrderNumber;
             TxtColorName.Value = vm.ColorName;
             TxtProductCode.Value = vm.ProductCode;
@@ -73,6 +74,10 @@ namespace NipponPaint.OrderManager.Dialogs
         /// </summary>
         private const int CAPPING_MACHINE_MANUAL = 128;
         /// <summary>
+        /// 手動キャッピング以外
+        /// </summary>
+        private const int CAPPING_MACHINE = 1;
+        /// <summary>
         /// ラベルデータ
         /// </summary>
         private DataTable labelData = new DataTable();
@@ -97,8 +102,9 @@ namespace NipponPaint.OrderManager.Dialogs
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-                // ラジオボタン選択・テスト缶or信頼できる配合でStatus変化
                 int status = 0;
+                int cappingStatus = 0;
+                // ラジオボタン選択・テスト缶or信頼できる配合でStatus変化
                 if (labelStatusRadioButtons1.Rbt1CheckState.Checked == true)
                 {
                     status = STATUS_TEST;
@@ -122,6 +128,15 @@ namespace NipponPaint.OrderManager.Dialogs
                     // キャップタイプデータ取得
                     capData = DropDownCapType.DropdownItemValue(db, capSelectValue);
                 }
+                // 手動キャッピングのステータス判断
+                if (ChkHandCapping.CheckState.Checked)
+                {
+                    cappingStatus = CAPPING_MACHINE_MANUAL;
+                }
+                else
+                {
+                    cappingStatus = CAPPING_MACHINE;
+                }
                 if (status == STATUS_TEST || status == STATUS_PRODUCTION)
                 {
                     // 注文開始更新用パラメータ作成
@@ -139,7 +154,7 @@ namespace NipponPaint.OrderManager.Dialogs
                         new ParameterItem("@CapDescription", capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_CAP_DESCRIPTION]),
                         new ParameterItem("@CapWeight", capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_CAP_WEIGHT]),
                         new ParameterItem("@CapHoleSize", capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_HOLE_SIZE]),
-                        new ParameterItem("@CappingMachine", capData.Rows[0][NpCommon.Database.Sql.Order.CapTypes.COLUMN_CAPPING_MACHINE]),
+                        new ParameterItem("@CappingMachine", cappingStatus),
                         new ParameterItem("@Overfilling", NumUpDownOverfilling.Value),
                         new ParameterItem("@PrefillAmount", NumUpDownFilledWeight.Value),
                         new ParameterItem("@PWeightTolerance", NumUpDownWeightTolerance.ValueLeft),
@@ -172,6 +187,29 @@ namespace NipponPaint.OrderManager.Dialogs
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+                {
+                    // 確認ダイアログ表示
+                    DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnOrderBackClick);
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            // Order_id取得・Order_idをキーに注文を戻す実施
+                            int.TryParse(TxtOrderId.Value.ToString(), out int orderId);
+                            var parameters = new List<ParameterItem>()
+                            {
+                                new ParameterItem("orderId", orderId),
+                            };
+                            db.StatusResume(NpCommon.Database.Sql.NpMain.Orders.StatusResume(), parameters);
+                            db.Commit();
+                            this.Close();
+                            break;
+                        case DialogResult.No:
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
             catch (Exception ex)
             {
