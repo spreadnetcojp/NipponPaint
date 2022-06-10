@@ -66,6 +66,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtFormalPaintName = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.TxtOrderNumber = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.labelStatusRadioButtons1 = new NipponPaint.NpCommon.FormControls.LabelStatusRadioButtons();
+            this.TxtOrderId = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.PnlBtn.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -241,9 +242,9 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownWeightTolerance.DatabaseColumnNameRight = "";
             this.NumUpDownWeightTolerance.DecimalPlacesLeft = 1;
             this.NumUpDownWeightTolerance.DecimalPlacesRight = 1;
-            this.NumUpDownWeightTolerance.LeftAndRightHighAndLowControl = NpCommon.FormControls.LabelNumericUpDownMulti.LeftAndRightHighAndLowControlType.Right;
             this.NumUpDownWeightTolerance.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.NumUpDownWeightTolerance.Id = 0;
+            this.NumUpDownWeightTolerance.LeftAndRightHighAndLowControl = NipponPaint.NpCommon.FormControls.LabelNumericUpDownMulti.LeftAndRightHighAndLowControlType.Right;
             this.NumUpDownWeightTolerance.Location = new System.Drawing.Point(12, 607);
             this.NumUpDownWeightTolerance.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.NumUpDownWeightTolerance.MaximumLeft = new decimal(new int[] {
@@ -669,6 +670,35 @@ namespace NipponPaint.OrderManager.Dialogs
             this.labelStatusRadioButtons1.Size = new System.Drawing.Size(342, 62);
             this.labelStatusRadioButtons1.TabIndex = 97;
             // 
+            // TxtOrderId
+            // 
+            this.TxtOrderId.DatabaseColumnName = "";
+            this.TxtOrderId.DataControlName = "txtData";
+            this.TxtOrderId.DataEnabled = false;
+            this.TxtOrderId.DataReadOnly = true;
+            this.TxtOrderId.DataTextLocation = new System.Drawing.Point(154, 0);
+            this.TxtOrderId.DataTextSize = new System.Drawing.Size(43, 30);
+            this.TxtOrderId.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TxtOrderId.Id = null;
+            this.TxtOrderId.Label = "";
+            this.TxtOrderId.Location = new System.Drawing.Point(468, 12);
+            this.TxtOrderId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtOrderId.MaxByteLength = 65535;
+            this.TxtOrderId.MaxLength = 0;
+            this.TxtOrderId.Name = "注文ID(&D)";
+            this.TxtOrderId.Size = new System.Drawing.Size(197, 30);
+            this.TxtOrderId.TabIndex = 98;
+            this.TxtOrderId.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.TxtOrderId.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtOrderId.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.TxtOrderId.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TxtOrderId.TextForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtOrderId.Title = "注文ID";
+            this.TxtOrderId.TitleControlName = "LblTitle";
+            this.TxtOrderId.TitleSize = new System.Drawing.Size(154, 30);
+            this.TxtOrderId.Value = "";
+            this.TxtOrderId.Visible = false;
+            // 
             // FrmOrderStart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -676,6 +706,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.CancelButton = this.BtnClose;
             this.ClientSize = new System.Drawing.Size(742, 826);
             this.ControlBox = false;
+            this.Controls.Add(this.TxtOrderId);
             this.Controls.Add(this.labelStatusRadioButtons1);
             this.Controls.Add(this.DropDownCapType);
             this.Controls.Add(this.NumUpDownQualitySample);
@@ -735,5 +766,6 @@ namespace NipponPaint.OrderManager.Dialogs
         private NipponPaint.NpCommon.FormControls.LabelNumericUpDown NumUpDownMixingTime;
         private NipponPaint.NpCommon.FormControls.LabelNumericUpDown NumUpDownQualitySample;
         private NpCommon.FormControls.LabelStatusRadioButtons labelStatusRadioButtons1;
+        private NpCommon.FormControls.LabelTextBox TxtOrderId;
     }
 }

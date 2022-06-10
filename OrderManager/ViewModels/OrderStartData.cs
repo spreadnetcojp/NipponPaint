@@ -25,6 +25,10 @@ namespace NipponPaint.OrderManager.ViewModels
     public class OrderStartData
     {
         /// <summary>
+        /// 注文ID
+        /// </summary>
+        public int OrderID { get; set; }
+        /// <summary>
         /// 注文番号
         /// </summary>
         public string OrderNumber { get; set; }
@@ -103,6 +107,7 @@ namespace NipponPaint.OrderManager.ViewModels
 
         public OrderStartData(DataTable orderData)
         {
+            OrderID = NpCommon.Funcs.StrToInt(orderData.Rows[0]["OrderId"].ToString());
             OrderNumber = orderData.Rows[0]["OrderNumber"].ToString();
             ColorName = orderData.Rows[0]["ColorName"].ToString();
             ProductCode = orderData.Rows[0]["ProductCode"].ToString();
