@@ -285,8 +285,7 @@ namespace NipponPaint.OrderManager.Dialogs
             {
                 NumLabel.Text = NumLabel.Text.Remove(NumLabel.Text.Length - 1);　　　　　//打ち込んだ数列の最後の1文字だけ削除
                 decimal.TryParse(NumLabel.Text.ToString(), out decimal intNumLabel);
-                bool existPeriod = NumLabel.Text.ToString().Contains(".");              //「.」を削除したあとに再度「.」を打てるようにする
-                NumPeriod = existPeriod;
+                NumPeriod = NumLabel.Text.ToString().Contains(".");              //「.」を削除したあとに再度「.」を打てるようにする
                 if (string.IsNullOrEmpty(NumLabel.Text) || intNumLabel == 0)
                 {
                     NumLabel.Text = "0";　　　　　//最後の1文字を削除後、「0」を表示
