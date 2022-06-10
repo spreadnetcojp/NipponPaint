@@ -117,6 +117,12 @@ namespace NipponPaint.NpCommon
             [Display(Order = (int)Log.LogType.Error, Description = "原料選択でｴﾗｰ")]
             SelectMaterialError,
 
+            /// <summary>
+            /// 「注文を戻す」ボタンをクリック
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Question, Description = "選択された注文を戻しますか？ ")]
+            BtnOrderBackClick,
+
             #region Supervisor I/F
 
             /// <summary>

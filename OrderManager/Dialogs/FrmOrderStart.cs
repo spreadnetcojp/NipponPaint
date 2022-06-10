@@ -190,7 +190,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                 {
                     // 確認ダイアログ表示
-                    DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
+                    DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnOrderBackClick);
                     switch (result)
                     {
                         case DialogResult.Yes:
