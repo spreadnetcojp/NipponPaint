@@ -42,8 +42,8 @@ namespace NipponPaint.OrderManager.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PnlControl = new System.Windows.Forms.Panel();
             this.PrinterSetting = new System.Windows.Forms.GroupBox();
             this.NumCenterAligned = new NipponPaint.NpCommon.FormControls.LabelNumericUpDown();
@@ -114,6 +114,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumCenterAligned.Size = new System.Drawing.Size(293, 30);
             this.NumCenterAligned.TabIndex = 33;
             this.NumCenterAligned.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.NumCenterAligned.TextBackColor = System.Drawing.SystemColors.Window;
+            this.NumCenterAligned.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.NumCenterAligned.Title = "Y位置修正(&Q)";
             this.NumCenterAligned.TitleControlName = "LblTitle";
             this.NumCenterAligned.TitleSize = new System.Drawing.Size(154, 30);
@@ -145,6 +147,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumPositionY.Size = new System.Drawing.Size(293, 30);
             this.NumPositionY.TabIndex = 31;
             this.NumPositionY.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.NumPositionY.TextBackColor = System.Drawing.SystemColors.Window;
+            this.NumPositionY.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.NumPositionY.Title = "Y位置(Y)";
             this.NumPositionY.TitleControlName = "LblTitle";
             this.NumPositionY.TitleSize = new System.Drawing.Size(154, 30);
@@ -176,6 +180,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumLeftAligned.Size = new System.Drawing.Size(293, 30);
             this.NumLeftAligned.TabIndex = 32;
             this.NumLeftAligned.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.NumLeftAligned.TextBackColor = System.Drawing.SystemColors.Window;
+            this.NumLeftAligned.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.NumLeftAligned.Title = "X位置修正(&P)";
             this.NumLeftAligned.TitleControlName = "LblTitle";
             this.NumLeftAligned.TitleSize = new System.Drawing.Size(154, 30);
@@ -207,6 +213,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumPositionX.Size = new System.Drawing.Size(293, 30);
             this.NumPositionX.TabIndex = 30;
             this.NumPositionX.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.NumPositionX.TextBackColor = System.Drawing.SystemColors.Window;
+            this.NumPositionX.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.NumPositionX.Title = "X位置(X)";
             this.NumPositionX.TitleControlName = "LblTitle";
             this.NumPositionX.TitleSize = new System.Drawing.Size(154, 30);
@@ -338,23 +346,23 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // DgvList
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgvList.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgvList.DefaultCellStyle = dataGridViewCellStyle2;
             this.DgvList.Location = new System.Drawing.Point(12, 12);
             this.DgvList.Name = "DgvList";
             this.DgvList.RowTemplate.Height = 21;
@@ -383,7 +391,6 @@ namespace NipponPaint.OrderManager.Dialogs
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView DgvList;
         private System.Windows.Forms.Panel PnlControl;
         private NpCommon.FormControls.LabelTextBox TxtLabelType;
         private NpCommon.FormControls.LabelTextBox TxtLabelDescription;
@@ -398,5 +405,6 @@ namespace NipponPaint.OrderManager.Dialogs
         private System.Windows.Forms.Button BtnDelete;
         private System.Windows.Forms.Button BtnModify;
         private System.Windows.Forms.Button BtnCopyCreate;
+        private System.Windows.Forms.DataGridView DgvList;
     }
 }
