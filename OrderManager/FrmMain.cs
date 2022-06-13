@@ -553,7 +553,9 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                MessageBox.Show("作業指示書印刷がクリックされました");
+                //MessageBox.Show("作業指示書印刷がクリックされました");
+                var frm = new Documents.ReportWorkInstruction.Preview();
+                frm.ShowDialog();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -884,7 +886,7 @@ namespace NipponPaint.OrderManager
                 var productCodeColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Product_Code");
                 var productCode2ColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == "Product_Code");
                 string CodeP = string.Empty;
-                switch(selectedindex)
+                switch (selectedindex)
                 {
                     case TAB_INDEX_ORDER:
                         CodeP = GvOrder.SelectedRows[0].Cells[productCodeColumnIndex].Value.ToString();
@@ -900,7 +902,7 @@ namespace NipponPaint.OrderManager
                         break;
                 }
                 string productCode = CodeP;
-                if(productCode.Length == 2)
+                if (productCode.Length == 2)
                 {
                     vm.ProductCodeLeft = productCode[0].ToString();     　//CCMシミュレーター画面にて選択している製品コードの1文字目を表示
                     vm.ProductCodeRight = productCode[1].ToString();    　//CCMシミュレーター画面にて選択している製品コードの2文字目を表示
@@ -2445,11 +2447,15 @@ namespace NipponPaint.OrderManager
                 printer.Print(printOutDataList);
             }
         }
-        #endregion
 
 
         #endregion
 
+        #endregion
 
+        private void BtnPrintInstructions_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
