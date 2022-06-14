@@ -158,7 +158,7 @@ namespace NipponPaint.OrderManager.Dialogs
 
 
             //画像ファイルを読み込んで、Imageオブジェクトとして取得する
-            string baseBmpFilePath = Path.Combine(Application.StartupPath, "Product_Label", "Label_ONE.bmp");
+            string baseBmpFilePath = Path.Combine(Application.StartupPath, "Images", "Label_ONE.bmp");
             Image img = Image.FromFile(baseBmpFilePath);
 
             // 描画先とするImageオブジェクトを作成する
@@ -239,7 +239,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     //ImageオブジェクトのGraphicsオブジェクトを作成する
                     Graphics graphics = Graphics.FromImage(canvas);
                     //画像ファイルを読み込んで、Imageオブジェクトとして取得する
-                    string bmpFilePath = Path.Combine(Application.StartupPath, "Product_Label", "FLA_Logo.bmp");
+                    string bmpFilePath = Path.Combine(Application.StartupPath, "Images", "FLA_Logo.bmp");
                     Image img = Image.FromFile(bmpFilePath);
                     //倍率100%で描画
                     Rectangle rectangle = new Rectangle(intFlaX, intFlaY, img.Width, img.Height);
