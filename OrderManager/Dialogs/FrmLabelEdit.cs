@@ -34,6 +34,10 @@ namespace NipponPaint.OrderManager.Dialogs
         private Bitmap preview;
         private Size previewSize;
         PrintDocument pd;
+        /// <summary>
+        /// imagesファイル
+        /// </summary>
+        private const string IMAGESFILE = "Images";
         #region
         public FrmLabelEdit(ViewModels.LabelEdit vm)
         {
@@ -158,8 +162,8 @@ namespace NipponPaint.OrderManager.Dialogs
 
 
             //画像ファイルを読み込んで、Imageオブジェクトとして取得する
-            string baseBmpFilePath = Path.Combine(Application.StartupPath, "Images", "Label_ONE.bmp");
-            Image img = Image.FromFile(baseBmpFilePath);
+            var imageBmp = "Label_ONE.bmp";
+            Image img = GetImage(imageBmp);
 
             // 描画先とするImageオブジェクトを作成する
             canvas = new Bitmap(img.Width, img.Height);
@@ -239,8 +243,8 @@ namespace NipponPaint.OrderManager.Dialogs
                     //ImageオブジェクトのGraphicsオブジェクトを作成する
                     Graphics graphics = Graphics.FromImage(canvas);
                     //画像ファイルを読み込んで、Imageオブジェクトとして取得する
-                    string bmpFilePath = Path.Combine(Application.StartupPath, "Images", "FLA_Logo.bmp");
-                    Image img = Image.FromFile(bmpFilePath);
+                    var imageBmp = "FLA_Logo.bmp";
+                    Image img = GetImage(imageBmp);
                     //倍率100%で描画
                     Rectangle rectangle = new Rectangle(intFlaX, intFlaY, img.Width, img.Height);
                     ////倍率40%で描画
@@ -541,6 +545,18 @@ namespace NipponPaint.OrderManager.Dialogs
                 pictureBox1.Size = previewSize;
                 e.Graphics.DrawImage(preview, drawRectangle);
             }
+        }
+
+        /// <summary>
+        /// Imageオブジェクト取得
+        /// </summary>
+        /// <param name="imageBmp"></param>
+        /// <returns></returns>
+        private Image GetImage(string imageBmp)
+        {
+            var bmpFilePath = Path.Combine(Application.StartupPath, IMAGESFILE, imageBmp);
+            Image img = Image.FromFile(bmpFilePath);
+            return img;
         }
 
         #endregion
