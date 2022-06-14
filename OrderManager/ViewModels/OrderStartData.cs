@@ -121,8 +121,8 @@ namespace NipponPaint.OrderManager.ViewModels
             TotalWeight = NpCommon.Funcs.StrToDouble(orderData.Rows[0]["TotalWeight"].ToString());
             Overfilling = NpCommon.Funcs.StrToDouble(orderData.Rows[0]["Overfilling"].ToString());
             FilledWeight = NpCommon.Funcs.StrToInt(orderData.Rows[0]["PrefillAmount"].ToString());
-            WeightToleranceMin = +2.0;
-            WeightToleranceMax = -2.0;
+            WeightToleranceMin = 2.0;
+            WeightToleranceMax = 2.0;
             QualitySample = 0;
             MixingTime = NpCommon.Funcs.StrToInt(orderData.Rows[0]["MixingTime"].ToString());
             MixingSpeed = NpCommon.Funcs.StrToInt(orderData.Rows[0]["MixingSpeed"].ToString());
