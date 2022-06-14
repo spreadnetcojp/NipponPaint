@@ -35,9 +35,17 @@ namespace NipponPaint.OrderManager.Dialogs
         private Size previewSize;
         PrintDocument pd;
         /// <summary>
-        /// Imagesファイル
+        /// Imagesフォルダ
         /// </summary>
-        private const string IMAGESFILE = "Images";
+        private const string IMAGES_FOLDER = "Images";
+        /// <summary>
+        /// ラベル画像ファイル名
+        /// </summary>
+        private const string LABEL_ONE_BMP = "Label_ONE.bmp";
+        /// <summary>
+        /// 引火ロゴ画像ファイル名
+        /// </summary>
+        private　const string FLA_LOGO_BMP = "FLA_Logo.bmp";
         #region
         public FrmLabelEdit(ViewModels.LabelEdit vm)
         {
@@ -161,10 +169,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
 
 
-            //画像ファイル名を代入
-            const string imageBmp = "Label_ONE.bmp";
             //画像ファイルを読み込んで、Imageオブジェクトとして取得する
-            Image img = GetImage(imageBmp);
+            Image img = GetImage(LABEL_ONE_BMP);
 
             // 描画先とするImageオブジェクトを作成する
             canvas = new Bitmap(img.Width, img.Height);
@@ -243,10 +249,8 @@ namespace NipponPaint.OrderManager.Dialogs
                     bool bflaY = int.TryParse(flaRows[0]["Position_Y"].ToString(), out intFlaY);
                     //ImageオブジェクトのGraphicsオブジェクトを作成する
                     Graphics graphics = Graphics.FromImage(canvas);
-                    //画像ファイル名を代入
-                    const string imageBmp = "FLA_Logo.bmp";
                     //画像ファイルを読み込んで、Imageオブジェクトとして取得する
-                    Image img = GetImage(imageBmp);
+                    Image img = GetImage(FLA_LOGO_BMP);
                     //倍率100%で描画
                     Rectangle rectangle = new Rectangle(intFlaX, intFlaY, img.Width, img.Height);
                     ////倍率40%で描画
@@ -556,7 +560,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <returns></returns>
         private Image GetImage(string imageBmp)
         {
-            Image img = Image.FromFile(Path.Combine(Application.StartupPath, IMAGESFILE, imageBmp));
+            Image img = Image.FromFile(Path.Combine(Application.StartupPath, IMAGES_FOLDER, imageBmp));
             return img;
         }
 
