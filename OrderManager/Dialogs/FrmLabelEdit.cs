@@ -161,8 +161,9 @@ namespace NipponPaint.OrderManager.Dialogs
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
 
 
+            //画像ファイル名を代入
+            const string imageBmp = "Label_ONE.bmp";
             //画像ファイルを読み込んで、Imageオブジェクトとして取得する
-            var imageBmp = "Label_ONE.bmp";
             Image img = GetImage(imageBmp);
 
             // 描画先とするImageオブジェクトを作成する
@@ -242,8 +243,9 @@ namespace NipponPaint.OrderManager.Dialogs
                     bool bflaY = int.TryParse(flaRows[0]["Position_Y"].ToString(), out intFlaY);
                     //ImageオブジェクトのGraphicsオブジェクトを作成する
                     Graphics graphics = Graphics.FromImage(canvas);
+                    //画像ファイル名を代入
+                    const string imageBmp = "FLA_Logo.bmp";
                     //画像ファイルを読み込んで、Imageオブジェクトとして取得する
-                    var imageBmp = "FLA_Logo.bmp";
                     Image img = GetImage(imageBmp);
                     //倍率100%で描画
                     Rectangle rectangle = new Rectangle(intFlaX, intFlaY, img.Width, img.Height);
@@ -554,8 +556,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <returns></returns>
         private Image GetImage(string imageBmp)
         {
-            var bmpFilePath = Path.Combine(Application.StartupPath, IMAGESFILE, imageBmp);
-            Image img = Image.FromFile(bmpFilePath);
+            Image img = Image.FromFile(Path.Combine(Application.StartupPath, IMAGESFILE, imageBmp));
             return img;
         }
 
