@@ -35,7 +35,7 @@ namespace NipponPaint.OrderManager.Dialogs
         private Size previewSize;
         PrintDocument pd;
         /// <summary>
-        /// imagesファイル
+        /// Imagesファイル
         /// </summary>
         private const string IMAGESFILE = "Images";
         #region
