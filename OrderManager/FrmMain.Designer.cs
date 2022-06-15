@@ -1470,10 +1470,10 @@ namespace NipponPaint.OrderManager
             this.tabDetail2.Controls.Add(this.HgComments);
             this.tabDetail2.Controls.Add(this.FormulaRelease);
             this.tabDetail2.Controls.Add(this.PrefillAmount);
-            this.tabDetail2.Location = new System.Drawing.Point(4, 32);
+            this.tabDetail2.Location = new System.Drawing.Point(4, 22);
             this.tabDetail2.Name = "tabDetail2";
             this.tabDetail2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDetail2.Size = new System.Drawing.Size(1647, 489);
+            this.tabDetail2.Size = new System.Drawing.Size(1647, 499);
             this.tabDetail2.TabIndex = 1;
             this.tabDetail2.Text = "詳細２";
             // 
@@ -2082,9 +2082,9 @@ namespace NipponPaint.OrderManager
             this.tabDetail3.Controls.Add(this.HgAdditionalNo2);
             this.tabDetail3.Controls.Add(this.HgAdditionalNo1);
             this.tabDetail3.Controls.Add(this.HgLineNumber);
-            this.tabDetail3.Location = new System.Drawing.Point(4, 32);
+            this.tabDetail3.Location = new System.Drawing.Point(4, 22);
             this.tabDetail3.Name = "tabDetail3";
-            this.tabDetail3.Size = new System.Drawing.Size(1647, 489);
+            this.tabDetail3.Size = new System.Drawing.Size(1647, 499);
             this.tabDetail3.TabIndex = 2;
             this.tabDetail3.Text = "詳細３";
             // 

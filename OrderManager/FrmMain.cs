@@ -618,6 +618,87 @@ namespace NipponPaint.OrderManager
             }
         }
         /// <summary>
+        /// ステータスを戻すボタン押下(F8)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnStatusResumeClick(object sender, EventArgs e)
+        {
+            // 詳細タブを開いていない時はスルー
+            if (tabMain.SelectedIndex != TAB_INDEX_DETAIL)
+            {
+                return;
+            }
+            try
+            {
+                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+                {
+                    DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
+                            var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                            var dgv = GvDetail;
+                            if (dgv.SelectedRows.Count > 0)
+                            {
+                                // 選択している行を取得
+                                var selectedRow = dgv.SelectedRows[0];
+                                int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
+                                int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
+                                // 行取得のSQLを作成
+                                var parameters = new List<ParameterItem>()
+                                {
+                                    new ParameterItem("orderId", orderId),
+                                };
+                                switch ((Sql.NpMain.Orders.OrderStatus)status)
+                                {
+                                    case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
+                                        break;
+                                    case Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
+                                        break;
+                                    case Sql.NpMain.Orders.OrderStatus.Ready:
+                                        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
+                                        break;
+                                    case Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
+                                        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
+                                        break;
+                                    case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
+                                        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                db.Commit();
+                            }
+                            InitializeForm();
+                            break;
+                        case DialogResult.No:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+
+        }
+        /// <summary>
+        /// 担当者を決定(F9)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnDecidePerson_Click(object sender, EventArgs e)
+        {
+            PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+            FrmOperators frmOperators = new FrmOperators();
+            frmOperators.ShowDialog();
+        }
+        /// <summary>
         /// 注文を閉じる(F10)
         /// </summary>
         /// <param name="sender"></param>
@@ -673,6 +754,11 @@ namespace NipponPaint.OrderManager
                 PutLog(ex);
             }
         }
+        /// <summary>
+        /// 処理No.詳細(F12)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ToolStripMenuItemHelpFormClick(object sender, EventArgs e)
         {
             try
@@ -943,7 +1029,9 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+                //PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+                //FrmOperators frmOperators = new FrmOperators();
+                //frmOperators.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -1236,76 +1324,6 @@ namespace NipponPaint.OrderManager
             }
         }
 
-        /// <summary>
-        /// ステータスを戻すボタン押下
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnStatusResumeClick(object sender, EventArgs e)
-        {
-            // 詳細タブを開いていない時はスルー
-            if (tabMain.SelectedIndex != TAB_INDEX_DETAIL)
-            {
-                return;
-            }
-            try
-            {
-                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
-                {
-                    DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
-                    switch (result)
-                    {
-                        case DialogResult.Yes:
-                            var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
-                            var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
-                            var dgv = GvDetail;
-                            if (dgv.SelectedRows.Count > 0)
-                            {
-                                // 選択している行を取得
-                                var selectedRow = dgv.SelectedRows[0];
-                                int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
-                                int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
-                                // 行取得のSQLを作成
-                                var parameters = new List<ParameterItem>()
-                                {
-                                    new ParameterItem("orderId", orderId),
-                                };
-                                switch ((Sql.NpMain.Orders.OrderStatus)status)
-                                {
-                                    case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
-                                        break;
-                                    case Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
-                                        break;
-                                    case Sql.NpMain.Orders.OrderStatus.Ready:
-                                        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
-                                        break;
-                                    case Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
-                                        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
-                                        break;
-                                    case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
-                                        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
-                                        break;
-                                    default:
-                                        break;
-                                }
-                                db.Commit();
-                            }
-                            InitializeForm();
-                            break;
-                        case DialogResult.No:
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-            }
-            catch (Exception ex)
-            {
-                PutLog(ex);
-            }
-
-        }
         /// <summary>
         /// ロットNo.編集画面を開く
         /// </summary>
@@ -1870,6 +1888,7 @@ namespace NipponPaint.OrderManager
             this.BtnPrintEmergency.Click += new EventHandler(this.BtnPrintEmergencyClick);
             this.BtnOrderStart.Click += new EventHandler(this.BtnOrderStartClick);
             this.BtnStatusResume.Click += new System.EventHandler(this.BtnStatusResumeClick);
+            this.BtnDecidePerson.Click += new System.EventHandler(this.BtnDecidePerson_Click);
             this.BtnOrderClose.Click += new EventHandler(this.BtnOrderCloseClick);
             this.BtnBulkChangeStatus.Click += new EventHandler(this.BtnBulkChangeStatusClick);
             this.BtnProcessDetail.Click += new EventHandler(this.BtnProcessDetailClick);
@@ -2457,5 +2476,6 @@ namespace NipponPaint.OrderManager
         {
 
         }
+
     }
 }

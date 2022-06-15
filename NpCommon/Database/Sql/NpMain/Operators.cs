@@ -22,8 +22,11 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
 {
     public static class Operators
     {
+        #region 参照系
+
+        #region 一覧データの習得(FrmMixingColorsOperators)
         /// <summary>
-        /// 担当者テーブルの一覧を取得
+        /// 担当者テーブルの一覧を取得(FrmMixingColorsOperators)
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
@@ -36,5 +39,52 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
 
             return sql.ToString();
         }
+        #endregion
+
+        #region 一覧データの習得(FrmOperators)
+        /// <summary>
+        /// 担当者テーブルの一覧を取得(FrmOperators)
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public static string GetPreviewOperators(List<GridViewSetting> viewSettings)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            int cnt = 0;
+            foreach (var item in viewSettings)
+            {
+                if (cnt > 0)
+                {
+                    sql.Append(",");
+                }
+                sql.Append(item.SqlSentence);
+                cnt++;
+            }
+            sql.Append($"FROM Operators ");
+            sql.Append($"ORDER BY Operators_Id ");
+            return sql.ToString();
+        }
+        #endregion
+
+        #region 詳細データの習得(FrmOperators)
+        /// <summary>
+        /// 詳細データの取得(FrmOperators)
+        /// </summary>
+        /// <returns></returns>
+        public static string GetDetail()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT * FROM Operators WHERE Operators_Id = @operatorsId");
+            return sql.ToString();
+        }
+        #endregion
+
+        #endregion
+
+        #region 更新系
+        #endregion
+
+
     }
 }
