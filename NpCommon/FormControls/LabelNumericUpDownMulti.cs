@@ -31,6 +31,10 @@ namespace NipponPaint.NpCommon.FormControls
             /// 右
             /// </summary>
             Right,
+            /// <summary>
+            /// フリー
+            /// </summary>
+            Flee,
         }
 
         public int Id { get; set; }
@@ -182,6 +186,9 @@ namespace NipponPaint.NpCommon.FormControls
                         NumUpDownDataRight.Value = NumUpDownDataLeft.Value;
                     }
                     break;
+                case LeftAndRightHighAndLowControlType.Flee:
+                    //左右の連動なし
+                    break;
                 default:
                     break;
             }
@@ -207,6 +214,9 @@ namespace NipponPaint.NpCommon.FormControls
                     {
                         NumUpDownDataLeft.Value = NumUpDownDataRight.Value;
                     }
+                    break;
+                case LeftAndRightHighAndLowControlType.Flee:
+                    //左右の連動なし
                     break;
                 default:
                     break;

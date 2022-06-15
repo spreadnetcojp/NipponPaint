@@ -67,6 +67,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtOrderNumber = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.labelStatusRadioButtons1 = new NipponPaint.NpCommon.FormControls.LabelStatusRadioButtons();
             this.TxtOrderId = new NipponPaint.NpCommon.FormControls.LabelTextBox();
+            this.TxtLabelPlus = new System.Windows.Forms.Label();
+            this.TxtLabelMinus = new System.Windows.Forms.Label();
             this.PnlBtn.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -244,29 +246,31 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownWeightTolerance.DecimalPlacesRight = 1;
             this.NumUpDownWeightTolerance.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.NumUpDownWeightTolerance.Id = 0;
-            this.NumUpDownWeightTolerance.LeftAndRightHighAndLowControl = NipponPaint.NpCommon.FormControls.LabelNumericUpDownMulti.LeftAndRightHighAndLowControlType.Right;
+            this.NumUpDownWeightTolerance.LeftSide.Increment = 0.1M;
+            this.NumUpDownWeightTolerance.RightSide.Increment = 0.1M;
+            this.NumUpDownWeightTolerance.LeftAndRightHighAndLowControl = NipponPaint.NpCommon.FormControls.LabelNumericUpDownMulti.LeftAndRightHighAndLowControlType.Flee;
             this.NumUpDownWeightTolerance.Location = new System.Drawing.Point(12, 607);
             this.NumUpDownWeightTolerance.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.NumUpDownWeightTolerance.MaximumLeft = new decimal(new int[] {
-            100,
+            10,
             0,
             0,
             0});
             this.NumUpDownWeightTolerance.MaximumRight = new decimal(new int[] {
-            100,
+            10,
             0,
             0,
             0});
             this.NumUpDownWeightTolerance.MinimumLeft = new decimal(new int[] {
-            100,
             0,
             0,
-            -2147483648});
+            0,
+            0});
             this.NumUpDownWeightTolerance.MinimumRight = new decimal(new int[] {
-            100,
             0,
             0,
-            -2147483648});
+            0,
+            0});
             this.NumUpDownWeightTolerance.Name = "NumUpDownWeightTolerance";
             this.NumUpDownWeightTolerance.NumUpDownLeftControlName = "NumUpDownDataMin";
             this.NumUpDownWeightTolerance.NumUpDownLeftSize = new System.Drawing.Size(139, 30);
@@ -330,6 +334,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownOverfilling.Id = null;
             this.NumUpDownOverfilling.Location = new System.Drawing.Point(12, 537);
             this.NumUpDownOverfilling.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.NumUpDownOverfilling.ValueNumericUpDown.Increment = 0.1M;
             this.NumUpDownOverfilling.Maximum = new decimal(new int[] {
             100,
             0,
@@ -685,7 +690,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtOrderId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtOrderId.MaxByteLength = 65535;
             this.TxtOrderId.MaxLength = 0;
-            this.TxtOrderId.Name = "注文ID(&D)";
+            this.TxtOrderId.Name = "TxtOrderId";
             this.TxtOrderId.Size = new System.Drawing.Size(197, 30);
             this.TxtOrderId.TabIndex = 98;
             this.TxtOrderId.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -699,6 +704,28 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtOrderId.Value = "";
             this.TxtOrderId.Visible = false;
             // 
+            // TxtLabelPlus
+            // 
+            this.TxtLabelPlus.AutoSize = true;
+            this.TxtLabelPlus.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtLabelPlus.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TxtLabelPlus.Location = new System.Drawing.Point(166, 609);
+            this.TxtLabelPlus.Name = "TxtLabelPlus";
+            this.TxtLabelPlus.Size = new System.Drawing.Size(22, 23);
+            this.TxtLabelPlus.TabIndex = 99;
+            this.TxtLabelPlus.Text = "+";
+            // 
+            // TxtLabelMinus
+            // 
+            this.TxtLabelMinus.AutoSize = true;
+            this.TxtLabelMinus.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtLabelMinus.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TxtLabelMinus.Location = new System.Drawing.Point(307, 609);
+            this.TxtLabelMinus.Name = "TxtLabelMinus";
+            this.TxtLabelMinus.Size = new System.Drawing.Size(17, 23);
+            this.TxtLabelMinus.TabIndex = 100;
+            this.TxtLabelMinus.Text = "-";
+            // 
             // FrmOrderStart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -706,6 +733,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.CancelButton = this.BtnClose;
             this.ClientSize = new System.Drawing.Size(742, 826);
             this.ControlBox = false;
+            this.Controls.Add(this.TxtLabelMinus);
+            this.Controls.Add(this.TxtLabelPlus);
             this.Controls.Add(this.TxtOrderId);
             this.Controls.Add(this.labelStatusRadioButtons1);
             this.Controls.Add(this.DropDownCapType);
@@ -737,6 +766,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.Text = "注文開始";
             this.PnlBtn.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -767,5 +797,7 @@ namespace NipponPaint.OrderManager.Dialogs
         private NipponPaint.NpCommon.FormControls.LabelNumericUpDown NumUpDownQualitySample;
         private NpCommon.FormControls.LabelStatusRadioButtons labelStatusRadioButtons1;
         private NpCommon.FormControls.LabelTextBox TxtOrderId;
+        private System.Windows.Forms.Label TxtLabelPlus;
+        private System.Windows.Forms.Label TxtLabelMinus;
     }
 }
