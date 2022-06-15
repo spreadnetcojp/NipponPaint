@@ -109,7 +109,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         // DB
         private const string DATABASE_NP_MAIN = "NP_MAIN";
-        private const string DATABASE_ORDER_ = "ORDER_"; //ORDER_xx  ←　xxはPlantの値をSQL内で指定する
+        private const string DATABASE_ORDER = "ORDER_"; //ORDER_xx  ←　xxはPlantの値をSQL内で指定する
         // テーブル
         private const string MAIN_TABLE = "Orders";
         // カラム
@@ -297,7 +297,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($" ,d.{Order.Defaults.COLUMN_MIXING_SPEED}   AS MixingSpeed ");
             sql.Append($" ,o.{COLUMN_ORDER_ID}                      AS OrderId ");
             sql.Append($"FROM NP_MAIN.dbo.{MAIN_TABLE} o ");
-            sql.Append($"LEFT JOIN {DATABASE_ORDER_}{plant}.dbo.{Order.Defaults.MAIN_TABLE} d ON o.{COLUMN_WHITE_CODE} = d.White_Code ");
+            sql.Append($"LEFT JOIN {DATABASE_ORDER}{plant}.dbo.{Order.Defaults.MAIN_TABLE} d ON o.{COLUMN_WHITE_CODE} = d.White_Code ");
             sql.Append($"WHERE {COLUMN_ORDER_ID} = @orderId ");
             return sql.ToString();
         }
