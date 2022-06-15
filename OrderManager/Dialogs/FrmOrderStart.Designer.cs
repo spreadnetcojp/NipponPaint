@@ -336,7 +336,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownOverfilling.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.NumUpDownOverfilling.ValueNumericUpDown.Increment = 0.1M;
             this.NumUpDownOverfilling.Maximum = new decimal(new int[] {
-            100,
+            10,
             0,
             0,
             0});

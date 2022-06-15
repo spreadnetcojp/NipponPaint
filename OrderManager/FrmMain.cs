@@ -604,7 +604,7 @@ namespace NipponPaint.OrderManager
                             new ParameterItem("orderId", orderId),
                         };
                         // 選択している注文データ取得
-                        orderData = db.Select(Sql.NpMain.Orders.GetDetailOrderStartByOrderId(), parameters);
+                        orderData = db.Select(Sql.NpMain.Orders.GetDetailOrderStartByOrderId(BaseSettings.Facility.Plant), parameters);
                     }
                 }
                 // 注文データを元にビューモデル作成
