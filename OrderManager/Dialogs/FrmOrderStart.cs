@@ -89,6 +89,10 @@ namespace NipponPaint.OrderManager.Dialogs
         /// キャップデータ
         /// </summary>
         private DataTable capData = new DataTable();
+        /// <summary>
+        /// 重量リスト（１～１９)
+        /// </summary>
+        private Dictionary<string, double> weightList = new Dictionary<string, double>();
         #endregion
 
         #region イベント
@@ -119,6 +123,8 @@ namespace NipponPaint.OrderManager.Dialogs
                 int.TryParse(DropDownCanType.SelectedValue.ToString(), out int canSelectValue);
                 // キャップタイプ取得
                 int.TryParse(DropDownCapType.SelectedValue.ToString(), out int capSelectValue);
+                // 超過の値取得
+                decimal.TryParse(NumUpDownOverfilling.Value.ToString(), out decimal overFilling);
                 using (var db = new SqlBase(SqlBase.DatabaseKind.ORDER, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                 {
                     // ラベルタイプデータ取得
@@ -127,6 +133,13 @@ namespace NipponPaint.OrderManager.Dialogs
                     canData = DropDownCanType.DropdownItemValue(db, canSelectValue);
                     // キャップタイプデータ取得
                     capData = DropDownCapType.DropdownItemValue(db, capSelectValue);
+                    // 重量超過分のパラメータ作成
+                    int.TryParse(TxtOrderId.Value.ToString(), out int orderId);
+                    weightList = GetItemWeight(db, orderId, overFilling);
+                }
+                if(overFilling > 0)
+                {
+                    TxtTotalWeight.Value = GetTotalWeight(weightList).ToString();
                 }
                 // 手動キャッピングのステータス判断
                 if (ChkHandCapping.CheckState.Checked)
@@ -163,6 +176,26 @@ namespace NipponPaint.OrderManager.Dialogs
                         new ParameterItem("@MixingTime", NumUpDownMixingTime.Value),
                         new ParameterItem("@MixingSpeed", NumUpDownMixingSpeed.Value),
                         new ParameterItem("@OrderNumber", TxtOrderNumber.Value),
+                        new ParameterItem("@Weight_1", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_1]),
+                        new ParameterItem("@Weight_2", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_2]),
+                        new ParameterItem("@Weight_3", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_3]),
+                        new ParameterItem("@Weight_4", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_4]),
+                        new ParameterItem("@Weight_5", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_5]),
+                        new ParameterItem("@Weight_6", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_6]),
+                        new ParameterItem("@Weight_7", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_7]),
+                        new ParameterItem("@Weight_8", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_8]),
+                        new ParameterItem("@Weight_9", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_9]),
+                        new ParameterItem("@Weight_10", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_10]),
+                        new ParameterItem("@Weight_11", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_11]),
+                        new ParameterItem("@Weight_12", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_12]),
+                        new ParameterItem("@Weight_13", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_13]),
+                        new ParameterItem("@Weight_14", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_14]),
+                        new ParameterItem("@Weight_15", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_15]),
+                        new ParameterItem("@Weight_16", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_16]),
+                        new ParameterItem("@Weight_17", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_17]),
+                        new ParameterItem("@Weight_18", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_18]),
+                        new ParameterItem("@Weight_19", weightList[NpCommon.Database.Sql.NpMain.Orders.COLUMN_WEIGHT_19]),
+                        new ParameterItem("@TotalWeight", TxtTotalWeight.Value),
                     };
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                     {
@@ -284,8 +317,87 @@ namespace NipponPaint.OrderManager.Dialogs
                 ChkHandCapping.Enabled = !ChkHandCapping.CheckState.Checked;
             }
         }
-    }
-    #endregion
+        #endregion
 
-    #endregion
+        #region　超過の値に伴う重量１～１９の再計算
+        /// <summary>
+        /// 超過の値に伴う重量１～１９の再計算
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="orderId"></param>
+        /// <param name="overFilling"></param>
+        /// <returns></returns>
+        private Dictionary<string, double> GetItemWeight(SqlBase db, int orderId, decimal overFilling)
+        {
+            var parameters = new List<ParameterItem>()
+            {
+                new ParameterItem("@OrderId", orderId),
+            };
+            // 重量１～１９を取得
+            var weightValues = db.Select(NpCommon.Database.Sql.NpMain.Orders.GetItemsWeightValue(), parameters);
+            // weightValuesのValueをリスト化
+            var weightValueList = ConvertDataTableTolist(weightValues);
+            var weightKeyValue = new Dictionary<string, double>();
+            var weightNumber = 1;
+            // overFillingが0なら計算しない
+            if (overFilling > 0)
+            {
+                // 超過の値を計算できる値に変更
+                double overFillingValue = 1 + (Convert.ToDouble(overFilling) / 100);
+                foreach(var weightValue in weightValueList)
+                {
+                    // keyをカラム名に設定、Valueをoverfillingの値によって計算、小数点第４位四捨五入
+                    weightKeyValue.Add($"Weight_{weightNumber}", Math.Round((weightValue * overFillingValue), 3, MidpointRounding.AwayFromZero));
+                    weightNumber++;
+                }
+                return weightKeyValue;
+            }
+            else
+            {
+                foreach (var weightValue in weightValueList)
+                {
+                    weightKeyValue.Add($"Weight_{weightNumber}", weightValue);
+                    weightNumber++;
+                }
+                return weightKeyValue;
+            }
+        }
+        #endregion
+
+        #region　DataTableのValueのみをリスト化
+        /// <summary>
+        /// DataTableのValueのみをリスト化
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        private static List<double> ConvertDataTableTolist(DataTable dt)
+        {
+            List<double> result = new List<double>();
+            foreach(double item in dt.Rows[0].ItemArray)
+            {
+                result.Add(item);
+            }
+            return result;
+        }
+        #endregion
+
+        #region 超過があった場合に重量１～１９を計算して総重量を算出
+        /// <summary>
+        /// 超過があった場合に重量１～１９を計算して総重量を算出
+        /// </summary>
+        /// <param name="weightList"></param>
+        /// <returns></returns>
+        private double GetTotalWeight(Dictionary<string, double> weightList)
+        {
+            double totalWeight = 0;
+            foreach (var weight in weightList)
+            {
+                totalWeight += weight.Value;
+            }
+            return totalWeight;
+        }
+        #endregion
+
+        #endregion
+    }
 }
