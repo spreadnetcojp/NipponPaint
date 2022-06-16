@@ -91,8 +91,6 @@ namespace NipponPaint.OrderManager
         private List<string> ViewGrid = new List<string>();
         //private const Log.ApplicationType MyApp = Log.ApplicationType.OrderManager;
 
-        //ステイタス：製造缶実施中
-        private const int STATUS_PRODUCTION = 4;
         #endregion
 
         #region DataGridViewの列定義
@@ -1212,7 +1210,7 @@ namespace NipponPaint.OrderManager
                     // 選択行のStatus取得
                     int.TryParse(row.Cells[columnStatusIndex].Value.ToString(), out int status);
                     // テスト缶実施中のみ
-                    if (status == 3)
+                    if (status == (int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress)
                     {
                         // 選択行のOrder_id取得
                         int.TryParse(row.Cells[columnOrderIdIndex].Value.ToString(), out int orderId);
@@ -1221,7 +1219,7 @@ namespace NipponPaint.OrderManager
                             var parameters = new List<ParameterItem>()
                             {
                                 new ParameterItem("@orderId", orderId),
-                                new ParameterItem("@status", STATUS_PRODUCTION),
+                                new ParameterItem("@status", (int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress),
                             };
                             // 選択している注文データのステイタスを変更
                             db.Execute(Sql.NpMain.Orders.StatusProductionChange(), parameters);
