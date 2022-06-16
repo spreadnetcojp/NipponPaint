@@ -148,7 +148,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownQualitySample.Location = new System.Drawing.Point(12, 642);
             this.NumUpDownQualitySample.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.NumUpDownQualitySample.Maximum = new decimal(new int[] {
-            9999999,
+            1000,
             0,
             0,
             0});
@@ -181,7 +181,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownMixingTime.Location = new System.Drawing.Point(12, 677);
             this.NumUpDownMixingTime.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.NumUpDownMixingTime.Maximum = new decimal(new int[] {
-            9999999,
+            300,
             0,
             0,
             0});
@@ -214,7 +214,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownMixingSpeed.Location = new System.Drawing.Point(12, 712);
             this.NumUpDownMixingSpeed.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.NumUpDownMixingSpeed.Maximum = new decimal(new int[] {
-            9999999,
+            150,
             0,
             0,
             0});
@@ -246,8 +246,6 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownWeightTolerance.DecimalPlacesRight = 1;
             this.NumUpDownWeightTolerance.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.NumUpDownWeightTolerance.Id = 0;
-            this.NumUpDownWeightTolerance.LeftSide.Increment = 0.1M;
-            this.NumUpDownWeightTolerance.RightSide.Increment = 0.1M;
             this.NumUpDownWeightTolerance.LeftAndRightHighAndLowControl = NipponPaint.NpCommon.FormControls.LabelNumericUpDownMulti.LeftAndRightHighAndLowControlType.Flee;
             this.NumUpDownWeightTolerance.Location = new System.Drawing.Point(12, 607);
             this.NumUpDownWeightTolerance.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
@@ -302,7 +300,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownFilledWeight.Location = new System.Drawing.Point(12, 572);
             this.NumUpDownFilledWeight.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.NumUpDownFilledWeight.Maximum = new decimal(new int[] {
-            9999999,
+            20000,
             0,
             0,
             0});
@@ -334,7 +332,6 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownOverfilling.Id = null;
             this.NumUpDownOverfilling.Location = new System.Drawing.Point(12, 537);
             this.NumUpDownOverfilling.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.NumUpDownOverfilling.ValueNumericUpDown.Increment = 0.1M;
             this.NumUpDownOverfilling.Maximum = new decimal(new int[] {
             10,
             0,

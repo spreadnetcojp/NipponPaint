@@ -57,6 +57,9 @@ namespace NipponPaint.OrderManager.Dialogs
             DropDownCapType.InitializeDropdownItems(SqlBase.DatabaseKind.ORDER, Log.ApplicationType.OrderManager);
             DropDownCapType.SelectedValue = vm.CapType;
             labelStatusRadioButtons1.Rbt1CheckState.Checked = true;
+            NumUpDownWeightTolerance.LeftSide.Increment = UPDOWN_NUM_DECIMAL;
+            NumUpDownWeightTolerance.RightSide.Increment = UPDOWN_NUM_DECIMAL;
+            NumUpDownOverfilling.ValueNumericUpDown.Increment = UPDOWN_NUM_DECIMAL;
         }
         #endregion
 
@@ -93,6 +96,8 @@ namespace NipponPaint.OrderManager.Dialogs
         /// 重量リスト（１～１９)
         /// </summary>
         private Dictionary<string, double> weightList = new Dictionary<string, double>();
+
+        private const decimal UPDOWN_NUM_DECIMAL = 0.1M;
         #endregion
 
         #region イベント

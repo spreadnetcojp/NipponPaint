@@ -529,6 +529,23 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
+        #region
+        /// <summary>
+        /// テスト缶仕上がりボタンを押下した際のstatus更新
+        /// </summary>
+        /// <returns></returns>
+        public static string StatusProductionChange()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"UPDATE ");
+            sql.Append($" {MAIN_TABLE} ");
+            sql.Append($"SET ");
+            sql.Append($" {COLUMN_STATUS}        = @Status ");
+            sql.Append($"WHERE {COLUMN_ORDER_ID} = @OrderId ");
+            return sql.ToString();
+        }
+        #endregion
+
         #endregion
     }
 }
