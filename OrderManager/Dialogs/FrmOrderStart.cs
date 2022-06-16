@@ -57,6 +57,9 @@ namespace NipponPaint.OrderManager.Dialogs
             DropDownCapType.InitializeDropdownItems(SqlBase.DatabaseKind.ORDER, Log.ApplicationType.OrderManager);
             DropDownCapType.SelectedValue = vm.CapType;
             labelStatusRadioButtons1.Rbt1CheckState.Checked = true;
+            NumUpDownWeightTolerance.LeftSide.Increment = 0.1M;
+            NumUpDownWeightTolerance.RightSide.Increment = 0.1M;
+            NumUpDownOverfilling.ValueNumericUpDown.Increment = 0.1M;
         }
         #endregion
 
