@@ -1502,7 +1502,7 @@
             </Paragraphs>
             <rd:DefaultName>HgTintingDirectionTitle</rd:DefaultName>
             <Top>8.13584cm</Top>
-            <Left>10.96371cm</Left>
+            <Left>11.89681cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.17503cm</Width>
             <ZIndex>36</ZIndex>
@@ -1537,7 +1537,7 @@
             </Paragraphs>
             <rd:DefaultName>HgNoteValue</rd:DefaultName>
             <Top>7.01289cm</Top>
-            <Left>3.86878cm</Left>
+            <Left>3.87425cm</Left>
             <Height>0.56147cm</Height>
             <Width>13.00021cm</Width>
             <ZIndex>37</ZIndex>
@@ -1574,7 +1574,7 @@
             </Paragraphs>
             <rd:DefaultName>HgTintingDirectionValue</rd:DefaultName>
             <Top>8.13584cm</Top>
-            <Left>13.31513cm</Left>
+            <Left>14.38934cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.55386cm</Width>
             <ZIndex>38</ZIndex>
@@ -2475,7 +2475,7 @@
             </Paragraphs>
             <rd:DefaultName>HgCommentsValue</rd:DefaultName>
             <Top>7.57437cm</Top>
-            <Left>3.86878cm</Left>
+            <Left>3.87425cm</Left>
             <Height>0.56147cm</Height>
             <Width>6.91854cm</Width>
             <ZIndex>61</ZIndex>
@@ -2512,7 +2512,7 @@
             </Paragraphs>
             <rd:DefaultName>HgSampleBackValue</rd:DefaultName>
             <Top>8.13584cm</Top>
-            <Left>3.86878cm</Left>
+            <Left>3.87425cm</Left>
             <Height>0.56147cm</Height>
             <Width>6.91854cm</Width>
             <ZIndex>62</ZIndex>
