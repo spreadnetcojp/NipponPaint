@@ -91,6 +91,8 @@ namespace NipponPaint.OrderManager
         private List<string> ViewGrid = new List<string>();
         //private const Log.ApplicationType MyApp = Log.ApplicationType.OrderManager;
 
+        //ステイタス：製造缶実施中
+        private const int STATUS_PRODUCTION = 4;
         #endregion
 
         #region DataGridViewの列定義
@@ -1200,7 +1202,34 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+                // Statusで検索する
+                var columnStatusIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
+                // Order_idで検索する
+                var columnOrderIdIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                if (GvOrder.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow row = GvOrder.SelectedRows[0];
+                    // 選択行のStatus取得
+                    int.TryParse(row.Cells[columnStatusIndex].Value.ToString(), out int status);
+                    // テスト缶実施中のみ
+                    if (status == 3)
+                    {
+                        // 選択行のOrder_id取得
+                        int.TryParse(row.Cells[columnOrderIdIndex].Value.ToString(), out int orderId);
+                        using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+                        {
+                            var parameters = new List<ParameterItem>()
+                            {
+                                new ParameterItem("@orderId", orderId),
+                                new ParameterItem("@status", STATUS_PRODUCTION),
+                            };
+                            // 選択している注文データのステイタスを変更
+                            db.Execute(Sql.NpMain.Orders.StatusProductionChange(), parameters);
+                            db.Commit();
+                        }
+                    }
+                }
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
