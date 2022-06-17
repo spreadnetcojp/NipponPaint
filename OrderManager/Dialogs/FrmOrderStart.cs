@@ -60,6 +60,9 @@ namespace NipponPaint.OrderManager.Dialogs
             NumUpDownWeightTolerance.LeftSide.Increment = UPDOWN_NUM_DECIMAL;
             NumUpDownWeightTolerance.RightSide.Increment = UPDOWN_NUM_DECIMAL;
             NumUpDownOverfilling.ValueNumericUpDown.Increment = UPDOWN_NUM_DECIMAL;
+            NumUpDownWeightTolerance.LeftSide.ReadOnly = true;
+            NumUpDownWeightTolerance.RightSide.ReadOnly = true;
+            NumUpDownOverfilling.ValueNumericUpDown.ReadOnly = true;
         }
         #endregion
 
