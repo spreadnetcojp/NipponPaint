@@ -66,6 +66,38 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
         };
         #endregion
 
+        #region 参照系
+
+        /// <summary>
+        /// 一覧取得
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPreview(string barCode, string processCode)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            sql.Append($"  {PRD_CODE} ");
+            sql.Append($" ,{PRD_TIME_INSERTED} ");
+            sql.Append($" ,{PRD_STATUS} ");
+            sql.Append($" ,{PRD_DESC} ");
+            sql.Append($" ,{PRD_UM} ");
+            sql.Append($" ,{PRD_SPECIFIC_GRAVITY} ");
+            sql.Append($" ,{PRD_QTY_REQ} ");
+            sql.Append($" ,{PRD_QTY_DISP} ");
+            sql.Append($" ,{PRD_START_DISP} ");
+            sql.Append($" ,{PRD_END_DISP} ");
+            sql.Append($" ,{PRD_PRIORITY} ");
+            sql.Append($" ,{PRD_NUM} ");
+            sql.Append($" ,{PRD_ISPREFILLED} ");
+            sql.Append($" ,{PRD_PREFILLED_QTY} ");
+            sql.Append($"FROM {MAIN_TABLE} ");
+            sql.Append($"WHERE {PRD_BARCODE} = '{barCode}' ");
+            sql.Append($"  AND {PRD_PROCESS_CODE} = '{processCode}' ");
+            return sql.ToString();
+        }
+
+        #endregion
+
         #region 更新系
 
         #region マージ
