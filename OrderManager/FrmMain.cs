@@ -176,6 +176,8 @@ namespace NipponPaint.OrderManager
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_18", DisplayName = "重量18", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_19", DisplayName = "着色剤19", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_19", DisplayName = "重量19", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Urgent", DisplayName = "Urgent", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "CONVERT(DATE,HG_SS_Shipping_Date)", DisplayName = "SS出荷予定日日付型", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
         };
         private List<GridViewSetting> ViewSettingsBarcodes = new List<GridViewSetting>()
         {
@@ -1295,35 +1297,40 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void RdoCheckedChanged(object sender, EventArgs e)
         {
-            //選択表示(Panel3)のグループ内のチェックされているラジオボタンを取得する
-            var rbtCheckInGroup = panel3.Controls.OfType<RadioButton>()
-                .SingleOrDefault(rb => rb.Checked == true);
-            switch (rbtCheckInGroup.Name)
+            // ラジオボタンのコントロールを2回通るので、checked=tureを判断して表示を切り替え
+            bool rdbChecked = ((RadioButton)sender).Checked;
+            if (rdbChecked)
             {
-                case "RdoPreviewAll":
-                    GvOrderDataSource.DefaultView.RowFilter = "";
-                    GvDetailDataSource.DefaultView.RowFilter = "";
-                    GvFormulationDataSource.DefaultView.RowFilter = "";
-                    GvOrderNumberDataSource.DefaultView.RowFilter = "";
-                    break;
-                case "RdoTodayBefore":
-                    GvOrderDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
-                    GvDetailDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
-                    GvFormulationDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
-                    GvOrderNumberDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
-                    break;
-                case "RdoTomorrowAfter":
-                    GvOrderDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
-                    GvDetailDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
-                    GvFormulationDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
-                    GvOrderNumberDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
-                    break;
-                default:
-                    GvOrderDataSource.DefaultView.RowFilter = "";
-                    GvDetailDataSource.DefaultView.RowFilter = "";
-                    GvFormulationDataSource.DefaultView.RowFilter = "";
-                    GvOrderNumberDataSource.DefaultView.RowFilter = "";
-                    break;
+                //選択表示(Panel3)のグループ内のチェックされているラジオボタンを取得する
+                var rbtCheckInGroup = panel3.Controls.OfType<RadioButton>()
+                    .SingleOrDefault(rb => rb.Checked == true);
+                switch (rbtCheckInGroup.Name)
+                {
+                    case "RdoPreviewAll":
+                        GvOrderDataSource.DefaultView.RowFilter = "";
+                        GvDetailDataSource.DefaultView.RowFilter = "";
+                        GvFormulationDataSource.DefaultView.RowFilter = "";
+                        GvOrderNumberDataSource.DefaultView.RowFilter = "";
+                        break;
+                    case "RdoTodayBefore":
+                        GvOrderDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
+                        GvDetailDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
+                        GvFormulationDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
+                        GvOrderNumberDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
+                        break;
+                    case "RdoTomorrowAfter":
+                        GvOrderDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
+                        GvDetailDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
+                        GvFormulationDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
+                        GvOrderNumberDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
+                        break;
+                    default:
+                        GvOrderDataSource.DefaultView.RowFilter = "";
+                        GvDetailDataSource.DefaultView.RowFilter = "";
+                        GvFormulationDataSource.DefaultView.RowFilter = "";
+                        GvOrderNumberDataSource.DefaultView.RowFilter = "";
+                        break;
+                }
             }
         }
 
@@ -1779,7 +1786,7 @@ namespace NipponPaint.OrderManager
                 // Order_idで検索する
                 var orderIdColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == "Order_id");
                 // Urgentを取得する
-                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Urgent");
+                var urgentColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == "Urgent");
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
