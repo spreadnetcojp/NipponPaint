@@ -62,6 +62,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
                 cnt++;
             }
             sql.Append($"FROM Operators ");
+            sql.Append($"WHERE Operator_Name <> '' ");　　　　　//空白の担当者の欄は表示させない
             sql.Append($"ORDER BY Operators_Id ");
             return sql.ToString();
         }

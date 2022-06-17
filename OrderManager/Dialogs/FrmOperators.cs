@@ -12,6 +12,7 @@
 #endregion
 //*****************************************************************************
 
+#region using defines
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,7 @@ using NipponPaint.NpCommon;
 using NipponPaint.NpCommon.Database;
 using NipponPaint.NpCommon.Settings;
 using Sql = NipponPaint.NpCommon.Database.Sql;
+#endregion
 
 namespace NipponPaint.OrderManager.Dialogs
 {
@@ -36,8 +38,8 @@ namespace NipponPaint.OrderManager.Dialogs
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() {ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Code", DisplayName = "担当者コード", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() {ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Name", DisplayName = "担当者", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() {ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Code", DisplayName = "' '", Visible = true, Width = 35, alignment = DataGridViewContentAlignment.MiddleLeft } },     //担当者コード
+            { new GridViewSetting() {ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Name", DisplayName = "担当者", Visible = true, Width = 430, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
@@ -68,8 +70,8 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -106,19 +108,26 @@ namespace NipponPaint.OrderManager.Dialogs
             //イベントの追加
             this.Shown += new System.EventHandler(this.FrmOperatorsShown);
             this.KeyPreview = true;
+            this.BtnAssign.Click += new EventHandler(this.BtnAssignClick);
             this.BtnClose.Click += new EventHandler(this.BtnCloseClick);
             //this.DgvListLeft.SelectionChanged += new EventHandler(this.DgvListLeftSelectionChanged);
             // DataGridViewの初期設定
             InitializeGridView(DgvListLeft);
+            //InitializeGridView(DgvListRight);
             // 一覧表示
             PreviewData();
             // 一覧レイアウトの設定
             var cnt = 0;
             foreach (var item in ViewSettings)
             {
+                DgvListLeft.Columns[cnt].SortMode = DataGridViewColumnSortMode.NotSortable;　　　　　//DataGridView(左)内ソート禁止
                 DgvListLeft.Columns[cnt].Width = item.Width;
                 DgvListLeft.Columns[cnt].Visible = item.Visible;
                 DgvListLeft.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
+                //DgvListRight.Columns[cnt].SortMode = DataGridViewColumnSortMode.NotSortable;　　　　　//DataGridView(右)内ソート禁止
+                //DgvListRight.Columns[cnt].Width = item.Width;
+                //DgvListRight.Columns[cnt].Visible = item.Visible;
+                //DgvListRight.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
                 cnt++;
             }
             // データ表示部の設定
@@ -126,7 +135,7 @@ namespace NipponPaint.OrderManager.Dialogs
         }
         #endregion
 
-        #region DataGridView初期化 
+        #region DataGridView初期化
         /// <summary>
         /// DataGridView初期化 
         /// </summary>
@@ -159,6 +168,7 @@ namespace NipponPaint.OrderManager.Dialogs
             {
                 var result = db.Select(Sql.NpMain.Operators.GetPreviewOperators(ViewSettings));
                 DgvListLeft.DataSource = result;
+                //DgvListRight.DataSource = result;
             }
         }
         #endregion
