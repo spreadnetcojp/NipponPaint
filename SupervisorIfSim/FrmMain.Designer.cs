@@ -55,7 +55,7 @@ namespace SupervisorIfSim
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(933, 51);
+            this.pnlLeft.Size = new System.Drawing.Size(1884, 51);
             this.pnlLeft.TabIndex = 0;
             // 
             // LblPreviewTime
@@ -81,7 +81,7 @@ namespace SupervisorIfSim
             // BtnPreview
             // 
             this.BtnPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnPreview.Location = new System.Drawing.Point(828, 8);
+            this.BtnPreview.Location = new System.Drawing.Point(1779, 8);
             this.BtnPreview.Name = "BtnPreview";
             this.BtnPreview.Size = new System.Drawing.Size(98, 35);
             this.BtnPreview.TabIndex = 2;
@@ -113,7 +113,7 @@ namespace SupervisorIfSim
             this.pnlMain.Location = new System.Drawing.Point(0, 51);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(933, 624);
+            this.pnlMain.Size = new System.Drawing.Size(1884, 950);
             this.pnlMain.TabIndex = 1;
             // 
             // GvMain
@@ -128,14 +128,14 @@ namespace SupervisorIfSim
             this.GvMain.ReadOnly = true;
             this.GvMain.RowTemplate.Height = 21;
             this.GvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GvMain.Size = new System.Drawing.Size(933, 624);
+            this.GvMain.Size = new System.Drawing.Size(1884, 950);
             this.GvMain.TabIndex = 0;
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 675);
+            this.ClientSize = new System.Drawing.Size(1884, 1001);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlLeft);
             this.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
