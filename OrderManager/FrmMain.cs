@@ -73,6 +73,7 @@ namespace NipponPaint.OrderManager
         private const int COLUMN_DELIVERY_DATE = 11;
         private const int COLUMN_VISIBLE_DELIVERY_DATE = 12;
         private const int COLUMN_COLOR_SAMPLE = 13;
+        private const int COLUMN_URGENT = 18;
 
         private const int TAB_INDEX_ORDER = 0;
         private const int TAB_INDEX_DETAIL = 1;
@@ -114,6 +115,7 @@ namespace NipponPaint.OrderManager
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Sum_up_Key", DisplayName = "順位コード", Visible = false, Width = 0 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Code", DisplayName = "担当者コード", Visible = false, Width = 0 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Sort_Order", DisplayName = "並び順", Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Urgent", DisplayName = "Urgent", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
         };
         private List<GridViewSetting> ViewSettingsWeights = new List<GridViewSetting>()
         {
@@ -491,9 +493,18 @@ namespace NipponPaint.OrderManager
                     case Sql.NpMain.Orders.OrderStatus.Ready:
                         TsmiDecide.Enabled = false;
                         TsmiOperatorDelete.Enabled = false;
-                        TsmiOrderStart.Enabled = true;
-                        TsmiInstructionPrint.Enabled = false;
-                        TsmiProductLabelPrint.Enabled = false;
+                        if (Convert.ToBoolean(row.Cells[COLUMN_URGENT].Value))
+                        {
+                            TsmiOrderStart.Enabled = false;
+                            TsmiInstructionPrint.Enabled = true;
+                            TsmiProductLabelPrint.Enabled = true;
+                        }
+                        else
+                        {
+                            TsmiOrderStart.Enabled = true;
+                            TsmiInstructionPrint.Enabled = false;
+                            TsmiProductLabelPrint.Enabled = false;
+                        }
                         TsmiColorLabelPrint.Enabled = false;
                         TsmiCopyLabelPrint.Enabled = false;
                         TsmiOrderClose.Enabled = true;
@@ -1544,14 +1555,17 @@ namespace NipponPaint.OrderManager
             {
                 // Statusを取得する
                 var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
+                // Urgentを取得する
+                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Urgent");
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
                     // 選択している行を取得
                     var selectedRow = dgv.SelectedRows[0];
                     int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
+                    var urgentBool = Convert.ToBoolean(selectedRow.Cells[urgentColumnIndex].Value);
                     //各種ボタンの表示制御
-                    ButtonsEnableSetting(status);
+                    ButtonsEnableSetting(status, urgentBool);
                 }
                 PutLog(Sentence.Messages.SelectRow);
             }
@@ -1578,6 +1592,8 @@ namespace NipponPaint.OrderManager
                 var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
                 var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                // Urgentを取得する
+                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Urgent");
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -1585,6 +1601,7 @@ namespace NipponPaint.OrderManager
                     var selectedRow = dgv.SelectedRows[0];
                     int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
                     int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
+                    var urgentBool = Convert.ToBoolean(selectedRow.Cells[urgentColumnIndex].Value);
 
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
@@ -1664,7 +1681,7 @@ namespace NipponPaint.OrderManager
                             BorderHgVolumeCode.Visible = false;
                         }
                         //各種ボタンの表示制御
-                        ButtonsEnableSetting(status);
+                        ButtonsEnableSetting(status, urgentBool);
                     }
                 }
                 PutLog(Sentence.Messages.SelectRow);
@@ -1693,6 +1710,8 @@ namespace NipponPaint.OrderManager
                 var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
                 var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                // Urgentを取得する
+                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Urgent");
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -1700,6 +1719,7 @@ namespace NipponPaint.OrderManager
                     var selectedRow = dgv.SelectedRows[0];
                     int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
                     int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
+                    var urgentBool = Convert.ToBoolean(selectedRow.Cells[urgentColumnIndex].Value);
 
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
@@ -1729,7 +1749,7 @@ namespace NipponPaint.OrderManager
                             }
                         }
                         ////各種ボタンの表示制御
-                        ButtonsEnableSetting(status);
+                        ButtonsEnableSetting(status, urgentBool);
                     }
                 }
                 PutLog(Sentence.Messages.SelectRow);
@@ -1758,6 +1778,8 @@ namespace NipponPaint.OrderManager
                 var statusColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
                 var orderIdColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == "Order_id");
+                // Urgentを取得する
+                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Urgent");
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -1765,6 +1787,7 @@ namespace NipponPaint.OrderManager
                     var selectedRow = dgv.SelectedRows[0];
                     int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
                     int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
+                    var urgentBool = Convert.ToBoolean(selectedRow.Cells[urgentColumnIndex].Value);
 
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
@@ -1790,7 +1813,7 @@ namespace NipponPaint.OrderManager
                             GvBarcode.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
                             cnt++;
                         }
-                        ButtonsEnableSetting(status);
+                        ButtonsEnableSetting(status, urgentBool);
                     }
                 }
                 PutLog(Sentence.Messages.SelectRow);
@@ -2373,7 +2396,7 @@ namespace NipponPaint.OrderManager
         #endregion
 
         #region ボタン表示制御
-        private void ButtonsEnableSetting(int status)
+        private void ButtonsEnableSetting(int status, bool urgent = false)
         {
             switch ((Sql.NpMain.Orders.OrderStatus)status)
             {
@@ -2398,10 +2421,19 @@ namespace NipponPaint.OrderManager
                     //BtnProcessDetail.Enabled = false;
                     break;
                 case Sql.NpMain.Orders.OrderStatus.Ready:
-                    BtnPrint.Enabled = false;
-                    BtnPrintInstructions.Enabled = false;
                     BtnPrintEmergency.Enabled = false;
-                    BtnOrderStart.Enabled = true;
+                    if (urgent)
+                    {
+                        BtnOrderStart.Enabled = false;
+                        BtnPrintInstructions.Enabled = true;
+                        BtnPrint.Enabled = true;
+                    }
+                    else
+                    {
+                        BtnOrderStart.Enabled = true;
+                        BtnPrintInstructions.Enabled = false;
+                        BtnPrint.Enabled = false;
+                    }
                     BtnStatusResume.Enabled = true;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
