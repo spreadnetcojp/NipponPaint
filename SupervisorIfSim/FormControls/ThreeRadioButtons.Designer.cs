@@ -35,7 +35,6 @@
             // 
             // ThirdButton
             // 
-            this.ThirdButton.AutoSize = true;
             this.ThirdButton.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ThirdButton.Location = new System.Drawing.Point(152, 0);
             this.ThirdButton.Name = "ThirdButton";
@@ -48,7 +47,6 @@
             // 
             // SecondButton
             // 
-            this.SecondButton.AutoSize = true;
             this.SecondButton.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.SecondButton.Location = new System.Drawing.Point(70, 0);
             this.SecondButton.Name = "SecondButton";
@@ -61,7 +59,6 @@
             // 
             // FirstButton
             // 
-            this.FirstButton.AutoSize = true;
             this.FirstButton.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.FirstButton.Location = new System.Drawing.Point(3, 0);
             this.FirstButton.Name = "FirstButton";
@@ -83,7 +80,6 @@
             this.Name = "ThreeRadioButtons";
             this.Size = new System.Drawing.Size(220, 22);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
