@@ -13,42 +13,44 @@ namespace NipponPaint.OrderManager.Documents.ReportWorkInstruction
 {
     public partial class Preview : Form
     {
-        public Preview()
+        public Preview(ViewModels.DirectionsData vm)
+
         {
             InitializeComponent();
             var parameters = new List<ReportParameter> {
-                new ReportParameter("TitleValue", "調色作業指示書(控え)"),
-                new ReportParameter("ReadValue", "(既読済)"),
-                new ReportParameter("CodeValue", "JZ"),
+                new ReportParameter("CopyTitleValue", "調色作業指示書(控え)"),
+                new ReportParameter("TitleValue", "調色作業指示書"),
+                new ReportParameter("UrgentValue", vm.Urgent ? "(既読済)" : ""),
+                new ReportParameter("ProductCodeValue", vm.Product_Code.Trim()),
             };
-            parameters.AddRange(GetReportParameter("HgSsShippingDate", "製造日", DateTime.Now.Month.ToString() + "月" + DateTime.Now.Day.ToString() + "日"));
-            parameters.AddRange(GetReportParameter("HgOrderInvoiceId", "伝区", "1B"));
-            parameters.AddRange(GetReportParameter("HgDataNumber", "処理NO", "147734449"));
-            parameters.AddRange(GetReportParameter("SlipDate", "伝票発行日", "06/13 15:56"));
-            parameters.AddRange(GetReportParameter("HgTintingPriceRank", "発注時ランク", "A"));
-            parameters.AddRange(GetReportParameter("OperatorName", "製造者:", "山本虎"));
-            parameters.AddRange(GetReportParameter("InputTime", "投入日時:", "2020　年　1　月　10　日　16:16"));
-            parameters.AddRange(GetReportParameter("HgSalesInCharge", "投入者:", "田口めぐみ"));
-            parameters.AddRange(GetReportParameter("HgProductNo", "商品コード", "1061113", "VCS13"));
-            parameters.AddRange(GetReportParameter("HgProductNameonly", "商品名（品種/色名）", "N　DANシリコンセラR", "全艶消　NDー110"));
-            parameters.AddRange(GetReportParameter("HgVolumeCode", "容量", "15K"));
-            parameters.AddRange(GetReportParameter("HgOrderCans", "数量", "3"));
-            parameters.AddRange(GetReportParameter("HgGlossDictation", "艶区分", "艶消"));
-            parameters.AddRange(GetReportParameter("HgSupplementDictation", "調色機能", "2"));
-            parameters.AddRange(GetReportParameter("HgColorSample", "標準見本", "ND:一任"));
-            parameters.AddRange(GetReportParameter("HgSamplePlates", "塗板添付", "3"));
-            parameters.AddRange(GetReportParameter("HgNote", "調色摘要欄", "1/14出荷"));
-            parameters.AddRange(GetReportParameter("HgComments", "摘要欄", "1/15必着　EDI"));
-            parameters.AddRange(GetReportParameter("HgSampleBack", "見本返却欄", ""));
-            parameters.AddRange(GetReportParameter("HgTintingDirection", "指定ロット", ""));
-            parameters.AddRange(GetReportParameter("HgSalesBranchName", "営業所名", "神戸　営業所"));
-            parameters.AddRange(GetReportParameter("HgCustomerCode", "得意先コード", "550021"));
-            parameters.AddRange(GetReportParameter("HgCustomerNameKanji", "得意先名", "井原塗料（株）本社"));
-            parameters.AddRange(GetReportParameter("HgSsCode", "SSコード", "51F"));
-            parameters.AddRange(GetReportParameter("HgTruckCompanyName", "配送業者名", "セントラル"));
-            parameters.AddRange(GetReportParameter("HgHgShippingId", "HG運区", "区域2"));
-            parameters.AddRange(GetReportParameter("HgDeliveryNameKanji", "納入先名/納入先住所", "井原塗料（神戸）", "兵庫県神戸市兵庫区鍛冶屋町　1-3-15"));
-            parameters.AddRange(GetReportParameter("HgDeliveryTelno", "TEL/納期", "078-651-8901", "1月　15日"));
+            parameters.AddRange(GetReportParameter("HgSsShippingDate", "製造日", DateTime.ParseExact(vm.HG_SS_Shipping_Date, "yyyyMMdd", null).Month.ToString().Trim() + "月" + DateTime.ParseExact(vm.HG_SS_Shipping_Date, "yyyyMMdd", null).Day.ToString().Trim() + "日"));
+            parameters.AddRange(GetReportParameter("HgOrderInvoiceId", "伝区", vm.HG_Order_Invoice_ID.Trim()));
+            parameters.AddRange(GetReportParameter("HgDataNumber", "処理NO", vm.HG_Data_Number.Trim()));
+            parameters.AddRange(GetReportParameter("SlipDate", "伝票発行日", DateTime.Now.ToString("MM/dd HH:mm")));
+            parameters.AddRange(GetReportParameter("HgTintingPriceRank", "発注時ランク", vm.HG_Tinting_Price_Rank.Trim()));
+            parameters.AddRange(GetReportParameter("OperatorName", "製造者:", vm.Operator_Name.Trim()));
+            parameters.AddRange(GetReportParameter("HgOrderInputDate", "投入日時:", DateTime.ParseExact(vm.HG_Order_Input_Date, "yyyyMMdd", null).Year.ToString().Trim() + "年" + DateTime.ParseExact(vm.HG_Order_Input_Date, "yyyyMMdd", null).Month.ToString().Trim() + "月" + DateTime.ParseExact(vm.HG_Order_Input_Date, "yyyyMMdd", null).Day.ToString().Trim() + "日", vm.HG_Order_Input_Time.ToString().Trim().Substring(0, 2) + ":" + vm.HG_Order_Input_Time.ToString().Trim().Substring(2, 2)));
+            parameters.AddRange(GetReportParameter("HgSalesInCharge", "投入者:", vm.HG_Sales_in_Charge.Trim()));
+            parameters.AddRange(GetReportParameter("HgProductNo", "商品コード", vm.HG_Product_No.Trim(), vm.HG_NPC_Article_Number.Trim()));
+            parameters.AddRange(GetReportParameter("HgProductNameonly", "商品名（品種/色名）", vm.HG_Product_NameOnly.Trim(), vm.HG_Color_Name.Trim()));
+            parameters.AddRange(GetReportParameter("HgVolumeCode", "容量", vm.HG_Volume_Code.Trim()));
+            parameters.AddRange(GetReportParameter("HgOrderCans", "数量", vm.HG_Order_Cans.ToString().Trim()));
+            parameters.AddRange(GetReportParameter("HgGlossDictation", "艶区分", vm.HG_Gloss_Dictation.Trim()));
+            parameters.AddRange(GetReportParameter("HgSupplementDictation", "調色機能", vm.HG_Supplement_Dictation.Trim()));
+            parameters.AddRange(GetReportParameter("HgColorSample", "標準見本", vm.HG_Color_Sample.Trim()));
+            parameters.AddRange(GetReportParameter("HgSamplePlates", "塗板添付", vm.HG_Sample_Plates.Trim()));
+            parameters.AddRange(GetReportParameter("HgNote", "調色摘要欄", vm.HG_Note.Trim()));
+            parameters.AddRange(GetReportParameter("HgComments", "摘要欄", vm.HG_Comments.Trim()));
+            parameters.AddRange(GetReportParameter("HgSampleBack", "見本返却欄", vm.HG_Sample_Back.Trim()));
+            parameters.AddRange(GetReportParameter("HgTintingDirection", "指定ロット", vm.HG_Tinting_Direction.Trim()));
+            parameters.AddRange(GetReportParameter("HgSalesBranchName", "営業所名", vm.HG_Sales_Branch_Name.Trim()));
+            parameters.AddRange(GetReportParameter("HgCustomerCode", "得意先コード", vm.HG_Customer_Code.Trim()));
+            parameters.AddRange(GetReportParameter("HgCustomerNameKanji", "得意先名", vm.HG_Customer_Name_Kanji.Trim()));
+            parameters.AddRange(GetReportParameter("HgSsCode", "SSコード", vm.HG_SS_Code.Trim()));
+            parameters.AddRange(GetReportParameter("HgTruckCompanyName", "配送業者名", vm.HG_Truck_Company_Name.Trim()));
+            parameters.AddRange(GetReportParameter("HgHgShippingId", "HG運区", vm.HG_HG_Shipping_ID.Trim()));
+            parameters.AddRange(GetReportParameter("HgDeliveryNameKanji", "納入先名/納入先住所", vm.HG_Delivery_Name_Kanji.Trim(), vm.HG_Delivery_Address_Kanji.Trim()));
+            parameters.AddRange(GetReportParameter("HgDeliveryTelno", "TEL/納期", vm.HG_Delivery_TelNo.Trim(), DateTime.ParseExact(vm.HG_Delivery_Date, "yyyyMMdd", null).Month.ToString().Trim() + "月" + DateTime.ParseExact(vm.HG_Delivery_Date, "yyyyMMdd", null).Day.ToString().Trim() + "日"));
             this.Viewer.LocalReport.SetParameters(parameters);
         }
 
@@ -65,8 +67,8 @@ namespace NipponPaint.OrderManager.Documents.ReportWorkInstruction
         /// <param name="titleText"></param>
         /// <param name="valueText"></param>
         /// <returns></returns>
-        private List<ReportParameter> GetReportParameter(string propartyName, 
-                                                         string titleText, 
+        private List<ReportParameter> GetReportParameter(string propartyName,
+                                                         string titleText,
                                                          string valueText)
         {
             var parameters = new List<ReportParameter> {

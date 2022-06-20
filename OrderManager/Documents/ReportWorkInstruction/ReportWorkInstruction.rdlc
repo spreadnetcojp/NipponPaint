@@ -478,10 +478,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>OperatorNameValue</rd:DefaultName>
-            <Top>1.54721cm</Top>
-            <Left>12.12766cm</Left>
+            <Top>1.5719cm</Top>
+            <Left>14.36899cm</Left>
             <Height>0.47328cm</Height>
-            <Width>4.61138cm</Width>
+            <Width>2.5cm</Width>
             <ZIndex>10</ZIndex>
             <Style>
               <Border>
@@ -511,77 +511,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>OperatorNameTitle</rd:DefaultName>
-            <Top>1.54721cm</Top>
-            <Left>10.47433cm</Left>
+            <Top>1.5719cm</Top>
+            <Left>12.6698cm</Left>
             <Height>0.47328cm</Height>
-            <Width>1.65333cm</Width>
+            <Width>1.69919cm</Width>
             <ZIndex>11</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="InputTimeTitle">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!InputTimeTitle.Value</Value>
-                    <Style>
-                      <FontFamily>ＭＳ ゴシック</FontFamily>
-                      <FontSize>9pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>InputTimeTitle</rd:DefaultName>
-            <Top>2.02048cm</Top>
-            <Left>10.47433cm</Left>
-            <Height>0.47328cm</Height>
-            <Width>1.65333cm</Width>
-            <ZIndex>12</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="InputTimeValue">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!InputTimeValue.Value</Value>
-                    <Style>
-                      <FontFamily>ＭＳ ゴシック</FontFamily>
-                      <FontSize>9pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>InputTimeValue</rd:DefaultName>
-            <Top>2.02048cm</Top>
-            <Left>12.12766cm</Left>
-            <Height>0.47328cm</Height>
-            <Width>5.09058cm</Width>
-            <ZIndex>13</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -610,11 +544,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>HgSalesInChargeTitle</rd:DefaultName>
-            <Top>2.50387cm</Top>
-            <Left>10.47433cm</Left>
+            <Top>2.52856cm</Top>
+            <Left>12.6698cm</Left>
             <Height>0.47328cm</Height>
-            <Width>1.65333cm</Width>
-            <ZIndex>14</ZIndex>
+            <Width>1.69919cm</Width>
+            <ZIndex>12</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -646,123 +580,15 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>HgSalesInChargeValue</rd:DefaultName>
-            <Top>2.50387cm</Top>
-            <Left>12.12766cm</Left>
+            <Top>2.52856cm</Top>
+            <Left>14.36899cm</Left>
             <Height>0.47328cm</Height>
-            <Width>4.61138cm</Width>
-            <ZIndex>15</ZIndex>
+            <Width>2.5cm</Width>
+            <ZIndex>13</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="TitleValue">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!TitleValue.Value</Value>
-                    <Style>
-                      <FontFamily>ＭＳ ゴシック</FontFamily>
-                      <FontSize>21pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>TitleValue</rd:DefaultName>
-            <Top>0.03175cm</Top>
-            <Left>5.78586cm</Left>
-            <Height>1.31437cm</Height>
-            <Width>7.94284cm</Width>
-            <ZIndex>16</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="ReadValue">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!ReadValue.Value</Value>
-                    <Style>
-                      <FontFamily>ＭＳ ゴシック</FontFamily>
-                      <FontSize>21pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>ReadValue</rd:DefaultName>
-            <Top>0.03175cm</Top>
-            <Left>13.7287cm</Left>
-            <Height>1.31437cm</Height>
-            <Width>3.14029cm</Width>
-            <ZIndex>17</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="CodeValue">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!CodeValue.Value</Value>
-                    <Style>
-                      <FontFamily>ＭＳ ゴシック</FontFamily>
-                      <FontSize>21pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>CodeValue</rd:DefaultName>
-            <Top>0.03175cm</Top>
-            <Left>16.86899cm</Left>
-            <Height>1.31437cm</Height>
-            <Width>1.07421cm</Width>
-            <ZIndex>18</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -792,7 +618,7 @@
             <Left>0.04586cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>19</ZIndex>
+            <ZIndex>14</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -838,8 +664,8 @@
             <Top>3.38926cm</Top>
             <Left>3.55128cm</Left>
             <Height>0.56147cm</Height>
-            <Width>7.62944cm</Width>
-            <ZIndex>20</ZIndex>
+            <Width>11.01043cm</Width>
+            <ZIndex>15</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -883,10 +709,10 @@
             </Paragraphs>
             <rd:DefaultName>HgVolumeCodeTitle</rd:DefaultName>
             <Top>3.38926cm</Top>
-            <Left>11.18072cm</Left>
+            <Left>14.56768cm</Left>
             <Height>0.56147cm</Height>
             <Width>1.68776cm</Width>
-            <ZIndex>21</ZIndex>
+            <ZIndex>16</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -930,10 +756,10 @@
             </Paragraphs>
             <rd:DefaultName>HgOrderCansTitle</rd:DefaultName>
             <Top>3.38926cm</Top>
-            <Left>12.86848cm</Left>
+            <Left>16.25544cm</Left>
             <Height>0.56147cm</Height>
             <Width>1.68776cm</Width>
-            <ZIndex>22</ZIndex>
+            <ZIndex>17</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -982,10 +808,10 @@
             </Paragraphs>
             <rd:DefaultName>HgVolumeCodeValue</rd:DefaultName>
             <Top>3.95074cm</Top>
-            <Left>11.18072cm</Left>
+            <Left>14.56768cm</Left>
             <Height>1.12619cm</Height>
             <Width>1.68776cm</Width>
-            <ZIndex>23</ZIndex>
+            <ZIndex>18</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1033,10 +859,10 @@
             </Paragraphs>
             <rd:DefaultName>HgOrderCansValue</rd:DefaultName>
             <Top>3.95074cm</Top>
-            <Left>12.86848cm</Left>
+            <Left>16.25544cm</Left>
             <Height>1.12619cm</Height>
             <Width>1.68776cm</Width>
-            <ZIndex>24</ZIndex>
+            <ZIndex>19</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1072,7 +898,7 @@
             <Left>0.04586cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>25</ZIndex>
+            <ZIndex>20</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1109,7 +935,7 @@
             <Left>3.85912cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>26</ZIndex>
+            <ZIndex>21</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1146,7 +972,7 @@
             <Left>7.77422cm</Left>
             <Height>0.56147cm</Height>
             <Width>6.97281cm</Width>
-            <ZIndex>27</ZIndex>
+            <ZIndex>22</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1183,7 +1009,7 @@
             <Left>15.11689cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.82631cm</Width>
-            <ZIndex>28</ZIndex>
+            <ZIndex>23</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1218,7 +1044,7 @@
             <Left>0.04586cm</Left>
             <Height>0.66487cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>29</ZIndex>
+            <ZIndex>24</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1255,7 +1081,7 @@
             <Left>3.85912cm</Left>
             <Height>0.66487cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>30</ZIndex>
+            <ZIndex>25</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1292,7 +1118,7 @@
             <Left>7.77422cm</Left>
             <Height>0.66487cm</Height>
             <Width>6.97281cm</Width>
-            <ZIndex>31</ZIndex>
+            <ZIndex>26</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1331,7 +1157,7 @@
             <Left>15.11689cm</Left>
             <Height>0.66487cm</Height>
             <Width>2.82631cm</Width>
-            <ZIndex>32</ZIndex>
+            <ZIndex>27</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1370,7 +1196,7 @@
             <Left>0.04586cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>33</ZIndex>
+            <ZIndex>28</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1419,7 +1245,7 @@
             <Left>0.04586cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>34</ZIndex>
+            <ZIndex>29</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1468,7 +1294,7 @@
             <Left>0.04586cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>35</ZIndex>
+            <ZIndex>30</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1505,7 +1331,7 @@
             <Left>11.89681cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.17503cm</Width>
-            <ZIndex>36</ZIndex>
+            <ZIndex>31</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1540,7 +1366,7 @@
             <Left>3.87425cm</Left>
             <Height>0.56147cm</Height>
             <Width>13.00021cm</Width>
-            <ZIndex>37</ZIndex>
+            <ZIndex>32</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1577,7 +1403,7 @@
             <Left>14.38934cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.55386cm</Width>
-            <ZIndex>38</ZIndex>
+            <ZIndex>33</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1614,7 +1440,7 @@
             <Left>0.04586cm</Left>
             <Height>0.66784cm</Height>
             <Width>3.81326cm</Width>
-            <ZIndex>39</ZIndex>
+            <ZIndex>34</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1653,7 +1479,7 @@
             <Left>4.205cm</Left>
             <Height>0.6cm</Height>
             <Width>2.34985cm</Width>
-            <ZIndex>40</ZIndex>
+            <ZIndex>35</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1690,7 +1516,7 @@
             <Left>6.95132cm</Left>
             <Height>0.6cm</Height>
             <Width>5.66066cm</Width>
-            <ZIndex>41</ZIndex>
+            <ZIndex>36</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1729,7 +1555,7 @@
             <Left>13.00383cm</Left>
             <Height>0.6cm</Height>
             <Width>1.99691cm</Width>
-            <ZIndex>42</ZIndex>
+            <ZIndex>37</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1766,7 +1592,7 @@
             <Left>15.4832cm</Left>
             <Height>0.6cm</Height>
             <Width>2.46cm</Width>
-            <ZIndex>43</ZIndex>
+            <ZIndex>38</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1805,7 +1631,7 @@
             <Left>0.04586cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.78222cm</Width>
-            <ZIndex>44</ZIndex>
+            <ZIndex>39</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1842,7 +1668,7 @@
             <Left>4.205cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.34985cm</Width>
-            <ZIndex>45</ZIndex>
+            <ZIndex>40</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1879,7 +1705,7 @@
             <Left>6.95132cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.46cm</Width>
-            <ZIndex>46</ZIndex>
+            <ZIndex>41</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1916,7 +1742,7 @@
             <Left>13.00383cm</Left>
             <Height>0.56147cm</Height>
             <Width>1.99691cm</Width>
-            <ZIndex>47</ZIndex>
+            <ZIndex>42</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1953,7 +1779,7 @@
             <Left>15.4832cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.46cm</Width>
-            <ZIndex>48</ZIndex>
+            <ZIndex>43</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -1990,7 +1816,7 @@
             <Left>0.04586cm</Left>
             <Height>0.6cm</Height>
             <Width>2.57937cm</Width>
-            <ZIndex>49</ZIndex>
+            <ZIndex>44</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2026,8 +1852,8 @@
             <Top>10.4699cm</Top>
             <Left>3.46697cm</Left>
             <Height>0.6cm</Height>
-            <Width>9.14501cm</Width>
-            <ZIndex>50</ZIndex>
+            <Width>10.73251cm</Width>
+            <ZIndex>45</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2061,10 +1887,10 @@
             </Paragraphs>
             <rd:DefaultName>HgDeliveryTelnoTitle</rd:DefaultName>
             <Top>10.4699cm</Top>
-            <Left>13.48529cm</Left>
+            <Left>15.07279cm</Left>
             <Height>0.6cm</Height>
-            <Width>4.45791cm</Width>
-            <ZIndex>51</ZIndex>
+            <Width>2.87041cm</Width>
+            <ZIndex>46</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2099,7 +1925,7 @@
             <Left>0.04586cm</Left>
             <Height>0.87137cm</Height>
             <Width>2.57937cm</Width>
-            <ZIndex>52</ZIndex>
+            <ZIndex>47</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2138,7 +1964,7 @@
             <Left>0.04586cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>53</ZIndex>
+            <ZIndex>48</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2189,7 +2015,7 @@
             <Left>0.04586cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>54</ZIndex>
+            <ZIndex>49</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2232,8 +2058,8 @@
             <Top>3.95074cm</Top>
             <Left>3.55128cm</Left>
             <Height>0.56147cm</Height>
-            <Width>7.62944cm</Width>
-            <ZIndex>55</ZIndex>
+            <Width>11.01043cm</Width>
+            <ZIndex>50</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2276,8 +2102,8 @@
             <Top>4.51546cm</Top>
             <Left>3.55128cm</Left>
             <Height>0.56147cm</Height>
-            <Width>7.62944cm</Width>
-            <ZIndex>56</ZIndex>
+            <Width>11.01043cm</Width>
+            <ZIndex>51</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2325,8 +2151,8 @@
             <Top>11.0699cm</Top>
             <Left>3.46697cm</Left>
             <Height>0.6cm</Height>
-            <Width>9.14501cm</Width>
-            <ZIndex>57</ZIndex>
+            <Width>10.73251cm</Width>
+            <ZIndex>52</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2362,8 +2188,8 @@
             <Top>11.6699cm</Top>
             <Left>3.46697cm</Left>
             <Height>0.6cm</Height>
-            <Width>9.14501cm</Width>
-            <ZIndex>58</ZIndex>
+            <Width>10.73251cm</Width>
+            <ZIndex>53</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2399,10 +2225,10 @@
             </Paragraphs>
             <rd:DefaultName>HgDeliveryTelnoValueUpper</rd:DefaultName>
             <Top>11.0699cm</Top>
-            <Left>13.48529cm</Left>
+            <Left>15.07279cm</Left>
             <Height>0.6cm</Height>
-            <Width>4.45791cm</Width>
-            <ZIndex>59</ZIndex>
+            <Width>2.87041cm</Width>
+            <ZIndex>54</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2438,10 +2264,10 @@
             </Paragraphs>
             <rd:DefaultName>HgDeliveryTelnoValueLower</rd:DefaultName>
             <Top>11.6699cm</Top>
-            <Left>13.48529cm</Left>
+            <Left>15.07279cm</Left>
             <Height>0.6cm</Height>
-            <Width>4.45791cm</Width>
-            <ZIndex>60</ZIndex>
+            <Width>2.87041cm</Width>
+            <ZIndex>55</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2478,7 +2304,7 @@
             <Left>3.87425cm</Left>
             <Height>0.56147cm</Height>
             <Width>6.91854cm</Width>
-            <ZIndex>61</ZIndex>
+            <ZIndex>56</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2515,7 +2341,7 @@
             <Left>3.87425cm</Left>
             <Height>0.56147cm</Height>
             <Width>6.91854cm</Width>
-            <ZIndex>62</ZIndex>
+            <ZIndex>57</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2554,7 +2380,7 @@
             <Left>0.05133cm</Left>
             <Height>1.31437cm</Height>
             <Width>2.57937cm</Width>
-            <ZIndex>63</ZIndex>
+            <ZIndex>58</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2595,7 +2421,7 @@
             <Left>2.6307cm</Left>
             <Height>1.31437cm</Height>
             <Width>3.16063cm</Width>
-            <ZIndex>64</ZIndex>
+            <ZIndex>59</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2632,7 +2458,7 @@
             <Left>0.05133cm</Left>
             <Height>0.56147cm</Height>
             <Width>1.65333cm</Width>
-            <ZIndex>65</ZIndex>
+            <ZIndex>60</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2683,7 +2509,7 @@
             <Left>0.05133cm</Left>
             <Height>0.56147cm</Height>
             <Width>1.65333cm</Width>
-            <ZIndex>66</ZIndex>
+            <ZIndex>61</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2734,7 +2560,7 @@
             <Left>1.70466cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.15993cm</Width>
-            <ZIndex>67</ZIndex>
+            <ZIndex>62</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2777,7 +2603,7 @@
             <Left>1.70466cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.15993cm</Width>
-            <ZIndex>68</ZIndex>
+            <ZIndex>63</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2828,7 +2654,7 @@
             <Left>3.86459cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.47743cm</Width>
-            <ZIndex>69</ZIndex>
+            <ZIndex>64</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2875,7 +2701,7 @@
             <Left>3.86459cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.47743cm</Width>
-            <ZIndex>70</ZIndex>
+            <ZIndex>65</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2926,7 +2752,7 @@
             <Left>6.34202cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.47743cm</Width>
-            <ZIndex>71</ZIndex>
+            <ZIndex>66</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2973,7 +2799,7 @@
             <Left>6.34202cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.47743cm</Width>
-            <ZIndex>72</ZIndex>
+            <ZIndex>67</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2981,207 +2807,6 @@
               </Border>
               <BackgroundColor>LightGrey</BackgroundColor>
               <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="OperatorNameValue2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!OperatorNameValue.Value</Value>
-                    <Style>
-                      <FontFamily>ＭＳ ゴシック</FontFamily>
-                      <FontSize>9pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>OperatorNameValue</rd:DefaultName>
-            <Top>15.59638cm</Top>
-            <Left>12.13313cm</Left>
-            <Height>0.47328cm</Height>
-            <Width>4.61138cm</Width>
-            <ZIndex>73</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="OperatorNameTitle2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!OperatorNameTitle.Value</Value>
-                    <Style>
-                      <FontFamily>ＭＳ ゴシック</FontFamily>
-                      <FontSize>9pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>OperatorNameTitle</rd:DefaultName>
-            <Top>15.59638cm</Top>
-            <Left>10.4798cm</Left>
-            <Height>0.47328cm</Height>
-            <Width>1.65333cm</Width>
-            <ZIndex>74</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="InputTimeTitle2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!InputTimeTitle.Value</Value>
-                    <Style>
-                      <FontFamily>ＭＳ ゴシック</FontFamily>
-                      <FontSize>9pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>InputTimeTitle</rd:DefaultName>
-            <Top>16.06965cm</Top>
-            <Left>10.4798cm</Left>
-            <Height>0.47328cm</Height>
-            <Width>1.65333cm</Width>
-            <ZIndex>75</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="InputTimeValue2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!InputTimeValue.Value</Value>
-                    <Style>
-                      <FontFamily>ＭＳ ゴシック</FontFamily>
-                      <FontSize>9pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>InputTimeValue</rd:DefaultName>
-            <Top>16.06965cm</Top>
-            <Left>12.13313cm</Left>
-            <Height>0.47328cm</Height>
-            <Width>5.09058cm</Width>
-            <ZIndex>76</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="HgSalesInChargeTitle2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!HgSalesInChargeTitle.Value</Value>
-                    <Style>
-                      <FontFamily>ＭＳ ゴシック</FontFamily>
-                      <FontSize>9pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>HgSalesInChargeTitle</rd:DefaultName>
-            <Top>16.55304cm</Top>
-            <Left>10.4798cm</Left>
-            <Height>0.47328cm</Height>
-            <Width>1.65333cm</Width>
-            <ZIndex>77</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <LeftBorder>
-                <Width>0.3pt</Width>
-              </LeftBorder>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="HgSalesInChargeValue2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!HgSalesInChargeValue.Value</Value>
-                    <Style>
-                      <FontFamily>ＭＳ ゴシック</FontFamily>
-                      <FontSize>9pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>HgSalesInChargeValue</rd:DefaultName>
-            <Top>16.55304cm</Top>
-            <Left>12.13313cm</Left>
-            <Height>0.47328cm</Height>
-            <Width>4.61138cm</Width>
-            <ZIndex>78</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -3202,89 +2827,15 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
+                <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TitleValue</rd:DefaultName>
             <Top>14.36667cm</Top>
-            <Left>5.79133cm</Left>
+            <Left>5.97319cm</Left>
             <Height>1.31437cm</Height>
-            <Width>7.94284cm</Width>
-            <ZIndex>79</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="ReadValue2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!ReadValue.Value</Value>
-                    <Style>
-                      <FontFamily>ＭＳ ゴシック</FontFamily>
-                      <FontSize>21pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>ReadValue</rd:DefaultName>
-            <Top>14.36667cm</Top>
-            <Left>13.73417cm</Left>
-            <Height>1.31437cm</Height>
-            <Width>3.14029cm</Width>
-            <ZIndex>80</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="CodeValue2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!CodeValue.Value</Value>
-                    <Style>
-                      <FontFamily>ＭＳ ゴシック</FontFamily>
-                      <FontSize>21pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>CodeValue</rd:DefaultName>
-            <Top>14.36667cm</Top>
-            <Left>16.87446cm</Left>
-            <Height>1.31437cm</Height>
-            <Width>1.07421cm</Width>
-            <ZIndex>81</ZIndex>
+            <Width>7.76098cm</Width>
+            <ZIndex>68</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3319,7 +2870,7 @@
             <Left>0.05133cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>82</ZIndex>
+            <ZIndex>69</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3365,8 +2916,8 @@
             <Top>17.04403cm</Top>
             <Left>3.55675cm</Left>
             <Height>0.56147cm</Height>
-            <Width>7.62944cm</Width>
-            <ZIndex>83</ZIndex>
+            <Width>11.0164cm</Width>
+            <ZIndex>70</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3410,10 +2961,10 @@
             </Paragraphs>
             <rd:DefaultName>HgVolumeCodeTitle</rd:DefaultName>
             <Top>17.04403cm</Top>
-            <Left>11.18619cm</Left>
+            <Left>14.57315cm</Left>
             <Height>0.56147cm</Height>
             <Width>1.68776cm</Width>
-            <ZIndex>84</ZIndex>
+            <ZIndex>71</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3457,10 +3008,10 @@
             </Paragraphs>
             <rd:DefaultName>HgOrderCansTitle</rd:DefaultName>
             <Top>17.04403cm</Top>
-            <Left>12.87395cm</Left>
+            <Left>16.26091cm</Left>
             <Height>0.56147cm</Height>
             <Width>1.68776cm</Width>
-            <ZIndex>85</ZIndex>
+            <ZIndex>72</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3509,10 +3060,10 @@
             </Paragraphs>
             <rd:DefaultName>HgVolumeCodeValue</rd:DefaultName>
             <Top>17.6055cm</Top>
-            <Left>11.18619cm</Left>
+            <Left>14.57315cm</Left>
             <Height>1.12619cm</Height>
             <Width>1.68776cm</Width>
-            <ZIndex>86</ZIndex>
+            <ZIndex>73</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3560,10 +3111,10 @@
             </Paragraphs>
             <rd:DefaultName>HgOrderCansValue</rd:DefaultName>
             <Top>17.6055cm</Top>
-            <Left>12.87395cm</Left>
+            <Left>16.26091cm</Left>
             <Height>1.12619cm</Height>
             <Width>1.68776cm</Width>
-            <ZIndex>87</ZIndex>
+            <ZIndex>74</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -3599,7 +3150,7 @@
             <Left>0.05133cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>88</ZIndex>
+            <ZIndex>75</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -3636,7 +3187,7 @@
             <Left>3.86459cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>89</ZIndex>
+            <ZIndex>76</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -3673,7 +3224,7 @@
             <Left>7.77969cm</Left>
             <Height>0.56147cm</Height>
             <Width>6.97281cm</Width>
-            <ZIndex>90</ZIndex>
+            <ZIndex>77</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -3710,7 +3261,7 @@
             <Left>15.12236cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.82631cm</Width>
-            <ZIndex>91</ZIndex>
+            <ZIndex>78</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -3745,7 +3296,7 @@
             <Left>0.05133cm</Left>
             <Height>0.53444cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>92</ZIndex>
+            <ZIndex>79</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3782,7 +3333,7 @@
             <Left>3.86459cm</Left>
             <Height>0.53444cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>93</ZIndex>
+            <ZIndex>80</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3819,7 +3370,7 @@
             <Left>7.77969cm</Left>
             <Height>0.53444cm</Height>
             <Width>6.97281cm</Width>
-            <ZIndex>94</ZIndex>
+            <ZIndex>81</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3858,7 +3409,7 @@
             <Left>15.12236cm</Left>
             <Height>0.53444cm</Height>
             <Width>2.82631cm</Width>
-            <ZIndex>95</ZIndex>
+            <ZIndex>82</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3897,7 +3448,7 @@
             <Left>0.05133cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>96</ZIndex>
+            <ZIndex>83</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3946,7 +3497,7 @@
             <Left>0.05133cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>97</ZIndex>
+            <ZIndex>84</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3995,7 +3546,7 @@
             <Left>0.05133cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>98</ZIndex>
+            <ZIndex>85</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -4032,7 +3583,7 @@
             <Left>11.90228cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.17503cm</Width>
-            <ZIndex>99</ZIndex>
+            <ZIndex>86</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -4067,7 +3618,7 @@
             <Left>3.87425cm</Left>
             <Height>0.56147cm</Height>
             <Width>13.00021cm</Width>
-            <ZIndex>100</ZIndex>
+            <ZIndex>87</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4104,7 +3655,7 @@
             <Left>14.39481cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.55386cm</Width>
-            <ZIndex>101</ZIndex>
+            <ZIndex>88</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4141,7 +3692,7 @@
             <Left>0.05133cm</Left>
             <Height>0.66784cm</Height>
             <Width>3.81326cm</Width>
-            <ZIndex>102</ZIndex>
+            <ZIndex>89</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4180,7 +3731,7 @@
             <Left>4.21047cm</Left>
             <Height>0.6cm</Height>
             <Width>2.34985cm</Width>
-            <ZIndex>103</ZIndex>
+            <ZIndex>90</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4217,7 +3768,7 @@
             <Left>6.95679cm</Left>
             <Height>0.6cm</Height>
             <Width>5.66066cm</Width>
-            <ZIndex>104</ZIndex>
+            <ZIndex>91</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4256,7 +3807,7 @@
             <Left>13.0093cm</Left>
             <Height>0.6cm</Height>
             <Width>1.99691cm</Width>
-            <ZIndex>105</ZIndex>
+            <ZIndex>92</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4293,7 +3844,7 @@
             <Left>15.48867cm</Left>
             <Height>0.6cm</Height>
             <Width>2.46cm</Width>
-            <ZIndex>106</ZIndex>
+            <ZIndex>93</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4332,7 +3883,7 @@
             <Left>0.05133cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.78222cm</Width>
-            <ZIndex>107</ZIndex>
+            <ZIndex>94</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -4369,7 +3920,7 @@
             <Left>4.21047cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.34985cm</Width>
-            <ZIndex>108</ZIndex>
+            <ZIndex>95</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -4406,7 +3957,7 @@
             <Left>6.95679cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.46cm</Width>
-            <ZIndex>109</ZIndex>
+            <ZIndex>96</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -4443,7 +3994,7 @@
             <Left>13.0093cm</Left>
             <Height>0.56147cm</Height>
             <Width>1.99691cm</Width>
-            <ZIndex>110</ZIndex>
+            <ZIndex>97</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -4480,7 +4031,7 @@
             <Left>15.48867cm</Left>
             <Height>0.56147cm</Height>
             <Width>2.46cm</Width>
-            <ZIndex>111</ZIndex>
+            <ZIndex>98</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -4517,7 +4068,7 @@
             <Left>0.05133cm</Left>
             <Height>0.6cm</Height>
             <Width>2.57937cm</Width>
-            <ZIndex>112</ZIndex>
+            <ZIndex>99</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -4553,8 +4104,8 @@
             <Top>23.2214cm</Top>
             <Left>3.47244cm</Left>
             <Height>0.6cm</Height>
-            <Width>9.14501cm</Width>
-            <ZIndex>113</ZIndex>
+            <Width>10.73251cm</Width>
+            <ZIndex>100</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -4588,10 +4139,10 @@
             </Paragraphs>
             <rd:DefaultName>HgDeliveryTelnoTitle</rd:DefaultName>
             <Top>23.2214cm</Top>
-            <Left>13.49076cm</Left>
+            <Left>15.07826cm</Left>
             <Height>0.6cm</Height>
-            <Width>4.45791cm</Width>
-            <ZIndex>114</ZIndex>
+            <Width>2.87041cm</Width>
+            <ZIndex>101</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -4626,7 +4177,7 @@
             <Left>0.05133cm</Left>
             <Height>0.87137cm</Height>
             <Width>2.57937cm</Width>
-            <ZIndex>115</ZIndex>
+            <ZIndex>102</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4665,7 +4216,7 @@
             <Left>0.05133cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>116</ZIndex>
+            <ZIndex>103</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4716,7 +4267,7 @@
             <Left>0.05133cm</Left>
             <Height>0.56147cm</Height>
             <Width>3.50542cm</Width>
-            <ZIndex>117</ZIndex>
+            <ZIndex>104</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4759,8 +4310,8 @@
             <Top>17.6055cm</Top>
             <Left>3.55675cm</Left>
             <Height>0.56147cm</Height>
-            <Width>7.62944cm</Width>
-            <ZIndex>118</ZIndex>
+            <Width>11.0164cm</Width>
+            <ZIndex>105</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4803,8 +4354,8 @@
             <Top>18.17022cm</Top>
             <Left>3.55675cm</Left>
             <Height>0.56147cm</Height>
-            <Width>7.62944cm</Width>
-            <ZIndex>119</ZIndex>
+            <Width>11.0164cm</Width>
+            <ZIndex>106</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4852,8 +4403,8 @@
             <Top>23.8214cm</Top>
             <Left>3.47244cm</Left>
             <Height>0.6cm</Height>
-            <Width>9.14501cm</Width>
-            <ZIndex>120</ZIndex>
+            <Width>10.73251cm</Width>
+            <ZIndex>107</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4889,8 +4440,8 @@
             <Top>24.4214cm</Top>
             <Left>3.47244cm</Left>
             <Height>0.6cm</Height>
-            <Width>9.14501cm</Width>
-            <ZIndex>121</ZIndex>
+            <Width>10.73251cm</Width>
+            <ZIndex>108</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4926,10 +4477,10 @@
             </Paragraphs>
             <rd:DefaultName>HgDeliveryTelnoValueUpper</rd:DefaultName>
             <Top>23.8214cm</Top>
-            <Left>13.49076cm</Left>
+            <Left>15.07826cm</Left>
             <Height>0.6cm</Height>
-            <Width>4.45791cm</Width>
-            <ZIndex>122</ZIndex>
+            <Width>2.87041cm</Width>
+            <ZIndex>109</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4965,10 +4516,10 @@
             </Paragraphs>
             <rd:DefaultName>HgDeliveryTelnoValueLower</rd:DefaultName>
             <Top>24.4214cm</Top>
-            <Left>13.49076cm</Left>
+            <Left>15.07826cm</Left>
             <Height>0.6cm</Height>
-            <Width>4.45791cm</Width>
-            <ZIndex>123</ZIndex>
+            <Width>2.87041cm</Width>
+            <ZIndex>110</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5005,7 +4556,7 @@
             <Left>3.87425cm</Left>
             <Height>0.56147cm</Height>
             <Width>6.91854cm</Width>
-            <ZIndex>124</ZIndex>
+            <ZIndex>111</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5042,7 +4593,7 @@
             <Left>3.87425cm</Left>
             <Height>0.56147cm</Height>
             <Width>6.91854cm</Width>
-            <ZIndex>125</ZIndex>
+            <ZIndex>112</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5064,7 +4615,7 @@
             <Left>0.0084cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>126</ZIndex>
+            <ZIndex>113</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5090,7 +4641,7 @@
             <Left>4.49076cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>127</ZIndex>
+            <ZIndex>114</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5116,7 +4667,7 @@
             <Left>13.49076cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>128</ZIndex>
+            <ZIndex>115</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5130,7 +4681,7 @@
             <Left>8.99076cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>129</ZIndex>
+            <ZIndex>116</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5156,7 +4707,7 @@
             <Left>0.00882cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>130</ZIndex>
+            <ZIndex>117</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5182,7 +4733,7 @@
             <Left>4.49118cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>131</ZIndex>
+            <ZIndex>118</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5208,7 +4759,7 @@
             <Left>8.99118cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>132</ZIndex>
+            <ZIndex>119</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5234,7 +4785,7 @@
             <Left>13.49118cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>133</ZIndex>
+            <ZIndex>120</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5260,7 +4811,7 @@
             <Left>0.00882cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>134</ZIndex>
+            <ZIndex>121</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5286,7 +4837,7 @@
             <Left>4.49118cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>135</ZIndex>
+            <ZIndex>122</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5312,7 +4863,7 @@
             <Left>8.99118cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>136</ZIndex>
+            <ZIndex>123</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5338,7 +4889,7 @@
             <Left>13.49118cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>137</ZIndex>
+            <ZIndex>124</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5364,7 +4915,7 @@
             <Left>0.00882cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>138</ZIndex>
+            <ZIndex>125</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5390,7 +4941,7 @@
             <Left>4.49118cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>139</ZIndex>
+            <ZIndex>126</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5416,7 +4967,7 @@
             <Left>8.99118cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>140</ZIndex>
+            <ZIndex>127</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5442,7 +4993,7 @@
             <Left>13.49118cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>141</ZIndex>
+            <ZIndex>128</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5468,7 +5019,7 @@
             <Left>0.00882cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>142</ZIndex>
+            <ZIndex>129</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5494,7 +5045,7 @@
             <Left>4.49118cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>143</ZIndex>
+            <ZIndex>130</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5520,7 +5071,7 @@
             <Left>8.99118cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>144</ZIndex>
+            <ZIndex>131</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5546,7 +5097,7 @@
             <Left>13.49118cm</Left>
             <Height>0.5cm</Height>
             <Width>4.5cm</Width>
-            <ZIndex>145</ZIndex>
+            <ZIndex>132</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -5566,6 +5117,517 @@
               </RightBorder>
             </Style>
           </Rectangle>
+          <Textbox Name="CopyTitleValue">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!CopyTitleValue.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>21pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>CopyTitleValue</rd:DefaultName>
+            <Top>0.03175cm</Top>
+            <Left>5.96225cm</Left>
+            <Height>1.31437cm</Height>
+            <Width>7.76645cm</Width>
+            <ZIndex>133</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ProductCodeValue">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!ProductCodeValue.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>21pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ProductCodeValue</rd:DefaultName>
+            <Top>14.36667cm</Top>
+            <Left>16.87446cm</Left>
+            <Height>1.31437cm</Height>
+            <Width>1.07421cm</Width>
+            <ZIndex>134</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ProductCodeValue2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!ProductCodeValue.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>21pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ProductCodeValue</rd:DefaultName>
+            <Top>0.03175cm</Top>
+            <Left>16.86899cm</Left>
+            <Height>1.31437cm</Height>
+            <Width>1.07421cm</Width>
+            <ZIndex>135</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="UrgentValue">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!UrgentValue.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>21pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>UrgentValue</rd:DefaultName>
+            <Top>14.36667cm</Top>
+            <Left>13.73417cm</Left>
+            <Height>1.31437cm</Height>
+            <Width>3.14029cm</Width>
+            <ZIndex>136</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="UrgentValue2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!UrgentValue.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>21pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>UrgentValue</rd:DefaultName>
+            <Top>0.03175cm</Top>
+            <Left>13.7287cm</Left>
+            <Height>1.31437cm</Height>
+            <Width>3.14029cm</Width>
+            <ZIndex>137</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="HgOrderInputDateTitle2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!HgOrderInputDateTitle.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>HgOrderInputDateTitle</rd:DefaultName>
+            <Top>2.05528cm</Top>
+            <Left>12.6698cm</Left>
+            <Height>0.47328cm</Height>
+            <Width>1.69919cm</Width>
+            <ZIndex>138</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="HgOrderInputDateValueUpper2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!HgOrderInputDateValueUpper.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>HgOrderInputDateValueUpper</rd:DefaultName>
+            <Top>2.05528cm</Top>
+            <Left>14.36899cm</Left>
+            <Height>0.47328cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>139</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="HgOrderInputDateValueLower2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!HgOrderInputDateValueLower.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>HgOrderInputDateValueLower</rd:DefaultName>
+            <Top>2.05528cm</Top>
+            <Left>16.86899cm</Left>
+            <Height>0.47328cm</Height>
+            <Width>1.07421cm</Width>
+            <ZIndex>140</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="OperatorNameValue3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!OperatorNameValue.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>OperatorNameValue</rd:DefaultName>
+            <Top>15.55757cm</Top>
+            <Left>14.36899cm</Left>
+            <Height>0.47328cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>141</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="OperatorNameTitle3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!OperatorNameTitle.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>OperatorNameTitle</rd:DefaultName>
+            <Top>15.56767cm</Top>
+            <Left>12.6698cm</Left>
+            <Height>0.47328cm</Height>
+            <Width>1.69919cm</Width>
+            <ZIndex>142</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="HgSalesInChargeTitle3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!HgSalesInChargeTitle.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>HgSalesInChargeTitle</rd:DefaultName>
+            <Top>16.51423cm</Top>
+            <Left>12.6698cm</Left>
+            <Height>0.47328cm</Height>
+            <Width>1.69919cm</Width>
+            <ZIndex>143</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <LeftBorder>
+                <Width>0.3pt</Width>
+              </LeftBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="HgSalesInChargeValue3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!HgSalesInChargeValue.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>HgSalesInChargeValue</rd:DefaultName>
+            <Top>16.51423cm</Top>
+            <Left>14.36899cm</Left>
+            <Height>0.47328cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>144</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="HgOrderInputDateTitle3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!HgOrderInputDateTitle.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>HgOrderInputDateTitle</rd:DefaultName>
+            <Top>16.04095cm</Top>
+            <Left>12.6698cm</Left>
+            <Height>0.47328cm</Height>
+            <Width>1.69919cm</Width>
+            <ZIndex>145</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="HgOrderInputDateValueUpper3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!HgOrderInputDateValueUpper.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>HgOrderInputDateValueUpper</rd:DefaultName>
+            <Top>16.04095cm</Top>
+            <Left>14.36899cm</Left>
+            <Height>0.47328cm</Height>
+            <Width>2.5cm</Width>
+            <ZIndex>146</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="HgOrderInputDateValueLower3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!HgOrderInputDateValueLower.Value</Value>
+                    <Style>
+                      <FontFamily>ＭＳ ゴシック</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>HgOrderInputDateValueLower</rd:DefaultName>
+            <Top>16.04095cm</Top>
+            <Left>16.87446cm</Left>
+            <Height>0.47328cm</Height>
+            <Width>1.07421cm</Width>
+            <ZIndex>147</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>27.7cm</Height>
         <Style>
@@ -5853,24 +5915,7 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="InputTimeTitle">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="InputTimeValue">
-      <DataType>String</DataType>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="TitleValue">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="ReadValue">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="CodeValue">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -5879,11 +5924,40 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="CopyTitleValue">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ProductCodeValue">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="UrgentValue">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="HgOrderInputDateTitle">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="HgOrderInputDateValueUpper">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="HgOrderInputDateValueLower">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>17</NumberOfRows>
+      <NumberOfRows>19</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
@@ -6171,34 +6245,44 @@
           <ParameterName>SlipDateValue</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>15</RowIndex>
-          <ParameterName>InputTimeTitle</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
-          <RowIndex>15</RowIndex>
-          <ParameterName>InputTimeValue</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>16</RowIndex>
           <ParameterName>TitleValue</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
-          <RowIndex>16</RowIndex>
-          <ParameterName>ReadValue</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>16</RowIndex>
-          <ParameterName>CodeValue</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>16</RowIndex>
           <ParameterName>HgProductNoValueUpper</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>17</RowIndex>
+          <ParameterName>CopyTitleValue</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>17</RowIndex>
+          <ParameterName>ProductCodeValue</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>17</RowIndex>
+          <ParameterName>UrgentValue</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>18</RowIndex>
+          <ParameterName>HgOrderInputDateTitle</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>18</RowIndex>
+          <ParameterName>HgOrderInputDateValueUpper</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>18</RowIndex>
+          <ParameterName>HgOrderInputDateValueLower</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
