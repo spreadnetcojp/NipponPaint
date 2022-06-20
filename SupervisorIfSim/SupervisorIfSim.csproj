@@ -60,7 +60,9 @@
     <Compile Include="Dialogs\FrmEdit.Designer.cs">
       <DependentUpon>FrmEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormControls\ThreeRadioButtons.cs" />
+    <Compile Include="FormControls\ThreeRadioButtons.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormControls\ThreeRadioButtons.Designer.cs">
       <DependentUpon>ThreeRadioButtons.cs</DependentUpon>
     </Compile>

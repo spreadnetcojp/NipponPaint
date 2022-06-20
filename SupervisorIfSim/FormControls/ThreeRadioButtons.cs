@@ -10,13 +10,6 @@ using System.Windows.Forms;
 
 namespace NipponPaint.SupervisorIfSim.FormControls
 {
-    public class RadioButtonSetting
-    {
-        public string Text { get; set; }
-        public int Left { get; set; }
-        public int Value { get; set; }
-        public bool Visible { get; set; }
-    }
     public partial class ThreeRadioButtons : UserControl
     {
         public string FirstButtonText { get { return FirstButton.Text; } set { FirstButton.Text = value; } }
