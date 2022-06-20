@@ -184,6 +184,24 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
             sql.Append($"  AND {PROCESS_CODE} = @{PROCESS_CODE} ");
             return sql.ToString();
         }
+        /// <summary>
+        /// ERP側の更新
+        /// </summary>
+        /// <param name="columns"></param>
+        /// <returns></returns>
+        public static string UpdateFromSimulator(List<string> columns)
+        {
+            var items = new List<string>();
+            foreach (var column in columns)
+            {
+                items.Add($" {column} = @{column} ");
+            }
+            var sql = new StringBuilder();
+            sql.Append($"UPDATE {MAIN_TABLE} SET {string.Join(",", items)}");
+            sql.Append($"WHERE {BARCODE}      = @{BARCODE} ");
+            sql.Append($"  AND {PROCESS_CODE} = @{PROCESS_CODE} ");
+            return sql.ToString();
+        }
         #endregion
 
         #region マージ

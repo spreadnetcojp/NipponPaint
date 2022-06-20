@@ -37,10 +37,10 @@ namespace SupervisorIfSim
             this.BtnTimer = new System.Windows.Forms.Button();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDetailFormula = new System.Windows.Forms.Panel();
+            this.BtnRegistFormula = new System.Windows.Forms.Button();
             this.RdbPrdIsprefilled = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.RdbPrdUm = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.RdbPrdStatus = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
-            this.BtnRegist = new System.Windows.Forms.Button();
             this.label39 = new System.Windows.Forms.Label();
             this.TxtPrdPrefilledQty = new System.Windows.Forms.TextBox();
             this.TxtPrdNum = new System.Windows.Forms.TextBox();
@@ -79,8 +79,8 @@ namespace SupervisorIfSim
             this.RdbJobCapping = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.RdbJobMixing = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.RdbBrcStatus = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
-            this.button1 = new System.Windows.Forms.Button();
-            this.BtnEdit = new System.Windows.Forms.Button();
+            this.BtnRegistBarcode = new System.Windows.Forms.Button();
+            this.BtnRegistJob = new System.Windows.Forms.Button();
             this.TxtJobErr5 = new System.Windows.Forms.TextBox();
             this.label67 = new System.Windows.Forms.Label();
             this.TxtJobErr2 = new System.Windows.Forms.TextBox();
@@ -250,10 +250,10 @@ namespace SupervisorIfSim
             // pnlDetailFormula
             // 
             this.pnlDetailFormula.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDetailFormula.Controls.Add(this.BtnRegistFormula);
             this.pnlDetailFormula.Controls.Add(this.RdbPrdIsprefilled);
             this.pnlDetailFormula.Controls.Add(this.RdbPrdUm);
             this.pnlDetailFormula.Controls.Add(this.RdbPrdStatus);
-            this.pnlDetailFormula.Controls.Add(this.BtnRegist);
             this.pnlDetailFormula.Controls.Add(this.label39);
             this.pnlDetailFormula.Controls.Add(this.TxtPrdPrefilledQty);
             this.pnlDetailFormula.Controls.Add(this.TxtPrdNum);
@@ -354,21 +354,25 @@ namespace SupervisorIfSim
             // 
             // BtnRegist
             // 
-            this.BtnRegist.Location = new System.Drawing.Point(256, 10);
-            this.BtnRegist.Name = "BtnRegist";
-            this.BtnRegist.Size = new System.Drawing.Size(98, 35);
-            this.BtnRegist.TabIndex = 75;
-            this.BtnRegist.Text = "登録";
-            this.BtnRegist.UseVisualStyleBackColor = true;
+            this.BtnRegistFormula.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnRegistFormula.Location = new System.Drawing.Point(312, 10);
+            this.BtnRegistFormula.Name = "BtnRegistFormula";
+            this.BtnRegistFormula.Size = new System.Drawing.Size(98, 35);
+            this.BtnRegistFormula.TabIndex = 75;
+            this.BtnRegistFormula.Text = "登録";
+            this.BtnRegistFormula.UseVisualStyleBackColor = true;
+            this.BtnRegistFormula.Click += new System.EventHandler(this.BtnRegistFormula_Click);
             // 
             // label39
             // 
+            this.label39.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label39.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label39.ForeColor = System.Drawing.Color.Black;
             this.label39.Location = new System.Drawing.Point(2, 3);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(357, 50);
+            this.label39.Size = new System.Drawing.Size(415, 50);
             this.label39.TabIndex = 46;
             this.label39.Text = "■TB_FORMURA";
             this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -659,6 +663,7 @@ namespace SupervisorIfSim
             this.GvFormula.Location = new System.Drawing.Point(0, 0);
             this.GvFormula.Name = "GvFormula";
             this.GvFormula.ReadOnly = true;
+            this.GvFormula.RowHeadersVisible = false;
             this.GvFormula.RowTemplate.Height = 21;
             this.GvFormula.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GvFormula.Size = new System.Drawing.Size(164, 832);
@@ -676,8 +681,8 @@ namespace SupervisorIfSim
             this.pnlBrcJob.Controls.Add(this.RdbJobCapping);
             this.pnlBrcJob.Controls.Add(this.RdbJobMixing);
             this.pnlBrcJob.Controls.Add(this.RdbBrcStatus);
-            this.pnlBrcJob.Controls.Add(this.button1);
-            this.pnlBrcJob.Controls.Add(this.BtnEdit);
+            this.pnlBrcJob.Controls.Add(this.BtnRegistBarcode);
+            this.pnlBrcJob.Controls.Add(this.BtnRegistJob);
             this.pnlBrcJob.Controls.Add(this.TxtJobErr5);
             this.pnlBrcJob.Controls.Add(this.label67);
             this.pnlBrcJob.Controls.Add(this.TxtJobErr2);
@@ -970,23 +975,25 @@ namespace SupervisorIfSim
             this.RdbBrcStatus.ThirdButtonVisible = false;
             this.RdbBrcStatus.Value = -99;
             // 
-            // button1
+            // BtnRegistBarcode
             // 
-            this.button1.Location = new System.Drawing.Point(255, 65);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 35);
-            this.button1.TabIndex = 189;
-            this.button1.Text = "登録";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnRegistBarcode.Location = new System.Drawing.Point(255, 65);
+            this.BtnRegistBarcode.Name = "BtnRegistBarcode";
+            this.BtnRegistBarcode.Size = new System.Drawing.Size(98, 35);
+            this.BtnRegistBarcode.TabIndex = 189;
+            this.BtnRegistBarcode.Text = "登録";
+            this.BtnRegistBarcode.UseVisualStyleBackColor = true;
+            this.BtnRegistBarcode.Click += new System.EventHandler(this.BtnRegistBarcode_Click);
             // 
-            // BtnEdit
+            // BtnRegistJob
             // 
-            this.BtnEdit.Location = new System.Drawing.Point(255, 276);
-            this.BtnEdit.Name = "BtnEdit";
-            this.BtnEdit.Size = new System.Drawing.Size(98, 35);
-            this.BtnEdit.TabIndex = 188;
-            this.BtnEdit.Text = "登録";
-            this.BtnEdit.UseVisualStyleBackColor = true;
+            this.BtnRegistJob.Location = new System.Drawing.Point(255, 276);
+            this.BtnRegistJob.Name = "BtnRegistJob";
+            this.BtnRegistJob.Size = new System.Drawing.Size(98, 35);
+            this.BtnRegistJob.TabIndex = 188;
+            this.BtnRegistJob.Text = "登録";
+            this.BtnRegistJob.UseVisualStyleBackColor = true;
+            this.BtnRegistJob.Click += new System.EventHandler(this.BtnRegistJob_Click);
             // 
             // TxtJobErr5
             // 
@@ -1881,6 +1888,7 @@ namespace SupervisorIfSim
             this.GvBarcode.MultiSelect = false;
             this.GvBarcode.Name = "GvBarcode";
             this.GvBarcode.ReadOnly = true;
+            this.GvBarcode.RowHeadersVisible = false;
             this.GvBarcode.RowTemplate.Height = 21;
             this.GvBarcode.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GvBarcode.Size = new System.Drawing.Size(511, 893);
@@ -1925,7 +1933,7 @@ namespace SupervisorIfSim
         private System.Windows.Forms.Panel pnlPreviewBarcode;
         private System.Windows.Forms.DataGridView GvBarcode;
         private System.Windows.Forms.Panel pnlDetailFormula;
-        private System.Windows.Forms.Button BtnRegist;
+        private System.Windows.Forms.Button BtnRegistFormula;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.TextBox TxtPrdPrefilledQty;
         private System.Windows.Forms.TextBox TxtPrdNum;
@@ -1955,8 +1963,8 @@ namespace SupervisorIfSim
         private System.Windows.Forms.Panel pnlPreviewFormula;
         private System.Windows.Forms.DataGridView GvFormula;
         private System.Windows.Forms.Panel pnlBrcJob;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button BtnEdit;
+        private System.Windows.Forms.Button BtnRegistBarcode;
+        private System.Windows.Forms.Button BtnRegistJob;
         private System.Windows.Forms.TextBox TxtJobErr5;
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.TextBox TxtJobErr2;

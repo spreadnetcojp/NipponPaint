@@ -12,6 +12,7 @@ namespace NipponPaint.SupervisorIfSim.FormControls
 {
     public partial class ThreeRadioButtons : UserControl
     {
+        public int NO_SELECTED_VALUE = -99;  
         public string FirstButtonText { get { return FirstButton.Text; } set { FirstButton.Text = value; } }
         public string SecondButtonText { get { return SecondButton.Text; } set { SecondButton.Text = value; } }
         public string ThirdButtonText { get { return ThirdButton.Text; } set { ThirdButton.Text = value; } }
@@ -40,7 +41,7 @@ namespace NipponPaint.SupervisorIfSim.FormControls
                 {
                     return int.Parse(ThirdButton.Tag.ToString());
                 }
-                return -99;
+                return NO_SELECTED_VALUE;
             }
             set
             {

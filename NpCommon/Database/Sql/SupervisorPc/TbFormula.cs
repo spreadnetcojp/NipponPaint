@@ -124,6 +124,29 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
         }
         #endregion
 
+        #region ERP側の更新
+        /// <summary>
+        /// ERP側の更新
+        /// </summary>
+        /// <param name="columns"></param>
+        /// <returns></returns>
+        public static string UpdateFromSimulator(List<string> columns)
+        {
+            var items = new List<string>();
+            foreach (var column in columns)
+            {
+                items.Add($" {column} = @{column} ");
+            }
+            var sql = new StringBuilder();
+            sql.Append($"UPDATE {MAIN_TABLE} SET {string.Join(",", items)}");
+            sql.Append($"WHERE {PRD_BARCODE}      = @{PRD_BARCODE} ");
+            sql.Append($"  AND {PRD_PROCESS_CODE} = @{PRD_PROCESS_CODE} ");
+            sql.Append($"  AND {PRD_CODE}         = @{PRD_CODE} ");
+            return sql.ToString();
+        }
+        #endregion
+
+
         #endregion
     }
 }
