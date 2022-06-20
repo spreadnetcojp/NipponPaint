@@ -36,7 +36,7 @@ namespace NipponPaint.NpCommon.Settings
         /// <summary>
         /// データの種類
         /// </summary>
-        public ColumnModeType ColumnType { get; set; }
+        public ColumnModeType ColumnType { get; set; } = ColumnModeType.String;
         /// <summary>
         /// データベース上の列名
         /// </summary>
@@ -62,6 +62,14 @@ namespace NipponPaint.NpCommon.Settings
         /// セルの値を反映するコントロール
         /// </summary>
         public Control DisplayControl { get; set; } = null;
+        /// <summary>
+        /// データベース上のテーブル名
+        /// </summary>
+        public string TableName { get; set; }
+        /// <summary>
+        /// テーブルへの更新対象項目か
+        /// </summary>
+        public bool IsUpdateColumn { get; set; } = false;
 
         #region コンストラクタ
         public GridViewSetting()

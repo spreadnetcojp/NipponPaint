@@ -123,6 +123,12 @@ namespace NipponPaint.NpCommon
             [Display(Order = (int)Log.LogType.Question, Description = "選択された注文を戻しますか？")]
             BtnOrderBackClick,
 
+            /// <summary>
+            /// 保存完了
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Error, Description = "設定内容を保存できませんでした（エラー：{0}）")]
+            SaveFailure,
+
             #region Supervisor I/F
 
             /// <summary>
