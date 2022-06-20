@@ -73,6 +73,7 @@ namespace NipponPaint.OrderManager
         private const int COLUMN_DELIVERY_DATE = 11;
         private const int COLUMN_VISIBLE_DELIVERY_DATE = 12;
         private const int COLUMN_COLOR_SAMPLE = 13;
+        private const int COLUMN_URGENT = 18;
 
         private const int TAB_INDEX_ORDER = 0;
         private const int TAB_INDEX_DETAIL = 1;
@@ -90,6 +91,14 @@ namespace NipponPaint.OrderManager
 
         private List<string> ViewGrid = new List<string>();
         //private const Log.ApplicationType MyApp = Log.ApplicationType.OrderManager;
+
+        // 各ソート
+        // 運送区分
+        private const string SORT_KUBUN = "[Status], [SS出荷予定日日付型], [並び順], [順位コード], [品名], [運送区分] ASC";
+        // 順位コード
+        private const string SORT_RANKING = "[Status] , [SS出荷予定日日付型] , [順位コード] , [並び順] , [品名] ASC";
+        // 担当者名
+        private const string SORT_ORDER_PERSON = "[担当者コード] , [Status] , [順位コード] , [並び順] , [品名] ASC";
 
         #endregion
 
@@ -114,6 +123,7 @@ namespace NipponPaint.OrderManager
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Sum_up_Key", DisplayName = "順位コード", Visible = false, Width = 0 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Code", DisplayName = "担当者コード", Visible = false, Width = 0 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Sort_Order", DisplayName = "並び順", Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Urgent", DisplayName = "Urgent", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
         };
         private List<GridViewSetting> ViewSettingsWeights = new List<GridViewSetting>()
         {
@@ -174,6 +184,10 @@ namespace NipponPaint.OrderManager
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_18", DisplayName = "重量18", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_19", DisplayName = "着色剤19", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_19", DisplayName = "重量19", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Urgent", DisplayName = "Urgent", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "CONVERT(DATE,HG_SS_Shipping_Date)", DisplayName = "SS出荷予定日日付型", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Product_Name", DisplayName = "品名", Visible = true, Width = 500 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "HG_HG_Delivery_Code", DisplayName = "運送区分", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
         };
         private List<GridViewSetting> ViewSettingsBarcodes = new List<GridViewSetting>()
         {
@@ -491,9 +505,18 @@ namespace NipponPaint.OrderManager
                     case Sql.NpMain.Orders.OrderStatus.Ready:
                         TsmiDecide.Enabled = false;
                         TsmiOperatorDelete.Enabled = false;
-                        TsmiOrderStart.Enabled = true;
-                        TsmiInstructionPrint.Enabled = false;
-                        TsmiProductLabelPrint.Enabled = false;
+                        if (Convert.ToBoolean(row.Cells[COLUMN_URGENT].Value))
+                        {
+                            TsmiOrderStart.Enabled = false;
+                            TsmiInstructionPrint.Enabled = true;
+                            TsmiProductLabelPrint.Enabled = true;
+                        }
+                        else
+                        {
+                            TsmiOrderStart.Enabled = true;
+                            TsmiInstructionPrint.Enabled = false;
+                            TsmiProductLabelPrint.Enabled = false;
+                        }
                         TsmiColorLabelPrint.Enabled = false;
                         TsmiCopyLabelPrint.Enabled = false;
                         TsmiOrderClose.Enabled = true;
@@ -1303,35 +1326,40 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void RdoCheckedChanged(object sender, EventArgs e)
         {
-            //選択表示(Panel3)のグループ内のチェックされているラジオボタンを取得する
-            var rbtCheckInGroup = panel3.Controls.OfType<RadioButton>()
-                .SingleOrDefault(rb => rb.Checked == true);
-            switch (rbtCheckInGroup.Name)
+            // ラジオボタンのコントロールを2回通るので、checked=tureを判断して表示を切り替え
+            bool rdbChecked = ((RadioButton)sender).Checked;
+            if (rdbChecked)
             {
-                case "RdoPreviewAll":
-                    GvOrderDataSource.DefaultView.RowFilter = "";
-                    GvDetailDataSource.DefaultView.RowFilter = "";
-                    GvFormulationDataSource.DefaultView.RowFilter = "";
-                    GvOrderNumberDataSource.DefaultView.RowFilter = "";
-                    break;
-                case "RdoTodayBefore":
-                    GvOrderDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
-                    GvDetailDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
-                    GvFormulationDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
-                    GvOrderNumberDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
-                    break;
-                case "RdoTomorrowAfter":
-                    GvOrderDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
-                    GvDetailDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
-                    GvFormulationDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
-                    GvOrderNumberDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
-                    break;
-                default:
-                    GvOrderDataSource.DefaultView.RowFilter = "";
-                    GvDetailDataSource.DefaultView.RowFilter = "";
-                    GvFormulationDataSource.DefaultView.RowFilter = "";
-                    GvOrderNumberDataSource.DefaultView.RowFilter = "";
-                    break;
+                //選択表示(Panel3)のグループ内のチェックされているラジオボタンを取得する
+                var rbtCheckInGroup = panel3.Controls.OfType<RadioButton>()
+                    .SingleOrDefault(rb => rb.Checked == true);
+                switch (rbtCheckInGroup.Name)
+                {
+                    case "RdoPreviewAll":
+                        GvOrderDataSource.DefaultView.RowFilter = "";
+                        GvDetailDataSource.DefaultView.RowFilter = "";
+                        GvFormulationDataSource.DefaultView.RowFilter = "";
+                        GvOrderNumberDataSource.DefaultView.RowFilter = "";
+                        break;
+                    case "RdoTodayBefore":
+                        GvOrderDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
+                        GvDetailDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
+                        GvFormulationDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
+                        GvOrderNumberDataSource.DefaultView.RowFilter = $"[SS出荷予定日日付型] <= #{DateTime.Today}#";
+                        break;
+                    case "RdoTomorrowAfter":
+                        GvOrderDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
+                        GvDetailDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
+                        GvFormulationDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
+                        GvOrderNumberDataSource.DefaultView.RowFilter = $"#{DateTime.Today}# < [SS出荷予定日日付型]";
+                        break;
+                    default:
+                        GvOrderDataSource.DefaultView.RowFilter = "";
+                        GvDetailDataSource.DefaultView.RowFilter = "";
+                        GvFormulationDataSource.DefaultView.RowFilter = "";
+                        GvOrderNumberDataSource.DefaultView.RowFilter = "";
+                        break;
+                }
             }
         }
 
@@ -1342,31 +1370,37 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void RdoSort_CheckedChanged(object sender, EventArgs e)
         {
-            //ソート順(Panel2)のグループ内のチェックされているラジオボタンを取得する
-            var rbtCheckInGroup = panel2.Controls.OfType<RadioButton>()
-                .SingleOrDefault(rb => rb.Checked == true);
-            switch (rbtCheckInGroup.Name)
+            // ラジオボタンのコントロールを2回通るので、checked=tureを判断して表示を切り替え
+            bool rdbChecked = ((RadioButton)sender).Checked;
+            if (rdbChecked)
             {
-                case "RdoSortKubun":
-                    GvOrderDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvDetailDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvFormulationDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvOrderNumberDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    break;
-                case "RdoSortRanking":
-                    GvOrderDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [順位コード] , [並び順] , [品名] ASC";
-                    GvDetailDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvFormulationDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvOrderNumberDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    break;
-                case "RdoOrderPerson":
-                    GvOrderDataSource.DefaultView.Sort = $"[担当者コード] , [Status] , [順位コード] , [並び順] , [品名] ASC";
-                    GvDetailDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvFormulationDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvOrderNumberDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    break;
-                default:
-                    break;
+                this.GvOrder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
+                //ソート順(Panel2)のグループ内のチェックされているラジオボタンを取得する
+                var rbtCheckInGroup = panel2.Controls.OfType<RadioButton>()
+                    .SingleOrDefault(rb => rb.Checked == true);
+                switch (rbtCheckInGroup.Name)
+                {
+                    case "RdoSortKubun":
+                        GvOrderDataSource.DefaultView.Sort = $"{SORT_KUBUN}";
+                        GvDetailDataSource.DefaultView.Sort = $"{SORT_KUBUN}";
+                        GvFormulationDataSource.DefaultView.Sort = $"{SORT_KUBUN}";
+                        GvOrderNumberDataSource.DefaultView.Sort = $"{SORT_KUBUN}";
+                        break;
+                    case "RdoSortRanking":
+                        GvOrderDataSource.DefaultView.Sort = $"{SORT_RANKING}";
+                        GvDetailDataSource.DefaultView.Sort = $"{SORT_RANKING}";
+                        GvFormulationDataSource.DefaultView.Sort = $"{SORT_RANKING}";
+                        GvOrderNumberDataSource.DefaultView.Sort = $"{SORT_RANKING}";
+                        break;
+                    case "RdoOrderPerson":
+                        GvOrderDataSource.DefaultView.Sort = $"{SORT_ORDER_PERSON}";
+                        GvDetailDataSource.DefaultView.Sort = $"{SORT_ORDER_PERSON}";
+                        GvFormulationDataSource.DefaultView.Sort = $"{SORT_ORDER_PERSON}";
+                        GvOrderNumberDataSource.DefaultView.Sort = $"{SORT_ORDER_PERSON}";
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -1504,45 +1538,53 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //SelectDataGridViewRowByProductCode();
-            int gdvSelectedIndex = 0;
-            //変更前に選択していたタブを取得
-            switch (selectingTabIndex)
+            // 一覧にデータがない場合は処理をしない
+            if (GvOrder.CurrentRow != null)
             {
-                case TAB_INDEX_ORDER:
-                    gdvSelectedIndex = GvOrder.CurrentRow.Index;
-                    break;
-                case TAB_INDEX_DETAIL:
-                    gdvSelectedIndex = GvDetail.CurrentRow.Index;
-                    break;
-                case TAB_INDEX_FORMULATION:
-                    gdvSelectedIndex = GvFormulation.CurrentRow.Index;
-                    break;
-                case TAB_INDEX_CAN:
-                    gdvSelectedIndex = GvOrderNumber.CurrentRow.Index;
-                    break;
-                default:
-                    gdvSelectedIndex = GvOrder.CurrentRow.Index;
-                    break;
-            }
-            //現在選択中のタブを取得する
-            switch (tabMain.SelectedIndex)
-            {
-                case TAB_INDEX_ORDER:
-                    GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[2];
-                    break;
-                case TAB_INDEX_DETAIL:
-                    GvDetail.CurrentCell = GvDetail.Rows[gdvSelectedIndex].Cells[2];
-                    break;
-                case TAB_INDEX_FORMULATION:
-                    GvFormulation.CurrentCell = GvFormulation.Rows[gdvSelectedIndex].Cells[2];
-                    break;
-                case TAB_INDEX_CAN:
-                    GvOrderNumber.CurrentCell = GvOrderNumber.Rows[gdvSelectedIndex].Cells[2];
-                    break;
-                default:
-                    GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[2];
-                    break;
+                //SelectDataGridViewRowByProductCode();
+                int gdvSelectedIndex = 0;
+                //変更前に選択していたタブを取得
+                switch (selectingTabIndex)
+                {
+                    case TAB_INDEX_ORDER:
+                        gdvSelectedIndex = GvOrder.CurrentRow.Index;
+                        break;
+                    case TAB_INDEX_DETAIL:
+                        gdvSelectedIndex = GvDetail.CurrentRow.Index;
+                        break;
+                    case TAB_INDEX_FORMULATION:
+                        gdvSelectedIndex = GvFormulation.CurrentRow.Index;
+                        break;
+                    case TAB_INDEX_CAN:
+                        gdvSelectedIndex = GvOrderNumber.CurrentRow.Index;
+                        break;
+                    default:
+                        gdvSelectedIndex = GvOrder.CurrentRow.Index;
+                        break;
+                }
+                //現在選択中のタブを取得する
+                switch (tabMain.SelectedIndex)
+                {
+                    case TAB_INDEX_ORDER:
+                        GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[2];
+                        DataGridViewFormatting(GvOrder);
+                        break;
+                    case TAB_INDEX_DETAIL:
+                        GvDetail.CurrentCell = GvDetail.Rows[gdvSelectedIndex].Cells[2];
+                        DataGridViewFormatting(GvDetail);
+                        break;
+                    case TAB_INDEX_FORMULATION:
+                        GvFormulation.CurrentCell = GvFormulation.Rows[gdvSelectedIndex].Cells[2];
+                        DataGridViewFormatting(GvFormulation);
+                        break;
+                    case TAB_INDEX_CAN:
+                        GvOrderNumber.CurrentCell = GvOrderNumber.Rows[gdvSelectedIndex].Cells[2];
+                        break;
+                    default:
+                        GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[2];
+                        DataGridViewFormatting(GvOrder);
+                        break;
+                }
             }
             //現在選択中のタブ(変更後)のタブを保存する
             selectingTabIndex = tabMain.SelectedIndex;
@@ -1563,14 +1605,17 @@ namespace NipponPaint.OrderManager
             {
                 // Statusを取得する
                 var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
+                // Urgentを取得する
+                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Urgent");
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
                     // 選択している行を取得
                     var selectedRow = dgv.SelectedRows[0];
                     int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
+                    var urgentBool = Convert.ToBoolean(selectedRow.Cells[urgentColumnIndex].Value);
                     //各種ボタンの表示制御
-                    ButtonsEnableSetting(status);
+                    ButtonsEnableSetting(status, urgentBool);
                 }
                 PutLog(Sentence.Messages.SelectRow);
             }
@@ -1597,6 +1642,8 @@ namespace NipponPaint.OrderManager
                 var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
                 var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                // Urgentを取得する
+                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Urgent");
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -1604,6 +1651,7 @@ namespace NipponPaint.OrderManager
                     var selectedRow = dgv.SelectedRows[0];
                     int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
                     int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
+                    var urgentBool = Convert.ToBoolean(selectedRow.Cells[urgentColumnIndex].Value);
 
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
@@ -1683,7 +1731,7 @@ namespace NipponPaint.OrderManager
                             BorderHgVolumeCode.Visible = false;
                         }
                         //各種ボタンの表示制御
-                        ButtonsEnableSetting(status);
+                        ButtonsEnableSetting(status, urgentBool);
                     }
                 }
                 PutLog(Sentence.Messages.SelectRow);
@@ -1712,6 +1760,8 @@ namespace NipponPaint.OrderManager
                 var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
                 var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                // Urgentを取得する
+                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Urgent");
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -1719,6 +1769,7 @@ namespace NipponPaint.OrderManager
                     var selectedRow = dgv.SelectedRows[0];
                     int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
                     int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
+                    var urgentBool = Convert.ToBoolean(selectedRow.Cells[urgentColumnIndex].Value);
 
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
@@ -1748,7 +1799,7 @@ namespace NipponPaint.OrderManager
                             }
                         }
                         ////各種ボタンの表示制御
-                        ButtonsEnableSetting(status);
+                        ButtonsEnableSetting(status, urgentBool);
                     }
                 }
                 PutLog(Sentence.Messages.SelectRow);
@@ -1777,6 +1828,8 @@ namespace NipponPaint.OrderManager
                 var statusColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == "Status");
                 // Order_idで検索する
                 var orderIdColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == "Order_id");
+                // Urgentを取得する
+                var urgentColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == "Urgent");
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -1784,6 +1837,7 @@ namespace NipponPaint.OrderManager
                     var selectedRow = dgv.SelectedRows[0];
                     int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
                     int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
+                    var urgentBool = Convert.ToBoolean(selectedRow.Cells[urgentColumnIndex].Value);
 
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
@@ -1809,7 +1863,7 @@ namespace NipponPaint.OrderManager
                             GvBarcode.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
                             cnt++;
                         }
-                        ButtonsEnableSetting(status);
+                        ButtonsEnableSetting(status, urgentBool);
                     }
                 }
                 PutLog(Sentence.Messages.SelectRow);
@@ -1923,9 +1977,10 @@ namespace NipponPaint.OrderManager
             this.FormClosed += new FormClosedEventHandler(this.FrmMainClosed);
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(this.FormKeyDown);
-            this.GvOrder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
-            this.GvDetail.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvDetailDataBindingComplete);
-            this.GvFormulation.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvFormulationDataBindingComplete);
+            //this.GvOrder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
+            //this.GvDetail.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvDetailDataBindingComplete);
+            //this.GvFormulation.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvFormulationDataBindingComplete);
+            AddEvent();
             this.GvOrderNumber.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderNumberDataBindingComplete);
             this.GvBarcode.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvBarcodeDataBindingComplete);
             this.GvOrder.CellClick += new DataGridViewCellEventHandler(this.GvOrderCellClick);
@@ -2140,15 +2195,21 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void DataGridViewFormatting(DataGridView dgv)
         {
-            if (!dgv.Visible)
+            //if (!dgv.Visible)
+            //{
+            //    return;
+            //}
+            // 表示されてる画面でなければスルー
+            if (dgv.Name != GetActiveGridViewName().Name)
             {
                 return;
             }
-            if (!ViewGrid.Contains(dgv.Name))
-            {
-                ViewGrid.Add(dgv.Name);
-                return;
-            }
+            //if (!ViewGrid.Contains(dgv.Name))
+            //{
+            //    ViewGrid.Add(dgv.Name);
+            //    return;
+            //}
+            Console.WriteLine(dgv.Name);
             ViewGrid = new List<string>();
             var rowHeight = 48;
             var fontSizeProductCode = 24;
@@ -2392,7 +2453,7 @@ namespace NipponPaint.OrderManager
         #endregion
 
         #region ボタン表示制御
-        private void ButtonsEnableSetting(int status)
+        private void ButtonsEnableSetting(int status, bool urgent = false)
         {
             switch ((Sql.NpMain.Orders.OrderStatus)status)
             {
@@ -2417,10 +2478,19 @@ namespace NipponPaint.OrderManager
                     //BtnProcessDetail.Enabled = false;
                     break;
                 case Sql.NpMain.Orders.OrderStatus.Ready:
-                    BtnPrint.Enabled = false;
-                    BtnPrintInstructions.Enabled = false;
                     BtnPrintEmergency.Enabled = false;
-                    BtnOrderStart.Enabled = true;
+                    if (urgent)
+                    {
+                        BtnOrderStart.Enabled = false;
+                        BtnPrintInstructions.Enabled = true;
+                        BtnPrint.Enabled = true;
+                    }
+                    else
+                    {
+                        BtnOrderStart.Enabled = true;
+                        BtnPrintInstructions.Enabled = false;
+                        BtnPrint.Enabled = false;
+                    }
                     BtnStatusResume.Enabled = true;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
@@ -2523,5 +2593,42 @@ namespace NipponPaint.OrderManager
 
         }
 
+        /// <summary>
+        /// イベントの追加
+        /// </summary>
+        private void AddEvent()
+        {
+            this.GvOrder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
+            this.GvDetail.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvDetailDataBindingComplete);
+            this.GvFormulation.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvFormulationDataBindingComplete);
+        }
+
+        /// <summary>
+        /// イベントの削除
+        /// </summary>
+        private void RemoveEvent()
+        {
+            this.GvOrder.DataBindingComplete -= new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
+            this.GvDetail.DataBindingComplete -= new DataGridViewBindingCompleteEventHandler(this.GvDetailDataBindingComplete);
+            this.GvFormulation.DataBindingComplete -= new DataGridViewBindingCompleteEventHandler(this.GvFormulationDataBindingComplete);
+        }
+        /// <summary>
+        /// 表示されている画面のName取得
+        /// </summary>
+        /// <returns></returns>
+        private DataGridView GetActiveGridViewName()
+        {
+            switch (tabMain.SelectedIndex)
+            {
+                case TAB_INDEX_ORDER:
+                    return GvOrder;
+                case TAB_INDEX_DETAIL:
+                    return GvDetail;
+                case TAB_INDEX_FORMULATION:
+                    return GvFormulation;
+                default:
+                    return null;
+            }
+        }
     }
 }

@@ -111,7 +111,7 @@ namespace NipponPaint.NpCommon
             /// <summary>
             /// 「ステータスを戻す」ボタンをクリック
             /// </summary>
-            [Display(Order = (int)Log.LogType.Question, Description = "オーダーのステータスを\"CCM配合待ち\"に変更しますか？ ")]
+            [Display(Order = (int)Log.LogType.Question, Description = "オーダーのステータスを\"CCM配合待ち\"に変更しますか？")]
             BtnStatusResumeClicked,
 
             [Display(Order = (int)Log.LogType.Error, Description = "原料選択でｴﾗｰ")]

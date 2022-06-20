@@ -244,6 +244,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownWeightTolerance.DatabaseColumnNameRight = "";
             this.NumUpDownWeightTolerance.DecimalPlacesLeft = 1;
             this.NumUpDownWeightTolerance.DecimalPlacesRight = 1;
+            this.NumUpDownWeightTolerance.LeftSide.BackColor = System.Drawing.SystemColors.Window;
+            this.NumUpDownWeightTolerance.RightSide.BackColor = System.Drawing.SystemColors.Window;
             this.NumUpDownWeightTolerance.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.NumUpDownWeightTolerance.Id = 0;
             this.NumUpDownWeightTolerance.LeftAndRightHighAndLowControl = NipponPaint.NpCommon.FormControls.LabelNumericUpDownMulti.LeftAndRightHighAndLowControlType.Flee;
