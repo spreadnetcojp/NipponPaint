@@ -92,6 +92,14 @@ namespace NipponPaint.OrderManager
         private List<string> ViewGrid = new List<string>();
         //private const Log.ApplicationType MyApp = Log.ApplicationType.OrderManager;
 
+        // 各ソート
+        // 運送区分
+        private const string SORT_KUBUN = "[Status], [SS出荷予定日日付型], [並び順], [順位コード], [品名], [運送区分] ASC";
+        // 順位コード
+        private const string SORT_RANKING = "[Status] , [SS出荷予定日日付型] , [順位コード] , [並び順] , [品名] ASC";
+        // 担当者名
+        private const string SORT_ORDER_PERSON = "[担当者コード] , [Status] , [順位コード] , [並び順] , [品名] ASC";
+
         #endregion
 
         #region DataGridViewの列定義
@@ -1362,31 +1370,37 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void RdoSort_CheckedChanged(object sender, EventArgs e)
         {
-            //ソート順(Panel2)のグループ内のチェックされているラジオボタンを取得する
-            var rbtCheckInGroup = panel2.Controls.OfType<RadioButton>()
-                .SingleOrDefault(rb => rb.Checked == true);
-            switch (rbtCheckInGroup.Name)
+            // ラジオボタンのコントロールを2回通るので、checked=tureを判断して表示を切り替え
+            bool rdbChecked = ((RadioButton)sender).Checked;
+            if (rdbChecked)
             {
-                case "RdoSortKubun":
-                    GvOrderDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvDetailDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvFormulationDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvOrderNumberDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    break;
-                case "RdoSortRanking":
-                    GvOrderDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [順位コード] , [並び順] , [品名] ASC";
-                    GvDetailDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvFormulationDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvOrderNumberDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    break;
-                case "RdoOrderPerson":
-                    GvOrderDataSource.DefaultView.Sort = $"[担当者コード] , [Status] , [順位コード] , [並び順] , [品名] ASC";
-                    GvDetailDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvFormulationDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    GvOrderNumberDataSource.DefaultView.Sort = $"[Status] , [SS出荷予定日日付型] , [並び順] , [順位コード] , [品名] , [運送区分] ASC";
-                    break;
-                default:
-                    break;
+                this.GvOrder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
+                //ソート順(Panel2)のグループ内のチェックされているラジオボタンを取得する
+                var rbtCheckInGroup = panel2.Controls.OfType<RadioButton>()
+                    .SingleOrDefault(rb => rb.Checked == true);
+                switch (rbtCheckInGroup.Name)
+                {
+                    case "RdoSortKubun":
+                        GvOrderDataSource.DefaultView.Sort = $"{SORT_KUBUN}";
+                        GvDetailDataSource.DefaultView.Sort = $"{SORT_KUBUN}";
+                        GvFormulationDataSource.DefaultView.Sort = $"{SORT_KUBUN}";
+                        GvOrderNumberDataSource.DefaultView.Sort = $"{SORT_KUBUN}";
+                        break;
+                    case "RdoSortRanking":
+                        GvOrderDataSource.DefaultView.Sort = $"{SORT_RANKING}";
+                        GvDetailDataSource.DefaultView.Sort = $"{SORT_RANKING}";
+                        GvFormulationDataSource.DefaultView.Sort = $"{SORT_RANKING}";
+                        GvOrderNumberDataSource.DefaultView.Sort = $"{SORT_RANKING}";
+                        break;
+                    case "RdoOrderPerson":
+                        GvOrderDataSource.DefaultView.Sort = $"{SORT_ORDER_PERSON}";
+                        GvDetailDataSource.DefaultView.Sort = $"{SORT_ORDER_PERSON}";
+                        GvFormulationDataSource.DefaultView.Sort = $"{SORT_ORDER_PERSON}";
+                        GvOrderNumberDataSource.DefaultView.Sort = $"{SORT_ORDER_PERSON}";
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -1553,18 +1567,22 @@ namespace NipponPaint.OrderManager
                 {
                     case TAB_INDEX_ORDER:
                         GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[2];
+                        DataGridViewFormatting(GvOrder);
                         break;
                     case TAB_INDEX_DETAIL:
                         GvDetail.CurrentCell = GvDetail.Rows[gdvSelectedIndex].Cells[2];
+                        DataGridViewFormatting(GvDetail);
                         break;
                     case TAB_INDEX_FORMULATION:
                         GvFormulation.CurrentCell = GvFormulation.Rows[gdvSelectedIndex].Cells[2];
+                        DataGridViewFormatting(GvFormulation);
                         break;
                     case TAB_INDEX_CAN:
                         GvOrderNumber.CurrentCell = GvOrderNumber.Rows[gdvSelectedIndex].Cells[2];
                         break;
                     default:
                         GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[2];
+                        DataGridViewFormatting(GvOrder);
                         break;
                 }
             }
@@ -1959,9 +1977,10 @@ namespace NipponPaint.OrderManager
             this.FormClosed += new FormClosedEventHandler(this.FrmMainClosed);
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(this.FormKeyDown);
-            this.GvOrder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
-            this.GvDetail.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvDetailDataBindingComplete);
-            this.GvFormulation.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvFormulationDataBindingComplete);
+            //this.GvOrder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
+            //this.GvDetail.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvDetailDataBindingComplete);
+            //this.GvFormulation.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvFormulationDataBindingComplete);
+            AddEvent();
             this.GvOrderNumber.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderNumberDataBindingComplete);
             this.GvBarcode.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvBarcodeDataBindingComplete);
             this.GvOrder.CellClick += new DataGridViewCellEventHandler(this.GvOrderCellClick);
@@ -2176,15 +2195,21 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void DataGridViewFormatting(DataGridView dgv)
         {
-            if (!dgv.Visible)
+            //if (!dgv.Visible)
+            //{
+            //    return;
+            //}
+            // 表示されてる画面でなければスルー
+            if (dgv.Name != GetActiveGridViewName().Name)
             {
                 return;
             }
-            if (!ViewGrid.Contains(dgv.Name))
-            {
-                ViewGrid.Add(dgv.Name);
-                return;
-            }
+            //if (!ViewGrid.Contains(dgv.Name))
+            //{
+            //    ViewGrid.Add(dgv.Name);
+            //    return;
+            //}
+            Console.WriteLine(dgv.Name);
             ViewGrid = new List<string>();
             var rowHeight = 48;
             var fontSizeProductCode = 24;
@@ -2568,5 +2593,42 @@ namespace NipponPaint.OrderManager
 
         }
 
+        /// <summary>
+        /// イベントの追加
+        /// </summary>
+        private void AddEvent()
+        {
+            this.GvOrder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
+            this.GvDetail.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvDetailDataBindingComplete);
+            this.GvFormulation.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvFormulationDataBindingComplete);
+        }
+
+        /// <summary>
+        /// イベントの削除
+        /// </summary>
+        private void RemoveEvent()
+        {
+            this.GvOrder.DataBindingComplete -= new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
+            this.GvDetail.DataBindingComplete -= new DataGridViewBindingCompleteEventHandler(this.GvDetailDataBindingComplete);
+            this.GvFormulation.DataBindingComplete -= new DataGridViewBindingCompleteEventHandler(this.GvFormulationDataBindingComplete);
+        }
+        /// <summary>
+        /// 表示されている画面のName取得
+        /// </summary>
+        /// <returns></returns>
+        private DataGridView GetActiveGridViewName()
+        {
+            switch (tabMain.SelectedIndex)
+            {
+                case TAB_INDEX_ORDER:
+                    return GvOrder;
+                case TAB_INDEX_DETAIL:
+                    return GvDetail;
+                case TAB_INDEX_FORMULATION:
+                    return GvFormulation;
+                default:
+                    return null;
+            }
+        }
     }
 }
