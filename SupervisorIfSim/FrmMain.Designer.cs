@@ -38,16 +38,9 @@ namespace SupervisorIfSim
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDetailFormula = new System.Windows.Forms.Panel();
             this.BtnRegistFormula = new System.Windows.Forms.Button();
-            this.PnlPrdIsprefilled = new System.Windows.Forms.Panel();
-            this.RdbPrdIsprefilledTrue = new System.Windows.Forms.RadioButton();
-            this.RdbPrdIsprefilledFalse = new System.Windows.Forms.RadioButton();
-            this.PnlPrdUm = new System.Windows.Forms.Panel();
-            this.RdbPrdUmCc = new System.Windows.Forms.RadioButton();
-            this.RdbPrdUmGram = new System.Windows.Forms.RadioButton();
-            this.PnlPrdStatus = new System.Windows.Forms.Panel();
-            this.RdbPrdStatusError = new System.Windows.Forms.RadioButton();
-            this.RdbPrdStatusCompleted = new System.Windows.Forms.RadioButton();
-            this.RdbPrdStatusUndischarged = new System.Windows.Forms.RadioButton();
+            this.RdbPrdIsprefilled = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
+            this.RdbPrdUm = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
+            this.RdbPrdStatus = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.label39 = new System.Windows.Forms.Label();
             this.TxtPrdPrefilledQty = new System.Windows.Forms.TextBox();
             this.TxtPrdNum = new System.Windows.Forms.TextBox();
@@ -77,33 +70,17 @@ namespace SupervisorIfSim
             this.pnlPreviewFormula = new System.Windows.Forms.Panel();
             this.GvFormula = new System.Windows.Forms.DataGridView();
             this.pnlBrcJob = new System.Windows.Forms.Panel();
+            this.RdbJobExitPosition = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
+            this.RdbJobPrinting3 = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
+            this.RdbJobPrinting2 = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
+            this.RdbJobPrinting1 = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
+            this.RdbJobLidCheck = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
+            this.RdbJobLidPlacing = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
+            this.RdbJobCapping = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
+            this.RdbJobMixing = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.RdbBrcStatus = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.BtnRegistBarcode = new System.Windows.Forms.Button();
             this.BtnRegistJob = new System.Windows.Forms.Button();
-            this.PnlJobExitPosition = new System.Windows.Forms.Panel();
-            this.RdbJobExitPositionTest = new System.Windows.Forms.RadioButton();
-            this.RdbJobExitPositionMain = new System.Windows.Forms.RadioButton();
-            this.PnlJobPrinting3 = new System.Windows.Forms.Panel();
-            this.RdbJobPrinting3Yes = new System.Windows.Forms.RadioButton();
-            this.RdbJobPrinting3No = new System.Windows.Forms.RadioButton();
-            this.PnlJobPrinting2 = new System.Windows.Forms.Panel();
-            this.RdbJobPrinting2Yes = new System.Windows.Forms.RadioButton();
-            this.RdbJobPrinting2No = new System.Windows.Forms.RadioButton();
-            this.PnlJobPrinting1 = new System.Windows.Forms.Panel();
-            this.RdbJobPrinting1Yes = new System.Windows.Forms.RadioButton();
-            this.RdbJobPrinting1No = new System.Windows.Forms.RadioButton();
-            this.PnlJobLidCheck = new System.Windows.Forms.Panel();
-            this.RdbJobLidCheckYes = new System.Windows.Forms.RadioButton();
-            this.RdbJobLidCheckNo = new System.Windows.Forms.RadioButton();
-            this.PnlJobLidPlacing = new System.Windows.Forms.Panel();
-            this.RdbJobLidPlacingYes = new System.Windows.Forms.RadioButton();
-            this.RdbJobLidPlacingNo = new System.Windows.Forms.RadioButton();
-            this.PnlJobCapping = new System.Windows.Forms.Panel();
-            this.RdbJobCappingYes = new System.Windows.Forms.RadioButton();
-            this.RdbJobCappingNo = new System.Windows.Forms.RadioButton();
-            this.PnlJobMixing = new System.Windows.Forms.Panel();
-            this.RdbJobMixingYes = new System.Windows.Forms.RadioButton();
-            this.RdbJobMixingNo = new System.Windows.Forms.RadioButton();
             this.TxtJobErr5 = new System.Windows.Forms.TextBox();
             this.label67 = new System.Windows.Forms.Label();
             this.TxtJobErr2 = new System.Windows.Forms.TextBox();
@@ -198,20 +175,9 @@ namespace SupervisorIfSim
             this.pnlHeader.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.pnlDetailFormula.SuspendLayout();
-            this.PnlPrdIsprefilled.SuspendLayout();
-            this.PnlPrdUm.SuspendLayout();
-            this.PnlPrdStatus.SuspendLayout();
             this.pnlPreviewFormula.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GvFormula)).BeginInit();
             this.pnlBrcJob.SuspendLayout();
-            this.PnlJobExitPosition.SuspendLayout();
-            this.PnlJobPrinting3.SuspendLayout();
-            this.PnlJobPrinting2.SuspendLayout();
-            this.PnlJobPrinting1.SuspendLayout();
-            this.PnlJobLidCheck.SuspendLayout();
-            this.PnlJobLidPlacing.SuspendLayout();
-            this.PnlJobCapping.SuspendLayout();
-            this.PnlJobMixing.SuspendLayout();
             this.pnlPreviewBarcode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GvBarcode)).BeginInit();
             this.SuspendLayout();
@@ -285,9 +251,10 @@ namespace SupervisorIfSim
             // 
             this.pnlDetailFormula.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlDetailFormula.Controls.Add(this.BtnRegistFormula);
-            this.pnlDetailFormula.Controls.Add(this.PnlPrdIsprefilled);
-            this.pnlDetailFormula.Controls.Add(this.PnlPrdUm);
-            this.pnlDetailFormula.Controls.Add(this.PnlPrdStatus);
+            this.pnlDetailFormula.Controls.Add(this.RdbPrdIsprefilled);
+            this.pnlDetailFormula.Controls.Add(this.RdbPrdUm);
+            this.pnlDetailFormula.Controls.Add(this.RdbPrdStatus);
+            this.pnlDetailFormula.Controls.Add(this.BtnRegist);
             this.pnlDetailFormula.Controls.Add(this.label39);
             this.pnlDetailFormula.Controls.Add(this.TxtPrdPrefilledQty);
             this.pnlDetailFormula.Controls.Add(this.TxtPrdNum);
@@ -320,7 +287,73 @@ namespace SupervisorIfSim
             this.pnlDetailFormula.Size = new System.Drawing.Size(420, 950);
             this.pnlDetailFormula.TabIndex = 57;
             // 
-            // BtnRegistFormula
+            // RdbPrdIsprefilled
+            // 
+            this.RdbPrdIsprefilled.FirstButtonDefault = 0;
+            this.RdbPrdIsprefilled.FirstButtonLeftPosition = 0;
+            this.RdbPrdIsprefilled.FirstButtonText = "false";
+            this.RdbPrdIsprefilled.FirstButtonVisible = true;
+            this.RdbPrdIsprefilled.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.RdbPrdIsprefilled.Location = new System.Drawing.Point(159, 368);
+            this.RdbPrdIsprefilled.Margin = new System.Windows.Forms.Padding(0);
+            this.RdbPrdIsprefilled.Name = "RdbPrdIsprefilled";
+            this.RdbPrdIsprefilled.SecondButtonDefault = 1;
+            this.RdbPrdIsprefilled.SecondButtonLeftPosition = 100;
+            this.RdbPrdIsprefilled.SecondButtonText = "true";
+            this.RdbPrdIsprefilled.SecondButtonVisible = true;
+            this.RdbPrdIsprefilled.Size = new System.Drawing.Size(220, 25);
+            this.RdbPrdIsprefilled.TabIndex = 199;
+            this.RdbPrdIsprefilled.ThirdButtonDefault = 2;
+            this.RdbPrdIsprefilled.ThirdButtonLeftPosition = 150;
+            this.RdbPrdIsprefilled.ThirdButtonText = "エラー";
+            this.RdbPrdIsprefilled.ThirdButtonVisible = false;
+            this.RdbPrdIsprefilled.Value = -99;
+            // 
+            // RdbPrdUm
+            // 
+            this.RdbPrdUm.FirstButtonDefault = 0;
+            this.RdbPrdUm.FirstButtonLeftPosition = 0;
+            this.RdbPrdUm.FirstButtonText = "グラム";
+            this.RdbPrdUm.FirstButtonVisible = true;
+            this.RdbPrdUm.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.RdbPrdUm.Location = new System.Drawing.Point(159, 160);
+            this.RdbPrdUm.Margin = new System.Windows.Forms.Padding(0);
+            this.RdbPrdUm.Name = "RdbPrdUm";
+            this.RdbPrdUm.SecondButtonDefault = 1;
+            this.RdbPrdUm.SecondButtonLeftPosition = 100;
+            this.RdbPrdUm.SecondButtonText = "ｃｃ";
+            this.RdbPrdUm.SecondButtonVisible = true;
+            this.RdbPrdUm.Size = new System.Drawing.Size(220, 25);
+            this.RdbPrdUm.TabIndex = 199;
+            this.RdbPrdUm.ThirdButtonDefault = 2;
+            this.RdbPrdUm.ThirdButtonLeftPosition = 150;
+            this.RdbPrdUm.ThirdButtonText = "エラー";
+            this.RdbPrdUm.ThirdButtonVisible = false;
+            this.RdbPrdUm.Value = -99;
+            // 
+            // RdbPrdStatus
+            // 
+            this.RdbPrdStatus.FirstButtonDefault = 0;
+            this.RdbPrdStatus.FirstButtonLeftPosition = 0;
+            this.RdbPrdStatus.FirstButtonText = "未吐出";
+            this.RdbPrdStatus.FirstButtonVisible = true;
+            this.RdbPrdStatus.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.RdbPrdStatus.Location = new System.Drawing.Point(159, 82);
+            this.RdbPrdStatus.Margin = new System.Windows.Forms.Padding(0);
+            this.RdbPrdStatus.Name = "RdbPrdStatus";
+            this.RdbPrdStatus.SecondButtonDefault = 1;
+            this.RdbPrdStatus.SecondButtonLeftPosition = 70;
+            this.RdbPrdStatus.SecondButtonText = "吐出完了";
+            this.RdbPrdStatus.SecondButtonVisible = true;
+            this.RdbPrdStatus.Size = new System.Drawing.Size(220, 25);
+            this.RdbPrdStatus.TabIndex = 199;
+            this.RdbPrdStatus.ThirdButtonDefault = 2;
+            this.RdbPrdStatus.ThirdButtonLeftPosition = 150;
+            this.RdbPrdStatus.ThirdButtonText = "エラー";
+            this.RdbPrdStatus.ThirdButtonVisible = true;
+            this.RdbPrdStatus.Value = -99;
+            // 
+            // BtnRegist
             // 
             this.BtnRegistFormula.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnRegistFormula.Location = new System.Drawing.Point(312, 10);
@@ -330,118 +363,6 @@ namespace SupervisorIfSim
             this.BtnRegistFormula.Text = "登録";
             this.BtnRegistFormula.UseVisualStyleBackColor = true;
             this.BtnRegistFormula.Click += new System.EventHandler(this.BtnRegistFormula_Click);
-            // 
-            // PnlPrdIsprefilled
-            // 
-            this.PnlPrdIsprefilled.Controls.Add(this.RdbPrdIsprefilledTrue);
-            this.PnlPrdIsprefilled.Controls.Add(this.RdbPrdIsprefilledFalse);
-            this.PnlPrdIsprefilled.Location = new System.Drawing.Point(159, 368);
-            this.PnlPrdIsprefilled.Name = "PnlPrdIsprefilled";
-            this.PnlPrdIsprefilled.Size = new System.Drawing.Size(220, 25);
-            this.PnlPrdIsprefilled.TabIndex = 72;
-            // 
-            // RdbPrdIsprefilledTrue
-            // 
-            this.RdbPrdIsprefilledTrue.AutoSize = true;
-            this.RdbPrdIsprefilledTrue.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbPrdIsprefilledTrue.Location = new System.Drawing.Point(76, 1);
-            this.RdbPrdIsprefilledTrue.Name = "RdbPrdIsprefilledTrue";
-            this.RdbPrdIsprefilledTrue.Size = new System.Drawing.Size(50, 22);
-            this.RdbPrdIsprefilledTrue.TabIndex = 1;
-            this.RdbPrdIsprefilledTrue.TabStop = true;
-            this.RdbPrdIsprefilledTrue.Text = "true";
-            this.RdbPrdIsprefilledTrue.UseVisualStyleBackColor = true;
-            // 
-            // RdbPrdIsprefilledFalse
-            // 
-            this.RdbPrdIsprefilledFalse.AutoSize = true;
-            this.RdbPrdIsprefilledFalse.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbPrdIsprefilledFalse.Location = new System.Drawing.Point(3, 1);
-            this.RdbPrdIsprefilledFalse.Name = "RdbPrdIsprefilledFalse";
-            this.RdbPrdIsprefilledFalse.Size = new System.Drawing.Size(53, 22);
-            this.RdbPrdIsprefilledFalse.TabIndex = 0;
-            this.RdbPrdIsprefilledFalse.TabStop = true;
-            this.RdbPrdIsprefilledFalse.Text = "false";
-            this.RdbPrdIsprefilledFalse.UseVisualStyleBackColor = true;
-            // 
-            // PnlPrdUm
-            // 
-            this.PnlPrdUm.Controls.Add(this.RdbPrdUmCc);
-            this.PnlPrdUm.Controls.Add(this.RdbPrdUmGram);
-            this.PnlPrdUm.Location = new System.Drawing.Point(159, 160);
-            this.PnlPrdUm.Name = "PnlPrdUm";
-            this.PnlPrdUm.Size = new System.Drawing.Size(220, 25);
-            this.PnlPrdUm.TabIndex = 56;
-            // 
-            // RdbPrdUmCc
-            // 
-            this.RdbPrdUmCc.AutoSize = true;
-            this.RdbPrdUmCc.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbPrdUmCc.Location = new System.Drawing.Point(76, 1);
-            this.RdbPrdUmCc.Name = "RdbPrdUmCc";
-            this.RdbPrdUmCc.Size = new System.Drawing.Size(50, 22);
-            this.RdbPrdUmCc.TabIndex = 1;
-            this.RdbPrdUmCc.TabStop = true;
-            this.RdbPrdUmCc.Text = "ｃｃ";
-            this.RdbPrdUmCc.UseVisualStyleBackColor = true;
-            // 
-            // RdbPrdUmGram
-            // 
-            this.RdbPrdUmGram.AutoSize = true;
-            this.RdbPrdUmGram.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbPrdUmGram.Location = new System.Drawing.Point(3, 1);
-            this.RdbPrdUmGram.Name = "RdbPrdUmGram";
-            this.RdbPrdUmGram.Size = new System.Drawing.Size(62, 22);
-            this.RdbPrdUmGram.TabIndex = 0;
-            this.RdbPrdUmGram.TabStop = true;
-            this.RdbPrdUmGram.Text = "グラム";
-            this.RdbPrdUmGram.UseVisualStyleBackColor = true;
-            // 
-            // PnlPrdStatus
-            // 
-            this.PnlPrdStatus.Controls.Add(this.RdbPrdStatusError);
-            this.PnlPrdStatus.Controls.Add(this.RdbPrdStatusCompleted);
-            this.PnlPrdStatus.Controls.Add(this.RdbPrdStatusUndischarged);
-            this.PnlPrdStatus.Location = new System.Drawing.Point(159, 82);
-            this.PnlPrdStatus.Name = "PnlPrdStatus";
-            this.PnlPrdStatus.Size = new System.Drawing.Size(220, 25);
-            this.PnlPrdStatus.TabIndex = 50;
-            // 
-            // RdbPrdStatusError
-            // 
-            this.RdbPrdStatusError.AutoSize = true;
-            this.RdbPrdStatusError.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbPrdStatusError.Location = new System.Drawing.Point(155, 1);
-            this.RdbPrdStatusError.Name = "RdbPrdStatusError";
-            this.RdbPrdStatusError.Size = new System.Drawing.Size(62, 22);
-            this.RdbPrdStatusError.TabIndex = 2;
-            this.RdbPrdStatusError.TabStop = true;
-            this.RdbPrdStatusError.Text = "エラー";
-            this.RdbPrdStatusError.UseVisualStyleBackColor = true;
-            // 
-            // RdbPrdStatusCompleted
-            // 
-            this.RdbPrdStatusCompleted.AutoSize = true;
-            this.RdbPrdStatusCompleted.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbPrdStatusCompleted.Location = new System.Drawing.Point(71, 1);
-            this.RdbPrdStatusCompleted.Name = "RdbPrdStatusCompleted";
-            this.RdbPrdStatusCompleted.Size = new System.Drawing.Size(74, 22);
-            this.RdbPrdStatusCompleted.TabIndex = 1;
-            this.RdbPrdStatusCompleted.TabStop = true;
-            this.RdbPrdStatusCompleted.Text = "吐出完了";
-            this.RdbPrdStatusCompleted.UseVisualStyleBackColor = true;
-            // 
-            // RdbPrdStatusUndischarged
-            // 
-            this.RdbPrdStatusUndischarged.AutoSize = true;
-            this.RdbPrdStatusUndischarged.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbPrdStatusUndischarged.Location = new System.Drawing.Point(3, 1);
-            this.RdbPrdStatusUndischarged.Name = "RdbPrdStatusUndischarged";
-            this.RdbPrdStatusUndischarged.Size = new System.Drawing.Size(62, 22);
-            this.RdbPrdStatusUndischarged.TabIndex = 0;
-            this.RdbPrdStatusUndischarged.TabStop = true;
-            this.RdbPrdStatusUndischarged.Text = "未吐出";
-            this.RdbPrdStatusUndischarged.UseVisualStyleBackColor = true;
             // 
             // label39
             // 
@@ -459,7 +380,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdPrefilledQty
             // 
-            this.TxtPrdPrefilledQty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtPrdPrefilledQty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdPrefilledQty.Location = new System.Drawing.Point(159, 394);
             this.TxtPrdPrefilledQty.Name = "TxtPrdPrefilledQty";
@@ -469,7 +390,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdNum
             // 
-            this.TxtPrdNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtPrdNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdNum.Location = new System.Drawing.Point(159, 342);
             this.TxtPrdNum.Name = "TxtPrdNum";
@@ -479,7 +400,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdPriority
             // 
-            this.TxtPrdPriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtPrdPriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdPriority.Location = new System.Drawing.Point(159, 316);
             this.TxtPrdPriority.Name = "TxtPrdPriority";
@@ -489,7 +410,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdEndDisp
             // 
-            this.TxtPrdEndDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtPrdEndDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdEndDisp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.TxtPrdEndDisp.Location = new System.Drawing.Point(159, 290);
@@ -500,7 +421,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdStartDisp
             // 
-            this.TxtPrdStartDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtPrdStartDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdStartDisp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.TxtPrdStartDisp.Location = new System.Drawing.Point(159, 264);
@@ -577,7 +498,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdQtyDisp
             // 
-            this.TxtPrdQtyDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtPrdQtyDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdQtyDisp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.TxtPrdQtyDisp.Location = new System.Drawing.Point(159, 238);
@@ -599,7 +520,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdQtyReq
             // 
-            this.TxtPrdQtyReq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtPrdQtyReq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdQtyReq.Location = new System.Drawing.Point(159, 212);
             this.TxtPrdQtyReq.Name = "TxtPrdQtyReq";
@@ -609,7 +530,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdSpecificGravity
             // 
-            this.TxtPrdSpecificGravity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtPrdSpecificGravity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdSpecificGravity.Location = new System.Drawing.Point(159, 186);
             this.TxtPrdSpecificGravity.Name = "TxtPrdSpecificGravity";
@@ -619,7 +540,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdDesc
             // 
-            this.TxtPrdDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtPrdDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdDesc.Enabled = false;
             this.TxtPrdDesc.Location = new System.Drawing.Point(159, 134);
@@ -631,7 +552,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdCode
             // 
-            this.TxtPrdCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtPrdCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdCode.Location = new System.Drawing.Point(159, 108);
             this.TxtPrdCode.Name = "TxtPrdCode";
@@ -707,7 +628,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdTimeInserted
             // 
-            this.TxtPrdTimeInserted.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TxtPrdTimeInserted.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdTimeInserted.Location = new System.Drawing.Point(159, 56);
             this.TxtPrdTimeInserted.Name = "TxtPrdTimeInserted";
@@ -752,17 +673,17 @@ namespace SupervisorIfSim
             // pnlBrcJob
             // 
             this.pnlBrcJob.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBrcJob.Controls.Add(this.RdbJobExitPosition);
+            this.pnlBrcJob.Controls.Add(this.RdbJobPrinting3);
+            this.pnlBrcJob.Controls.Add(this.RdbJobPrinting2);
+            this.pnlBrcJob.Controls.Add(this.RdbJobPrinting1);
+            this.pnlBrcJob.Controls.Add(this.RdbJobLidCheck);
+            this.pnlBrcJob.Controls.Add(this.RdbJobLidPlacing);
+            this.pnlBrcJob.Controls.Add(this.RdbJobCapping);
+            this.pnlBrcJob.Controls.Add(this.RdbJobMixing);
             this.pnlBrcJob.Controls.Add(this.RdbBrcStatus);
             this.pnlBrcJob.Controls.Add(this.BtnRegistBarcode);
             this.pnlBrcJob.Controls.Add(this.BtnRegistJob);
-            this.pnlBrcJob.Controls.Add(this.PnlJobExitPosition);
-            this.pnlBrcJob.Controls.Add(this.PnlJobPrinting3);
-            this.pnlBrcJob.Controls.Add(this.PnlJobPrinting2);
-            this.pnlBrcJob.Controls.Add(this.PnlJobPrinting1);
-            this.pnlBrcJob.Controls.Add(this.PnlJobLidCheck);
-            this.pnlBrcJob.Controls.Add(this.PnlJobLidPlacing);
-            this.pnlBrcJob.Controls.Add(this.PnlJobCapping);
-            this.pnlBrcJob.Controls.Add(this.PnlJobMixing);
             this.pnlBrcJob.Controls.Add(this.TxtJobErr5);
             this.pnlBrcJob.Controls.Add(this.label67);
             this.pnlBrcJob.Controls.Add(this.TxtJobErr2);
@@ -857,6 +778,182 @@ namespace SupervisorIfSim
             this.pnlBrcJob.Size = new System.Drawing.Size(724, 950);
             this.pnlBrcJob.TabIndex = 55;
             // 
+            // RdbJobExitPosition
+            // 
+            this.RdbJobExitPosition.FirstButtonDefault = 1;
+            this.RdbJobExitPosition.FirstButtonLeftPosition = 0;
+            this.RdbJobExitPosition.FirstButtonText = "メイン出口";
+            this.RdbJobExitPosition.FirstButtonVisible = true;
+            this.RdbJobExitPosition.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.RdbJobExitPosition.Location = new System.Drawing.Point(520, 556);
+            this.RdbJobExitPosition.Margin = new System.Windows.Forms.Padding(0);
+            this.RdbJobExitPosition.Name = "RdbJobExitPosition";
+            this.RdbJobExitPosition.SecondButtonDefault = 2;
+            this.RdbJobExitPosition.SecondButtonLeftPosition = 100;
+            this.RdbJobExitPosition.SecondButtonText = "テスト出口";
+            this.RdbJobExitPosition.SecondButtonVisible = true;
+            this.RdbJobExitPosition.Size = new System.Drawing.Size(200, 25);
+            this.RdbJobExitPosition.TabIndex = 198;
+            this.RdbJobExitPosition.ThirdButtonDefault = 3;
+            this.RdbJobExitPosition.ThirdButtonLeftPosition = 150;
+            this.RdbJobExitPosition.ThirdButtonText = "エラー";
+            this.RdbJobExitPosition.ThirdButtonVisible = false;
+            this.RdbJobExitPosition.Value = -99;
+            // 
+            // RdbJobPrinting3
+            // 
+            this.RdbJobPrinting3.FirstButtonDefault = 0;
+            this.RdbJobPrinting3.FirstButtonLeftPosition = 0;
+            this.RdbJobPrinting3.FirstButtonText = "操作なし";
+            this.RdbJobPrinting3.FirstButtonVisible = true;
+            this.RdbJobPrinting3.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.RdbJobPrinting3.Location = new System.Drawing.Point(520, 530);
+            this.RdbJobPrinting3.Margin = new System.Windows.Forms.Padding(0);
+            this.RdbJobPrinting3.Name = "RdbJobPrinting3";
+            this.RdbJobPrinting3.SecondButtonDefault = 1;
+            this.RdbJobPrinting3.SecondButtonLeftPosition = 90;
+            this.RdbJobPrinting3.SecondButtonText = "プリンター使用";
+            this.RdbJobPrinting3.SecondButtonVisible = true;
+            this.RdbJobPrinting3.Size = new System.Drawing.Size(200, 25);
+            this.RdbJobPrinting3.TabIndex = 197;
+            this.RdbJobPrinting3.ThirdButtonDefault = 2;
+            this.RdbJobPrinting3.ThirdButtonLeftPosition = 150;
+            this.RdbJobPrinting3.ThirdButtonText = "エラー";
+            this.RdbJobPrinting3.ThirdButtonVisible = false;
+            this.RdbJobPrinting3.Value = -99;
+            // 
+            // RdbJobPrinting2
+            // 
+            this.RdbJobPrinting2.FirstButtonDefault = 0;
+            this.RdbJobPrinting2.FirstButtonLeftPosition = 0;
+            this.RdbJobPrinting2.FirstButtonText = "操作なし";
+            this.RdbJobPrinting2.FirstButtonVisible = true;
+            this.RdbJobPrinting2.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.RdbJobPrinting2.Location = new System.Drawing.Point(520, 504);
+            this.RdbJobPrinting2.Margin = new System.Windows.Forms.Padding(0);
+            this.RdbJobPrinting2.Name = "RdbJobPrinting2";
+            this.RdbJobPrinting2.SecondButtonDefault = 1;
+            this.RdbJobPrinting2.SecondButtonLeftPosition = 90;
+            this.RdbJobPrinting2.SecondButtonText = "プリンター使用";
+            this.RdbJobPrinting2.SecondButtonVisible = true;
+            this.RdbJobPrinting2.Size = new System.Drawing.Size(200, 25);
+            this.RdbJobPrinting2.TabIndex = 196;
+            this.RdbJobPrinting2.ThirdButtonDefault = 2;
+            this.RdbJobPrinting2.ThirdButtonLeftPosition = 150;
+            this.RdbJobPrinting2.ThirdButtonText = "エラー";
+            this.RdbJobPrinting2.ThirdButtonVisible = false;
+            this.RdbJobPrinting2.Value = -99;
+            // 
+            // RdbJobPrinting1
+            // 
+            this.RdbJobPrinting1.FirstButtonDefault = 0;
+            this.RdbJobPrinting1.FirstButtonLeftPosition = 0;
+            this.RdbJobPrinting1.FirstButtonText = "操作なし";
+            this.RdbJobPrinting1.FirstButtonVisible = true;
+            this.RdbJobPrinting1.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.RdbJobPrinting1.Location = new System.Drawing.Point(520, 478);
+            this.RdbJobPrinting1.Margin = new System.Windows.Forms.Padding(0);
+            this.RdbJobPrinting1.Name = "RdbJobPrinting1";
+            this.RdbJobPrinting1.SecondButtonDefault = 1;
+            this.RdbJobPrinting1.SecondButtonLeftPosition = 90;
+            this.RdbJobPrinting1.SecondButtonText = "プリンター使用";
+            this.RdbJobPrinting1.SecondButtonVisible = true;
+            this.RdbJobPrinting1.Size = new System.Drawing.Size(200, 25);
+            this.RdbJobPrinting1.TabIndex = 195;
+            this.RdbJobPrinting1.ThirdButtonDefault = 2;
+            this.RdbJobPrinting1.ThirdButtonLeftPosition = 150;
+            this.RdbJobPrinting1.ThirdButtonText = "エラー";
+            this.RdbJobPrinting1.ThirdButtonVisible = false;
+            this.RdbJobPrinting1.Value = -99;
+            // 
+            // RdbJobLidCheck
+            // 
+            this.RdbJobLidCheck.FirstButtonDefault = 0;
+            this.RdbJobLidCheck.FirstButtonLeftPosition = 0;
+            this.RdbJobLidCheck.FirstButtonText = "操作なし";
+            this.RdbJobLidCheck.FirstButtonVisible = true;
+            this.RdbJobLidCheck.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.RdbJobLidCheck.Location = new System.Drawing.Point(520, 452);
+            this.RdbJobLidCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.RdbJobLidCheck.Name = "RdbJobLidCheck";
+            this.RdbJobLidCheck.SecondButtonDefault = 1;
+            this.RdbJobLidCheck.SecondButtonLeftPosition = 90;
+            this.RdbJobLidCheck.SecondButtonText = "蓋確認を行う";
+            this.RdbJobLidCheck.SecondButtonVisible = true;
+            this.RdbJobLidCheck.Size = new System.Drawing.Size(200, 25);
+            this.RdbJobLidCheck.TabIndex = 194;
+            this.RdbJobLidCheck.ThirdButtonDefault = 2;
+            this.RdbJobLidCheck.ThirdButtonLeftPosition = 150;
+            this.RdbJobLidCheck.ThirdButtonText = "エラー";
+            this.RdbJobLidCheck.ThirdButtonVisible = false;
+            this.RdbJobLidCheck.Value = -99;
+            // 
+            // RdbJobLidPlacing
+            // 
+            this.RdbJobLidPlacing.FirstButtonDefault = 0;
+            this.RdbJobLidPlacing.FirstButtonLeftPosition = 0;
+            this.RdbJobLidPlacing.FirstButtonText = "操作なし";
+            this.RdbJobLidPlacing.FirstButtonVisible = true;
+            this.RdbJobLidPlacing.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.RdbJobLidPlacing.Location = new System.Drawing.Point(520, 426);
+            this.RdbJobLidPlacing.Margin = new System.Windows.Forms.Padding(0);
+            this.RdbJobLidPlacing.Name = "RdbJobLidPlacing";
+            this.RdbJobLidPlacing.SecondButtonDefault = 1;
+            this.RdbJobLidPlacing.SecondButtonLeftPosition = 90;
+            this.RdbJobLidPlacing.SecondButtonText = "蓋が必要な缶";
+            this.RdbJobLidPlacing.SecondButtonVisible = true;
+            this.RdbJobLidPlacing.Size = new System.Drawing.Size(200, 25);
+            this.RdbJobLidPlacing.TabIndex = 193;
+            this.RdbJobLidPlacing.ThirdButtonDefault = 2;
+            this.RdbJobLidPlacing.ThirdButtonLeftPosition = 150;
+            this.RdbJobLidPlacing.ThirdButtonText = "エラー";
+            this.RdbJobLidPlacing.ThirdButtonVisible = false;
+            this.RdbJobLidPlacing.Value = -99;
+            // 
+            // RdbJobCapping
+            // 
+            this.RdbJobCapping.FirstButtonDefault = 0;
+            this.RdbJobCapping.FirstButtonLeftPosition = 0;
+            this.RdbJobCapping.FirstButtonText = "操作なし";
+            this.RdbJobCapping.FirstButtonVisible = true;
+            this.RdbJobCapping.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.RdbJobCapping.Location = new System.Drawing.Point(520, 400);
+            this.RdbJobCapping.Margin = new System.Windows.Forms.Padding(0);
+            this.RdbJobCapping.Name = "RdbJobCapping";
+            this.RdbJobCapping.SecondButtonDefault = 1;
+            this.RdbJobCapping.SecondButtonLeftPosition = 90;
+            this.RdbJobCapping.SecondButtonText = "栓が必要な缶";
+            this.RdbJobCapping.SecondButtonVisible = true;
+            this.RdbJobCapping.Size = new System.Drawing.Size(200, 25);
+            this.RdbJobCapping.TabIndex = 192;
+            this.RdbJobCapping.ThirdButtonDefault = 2;
+            this.RdbJobCapping.ThirdButtonLeftPosition = 150;
+            this.RdbJobCapping.ThirdButtonText = "エラー";
+            this.RdbJobCapping.ThirdButtonVisible = false;
+            this.RdbJobCapping.Value = -99;
+            // 
+            // RdbJobMixing
+            // 
+            this.RdbJobMixing.FirstButtonDefault = 0;
+            this.RdbJobMixing.FirstButtonLeftPosition = 0;
+            this.RdbJobMixing.FirstButtonText = "操作なし";
+            this.RdbJobMixing.FirstButtonVisible = true;
+            this.RdbJobMixing.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.RdbJobMixing.Location = new System.Drawing.Point(520, 322);
+            this.RdbJobMixing.Margin = new System.Windows.Forms.Padding(0);
+            this.RdbJobMixing.Name = "RdbJobMixing";
+            this.RdbJobMixing.SecondButtonDefault = 1;
+            this.RdbJobMixing.SecondButtonLeftPosition = 90;
+            this.RdbJobMixing.SecondButtonText = "攪拌する";
+            this.RdbJobMixing.SecondButtonVisible = true;
+            this.RdbJobMixing.Size = new System.Drawing.Size(200, 25);
+            this.RdbJobMixing.TabIndex = 191;
+            this.RdbJobMixing.ThirdButtonDefault = 2;
+            this.RdbJobMixing.ThirdButtonLeftPosition = 150;
+            this.RdbJobMixing.ThirdButtonText = "エラー";
+            this.RdbJobMixing.ThirdButtonVisible = false;
+            this.RdbJobMixing.Value = -99;
+            // 
             // RdbBrcStatus
             // 
             this.RdbBrcStatus.FirstButtonDefault = 0;
@@ -898,270 +995,6 @@ namespace SupervisorIfSim
             this.BtnRegistJob.Text = "登録";
             this.BtnRegistJob.UseVisualStyleBackColor = true;
             this.BtnRegistJob.Click += new System.EventHandler(this.BtnRegistJob_Click);
-            // 
-            // PnlJobExitPosition
-            // 
-            this.PnlJobExitPosition.Controls.Add(this.RdbJobExitPositionTest);
-            this.PnlJobExitPosition.Controls.Add(this.RdbJobExitPositionMain);
-            this.PnlJobExitPosition.Location = new System.Drawing.Point(520, 556);
-            this.PnlJobExitPosition.Name = "PnlJobExitPosition";
-            this.PnlJobExitPosition.Size = new System.Drawing.Size(200, 25);
-            this.PnlJobExitPosition.TabIndex = 167;
-            // 
-            // RdbJobExitPositionTest
-            // 
-            this.RdbJobExitPositionTest.AutoSize = true;
-            this.RdbJobExitPositionTest.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobExitPositionTest.Location = new System.Drawing.Point(100, 1);
-            this.RdbJobExitPositionTest.Name = "RdbJobExitPositionTest";
-            this.RdbJobExitPositionTest.Size = new System.Drawing.Size(86, 22);
-            this.RdbJobExitPositionTest.TabIndex = 1;
-            this.RdbJobExitPositionTest.TabStop = true;
-            this.RdbJobExitPositionTest.Text = "テスト出口";
-            this.RdbJobExitPositionTest.UseVisualStyleBackColor = true;
-            // 
-            // RdbJobExitPositionMain
-            // 
-            this.RdbJobExitPositionMain.AutoSize = true;
-            this.RdbJobExitPositionMain.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobExitPositionMain.Location = new System.Drawing.Point(3, 1);
-            this.RdbJobExitPositionMain.Name = "RdbJobExitPositionMain";
-            this.RdbJobExitPositionMain.Size = new System.Drawing.Size(86, 22);
-            this.RdbJobExitPositionMain.TabIndex = 0;
-            this.RdbJobExitPositionMain.TabStop = true;
-            this.RdbJobExitPositionMain.Text = "メイン出口";
-            this.RdbJobExitPositionMain.UseVisualStyleBackColor = true;
-            // 
-            // PnlJobPrinting3
-            // 
-            this.PnlJobPrinting3.Controls.Add(this.RdbJobPrinting3Yes);
-            this.PnlJobPrinting3.Controls.Add(this.RdbJobPrinting3No);
-            this.PnlJobPrinting3.Location = new System.Drawing.Point(520, 530);
-            this.PnlJobPrinting3.Name = "PnlJobPrinting3";
-            this.PnlJobPrinting3.Size = new System.Drawing.Size(200, 25);
-            this.PnlJobPrinting3.TabIndex = 165;
-            // 
-            // RdbJobPrinting3Yes
-            // 
-            this.RdbJobPrinting3Yes.AutoSize = true;
-            this.RdbJobPrinting3Yes.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobPrinting3Yes.Location = new System.Drawing.Point(86, 1);
-            this.RdbJobPrinting3Yes.Name = "RdbJobPrinting3Yes";
-            this.RdbJobPrinting3Yes.Size = new System.Drawing.Size(110, 22);
-            this.RdbJobPrinting3Yes.TabIndex = 1;
-            this.RdbJobPrinting3Yes.TabStop = true;
-            this.RdbJobPrinting3Yes.Text = "プリンター使用";
-            this.RdbJobPrinting3Yes.UseVisualStyleBackColor = true;
-            // 
-            // RdbJobPrinting3No
-            // 
-            this.RdbJobPrinting3No.AutoSize = true;
-            this.RdbJobPrinting3No.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobPrinting3No.Location = new System.Drawing.Point(3, 1);
-            this.RdbJobPrinting3No.Name = "RdbJobPrinting3No";
-            this.RdbJobPrinting3No.Size = new System.Drawing.Size(74, 22);
-            this.RdbJobPrinting3No.TabIndex = 0;
-            this.RdbJobPrinting3No.TabStop = true;
-            this.RdbJobPrinting3No.Text = "操作なし";
-            this.RdbJobPrinting3No.UseVisualStyleBackColor = true;
-            // 
-            // PnlJobPrinting2
-            // 
-            this.PnlJobPrinting2.Controls.Add(this.RdbJobPrinting2Yes);
-            this.PnlJobPrinting2.Controls.Add(this.RdbJobPrinting2No);
-            this.PnlJobPrinting2.Location = new System.Drawing.Point(520, 504);
-            this.PnlJobPrinting2.Name = "PnlJobPrinting2";
-            this.PnlJobPrinting2.Size = new System.Drawing.Size(200, 25);
-            this.PnlJobPrinting2.TabIndex = 163;
-            // 
-            // RdbJobPrinting2Yes
-            // 
-            this.RdbJobPrinting2Yes.AutoSize = true;
-            this.RdbJobPrinting2Yes.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobPrinting2Yes.Location = new System.Drawing.Point(86, 1);
-            this.RdbJobPrinting2Yes.Name = "RdbJobPrinting2Yes";
-            this.RdbJobPrinting2Yes.Size = new System.Drawing.Size(110, 22);
-            this.RdbJobPrinting2Yes.TabIndex = 1;
-            this.RdbJobPrinting2Yes.TabStop = true;
-            this.RdbJobPrinting2Yes.Text = "プリンター使用";
-            this.RdbJobPrinting2Yes.UseVisualStyleBackColor = true;
-            // 
-            // RdbJobPrinting2No
-            // 
-            this.RdbJobPrinting2No.AutoSize = true;
-            this.RdbJobPrinting2No.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobPrinting2No.Location = new System.Drawing.Point(3, 1);
-            this.RdbJobPrinting2No.Name = "RdbJobPrinting2No";
-            this.RdbJobPrinting2No.Size = new System.Drawing.Size(74, 22);
-            this.RdbJobPrinting2No.TabIndex = 0;
-            this.RdbJobPrinting2No.TabStop = true;
-            this.RdbJobPrinting2No.Text = "操作なし";
-            this.RdbJobPrinting2No.UseVisualStyleBackColor = true;
-            // 
-            // PnlJobPrinting1
-            // 
-            this.PnlJobPrinting1.Controls.Add(this.RdbJobPrinting1Yes);
-            this.PnlJobPrinting1.Controls.Add(this.RdbJobPrinting1No);
-            this.PnlJobPrinting1.Location = new System.Drawing.Point(520, 478);
-            this.PnlJobPrinting1.Name = "PnlJobPrinting1";
-            this.PnlJobPrinting1.Size = new System.Drawing.Size(200, 25);
-            this.PnlJobPrinting1.TabIndex = 161;
-            // 
-            // RdbJobPrinting1Yes
-            // 
-            this.RdbJobPrinting1Yes.AutoSize = true;
-            this.RdbJobPrinting1Yes.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobPrinting1Yes.Location = new System.Drawing.Point(86, 1);
-            this.RdbJobPrinting1Yes.Name = "RdbJobPrinting1Yes";
-            this.RdbJobPrinting1Yes.Size = new System.Drawing.Size(110, 22);
-            this.RdbJobPrinting1Yes.TabIndex = 1;
-            this.RdbJobPrinting1Yes.TabStop = true;
-            this.RdbJobPrinting1Yes.Text = "プリンター使用";
-            this.RdbJobPrinting1Yes.UseVisualStyleBackColor = true;
-            // 
-            // RdbJobPrinting1No
-            // 
-            this.RdbJobPrinting1No.AutoSize = true;
-            this.RdbJobPrinting1No.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobPrinting1No.Location = new System.Drawing.Point(3, 1);
-            this.RdbJobPrinting1No.Name = "RdbJobPrinting1No";
-            this.RdbJobPrinting1No.Size = new System.Drawing.Size(74, 22);
-            this.RdbJobPrinting1No.TabIndex = 0;
-            this.RdbJobPrinting1No.TabStop = true;
-            this.RdbJobPrinting1No.Text = "操作なし";
-            this.RdbJobPrinting1No.UseVisualStyleBackColor = true;
-            // 
-            // PnlJobLidCheck
-            // 
-            this.PnlJobLidCheck.Controls.Add(this.RdbJobLidCheckYes);
-            this.PnlJobLidCheck.Controls.Add(this.RdbJobLidCheckNo);
-            this.PnlJobLidCheck.Location = new System.Drawing.Point(520, 452);
-            this.PnlJobLidCheck.Name = "PnlJobLidCheck";
-            this.PnlJobLidCheck.Size = new System.Drawing.Size(200, 25);
-            this.PnlJobLidCheck.TabIndex = 159;
-            // 
-            // RdbJobLidCheckYes
-            // 
-            this.RdbJobLidCheckYes.AutoSize = true;
-            this.RdbJobLidCheckYes.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobLidCheckYes.Location = new System.Drawing.Point(86, 1);
-            this.RdbJobLidCheckYes.Name = "RdbJobLidCheckYes";
-            this.RdbJobLidCheckYes.Size = new System.Drawing.Size(98, 22);
-            this.RdbJobLidCheckYes.TabIndex = 1;
-            this.RdbJobLidCheckYes.TabStop = true;
-            this.RdbJobLidCheckYes.Text = "蓋確認を行う";
-            this.RdbJobLidCheckYes.UseVisualStyleBackColor = true;
-            // 
-            // RdbJobLidCheckNo
-            // 
-            this.RdbJobLidCheckNo.AutoSize = true;
-            this.RdbJobLidCheckNo.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobLidCheckNo.Location = new System.Drawing.Point(3, 1);
-            this.RdbJobLidCheckNo.Name = "RdbJobLidCheckNo";
-            this.RdbJobLidCheckNo.Size = new System.Drawing.Size(74, 22);
-            this.RdbJobLidCheckNo.TabIndex = 0;
-            this.RdbJobLidCheckNo.TabStop = true;
-            this.RdbJobLidCheckNo.Text = "操作なし";
-            this.RdbJobLidCheckNo.UseVisualStyleBackColor = true;
-            // 
-            // PnlJobLidPlacing
-            // 
-            this.PnlJobLidPlacing.Controls.Add(this.RdbJobLidPlacingYes);
-            this.PnlJobLidPlacing.Controls.Add(this.RdbJobLidPlacingNo);
-            this.PnlJobLidPlacing.Location = new System.Drawing.Point(520, 426);
-            this.PnlJobLidPlacing.Name = "PnlJobLidPlacing";
-            this.PnlJobLidPlacing.Size = new System.Drawing.Size(200, 25);
-            this.PnlJobLidPlacing.TabIndex = 157;
-            // 
-            // RdbJobLidPlacingYes
-            // 
-            this.RdbJobLidPlacingYes.AutoSize = true;
-            this.RdbJobLidPlacingYes.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobLidPlacingYes.Location = new System.Drawing.Point(86, 1);
-            this.RdbJobLidPlacingYes.Name = "RdbJobLidPlacingYes";
-            this.RdbJobLidPlacingYes.Size = new System.Drawing.Size(98, 22);
-            this.RdbJobLidPlacingYes.TabIndex = 1;
-            this.RdbJobLidPlacingYes.TabStop = true;
-            this.RdbJobLidPlacingYes.Text = "蓋が必要な缶";
-            this.RdbJobLidPlacingYes.UseVisualStyleBackColor = true;
-            // 
-            // RdbJobLidPlacingNo
-            // 
-            this.RdbJobLidPlacingNo.AutoSize = true;
-            this.RdbJobLidPlacingNo.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobLidPlacingNo.Location = new System.Drawing.Point(3, 1);
-            this.RdbJobLidPlacingNo.Name = "RdbJobLidPlacingNo";
-            this.RdbJobLidPlacingNo.Size = new System.Drawing.Size(74, 22);
-            this.RdbJobLidPlacingNo.TabIndex = 0;
-            this.RdbJobLidPlacingNo.TabStop = true;
-            this.RdbJobLidPlacingNo.Text = "操作なし";
-            this.RdbJobLidPlacingNo.UseVisualStyleBackColor = true;
-            // 
-            // PnlJobCapping
-            // 
-            this.PnlJobCapping.Controls.Add(this.RdbJobCappingYes);
-            this.PnlJobCapping.Controls.Add(this.RdbJobCappingNo);
-            this.PnlJobCapping.Location = new System.Drawing.Point(520, 400);
-            this.PnlJobCapping.Name = "PnlJobCapping";
-            this.PnlJobCapping.Size = new System.Drawing.Size(200, 25);
-            this.PnlJobCapping.TabIndex = 155;
-            // 
-            // RdbJobCappingYes
-            // 
-            this.RdbJobCappingYes.AutoSize = true;
-            this.RdbJobCappingYes.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobCappingYes.Location = new System.Drawing.Point(86, 1);
-            this.RdbJobCappingYes.Name = "RdbJobCappingYes";
-            this.RdbJobCappingYes.Size = new System.Drawing.Size(98, 22);
-            this.RdbJobCappingYes.TabIndex = 1;
-            this.RdbJobCappingYes.TabStop = true;
-            this.RdbJobCappingYes.Text = "栓が必要な缶";
-            this.RdbJobCappingYes.UseVisualStyleBackColor = true;
-            // 
-            // RdbJobCappingNo
-            // 
-            this.RdbJobCappingNo.AutoSize = true;
-            this.RdbJobCappingNo.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobCappingNo.Location = new System.Drawing.Point(3, 1);
-            this.RdbJobCappingNo.Name = "RdbJobCappingNo";
-            this.RdbJobCappingNo.Size = new System.Drawing.Size(74, 22);
-            this.RdbJobCappingNo.TabIndex = 0;
-            this.RdbJobCappingNo.TabStop = true;
-            this.RdbJobCappingNo.Text = "操作なし";
-            this.RdbJobCappingNo.UseVisualStyleBackColor = true;
-            // 
-            // PnlJobMixing
-            // 
-            this.PnlJobMixing.Controls.Add(this.RdbJobMixingYes);
-            this.PnlJobMixing.Controls.Add(this.RdbJobMixingNo);
-            this.PnlJobMixing.Location = new System.Drawing.Point(520, 322);
-            this.PnlJobMixing.Name = "PnlJobMixing";
-            this.PnlJobMixing.Size = new System.Drawing.Size(200, 25);
-            this.PnlJobMixing.TabIndex = 149;
-            // 
-            // RdbJobMixingYes
-            // 
-            this.RdbJobMixingYes.AutoSize = true;
-            this.RdbJobMixingYes.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobMixingYes.Location = new System.Drawing.Point(86, 1);
-            this.RdbJobMixingYes.Name = "RdbJobMixingYes";
-            this.RdbJobMixingYes.Size = new System.Drawing.Size(74, 22);
-            this.RdbJobMixingYes.TabIndex = 1;
-            this.RdbJobMixingYes.TabStop = true;
-            this.RdbJobMixingYes.Text = "撹拌する";
-            this.RdbJobMixingYes.UseVisualStyleBackColor = true;
-            // 
-            // RdbJobMixingNo
-            // 
-            this.RdbJobMixingNo.AutoSize = true;
-            this.RdbJobMixingNo.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbJobMixingNo.Location = new System.Drawing.Point(3, 1);
-            this.RdbJobMixingNo.Name = "RdbJobMixingNo";
-            this.RdbJobMixingNo.Size = new System.Drawing.Size(74, 22);
-            this.RdbJobMixingNo.TabIndex = 0;
-            this.RdbJobMixingNo.TabStop = true;
-            this.RdbJobMixingNo.Text = "操作なし";
-            this.RdbJobMixingNo.UseVisualStyleBackColor = true;
             // 
             // TxtJobErr5
             // 
@@ -2079,32 +1912,10 @@ namespace SupervisorIfSim
             this.pnlMain.ResumeLayout(false);
             this.pnlDetailFormula.ResumeLayout(false);
             this.pnlDetailFormula.PerformLayout();
-            this.PnlPrdIsprefilled.ResumeLayout(false);
-            this.PnlPrdIsprefilled.PerformLayout();
-            this.PnlPrdUm.ResumeLayout(false);
-            this.PnlPrdUm.PerformLayout();
-            this.PnlPrdStatus.ResumeLayout(false);
-            this.PnlPrdStatus.PerformLayout();
             this.pnlPreviewFormula.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GvFormula)).EndInit();
             this.pnlBrcJob.ResumeLayout(false);
             this.pnlBrcJob.PerformLayout();
-            this.PnlJobExitPosition.ResumeLayout(false);
-            this.PnlJobExitPosition.PerformLayout();
-            this.PnlJobPrinting3.ResumeLayout(false);
-            this.PnlJobPrinting3.PerformLayout();
-            this.PnlJobPrinting2.ResumeLayout(false);
-            this.PnlJobPrinting2.PerformLayout();
-            this.PnlJobPrinting1.ResumeLayout(false);
-            this.PnlJobPrinting1.PerformLayout();
-            this.PnlJobLidCheck.ResumeLayout(false);
-            this.PnlJobLidCheck.PerformLayout();
-            this.PnlJobLidPlacing.ResumeLayout(false);
-            this.PnlJobLidPlacing.PerformLayout();
-            this.PnlJobCapping.ResumeLayout(false);
-            this.PnlJobCapping.PerformLayout();
-            this.PnlJobMixing.ResumeLayout(false);
-            this.PnlJobMixing.PerformLayout();
             this.pnlPreviewBarcode.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GvBarcode)).EndInit();
             this.ResumeLayout(false);
@@ -2124,16 +1935,6 @@ namespace SupervisorIfSim
         private System.Windows.Forms.DataGridView GvBarcode;
         private System.Windows.Forms.Panel pnlDetailFormula;
         private System.Windows.Forms.Button BtnRegistFormula;
-        private System.Windows.Forms.Panel PnlPrdIsprefilled;
-        private System.Windows.Forms.RadioButton RdbPrdIsprefilledTrue;
-        private System.Windows.Forms.RadioButton RdbPrdIsprefilledFalse;
-        private System.Windows.Forms.Panel PnlPrdUm;
-        private System.Windows.Forms.RadioButton RdbPrdUmCc;
-        private System.Windows.Forms.RadioButton RdbPrdUmGram;
-        private System.Windows.Forms.Panel PnlPrdStatus;
-        private System.Windows.Forms.RadioButton RdbPrdStatusError;
-        private System.Windows.Forms.RadioButton RdbPrdStatusCompleted;
-        private System.Windows.Forms.RadioButton RdbPrdStatusUndischarged;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.TextBox TxtPrdPrefilledQty;
         private System.Windows.Forms.TextBox TxtPrdNum;
@@ -2165,30 +1966,6 @@ namespace SupervisorIfSim
         private System.Windows.Forms.Panel pnlBrcJob;
         private System.Windows.Forms.Button BtnRegistBarcode;
         private System.Windows.Forms.Button BtnRegistJob;
-        private System.Windows.Forms.Panel PnlJobExitPosition;
-        private System.Windows.Forms.RadioButton RdbJobExitPositionTest;
-        private System.Windows.Forms.RadioButton RdbJobExitPositionMain;
-        private System.Windows.Forms.Panel PnlJobPrinting3;
-        private System.Windows.Forms.RadioButton RdbJobPrinting3Yes;
-        private System.Windows.Forms.RadioButton RdbJobPrinting3No;
-        private System.Windows.Forms.Panel PnlJobPrinting2;
-        private System.Windows.Forms.RadioButton RdbJobPrinting2Yes;
-        private System.Windows.Forms.RadioButton RdbJobPrinting2No;
-        private System.Windows.Forms.Panel PnlJobPrinting1;
-        private System.Windows.Forms.RadioButton RdbJobPrinting1Yes;
-        private System.Windows.Forms.RadioButton RdbJobPrinting1No;
-        private System.Windows.Forms.Panel PnlJobLidCheck;
-        private System.Windows.Forms.RadioButton RdbJobLidCheckYes;
-        private System.Windows.Forms.RadioButton RdbJobLidCheckNo;
-        private System.Windows.Forms.Panel PnlJobLidPlacing;
-        private System.Windows.Forms.RadioButton RdbJobLidPlacingYes;
-        private System.Windows.Forms.RadioButton RdbJobLidPlacingNo;
-        private System.Windows.Forms.Panel PnlJobCapping;
-        private System.Windows.Forms.RadioButton RdbJobCappingYes;
-        private System.Windows.Forms.RadioButton RdbJobCappingNo;
-        private System.Windows.Forms.Panel PnlJobMixing;
-        private System.Windows.Forms.RadioButton RdbJobMixingYes;
-        private System.Windows.Forms.RadioButton RdbJobMixingNo;
         private System.Windows.Forms.TextBox TxtJobErr5;
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.TextBox TxtJobErr2;
@@ -2278,6 +2055,17 @@ namespace SupervisorIfSim
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbBrcStatus;
+        private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbJobMixing;
+        private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbJobCapping;
+        private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbJobLidPlacing;
+        private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbJobLidCheck;
+        private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbJobPrinting1;
+        private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbJobPrinting2;
+        private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbJobPrinting3;
+        private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbJobExitPosition;
+        private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbPrdStatus;
+        private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbPrdUm;
+        private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbPrdIsprefilled;
     }
 }
 
