@@ -254,7 +254,6 @@ namespace SupervisorIfSim
             this.pnlDetailFormula.Controls.Add(this.RdbPrdIsprefilled);
             this.pnlDetailFormula.Controls.Add(this.RdbPrdUm);
             this.pnlDetailFormula.Controls.Add(this.RdbPrdStatus);
-            this.pnlDetailFormula.Controls.Add(this.BtnRegist);
             this.pnlDetailFormula.Controls.Add(this.label39);
             this.pnlDetailFormula.Controls.Add(this.TxtPrdPrefilledQty);
             this.pnlDetailFormula.Controls.Add(this.TxtPrdNum);
