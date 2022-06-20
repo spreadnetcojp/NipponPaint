@@ -178,6 +178,8 @@ namespace NipponPaint.OrderManager
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_19", DisplayName = "重量19", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Urgent", DisplayName = "Urgent", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "CONVERT(DATE,HG_SS_Shipping_Date)", DisplayName = "SS出荷予定日日付型", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Product_Name", DisplayName = "品名", Visible = true, Width = 500 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "HG_HG_Delivery_Code", DisplayName = "運送区分", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
         };
         private List<GridViewSetting> ViewSettingsBarcodes = new List<GridViewSetting>()
         {
@@ -1503,45 +1505,49 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void tabMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //SelectDataGridViewRowByProductCode();
-            int gdvSelectedIndex = 0;
-            //変更前に選択していたタブを取得
-            switch (selectingTabIndex)
+            // 一覧にデータがない場合は処理をしない
+            if (GvOrder.CurrentRow != null)
             {
-                case TAB_INDEX_ORDER:
-                    gdvSelectedIndex = GvOrder.CurrentRow.Index;
-                    break;
-                case TAB_INDEX_DETAIL:
-                    gdvSelectedIndex = GvDetail.CurrentRow.Index;
-                    break;
-                case TAB_INDEX_FORMULATION:
-                    gdvSelectedIndex = GvFormulation.CurrentRow.Index;
-                    break;
-                case TAB_INDEX_CAN:
-                    gdvSelectedIndex = GvOrderNumber.CurrentRow.Index;
-                    break;
-                default:
-                    gdvSelectedIndex = GvOrder.CurrentRow.Index;
-                    break;
-            }
-            //現在選択中のタブを取得する
-            switch (tabMain.SelectedIndex)
-            {
-                case TAB_INDEX_ORDER:
-                    GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[2];
-                    break;
-                case TAB_INDEX_DETAIL:
-                    GvDetail.CurrentCell = GvDetail.Rows[gdvSelectedIndex].Cells[2];
-                    break;
-                case TAB_INDEX_FORMULATION:
-                    GvFormulation.CurrentCell = GvFormulation.Rows[gdvSelectedIndex].Cells[2];
-                    break;
-                case TAB_INDEX_CAN:
-                    GvOrderNumber.CurrentCell = GvOrderNumber.Rows[gdvSelectedIndex].Cells[2];
-                    break;
-                default:
-                    GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[2];
-                    break;
+                //SelectDataGridViewRowByProductCode();
+                int gdvSelectedIndex = 0;
+                //変更前に選択していたタブを取得
+                switch (selectingTabIndex)
+                {
+                    case TAB_INDEX_ORDER:
+                        gdvSelectedIndex = GvOrder.CurrentRow.Index;
+                        break;
+                    case TAB_INDEX_DETAIL:
+                        gdvSelectedIndex = GvDetail.CurrentRow.Index;
+                        break;
+                    case TAB_INDEX_FORMULATION:
+                        gdvSelectedIndex = GvFormulation.CurrentRow.Index;
+                        break;
+                    case TAB_INDEX_CAN:
+                        gdvSelectedIndex = GvOrderNumber.CurrentRow.Index;
+                        break;
+                    default:
+                        gdvSelectedIndex = GvOrder.CurrentRow.Index;
+                        break;
+                }
+                //現在選択中のタブを取得する
+                switch (tabMain.SelectedIndex)
+                {
+                    case TAB_INDEX_ORDER:
+                        GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[2];
+                        break;
+                    case TAB_INDEX_DETAIL:
+                        GvDetail.CurrentCell = GvDetail.Rows[gdvSelectedIndex].Cells[2];
+                        break;
+                    case TAB_INDEX_FORMULATION:
+                        GvFormulation.CurrentCell = GvFormulation.Rows[gdvSelectedIndex].Cells[2];
+                        break;
+                    case TAB_INDEX_CAN:
+                        GvOrderNumber.CurrentCell = GvOrderNumber.Rows[gdvSelectedIndex].Cells[2];
+                        break;
+                    default:
+                        GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[2];
+                        break;
+                }
             }
             //現在選択中のタブ(変更後)のタブを保存する
             selectingTabIndex = tabMain.SelectedIndex;
