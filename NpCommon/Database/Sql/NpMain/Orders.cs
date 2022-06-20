@@ -180,6 +180,40 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_WEIGHT_18 = "Weight_18";
         private const string COLUMN_COLORANT_19 = "Colorant_19";
         public const string COLUMN_WEIGHT_19 = "Weight_19";
+        private const string COLUMN_HG_SS_SHIPPING_DATE = "HG_SS_Shipping_Date";
+        private const string COLUMN_Urgent = "Urgent";
+        private const string COLUMN_Product_Code = "Product_Code";
+        private const string COLUMN_HG_ORDER_INVOICE_ID = "HG_Order_Invoice_ID";
+        private const string COLUMN_HG_DATA_NUMBER = "HG_Data_Number";
+        private const string COLUMN_HG_TINTING_PRICE_RANK = "HG_Tinting_Price_Rank";
+        private const string COLUMN_OPERATOR_NAME = "Operator_Name";
+        private const string COLUMN_HG_Order_Input_Date = "HG_Order_Input_Date";
+        private const string COLUMN_HG_Order_Input_Time = "HG_Order_Input_Time";
+        private const string COLUMN_HG_SALES_IN_CHARGE = "HG_Sales_in_Charge";
+        private const string COLUMN_HG_PRODUCT_NO = "HG_Product_No";
+        private const string COLUMN_HG_NPC_ARTICLE_NUMBER = "HG_NPC_Article_Number";
+        private const string COLUMN_HG_PRODUCT_NAMEONLY = "HG_Product_NameOnly";
+        private const string COLUMN_HG_COLOR_NAME = "HG_Color_Name";
+        private const string COLUMN_HG_VOLUME_CODE = "HG_Volume_Code";
+        private const string COLUMN_HG_ORDER_CANS = "HG_Order_Cans";
+        private const string COLUMN_HG_GLOSS_DICTATION = "HG_Gloss_Dictation";
+        private const string COLUMN_HG_SUPPLEMENT_DICTATION = "HG_Supplement_Dictation";
+        private const string COLUMN_HG_COLOR_SAMPLE = "HG_Color_Sample";
+        private const string COLUMN_HG_SAMPLE_PLATES = "HG_Sample_Plates";
+        private const string COLUMN_HG_NOTE = "HG_Note";
+        private const string COLUMN_HG_COMMENTS = "HG_Comments";
+        private const string COLUMN_HG_SAMPLE_BACK = "HG_Sample_Back";
+        private const string COLUMN_HG_TINTING_DIRECTION = "HG_Tinting_Direction";
+        private const string COLUMN_HG_SALES_BRANCH_NAME = "HG_Sales_Branch_Name";
+        private const string COLUMN_HG_CUSTOMER_CODE = "HG_Customer_Code";
+        private const string COLUMN_HG_CUSTOMER_NAME_KANJI = "HG_Customer_Name_Kanji";
+        private const string COLUMN_HG_SS_CODE = "HG_SS_Code";
+        private const string COLUMN_HG_TRUCK_COMPANY_NAME = "HG_Truck_Company_Name";
+        private const string COLUMN_HG_HG_SHIPPING_ID = "HG_HG_Shipping_ID";
+        private const string COLUMN_HG_DELIVERY_NAME_KANJI = "HG_Delivery_Name_Kanji";
+        private const string COLUMN_HG_DELIVERY_ADDRESS_KANJI = "HG_Delivery_Address_Kanji";
+        private const string COLUMN_HG_DELIVERY_TELNO = "HG_Delivery_TelNo";
+        private const string COLUMN_HG_DELIVERY_DATE = "HG_Delivery_Date";
 
         #endregion
 
@@ -298,6 +332,55 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($" ,o.{COLUMN_ORDER_ID}                      AS OrderId ");
             sql.Append($"FROM NP_MAIN.dbo.{MAIN_TABLE} o ");
             sql.Append($"LEFT JOIN {DATABASE_ORDER}{plant}.dbo.{Order.Defaults.MAIN_TABLE} d ON o.{COLUMN_WHITE_CODE} = d.White_Code ");
+            sql.Append($"WHERE {COLUMN_ORDER_ID} = @orderId ");
+            return sql.ToString();
+        }
+        #endregion
+
+        #region オーダーIDによるレコード取得（作業指示書プレビュー画面表示用）
+        /// <summary>
+        /// オーダーIDによるレコード取得
+        /// </summary>
+        /// <returns></returns>
+        public static string GetOrderDirectionsDataByOrderId()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            sql.Append($" {COLUMN_HG_SS_SHIPPING_DATE}        AS HG_SS_Shipping_Date ");
+            sql.Append($" ,{COLUMN_Urgent}                    AS Urgent ");
+            sql.Append($" ,{COLUMN_Product_Code}              AS Product_Code ");
+            sql.Append($" ,{COLUMN_HG_ORDER_INVOICE_ID}       AS HG_Order_Invoice_ID ");
+            sql.Append($" ,{COLUMN_HG_DATA_NUMBER}            AS HG_Data_Number ");
+            sql.Append($" ,{COLUMN_HG_TINTING_PRICE_RANK}     AS HG_Tinting_Price_Rank ");
+            sql.Append($" ,{COLUMN_OPERATOR_NAME}             AS Operator_Name ");
+            sql.Append($" ,{COLUMN_HG_Order_Input_Date}       AS HG_Order_Input_Date ");
+            sql.Append($" ,{COLUMN_HG_Order_Input_Time}       AS HG_Order_Input_Time ");
+            sql.Append($" ,{COLUMN_HG_SALES_IN_CHARGE}        AS HG_Sales_in_Charge ");
+            sql.Append($" ,{COLUMN_HG_PRODUCT_NO}             AS HG_Product_No ");
+            sql.Append($" ,{COLUMN_HG_NPC_ARTICLE_NUMBER}     AS HG_NPC_Article_Number ");
+            sql.Append($" ,{COLUMN_HG_PRODUCT_NAMEONLY}       AS HG_Product_NameOnly ");
+            sql.Append($" ,{COLUMN_HG_COLOR_NAME}             AS HG_Color_Name ");
+            sql.Append($" ,{COLUMN_HG_VOLUME_CODE}            AS HG_Volume_Code ");
+            sql.Append($" ,{COLUMN_HG_ORDER_CANS}             AS HG_Order_Cans ");
+            sql.Append($" ,{COLUMN_HG_GLOSS_DICTATION}        AS HG_Gloss_Dictation ");
+            sql.Append($" ,{COLUMN_HG_SUPPLEMENT_DICTATION}   AS HG_Supplement_Dictation ");
+            sql.Append($" ,{COLUMN_HG_COLOR_SAMPLE}           AS HG_Color_Sample ");
+            sql.Append($" ,{COLUMN_HG_SAMPLE_PLATES}          AS HG_Sample_Plates ");
+            sql.Append($" ,{COLUMN_HG_NOTE}                   AS HG_Note ");
+            sql.Append($" ,{COLUMN_HG_COMMENTS}               AS HG_Comments ");
+            sql.Append($" ,{COLUMN_HG_SAMPLE_BACK}            AS HG_Sample_Back ");
+            sql.Append($" ,{COLUMN_HG_TINTING_DIRECTION}      AS HG_Tinting_Direction ");
+            sql.Append($" ,{COLUMN_HG_SALES_BRANCH_NAME}      AS HG_Sales_Branch_Name ");
+            sql.Append($" ,{COLUMN_HG_CUSTOMER_CODE}          AS HG_Customer_Code ");
+            sql.Append($" ,{COLUMN_HG_CUSTOMER_NAME_KANJI}    AS HG_Customer_Name_Kanji ");
+            sql.Append($" ,{COLUMN_HG_SS_CODE}                AS HG_SS_Code ");
+            sql.Append($" ,{COLUMN_HG_TRUCK_COMPANY_NAME}     AS HG_Truck_Company_Name ");
+            sql.Append($" ,{COLUMN_HG_HG_SHIPPING_ID}         AS HG_HG_Shipping_ID ");
+            sql.Append($" ,{COLUMN_HG_DELIVERY_NAME_KANJI}    AS HG_Delivery_Name_Kanji ");
+            sql.Append($" ,{COLUMN_HG_DELIVERY_ADDRESS_KANJI} AS HG_Delivery_Address_Kanji ");
+            sql.Append($" ,{COLUMN_HG_DELIVERY_TELNO}         AS HG_Delivery_TelNo ");
+            sql.Append($" ,{COLUMN_HG_DELIVERY_DATE}          AS HG_Delivery_Date ");
+            sql.Append($"FROM  {MAIN_TABLE} ");
             sql.Append($"WHERE {COLUMN_ORDER_ID} = @orderId ");
             return sql.ToString();
         }
