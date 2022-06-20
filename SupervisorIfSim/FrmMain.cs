@@ -50,6 +50,14 @@ namespace SupervisorIfSim
         // JOB_EXIT_POSITIONラジオボタン
         private const int JOB_EXIT_POSITION_MAIN = 1;
         private const int JOB_EXIT_POSITION_TEST = 2;
+        // PRD_STATUSラジオボタン
+        private const int PRD_STATUS_UNDISCHARGED = 0;
+        private const int PRD_STATUS_COMPLATED = 1;
+        private const int PRD_STATUS_ERROR = -1;
+        // PRD_UMラジオボタン
+        private const int PRD_UM_GRAM = 1;
+        private const int PRD_UM_CC = 2;
+        // JOB_STATUSドロップダウン
         private static List<Data.DropDownRow> DrpJobStatusDefines = new List<Data.DropDownRow>()
         {
             { new Data.DropDownRow() { Value = 0, Text = "ライン挿入" } },
@@ -475,6 +483,154 @@ namespace SupervisorIfSim
             }
         }
         #endregion
+        #region PRD_STATUSラジオボタン
+        /// <summary>
+        /// PRD_STATUSラジオボタン
+        /// </summary>
+        private int RdbPrdStatus
+        {
+            get
+            {
+                if (RdbPrdStatusUndischarged.Checked)
+                {
+                    return PRD_STATUS_UNDISCHARGED;
+                }
+                if (RdbPrdStatusCompleted.Checked)
+                {
+                    return PRD_STATUS_COMPLATED;
+                }
+                if (RdbPrdStatusError.Checked)
+                {
+                    return PRD_STATUS_ERROR;
+                }
+                return 0;
+            }
+            set
+            {
+                RdbPrdStatusUndischarged.Checked = false;
+                RdbPrdStatusCompleted.Checked = false;
+                RdbPrdStatusError.Checked = false;
+                RdbPrdStatusUndischarged.ForeColor = Color.Black;
+                RdbPrdStatusCompleted.ForeColor = Color.Black;
+                RdbPrdStatusError.ForeColor = Color.Black;
+                Color color = Color.Black;
+                if (PnlPrdStatus.Tag != null && PnlPrdStatus.Tag.ToString() != value.ToString())
+                {
+                    color = Color.Red;
+                }
+                switch (value)
+                {
+                    case PRD_STATUS_UNDISCHARGED:
+                        RdbPrdStatusUndischarged.Checked = true;
+                        RdbPrdStatusUndischarged.ForeColor = color;
+                        break;
+                    case PRD_STATUS_COMPLATED:
+                        RdbPrdStatusCompleted.Checked = true;
+                        RdbPrdStatusCompleted.ForeColor = color;
+                        break;
+                    case PRD_STATUS_ERROR:
+                        RdbPrdStatusError.Checked = true;
+                        RdbPrdStatusError.ForeColor = color;
+                        break;
+                    default:
+                        break;
+                }
+                PnlPrdStatus.Tag = value.ToString();
+            }
+        }
+        #endregion
+        #region PRD_UMラジオボタン
+        /// <summary>
+        /// PRD_UMラジオボタン
+        /// </summary>
+        private int RdbPrdUm
+        {
+            get
+            {
+                if (RdbPrdUmGram.Checked)
+                {
+                    return PRD_UM_GRAM;
+                }
+                if (RdbPrdUmCc.Checked)
+                {
+                    return PRD_UM_CC;
+                }
+                return 0;
+            }
+            set
+            {
+                RdbPrdUmGram.Checked = false;
+                RdbPrdUmCc.Checked = false;
+                RdbPrdUmGram.ForeColor = Color.Black;
+                RdbPrdUmCc.ForeColor = Color.Black;
+                Color color = Color.Black;
+                if (PnlPrdUm.Tag != null && PnlPrdUm.Tag.ToString() != value.ToString())
+                {
+                    color = Color.Red;
+                }
+                switch (value)
+                {
+                    case PRD_UM_GRAM:
+                        RdbPrdUmGram.Checked = true;
+                        RdbPrdUmGram.ForeColor = color;
+                        break;
+                    case PRD_UM_CC:
+                        RdbPrdUmCc.Checked = true;
+                        RdbPrdUmCc.ForeColor = color;
+                        break;
+                    default:
+                        break;
+                }
+                PnlPrdUm.Tag = value.ToString();
+            }
+        }
+        #endregion
+        #region PRD_ISPREFILLEDラジオボタン
+        /// <summary>
+        /// PRD_ISPREFILLEDラジオボタン
+        /// </summary>
+        private bool RdbPrdIsprefilled
+        {
+            get
+            {
+                if (RdbPrdIsprefilledTrue.Checked)
+                {
+                    return true;
+                }
+                if (RdbPrdIsprefilledFalse.Checked)
+                {
+                    return false;
+                }
+                return true;
+            }
+            set
+            {
+                RdbPrdIsprefilledTrue.Checked = false;
+                RdbPrdIsprefilledFalse.Checked = false;
+                RdbPrdIsprefilledTrue.ForeColor = Color.Black;
+                RdbPrdIsprefilledFalse.ForeColor = Color.Black;
+                Color color = Color.Black;
+                if (PnlPrdIsprefilled.Tag != null && PnlPrdIsprefilled.Tag.ToString() != value.ToString())
+                {
+                    color = Color.Red;
+                }
+                switch (value)
+                {
+                    case true:
+                        RdbPrdIsprefilledTrue.Checked = true;
+                        RdbPrdIsprefilledTrue.ForeColor = color;
+                        break;
+                    case false:
+                        RdbPrdIsprefilledFalse.Checked = true;
+                        RdbPrdIsprefilledFalse.ForeColor = color;
+                        break;
+                    default:
+                        break;
+                }
+                PnlPrdIsprefilled.Tag = value.ToString();
+            }
+        }
+        #endregion
         #endregion
 
         #region コンストラクタ
@@ -639,6 +795,8 @@ namespace SupervisorIfSim
 
         private void InitializeForm()
         {
+            GvBarcode.Dock = DockStyle.Fill;
+            GvFormula.Dock = DockStyle.Fill;
             // 画面の定義
             _viewSettingsBarcode = new List<GridViewSetting>()
             {
@@ -877,6 +1035,10 @@ namespace SupervisorIfSim
             {
                 if (setting.DisplayControl != null)
                 {
+                    //switch (setting.DisplayControl)
+                    //{
+                    //    case 
+                    //}
                     setting.DisplayControl.Text = row.Cells[setting.ColumnName].Value.ToString();
                 }
             }
