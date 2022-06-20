@@ -201,6 +201,16 @@ namespace NipponPaint.NpCommon
                                 break;
                         }
                         break;
+                    case LabelTextButton labelTextButton:
+                        // LabelDropDownコントロールへの設定
+                        switch (labelTextButton.TextBackColor.Name)
+                        {
+                            case "Window":
+                                labelTextButton.TextBackColor = BACK_COLOR;
+                                labelTextButton.TextForeColor = FORE_COLOR;
+                                break;
+                        }
+                        break;
                     case TabPage tabPage:
                         switch (tabPage.BackColor.Name)
                         {

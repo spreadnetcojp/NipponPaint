@@ -38,7 +38,9 @@ namespace NipponPaint.NpCommon.FormControls
             // 
             // NumUpDownDataLeft
             // 
+            this.NumUpDownDataLeft.BackColor = System.Drawing.SystemColors.WindowText;
             this.NumUpDownDataLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.NumUpDownDataLeft.ForeColor = System.Drawing.SystemColors.Window;
             this.NumUpDownDataLeft.Location = new System.Drawing.Point(154, 0);
             this.NumUpDownDataLeft.Name = "NumUpDownDataLeft";
             this.NumUpDownDataLeft.Size = new System.Drawing.Size(139, 30);
@@ -61,7 +63,9 @@ namespace NipponPaint.NpCommon.FormControls
             // 
             // NumUpDownDataRight
             // 
+            this.NumUpDownDataRight.BackColor = System.Drawing.SystemColors.WindowText;
             this.NumUpDownDataRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NumUpDownDataRight.ForeColor = System.Drawing.SystemColors.Window;
             this.NumUpDownDataRight.Location = new System.Drawing.Point(293, 0);
             this.NumUpDownDataRight.Name = "NumUpDownDataRight";
             this.NumUpDownDataRight.Size = new System.Drawing.Size(139, 30);

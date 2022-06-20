@@ -32,8 +32,8 @@ namespace NipponPaint.OrderManager.Dialogs
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Label_Type", DisplayName = "  ラベルタイプ", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Label_Description", DisplayName = "ラベル詳細", Visible = true, Width = 847, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Label_Type", DisplayName = "ラベルタイプ", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Label_Description", DisplayName = "ラベル詳細", Visible = true, Width = 820, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
@@ -258,6 +258,7 @@ namespace NipponPaint.OrderManager.Dialogs
             var cnt = 0;
             foreach (var item in ViewSettings)
             {
+                DgvList.Columns[cnt].SortMode = DataGridViewColumnSortMode.NotSortable;
                 DgvList.Columns[cnt].Width = item.Width;
                 DgvList.Columns[cnt].Visible = item.Visible;
                 DgvList.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;

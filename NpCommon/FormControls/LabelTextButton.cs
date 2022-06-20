@@ -85,6 +85,16 @@ namespace NipponPaint.NpCommon.FormControls
         {
             get { return BtnFontChange; }
         }
+        public Color TextBackColor
+        {
+            get { return TxtData.BackColor; }
+            set { TxtData.BackColor = value; }
+        }
+        public Color TextForeColor
+        {
+            get { return TxtData.ForeColor; }
+            set { TxtData.ForeColor = value; }
+        }
 
         public string DatabaseColumnName { get; set; } = string.Empty;
 

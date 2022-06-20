@@ -219,6 +219,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NudMoveFieldID.Size = new System.Drawing.Size(150, 30);
             this.NudMoveFieldID.TabIndex = 9;
             this.NudMoveFieldID.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.NudMoveFieldID.TextBackColor = System.Drawing.SystemColors.Window;
+            this.NudMoveFieldID.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.NudMoveFieldID.Title = "ﾌｨｰﾙﾄﾞID";
             this.NudMoveFieldID.TitleControlName = "LblTitle";
             this.NudMoveFieldID.TitleSize = new System.Drawing.Size(75, 30);
@@ -244,6 +246,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtMoveCaption.Name = "TxtMoveCaption";
             this.TxtMoveCaption.Size = new System.Drawing.Size(494, 30);
             this.TxtMoveCaption.TabIndex = 0;
+            this.TxtMoveCaption.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtMoveCaption.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtMoveCaption.Title = "ﾒｯｾｰｼﾞ";
             this.TxtMoveCaption.TitleControlName = "LblTitle";
             this.TxtMoveCaption.TitleSize = new System.Drawing.Size(75, 30);
@@ -284,6 +288,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NudFixedFieldID.Size = new System.Drawing.Size(150, 30);
             this.NudFixedFieldID.TabIndex = 8;
             this.NudFixedFieldID.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.NudFixedFieldID.TextBackColor = System.Drawing.SystemColors.Window;
+            this.NudFixedFieldID.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.NudFixedFieldID.Title = "ﾌｨｰﾙﾄﾞID";
             this.NudFixedFieldID.TitleControlName = "LblTitle";
             this.NudFixedFieldID.TitleSize = new System.Drawing.Size(75, 30);
@@ -302,9 +308,12 @@ namespace NipponPaint.OrderManager.Dialogs
             this.CmbFixedGroupID.Location = new System.Drawing.Point(8, 30);
             this.CmbFixedGroupID.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmbFixedGroupID.Name = "CmbFixedGroupID";
+            this.CmbFixedGroupID.SelectedValue = null;
             this.CmbFixedGroupID.Size = new System.Drawing.Size(150, 31);
             this.CmbFixedGroupID.TabIndex = 3;
             this.CmbFixedGroupID.TableName = "";
+            this.CmbFixedGroupID.TextBackColor = System.Drawing.SystemColors.Window;
+            this.CmbFixedGroupID.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.CmbFixedGroupID.Title = "ｸﾞﾙｰﾌﾟID";
             this.CmbFixedGroupID.TitleControlName = "LblTitle";
             this.CmbFixedGroupID.TitleSize = new System.Drawing.Size(75, 31);
@@ -326,6 +335,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtFixedCaption.Name = "TxtFixedCaption";
             this.TxtFixedCaption.Size = new System.Drawing.Size(494, 30);
             this.TxtFixedCaption.TabIndex = 0;
+            this.TxtFixedCaption.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtFixedCaption.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtFixedCaption.Title = "ﾒｯｾｰｼﾞ";
             this.TxtFixedCaption.TitleControlName = "LblTitle";
             this.TxtFixedCaption.TitleSize = new System.Drawing.Size(75, 30);
@@ -365,6 +376,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NudVariableFieldID.Size = new System.Drawing.Size(150, 30);
             this.NudVariableFieldID.TabIndex = 3;
             this.NudVariableFieldID.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.NudVariableFieldID.TextBackColor = System.Drawing.SystemColors.Window;
+            this.NudVariableFieldID.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.NudVariableFieldID.Title = "ﾌｨｰﾙﾄﾞID";
             this.NudVariableFieldID.TitleControlName = "LblTitle";
             this.NudVariableFieldID.TitleSize = new System.Drawing.Size(75, 30);
@@ -390,6 +403,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtVariableCaption.Name = "TxtVariableCaption";
             this.TxtVariableCaption.Size = new System.Drawing.Size(494, 30);
             this.TxtVariableCaption.TabIndex = 0;
+            this.TxtVariableCaption.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtVariableCaption.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtVariableCaption.Title = "ﾒｯｾｰｼﾞ";
             this.TxtVariableCaption.TitleControlName = "LblTitle";
             this.TxtVariableCaption.TitleSize = new System.Drawing.Size(75, 30);
@@ -423,6 +438,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtToxCaption.Name = "TxtToxCaption";
             this.TxtToxCaption.Size = new System.Drawing.Size(236, 60);
             this.TxtToxCaption.TabIndex = 1;
+            this.TxtToxCaption.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtToxCaption.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtToxCaption.Title = "ﾒｯｾｰｼﾞ";
             this.TxtToxCaption.TitleControlName = "LblTitle";
             this.TxtToxCaption.TitleSize = new System.Drawing.Size(75, 30);
@@ -466,6 +483,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtFlaCaption.Name = "TxtFlaCaption";
             this.TxtFlaCaption.Size = new System.Drawing.Size(236, 60);
             this.TxtFlaCaption.TabIndex = 0;
+            this.TxtFlaCaption.TextBackColor = System.Drawing.SystemColors.Window;
+            this.TxtFlaCaption.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtFlaCaption.Title = "ﾒｯｾｰｼﾞ";
             this.TxtFlaCaption.TitleControlName = "LblTitle";
             this.TxtFlaCaption.TitleSize = new System.Drawing.Size(75, 30);
@@ -610,7 +629,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtLabel.Name = "TxtLabel";
             this.TxtLabel.Size = new System.Drawing.Size(494, 30);
             this.TxtLabel.TabIndex = 2;
-            this.TxtLabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.TxtLabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtLabel.TextBackColor = System.Drawing.SystemColors.Window;
             this.TxtLabel.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TxtLabel.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));

@@ -240,11 +240,13 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // NumUpDownWeightTolerance
             // 
+            this.NumUpDownWeightTolerance.BackColor = System.Drawing.SystemColors.Control;
             this.NumUpDownWeightTolerance.DatabaseColumnNameLeft = "";
             this.NumUpDownWeightTolerance.DatabaseColumnNameRight = "";
             this.NumUpDownWeightTolerance.DecimalPlacesLeft = 1;
             this.NumUpDownWeightTolerance.DecimalPlacesRight = 1;
             this.NumUpDownWeightTolerance.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.NumUpDownWeightTolerance.ForeColor = System.Drawing.SystemColors.WindowText;
             this.NumUpDownWeightTolerance.Id = 0;
             this.NumUpDownWeightTolerance.LeftAndRightHighAndLowControl = NipponPaint.NpCommon.FormControls.LabelNumericUpDownMulti.LeftAndRightHighAndLowControlType.Flee;
             this.NumUpDownWeightTolerance.Location = new System.Drawing.Point(12, 607);
@@ -704,29 +706,32 @@ namespace NipponPaint.OrderManager.Dialogs
             // TxtLabelPlus
             // 
             this.TxtLabelPlus.AutoSize = true;
-            this.TxtLabelPlus.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtLabelPlus.BackColor = System.Drawing.SystemColors.WindowText;
             this.TxtLabelPlus.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TxtLabelPlus.Location = new System.Drawing.Point(166, 609);
+            this.TxtLabelPlus.ForeColor = System.Drawing.SystemColors.Window;
+            this.TxtLabelPlus.Location = new System.Drawing.Point(169, 609);
             this.TxtLabelPlus.Name = "TxtLabelPlus";
-            this.TxtLabelPlus.Size = new System.Drawing.Size(22, 23);
+            this.TxtLabelPlus.Size = new System.Drawing.Size(25, 23);
             this.TxtLabelPlus.TabIndex = 99;
-            this.TxtLabelPlus.Text = "+";
+            this.TxtLabelPlus.Text = "＋";
             // 
             // TxtLabelMinus
             // 
             this.TxtLabelMinus.AutoSize = true;
-            this.TxtLabelMinus.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtLabelMinus.BackColor = System.Drawing.SystemColors.WindowText;
             this.TxtLabelMinus.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TxtLabelMinus.Location = new System.Drawing.Point(307, 609);
+            this.TxtLabelMinus.ForeColor = System.Drawing.SystemColors.Window;
+            this.TxtLabelMinus.Location = new System.Drawing.Point(310, 609);
             this.TxtLabelMinus.Name = "TxtLabelMinus";
-            this.TxtLabelMinus.Size = new System.Drawing.Size(17, 23);
+            this.TxtLabelMinus.Size = new System.Drawing.Size(25, 23);
             this.TxtLabelMinus.TabIndex = 100;
-            this.TxtLabelMinus.Text = "-";
+            this.TxtLabelMinus.Text = "ー";
             // 
             // FrmOrderStart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.CancelButton = this.BtnClose;
             this.ClientSize = new System.Drawing.Size(742, 826);
             this.ControlBox = false;

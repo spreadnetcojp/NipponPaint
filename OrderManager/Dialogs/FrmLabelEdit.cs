@@ -180,6 +180,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtFixedCaption.BtnFont.Click += new EventHandler(this.BtnFont_Click);
             this.TxtMoveCaption.BtnFont.Click += new EventHandler(this.BtnFont_Click);
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            // データ表示部の設定
+            Funcs.SetControlEnabled(this.Controls, true);
 
 
             //画像ファイルを読み込んで、Imageオブジェクトとして取得する
