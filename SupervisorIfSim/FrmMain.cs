@@ -26,6 +26,7 @@ using NipponPaint.NpCommon;
 using NipponPaint.NpCommon.Settings;
 using NipponPaint.NpCommon.Database;
 using NipponPaint.NpCommon.Database.Sql.SupervisorPc;
+using NipponPaint.SupervisorIfSim.FormControls;
 using Sql = NipponPaint.NpCommon.Database.Sql;
 #endregion
 
@@ -72,48 +73,48 @@ namespace SupervisorIfSim
         /// <summary>
         /// BRC_STATUSラジオボタン
         /// </summary>
-        private int RdbBrcStatus
-        {
-            get
-            {
-                if (RdbBrcStatusCorob.Checked)
-                {
-                    return BRD_STATUS_COROB;
-                }
-                if (RdbBrcStatusErp.Checked)
-                {
-                    return BRD_STATUS_ERP;
-                }
-                return 0;
-            }
-            set
-            {
+        //private int RdbBrcStatus
+        //{
+        //    get
+        //    {
+        //        if (RdbBrcStatusCorob.Checked)
+        //        {
+        //            return BRD_STATUS_COROB;
+        //        }
+        //        if (RdbBrcStatusErp.Checked)
+        //        {
+        //            return BRD_STATUS_ERP;
+        //        }
+        //        return 0;
+        //    }
+        //    set
+        //    {
 
-                RdbBrcStatusCorob.Checked = false;
-                RdbBrcStatusErp.Checked = false;
-                RdbBrcStatusCorob.ForeColor = Color.Black;
-                RdbBrcStatusErp.ForeColor = Color.Black;
-                Color color = Color.Black;
-                if (PnlBrcStatus.Tag != null && PnlBrcStatus.Tag.ToString() != value.ToString())
-                {
-                    color = Color.Red;
-                }
-                switch (value)
-                {
-                    case BRD_STATUS_COROB:
-                        RdbBrcStatusCorob.Checked = true;
-                        RdbBrcStatusCorob.ForeColor = color;
-                        break;
-                    case BRD_STATUS_ERP:
-                        RdbBrcStatusErp.Checked = true;
-                        RdbBrcStatusErp.ForeColor = color;
-                        break;
-                    default:
-                        break;
-                }
-                PnlBrcStatus.Tag = value.ToString();
-            }
-        }
+        //        RdbBrcStatusCorob.Checked = false;
+        //        RdbBrcStatusErp.Checked = false;
+        //        RdbBrcStatusCorob.ForeColor = Color.Black;
+        //        RdbBrcStatusErp.ForeColor = Color.Black;
+        //        Color color = Color.Black;
+        //        if (PnlBrcStatus.Tag != null && PnlBrcStatus.Tag.ToString() != value.ToString())
+        //        {
+        //            color = Color.Red;
+        //        }
+        //        switch (value)
+        //        {
+        //            case BRD_STATUS_COROB:
+        //                RdbBrcStatusCorob.Checked = true;
+        //                RdbBrcStatusCorob.ForeColor = color;
+        //                break;
+        //            case BRD_STATUS_ERP:
+        //                RdbBrcStatusErp.Checked = true;
+        //                RdbBrcStatusErp.ForeColor = color;
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //        PnlBrcStatus.Tag = value.ToString();
+        //    }
+        //}
         #endregion
         #region JOB_MIXINGラジオボタン
         /// <summary>
@@ -804,7 +805,7 @@ namespace SupervisorIfSim
                 { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.PROCESS_CODE, DisplayName = TbBarcode.PROCESS_CODE, Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtProcessCode  } },
                 { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BRC_TIME_INSERTED, DisplayName = TbBarcode.BRC_TIME_INSERTED, Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcTimeInserted  } },
                 { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BRC_TIME_PROCESSED, DisplayName = TbBarcode.BRC_TIME_PROCESSED, Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcTimeProcessed  } },
-                { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BRC_STATUS, DisplayName = TbBarcode.BRC_STATUS, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = null  } },
+                { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BRC_STATUS, DisplayName = TbBarcode.BRC_STATUS, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbBrcStatus  } },
                 { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BRC_ERR_1, DisplayName = TbBarcode.BRC_ERR_1, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcErr1  } },
                 { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BRC_ERR_2, DisplayName = TbBarcode.BRC_ERR_2, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcErr2  } },
                 { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BRC_ERR_3, DisplayName = TbBarcode.BRC_ERR_3, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcErr3  } },
@@ -1035,11 +1036,15 @@ namespace SupervisorIfSim
             {
                 if (setting.DisplayControl != null)
                 {
-                    //switch (setting.DisplayControl)
-                    //{
-                    //    case 
-                    //}
-                    setting.DisplayControl.Text = row.Cells[setting.ColumnName].Value.ToString();
+                    switch (setting.DisplayControl)
+                    {
+                        case TextBox textBox:
+                            textBox.Text = row.Cells[setting.ColumnName].Value.ToString();
+                            break;
+                        case ThreeRadioButtons radioButton:
+                            radioButton.Value = int.Parse(row.Cells[setting.ColumnName].Value.ToString());
+                            break;
+                    }
                 }
             }
         }

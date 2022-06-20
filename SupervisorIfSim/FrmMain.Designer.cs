@@ -181,9 +181,6 @@ namespace SupervisorIfSim
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.PnlBrcStatus = new System.Windows.Forms.Panel();
-            this.RdbBrcStatusErp = new System.Windows.Forms.RadioButton();
-            this.RdbBrcStatusCorob = new System.Windows.Forms.RadioButton();
             this.TxtBrcErr3 = new System.Windows.Forms.TextBox();
             this.TxtBrcErr2 = new System.Windows.Forms.TextBox();
             this.TxtBrcErr1 = new System.Windows.Forms.TextBox();
@@ -197,7 +194,7 @@ namespace SupervisorIfSim
             this.pnlPreviewBarcode = new System.Windows.Forms.Panel();
             this.GvBarcode = new System.Windows.Forms.DataGridView();
             this.TimerPreview = new System.Windows.Forms.Timer(this.components);
-            this.twoRadioButtons1 = new NipponPaint.SupervisorIfSim.FormControls.TwoRadioButtons();
+            this.RdbBrcStatus = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.pnlHeader.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.pnlDetailFormula.SuspendLayout();
@@ -215,7 +212,6 @@ namespace SupervisorIfSim
             this.PnlJobLidPlacing.SuspendLayout();
             this.PnlJobCapping.SuspendLayout();
             this.PnlJobMixing.SuspendLayout();
-            this.PnlBrcStatus.SuspendLayout();
             this.pnlPreviewBarcode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GvBarcode)).BeginInit();
             this.SuspendLayout();
@@ -751,6 +747,7 @@ namespace SupervisorIfSim
             // pnlBrcJob
             // 
             this.pnlBrcJob.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBrcJob.Controls.Add(this.RdbBrcStatus);
             this.pnlBrcJob.Controls.Add(this.button1);
             this.pnlBrcJob.Controls.Add(this.BtnEdit);
             this.pnlBrcJob.Controls.Add(this.PnlJobExitPosition);
@@ -839,7 +836,6 @@ namespace SupervisorIfSim
             this.pnlBrcJob.Controls.Add(this.label5);
             this.pnlBrcJob.Controls.Add(this.label2);
             this.pnlBrcJob.Controls.Add(this.label1);
-            this.pnlBrcJob.Controls.Add(this.PnlBrcStatus);
             this.pnlBrcJob.Controls.Add(this.TxtBrcErr3);
             this.pnlBrcJob.Controls.Add(this.TxtBrcErr2);
             this.pnlBrcJob.Controls.Add(this.TxtBrcErr1);
@@ -1917,39 +1913,6 @@ namespace SupervisorIfSim
             this.label1.Text = "TIME_INSERTED";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // PnlBrcStatus
-            // 
-            this.PnlBrcStatus.Controls.Add(this.RdbBrcStatusErp);
-            this.PnlBrcStatus.Controls.Add(this.RdbBrcStatusCorob);
-            this.PnlBrcStatus.Location = new System.Drawing.Point(159, 163);
-            this.PnlBrcStatus.Name = "PnlBrcStatus";
-            this.PnlBrcStatus.Size = new System.Drawing.Size(200, 25);
-            this.PnlBrcStatus.TabIndex = 23;
-            // 
-            // RdbBrcStatusErp
-            // 
-            this.RdbBrcStatusErp.AutoSize = true;
-            this.RdbBrcStatusErp.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbBrcStatusErp.Location = new System.Drawing.Point(103, 1);
-            this.RdbBrcStatusErp.Name = "RdbBrcStatusErp";
-            this.RdbBrcStatusErp.Size = new System.Drawing.Size(84, 22);
-            this.RdbBrcStatusErp.TabIndex = 1;
-            this.RdbBrcStatusErp.TabStop = true;
-            this.RdbBrcStatusErp.Text = "ERP処理済";
-            this.RdbBrcStatusErp.UseVisualStyleBackColor = true;
-            // 
-            // RdbBrcStatusCorob
-            // 
-            this.RdbBrcStatusCorob.AutoSize = true;
-            this.RdbBrcStatusCorob.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbBrcStatusCorob.Location = new System.Drawing.Point(3, 1);
-            this.RdbBrcStatusCorob.Name = "RdbBrcStatusCorob";
-            this.RdbBrcStatusCorob.Size = new System.Drawing.Size(92, 22);
-            this.RdbBrcStatusCorob.TabIndex = 0;
-            this.RdbBrcStatusCorob.TabStop = true;
-            this.RdbBrcStatusCorob.Text = "COROB挿入";
-            this.RdbBrcStatusCorob.UseVisualStyleBackColor = true;
-            // 
             // TxtBrcErr3
             // 
             this.TxtBrcErr3.Location = new System.Drawing.Point(159, 241);
@@ -2069,6 +2032,27 @@ namespace SupervisorIfSim
             this.GvBarcode.Size = new System.Drawing.Size(511, 893);
             this.GvBarcode.TabIndex = 5;
             // 
+            // RdbBrcStatus
+            // 
+            this.RdbBrcStatus.FirstButtonDefault = 0;
+            this.RdbBrcStatus.FirstButtonLeftPosition = 4;
+            this.RdbBrcStatus.FirstButtonText = "COROB挿入";
+            this.RdbBrcStatus.FirstButtonVisible = true;
+            this.RdbBrcStatus.Location = new System.Drawing.Point(159, 165);
+            this.RdbBrcStatus.Margin = new System.Windows.Forms.Padding(0);
+            this.RdbBrcStatus.Name = "RdbBrcStatus";
+            this.RdbBrcStatus.SecondButtonDefault = 1;
+            this.RdbBrcStatus.SecondButtonLeftPosition = 100;
+            this.RdbBrcStatus.SecondButtonText = "ERP処理済";
+            this.RdbBrcStatus.SecondButtonVisible = true;
+            this.RdbBrcStatus.Size = new System.Drawing.Size(200, 22);
+            this.RdbBrcStatus.TabIndex = 190;
+            this.RdbBrcStatus.ThirdButtonDefault = 2;
+            this.RdbBrcStatus.ThirdButtonLeftPosition = 177;
+            this.RdbBrcStatus.ThirdButtonText = "エラー";
+            this.RdbBrcStatus.ThirdButtonVisible = false;
+            this.RdbBrcStatus.Value = -99;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
@@ -2112,8 +2096,6 @@ namespace SupervisorIfSim
             this.PnlJobCapping.PerformLayout();
             this.PnlJobMixing.ResumeLayout(false);
             this.PnlJobMixing.PerformLayout();
-            this.PnlBrcStatus.ResumeLayout(false);
-            this.PnlBrcStatus.PerformLayout();
             this.pnlPreviewBarcode.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GvBarcode)).EndInit();
             this.ResumeLayout(false);
@@ -2276,9 +2258,6 @@ namespace SupervisorIfSim
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel PnlBrcStatus;
-        private System.Windows.Forms.RadioButton RdbBrcStatusErp;
-        private System.Windows.Forms.RadioButton RdbBrcStatusCorob;
         private System.Windows.Forms.TextBox TxtBrcErr3;
         private System.Windows.Forms.TextBox TxtBrcErr2;
         private System.Windows.Forms.TextBox TxtBrcErr1;
@@ -2289,8 +2268,7 @@ namespace SupervisorIfSim
         private System.Windows.Forms.TextBox TxtBarcode;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private NipponPaint.SupervisorIfSim.FormControls.TwoRadioButtons twoRadioButtons1;
-        private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons threeRadioButtons1;
+        private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbBrcStatus;
     }
 }
 
