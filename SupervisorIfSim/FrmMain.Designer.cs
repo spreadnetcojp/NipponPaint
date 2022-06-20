@@ -77,6 +77,7 @@ namespace SupervisorIfSim
             this.pnlPreviewFormula = new System.Windows.Forms.Panel();
             this.GvFormula = new System.Windows.Forms.DataGridView();
             this.pnlBrcJob = new System.Windows.Forms.Panel();
+            this.RdbBrcStatus = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.button1 = new System.Windows.Forms.Button();
             this.BtnEdit = new System.Windows.Forms.Button();
             this.PnlJobExitPosition = new System.Windows.Forms.Panel();
@@ -194,7 +195,6 @@ namespace SupervisorIfSim
             this.pnlPreviewBarcode = new System.Windows.Forms.Panel();
             this.GvBarcode = new System.Windows.Forms.DataGridView();
             this.TimerPreview = new System.Windows.Forms.Timer(this.components);
-            this.RdbBrcStatus = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.pnlHeader.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.pnlDetailFormula.SuspendLayout();
@@ -851,6 +851,28 @@ namespace SupervisorIfSim
             this.pnlBrcJob.Name = "pnlBrcJob";
             this.pnlBrcJob.Size = new System.Drawing.Size(724, 950);
             this.pnlBrcJob.TabIndex = 55;
+            // 
+            // RdbBrcStatus
+            // 
+            this.RdbBrcStatus.FirstButtonDefault = 0;
+            this.RdbBrcStatus.FirstButtonLeftPosition = 4;
+            this.RdbBrcStatus.FirstButtonText = "COROB挿入";
+            this.RdbBrcStatus.FirstButtonVisible = true;
+            this.RdbBrcStatus.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.RdbBrcStatus.Location = new System.Drawing.Point(159, 165);
+            this.RdbBrcStatus.Margin = new System.Windows.Forms.Padding(0);
+            this.RdbBrcStatus.Name = "RdbBrcStatus";
+            this.RdbBrcStatus.SecondButtonDefault = 1;
+            this.RdbBrcStatus.SecondButtonLeftPosition = 100;
+            this.RdbBrcStatus.SecondButtonText = "ERP処理済";
+            this.RdbBrcStatus.SecondButtonVisible = true;
+            this.RdbBrcStatus.Size = new System.Drawing.Size(200, 22);
+            this.RdbBrcStatus.TabIndex = 190;
+            this.RdbBrcStatus.ThirdButtonDefault = 2;
+            this.RdbBrcStatus.ThirdButtonLeftPosition = 177;
+            this.RdbBrcStatus.ThirdButtonText = "エラー";
+            this.RdbBrcStatus.ThirdButtonVisible = false;
+            this.RdbBrcStatus.Value = -99;
             // 
             // button1
             // 
@@ -2031,27 +2053,6 @@ namespace SupervisorIfSim
             this.GvBarcode.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GvBarcode.Size = new System.Drawing.Size(511, 893);
             this.GvBarcode.TabIndex = 5;
-            // 
-            // RdbBrcStatus
-            // 
-            this.RdbBrcStatus.FirstButtonDefault = 0;
-            this.RdbBrcStatus.FirstButtonLeftPosition = 4;
-            this.RdbBrcStatus.FirstButtonText = "COROB挿入";
-            this.RdbBrcStatus.FirstButtonVisible = true;
-            this.RdbBrcStatus.Location = new System.Drawing.Point(159, 165);
-            this.RdbBrcStatus.Margin = new System.Windows.Forms.Padding(0);
-            this.RdbBrcStatus.Name = "RdbBrcStatus";
-            this.RdbBrcStatus.SecondButtonDefault = 1;
-            this.RdbBrcStatus.SecondButtonLeftPosition = 100;
-            this.RdbBrcStatus.SecondButtonText = "ERP処理済";
-            this.RdbBrcStatus.SecondButtonVisible = true;
-            this.RdbBrcStatus.Size = new System.Drawing.Size(200, 22);
-            this.RdbBrcStatus.TabIndex = 190;
-            this.RdbBrcStatus.ThirdButtonDefault = 2;
-            this.RdbBrcStatus.ThirdButtonLeftPosition = 177;
-            this.RdbBrcStatus.ThirdButtonText = "エラー";
-            this.RdbBrcStatus.ThirdButtonVisible = false;
-            this.RdbBrcStatus.Value = -99;
             // 
             // FrmMain
             // 

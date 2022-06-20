@@ -35,8 +35,10 @@
             // 
             // ThirdButton
             // 
+            this.ThirdButton.AutoSize = true;
             this.ThirdButton.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ThirdButton.Location = new System.Drawing.Point(152, 0);
+            this.ThirdButton.Location = new System.Drawing.Point(150, 0);
+            this.ThirdButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ThirdButton.Name = "ThirdButton";
             this.ThirdButton.Size = new System.Drawing.Size(62, 22);
             this.ThirdButton.TabIndex = 5;
@@ -47,8 +49,10 @@
             // 
             // SecondButton
             // 
+            this.SecondButton.AutoSize = true;
             this.SecondButton.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.SecondButton.Location = new System.Drawing.Point(70, 0);
+            this.SecondButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SecondButton.Name = "SecondButton";
             this.SecondButton.Size = new System.Drawing.Size(74, 22);
             this.SecondButton.TabIndex = 4;
@@ -59,8 +63,10 @@
             // 
             // FirstButton
             // 
+            this.FirstButton.AutoSize = true;
             this.FirstButton.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.FirstButton.Location = new System.Drawing.Point(3, 0);
+            this.FirstButton.Location = new System.Drawing.Point(0, 0);
+            this.FirstButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.FirstButton.Name = "FirstButton";
             this.FirstButton.Size = new System.Drawing.Size(62, 22);
             this.FirstButton.TabIndex = 3;
@@ -71,15 +77,17 @@
             // 
             // ThreeRadioButtons
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ThirdButton);
             this.Controls.Add(this.SecondButton);
             this.Controls.Add(this.FirstButton);
+            this.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ThreeRadioButtons";
             this.Size = new System.Drawing.Size(220, 22);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
