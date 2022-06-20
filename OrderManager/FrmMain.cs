@@ -568,10 +568,29 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                //MessageBox.Show("作業指示書印刷がクリックされました");
-                var frm = new Documents.ReportWorkInstruction.Preview();
-                frm.ShowDialog();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                // Order_idで検索する
+                var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == "Order_id");
+                var directionsData = new DataTable();
+                if (GvOrder.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow row = GvOrder.SelectedRows[0];
+                    int.TryParse(row.Cells[columnIndex].Value.ToString(), out int orderId);
+                    using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
+                    {
+                        var parameters = new List<ParameterItem>()
+                        {
+                            new ParameterItem("orderId", orderId),
+                        };
+                        // 選択しているデータ取得
+                        directionsData = db.Select(Sql.NpMain.Orders.GetOrderDirectionsDataByOrderId(), parameters);
+                    }
+                }
+                // 注文データを元にビューモデル作成
+                var vm = new ViewModels.DirectionsData(directionsData);
+                //MessageBox.Show("作業指示書印刷がクリックされました");
+                var frm = new Documents.ReportWorkInstruction.Preview(vm);
+                frm.ShowDialog();
             }
             catch (Exception ex)
             {
