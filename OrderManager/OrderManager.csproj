@@ -245,6 +245,7 @@
     <Compile Include="ViewModels\CanTypeData.cs" />
     <Compile Include="ViewModels\CapTypeData.cs" />
     <Compile Include="ViewModels\CCMSimulatorData.cs" />
+    <Compile Include="ViewModels\DirectionsData.cs" />
     <Compile Include="ViewModels\LabelEdit.cs" />
     <Compile Include="ViewModels\LabelTypeData.cs" />
     <Compile Include="ViewModels\RemanufacturedCanData.cs" />
@@ -355,7 +356,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Documents\ReportWorkInstruction\ReportWorkInstruction.rdlc" />
+    <EmbeddedResource Include="Documents\ReportWorkInstruction\ReportWorkInstruction.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
