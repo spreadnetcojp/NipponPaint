@@ -308,6 +308,7 @@ namespace NipponPaint.OrderManager.Dialogs
             var cnt = 0;
             foreach (var item in ViewSettings)
             {
+                DgvList.Columns[cnt].SortMode = DataGridViewColumnSortMode.NotSortable;　　　　　//DataGridView内ソート禁止
                 DgvList.Columns[cnt].Width = item.Width;
                 DgvList.Columns[cnt].Visible = item.Visible;
                 DgvList.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;

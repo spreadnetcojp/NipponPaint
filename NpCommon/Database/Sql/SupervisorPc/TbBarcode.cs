@@ -116,20 +116,6 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
             sql.Append($" ,BC.{BRC_ERR_1} ");
             sql.Append($" ,BC.{BRC_ERR_2} ");
             sql.Append($" ,BC.{BRC_ERR_3} ");
-            sql.Append($" ,FM.{TbFormula.PRD_TIME_INSERTED} ");
-            sql.Append($" ,FM.{TbFormula.PRD_STATUS} ");
-            sql.Append($" ,FM.{TbFormula.PRD_CODE} ");
-            sql.Append($" ,FM.{TbFormula.PRD_DESC} ");
-            sql.Append($" ,FM.{TbFormula.PRD_UM} ");
-            sql.Append($" ,FM.{TbFormula.PRD_SPECIFIC_GRAVITY} ");
-            sql.Append($" ,FM.{TbFormula.PRD_QTY_REQ} ");
-            sql.Append($" ,FM.{TbFormula.PRD_QTY_DISP} ");
-            sql.Append($" ,FM.{TbFormula.PRD_START_DISP} ");
-            sql.Append($" ,FM.{TbFormula.PRD_END_DISP} ");
-            sql.Append($" ,FM.{TbFormula.PRD_PRIORITY} ");
-            sql.Append($" ,FM.{TbFormula.PRD_NUM} ");
-            sql.Append($" ,FM.{TbFormula.PRD_ISPREFILLED} ");
-            sql.Append($" ,FM.{TbFormula.PRD_PREFILLED_QTY} ");
             sql.Append($" ,JB.{TbJob.JOB_TIME_INSERTED} ");
             sql.Append($" ,JB.{TbJob.JOB_STATUS} ");
             sql.Append($" ,JB.{TbJob.JOB_TARE_WEIGHT_EXPECTED} ");
@@ -168,9 +154,8 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
             sql.Append($" ,JB.{TbJob.JOB_ERR_4} ");
             sql.Append($" ,JB.{TbJob.JOB_ERR_5} ");
             sql.Append($"FROM {MAIN_TABLE} AS BC ");
-            sql.Append($"LEFT JOIN {TbFormula.MAIN_TABLE} AS FM ON FM.{TbFormula.PRD_BARCODE} = BC.{BARCODE} AND FM.{TbFormula.PRD_PROCESS_CODE} = BC.{PROCESS_CODE} ");
-            sql.Append($"LEFT JOIN {TbJob.MAIN_TABLE}     AS JB ON JB.{TbJob.JOB_BARCODE}     = BC.{BARCODE} AND JB.{TbJob.JOB_PROCESS_CODE}     = BC.{PROCESS_CODE} ");
-            if (barCode != "" || processCode != "")
+            sql.Append($"LEFT JOIN {TbJob.MAIN_TABLE} AS JB ON JB.{TbJob.JOB_BARCODE} = BC.{BARCODE} AND JB.{TbJob.JOB_PROCESS_CODE} = BC.{PROCESS_CODE} ");
+            if (barCode != "" && processCode != "")
             {
                 sql.Append($"WHERE BC.{BARCODE} ='{barCode}' AND BC.{PROCESS_CODE} ='{processCode}' ");
             }

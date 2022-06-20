@@ -32,17 +32,78 @@ namespace SupervisorIfSim.Dialogs
 {
     public partial class FrmEdit : BaseForm
     {
+        #region DataGridViewの列定義
+        private List<GridViewSetting> ViewSettingsMain = new List<GridViewSetting>()
+        {
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BARCODE, DisplayName = TbBarcode.BARCODE, Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.PROCESS_CODE, DisplayName = TbBarcode.PROCESS_CODE, Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BRC_TIME_INSERTED, DisplayName = TbBarcode.BRC_TIME_INSERTED, Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BRC_TIME_PROCESSED, DisplayName = TbBarcode.BRC_TIME_PROCESSED, Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BRC_STATUS, DisplayName = TbBarcode.BRC_STATUS, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BRC_ERR_1, DisplayName = TbBarcode.BRC_ERR_1, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BRC_ERR_2, DisplayName = TbBarcode.BRC_ERR_2, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbBarcode.BRC_ERR_3, DisplayName = TbBarcode.BRC_ERR_3, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_TIME_INSERTED, DisplayName = TbFormula.PRD_TIME_INSERTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_STATUS, DisplayName = TbFormula.PRD_STATUS, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_CODE, DisplayName = TbFormula.PRD_CODE, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_DESC, DisplayName = TbFormula.PRD_DESC, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_UM, DisplayName = TbFormula.PRD_UM, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_SPECIFIC_GRAVITY, DisplayName = TbFormula.PRD_SPECIFIC_GRAVITY, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_QTY_REQ, DisplayName = TbFormula.PRD_QTY_REQ, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_QTY_DISP, DisplayName = TbFormula.PRD_QTY_DISP, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_START_DISP, DisplayName = TbFormula.PRD_START_DISP, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_END_DISP, DisplayName = TbFormula.PRD_END_DISP, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_PRIORITY, DisplayName = TbFormula.PRD_PRIORITY, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_NUM, DisplayName = TbFormula.PRD_NUM, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_ISPREFILLED, DisplayName = TbFormula.PRD_ISPREFILLED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbFormula.PRD_PREFILLED_QTY, DisplayName = TbFormula.PRD_PREFILLED_QTY, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TIME_INSERTED, DisplayName = TbJob.JOB_TIME_INSERTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_STATUS, DisplayName = TbJob.JOB_STATUS, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TARE_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_TARE_WEIGHT_EXPECTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TARE_WEIGHT_DETECTED, DisplayName = TbJob.JOB_TARE_WEIGHT_DETECTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TARE_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_TARE_WEIGHT_PERC_ERR_ADMITTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_GROSS_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_GROSS_WEIGHT_EXPECTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_GROSS_WEIGHT_DETECTED, DisplayName = TbJob.JOB_GROSS_WEIGHT_DETECTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_GROSS_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_GROSS_WEIGHT_PERC_ERR_ADMITTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_NET_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_NET_WEIGHT_EXPECTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_NET_WEIGHT_DETECTED, DisplayName = TbJob.JOB_NET_WEIGHT_DETECTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_NET_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_NET_WEIGHT_PERC_ERR_ADMITTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TOT_COLORANT_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_TOT_COLORANT_WEIGHT_EXPECTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TOT_COLORANT_WEIGHT_DETECTED, DisplayName = TbJob.JOB_TOT_COLORANT_WEIGHT_DETECTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TOT_COLORANT_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_TOT_COLORANT_WEIGHT_PERC_ERR_ADMITTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_EXPECTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_DETECTED, DisplayName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_DETECTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_PERC_ERR_ADMITTED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_MIXING, DisplayName = TbJob.JOB_MIXING, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_MIXING_TIME, DisplayName = TbJob.JOB_MIXING_TIME, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_MIXING_SPEED, DisplayName = TbJob.JOB_MIXING_SPEED, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_CAPPING, DisplayName = TbJob.JOB_CAPPING, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_LID_PLACING, DisplayName = TbJob.JOB_LID_PLACING, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_LID_CHECK, DisplayName = TbJob.JOB_LID_CHECK, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_PRINTING_1, DisplayName = TbJob.JOB_PRINTING_1, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_PRINTING_2, DisplayName = TbJob.JOB_PRINTING_2, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_PRINTING_3, DisplayName = TbJob.JOB_PRINTING_3, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_EXIT_POSITION, DisplayName = TbJob.JOB_EXIT_POSITION, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TAG_1, DisplayName = TbJob.JOB_TAG_1, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TAG_2, DisplayName = TbJob.JOB_TAG_2, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TAG_3, DisplayName = TbJob.JOB_TAG_3, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TAG_4, DisplayName = TbJob.JOB_TAG_4, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_TAG_5, DisplayName = TbJob.JOB_TAG_5, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_ERR_1, DisplayName = TbJob.JOB_ERR_1, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_ERR_2, DisplayName = TbJob.JOB_ERR_2, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_ERR_3, DisplayName = TbJob.JOB_ERR_3, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_ERR_4, DisplayName = TbJob.JOB_ERR_4, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = TbJob.JOB_ERR_5, DisplayName = TbJob.JOB_ERR_5, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+        };
+        #endregion
+
         #region メンバ変数
-        List<Data.TextBoxItem> _headerTextBoxList;
-        List<Data.TextBoxItem> _barcodeTextBoxList;
-        List<Data.TextBoxItem> _FormulaTextBoxList;
-        List<Data.TextBoxItem> _jobTextBoxList;
+        private List<Data.TextBoxItem> _FormulaTextBoxList;
+        private string _barCode;
+        private string _processCode;
         #endregion
 
         #region 定数
-        // BRC_STATUSラジオボタン
-        private const int BRD_STATUS_COROB = 0;
-        private const int BRD_STATUS_ERP = 1;
         // PRD_STATUSラジオボタン
         private const int PRD_STATUS_UNDISCHARGED = 0;
         private const int PRD_STATUS_COMPLATED = 1;
@@ -50,19 +111,6 @@ namespace SupervisorIfSim.Dialogs
         // PRD_UMラジオボタン
         private const int PRD_UM_GRAM = 1;
         private const int PRD_UM_CC = 2;
-        // YES/NOのラジオボタン
-        private const int JOB_NO = 0;
-        private const int JOB_YES = 1;
-        // JOB_EXIT_POSITIONラジオボタン
-        private const int JOB_EXIT_POSITION_MAIN = 1;
-        private const int JOB_EXIT_POSITION_TEST = 2;
-        private static List<Data.DropDownRow> DrpJobStatusDefines = new List<Data.DropDownRow>()
-        {
-            { new Data.DropDownRow() { Value = 0, Text = "ライン挿入" } },
-            { new Data.DropDownRow() { Value = 1, Text = "缶は良好にライン終了" } },
-            { new Data.DropDownRow() { Value = 99, Text = "缶がライン上に存在" } },
-            { new Data.DropDownRow() { Value = -1, Text = "缶はラインでエラー発生" } },
-        };
         public enum DialogMode
         {
             Merge,
@@ -78,53 +126,6 @@ namespace SupervisorIfSim.Dialogs
         #endregion
 
         #region プロパティ
-        #region BRC_STATUSラジオボタン
-        /// <summary>
-        /// BRC_STATUSラジオボタン
-        /// </summary>
-        private int RdbBrcStatus
-        {
-            get
-            {
-                if (RdbBrcStatusCorob.Checked)
-                {
-                    return BRD_STATUS_COROB;
-                }
-                if (RdbBrcStatusErp.Checked)
-                {
-                    return BRD_STATUS_ERP;
-                }
-                return 0;
-            }
-            set
-            {
-
-                RdbBrcStatusCorob.Checked = false;
-                RdbBrcStatusErp.Checked = false;
-                RdbBrcStatusCorob.ForeColor = Color.Black;
-                RdbBrcStatusErp.ForeColor = Color.Black;
-                Color color = Color.Black;
-                if (PnlBrcStatus.Tag != null && PnlBrcStatus.Tag.ToString() != value.ToString())
-                {
-                    color = Color.Red;
-                }
-                switch (value)
-                {
-                    case BRD_STATUS_COROB:
-                        RdbBrcStatusCorob.Checked = true;
-                        RdbBrcStatusCorob.ForeColor = color;
-                        break;
-                    case BRD_STATUS_ERP:
-                        RdbBrcStatusErp.Checked = true;
-                        RdbBrcStatusErp.ForeColor = color;
-                        break;
-                    default:
-                        break;
-                }
-                PnlBrcStatus.Tag = value.ToString();
-            }
-        }
-        #endregion
         #region PRD_STATUSラジオボタン
         /// <summary>
         /// PRD_STATUSラジオボタン
@@ -273,392 +274,14 @@ namespace SupervisorIfSim.Dialogs
             }
         }
         #endregion
-        #region JOB_MIXINGラジオボタン
-        /// <summary>
-        /// JOB_MIXINGラジオボタン
-        /// </summary>
-        private int RdbJobMixing
-        {
-            get
-            {
-                if (RdbJobMixingYes.Checked)
-                {
-                    return JOB_YES;
-                }
-                if (RdbJobMixingNo.Checked)
-                {
-                    return JOB_NO;
-                }
-                return JOB_NO;
-            }
-            set
-            {
-                RdbJobMixingYes.Checked = false;
-                RdbJobMixingNo.Checked = false;
-                RdbJobMixingYes.ForeColor = Color.Black;
-                RdbJobMixingNo.ForeColor = Color.Black;
-                Color color = Color.Black;
-                if (PnlJobMixing.Tag != null && PnlJobMixing.Tag.ToString() != value.ToString())
-                {
-                    color = Color.Red;
-                }
-                switch (value)
-                {
-                    case JOB_YES:
-                        RdbJobMixingYes.Checked = true;
-                        RdbJobMixingYes.ForeColor = color;
-                        break;
-                    case JOB_NO:
-                        RdbJobMixingNo.Checked = true;
-                        RdbJobMixingNo.ForeColor = color;
-                        break;
-                    default:
-                        break;
-                }
-                PnlJobMixing.Tag = value.ToString();
-            }
-        }
-        #endregion
-        #region JOB_CAPPINGラジオボタン
-        /// <summary>
-        /// JOB_CAPPINGラジオボタン
-        /// </summary>
-        private int RdbJobCapping
-        {
-            get
-            {
-                if (RdbJobCappingYes.Checked)
-                {
-                    return JOB_YES;
-                }
-                if (RdbJobCappingNo.Checked)
-                {
-                    return JOB_NO;
-                }
-                return JOB_NO;
-            }
-            set
-            {
-                RdbJobCappingYes.Checked = false;
-                RdbJobCappingNo.Checked = false;
-                RdbJobCappingYes.ForeColor = Color.Black;
-                RdbJobCappingNo.ForeColor = Color.Black;
-                Color color = Color.Black;
-                if (PnlJobCapping.Tag != null && PnlJobCapping.Tag.ToString() != value.ToString())
-                {
-                    color = Color.Red;
-                }
-                switch (value)
-                {
-                    case JOB_YES:
-                        RdbJobCappingYes.Checked = true;
-                        RdbJobCappingYes.ForeColor = color;
-                        break;
-                    case JOB_NO:
-                        RdbJobCappingNo.Checked = true;
-                        RdbJobCappingNo.ForeColor = color;
-                        break;
-                    default:
-                        break;
-                }
-                PnlJobCapping.Tag = value.ToString();
-            }
-        }
-        #endregion
-        #region JOB_LID_PLACINGラジオボタン
-        /// <summary>
-        /// JOB_LID_PLACINGラジオボタン
-        /// </summary>
-        private int RdbJobLidPlacing
-        {
-            get
-            {
-                if (RdbJobLidPlacingYes.Checked)
-                {
-                    return JOB_YES;
-                }
-                if (RdbJobLidPlacingNo.Checked)
-                {
-                    return JOB_NO;
-                }
-                return JOB_NO;
-            }
-            set
-            {
-                RdbJobLidPlacingYes.Checked = false;
-                RdbJobLidPlacingNo.Checked = false;
-                RdbJobLidPlacingYes.ForeColor = Color.Black;
-                RdbJobLidPlacingNo.ForeColor = Color.Black;
-                Color color = Color.Black;
-                if (PnlJobLidPlacing.Tag != null && PnlJobLidPlacing.Tag.ToString() != value.ToString())
-                {
-                    color = Color.Red;
-                }
-                switch (value)
-                {
-                    case JOB_YES:
-                        RdbJobLidPlacingYes.Checked = true;
-                        RdbJobLidPlacingYes.ForeColor = color;
-                        break;
-                    case JOB_NO:
-                        RdbJobLidPlacingNo.Checked = true;
-                        RdbJobLidPlacingNo.ForeColor = color;
-                        break;
-                    default:
-                        break;
-                }
-                PnlJobLidPlacing.Tag = value.ToString();
-            }
-        }
-        #endregion
-        #region JOB_LID_CHECKラジオボタン
-        /// <summary>
-        /// JOB_LID_CHECKラジオボタン
-        /// </summary>
-        private int RdbJobLidCheck
-        {
-            get
-            {
-                if (RdbJobLidCheckYes.Checked)
-                {
-                    return JOB_YES;
-                }
-                if (RdbJobLidCheckNo.Checked)
-                {
-                    return JOB_NO;
-                }
-                return JOB_NO;
-            }
-            set
-            {
-                RdbJobLidCheckYes.Checked = false;
-                RdbJobLidCheckNo.Checked = false;
-                RdbJobLidCheckYes.ForeColor = Color.Black;
-                RdbJobLidCheckNo.ForeColor = Color.Black;
-                Color color = Color.Black;
-                if (PnlJobLidCheck.Tag != null && PnlJobLidCheck.Tag.ToString() != value.ToString())
-                {
-                    color = Color.Red;
-                }
-                switch (value)
-                {
-                    case JOB_YES:
-                        RdbJobLidCheckYes.Checked = true;
-                        RdbJobLidCheckYes.ForeColor = color;
-                        break;
-                    case JOB_NO:
-                        RdbJobLidCheckNo.Checked = true;
-                        RdbJobLidCheckNo.ForeColor = color;
-                        break;
-                    default:
-                        break;
-                }
-                PnlJobLidCheck.Tag = value.ToString();
-            }
-        }
-        #endregion
-        #region JOB_PRINTING_1ラジオボタン
-        /// <summary>
-        /// JOB_PRINTING_1ラジオボタン
-        /// </summary>
-        private int RdbJobPrinting1
-        {
-            get
-            {
-                if (RdbJobPrinting1Yes.Checked)
-                {
-                    return JOB_YES;
-                }
-                if (RdbJobPrinting1No.Checked)
-                {
-                    return JOB_NO;
-                }
-                return JOB_NO;
-            }
-            set
-            {
-                RdbJobPrinting1Yes.Checked = false;
-                RdbJobPrinting1No.Checked = false;
-                RdbJobPrinting1Yes.ForeColor = Color.Black;
-                RdbJobPrinting1No.ForeColor = Color.Black;
-                Color color = Color.Black;
-                if (PnlJobPrinting1.Tag != null && PnlJobPrinting1.Tag.ToString() != value.ToString())
-                {
-                    color = Color.Red;
-                }
-                switch (value)
-                {
-                    case JOB_YES:
-                        RdbJobPrinting1Yes.Checked = true;
-                        RdbJobPrinting1Yes.ForeColor = color;
-                        break;
-                    case JOB_NO:
-                        RdbJobPrinting1No.Checked = true;
-                        RdbJobPrinting1No.ForeColor = color;
-                        break;
-                    default:
-                        break;
-                }
-                PnlJobPrinting1.Tag = value.ToString();
-            }
-        }
-        #endregion
-        #region JOB_PRINTING_2ラジオボタン
-        /// <summary>
-        /// JOB_PRINTING_2ラジオボタン
-        /// </summary>
-        private int RdbJobPrinting2
-        {
-            get
-            {
-                if (RdbJobPrinting2Yes.Checked)
-                {
-                    return JOB_YES;
-                }
-                if (RdbJobPrinting2No.Checked)
-                {
-                    return JOB_NO;
-                }
-                return JOB_NO;
-            }
-            set
-            {
-                RdbJobPrinting2Yes.Checked = false;
-                RdbJobPrinting2No.Checked = false;
-                RdbJobPrinting2Yes.ForeColor = Color.Black;
-                RdbJobPrinting2No.ForeColor = Color.Black;
-                Color color = Color.Black;
-                if (PnlJobPrinting2.Tag != null && PnlJobPrinting2.Tag.ToString() != value.ToString())
-                {
-                    color = Color.Red;
-                }
-                switch (value)
-                {
-                    case JOB_YES:
-                        RdbJobPrinting2Yes.Checked = true;
-                        RdbJobPrinting2Yes.ForeColor = color;
-                        break;
-                    case JOB_NO:
-                        RdbJobPrinting2No.Checked = true;
-                        RdbJobPrinting2No.ForeColor = color;
-                        break;
-                    default:
-                        break;
-                }
-                PnlJobPrinting2.Tag = value.ToString();
-            }
-        }
-        #endregion
-        #region JOB_PRINTING_3ラジオボタン
-        /// <summary>
-        /// JOB_PRINTING_3ラジオボタン
-        /// </summary>
-        private int RdbJobPrinting3
-        {
-            get
-            {
-                if (RdbJobPrinting3Yes.Checked)
-                {
-                    return JOB_YES;
-                }
-                if (RdbJobPrinting3No.Checked)
-                {
-                    return JOB_NO;
-                }
-                return JOB_NO;
-            }
-            set
-            {
-                RdbJobPrinting3Yes.Checked = false;
-                RdbJobPrinting3No.Checked = false;
-                RdbJobPrinting3Yes.ForeColor = Color.Black;
-                RdbJobPrinting3No.ForeColor = Color.Black;
-                Color color = Color.Black;
-                if (PnlJobPrinting3.Tag != null && PnlJobPrinting3.Tag.ToString() != value.ToString())
-                {
-                    color = Color.Red;
-                }
-                switch (value)
-                {
-                    case JOB_YES:
-                        RdbJobPrinting3Yes.Checked = true;
-                        RdbJobPrinting3Yes.ForeColor = color;
-                        break;
-                    case JOB_NO:
-                        RdbJobPrinting3No.Checked = true;
-                        RdbJobPrinting3No.ForeColor = color;
-                        break;
-                    default:
-                        break;
-                }
-                PnlJobPrinting3.Tag = value.ToString();
-            }
-        }
-        #endregion
-        #region JOB_EXIT_POSITIONラジオボタン
-        /// <summary>
-        /// JOB_EXIT_POSITIONラジオボタン
-        /// </summary>
-        private int RdbJobExitPosition
-        {
-            get
-            {
-                if (RdbJobExitPositionMain.Checked)
-                {
-                    return JOB_EXIT_POSITION_MAIN;
-                }
-                if (RdbJobExitPositionTest.Checked)
-                {
-                    return JOB_EXIT_POSITION_TEST;
-                }
-                return JOB_EXIT_POSITION_MAIN;
-            }
-            set
-            {
-                RdbJobExitPositionMain.Checked = false;
-                RdbJobExitPositionTest.Checked = false;
-                RdbJobExitPositionMain.ForeColor = Color.Black;
-                RdbJobExitPositionTest.ForeColor = Color.Black;
-                Color color = Color.Black;
-                if (PnlJobExitPosition.Tag != null && PnlJobExitPosition.Tag.ToString() != value.ToString())
-                {
-                    color = Color.Red;
-                }
-                switch (value)
-                {
-                    case JOB_EXIT_POSITION_MAIN:
-                        RdbJobExitPositionMain.Checked = true;
-                        RdbJobExitPositionMain.ForeColor = color;
-                        break;
-                    case JOB_EXIT_POSITION_TEST:
-                        RdbJobExitPositionTest.Checked = true;
-                        RdbJobExitPositionTest.ForeColor = color;
-                        break;
-                    default:
-                        break;
-                }
-                PnlJobExitPosition.Tag = value.ToString();
-            }
-        }
-        #endregion
         #endregion
 
         #region コンストラクタ
         public FrmEdit(string barCode, string processCode, DialogMode mode)
         {
+            _barCode = barCode;
+            _processCode = processCode;
             InitializeComponent();
-            _headerTextBoxList = new List<Data.TextBoxItem>()
-            {
-                { new Data.TextBoxItem() { TextBox = TxtBarcode, FieldName = TbBarcode.BARCODE, FieldType = typeof(string) } },
-                { new Data.TextBoxItem() { TextBox = TxtProcessCode, FieldName = TbBarcode.PROCESS_CODE, FieldType = typeof(int)} },
-            };
-            _barcodeTextBoxList = new List<Data.TextBoxItem>() {
-                { new Data.TextBoxItem() { TextBox = TxtBrcTimeInserted, FieldName = TbBarcode.BRC_TIME_INSERTED, FieldType = typeof(DateTime) } },
-                { new Data.TextBoxItem() { TextBox = TxtBrcTimeProcessed, FieldName = TbBarcode.BRC_TIME_PROCESSED, FieldType = typeof(DateTime) } },
-                { new Data.TextBoxItem() { TextBox = TxtBrcErr1, FieldName = TbBarcode.BRC_ERR_1, FieldType = typeof(string) } },
-                { new Data.TextBoxItem() { TextBox = TxtBrcErr2, FieldName = TbBarcode.BRC_ERR_2, FieldType = typeof(string) } },
-                { new Data.TextBoxItem() { TextBox = TxtBrcErr3, FieldName = TbBarcode.BRC_ERR_3, FieldType = typeof(string) } },
-            };
             _FormulaTextBoxList = new List<Data.TextBoxItem>()
             {
                 { new Data.TextBoxItem() { TextBox = TxtPrdTimeInserted, FieldName = "PRD_TIME_INSERTED", FieldType = typeof(DateTime) } },
@@ -673,45 +296,7 @@ namespace SupervisorIfSim.Dialogs
                 { new Data.TextBoxItem() { TextBox = TxtPrdNum, FieldName = "PRD_NUM", FieldType = typeof(int) } },
                 { new Data.TextBoxItem() { TextBox = TxtPrdPrefilledQty, FieldName = "PRD_PREFILLED_QTY", FieldType = typeof(float) } },
             };
-            _jobTextBoxList = new List<Data.TextBoxItem>()
-            {
-                { new Data.TextBoxItem() { TextBox = TxtJobTimeInserted, FieldName = "JOB_TIME_INSERTED", FieldType = typeof(DateTime) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTareWeightExpected, FieldName = "JOB_TARE_WEIGHT_EXPECTED", FieldType = typeof(float) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTareWeightDetected, FieldName = "JOB_TARE_WEIGHT_DETECTED", FieldType = typeof(float) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTareWeightPercErrAdmitted, FieldName = "JOB_TARE_WEIGHT_PERC_ERR_ADMITTED", FieldType = typeof(int) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobGrossWeightExpected, FieldName = "JOB_GROSS_WEIGHT_EXPECTED", FieldType = typeof(float) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobGrossWeightDetected, FieldName = "JOB_GROSS_WEIGHT_DETECTED", FieldType = typeof(float) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobGrossWeightPercErrAdmitted, FieldName = "JOB_GROSS_WEIGHT_PERC_ERR_ADMITTED", FieldType = typeof(int) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobNetWeightExpected, FieldName = "JOB_NET_WEIGHT_EXPECTED", FieldType = typeof(float) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobNetWeightDetected, FieldName = "JOB_NET_WEIGHT_DETECTED", FieldType = typeof(float) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobNetWeightPercErrAdmitted, FieldName = "JOB_NET_WEIGHT_PERC_ERR_ADMITTED", FieldType = typeof(int) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTotColorantWeightExpected, FieldName = "JOB_TOT_COLORANT_WEIGHT_EXPECTED", FieldType = typeof(float) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTotColorantWeightDetected, FieldName = "JOB_TOT_COLORANT_WEIGHT_DETECTED", FieldType = typeof(float) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTotColorantWeightPercErrAdmitted, FieldName = "JOB_TOT_COLORANT_WEIGHT_PERC_ERR_ADMITTED", FieldType = typeof(int) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTotGravimetricWeightExpected, FieldName = "JOB_TOT_GRAVIMETRIC_WEIGHT_EXPECTED", FieldType = typeof(float) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTotGravimetricWeightDetected, FieldName = "JOB_TOT_GRAVIMETRIC_WEIGHT_DETECTED", FieldType = typeof(float) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTotGravimetricWeightPercErrAdmitted, FieldName = "JOB_TOT_GRAVIMETRIC_WEIGHT_PERC_ERR_ADMITTED", FieldType = typeof(int) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobMixingTime, FieldName = "JOB_MIXING_TIME", FieldType = typeof(int) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobMixingSpeed, FieldName = "JOB_MIXING_SPEED", FieldType = typeof(int) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTag1, FieldName = "JOB_TAG_1", FieldType = typeof(int) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTag2, FieldName = "JOB_TAG_2", FieldType = typeof(int) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTag3, FieldName = "JOB_TAG_3", FieldType = typeof(int) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTag4, FieldName = "JOB_TAG_4", FieldType = typeof(int) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobTag5, FieldName = "JOB_TAG_5", FieldType = typeof(int) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobErr1, FieldName = "JOB_ERR_1", FieldType = typeof(string) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobErr2, FieldName = "JOB_ERR_2", FieldType = typeof(string) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobErr3, FieldName = "JOB_ERR_3", FieldType = typeof(string) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobErr4, FieldName = "JOB_ERR_4", FieldType = typeof(string) } },
-                { new Data.TextBoxItem() { TextBox = TxtJobErr5, FieldName = "JOB_ERR_5", FieldType = typeof(string) } },
-            };
             InitializeForm(barCode, processCode);
-            switch (mode)
-            {
-                case DialogMode.Update:
-                    TxtBarcode.Enabled = false;
-                    TxtProcessCode.Enabled = false;
-                    break;
-            }
         }
         #endregion
 
@@ -730,19 +315,19 @@ namespace SupervisorIfSim.Dialogs
                 {
                     case Keys.F2:
                         // TB_BARCODE
-                        BtnSaveBarcode.PerformClick();
+                        //BtnSaveBarcode.PerformClick();
                         break;
                     case Keys.F3:
                         // TB_FORMULA
-                        BtnSaveFormula.PerformClick();
+                        //BtnSaveFormula.PerformClick();
                         break;
                     case Keys.F4:
                         // TB_JOB
-                        BtnSaveJob.PerformClick();
+                        //BtnSaveJob.PerformClick();
                         break;
                     case Keys.F8:
                         // すべて
-                        BtnSaveAll.PerformClick();
+                        //BtnSaveAll.PerformClick();
                         break;
                 }
             }
@@ -880,27 +465,10 @@ namespace SupervisorIfSim.Dialogs
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnTimer_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                TimerReset(!TimerPreview.Enabled);
-            }
-            catch (Exception ex)
-            {
-                PutLog(ex);
-            }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void BtnPreview_Click(object sender, EventArgs e)
         {
             try
             {
-                PreviewData(TxtBarcode.Text, TxtProcessCode.Text);
                 PutLog(Sentence.Messages.PreviewData, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -917,7 +485,6 @@ namespace SupervisorIfSim.Dialogs
         {
             try
             {
-                PreviewData(TxtBarcode.Text, TxtProcessCode.Text);
                 PutLog(Sentence.Messages.PreviewData, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -942,44 +509,10 @@ namespace SupervisorIfSim.Dialogs
             //this.BtnEdit.Click += new EventHandler(this.BtnEdit_Click);
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(this.FormKeyDown);
-            this.BtnSaveAll.Click += new EventHandler(this.BtnSaveAll_Click);
-            this.BtnSaveBarcode.Click += new System.EventHandler(this.BtnSaveBarcode_Click);
-            this.BtnSaveFormula.Click += new System.EventHandler(this.BtnSaveFormula_Click);
-            this.BtnSaveJob.Click += new System.EventHandler(this.BtnSaveJob_Click);
-            this.BtnTimer.Click += new EventHandler(this.BtnTimer_Click);
-            this.BtnPreview.Click += new EventHandler(this.BtnPreview_Click);
-            this.TimerPreview.Tick += new EventHandler(this.TimerPreview_Tick);
-            // ドロップダウン要素の生成
-            CreateDropDownItems();
-            // タイマーの周期を設定
-            TimerPreview.Interval = int.Parse(LblCycle.Text) * 1000;
             // データ表示
             PreviewData(barCode, processCode);
         }
         #endregion
-
-        #region ドロップダウンの要素を生成する
-        /// <summary>
-        /// ドロップダウンの要素を生成する
-        /// </summary>
-        private void CreateDropDownItems()
-        {
-            var list = new DataTable();
-            list.Columns.Add(nameof(Data.DropDownRow.Value), typeof(int));
-            list.Columns.Add(nameof(Data.DropDownRow.Text), typeof(string));
-            foreach (var item in DrpJobStatusDefines)
-            {
-                var row = list.NewRow();
-                row[nameof(Data.DropDownRow.Value)] = item.Value;
-                row[nameof(Data.DropDownRow.Text)] = item.Text;
-                list.Rows.Add(row);
-            }
-            DrpJobStatus.DataSource = list;
-            DrpJobStatus.ValueMember = nameof(Data.DropDownRow.Value);
-            DrpJobStatus.DisplayMember = nameof(Data.DropDownRow.Text);
-        }
-        #endregion
-
         #region TB_BARCODEの更新
         /// <summary>
         /// TB_BARCODEの更新
@@ -992,15 +525,13 @@ namespace SupervisorIfSim.Dialogs
             //
             string sql = TbBarcode.Merge(out List<ParameterItem> parameters);
             // キー
-            SetParameter(parameters, TbBarcode.BARCODE, TxtBarcode.Text);
-            SetParameter(parameters, TbBarcode.PROCESS_CODE, TxtProcessCode.Text);
-            // テキストボックス
-            foreach (var item in _barcodeTextBoxList)
-            {
-                SetParameter(parameters, item.FieldName, item.TextBox.Text, item.FieldType, entryTime);
-            }
-            // ラジオボタン
-            SetParameter(parameters, TbBarcode.BRC_STATUS, RdbBrcStatus);
+            SetParameter(parameters, TbBarcode.BARCODE, _barCode);
+            SetParameter(parameters, TbBarcode.PROCESS_CODE, _processCode);
+            //// テキストボックス
+            //foreach (var item in _barcodeTextBoxList)
+            //{
+            //    SetParameter(parameters, item.FieldName, item.TextBox.Text, item.FieldType, entryTime);
+            //}
             //
             // 更新実行
             //
@@ -1017,8 +548,8 @@ namespace SupervisorIfSim.Dialogs
             //
             string sql = TbFormula.Merge(out List<ParameterItem> parameters);
             // キー
-            SetParameter(parameters, TbFormula.PRD_BARCODE, TxtBarcode.Text);
-            SetParameter(parameters, TbFormula.PRD_PROCESS_CODE, TxtProcessCode.Text);
+            SetParameter(parameters, TbFormula.PRD_BARCODE, _barCode);
+            SetParameter(parameters, TbFormula.PRD_PROCESS_CODE, _processCode);
             // テキストボックス
             foreach (var item in _FormulaTextBoxList)
             {
@@ -1047,24 +578,24 @@ namespace SupervisorIfSim.Dialogs
             //
             string sql = TbJob.Merge(out List<ParameterItem> parameters);
             // キー
-            SetParameter(parameters, TbJob.JOB_BARCODE, TxtBarcode.Text);
-            SetParameter(parameters, TbJob.JOB_PROCESS_CODE, TxtProcessCode.Text);
-            // テキストボックス
-            foreach (var item in _jobTextBoxList)
-            {
-                SetParameter(parameters, item.FieldName, item.TextBox.Text, item.FieldType, entryTime);
-            }
-            // ドロップダウン
-            SetParameter(parameters, TbJob.JOB_STATUS, DrpJobStatus.SelectedValue);
-            // ラジオボタン
-            SetParameter(parameters, TbJob.JOB_MIXING, RdbJobMixing);
-            SetParameter(parameters, TbJob.JOB_CAPPING, RdbJobCapping);
-            SetParameter(parameters, TbJob.JOB_LID_PLACING, RdbJobLidPlacing);
-            SetParameter(parameters, TbJob.JOB_LID_CHECK, RdbJobLidCheck);
-            SetParameter(parameters, TbJob.JOB_PRINTING_1, RdbJobPrinting1);
-            SetParameter(parameters, TbJob.JOB_PRINTING_2, RdbJobPrinting2);
-            SetParameter(parameters, TbJob.JOB_PRINTING_3, RdbJobPrinting3);
-            SetParameter(parameters, TbJob.JOB_EXIT_POSITION, RdbJobExitPosition);
+            SetParameter(parameters, TbJob.JOB_BARCODE, _barCode);
+            SetParameter(parameters, TbJob.JOB_PROCESS_CODE, _processCode);
+            //// テキストボックス
+            //foreach (var item in _jobTextBoxList)
+            //{
+            //    SetParameter(parameters, item.FieldName, item.TextBox.Text, item.FieldType, entryTime);
+            //}
+            //// ドロップダウン
+            //SetParameter(parameters, TbJob.JOB_STATUS, DrpJobStatus.SelectedValue);
+            //// ラジオボタン
+            //SetParameter(parameters, TbJob.JOB_MIXING, RdbJobMixing);
+            //SetParameter(parameters, TbJob.JOB_CAPPING, RdbJobCapping);
+            //SetParameter(parameters, TbJob.JOB_LID_PLACING, RdbJobLidPlacing);
+            //SetParameter(parameters, TbJob.JOB_LID_CHECK, RdbJobLidCheck);
+            //SetParameter(parameters, TbJob.JOB_PRINTING_1, RdbJobPrinting1);
+            //SetParameter(parameters, TbJob.JOB_PRINTING_2, RdbJobPrinting2);
+            //SetParameter(parameters, TbJob.JOB_PRINTING_3, RdbJobPrinting3);
+            //SetParameter(parameters, TbJob.JOB_EXIT_POSITION, RdbJobExitPosition);
             //
             // 更新実行
             //
@@ -1179,12 +710,12 @@ namespace SupervisorIfSim.Dialogs
         /// <returns></returns>
         private bool Save(SaveMode mode, SqlBase db)
         {
-            if (string.IsNullOrEmpty(TxtBarcode.Text.Trim()))
+            if (string.IsNullOrEmpty(_barCode))
             {
                 Messages.ShowDialog(Sentence.Messages.NotEntryData, "BARCODE");
                 return false;
             }
-            if (string.IsNullOrEmpty(TxtProcessCode.Text.Trim()))
+            if (string.IsNullOrEmpty(_processCode))
             {
                 Messages.ShowDialog(Sentence.Messages.NotEntryData, "PROCESS_CODE");
                 return false;
@@ -1222,82 +753,57 @@ namespace SupervisorIfSim.Dialogs
                 var result = db.Select(TbBarcode.GetPreviewAll(barCode, processCode));
                 if (result.Rows.Count > 0)
                 {
-                    DbToTextBox(_headerTextBoxList, result);
-                    DbToTextBox(_barcodeTextBoxList, result);
+                    //DbToTextBox(_headerTextBoxList, result);
+                    //DbToTextBox(_barcodeTextBoxList, result);
                     DbToTextBox(_FormulaTextBoxList, result);
-                    DbToTextBox(_jobTextBoxList, result);
-                    RdbBrcStatus = int.Parse(result.Rows[0][GetColumnIndex(TbBarcode.BRC_STATUS, result.Columns)].ToString());
+                    //DbToTextBox(_jobTextBoxList, result);
+                    ////RdbBrcStatus = int.Parse(result.Rows[0][GetColumnIndex(TbBarcode.BRC_STATUS, result.Columns)].ToString());
                     RdbPrdStatus = int.Parse(result.Rows[0][GetColumnIndex(TbFormula.PRD_STATUS, result.Columns)].ToString());
                     RdbPrdUm = int.Parse(result.Rows[0][GetColumnIndex(TbFormula.PRD_UM, result.Columns)].ToString());
                     RdbPrdIsprefilled = result.Rows[0][GetColumnIndex(TbFormula.PRD_ISPREFILLED, result.Columns)].ToString() == "1";
-                    RdbJobMixing = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_MIXING, result.Columns)].ToString());
-                    RdbJobCapping = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_CAPPING, result.Columns)].ToString());
-                    RdbJobLidPlacing = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_LID_PLACING, result.Columns)].ToString());
-                    RdbJobLidCheck = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_LID_CHECK, result.Columns)].ToString());
-                    RdbJobPrinting1 = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_PRINTING_1, result.Columns)].ToString());
-                    RdbJobPrinting2 = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_PRINTING_2, result.Columns)].ToString());
-                    RdbJobPrinting3 = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_PRINTING_3, result.Columns)].ToString());
-                    RdbJobExitPosition = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_EXIT_POSITION, result.Columns)].ToString());
-                    DrpJobStatus.SelectedValue = result.Rows[0][GetColumnIndex(TbJob.JOB_STATUS, result.Columns)].ToString();
+                    //RdbJobMixing = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_MIXING, result.Columns)].ToString());
+                    //RdbJobCapping = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_CAPPING, result.Columns)].ToString());
+                    //RdbJobLidPlacing = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_LID_PLACING, result.Columns)].ToString());
+                    //RdbJobLidCheck = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_LID_CHECK, result.Columns)].ToString());
+                    //RdbJobPrinting1 = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_PRINTING_1, result.Columns)].ToString());
+                    //RdbJobPrinting2 = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_PRINTING_2, result.Columns)].ToString());
+                    //RdbJobPrinting3 = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_PRINTING_3, result.Columns)].ToString());
+                    //RdbJobExitPosition = int.Parse(result.Rows[0][GetColumnIndex(TbJob.JOB_EXIT_POSITION, result.Columns)].ToString());
+                    //DrpJobStatus.SelectedValue = result.Rows[0][GetColumnIndex(TbJob.JOB_STATUS, result.Columns)].ToString();
                 }
                 else
                 {
-                    foreach (var item in _headerTextBoxList)
-                    {
-                        item.TextBox.Text = string.Empty;
-                    }
-                    foreach (var item in _barcodeTextBoxList)
-                    {
-                        item.TextBox.Text = string.Empty;
-                    }
+                    //foreach (var item in _headerTextBoxList)
+                    //{
+                    //    item.TextBox.Text = string.Empty;
+                    //}
+                    //foreach (var item in _barcodeTextBoxList)
+                    //{
+                    //    item.TextBox.Text = string.Empty;
+                    //}
                     foreach (var item in _FormulaTextBoxList)
                     {
                         item.TextBox.Text = string.Empty;
                     }
-                    foreach (var item in _jobTextBoxList)
-                    {
-                        item.TextBox.Text = string.Empty;
-                    }
-                    RdbBrcStatus = BRD_STATUS_COROB;
+                    //foreach (var item in _jobTextBoxList)
+                    //{
+                    //    item.TextBox.Text = string.Empty;
+                    //}
+                    //RdbBrcStatus = BRD_STATUS_COROB;
                     RdbPrdStatus = PRD_STATUS_UNDISCHARGED;
                     RdbPrdUm = PRD_UM_CC;
                     RdbPrdIsprefilled = false;
-                    RdbJobMixing = JOB_YES;
-                    RdbJobCapping = JOB_YES;
-                    RdbJobLidPlacing = JOB_YES;
-                    RdbJobLidCheck = JOB_YES;
-                    RdbJobPrinting1 = JOB_NO;
-                    RdbJobPrinting2 = JOB_NO;
-                    RdbJobPrinting3 = JOB_NO;
-                    RdbJobExitPosition = JOB_EXIT_POSITION_MAIN;
-                    DrpJobStatus.SelectedValue = DrpJobStatusDefines[0].Value;
+                    //RdbJobMixing = JOB_YES;
+                    //RdbJobCapping = JOB_YES;
+                    //RdbJobLidPlacing = JOB_YES;
+                    //RdbJobLidCheck = JOB_YES;
+                    //RdbJobPrinting1 = JOB_NO;
+                    //RdbJobPrinting2 = JOB_NO;
+                    //RdbJobPrinting3 = JOB_NO;
+                    //RdbJobExitPosition = JOB_EXIT_POSITION_MAIN;
+                    //DrpJobStatus.SelectedValue = DrpJobStatusDefines[0].Value;
                 }
             }
-            LblPreviewTime.Text = $"秒周期で更新（最終更新時刻：{DateTime.Now.ToString("HH:mm:ss")}）";
-        }
-        #endregion
-
-        #region タイマーリセット
-        /// <summary>
-        /// タイマーリセット
-        /// </summary>
-        /// <param name="timerEnabled"></param>
-        private void TimerReset(bool timerEnabled)
-        {
-            if (timerEnabled)
-            {
-                BtnTimer.Text = "停止";
-            }
-            else
-            {
-                BtnTimer.Text = "開始";
-            }
-            BtnPreview.Enabled = !timerEnabled;
-            BtnSaveBarcode.Enabled = !timerEnabled;
-            BtnSaveFormula.Enabled = !timerEnabled;
-            BtnSaveJob.Enabled = !timerEnabled;
-            BtnSaveAll.Enabled = !timerEnabled;
-            TimerPreview.Enabled = timerEnabled;
         }
         #endregion
 

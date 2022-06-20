@@ -14,6 +14,7 @@
 
 #region using defines
 using System.Windows.Forms;
+using System.Collections.Generic;
 #endregion
 
 namespace NipponPaint.NpCommon.Settings
@@ -57,6 +58,10 @@ namespace NipponPaint.NpCommon.Settings
         /// 配置
         /// </summary>
         public DataGridViewContentAlignment alignment { get; set; } = DataGridViewContentAlignment.MiddleLeft;
+        /// <summary>
+        /// セルの値を反映するコントロール
+        /// </summary>
+        public Control DisplayControl { get; set; } = null;
 
         #region コンストラクタ
         public GridViewSetting()
@@ -74,6 +79,7 @@ namespace NipponPaint.NpCommon.Settings
             alignment = item.alignment;
         }
         #endregion
+
         /// <summary>
         /// SQL文の文言
         /// </summary>
