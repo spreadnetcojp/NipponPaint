@@ -350,8 +350,8 @@ namespace NipponPaint.OrderManager.Dialogs
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -363,6 +363,7 @@ namespace NipponPaint.OrderManager.Dialogs
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DgvList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DgvList.EnableHeadersVisualStyles = false;
             this.DgvList.Location = new System.Drawing.Point(12, 12);
             this.DgvList.Name = "DgvList";
             this.DgvList.RowTemplate.Height = 21;

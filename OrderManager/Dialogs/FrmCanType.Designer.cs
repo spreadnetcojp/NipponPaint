@@ -140,6 +140,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DrpHoleSize.Location = new System.Drawing.Point(310, 79);
             this.DrpHoleSize.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DrpHoleSize.Name = "DrpHoleSize";
+            this.DrpHoleSize.SelectedValue = null;
             this.DrpHoleSize.Size = new System.Drawing.Size(293, 31);
             this.DrpHoleSize.TabIndex = 24;
             this.DrpHoleSize.TableName = "";
