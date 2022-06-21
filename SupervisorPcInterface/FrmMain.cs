@@ -86,12 +86,17 @@ namespace SupervisorPcInterface
                     var barcodeRows = dbs.Select(TbBarcode.GetPreview());
                     using (var dbn = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
                     {
-                        // ERPのテーブルから情報収集
-                        var dispenseDatas = dbn.Select(Cans.GetPreviewDispensedData(_settings.Facility.Plant));
                         foreach (DataRow barcodeRow in barcodeRows.Rows)
                         {
                             var barCode = barcodeRow[TbBarcode.BARCODE].ToString();
+                            // ERPのテーブルから情報収集
+                            // 行取得のSQLを作成
+                            var parameters = new List<ParameterItem>()
+                            {
+                                new ParameterItem("barcode", barCode),
+                            };
                             // バーコードをキーにERPのテーブルから情報収集
+                            var dispenseDatas = dbn.Select(Cans.GetPreviewDispensedData(_settings.Facility.Plant), parameters);
                             var dispenseRows = dispenseDatas.Select($"Barcode = '{barCode}'");
                             //PutLog(Sentence.Messages.ExecuteSupervisorInterface, new string[] { barCode, dispenseRows.Count().ToString() });
                             var cnt = 0;

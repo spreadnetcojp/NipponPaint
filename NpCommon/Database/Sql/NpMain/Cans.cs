@@ -95,7 +95,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($"FROM ({GetPreviewDispensed(plant)}) AS TB0 ");
             sql.Append($"INNER JOIN Cans   AS TB1 ON TB1.Cans_id  = TB0.Cans_id ");
             sql.Append($"INNER JOIN Orders AS TB2 ON TB2.Order_id = TB0.Order_id ");
-            sql.Append($"WHERE TB0.Barcode = @barcode");
+            sql.Append($"WHERE TB0.Barcode = @barcode ");
             sql.Append($"ORDER BY ");
             sql.Append($"  TB0.Order_id ");
             sql.Append($" ,TB0.Barcode ");
