@@ -293,7 +293,7 @@ namespace SupervisorIfSim
             this.BtnRegistFormula.Name = "BtnRegistFormula";
             this.BtnRegistFormula.Size = new System.Drawing.Size(98, 35);
             this.BtnRegistFormula.TabIndex = 75;
-            this.BtnRegistFormula.Text = "登録";
+            this.BtnRegistFormula.Text = "登録(F4)";
             this.BtnRegistFormula.UseVisualStyleBackColor = true;
             this.BtnRegistFormula.Click += new System.EventHandler(this.BtnRegistFormula_Click);
             // 
@@ -553,8 +553,10 @@ namespace SupervisorIfSim
             // 
             this.TxtPrdCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtPrdCode.Enabled = false;
             this.TxtPrdCode.Location = new System.Drawing.Point(159, 108);
             this.TxtPrdCode.Name = "TxtPrdCode";
+            this.TxtPrdCode.ReadOnly = true;
             this.TxtPrdCode.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdCode.TabIndex = 52;
             this.TxtPrdCode.Text = "1234567890123456789012345";
@@ -605,7 +607,7 @@ namespace SupervisorIfSim
             // 
             // label15
             // 
-            this.label15.BackColor = System.Drawing.Color.Navy;
+            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label15.ForeColor = System.Drawing.Color.White;
             this.label15.Location = new System.Drawing.Point(2, 108);
             this.label15.Name = "label15";
@@ -981,7 +983,7 @@ namespace SupervisorIfSim
             this.BtnRegistBarcode.Name = "BtnRegistBarcode";
             this.BtnRegistBarcode.Size = new System.Drawing.Size(98, 35);
             this.BtnRegistBarcode.TabIndex = 189;
-            this.BtnRegistBarcode.Text = "登録";
+            this.BtnRegistBarcode.Text = "登録(F2)";
             this.BtnRegistBarcode.UseVisualStyleBackColor = true;
             this.BtnRegistBarcode.Click += new System.EventHandler(this.BtnRegistBarcode_Click);
             // 
@@ -991,7 +993,7 @@ namespace SupervisorIfSim
             this.BtnRegistJob.Name = "BtnRegistJob";
             this.BtnRegistJob.Size = new System.Drawing.Size(98, 35);
             this.BtnRegistJob.TabIndex = 188;
-            this.BtnRegistJob.Text = "登録";
+            this.BtnRegistJob.Text = "登録(F3)";
             this.BtnRegistJob.UseVisualStyleBackColor = true;
             this.BtnRegistJob.Click += new System.EventHandler(this.BtnRegistJob_Click);
             // 
@@ -1833,23 +1835,27 @@ namespace SupervisorIfSim
             // 
             // TxtProcessCode
             // 
+            this.TxtProcessCode.Enabled = false;
             this.TxtProcessCode.Location = new System.Drawing.Point(159, 29);
             this.TxtProcessCode.Name = "TxtProcessCode";
+            this.TxtProcessCode.ReadOnly = true;
             this.TxtProcessCode.Size = new System.Drawing.Size(200, 25);
             this.TxtProcessCode.TabIndex = 7;
             this.TxtProcessCode.Text = "1234567890123456789012345";
             // 
             // TxtBarcode
             // 
+            this.TxtBarcode.Enabled = false;
             this.TxtBarcode.Location = new System.Drawing.Point(159, 3);
             this.TxtBarcode.Name = "TxtBarcode";
+            this.TxtBarcode.ReadOnly = true;
             this.TxtBarcode.Size = new System.Drawing.Size(200, 25);
             this.TxtBarcode.TabIndex = 5;
             this.TxtBarcode.Text = "1234567890123456789012345";
             // 
             // label4
             // 
-            this.label4.BackColor = System.Drawing.Color.Navy;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(2, 29);
             this.label4.Name = "label4";
@@ -1860,7 +1866,7 @@ namespace SupervisorIfSim
             // 
             // label3
             // 
-            this.label3.BackColor = System.Drawing.Color.Navy;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(2, 3);
             this.label3.Name = "label3";
