@@ -289,6 +289,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnOrderBack.Click += new EventHandler(this.BtnOrderBackClick);
             this.BtnClose.Click += new EventHandler(this.BtnCloseClick);
             this.DropDownCapType.SelectedIndexChanged += new EventHandler(this.DropDownCapTypeSelectedIndexChanged);
+            // データ表示部の設定
+            Funcs.SetControlEnabled(this.Controls, true);
         }
         #endregion
 
