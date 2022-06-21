@@ -286,6 +286,17 @@ namespace SupervisorIfSim
             this.pnlDetailFormula.Size = new System.Drawing.Size(420, 950);
             this.pnlDetailFormula.TabIndex = 57;
             // 
+            // BtnRegistFormula
+            // 
+            this.BtnRegistFormula.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnRegistFormula.Location = new System.Drawing.Point(312, 10);
+            this.BtnRegistFormula.Name = "BtnRegistFormula";
+            this.BtnRegistFormula.Size = new System.Drawing.Size(98, 35);
+            this.BtnRegistFormula.TabIndex = 75;
+            this.BtnRegistFormula.Text = "登録";
+            this.BtnRegistFormula.UseVisualStyleBackColor = true;
+            this.BtnRegistFormula.Click += new System.EventHandler(this.BtnRegistFormula_Click);
+            // 
             // RdbPrdIsprefilled
             // 
             this.RdbPrdIsprefilled.FirstButtonDefault = 0;
@@ -352,17 +363,6 @@ namespace SupervisorIfSim
             this.RdbPrdStatus.ThirdButtonVisible = true;
             this.RdbPrdStatus.Value = -99;
             // 
-            // BtnRegist
-            // 
-            this.BtnRegistFormula.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnRegistFormula.Location = new System.Drawing.Point(312, 10);
-            this.BtnRegistFormula.Name = "BtnRegistFormula";
-            this.BtnRegistFormula.Size = new System.Drawing.Size(98, 35);
-            this.BtnRegistFormula.TabIndex = 75;
-            this.BtnRegistFormula.Text = "登録";
-            this.BtnRegistFormula.UseVisualStyleBackColor = true;
-            this.BtnRegistFormula.Click += new System.EventHandler(this.BtnRegistFormula_Click);
-            // 
             // label39
             // 
             this.label39.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -379,7 +379,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdPrefilledQty
             // 
-            this.TxtPrdPrefilledQty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TxtPrdPrefilledQty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdPrefilledQty.Location = new System.Drawing.Point(159, 394);
             this.TxtPrdPrefilledQty.Name = "TxtPrdPrefilledQty";
@@ -389,7 +389,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdNum
             // 
-            this.TxtPrdNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TxtPrdNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdNum.Location = new System.Drawing.Point(159, 342);
             this.TxtPrdNum.Name = "TxtPrdNum";
@@ -399,7 +399,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdPriority
             // 
-            this.TxtPrdPriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TxtPrdPriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdPriority.Location = new System.Drawing.Point(159, 316);
             this.TxtPrdPriority.Name = "TxtPrdPriority";
@@ -409,7 +409,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdEndDisp
             // 
-            this.TxtPrdEndDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TxtPrdEndDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdEndDisp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.TxtPrdEndDisp.Location = new System.Drawing.Point(159, 290);
@@ -420,7 +420,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdStartDisp
             // 
-            this.TxtPrdStartDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TxtPrdStartDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdStartDisp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.TxtPrdStartDisp.Location = new System.Drawing.Point(159, 264);
@@ -497,7 +497,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdQtyDisp
             // 
-            this.TxtPrdQtyDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TxtPrdQtyDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdQtyDisp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.TxtPrdQtyDisp.Location = new System.Drawing.Point(159, 238);
@@ -519,7 +519,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdQtyReq
             // 
-            this.TxtPrdQtyReq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TxtPrdQtyReq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdQtyReq.Location = new System.Drawing.Point(159, 212);
             this.TxtPrdQtyReq.Name = "TxtPrdQtyReq";
@@ -529,7 +529,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdSpecificGravity
             // 
-            this.TxtPrdSpecificGravity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TxtPrdSpecificGravity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdSpecificGravity.Location = new System.Drawing.Point(159, 186);
             this.TxtPrdSpecificGravity.Name = "TxtPrdSpecificGravity";
@@ -539,7 +539,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdDesc
             // 
-            this.TxtPrdDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TxtPrdDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdDesc.Enabled = false;
             this.TxtPrdDesc.Location = new System.Drawing.Point(159, 134);
@@ -551,7 +551,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdCode
             // 
-            this.TxtPrdCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TxtPrdCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdCode.Location = new System.Drawing.Point(159, 108);
             this.TxtPrdCode.Name = "TxtPrdCode";
@@ -627,7 +627,7 @@ namespace SupervisorIfSim
             // 
             // TxtPrdTimeInserted
             // 
-            this.TxtPrdTimeInserted.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.TxtPrdTimeInserted.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdTimeInserted.Location = new System.Drawing.Point(159, 56);
             this.TxtPrdTimeInserted.Name = "TxtPrdTimeInserted";
