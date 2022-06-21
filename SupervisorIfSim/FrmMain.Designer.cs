@@ -661,8 +661,10 @@ namespace SupervisorIfSim
             // 
             this.GvFormula.AllowUserToAddRows = false;
             this.GvFormula.AllowUserToDeleteRows = false;
+            this.GvFormula.AllowUserToResizeRows = false;
             this.GvFormula.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GvFormula.Location = new System.Drawing.Point(0, 0);
+            this.GvFormula.MultiSelect = false;
             this.GvFormula.Name = "GvFormula";
             this.GvFormula.ReadOnly = true;
             this.GvFormula.RowHeadersVisible = false;
@@ -1889,6 +1891,7 @@ namespace SupervisorIfSim
             // 
             this.GvBarcode.AllowUserToAddRows = false;
             this.GvBarcode.AllowUserToDeleteRows = false;
+            this.GvBarcode.AllowUserToResizeRows = false;
             this.GvBarcode.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GvBarcode.Location = new System.Drawing.Point(0, 0);
             this.GvBarcode.MultiSelect = false;
