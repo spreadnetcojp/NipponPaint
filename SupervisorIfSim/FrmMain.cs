@@ -162,15 +162,15 @@ namespace SupervisorIfSim
                 switch (e.KeyCode)
                 {
                     case Keys.F2:
-                        // 編集
+                        // 登録
                         BtnRegistBarcode.PerformClick();
                         break;
                     case Keys.F3:
-                        // 編集
+                        // 登録
                         BtnRegistJob.PerformClick();
                         break;
                     case Keys.F4:
-                        // 編集
+                        // 登録
                         BtnRegistFormula.PerformClick();
                         break;
                     case Keys.F5:
