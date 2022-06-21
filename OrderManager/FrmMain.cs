@@ -2630,5 +2630,35 @@ namespace NipponPaint.OrderManager
                     return null;
             }
         }
+
+        private void BindDataGridView(DataTable dt, List<GridViewSetting> settings, DataGridView gv)
+        {
+            // テーブル設定を元にカラムの作成
+            foreach (var setting in settings)
+            {
+                var col = new DataGridViewColumn();
+                col.Width = setting.Width;
+                col.Visible = setting.Visible;
+                col.DefaultCellStyle.Alignment = setting.alignment;
+                col.DataPropertyName = setting.ColumnName;
+                col.Name = setting.ColumnName;
+                col.HeaderText = setting.ColumnName;
+                // 色替えサンプル
+                switch (setting.ColumnName)
+                {
+                    case "BARCODE":
+                        col.DefaultCellStyle.ForeColor = Color.Red;
+                        break;
+                }
+                col.CellTemplate = new DataGridViewTextBoxCell();
+                gv.Columns.Add(col);
+            }
+            // BindingSourceオブジェクト作成
+            var bindingSource = new BindingSource();
+            // DataTableをBindingSourceオブジェクトにセット
+            bindingSource.DataSource = dt;
+            // DataGridViewのDataSourceはBindingSourceオブジェクトにする
+            gv.DataSource = bindingSource;
+        }
     }
 }
