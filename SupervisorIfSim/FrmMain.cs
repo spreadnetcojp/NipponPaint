@@ -163,7 +163,15 @@ namespace SupervisorIfSim
                 {
                     case Keys.F2:
                         // 編集
+                        BtnRegistBarcode.PerformClick();
+                        break;
+                    case Keys.F3:
+                        // 編集
                         BtnRegistJob.PerformClick();
+                        break;
+                    case Keys.F4:
+                        // 編集
+                        BtnRegistFormula.PerformClick();
                         break;
                     case Keys.F5:
                         // 一覧更新
