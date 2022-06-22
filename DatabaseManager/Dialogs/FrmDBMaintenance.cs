@@ -83,7 +83,7 @@ namespace DatabaseManager.Dialogs
         {
             BaseForm baseForm = new BaseForm();
             try
-            {
+            {                
                 baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -146,7 +146,7 @@ namespace DatabaseManager.Dialogs
             }
         }
 
-
+        
         private void BtnFolderBrowserDialogClick(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
@@ -300,7 +300,7 @@ namespace DatabaseManager.Dialogs
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.Databasemanager))
             {
                 // 行取得のSQLを作成
-                var main = db.Select(Sql.NpMain.MainSet.GetPreview());
+                var main = db.Select(Sql.NpMain.MainSet.GetPreview()); 
                 // フォームで定義された、取得値設定先のコントロールを抽出する
                 var controls = new List<Control>();
                 Funcs.FindControls(this.Controls, controls);
@@ -311,18 +311,18 @@ namespace DatabaseManager.Dialogs
                         case NumericUpDown NumericUpDown:
                             //LabelNumericUpDownコントロールへの設定
                             bool nudResult = decimal.TryParse(main.Rows[0]["BCK_Daily_Time"].ToString(), out decimal decResult);
-                            if (nudResult)
-                            {
-                                NumericUpDown.Value = decResult;
-                            }
-                            break;
+                                if (nudResult)
+                                {
+                                    NumericUpDown.Value = decResult;
+                                }
+                            break;                        
                         case DateTimePicker dateTimePicker:
                             //LabelDateTimePickerコントロールへの設定
                             bool dtpResult = DateTime.TryParse(main.Rows[0]["BCK_Weekly_Time"].ToString(), out DateTime dtResult);
-                            if (dtpResult)
-                            {
-                                dateTimePicker.Value = dtResult;
-                            }
+                                if (dtpResult)
+                                {
+                                    dateTimePicker.Value = dtResult;
+                                }
                             break;
                         default:
                             break;

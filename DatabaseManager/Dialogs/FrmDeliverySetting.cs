@@ -33,6 +33,8 @@ namespace DatabaseManager.Dialogs
     /// </summary>
     public partial class FrmDeliverySetting : Form
     {
+        static string title = "information";
+        static string msg = "クローズ前に設定を保存してください";
 
         #region コンストラクタ
         public FrmDeliverySetting()
@@ -116,7 +118,7 @@ namespace DatabaseManager.Dialogs
         {
             if (BtnSettingSave.Enabled)
             {
-                Messages.ShowDialog(Sentence.Messages.SaveIncompleteInformation);
+                MessageBox.Show(this, msg, title);
             }
             else
             {
@@ -154,7 +156,7 @@ namespace DatabaseManager.Dialogs
         {
             // イベントの追加
             this.BtnSettingSave.Click += new System.EventHandler(this.BtnSettingSaveClick);
-            this.BtnSettingInitialize.Click += new System.EventHandler(this.BtnSettingInitializeClick);
+            this.BtnSettingInitialize.Click += new System.EventHandler(this.BtnSettingInitializeClick);           
             this.BtnClose.Click += new System.EventHandler(this.BtnCloseClick);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmKeyDown);
             //配送区分マスターを全件取得して画面に表示する
@@ -206,7 +208,7 @@ namespace DatabaseManager.Dialogs
                 {
                     switch (control)
                     {
-                        case DeliveryClassification deliveryClassfication:
+                        case  DeliveryClassification deliveryClassfication:
                             // DeliveryClassificationコントロールへの設定
                             if (!string.IsNullOrEmpty(deliveryClassfication.PanelNumber.ToString()))
                             {
@@ -248,7 +250,7 @@ namespace DatabaseManager.Dialogs
                                     {
                                         deliveryClassfication.CheckState.Checked = false;
                                     }
-                                }
+                                }                                    
                             }
                             break;
                         default:
@@ -262,7 +264,7 @@ namespace DatabaseManager.Dialogs
         /// </summary>
         /// <param name="control"></param>
         /// <param name="sortOrder"></param>
-        private void RadioButtonCheck(Control control, int sortOrder)
+        private void RadioButtonCheck(Control control,int sortOrder)
         {
             switch (sortOrder)
             {

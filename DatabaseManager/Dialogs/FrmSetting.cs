@@ -33,6 +33,8 @@ namespace DatabaseManager.Dialogs
     /// </summary>
     public partial class FrmSetting : Form
     {
+        static string title = "information";
+        static string msg = "クローズ前に設定を保存してください";
 
         #region コンストラクタ
         public FrmSetting()
@@ -46,6 +48,7 @@ namespace DatabaseManager.Dialogs
 
         private void FrmKeyDown(object sender, KeyEventArgs e)
         {
+            
             switch (e.KeyData)
             {
                 case Keys.O | Keys.Alt:
@@ -82,7 +85,7 @@ namespace DatabaseManager.Dialogs
             {
                 baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 FrmMixingColorsOperators frmMixingColorsOperators = new FrmMixingColorsOperators();
-                frmMixingColorsOperators.ShowDialog();
+                frmMixingColorsOperators.ShowDialog();               
             }
             catch (Exception ex)
             {
@@ -159,22 +162,19 @@ namespace DatabaseManager.Dialogs
         /// <param name="e"></param>
         private void BtnSettingSaveClick(object sender, EventArgs e)
         {
-            if (Validation())
+            BaseForm baseForm = new BaseForm();
+            try
             {
-                BaseForm baseForm = new BaseForm();
-                try
-                {
-                    baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-                    //画面上で変更された設定をDBへ反映する
-                    RegistData();
-                    PreviewData();
-                    //保存/元に戻すボタンをEnabled = false にする
-                    ButtonEnabledFalse();
-                }
-                catch (Exception ex)
-                {
-                    baseForm.PutLog(ex);
-                }
+                baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                //画面上で変更された設定をDBへ反映する
+                RegistData();
+                PreviewData();
+                //保存/元に戻すボタンをEnabled = false にする
+                ButtonEnabledFalse();
+            }
+            catch (Exception ex)
+            {
+                baseForm.PutLog(ex);
             }
         }
 
@@ -187,7 +187,7 @@ namespace DatabaseManager.Dialogs
         {
             if (BtnSettingSave.Enabled)
             {
-                Messages.ShowDialog(Sentence.Messages.SaveIncompleteInformation);
+                MessageBox.Show(this, msg, title);
             }
             else
             {
@@ -321,7 +321,7 @@ namespace DatabaseManager.Dialogs
                                     {
                                         tabCtrlPagePlants.LblDTPValue = decResult;
                                     }
-                                }
+                                }                                                          
                             }
                             break;
                         case TabPageEx tabPageEx:
@@ -334,7 +334,7 @@ namespace DatabaseManager.Dialogs
                                     tabPageEx.Text = rows[0][tabPageEx.DatabaseColumnName].ToString().Trim();
                                 }
                             }
-                            break;
+                                break;
                         case TabCtrlPagePlantsSetting tabCtrlPagePlantsSetting:
                             //TabCtrlPagePlantsSettingsコントロールへの設定
                             if (!string.IsNullOrEmpty(tabCtrlPagePlantsSetting.PanelNumber.ToString()))
@@ -357,56 +357,56 @@ namespace DatabaseManager.Dialogs
                                 {
                                     tabCtrlPagePlantsSetting.LblTxtBox3Value = rows[0][tabCtrlPagePlantsSetting.LblTxtBox3DBColumnName].ToString();
                                 }
-
+                               
                                 //送信位置のTextBoxへ設定
                                 if (!string.IsNullOrEmpty(tabCtrlPagePlantsSetting.LblTxtBox4DBColumnName))
                                 {
                                     tabCtrlPagePlantsSetting.LblTxtBox4Value = rows[0][tabCtrlPagePlantsSetting.LblTxtBox4DBColumnName].ToString();
                                 }
-
+                                
                                 //Receive PathのTextBoxへ設定
                                 if (!string.IsNullOrEmpty(tabCtrlPagePlantsSetting.LblTxtBox5DBColumnName))
                                 {
                                     tabCtrlPagePlantsSetting.LblTxtBox5Value = rows[0][tabCtrlPagePlantsSetting.LblTxtBox5DBColumnName].ToString();
                                 }
-
+                              
                                 //通知パスのTextBoxへ設定
                                 if (!string.IsNullOrEmpty(tabCtrlPagePlantsSetting.LblTxtBox6DBColumnName))
                                 {
                                     tabCtrlPagePlantsSetting.LblTxtBox6Value = rows[0][tabCtrlPagePlantsSetting.LblTxtBox6DBColumnName].ToString();
                                 }
-
+                                
                                 //荷送人コードのTextBoxへ設定
                                 if (!string.IsNullOrEmpty(tabCtrlPagePlantsSetting.LblTxtBox7DBColumnName))
                                 {
                                     tabCtrlPagePlantsSetting.LblTxtBox7Value = rows[0][tabCtrlPagePlantsSetting.LblTxtBox7DBColumnName].ToString();
                                 }
-
+                                
                                 //荷送人住所1のTextBoxへ設定
                                 if (!string.IsNullOrEmpty(tabCtrlPagePlantsSetting.LblTxtBox8DBColumnName))
                                 {
                                     tabCtrlPagePlantsSetting.LblTxtBox8Value = rows[0][tabCtrlPagePlantsSetting.LblTxtBox8DBColumnName].ToString();
                                 }
-
+                                
                                 //荷送人住所2のTextBoxへ設定
                                 if (!string.IsNullOrEmpty(tabCtrlPagePlantsSetting.LblTxtBox9DBColumnName))
                                 {
                                     tabCtrlPagePlantsSetting.LblTxtBox9Value = rows[0][tabCtrlPagePlantsSetting.LblTxtBox9DBColumnName].ToString();
                                 }
-
+                                
                                 //荷送人(社名)のTextBoxへ設定
                                 if (!string.IsNullOrEmpty(tabCtrlPagePlantsSetting.LblTxtBox10DBColumnName))
                                 {
                                     tabCtrlPagePlantsSetting.LblTxtBox10Value = rows[0][tabCtrlPagePlantsSetting.LblTxtBox10DBColumnName].ToString();
                                 }
-
+                                
 
                                 //荷送人(支店名)のTextBoxへ設定
                                 if (!string.IsNullOrEmpty(tabCtrlPagePlantsSetting.LblTxtBox11DBColumnName))
                                 {
                                     tabCtrlPagePlantsSetting.LblTxtBox11Value = rows[0][tabCtrlPagePlantsSetting.LblTxtBox11DBColumnName].ToString();
                                 }
-
+                                
 
                                 //TELのTextBoxへ設定
                                 if (!string.IsNullOrEmpty(tabCtrlPagePlantsSetting.LblTxtBox12DBColumnName))
@@ -456,7 +456,7 @@ namespace DatabaseManager.Dialogs
                                 {
                                     labelNumericUpDown.Value = decResult;
                                 }
-                            }
+                            }                               
                             break;
                         case LabelNumericUpDownMulti labelNumericUpDownMulti:
                             //LabelNumericUpDownMultiコントロールへの設定
@@ -492,7 +492,7 @@ namespace DatabaseManager.Dialogs
                         case TextBox TextBox:
                             //TextBoxコントロールへの設定
                             TextBox.Text = main.Rows[0]["CSV_Path"].ToString();
-                            break;
+                            break;                        
                         case LabelDateTimePicker labelDateTimePicker:
                             //LabelDateTimePickerコントロールへの設定
                             if (!string.IsNullOrEmpty(labelDateTimePicker.DatabaseColumnName))
@@ -560,7 +560,6 @@ namespace DatabaseManager.Dialogs
         }
         #endregion
 
-
         #region すべての入力欄、チェックボックスにTextOrValueChangedのイベントハンドラーをセットする
         /// <summary>
         /// すべての入力欄、チェックボックスにTextOrValueChangedのイベントハンドラーをセットする
@@ -620,18 +619,6 @@ namespace DatabaseManager.Dialogs
                         break;
                 }
             }
-        }
-        #endregion
-
-        #region 入力内容の検証
-        private bool Validation()
-        {
-            bool result = NudTrkCurrent.ValueRight < NudTrkNext.ValueLeft;
-            if (!result)
-            {
-                Messages.ShowDialog(Sentence.Messages.TrkInputError);
-            }
-            return result;
         }
         #endregion
     }
