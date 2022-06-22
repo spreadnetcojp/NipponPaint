@@ -119,6 +119,30 @@ namespace NipponPaint.NpCommon.FormControls
             get { return NumUpDownDataRight.Maximum; }
             set { NumUpDownDataRight.Maximum = value; }
         }
+
+        public Color TextLeftBackColor
+        {
+            get { return NumUpDownDataLeft.BackColor; }
+            set { NumUpDownDataLeft.BackColor = value; }
+        }
+
+        public Color TextLeftForeColor
+        {
+            get { return NumUpDownDataLeft.ForeColor; }
+            set { NumUpDownDataLeft.ForeColor = value; }
+        }
+
+        public Color TextRightBackColor
+        {
+            get { return NumUpDownDataRight.BackColor; }
+            set { NumUpDownDataRight.BackColor = value; }
+        }
+
+        public Color TextRightForeColor
+        {
+            get { return NumUpDownDataRight.ForeColor; }
+            set { NumUpDownDataRight.ForeColor = value; }
+        }
         /// <summary>
         /// 左右の数値の大小（デフォルトは Left < Right)
         /// </summary>
