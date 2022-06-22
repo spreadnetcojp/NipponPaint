@@ -102,7 +102,7 @@ namespace DatabaseManager
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-                
+
             }
             catch (Exception ex)
             {
@@ -278,8 +278,8 @@ namespace DatabaseManager
             // 一覧表示
             PreviewData();
             // 一覧レイアウトの設定
-            var cnt = 0;            
-                        
+            var cnt = 0;
+
             foreach (var item in ViewSettings)
             {
                 DgvList.Columns[cnt].Width = item.Width;
