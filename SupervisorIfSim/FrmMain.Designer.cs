@@ -571,10 +571,8 @@ namespace SupervisorIfSim
             // 
             this.TxtPrdDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtPrdDesc.Enabled = false;
             this.TxtPrdDesc.Location = new System.Drawing.Point(159, 162);
             this.TxtPrdDesc.Name = "TxtPrdDesc";
-            this.TxtPrdDesc.ReadOnly = true;
             this.TxtPrdDesc.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdDesc.TabIndex = 54;
             this.TxtPrdDesc.Text = "1234567890123456789012345";
