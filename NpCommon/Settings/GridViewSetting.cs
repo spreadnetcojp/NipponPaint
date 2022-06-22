@@ -33,6 +33,13 @@ namespace NipponPaint.NpCommon.Settings
             Blank,
             Bit,
         }
+        public enum SvUpdateType
+        {
+            Erp,
+            Corob,
+            Both,
+            None,
+        }
         /// <summary>
         /// データの種類
         /// </summary>
@@ -69,7 +76,7 @@ namespace NipponPaint.NpCommon.Settings
         /// <summary>
         /// テーブルへの更新対象項目か
         /// </summary>
-        public bool IsUpdateColumn { get; set; } = false;
+        public SvUpdateType SvUpdate { get; set; } = SvUpdateType.None;
 
         #region コンストラクタ
         public GridViewSetting()

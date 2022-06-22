@@ -47,23 +47,7 @@ namespace SupervisorIfSim
         //
         private const int INDEX_BARCODE = 0;
         private const int INDEX_PROCESS_CODE = 1;
-        // BRC_STATUSラジオボタン
-        private const int BRD_STATUS_COROB = 0;
-        private const int BRD_STATUS_ERP = 1;
-        // YES/NOのラジオボタン
-        private const int JOB_NO = 0;
-        private const int JOB_YES = 1;
-        // JOB_EXIT_POSITIONラジオボタン
-        private const int JOB_EXIT_POSITION_MAIN = 1;
-        private const int JOB_EXIT_POSITION_TEST = 2;
-        // PRD_STATUSラジオボタン
-        private const int PRD_STATUS_UNDISCHARGED = 0;
-        private const int PRD_STATUS_COMPLATED = 1;
-        private const int PRD_STATUS_ERROR = -1;
-        // PRD_UMラジオボタン
-        private const int PRD_UM_GRAM = 1;
-        private const int PRD_UM_CC = 2;
-        // JOB_STATUSドロップダウン
+        // JOB_STATUSドロップダウンの要素
         private static List<Data.DropDownRow> DrpJobStatusDefines = new List<Data.DropDownRow>()
         {
             { new Data.DropDownRow() { Value = 0, Text = "ライン挿入" } },
@@ -71,56 +55,6 @@ namespace SupervisorIfSim
             { new Data.DropDownRow() { Value = 99, Text = "缶がライン上に存在" } },
             { new Data.DropDownRow() { Value = -1, Text = "缶はラインでエラー発生" } },
         };
-        #endregion
-
-        #region プロパティ
-        #region BRC_STATUSラジオボタン
-        /// <summary>
-        /// BRC_STATUSラジオボタン
-        /// </summary>
-        //private int RdbBrcStatus
-        //{
-        //    get
-        //    {
-        //        if (RdbBrcStatusCorob.Checked)
-        //        {
-        //            return BRD_STATUS_COROB;
-        //        }
-        //        if (RdbBrcStatusErp.Checked)
-        //        {
-        //            return BRD_STATUS_ERP;
-        //        }
-        //        return 0;
-        //    }
-        //    set
-        //    {
-
-        //        RdbBrcStatusCorob.Checked = false;
-        //        RdbBrcStatusErp.Checked = false;
-        //        RdbBrcStatusCorob.ForeColor = Color.Black;
-        //        RdbBrcStatusErp.ForeColor = Color.Black;
-        //        Color color = Color.Black;
-        //        if (PnlBrcStatus.Tag != null && PnlBrcStatus.Tag.ToString() != value.ToString())
-        //        {
-        //            color = Color.Red;
-        //        }
-        //        switch (value)
-        //        {
-        //            case BRD_STATUS_COROB:
-        //                RdbBrcStatusCorob.Checked = true;
-        //                RdbBrcStatusCorob.ForeColor = color;
-        //                break;
-        //            case BRD_STATUS_ERP:
-        //                RdbBrcStatusErp.Checked = true;
-        //                RdbBrcStatusErp.ForeColor = color;
-        //                break;
-        //            default:
-        //                break;
-        //        }
-        //        PnlBrcStatus.Tag = value.ToString();
-        //    }
-        //}
-        #endregion                                                                
         #endregion
 
         #region コンストラクタ
@@ -150,6 +84,7 @@ namespace SupervisorIfSim
             }
         }
 
+        #region ボタン押下時のショートカット動作
         /// <summary>
         /// ボタン押下時のショートカット動作
         /// </summary>
@@ -162,24 +97,30 @@ namespace SupervisorIfSim
                 switch (e.KeyCode)
                 {
                     case Keys.F2:
-                        // 登録
-                        BtnRegistBarcode.PerformClick();
+                        BtnRegistBarcodeErp.PerformClick();
                         break;
                     case Keys.F3:
-                        // 登録
-                        BtnRegistJob.PerformClick();
+                        BtnRegistBarcodeCorob.PerformClick();
                         break;
                     case Keys.F4:
-                        // 登録
-                        BtnRegistFormula.PerformClick();
+                        BtnRegistJobErp.PerformClick();
                         break;
                     case Keys.F5:
-                        // 一覧更新
-                        BtnPreview.PerformClick();
+                        BtnRegistJobCorob.PerformClick();
+                        break;
+                    case Keys.F6:
+                        BtnRegistFormulaErp.PerformClick();
+                        break;
+                    case Keys.F7:
+                        BtnRegistFormulaCorob.PerformClick();
                         break;
                     case Keys.F9:
                         // 開始／停止
                         BtnTimer.PerformClick();
+                        break;
+                    case Keys.F10:
+                        // 一覧更新
+                        BtnPreview.PerformClick();
                         break;
                 }
             }
@@ -188,8 +129,11 @@ namespace SupervisorIfSim
                 PutLog(ex);
             }
         }
+        #endregion
+
+        #region 開始／停止ボタンクリック
         /// <summary>
-        /// 
+        /// 開始／停止ボタンクリック
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -204,8 +148,11 @@ namespace SupervisorIfSim
                 PutLog(ex);
             }
         }
+        #endregion
+
+        #region 一覧更新ボタンクリック
         /// <summary>
-        /// 
+        /// 一覧更新ボタンクリック
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -221,6 +168,7 @@ namespace SupervisorIfSim
                 PutLog(ex);
             }
         }
+        #endregion
 
         /// <summary>
         /// 
@@ -271,15 +219,8 @@ namespace SupervisorIfSim
             if (rows.Count > 0)
             {
                 PreviewDetail(rows[0], _viewSettingsBarcode);
-                PreviewFormuraData(rows[0].Cells[TbBarcode.BARCODE].Value.ToString(), rows[0].Cells[TbBarcode.PROCESS_CODE].Value.ToString());
-                var cnt = 0;
-                foreach (var item in _viewSettingsFormula)
-                {
-                    GvFormula.Columns[cnt].Width = item.Width;
-                    GvFormula.Columns[cnt].Visible = item.Visible;
-                    GvFormula.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-                    cnt++;
-                }
+                PreviewFormulaData(rows[0].Cells[TbBarcode.BARCODE].Value.ToString(), rows[0].Cells[TbBarcode.PROCESS_CODE].Value.ToString());
+                InitDataGridView(GvFormula, _viewSettingsFormula);
             }
             else
             {
@@ -308,33 +249,20 @@ namespace SupervisorIfSim
         }
         #endregion
 
-        #region TB_JOBの登録ボタンクリック
+        #region TB_JOBのERP登録ボタンクリック
         /// <summary>
-        /// TB_JOBの登録ボタンクリック
+        /// TB_JOBのERP登録ボタンクリック
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnRegistJob_Click(object sender, EventArgs e)
+        private void BtnRegistJobErp_Click(object sender, EventArgs e)
         {
             using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
             {
                 try
                 {
-                    // 画面の情報を収集
-                    var settings = _viewSettingsBarcode.FindAll(x => x.TableName == TB_JOB && x.IsUpdateColumn).ToList();
-                    var columns = settings.Select(x => x.ColumnName).ToList();
-                    // SQL文作成
-                    var sql = TbJob.UpdateFromSimulator(settings.Select(x => x.ColumnName).ToList());
-                    // パラメータ作成
-                    var parameters = new List<ParameterItem>();
-                    foreach (var setting in settings)
-                    {
-                        parameters.Add(new ParameterItem($"{setting.ColumnName}", GetValue(setting)));
-                    }
-                    parameters.Add(new ParameterItem($"{TbJob.JOB_BARCODE}", GetValue(_viewSettingsBarcode.Find(x => x.TableName == TB_BARCODE && x.ColumnName == TbBarcode.BARCODE))));
-                    parameters.Add(new ParameterItem($"{TbJob.JOB_PROCESS_CODE}", GetValue(_viewSettingsBarcode.Find(x => x.TableName == TB_BARCODE && x.ColumnName == TbBarcode.PROCESS_CODE))));
-                    // 更新実行
-                    db.Execute(sql, parameters);
+                    // 登録実行
+                    RegistJob(GridViewSetting.SvUpdateType.Erp, db);
                     db.Commit();
                     // 登録完了メッセージ
                     Messages.ShowDialog(Sentence.Messages.SaveComplate);
@@ -349,33 +277,20 @@ namespace SupervisorIfSim
         }
         #endregion
 
-        #region TB_BARCODEの登録ボタンクリック
+        #region TB_JOBのCOROB登録ボタンクリック
         /// <summary>
-        /// TB_BARCODEの登録ボタンクリック
+        /// TB_JOBのCOROB登録ボタンクリック
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnRegistBarcode_Click(object sender, EventArgs e)
+        private void BtnRegistJobCorob_Click(object sender, EventArgs e)
         {
             using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
             {
                 try
                 {
-                    // 画面の情報を収集
-                    var settings = _viewSettingsBarcode.FindAll(x => x.TableName == TB_BARCODE && x.IsUpdateColumn).ToList();
-                    var columns = settings.Select(x => x.ColumnName).ToList();
-                    // SQL文作成
-                    var sql = TbBarcode.UpdateFromSimulator(settings.Select(x => x.ColumnName).ToList());
-                    // パラメータ作成
-                    var parameters = new List<ParameterItem>();
-                    foreach (var setting in settings)
-                    {
-                        parameters.Add(new ParameterItem($"{setting.ColumnName}", GetValue(setting)));
-                    }
-                    parameters.Add(new ParameterItem($"{TbBarcode.BARCODE}", GetValue(_viewSettingsBarcode.Find(x => x.TableName == TB_BARCODE && x.ColumnName == TbBarcode.BARCODE))));
-                    parameters.Add(new ParameterItem($"{TbBarcode.PROCESS_CODE}", GetValue(_viewSettingsBarcode.Find(x => x.TableName == TB_BARCODE && x.ColumnName == TbBarcode.PROCESS_CODE))));
-                    // 更新実行
-                    db.Execute(sql, parameters);
+                    // 登録実行
+                    RegistJob(GridViewSetting.SvUpdateType.Corob, db);
                     db.Commit();
                     // 登録完了メッセージ
                     Messages.ShowDialog(Sentence.Messages.SaveComplate);
@@ -390,34 +305,20 @@ namespace SupervisorIfSim
         }
         #endregion
 
-        #region TB_FORMULAの登録ボタンクリック
+        #region TB_BARCODEのERP登録ボタンクリック
         /// <summary>
-        /// TB_FORMULAの登録ボタンクリック
+        /// TB_BARCODEのERP登録ボタンクリック
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnRegistFormula_Click(object sender, EventArgs e)
+        private void BtnRegistBarcodeErp_Click(object sender, EventArgs e)
         {
             using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
             {
                 try
                 {
-                    // 画面の情報を収集
-                    var settings = _viewSettingsFormula.FindAll(x => x.TableName == TB_FORMULA && x.IsUpdateColumn).ToList();
-                    var columns = settings.Select(x => x.ColumnName).ToList();
-                    // SQL文作成
-                    var sql = TbFormula.UpdateFromSimulator(settings.Select(x => x.ColumnName).ToList());
-                    // パラメータ作成
-                    var parameters = new List<ParameterItem>();
-                    foreach (var setting in settings)
-                    {
-                        parameters.Add(new ParameterItem($"{setting.ColumnName}", GetValue(setting)));
-                    }
-                    parameters.Add(new ParameterItem($"{TbFormula.PRD_BARCODE}", GetValue(_viewSettingsBarcode.Find(x => x.TableName == TB_BARCODE && x.ColumnName == TbBarcode.BARCODE))));
-                    parameters.Add(new ParameterItem($"{TbFormula.PRD_PROCESS_CODE}", GetValue(_viewSettingsBarcode.Find(x => x.TableName == TB_BARCODE && x.ColumnName == TbBarcode.PROCESS_CODE))));
-                    parameters.Add(new ParameterItem($"{TbFormula.PRD_CODE}", GetValue(_viewSettingsFormula.Find(x => x.TableName == TB_FORMULA && x.ColumnName == TbFormula.PRD_CODE))));
-                    // 更新実行
-                    db.Execute(sql, parameters);
+                    // 登録実行
+                    RegistBarcode(GridViewSetting.SvUpdateType.Erp, db);
                     db.Commit();
                     // 登録完了メッセージ
                     Messages.ShowDialog(Sentence.Messages.SaveComplate);
@@ -429,6 +330,122 @@ namespace SupervisorIfSim
                     db.Rollback();
                 }
             }
+        }
+        #endregion
+
+        #region TB_BARCODEのCOROB登録ボタンクリック
+        /// <summary>
+        /// TB_BARCODEのCOROB登録ボタンクリック
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnRegistBarcodeCorob_Click(object sender, EventArgs e)
+        {
+            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
+            {
+                try
+                {
+                    // 登録実行
+                    RegistBarcode(GridViewSetting.SvUpdateType.Corob, db);
+                    db.Commit();
+                    // 登録完了メッセージ
+                    Messages.ShowDialog(Sentence.Messages.SaveComplate);
+                }
+                catch (Exception ex)
+                {
+                    // 登録完了メッセージ
+                    Messages.ShowDialog(Sentence.Messages.SaveFailure, ex.Message);
+                    db.Rollback();
+                }
+            }
+        }
+        #endregion
+
+        #region TB_FORMULAのERP登録ボタンクリック
+        /// <summary>
+        /// TB_FORMULAのERP登録ボタンクリック
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnRegistFormulaErp_Click(object sender, EventArgs e)
+        {
+            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
+            {
+                try
+                {
+                    // 登録実行
+                    RegistFormula(GridViewSetting.SvUpdateType.Erp, db);
+                    db.Commit();
+                    // 登録完了メッセージ
+                    Messages.ShowDialog(Sentence.Messages.SaveComplate);
+                }
+                catch (Exception ex)
+                {
+                    // 登録完了メッセージ
+                    Messages.ShowDialog(Sentence.Messages.SaveFailure, ex.Message);
+                    db.Rollback();
+                }
+            }
+        }
+        #endregion
+
+        #region TB_FORMULAのCOROB登録ボタンクリック
+        /// <summary>
+        /// TB_FORMULAのCOROB登録ボタンクリック
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnRegistFormulaCorob_Click(object sender, EventArgs e)
+        {
+            using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
+            {
+                try
+                {
+                    // 登録実行
+                    RegistFormula(GridViewSetting.SvUpdateType.Corob, db);
+                    db.Commit();
+                    // 登録完了メッセージ
+                    Messages.ShowDialog(Sentence.Messages.SaveComplate);
+                }
+                catch (Exception ex)
+                {
+                    // 登録完了メッセージ
+                    Messages.ShowDialog(Sentence.Messages.SaveFailure, ex.Message);
+                    db.Rollback();
+                }
+            }
+        }
+        #endregion
+
+        #region 現在日時ボタンクリック
+        /// <summary>
+        /// 現在日時ボタンクリック
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnBrcTimeInserted_Click(object sender, EventArgs e)
+        {
+            SetDateTimeText(TxtBrcTimeInserted);
+        }
+
+        /// <summary>
+        /// 現在日時ボタンクリック
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnBrcTimeProcessed_Click(object sender, EventArgs e)
+        {
+            SetDateTimeText(TxtBrcTimeProcessed);
+        }
+
+        /// <summary>
+        /// 現在日時ボタンクリック
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnPrdTimeInserted_Click(object sender, EventArgs e)
+        {
+            SetDateTimeText(TxtPrdTimeInserted);
         }
         #endregion
 
@@ -447,68 +464,71 @@ namespace SupervisorIfSim
             // 画面の定義
             _viewSettingsBarcode = new List<GridViewSetting>()
             {
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_BARCODE, ColumnName = TbBarcode.BARCODE, DisplayName = TbBarcode.BARCODE, Visible = true, Width = 255, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBarcode } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_BARCODE, ColumnName = TbBarcode.PROCESS_CODE, DisplayName = TbBarcode.PROCESS_CODE, Visible = true, Width = 255, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtProcessCode  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_BARCODE, ColumnName = TbBarcode.BRC_TIME_INSERTED, DisplayName = TbBarcode.BRC_TIME_INSERTED, Visible = false, Width = 120, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcTimeInserted  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_BARCODE, ColumnName = TbBarcode.BRC_TIME_PROCESSED, DisplayName = TbBarcode.BRC_TIME_PROCESSED, Visible = false, Width = 120, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcTimeProcessed  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_BARCODE, ColumnName = TbBarcode.BRC_STATUS, DisplayName = TbBarcode.BRC_STATUS, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbBrcStatus  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_BARCODE, ColumnName = TbBarcode.BRC_ERR_1, DisplayName = TbBarcode.BRC_ERR_1, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcErr1  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_BARCODE, ColumnName = TbBarcode.BRC_ERR_2, DisplayName = TbBarcode.BRC_ERR_2, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcErr2  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_BARCODE, ColumnName = TbBarcode.BRC_ERR_3, DisplayName = TbBarcode.BRC_ERR_3, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcErr3  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_TIME_INSERTED, DisplayName = TbJob.JOB_TIME_INSERTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTimeInserted  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_STATUS, DisplayName = TbJob.JOB_STATUS, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = null  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_TARE_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_TARE_WEIGHT_EXPECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTareWeightExpected  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_JOB, ColumnName = TbJob.JOB_TARE_WEIGHT_DETECTED, DisplayName = TbJob.JOB_TARE_WEIGHT_DETECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTareWeightDetected  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_TARE_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_TARE_WEIGHT_PERC_ERR_ADMITTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTareWeightPercErrAdmitted  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_GROSS_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_GROSS_WEIGHT_EXPECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobGrossWeightExpected  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_JOB, ColumnName = TbJob.JOB_GROSS_WEIGHT_DETECTED, DisplayName = TbJob.JOB_GROSS_WEIGHT_DETECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobGrossWeightDetected  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_GROSS_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_GROSS_WEIGHT_PERC_ERR_ADMITTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobGrossWeightPercErrAdmitted  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_NET_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_NET_WEIGHT_EXPECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobNetWeightExpected  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_JOB, ColumnName = TbJob.JOB_NET_WEIGHT_DETECTED, DisplayName = TbJob.JOB_NET_WEIGHT_DETECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobNetWeightDetected  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_NET_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_NET_WEIGHT_PERC_ERR_ADMITTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobNetWeightPercErrAdmitted  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_TOT_COLORANT_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_TOT_COLORANT_WEIGHT_EXPECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTotColorantWeightExpected  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_JOB, ColumnName = TbJob.JOB_TOT_COLORANT_WEIGHT_DETECTED, DisplayName = TbJob.JOB_TOT_COLORANT_WEIGHT_DETECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTotColorantWeightDetected  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_TOT_COLORANT_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_TOT_COLORANT_WEIGHT_PERC_ERR_ADMITTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTotColorantWeightPercErrAdmitted  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_EXPECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTotGravimetricWeightExpected  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_JOB, ColumnName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_DETECTED, DisplayName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_DETECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTotGravimetricWeightDetected  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_PERC_ERR_ADMITTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTotGravimetricWeightPercErrAdmitted  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_MIXING, DisplayName = TbJob.JOB_MIXING, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobMixing  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_MIXING_TIME, DisplayName = TbJob.JOB_MIXING_TIME, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobMixingTime  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_MIXING_SPEED, DisplayName = TbJob.JOB_MIXING_SPEED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobMixingSpeed  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_CAPPING, DisplayName = TbJob.JOB_CAPPING, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobCapping  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_LID_PLACING, DisplayName = TbJob.JOB_LID_PLACING, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobLidPlacing  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_LID_CHECK, DisplayName = TbJob.JOB_LID_CHECK, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobLidCheck  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_PRINTING_1, DisplayName = TbJob.JOB_PRINTING_1, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobPrinting1  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_PRINTING_2, DisplayName = TbJob.JOB_PRINTING_2, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobPrinting2  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_PRINTING_3, DisplayName = TbJob.JOB_PRINTING_3, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobPrinting3  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_EXIT_POSITION, DisplayName = TbJob.JOB_EXIT_POSITION, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobExitPosition  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_TAG_1, DisplayName = TbJob.JOB_TAG_1, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTag1  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_TAG_2, DisplayName = TbJob.JOB_TAG_2, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTag2  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_TAG_3, DisplayName = TbJob.JOB_TAG_3, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTag3  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_TAG_4, DisplayName = TbJob.JOB_TAG_4, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTag4  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_JOB, ColumnName = TbJob.JOB_TAG_5, DisplayName = TbJob.JOB_TAG_5, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTag5  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_JOB, ColumnName = TbJob.JOB_ERR_1, DisplayName = TbJob.JOB_ERR_1, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobErr1  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_JOB, ColumnName = TbJob.JOB_ERR_2, DisplayName = TbJob.JOB_ERR_2, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobErr2  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_JOB, ColumnName = TbJob.JOB_ERR_3, DisplayName = TbJob.JOB_ERR_3, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobErr3  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_JOB, ColumnName = TbJob.JOB_ERR_4, DisplayName = TbJob.JOB_ERR_4, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobErr4  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_JOB, ColumnName = TbJob.JOB_ERR_5, DisplayName = TbJob.JOB_ERR_5, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobErr5  } },
+                // TB_BARCODE
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.None, TableName = TB_BARCODE, ColumnName = TbBarcode.BARCODE, DisplayName = TbBarcode.BARCODE, Visible = true, Width = 255, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBarcode } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.None, TableName = TB_BARCODE, ColumnName = TbBarcode.PROCESS_CODE, DisplayName = TbBarcode.PROCESS_CODE, Visible = true, Width = 255, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtProcessCode  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_BARCODE, ColumnName = TbBarcode.BRC_TIME_INSERTED, DisplayName = TbBarcode.BRC_TIME_INSERTED, Visible = false, Width = 120, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcTimeInserted  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_BARCODE, ColumnName = TbBarcode.BRC_TIME_PROCESSED, DisplayName = TbBarcode.BRC_TIME_PROCESSED, Visible = false, Width = 120, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcTimeProcessed  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Both, TableName = TB_BARCODE, ColumnName = TbBarcode.BRC_STATUS, DisplayName = TbBarcode.BRC_STATUS, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbBrcStatus  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_BARCODE, ColumnName = TbBarcode.BRC_ERR_1, DisplayName = TbBarcode.BRC_ERR_1, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcErr1  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_BARCODE, ColumnName = TbBarcode.BRC_ERR_2, DisplayName = TbBarcode.BRC_ERR_2, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcErr2  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_BARCODE, ColumnName = TbBarcode.BRC_ERR_3, DisplayName = TbBarcode.BRC_ERR_3, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcErr3  } },
+                // TB_JOB
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_TIME_INSERTED, DisplayName = TbJob.JOB_TIME_INSERTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTimeInserted  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Both, TableName = TB_JOB, ColumnName = TbJob.JOB_STATUS, DisplayName = TbJob.JOB_STATUS, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = null  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_TARE_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_TARE_WEIGHT_EXPECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTareWeightExpected  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_JOB, ColumnName = TbJob.JOB_TARE_WEIGHT_DETECTED, DisplayName = TbJob.JOB_TARE_WEIGHT_DETECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTareWeightDetected  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_TARE_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_TARE_WEIGHT_PERC_ERR_ADMITTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTareWeightPercErrAdmitted  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_GROSS_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_GROSS_WEIGHT_EXPECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobGrossWeightExpected  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_JOB, ColumnName = TbJob.JOB_GROSS_WEIGHT_DETECTED, DisplayName = TbJob.JOB_GROSS_WEIGHT_DETECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobGrossWeightDetected  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_GROSS_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_GROSS_WEIGHT_PERC_ERR_ADMITTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobGrossWeightPercErrAdmitted  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_NET_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_NET_WEIGHT_EXPECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobNetWeightExpected  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_JOB, ColumnName = TbJob.JOB_NET_WEIGHT_DETECTED, DisplayName = TbJob.JOB_NET_WEIGHT_DETECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobNetWeightDetected  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_NET_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_NET_WEIGHT_PERC_ERR_ADMITTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobNetWeightPercErrAdmitted  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_TOT_COLORANT_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_TOT_COLORANT_WEIGHT_EXPECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTotColorantWeightExpected  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_JOB, ColumnName = TbJob.JOB_TOT_COLORANT_WEIGHT_DETECTED, DisplayName = TbJob.JOB_TOT_COLORANT_WEIGHT_DETECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTotColorantWeightDetected  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_TOT_COLORANT_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_TOT_COLORANT_WEIGHT_PERC_ERR_ADMITTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTotColorantWeightPercErrAdmitted  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_EXPECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTotGravimetricWeightExpected  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_JOB, ColumnName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_DETECTED, DisplayName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_DETECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTotGravimetricWeightDetected  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_PERC_ERR_ADMITTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTotGravimetricWeightPercErrAdmitted  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_MIXING, DisplayName = TbJob.JOB_MIXING, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobMixing  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_MIXING_TIME, DisplayName = TbJob.JOB_MIXING_TIME, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobMixingTime  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_MIXING_SPEED, DisplayName = TbJob.JOB_MIXING_SPEED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobMixingSpeed  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_CAPPING, DisplayName = TbJob.JOB_CAPPING, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobCapping  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_LID_PLACING, DisplayName = TbJob.JOB_LID_PLACING, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobLidPlacing  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_LID_CHECK, DisplayName = TbJob.JOB_LID_CHECK, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobLidCheck  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_PRINTING_1, DisplayName = TbJob.JOB_PRINTING_1, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobPrinting1  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_PRINTING_2, DisplayName = TbJob.JOB_PRINTING_2, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobPrinting2  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_PRINTING_3, DisplayName = TbJob.JOB_PRINTING_3, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobPrinting3  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_EXIT_POSITION, DisplayName = TbJob.JOB_EXIT_POSITION, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbJobExitPosition  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Both, TableName = TB_JOB, ColumnName = TbJob.JOB_TAG_1, DisplayName = TbJob.JOB_TAG_1, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTag1  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Both, TableName = TB_JOB, ColumnName = TbJob.JOB_TAG_2, DisplayName = TbJob.JOB_TAG_2, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTag2  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Both, TableName = TB_JOB, ColumnName = TbJob.JOB_TAG_3, DisplayName = TbJob.JOB_TAG_3, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTag3  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Both, TableName = TB_JOB, ColumnName = TbJob.JOB_TAG_4, DisplayName = TbJob.JOB_TAG_4, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTag4  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Both, TableName = TB_JOB, ColumnName = TbJob.JOB_TAG_5, DisplayName = TbJob.JOB_TAG_5, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTag5  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_JOB, ColumnName = TbJob.JOB_ERR_1, DisplayName = TbJob.JOB_ERR_1, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobErr1  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_JOB, ColumnName = TbJob.JOB_ERR_2, DisplayName = TbJob.JOB_ERR_2, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobErr2  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_JOB, ColumnName = TbJob.JOB_ERR_3, DisplayName = TbJob.JOB_ERR_3, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobErr3  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_JOB, ColumnName = TbJob.JOB_ERR_4, DisplayName = TbJob.JOB_ERR_4, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobErr4  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_JOB, ColumnName = TbJob.JOB_ERR_5, DisplayName = TbJob.JOB_ERR_5, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobErr5  } },
             };
             _viewSettingsFormula = new List<GridViewSetting>()
             {
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_CODE, DisplayName = TbFormula.PRD_CODE, Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdCode  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_TIME_INSERTED, DisplayName = TbFormula.PRD_TIME_INSERTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdTimeInserted  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_STATUS, DisplayName = TbFormula.PRD_STATUS, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbPrdStatus  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_DESC, DisplayName = TbFormula.PRD_DESC, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdDesc  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_UM, DisplayName = TbFormula.PRD_UM, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbPrdUm  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_SPECIFIC_GRAVITY, DisplayName = TbFormula.PRD_SPECIFIC_GRAVITY, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdSpecificGravity  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_QTY_REQ, DisplayName = TbFormula.PRD_QTY_REQ, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdQtyReq  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_QTY_DISP, DisplayName = TbFormula.PRD_QTY_DISP, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdQtyDisp  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_START_DISP, DisplayName = TbFormula.PRD_START_DISP, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdStartDisp  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_END_DISP, DisplayName = TbFormula.PRD_END_DISP, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdEndDisp  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_PRIORITY, DisplayName = TbFormula.PRD_PRIORITY, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdPriority  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_NUM, DisplayName = TbFormula.PRD_NUM, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdNum  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_ISPREFILLED, DisplayName = TbFormula.PRD_ISPREFILLED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbPrdIsprefilled  } },
-                { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_PREFILLED_QTY, DisplayName = TbFormula.PRD_PREFILLED_QTY, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdPrefilledQty  } },
+                // TB_FORMULA
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.None, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_CODE, DisplayName = TbFormula.PRD_CODE, Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdCode  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_TIME_INSERTED, DisplayName = TbFormula.PRD_TIME_INSERTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdTimeInserted  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Both, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_STATUS, DisplayName = TbFormula.PRD_STATUS, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbPrdStatus  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_DESC, DisplayName = TbFormula.PRD_DESC, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdDesc  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_UM, DisplayName = TbFormula.PRD_UM, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbPrdUm  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_SPECIFIC_GRAVITY, DisplayName = TbFormula.PRD_SPECIFIC_GRAVITY, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdSpecificGravity  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_QTY_REQ, DisplayName = TbFormula.PRD_QTY_REQ, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdQtyReq  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_QTY_DISP, DisplayName = TbFormula.PRD_QTY_DISP, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdQtyDisp  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_START_DISP, DisplayName = TbFormula.PRD_START_DISP, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdStartDisp  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_END_DISP, DisplayName = TbFormula.PRD_END_DISP, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdEndDisp  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_PRIORITY, DisplayName = TbFormula.PRD_PRIORITY, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdPriority  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_NUM, DisplayName = TbFormula.PRD_NUM, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdNum  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_ISPREFILLED, DisplayName = TbFormula.PRD_ISPREFILLED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbPrdIsprefilled  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_PREFILLED_QTY, DisplayName = TbFormula.PRD_PREFILLED_QTY, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdPrefilledQty  } },
             };
             // ドロップダウン要素の生成
             CreateDropDownItems();
@@ -525,15 +545,8 @@ namespace SupervisorIfSim
             TimerPreview.Interval = int.Parse(LblCycle.Text) * 1000;
             // DataGridViewの表示
             PreviewBarcodeData();
-            var cnt = 0;
-            foreach (var item in _viewSettingsBarcode)
-            {
-                GvBarcode.Columns[cnt].Width = item.Width;
-                GvBarcode.Columns[cnt].Visible = item.Visible;
-                GvBarcode.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-                cnt++;
-            }
-            GvBarcode.Columns[INDEX_PROCESS_CODE].Frozen = true;
+            // DataGridViewの設定
+            InitDataGridView(GvBarcode, _viewSettingsBarcode);
         }
         #endregion
 
@@ -581,7 +594,7 @@ namespace SupervisorIfSim
         /// <summary>
         /// Formura一覧表示
         /// </summary>
-        private void PreviewFormuraData(string barCode, string processCode)
+        private void PreviewFormulaData(string barCode, string processCode)
         {
             using (var db = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
             {
@@ -746,6 +759,115 @@ namespace SupervisorIfSim
             {
                 return string.Empty;
             }
+        }
+        #endregion
+
+        #region TB_JOB更新
+        /// <summary>
+        /// TB_JOB更新
+        /// </summary>
+        /// <param name="svUpdateType"></param>
+        /// <param name="db"></param>
+        private void RegistJob(GridViewSetting.SvUpdateType svUpdateType, SqlBase db)
+        {
+            // 画面の情報を収集
+            var settings = _viewSettingsBarcode.FindAll(x => x.TableName == TB_JOB && (x.SvUpdate == svUpdateType || x.SvUpdate == GridViewSetting.SvUpdateType.Both)).ToList();
+            var columns = settings.Select(x => x.ColumnName).ToList();
+            // SQL文作成
+            var sql = TbJob.UpdateFromSimulator(settings.Select(x => x.ColumnName).ToList());
+            // パラメータ作成
+            var parameters = new List<ParameterItem>();
+            foreach (var setting in settings)
+            {
+                parameters.Add(new ParameterItem($"{setting.ColumnName}", GetValue(setting)));
+            }
+            parameters.Add(new ParameterItem($"{TbJob.JOB_BARCODE}", GetValue(_viewSettingsBarcode.Find(x => x.TableName == TB_BARCODE && x.ColumnName == TbBarcode.BARCODE))));
+            parameters.Add(new ParameterItem($"{TbJob.JOB_PROCESS_CODE}", GetValue(_viewSettingsBarcode.Find(x => x.TableName == TB_BARCODE && x.ColumnName == TbBarcode.PROCESS_CODE))));
+            // 更新実行（コミットは呼び出し元で行う）
+            db.Execute(sql, parameters);
+        }
+        #endregion
+
+        #region TB_BARCODE更新
+        /// <summary>
+        /// TB_BARCODE更新
+        /// </summary>
+        /// <param name="svUpdateType"></param>
+        /// <param name="db"></param>
+        private void RegistBarcode(GridViewSetting.SvUpdateType svUpdateType, SqlBase db)
+        {
+            // 画面の情報を収集
+            var settings = _viewSettingsBarcode.FindAll(x => x.TableName == TB_BARCODE && (x.SvUpdate == svUpdateType || x.SvUpdate == GridViewSetting.SvUpdateType.Both)).ToList();
+            var columns = settings.Select(x => x.ColumnName).ToList();
+            // SQL文作成
+            var sql = TbBarcode.UpdateFromSimulator(settings.Select(x => x.ColumnName).ToList());
+            // パラメータ作成
+            var parameters = new List<ParameterItem>();
+            foreach (var setting in settings)
+            {
+                parameters.Add(new ParameterItem($"{setting.ColumnName}", GetValue(setting)));
+            }
+            parameters.Add(new ParameterItem($"{TbBarcode.BARCODE}", GetValue(_viewSettingsBarcode.Find(x => x.TableName == TB_BARCODE && x.ColumnName == TbBarcode.BARCODE))));
+            parameters.Add(new ParameterItem($"{TbBarcode.PROCESS_CODE}", GetValue(_viewSettingsBarcode.Find(x => x.TableName == TB_BARCODE && x.ColumnName == TbBarcode.PROCESS_CODE))));
+            // 更新実行（コミットは呼び出し元で行う）
+            db.Execute(sql, parameters);
+        }
+        #endregion
+
+        #region TB_FORMULA更新
+        /// <summary>
+        /// TB_FORMULA更新
+        /// </summary>
+        /// <param name="svUpdateType"></param>
+        /// <param name="db"></param>
+        private void RegistFormula(GridViewSetting.SvUpdateType svUpdateType, SqlBase db)
+        {
+            // 画面の情報を収集
+            var settings = _viewSettingsFormula.FindAll(x => x.TableName == TB_FORMULA && (x.SvUpdate == svUpdateType || x.SvUpdate == GridViewSetting.SvUpdateType.Both)).ToList();
+            var columns = settings.Select(x => x.ColumnName).ToList();
+            // SQL文作成
+            var sql = TbFormula.UpdateFromSimulator(settings.Select(x => x.ColumnName).ToList());
+            // パラメータ作成
+            var parameters = new List<ParameterItem>();
+            foreach (var setting in settings)
+            {
+                parameters.Add(new ParameterItem($"{setting.ColumnName}", GetValue(setting)));
+            }
+            parameters.Add(new ParameterItem($"{TbFormula.PRD_BARCODE}", GetValue(_viewSettingsBarcode.Find(x => x.TableName == TB_BARCODE && x.ColumnName == TbBarcode.BARCODE))));
+            parameters.Add(new ParameterItem($"{TbFormula.PRD_PROCESS_CODE}", GetValue(_viewSettingsBarcode.Find(x => x.TableName == TB_BARCODE && x.ColumnName == TbBarcode.PROCESS_CODE))));
+            parameters.Add(new ParameterItem($"{TbFormula.PRD_CODE}", GetValue(_viewSettingsFormula.Find(x => x.TableName == TB_FORMULA && x.ColumnName == TbFormula.PRD_CODE))));
+            // 更新実行（コミットは呼び出し元で行う）
+            db.Execute(sql, parameters);
+        }
+        #endregion
+
+        #region DataGridViewの設定
+        /// <summary>
+        /// DataGridViewの設定
+        /// </summary>
+        /// <param name="gv"></param>
+        /// <param name="settings"></param>
+        private void InitDataGridView(DataGridView gv, List<GridViewSetting> settings)
+        {
+            var cnt = 0;
+            foreach (var setting in settings)
+            {
+                gv.Columns[cnt].Width = setting.Width;
+                gv.Columns[cnt].Visible = setting.Visible;
+                gv.Columns[cnt].DefaultCellStyle.Alignment = setting.alignment;
+                cnt++;
+            }
+        }
+        #endregion
+
+        #region 現在日時をテキストボックスへ反映する
+        /// <summary>
+        /// 現在日時をテキストボックスへ反映する
+        /// </summary>
+        /// <param name="text"></param>
+        private void SetDateTimeText(TextBox text)
+        {
+            text.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
         }
         #endregion
 
