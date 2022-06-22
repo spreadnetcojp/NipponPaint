@@ -72,6 +72,7 @@ namespace SupervisorIfSim
             this.pnlPreviewFormula = new System.Windows.Forms.Panel();
             this.GvFormula = new System.Windows.Forms.DataGridView();
             this.pnlBrcJob = new System.Windows.Forms.Panel();
+            this.BtnJobTimeInserted = new System.Windows.Forms.Button();
             this.BtnBrcTimeProcessed = new System.Windows.Forms.Button();
             this.BtnBrcTimeInserted = new System.Windows.Forms.Button();
             this.BtnRegistJobCorob = new System.Windows.Forms.Button();
@@ -178,7 +179,6 @@ namespace SupervisorIfSim
             this.pnlPreviewBarcode = new System.Windows.Forms.Panel();
             this.GvBarcode = new System.Windows.Forms.DataGridView();
             this.TimerPreview = new System.Windows.Forms.Timer(this.components);
-            this.BtnJobTimeInserted = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.pnlDetailFormula.SuspendLayout();
@@ -813,6 +813,16 @@ namespace SupervisorIfSim
             this.pnlBrcJob.Name = "pnlBrcJob";
             this.pnlBrcJob.Size = new System.Drawing.Size(724, 950);
             this.pnlBrcJob.TabIndex = 55;
+            // 
+            // BtnJobTimeInserted
+            // 
+            this.BtnJobTimeInserted.Location = new System.Drawing.Point(159, 348);
+            this.BtnJobTimeInserted.Name = "BtnJobTimeInserted";
+            this.BtnJobTimeInserted.Size = new System.Drawing.Size(75, 26);
+            this.BtnJobTimeInserted.TabIndex = 203;
+            this.BtnJobTimeInserted.Text = "現在日時";
+            this.BtnJobTimeInserted.UseVisualStyleBackColor = true;
+            this.BtnJobTimeInserted.Click += new System.EventHandler(this.BtnJobTimeInserted_Click);
             // 
             // BtnBrcTimeProcessed
             // 
@@ -1975,16 +1985,6 @@ namespace SupervisorIfSim
             this.GvBarcode.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GvBarcode.Size = new System.Drawing.Size(511, 893);
             this.GvBarcode.TabIndex = 5;
-            // 
-            // BtnJobTimeInserted
-            // 
-            this.BtnJobTimeInserted.Location = new System.Drawing.Point(159, 348);
-            this.BtnJobTimeInserted.Name = "BtnJobTimeInserted";
-            this.BtnJobTimeInserted.Size = new System.Drawing.Size(75, 26);
-            this.BtnJobTimeInserted.TabIndex = 203;
-            this.BtnJobTimeInserted.Text = "現在日時";
-            this.BtnJobTimeInserted.UseVisualStyleBackColor = true;
-            this.BtnJobTimeInserted.Click += new System.EventHandler(this.BtnJobTimeInserted_Click);
             // 
             // FrmMain
             // 
