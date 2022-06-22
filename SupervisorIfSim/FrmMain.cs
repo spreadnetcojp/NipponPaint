@@ -495,9 +495,9 @@ namespace SupervisorIfSim
             };
             _viewSettingsFormula = new List<GridViewSetting>()
             {
+                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_CODE, DisplayName = TbFormula.PRD_CODE, Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdCode  } },
                 { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_TIME_INSERTED, DisplayName = TbFormula.PRD_TIME_INSERTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdTimeInserted  } },
                 { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_STATUS, DisplayName = TbFormula.PRD_STATUS, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbPrdStatus  } },
-                { new GridViewSetting() { IsUpdateColumn = false, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_CODE, DisplayName = TbFormula.PRD_CODE, Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdCode  } },
                 { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_DESC, DisplayName = TbFormula.PRD_DESC, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdDesc  } },
                 { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_UM, DisplayName = TbFormula.PRD_UM, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = RdbPrdUm  } },
                 { new GridViewSetting() { IsUpdateColumn = true, TableName = TB_FORMULA, ColumnName = TbFormula.PRD_SPECIFIC_GRAVITY, DisplayName = TbFormula.PRD_SPECIFIC_GRAVITY, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtPrdSpecificGravity  } },
@@ -533,7 +533,7 @@ namespace SupervisorIfSim
                 GvBarcode.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
                 cnt++;
             }
-            GvBarcode.Columns[INDEX_PROCESS_CODE].Frozen = true;                       
+            GvBarcode.Columns[INDEX_PROCESS_CODE].Frozen = true;
         }
         #endregion
 
