@@ -191,6 +191,18 @@ namespace NipponPaint.NpCommon
                                 break;
                         }
                         break;
+                    case LabelNumericUpDownMulti labelNumericUpDownMulti:
+                        // LabelNumericUpDownコントロールへの設定
+                        switch (labelNumericUpDownMulti.TextLeftBackColor.Name)
+                        {
+                            case "Window":
+                                labelNumericUpDownMulti.TextLeftBackColor = BACK_COLOR;
+                                labelNumericUpDownMulti.TextRightBackColor = BACK_COLOR;
+                                labelNumericUpDownMulti.TextLeftForeColor = FORE_COLOR;
+                                labelNumericUpDownMulti.TextRightForeColor = FORE_COLOR;
+                                break;
+                        }
+                        break;
                     case LabelDropDown labelDropDown:
                         // LabelDropDownコントロールへの設定
                         switch (labelDropDown.TextBackColor.Name)

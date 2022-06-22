@@ -245,8 +245,6 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumUpDownWeightTolerance.DatabaseColumnNameRight = "";
             this.NumUpDownWeightTolerance.DecimalPlacesLeft = 1;
             this.NumUpDownWeightTolerance.DecimalPlacesRight = 1;
-            this.NumUpDownWeightTolerance.LeftSide.BackColor = System.Drawing.SystemColors.Window;
-            this.NumUpDownWeightTolerance.RightSide.BackColor = System.Drawing.SystemColors.Window;
             this.NumUpDownWeightTolerance.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.NumUpDownWeightTolerance.ForeColor = System.Drawing.SystemColors.WindowText;
             this.NumUpDownWeightTolerance.Id = 0;
@@ -733,7 +731,7 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.BtnClose;
             this.ClientSize = new System.Drawing.Size(742, 826);
             this.ControlBox = false;
