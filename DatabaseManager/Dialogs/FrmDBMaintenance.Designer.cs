@@ -47,13 +47,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.BtnHistoryDataDelete = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.BtnDataReturn = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.BtnClose = new System.Windows.Forms.Button();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.BtnRestoreSettings = new System.Windows.Forms.Button();
-            this.BtnSaveSettings = new System.Windows.Forms.Button();
             this.ChkTxtBtn11 = new NipponPaint.NpCommon.FormControls.CheckTextButton();
             this.ChkTxtBtn3 = new NipponPaint.NpCommon.FormControls.CheckTextButton();
             this.ChkTxtBtn4 = new NipponPaint.NpCommon.FormControls.CheckTextButton();
@@ -66,6 +59,13 @@
             this.ChkTxtBtn2 = new NipponPaint.NpCommon.FormControls.CheckTextButton();
             this.ChkTxtBtn1 = new NipponPaint.NpCommon.FormControls.CheckTextButton();
             this.ChkTxtBtn12 = new NipponPaint.NpCommon.FormControls.CheckTextButton();
+            this.BtnDataReturn = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.BtnClose = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.BtnRestoreSettings = new System.Windows.Forms.Button();
+            this.BtnSaveSettings = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -292,80 +292,6 @@
             this.panel5.Size = new System.Drawing.Size(1180, 560);
             this.panel5.TabIndex = 36;
             // 
-            // BtnDataReturn
-            // 
-            this.BtnDataReturn.Font = new System.Drawing.Font("メイリオ", 11.25F);
-            this.BtnDataReturn.Location = new System.Drawing.Point(15, 500);
-            this.BtnDataReturn.Name = "BtnDataReturn";
-            this.BtnDataReturn.Size = new System.Drawing.Size(312, 40);
-            this.BtnDataReturn.TabIndex = 39;
-            this.BtnDataReturn.Text = "データ復帰";
-            this.BtnDataReturn.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.BackColor = System.Drawing.Color.CadetBlue;
-            this.label9.Font = new System.Drawing.Font("メイリオ", 11.25F);
-            this.label9.ForeColor = System.Drawing.SystemColors.Control;
-            this.label9.Location = new System.Drawing.Point(15, 181);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(367, 23);
-            this.label9.TabIndex = 37;
-            this.label9.Text = "サーバーステータス";
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.BtnClose);
-            this.panel6.Font = new System.Drawing.Font("メイリオ", 11.25F);
-            this.panel6.Location = new System.Drawing.Point(885, 750);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(310, 70);
-            this.panel6.TabIndex = 38;
-            // 
-            // BtnClose
-            // 
-            this.BtnClose.Font = new System.Drawing.Font("メイリオ", 11.25F);
-            this.BtnClose.Location = new System.Drawing.Point(15, 15);
-            this.BtnClose.Name = "BtnClose";
-            this.BtnClose.Size = new System.Drawing.Size(280, 40);
-            this.BtnClose.TabIndex = 40;
-            this.BtnClose.Text = "閉じる";
-            this.BtnClose.UseVisualStyleBackColor = true;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.White;
-            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.BtnRestoreSettings);
-            this.panel7.Controls.Add(this.BtnSaveSettings);
-            this.panel7.Font = new System.Drawing.Font("メイリオ", 11.25F);
-            this.panel7.Location = new System.Drawing.Point(15, 750);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(605, 70);
-            this.panel7.TabIndex = 39;
-            // 
-            // BtnRestoreSettings
-            // 
-            this.BtnRestoreSettings.Font = new System.Drawing.Font("メイリオ", 11.25F);
-            this.BtnRestoreSettings.Location = new System.Drawing.Point(310, 15);
-            this.BtnRestoreSettings.Name = "BtnRestoreSettings";
-            this.BtnRestoreSettings.Size = new System.Drawing.Size(280, 40);
-            this.BtnRestoreSettings.TabIndex = 41;
-            this.BtnRestoreSettings.Text = "Restore settings";
-            this.BtnRestoreSettings.UseVisualStyleBackColor = true;
-            // 
-            // BtnSaveSettings
-            // 
-            this.BtnSaveSettings.Font = new System.Drawing.Font("メイリオ", 11.25F);
-            this.BtnSaveSettings.Location = new System.Drawing.Point(15, 15);
-            this.BtnSaveSettings.Name = "BtnSaveSettings";
-            this.BtnSaveSettings.Size = new System.Drawing.Size(280, 40);
-            this.BtnSaveSettings.TabIndex = 40;
-            this.BtnSaveSettings.Text = "Save　settings";
-            this.BtnSaveSettings.UseVisualStyleBackColor = true;
-            // 
             // ChkTxtBtn11
             // 
             this.ChkTxtBtn11.Font = new System.Drawing.Font("メイリオ", 11.25F);
@@ -374,7 +300,7 @@
             this.ChkTxtBtn11.Name = "ChkTxtBtn11";
             this.ChkTxtBtn11.Size = new System.Drawing.Size(1150, 30);
             this.ChkTxtBtn11.TabIndex = 51;
-            this.ChkTxtBtn11.Title = "ORDER_RF9";
+            this.ChkTxtBtn11.Title = "ORDER_RF10";
             this.ChkTxtBtn11.TitleControlName = "ChkTitle";
             // 
             // ChkTxtBtn3
@@ -497,6 +423,80 @@
             this.ChkTxtBtn12.TabIndex = 40;
             this.ChkTxtBtn12.Title = "NP_MAIN";
             this.ChkTxtBtn12.TitleControlName = "ChkTitle";
+            // 
+            // BtnDataReturn
+            // 
+            this.BtnDataReturn.Font = new System.Drawing.Font("メイリオ", 11.25F);
+            this.BtnDataReturn.Location = new System.Drawing.Point(15, 500);
+            this.BtnDataReturn.Name = "BtnDataReturn";
+            this.BtnDataReturn.Size = new System.Drawing.Size(312, 40);
+            this.BtnDataReturn.TabIndex = 39;
+            this.BtnDataReturn.Text = "データ復帰";
+            this.BtnDataReturn.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.Color.CadetBlue;
+            this.label9.Font = new System.Drawing.Font("メイリオ", 11.25F);
+            this.label9.ForeColor = System.Drawing.SystemColors.Control;
+            this.label9.Location = new System.Drawing.Point(15, 181);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(367, 23);
+            this.label9.TabIndex = 37;
+            this.label9.Text = "サーバーステータス";
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.BtnClose);
+            this.panel6.Font = new System.Drawing.Font("メイリオ", 11.25F);
+            this.panel6.Location = new System.Drawing.Point(885, 750);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(310, 70);
+            this.panel6.TabIndex = 38;
+            // 
+            // BtnClose
+            // 
+            this.BtnClose.Font = new System.Drawing.Font("メイリオ", 11.25F);
+            this.BtnClose.Location = new System.Drawing.Point(15, 15);
+            this.BtnClose.Name = "BtnClose";
+            this.BtnClose.Size = new System.Drawing.Size(280, 40);
+            this.BtnClose.TabIndex = 40;
+            this.BtnClose.Text = "閉じる";
+            this.BtnClose.UseVisualStyleBackColor = true;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Controls.Add(this.BtnRestoreSettings);
+            this.panel7.Controls.Add(this.BtnSaveSettings);
+            this.panel7.Font = new System.Drawing.Font("メイリオ", 11.25F);
+            this.panel7.Location = new System.Drawing.Point(15, 750);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(605, 70);
+            this.panel7.TabIndex = 39;
+            // 
+            // BtnRestoreSettings
+            // 
+            this.BtnRestoreSettings.Font = new System.Drawing.Font("メイリオ", 11.25F);
+            this.BtnRestoreSettings.Location = new System.Drawing.Point(310, 15);
+            this.BtnRestoreSettings.Name = "BtnRestoreSettings";
+            this.BtnRestoreSettings.Size = new System.Drawing.Size(280, 40);
+            this.BtnRestoreSettings.TabIndex = 41;
+            this.BtnRestoreSettings.Text = "Restore settings";
+            this.BtnRestoreSettings.UseVisualStyleBackColor = true;
+            // 
+            // BtnSaveSettings
+            // 
+            this.BtnSaveSettings.Font = new System.Drawing.Font("メイリオ", 11.25F);
+            this.BtnSaveSettings.Location = new System.Drawing.Point(15, 15);
+            this.BtnSaveSettings.Name = "BtnSaveSettings";
+            this.BtnSaveSettings.Size = new System.Drawing.Size(280, 40);
+            this.BtnSaveSettings.TabIndex = 40;
+            this.BtnSaveSettings.Text = "Save　settings";
+            this.BtnSaveSettings.UseVisualStyleBackColor = true;
             // 
             // FrmDBMaintenance
             // 

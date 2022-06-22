@@ -33,8 +33,6 @@ namespace DatabaseManager.Dialogs
     /// </summary>
     public partial class FrmDisplayColors : Form
     {
-        static string title = "information";
-        static string msg = "クローズ前に設定を保存してください";
 
         #region コンストラクタ
         public FrmDisplayColors()
@@ -117,7 +115,7 @@ namespace DatabaseManager.Dialogs
         {
             if (BtnSettingSave.Enabled)
             {
-                MessageBox.Show(this, msg, title);
+                Messages.ShowDialog(Sentence.Messages.SaveIncompleteInformation);
             }
             else
             {
@@ -132,7 +130,7 @@ namespace DatabaseManager.Dialogs
                     baseForm.PutLog(ex);
                 }
             }
-        }        
+        }
 
         /// <summary>
         /// 入力値が変更された場合
@@ -213,7 +211,7 @@ namespace DatabaseManager.Dialogs
                                 var rows = recs.Select($"RF_Display_Colors = '{labelColorDiaLog.Code}'");
 
                                 if (!string.IsNullOrEmpty(labelColorDiaLog.DatabaseColumnName))
-                                { 
+                                {
                                     //LblColorCodeへ設定
                                     labelColorDiaLog.ColorCode = rows[0][labelColorDiaLog.DatabaseColumnName].ToString();
                                     //LblBtnColorへ設定
