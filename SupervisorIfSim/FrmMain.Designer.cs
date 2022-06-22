@@ -37,7 +37,9 @@ namespace SupervisorIfSim
             this.BtnTimer = new System.Windows.Forms.Button();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDetailFormula = new System.Windows.Forms.Panel();
-            this.BtnRegistFormula = new System.Windows.Forms.Button();
+            this.BtnPrdTimeInserted = new System.Windows.Forms.Button();
+            this.BtnRegistFormulaCorob = new System.Windows.Forms.Button();
+            this.BtnRegistFormulaErp = new System.Windows.Forms.Button();
             this.RdbPrdIsprefilled = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.RdbPrdUm = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.RdbPrdStatus = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
@@ -70,6 +72,10 @@ namespace SupervisorIfSim
             this.pnlPreviewFormula = new System.Windows.Forms.Panel();
             this.GvFormula = new System.Windows.Forms.DataGridView();
             this.pnlBrcJob = new System.Windows.Forms.Panel();
+            this.BtnBrcTimeProcessed = new System.Windows.Forms.Button();
+            this.BtnBrcTimeInserted = new System.Windows.Forms.Button();
+            this.BtnRegistJobCorob = new System.Windows.Forms.Button();
+            this.BtnRegistBarcodeCorob = new System.Windows.Forms.Button();
             this.RdbJobExitPosition = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.RdbJobPrinting3 = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.RdbJobPrinting2 = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
@@ -79,8 +85,8 @@ namespace SupervisorIfSim
             this.RdbJobCapping = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.RdbJobMixing = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
             this.RdbBrcStatus = new NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons();
-            this.BtnRegistBarcode = new System.Windows.Forms.Button();
-            this.BtnRegistJob = new System.Windows.Forms.Button();
+            this.BtnRegistBarcodeErp = new System.Windows.Forms.Button();
+            this.BtnRegistJobErp = new System.Windows.Forms.Button();
             this.TxtJobErr5 = new System.Windows.Forms.TextBox();
             this.label67 = new System.Windows.Forms.Label();
             this.TxtJobErr2 = new System.Windows.Forms.TextBox();
@@ -222,7 +228,7 @@ namespace SupervisorIfSim
             this.BtnPreview.Name = "BtnPreview";
             this.BtnPreview.Size = new System.Drawing.Size(98, 35);
             this.BtnPreview.TabIndex = 2;
-            this.BtnPreview.Text = "一覧更新(F5)";
+            this.BtnPreview.Text = "一覧更新(F10)";
             this.BtnPreview.UseVisualStyleBackColor = true;
             // 
             // BtnTimer
@@ -250,7 +256,9 @@ namespace SupervisorIfSim
             // pnlDetailFormula
             // 
             this.pnlDetailFormula.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlDetailFormula.Controls.Add(this.BtnRegistFormula);
+            this.pnlDetailFormula.Controls.Add(this.BtnPrdTimeInserted);
+            this.pnlDetailFormula.Controls.Add(this.BtnRegistFormulaCorob);
+            this.pnlDetailFormula.Controls.Add(this.BtnRegistFormulaErp);
             this.pnlDetailFormula.Controls.Add(this.RdbPrdIsprefilled);
             this.pnlDetailFormula.Controls.Add(this.RdbPrdUm);
             this.pnlDetailFormula.Controls.Add(this.RdbPrdStatus);
@@ -286,16 +294,37 @@ namespace SupervisorIfSim
             this.pnlDetailFormula.Size = new System.Drawing.Size(420, 950);
             this.pnlDetailFormula.TabIndex = 57;
             // 
-            // BtnRegistFormula
+            // BtnPrdTimeInserted
             // 
-            this.BtnRegistFormula.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnRegistFormula.Location = new System.Drawing.Point(312, 10);
-            this.BtnRegistFormula.Name = "BtnRegistFormula";
-            this.BtnRegistFormula.Size = new System.Drawing.Size(98, 35);
-            this.BtnRegistFormula.TabIndex = 75;
-            this.BtnRegistFormula.Text = "登録(F4)";
-            this.BtnRegistFormula.UseVisualStyleBackColor = true;
-            this.BtnRegistFormula.Click += new System.EventHandler(this.BtnRegistFormula_Click);
+            this.BtnPrdTimeInserted.Location = new System.Drawing.Point(159, 82);
+            this.BtnPrdTimeInserted.Name = "BtnPrdTimeInserted";
+            this.BtnPrdTimeInserted.Size = new System.Drawing.Size(75, 26);
+            this.BtnPrdTimeInserted.TabIndex = 203;
+            this.BtnPrdTimeInserted.Text = "現在日時";
+            this.BtnPrdTimeInserted.UseVisualStyleBackColor = true;
+            this.BtnPrdTimeInserted.Click += new System.EventHandler(this.BtnPrdTimeInserted_Click);
+            // 
+            // BtnRegistFormulaCorob
+            // 
+            this.BtnRegistFormulaCorob.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnRegistFormulaCorob.Location = new System.Drawing.Point(303, 10);
+            this.BtnRegistFormulaCorob.Name = "BtnRegistFormulaCorob";
+            this.BtnRegistFormulaCorob.Size = new System.Drawing.Size(109, 35);
+            this.BtnRegistFormulaCorob.TabIndex = 200;
+            this.BtnRegistFormulaCorob.Text = "COROB登録(F7)";
+            this.BtnRegistFormulaCorob.UseVisualStyleBackColor = true;
+            this.BtnRegistFormulaCorob.Click += new System.EventHandler(this.BtnRegistFormulaCorob_Click);
+            // 
+            // BtnRegistFormulaErp
+            // 
+            this.BtnRegistFormulaErp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnRegistFormulaErp.Location = new System.Drawing.Point(191, 10);
+            this.BtnRegistFormulaErp.Name = "BtnRegistFormulaErp";
+            this.BtnRegistFormulaErp.Size = new System.Drawing.Size(109, 35);
+            this.BtnRegistFormulaErp.TabIndex = 75;
+            this.BtnRegistFormulaErp.Text = "ERP登録(F6)";
+            this.BtnRegistFormulaErp.UseVisualStyleBackColor = true;
+            this.BtnRegistFormulaErp.Click += new System.EventHandler(this.BtnRegistFormulaErp_Click);
             // 
             // RdbPrdIsprefilled
             // 
@@ -304,7 +333,7 @@ namespace SupervisorIfSim
             this.RdbPrdIsprefilled.FirstButtonText = "false";
             this.RdbPrdIsprefilled.FirstButtonVisible = true;
             this.RdbPrdIsprefilled.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbPrdIsprefilled.Location = new System.Drawing.Point(159, 368);
+            this.RdbPrdIsprefilled.Location = new System.Drawing.Point(159, 396);
             this.RdbPrdIsprefilled.Margin = new System.Windows.Forms.Padding(0);
             this.RdbPrdIsprefilled.Name = "RdbPrdIsprefilled";
             this.RdbPrdIsprefilled.SecondButtonDefault = 1;
@@ -326,7 +355,7 @@ namespace SupervisorIfSim
             this.RdbPrdUm.FirstButtonText = "グラム";
             this.RdbPrdUm.FirstButtonVisible = true;
             this.RdbPrdUm.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbPrdUm.Location = new System.Drawing.Point(159, 160);
+            this.RdbPrdUm.Location = new System.Drawing.Point(159, 188);
             this.RdbPrdUm.Margin = new System.Windows.Forms.Padding(0);
             this.RdbPrdUm.Name = "RdbPrdUm";
             this.RdbPrdUm.SecondButtonDefault = 1;
@@ -348,7 +377,7 @@ namespace SupervisorIfSim
             this.RdbPrdStatus.FirstButtonText = "未吐出";
             this.RdbPrdStatus.FirstButtonVisible = true;
             this.RdbPrdStatus.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.RdbPrdStatus.Location = new System.Drawing.Point(159, 82);
+            this.RdbPrdStatus.Location = new System.Drawing.Point(159, 110);
             this.RdbPrdStatus.Margin = new System.Windows.Forms.Padding(0);
             this.RdbPrdStatus.Name = "RdbPrdStatus";
             this.RdbPrdStatus.SecondButtonDefault = 1;
@@ -381,7 +410,7 @@ namespace SupervisorIfSim
             // 
             this.TxtPrdPrefilledQty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtPrdPrefilledQty.Location = new System.Drawing.Point(159, 394);
+            this.TxtPrdPrefilledQty.Location = new System.Drawing.Point(159, 422);
             this.TxtPrdPrefilledQty.Name = "TxtPrdPrefilledQty";
             this.TxtPrdPrefilledQty.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdPrefilledQty.TabIndex = 74;
@@ -391,7 +420,7 @@ namespace SupervisorIfSim
             // 
             this.TxtPrdNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtPrdNum.Location = new System.Drawing.Point(159, 342);
+            this.TxtPrdNum.Location = new System.Drawing.Point(159, 370);
             this.TxtPrdNum.Name = "TxtPrdNum";
             this.TxtPrdNum.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdNum.TabIndex = 70;
@@ -401,7 +430,7 @@ namespace SupervisorIfSim
             // 
             this.TxtPrdPriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtPrdPriority.Location = new System.Drawing.Point(159, 316);
+            this.TxtPrdPriority.Location = new System.Drawing.Point(159, 344);
             this.TxtPrdPriority.Name = "TxtPrdPriority";
             this.TxtPrdPriority.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdPriority.TabIndex = 68;
@@ -411,8 +440,8 @@ namespace SupervisorIfSim
             // 
             this.TxtPrdEndDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtPrdEndDisp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.TxtPrdEndDisp.Location = new System.Drawing.Point(159, 290);
+            this.TxtPrdEndDisp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.TxtPrdEndDisp.Location = new System.Drawing.Point(159, 318);
             this.TxtPrdEndDisp.Name = "TxtPrdEndDisp";
             this.TxtPrdEndDisp.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdEndDisp.TabIndex = 66;
@@ -422,8 +451,8 @@ namespace SupervisorIfSim
             // 
             this.TxtPrdStartDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtPrdStartDisp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.TxtPrdStartDisp.Location = new System.Drawing.Point(159, 264);
+            this.TxtPrdStartDisp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.TxtPrdStartDisp.Location = new System.Drawing.Point(159, 292);
             this.TxtPrdStartDisp.Name = "TxtPrdStartDisp";
             this.TxtPrdStartDisp.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdStartDisp.TabIndex = 64;
@@ -433,7 +462,7 @@ namespace SupervisorIfSim
             // 
             this.label17.BackColor = System.Drawing.Color.Navy;
             this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(2, 394);
+            this.label17.Location = new System.Drawing.Point(2, 422);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(155, 25);
             this.label17.TabIndex = 73;
@@ -444,7 +473,7 @@ namespace SupervisorIfSim
             // 
             this.label18.BackColor = System.Drawing.Color.Navy;
             this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(2, 368);
+            this.label18.Location = new System.Drawing.Point(2, 396);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(155, 25);
             this.label18.TabIndex = 71;
@@ -455,7 +484,7 @@ namespace SupervisorIfSim
             // 
             this.label19.BackColor = System.Drawing.Color.Navy;
             this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(2, 342);
+            this.label19.Location = new System.Drawing.Point(2, 370);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(155, 25);
             this.label19.TabIndex = 69;
@@ -466,7 +495,7 @@ namespace SupervisorIfSim
             // 
             this.label20.BackColor = System.Drawing.Color.Navy;
             this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(2, 316);
+            this.label20.Location = new System.Drawing.Point(2, 344);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(155, 25);
             this.label20.TabIndex = 67;
@@ -477,7 +506,7 @@ namespace SupervisorIfSim
             // 
             this.label21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(2, 290);
+            this.label21.Location = new System.Drawing.Point(2, 318);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(155, 25);
             this.label21.TabIndex = 65;
@@ -488,7 +517,7 @@ namespace SupervisorIfSim
             // 
             this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(2, 264);
+            this.label22.Location = new System.Drawing.Point(2, 292);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(155, 25);
             this.label22.TabIndex = 63;
@@ -499,8 +528,8 @@ namespace SupervisorIfSim
             // 
             this.TxtPrdQtyDisp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtPrdQtyDisp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.TxtPrdQtyDisp.Location = new System.Drawing.Point(159, 238);
+            this.TxtPrdQtyDisp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.TxtPrdQtyDisp.Location = new System.Drawing.Point(159, 266);
             this.TxtPrdQtyDisp.Name = "TxtPrdQtyDisp";
             this.TxtPrdQtyDisp.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdQtyDisp.TabIndex = 62;
@@ -510,7 +539,7 @@ namespace SupervisorIfSim
             // 
             this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(2, 238);
+            this.label23.Location = new System.Drawing.Point(2, 266);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(155, 25);
             this.label23.TabIndex = 61;
@@ -521,7 +550,7 @@ namespace SupervisorIfSim
             // 
             this.TxtPrdQtyReq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtPrdQtyReq.Location = new System.Drawing.Point(159, 212);
+            this.TxtPrdQtyReq.Location = new System.Drawing.Point(159, 240);
             this.TxtPrdQtyReq.Name = "TxtPrdQtyReq";
             this.TxtPrdQtyReq.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdQtyReq.TabIndex = 60;
@@ -531,7 +560,7 @@ namespace SupervisorIfSim
             // 
             this.TxtPrdSpecificGravity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtPrdSpecificGravity.Location = new System.Drawing.Point(159, 186);
+            this.TxtPrdSpecificGravity.Location = new System.Drawing.Point(159, 214);
             this.TxtPrdSpecificGravity.Name = "TxtPrdSpecificGravity";
             this.TxtPrdSpecificGravity.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdSpecificGravity.TabIndex = 58;
@@ -542,7 +571,7 @@ namespace SupervisorIfSim
             this.TxtPrdDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdDesc.Enabled = false;
-            this.TxtPrdDesc.Location = new System.Drawing.Point(159, 134);
+            this.TxtPrdDesc.Location = new System.Drawing.Point(159, 162);
             this.TxtPrdDesc.Name = "TxtPrdDesc";
             this.TxtPrdDesc.ReadOnly = true;
             this.TxtPrdDesc.Size = new System.Drawing.Size(258, 25);
@@ -554,7 +583,7 @@ namespace SupervisorIfSim
             this.TxtPrdCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtPrdCode.Enabled = false;
-            this.TxtPrdCode.Location = new System.Drawing.Point(159, 108);
+            this.TxtPrdCode.Location = new System.Drawing.Point(159, 136);
             this.TxtPrdCode.Name = "TxtPrdCode";
             this.TxtPrdCode.ReadOnly = true;
             this.TxtPrdCode.Size = new System.Drawing.Size(258, 25);
@@ -565,7 +594,7 @@ namespace SupervisorIfSim
             // 
             this.label11.BackColor = System.Drawing.Color.Navy;
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(2, 212);
+            this.label11.Location = new System.Drawing.Point(2, 240);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(155, 25);
             this.label11.TabIndex = 59;
@@ -576,7 +605,7 @@ namespace SupervisorIfSim
             // 
             this.label12.BackColor = System.Drawing.Color.Navy;
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(2, 186);
+            this.label12.Location = new System.Drawing.Point(2, 214);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(155, 25);
             this.label12.TabIndex = 57;
@@ -587,7 +616,7 @@ namespace SupervisorIfSim
             // 
             this.label13.BackColor = System.Drawing.Color.Navy;
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(2, 160);
+            this.label13.Location = new System.Drawing.Point(2, 188);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(155, 25);
             this.label13.TabIndex = 55;
@@ -598,7 +627,7 @@ namespace SupervisorIfSim
             // 
             this.label14.BackColor = System.Drawing.Color.Navy;
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(2, 134);
+            this.label14.Location = new System.Drawing.Point(2, 162);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(155, 25);
             this.label14.TabIndex = 53;
@@ -609,7 +638,7 @@ namespace SupervisorIfSim
             // 
             this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(2, 108);
+            this.label15.Location = new System.Drawing.Point(2, 136);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(155, 25);
             this.label15.TabIndex = 51;
@@ -618,9 +647,9 @@ namespace SupervisorIfSim
             // 
             // label16
             // 
-            this.label16.BackColor = System.Drawing.Color.Navy;
+            this.label16.BackColor = System.Drawing.Color.Green;
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(2, 82);
+            this.label16.Location = new System.Drawing.Point(2, 110);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(155, 25);
             this.label16.TabIndex = 49;
@@ -676,6 +705,10 @@ namespace SupervisorIfSim
             // pnlBrcJob
             // 
             this.pnlBrcJob.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBrcJob.Controls.Add(this.BtnBrcTimeProcessed);
+            this.pnlBrcJob.Controls.Add(this.BtnBrcTimeInserted);
+            this.pnlBrcJob.Controls.Add(this.BtnRegistJobCorob);
+            this.pnlBrcJob.Controls.Add(this.BtnRegistBarcodeCorob);
             this.pnlBrcJob.Controls.Add(this.RdbJobExitPosition);
             this.pnlBrcJob.Controls.Add(this.RdbJobPrinting3);
             this.pnlBrcJob.Controls.Add(this.RdbJobPrinting2);
@@ -685,8 +718,8 @@ namespace SupervisorIfSim
             this.pnlBrcJob.Controls.Add(this.RdbJobCapping);
             this.pnlBrcJob.Controls.Add(this.RdbJobMixing);
             this.pnlBrcJob.Controls.Add(this.RdbBrcStatus);
-            this.pnlBrcJob.Controls.Add(this.BtnRegistBarcode);
-            this.pnlBrcJob.Controls.Add(this.BtnRegistJob);
+            this.pnlBrcJob.Controls.Add(this.BtnRegistBarcodeErp);
+            this.pnlBrcJob.Controls.Add(this.BtnRegistJobErp);
             this.pnlBrcJob.Controls.Add(this.TxtJobErr5);
             this.pnlBrcJob.Controls.Add(this.label67);
             this.pnlBrcJob.Controls.Add(this.TxtJobErr2);
@@ -780,6 +813,46 @@ namespace SupervisorIfSim
             this.pnlBrcJob.Name = "pnlBrcJob";
             this.pnlBrcJob.Size = new System.Drawing.Size(724, 950);
             this.pnlBrcJob.TabIndex = 55;
+            // 
+            // BtnBrcTimeProcessed
+            // 
+            this.BtnBrcTimeProcessed.Location = new System.Drawing.Point(365, 137);
+            this.BtnBrcTimeProcessed.Name = "BtnBrcTimeProcessed";
+            this.BtnBrcTimeProcessed.Size = new System.Drawing.Size(75, 26);
+            this.BtnBrcTimeProcessed.TabIndex = 202;
+            this.BtnBrcTimeProcessed.Text = "現在日時";
+            this.BtnBrcTimeProcessed.UseVisualStyleBackColor = true;
+            this.BtnBrcTimeProcessed.Click += new System.EventHandler(this.BtnBrcTimeProcessed_Click);
+            // 
+            // BtnBrcTimeInserted
+            // 
+            this.BtnBrcTimeInserted.Location = new System.Drawing.Point(365, 111);
+            this.BtnBrcTimeInserted.Name = "BtnBrcTimeInserted";
+            this.BtnBrcTimeInserted.Size = new System.Drawing.Size(75, 26);
+            this.BtnBrcTimeInserted.TabIndex = 201;
+            this.BtnBrcTimeInserted.Text = "現在日時";
+            this.BtnBrcTimeInserted.UseVisualStyleBackColor = true;
+            this.BtnBrcTimeInserted.Click += new System.EventHandler(this.BtnBrcTimeInserted_Click);
+            // 
+            // BtnRegistJobCorob
+            // 
+            this.BtnRegistJobCorob.Location = new System.Drawing.Point(245, 276);
+            this.BtnRegistJobCorob.Name = "BtnRegistJobCorob";
+            this.BtnRegistJobCorob.Size = new System.Drawing.Size(109, 35);
+            this.BtnRegistJobCorob.TabIndex = 200;
+            this.BtnRegistJobCorob.Text = "COROB更新(F5)";
+            this.BtnRegistJobCorob.UseVisualStyleBackColor = true;
+            this.BtnRegistJobCorob.Click += new System.EventHandler(this.BtnRegistJobCorob_Click);
+            // 
+            // BtnRegistBarcodeCorob
+            // 
+            this.BtnRegistBarcodeCorob.Location = new System.Drawing.Point(245, 65);
+            this.BtnRegistBarcodeCorob.Name = "BtnRegistBarcodeCorob";
+            this.BtnRegistBarcodeCorob.Size = new System.Drawing.Size(109, 35);
+            this.BtnRegistBarcodeCorob.TabIndex = 199;
+            this.BtnRegistBarcodeCorob.Text = "COROB更新(F3)";
+            this.BtnRegistBarcodeCorob.UseVisualStyleBackColor = true;
+            this.BtnRegistBarcodeCorob.Click += new System.EventHandler(this.BtnRegistBarcodeCorob_Click);
             // 
             // RdbJobExitPosition
             // 
@@ -979,29 +1052,29 @@ namespace SupervisorIfSim
             this.RdbBrcStatus.ThirdButtonVisible = false;
             this.RdbBrcStatus.Value = -99;
             // 
-            // BtnRegistBarcode
+            // BtnRegistBarcodeErp
             // 
-            this.BtnRegistBarcode.Location = new System.Drawing.Point(255, 65);
-            this.BtnRegistBarcode.Name = "BtnRegistBarcode";
-            this.BtnRegistBarcode.Size = new System.Drawing.Size(98, 35);
-            this.BtnRegistBarcode.TabIndex = 189;
-            this.BtnRegistBarcode.Text = "登録(F2)";
-            this.BtnRegistBarcode.UseVisualStyleBackColor = true;
-            this.BtnRegistBarcode.Click += new System.EventHandler(this.BtnRegistBarcode_Click);
+            this.BtnRegistBarcodeErp.Location = new System.Drawing.Point(133, 65);
+            this.BtnRegistBarcodeErp.Name = "BtnRegistBarcodeErp";
+            this.BtnRegistBarcodeErp.Size = new System.Drawing.Size(109, 35);
+            this.BtnRegistBarcodeErp.TabIndex = 189;
+            this.BtnRegistBarcodeErp.Text = "ERP更新(F2)";
+            this.BtnRegistBarcodeErp.UseVisualStyleBackColor = true;
+            this.BtnRegistBarcodeErp.Click += new System.EventHandler(this.BtnRegistBarcodeErp_Click);
             // 
-            // BtnRegistJob
+            // BtnRegistJobErp
             // 
-            this.BtnRegistJob.Location = new System.Drawing.Point(255, 276);
-            this.BtnRegistJob.Name = "BtnRegistJob";
-            this.BtnRegistJob.Size = new System.Drawing.Size(98, 35);
-            this.BtnRegistJob.TabIndex = 188;
-            this.BtnRegistJob.Text = "登録(F3)";
-            this.BtnRegistJob.UseVisualStyleBackColor = true;
-            this.BtnRegistJob.Click += new System.EventHandler(this.BtnRegistJob_Click);
+            this.BtnRegistJobErp.Location = new System.Drawing.Point(133, 276);
+            this.BtnRegistJobErp.Name = "BtnRegistJobErp";
+            this.BtnRegistJobErp.Size = new System.Drawing.Size(109, 35);
+            this.BtnRegistJobErp.TabIndex = 188;
+            this.BtnRegistJobErp.Text = "ERP登録(F4)";
+            this.BtnRegistJobErp.UseVisualStyleBackColor = true;
+            this.BtnRegistJobErp.Click += new System.EventHandler(this.BtnRegistJobErp_Click);
             // 
             // TxtJobErr5
             // 
-            this.TxtJobErr5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.TxtJobErr5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtJobErr5.Location = new System.Drawing.Point(520, 816);
             this.TxtJobErr5.Name = "TxtJobErr5";
             this.TxtJobErr5.Size = new System.Drawing.Size(200, 25);
@@ -1021,7 +1094,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobErr2
             // 
-            this.TxtJobErr2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.TxtJobErr2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtJobErr2.Location = new System.Drawing.Point(520, 738);
             this.TxtJobErr2.Name = "TxtJobErr2";
             this.TxtJobErr2.Size = new System.Drawing.Size(200, 25);
@@ -1081,7 +1154,7 @@ namespace SupervisorIfSim
             // 
             // label59
             // 
-            this.label59.BackColor = System.Drawing.Color.Navy;
+            this.label59.BackColor = System.Drawing.Color.Green;
             this.label59.ForeColor = System.Drawing.Color.White;
             this.label59.Location = new System.Drawing.Point(363, 686);
             this.label59.Name = "label59";
@@ -1092,7 +1165,7 @@ namespace SupervisorIfSim
             // 
             // label60
             // 
-            this.label60.BackColor = System.Drawing.Color.Navy;
+            this.label60.BackColor = System.Drawing.Color.Green;
             this.label60.ForeColor = System.Drawing.Color.White;
             this.label60.Location = new System.Drawing.Point(363, 660);
             this.label60.Name = "label60";
@@ -1103,7 +1176,7 @@ namespace SupervisorIfSim
             // 
             // label61
             // 
-            this.label61.BackColor = System.Drawing.Color.Navy;
+            this.label61.BackColor = System.Drawing.Color.Green;
             this.label61.ForeColor = System.Drawing.Color.White;
             this.label61.Location = new System.Drawing.Point(363, 634);
             this.label61.Name = "label61";
@@ -1114,7 +1187,7 @@ namespace SupervisorIfSim
             // 
             // label62
             // 
-            this.label62.BackColor = System.Drawing.Color.Navy;
+            this.label62.BackColor = System.Drawing.Color.Green;
             this.label62.ForeColor = System.Drawing.Color.White;
             this.label62.Location = new System.Drawing.Point(363, 608);
             this.label62.Name = "label62";
@@ -1125,7 +1198,7 @@ namespace SupervisorIfSim
             // 
             // label63
             // 
-            this.label63.BackColor = System.Drawing.Color.Navy;
+            this.label63.BackColor = System.Drawing.Color.Green;
             this.label63.ForeColor = System.Drawing.Color.White;
             this.label63.Location = new System.Drawing.Point(363, 582);
             this.label63.Name = "label63";
@@ -1136,7 +1209,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobErr1
             // 
-            this.TxtJobErr1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.TxtJobErr1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtJobErr1.Location = new System.Drawing.Point(520, 712);
             this.TxtJobErr1.Name = "TxtJobErr1";
             this.TxtJobErr1.Size = new System.Drawing.Size(200, 25);
@@ -1145,7 +1218,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobErr3
             // 
-            this.TxtJobErr3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.TxtJobErr3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtJobErr3.Location = new System.Drawing.Point(520, 764);
             this.TxtJobErr3.Name = "TxtJobErr3";
             this.TxtJobErr3.Size = new System.Drawing.Size(200, 25);
@@ -1176,7 +1249,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobErr4
             // 
-            this.TxtJobErr4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.TxtJobErr4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtJobErr4.Location = new System.Drawing.Point(520, 790);
             this.TxtJobErr4.Name = "TxtJobErr4";
             this.TxtJobErr4.Size = new System.Drawing.Size(200, 25);
@@ -1394,7 +1467,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobTotGravimetricWeightDetected
             // 
-            this.TxtJobTotGravimetricWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.TxtJobTotGravimetricWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtJobTotGravimetricWeightDetected.Location = new System.Drawing.Point(159, 842);
             this.TxtJobTotGravimetricWeightDetected.Name = "TxtJobTotGravimetricWeightDetected";
             this.TxtJobTotGravimetricWeightDetected.Size = new System.Drawing.Size(200, 25);
@@ -1463,7 +1536,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobTotColorantWeightDetected
             // 
-            this.TxtJobTotColorantWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.TxtJobTotColorantWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtJobTotColorantWeightDetected.Location = new System.Drawing.Point(159, 738);
             this.TxtJobTotColorantWeightDetected.Name = "TxtJobTotColorantWeightDetected";
             this.TxtJobTotColorantWeightDetected.Size = new System.Drawing.Size(200, 25);
@@ -1510,7 +1583,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobNetWeightDetected
             // 
-            this.TxtJobNetWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.TxtJobNetWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtJobNetWeightDetected.Location = new System.Drawing.Point(159, 634);
             this.TxtJobNetWeightDetected.Name = "TxtJobNetWeightDetected";
             this.TxtJobNetWeightDetected.Size = new System.Drawing.Size(200, 25);
@@ -1579,7 +1652,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobGrossWeightDetected
             // 
-            this.TxtJobGrossWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.TxtJobGrossWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtJobGrossWeightDetected.Location = new System.Drawing.Point(159, 530);
             this.TxtJobGrossWeightDetected.Name = "TxtJobGrossWeightDetected";
             this.TxtJobGrossWeightDetected.Size = new System.Drawing.Size(200, 25);
@@ -1615,7 +1688,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobTareWeightDetected
             // 
-            this.TxtJobTareWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.TxtJobTareWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtJobTareWeightDetected.Location = new System.Drawing.Point(159, 426);
             this.TxtJobTareWeightDetected.Name = "TxtJobTareWeightDetected";
             this.TxtJobTareWeightDetected.Size = new System.Drawing.Size(200, 25);
@@ -1676,7 +1749,7 @@ namespace SupervisorIfSim
             // 
             // label37
             // 
-            this.label37.BackColor = System.Drawing.Color.Navy;
+            this.label37.BackColor = System.Drawing.Color.Green;
             this.label37.ForeColor = System.Drawing.Color.White;
             this.label37.Location = new System.Drawing.Point(2, 348);
             this.label37.Name = "label37";
@@ -1738,7 +1811,7 @@ namespace SupervisorIfSim
             // 
             // TxtBrcTimeInserted
             // 
-            this.TxtBrcTimeInserted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.TxtBrcTimeInserted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtBrcTimeInserted.Location = new System.Drawing.Point(159, 111);
             this.TxtBrcTimeInserted.Name = "TxtBrcTimeInserted";
             this.TxtBrcTimeInserted.Size = new System.Drawing.Size(200, 25);
@@ -1747,7 +1820,7 @@ namespace SupervisorIfSim
             // 
             // label5
             // 
-            this.label5.BackColor = System.Drawing.Color.Navy;
+            this.label5.BackColor = System.Drawing.Color.Green;
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(2, 163);
             this.label5.Name = "label5";
@@ -1942,7 +2015,7 @@ namespace SupervisorIfSim
         private System.Windows.Forms.Panel pnlPreviewBarcode;
         private System.Windows.Forms.DataGridView GvBarcode;
         private System.Windows.Forms.Panel pnlDetailFormula;
-        private System.Windows.Forms.Button BtnRegistFormula;
+        private System.Windows.Forms.Button BtnRegistFormulaErp;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.TextBox TxtPrdPrefilledQty;
         private System.Windows.Forms.TextBox TxtPrdNum;
@@ -1972,8 +2045,8 @@ namespace SupervisorIfSim
         private System.Windows.Forms.Panel pnlPreviewFormula;
         private System.Windows.Forms.DataGridView GvFormula;
         private System.Windows.Forms.Panel pnlBrcJob;
-        private System.Windows.Forms.Button BtnRegistBarcode;
-        private System.Windows.Forms.Button BtnRegistJob;
+        private System.Windows.Forms.Button BtnRegistBarcodeErp;
+        private System.Windows.Forms.Button BtnRegistJobErp;
         private System.Windows.Forms.TextBox TxtJobErr5;
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.TextBox TxtJobErr2;
@@ -2074,6 +2147,12 @@ namespace SupervisorIfSim
         private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbPrdStatus;
         private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbPrdUm;
         private NipponPaint.SupervisorIfSim.FormControls.ThreeRadioButtons RdbPrdIsprefilled;
+        private System.Windows.Forms.Button BtnRegistBarcodeCorob;
+        private System.Windows.Forms.Button BtnRegistJobCorob;
+        private System.Windows.Forms.Button BtnRegistFormulaCorob;
+        private System.Windows.Forms.Button BtnPrdTimeInserted;
+        private System.Windows.Forms.Button BtnBrcTimeProcessed;
+        private System.Windows.Forms.Button BtnBrcTimeInserted;
     }
 }
 
