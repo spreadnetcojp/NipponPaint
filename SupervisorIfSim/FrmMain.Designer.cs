@@ -178,6 +178,7 @@ namespace SupervisorIfSim
             this.pnlPreviewBarcode = new System.Windows.Forms.Panel();
             this.GvBarcode = new System.Windows.Forms.DataGridView();
             this.TimerPreview = new System.Windows.Forms.Timer(this.components);
+            this.BtnJobTimeInserted = new System.Windows.Forms.Button();
             this.pnlHeader.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.pnlDetailFormula.SuspendLayout();
@@ -705,6 +706,7 @@ namespace SupervisorIfSim
             // pnlBrcJob
             // 
             this.pnlBrcJob.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlBrcJob.Controls.Add(this.BtnJobTimeInserted);
             this.pnlBrcJob.Controls.Add(this.BtnBrcTimeProcessed);
             this.pnlBrcJob.Controls.Add(this.BtnBrcTimeInserted);
             this.pnlBrcJob.Controls.Add(this.BtnRegistJobCorob);
@@ -1397,7 +1399,7 @@ namespace SupervisorIfSim
             // 
             this.DrpJobStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DrpJobStatus.FormattingEnabled = true;
-            this.DrpJobStatus.Location = new System.Drawing.Point(159, 348);
+            this.DrpJobStatus.Location = new System.Drawing.Point(159, 374);
             this.DrpJobStatus.Name = "DrpJobStatus";
             this.DrpJobStatus.Size = new System.Drawing.Size(200, 26);
             this.DrpJobStatus.TabIndex = 112;
@@ -1406,7 +1408,7 @@ namespace SupervisorIfSim
             // 
             this.label57.BackColor = System.Drawing.SystemColors.Control;
             this.label57.ForeColor = System.Drawing.Color.Black;
-            this.label57.Location = new System.Drawing.Point(2, 790);
+            this.label57.Location = new System.Drawing.Point(2, 816);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(357, 25);
             this.label57.TabIndex = 139;
@@ -1417,7 +1419,7 @@ namespace SupervisorIfSim
             // 
             this.label24.BackColor = System.Drawing.SystemColors.Control;
             this.label24.ForeColor = System.Drawing.Color.Black;
-            this.label24.Location = new System.Drawing.Point(2, 686);
+            this.label24.Location = new System.Drawing.Point(2, 712);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(357, 25);
             this.label24.TabIndex = 132;
@@ -1428,7 +1430,7 @@ namespace SupervisorIfSim
             // 
             this.label56.BackColor = System.Drawing.SystemColors.Control;
             this.label56.ForeColor = System.Drawing.Color.Black;
-            this.label56.Location = new System.Drawing.Point(2, 582);
+            this.label56.Location = new System.Drawing.Point(2, 608);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(357, 25);
             this.label56.TabIndex = 125;
@@ -1439,7 +1441,7 @@ namespace SupervisorIfSim
             // 
             this.label32.BackColor = System.Drawing.SystemColors.Control;
             this.label32.ForeColor = System.Drawing.Color.Black;
-            this.label32.Location = new System.Drawing.Point(2, 478);
+            this.label32.Location = new System.Drawing.Point(2, 504);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(357, 25);
             this.label32.TabIndex = 147;
@@ -1450,7 +1452,7 @@ namespace SupervisorIfSim
             // 
             this.label36.BackColor = System.Drawing.SystemColors.Control;
             this.label36.ForeColor = System.Drawing.Color.Black;
-            this.label36.Location = new System.Drawing.Point(2, 374);
+            this.label36.Location = new System.Drawing.Point(2, 400);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(357, 25);
             this.label36.TabIndex = 146;
@@ -1459,7 +1461,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobTotGravimetricWeightPercErrAdmitted
             // 
-            this.TxtJobTotGravimetricWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 868);
+            this.TxtJobTotGravimetricWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 894);
             this.TxtJobTotGravimetricWeightPercErrAdmitted.Name = "TxtJobTotGravimetricWeightPercErrAdmitted";
             this.TxtJobTotGravimetricWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTotGravimetricWeightPercErrAdmitted.TabIndex = 145;
@@ -1468,7 +1470,7 @@ namespace SupervisorIfSim
             // TxtJobTotGravimetricWeightDetected
             // 
             this.TxtJobTotGravimetricWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.TxtJobTotGravimetricWeightDetected.Location = new System.Drawing.Point(159, 842);
+            this.TxtJobTotGravimetricWeightDetected.Location = new System.Drawing.Point(159, 868);
             this.TxtJobTotGravimetricWeightDetected.Name = "TxtJobTotGravimetricWeightDetected";
             this.TxtJobTotGravimetricWeightDetected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTotGravimetricWeightDetected.TabIndex = 143;
@@ -1476,7 +1478,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobTotGravimetricWeightExpected
             // 
-            this.TxtJobTotGravimetricWeightExpected.Location = new System.Drawing.Point(159, 816);
+            this.TxtJobTotGravimetricWeightExpected.Location = new System.Drawing.Point(159, 842);
             this.TxtJobTotGravimetricWeightExpected.Name = "TxtJobTotGravimetricWeightExpected";
             this.TxtJobTotGravimetricWeightExpected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTotGravimetricWeightExpected.TabIndex = 141;
@@ -1484,7 +1486,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobTotColorantWeightPercErrAdmitted
             // 
-            this.TxtJobTotColorantWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 764);
+            this.TxtJobTotColorantWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 790);
             this.TxtJobTotColorantWeightPercErrAdmitted.Name = "TxtJobTotColorantWeightPercErrAdmitted";
             this.TxtJobTotColorantWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTotColorantWeightPercErrAdmitted.TabIndex = 138;
@@ -1494,7 +1496,7 @@ namespace SupervisorIfSim
             // 
             this.label48.BackColor = System.Drawing.Color.Navy;
             this.label48.ForeColor = System.Drawing.Color.White;
-            this.label48.Location = new System.Drawing.Point(2, 868);
+            this.label48.Location = new System.Drawing.Point(2, 894);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(155, 25);
             this.label48.TabIndex = 144;
@@ -1505,7 +1507,7 @@ namespace SupervisorIfSim
             // 
             this.label49.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label49.ForeColor = System.Drawing.Color.White;
-            this.label49.Location = new System.Drawing.Point(2, 842);
+            this.label49.Location = new System.Drawing.Point(2, 868);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(155, 25);
             this.label49.TabIndex = 142;
@@ -1516,7 +1518,7 @@ namespace SupervisorIfSim
             // 
             this.label50.BackColor = System.Drawing.Color.Navy;
             this.label50.ForeColor = System.Drawing.Color.White;
-            this.label50.Location = new System.Drawing.Point(2, 816);
+            this.label50.Location = new System.Drawing.Point(2, 842);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(155, 25);
             this.label50.TabIndex = 140;
@@ -1527,7 +1529,7 @@ namespace SupervisorIfSim
             // 
             this.label52.BackColor = System.Drawing.Color.Navy;
             this.label52.ForeColor = System.Drawing.Color.White;
-            this.label52.Location = new System.Drawing.Point(2, 764);
+            this.label52.Location = new System.Drawing.Point(2, 790);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(155, 25);
             this.label52.TabIndex = 137;
@@ -1537,7 +1539,7 @@ namespace SupervisorIfSim
             // TxtJobTotColorantWeightDetected
             // 
             this.TxtJobTotColorantWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.TxtJobTotColorantWeightDetected.Location = new System.Drawing.Point(159, 738);
+            this.TxtJobTotColorantWeightDetected.Location = new System.Drawing.Point(159, 764);
             this.TxtJobTotColorantWeightDetected.Name = "TxtJobTotColorantWeightDetected";
             this.TxtJobTotColorantWeightDetected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTotColorantWeightDetected.TabIndex = 136;
@@ -1547,7 +1549,7 @@ namespace SupervisorIfSim
             // 
             this.label53.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label53.ForeColor = System.Drawing.Color.White;
-            this.label53.Location = new System.Drawing.Point(2, 738);
+            this.label53.Location = new System.Drawing.Point(2, 764);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(155, 25);
             this.label53.TabIndex = 135;
@@ -1556,7 +1558,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobTotColorantWeightExpected
             // 
-            this.TxtJobTotColorantWeightExpected.Location = new System.Drawing.Point(159, 712);
+            this.TxtJobTotColorantWeightExpected.Location = new System.Drawing.Point(159, 738);
             this.TxtJobTotColorantWeightExpected.Name = "TxtJobTotColorantWeightExpected";
             this.TxtJobTotColorantWeightExpected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTotColorantWeightExpected.TabIndex = 134;
@@ -1566,7 +1568,7 @@ namespace SupervisorIfSim
             // 
             this.label54.BackColor = System.Drawing.Color.Navy;
             this.label54.ForeColor = System.Drawing.Color.White;
-            this.label54.Location = new System.Drawing.Point(2, 712);
+            this.label54.Location = new System.Drawing.Point(2, 738);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(155, 25);
             this.label54.TabIndex = 133;
@@ -1575,7 +1577,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobNetWeightPercErrAdmitted
             // 
-            this.TxtJobNetWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 660);
+            this.TxtJobNetWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 686);
             this.TxtJobNetWeightPercErrAdmitted.Name = "TxtJobNetWeightPercErrAdmitted";
             this.TxtJobNetWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
             this.TxtJobNetWeightPercErrAdmitted.TabIndex = 131;
@@ -1584,7 +1586,7 @@ namespace SupervisorIfSim
             // TxtJobNetWeightDetected
             // 
             this.TxtJobNetWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.TxtJobNetWeightDetected.Location = new System.Drawing.Point(159, 634);
+            this.TxtJobNetWeightDetected.Location = new System.Drawing.Point(159, 660);
             this.TxtJobNetWeightDetected.Name = "TxtJobNetWeightDetected";
             this.TxtJobNetWeightDetected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobNetWeightDetected.TabIndex = 129;
@@ -1592,7 +1594,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobNetWeightExpected
             // 
-            this.TxtJobNetWeightExpected.Location = new System.Drawing.Point(159, 608);
+            this.TxtJobNetWeightExpected.Location = new System.Drawing.Point(159, 634);
             this.TxtJobNetWeightExpected.Name = "TxtJobNetWeightExpected";
             this.TxtJobNetWeightExpected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobNetWeightExpected.TabIndex = 127;
@@ -1600,7 +1602,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobGrossWeightPercErrAdmitted
             // 
-            this.TxtJobGrossWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 556);
+            this.TxtJobGrossWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 582);
             this.TxtJobGrossWeightPercErrAdmitted.Name = "TxtJobGrossWeightPercErrAdmitted";
             this.TxtJobGrossWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
             this.TxtJobGrossWeightPercErrAdmitted.TabIndex = 124;
@@ -1610,7 +1612,7 @@ namespace SupervisorIfSim
             // 
             this.label25.BackColor = System.Drawing.Color.Navy;
             this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(2, 660);
+            this.label25.Location = new System.Drawing.Point(2, 686);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(155, 25);
             this.label25.TabIndex = 130;
@@ -1621,7 +1623,7 @@ namespace SupervisorIfSim
             // 
             this.label26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(2, 634);
+            this.label26.Location = new System.Drawing.Point(2, 660);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(155, 25);
             this.label26.TabIndex = 128;
@@ -1632,7 +1634,7 @@ namespace SupervisorIfSim
             // 
             this.label27.BackColor = System.Drawing.Color.Navy;
             this.label27.ForeColor = System.Drawing.Color.White;
-            this.label27.Location = new System.Drawing.Point(2, 608);
+            this.label27.Location = new System.Drawing.Point(2, 634);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(155, 25);
             this.label27.TabIndex = 126;
@@ -1643,7 +1645,7 @@ namespace SupervisorIfSim
             // 
             this.label29.BackColor = System.Drawing.Color.Navy;
             this.label29.ForeColor = System.Drawing.Color.White;
-            this.label29.Location = new System.Drawing.Point(2, 556);
+            this.label29.Location = new System.Drawing.Point(2, 582);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(155, 25);
             this.label29.TabIndex = 123;
@@ -1653,7 +1655,7 @@ namespace SupervisorIfSim
             // TxtJobGrossWeightDetected
             // 
             this.TxtJobGrossWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.TxtJobGrossWeightDetected.Location = new System.Drawing.Point(159, 530);
+            this.TxtJobGrossWeightDetected.Location = new System.Drawing.Point(159, 556);
             this.TxtJobGrossWeightDetected.Name = "TxtJobGrossWeightDetected";
             this.TxtJobGrossWeightDetected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobGrossWeightDetected.TabIndex = 122;
@@ -1663,7 +1665,7 @@ namespace SupervisorIfSim
             // 
             this.label30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label30.ForeColor = System.Drawing.Color.White;
-            this.label30.Location = new System.Drawing.Point(2, 530);
+            this.label30.Location = new System.Drawing.Point(2, 556);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(155, 25);
             this.label30.TabIndex = 121;
@@ -1672,7 +1674,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobGrossWeightExpected
             // 
-            this.TxtJobGrossWeightExpected.Location = new System.Drawing.Point(159, 504);
+            this.TxtJobGrossWeightExpected.Location = new System.Drawing.Point(159, 530);
             this.TxtJobGrossWeightExpected.Name = "TxtJobGrossWeightExpected";
             this.TxtJobGrossWeightExpected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobGrossWeightExpected.TabIndex = 120;
@@ -1680,7 +1682,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobTareWeightPercErrAdmitted
             // 
-            this.TxtJobTareWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 452);
+            this.TxtJobTareWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 478);
             this.TxtJobTareWeightPercErrAdmitted.Name = "TxtJobTareWeightPercErrAdmitted";
             this.TxtJobTareWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTareWeightPercErrAdmitted.TabIndex = 118;
@@ -1689,7 +1691,7 @@ namespace SupervisorIfSim
             // TxtJobTareWeightDetected
             // 
             this.TxtJobTareWeightDetected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.TxtJobTareWeightDetected.Location = new System.Drawing.Point(159, 426);
+            this.TxtJobTareWeightDetected.Location = new System.Drawing.Point(159, 452);
             this.TxtJobTareWeightDetected.Name = "TxtJobTareWeightDetected";
             this.TxtJobTareWeightDetected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTareWeightDetected.TabIndex = 116;
@@ -1697,7 +1699,7 @@ namespace SupervisorIfSim
             // 
             // TxtJobTareWeightExpected
             // 
-            this.TxtJobTareWeightExpected.Location = new System.Drawing.Point(159, 400);
+            this.TxtJobTareWeightExpected.Location = new System.Drawing.Point(159, 426);
             this.TxtJobTareWeightExpected.Name = "TxtJobTareWeightExpected";
             this.TxtJobTareWeightExpected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTareWeightExpected.TabIndex = 114;
@@ -1707,7 +1709,7 @@ namespace SupervisorIfSim
             // 
             this.label31.BackColor = System.Drawing.Color.Navy;
             this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(2, 504);
+            this.label31.Location = new System.Drawing.Point(2, 530);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(155, 25);
             this.label31.TabIndex = 119;
@@ -1718,7 +1720,7 @@ namespace SupervisorIfSim
             // 
             this.label33.BackColor = System.Drawing.Color.Navy;
             this.label33.ForeColor = System.Drawing.Color.White;
-            this.label33.Location = new System.Drawing.Point(2, 452);
+            this.label33.Location = new System.Drawing.Point(2, 478);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(155, 25);
             this.label33.TabIndex = 117;
@@ -1729,7 +1731,7 @@ namespace SupervisorIfSim
             // 
             this.label34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label34.ForeColor = System.Drawing.Color.White;
-            this.label34.Location = new System.Drawing.Point(2, 426);
+            this.label34.Location = new System.Drawing.Point(2, 452);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(155, 25);
             this.label34.TabIndex = 115;
@@ -1740,7 +1742,7 @@ namespace SupervisorIfSim
             // 
             this.label35.BackColor = System.Drawing.Color.Navy;
             this.label35.ForeColor = System.Drawing.Color.White;
-            this.label35.Location = new System.Drawing.Point(2, 400);
+            this.label35.Location = new System.Drawing.Point(2, 426);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(155, 25);
             this.label35.TabIndex = 113;
@@ -1751,7 +1753,7 @@ namespace SupervisorIfSim
             // 
             this.label37.BackColor = System.Drawing.Color.Green;
             this.label37.ForeColor = System.Drawing.Color.White;
-            this.label37.Location = new System.Drawing.Point(2, 348);
+            this.label37.Location = new System.Drawing.Point(2, 374);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(155, 25);
             this.label37.TabIndex = 111;
@@ -1976,6 +1978,16 @@ namespace SupervisorIfSim
             this.GvBarcode.Size = new System.Drawing.Size(511, 893);
             this.GvBarcode.TabIndex = 5;
             // 
+            // BtnJobTimeInserted
+            // 
+            this.BtnJobTimeInserted.Location = new System.Drawing.Point(159, 348);
+            this.BtnJobTimeInserted.Name = "BtnJobTimeInserted";
+            this.BtnJobTimeInserted.Size = new System.Drawing.Size(75, 26);
+            this.BtnJobTimeInserted.TabIndex = 203;
+            this.BtnJobTimeInserted.Text = "現在日時";
+            this.BtnJobTimeInserted.UseVisualStyleBackColor = true;
+            this.BtnJobTimeInserted.Click += new System.EventHandler(this.BtnJobTimeInserted_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
@@ -2153,6 +2165,7 @@ namespace SupervisorIfSim
         private System.Windows.Forms.Button BtnPrdTimeInserted;
         private System.Windows.Forms.Button BtnBrcTimeProcessed;
         private System.Windows.Forms.Button BtnBrcTimeInserted;
+        private System.Windows.Forms.Button BtnJobTimeInserted;
     }
 }
 
