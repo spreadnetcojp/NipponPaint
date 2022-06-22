@@ -129,6 +129,20 @@ namespace NipponPaint.NpCommon
             [Display(Order = (int)Log.LogType.Error, Description = "設定内容を保存できませんでした（エラー：{0}）")]
             SaveFailure,
 
+            #region DatabaseManager
+            /// <summary>
+            /// DatabaseManager 「閉じる」ボタンをクリック(設定を保存していない場合)
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Info, Description = "クローズ前に設定を保存してください")]
+            SaveIncompleteInformation,
+
+            /// <summary>
+            /// DatabaseManager 「設定を保存」ボタンをクリック(路線便送り状Noの入力に不備がある場合)
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Info, Description = "路線便送り状Noのエラー")]
+            TrkInputError,
+            #endregion
+
             #region Supervisor I/F
 
             /// <summary>
