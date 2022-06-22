@@ -447,6 +447,17 @@ namespace SupervisorIfSim
         {
             SetDateTimeText(TxtPrdTimeInserted);
         }
+
+        /// <summary>
+        /// 現在日時ボタンクリック
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnJobTimeInserted_Click(object sender, EventArgs e)
+        {
+            SetDateTimeText(TxtJobTimeInserted);
+        }
+
         #endregion
 
         #endregion
@@ -475,7 +486,7 @@ namespace SupervisorIfSim
                 { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_BARCODE, ColumnName = TbBarcode.BRC_ERR_3, DisplayName = TbBarcode.BRC_ERR_3, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtBrcErr3  } },
                 // TB_JOB
                 { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_TIME_INSERTED, DisplayName = TbJob.JOB_TIME_INSERTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTimeInserted  } },
-                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Both, TableName = TB_JOB, ColumnName = TbJob.JOB_STATUS, DisplayName = TbJob.JOB_STATUS, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = null  } },
+                { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Both, TableName = TB_JOB, ColumnName = TbJob.JOB_STATUS, DisplayName = TbJob.JOB_STATUS, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = DrpJobStatus  } },
                 { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_TARE_WEIGHT_EXPECTED, DisplayName = TbJob.JOB_TARE_WEIGHT_EXPECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTareWeightExpected  } },
                 { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Corob, TableName = TB_JOB, ColumnName = TbJob.JOB_TARE_WEIGHT_DETECTED, DisplayName = TbJob.JOB_TARE_WEIGHT_DETECTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTareWeightDetected  } },
                 { new GridViewSetting() { SvUpdate = GridViewSetting.SvUpdateType.Erp, TableName = TB_JOB, ColumnName = TbJob.JOB_TARE_WEIGHT_PERC_ERR_ADMITTED, DisplayName = TbJob.JOB_TARE_WEIGHT_PERC_ERR_ADMITTED, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft, DisplayControl = TxtJobTareWeightPercErrAdmitted  } },
@@ -773,6 +784,7 @@ namespace SupervisorIfSim
             // 画面の情報を収集
             var settings = _viewSettingsBarcode.FindAll(x => x.TableName == TB_JOB && (x.SvUpdate == svUpdateType || x.SvUpdate == GridViewSetting.SvUpdateType.Both)).ToList();
             var columns = settings.Select(x => x.ColumnName).ToList();
+            //var xx = settings.Select(x => x.DisplayControl.Text).ToList();
             // SQL文作成
             var sql = TbJob.UpdateFromSimulator(settings.Select(x => x.ColumnName).ToList());
             // パラメータ作成
@@ -872,5 +884,6 @@ namespace SupervisorIfSim
         #endregion
 
         #endregion
+
     }
 }
