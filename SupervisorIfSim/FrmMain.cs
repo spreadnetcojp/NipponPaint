@@ -640,6 +640,12 @@ namespace SupervisorIfSim
                 BtnTimer.Text = "開始";
             }
             BtnPreview.Enabled = !timerEnabled;
+            BtnRegistBarcodeErp.Enabled = !timerEnabled;
+            BtnRegistBarcodeCorob.Enabled = !timerEnabled;
+            BtnRegistJobErp.Enabled = !timerEnabled;
+            BtnRegistJobCorob.Enabled = !timerEnabled;
+            BtnRegistFormulaErp.Enabled = !timerEnabled;
+            BtnRegistFormulaCorob.Enabled = !timerEnabled;
             TimerPreview.Enabled = timerEnabled;
         }
         #endregion
@@ -784,7 +790,6 @@ namespace SupervisorIfSim
             // 画面の情報を収集
             var settings = _viewSettingsBarcode.FindAll(x => x.TableName == TB_JOB && (x.SvUpdate == svUpdateType || x.SvUpdate == GridViewSetting.SvUpdateType.Both)).ToList();
             var columns = settings.Select(x => x.ColumnName).ToList();
-            //var xx = settings.Select(x => x.DisplayControl.Text).ToList();
             // SQL文作成
             var sql = TbJob.UpdateFromSimulator(settings.Select(x => x.ColumnName).ToList());
             // パラメータ作成
@@ -879,7 +884,7 @@ namespace SupervisorIfSim
         /// <param name="text"></param>
         private void SetDateTimeText(TextBox text)
         {
-            text.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
+            text.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         }
         #endregion
 
