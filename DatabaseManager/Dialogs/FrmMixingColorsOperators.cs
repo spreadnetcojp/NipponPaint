@@ -34,8 +34,6 @@ namespace DatabaseManager.Dialogs
     /// </summary>
     public partial class FrmMixingColorsOperators : Form
     {
-        static string title = "information";
-        static string msg = "クローズ前に設定を保存してください";
 
         #region コンストラクタ
         public FrmMixingColorsOperators()
@@ -117,7 +115,7 @@ namespace DatabaseManager.Dialogs
         {
             if (BtnSettingSave.Enabled)
             {
-                MessageBox.Show(this, msg, title);
+                Messages.ShowDialog(Sentence.Messages.SaveIncompleteInformation);
             }
             else
             {
@@ -131,7 +129,7 @@ namespace DatabaseManager.Dialogs
                 {
                     baseForm.PutLog(ex);
                 }
-            }           
+            }
         }
 
         /// <summary>
@@ -215,7 +213,7 @@ namespace DatabaseManager.Dialogs
                                 {
                                     labelTextBoxDb.Value = rows[0][labelTextBoxDb.DatabaseColumnName].ToString();
                                 }
-                                
+
                             }
                             break;
                         default:
