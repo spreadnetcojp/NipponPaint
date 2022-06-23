@@ -2092,13 +2092,13 @@ namespace NipponPaint.OrderManager
 
             // DataGridViewの初期設定
             //var ViewSettingsOrderDetails = GridViewSettingCopy(ViewSettingsOrders);
-            //var ViewSettingsFormulations = GridViewSettingCopy(ViewSettingsOrders);
-            //var ViewSettingsDetails = GridViewSettingCopy(ViewSettingsOrders);
+            var ViewSettingsFormulations = GridViewSettingCopy(ViewSettingsOrders);
+            var ViewSettingsDetails = GridViewSettingCopy(ViewSettingsOrders);
             InitializeGridView(GvOrder, ViewSettingsOrders);
             GvOrder.AutoGenerateColumns = false;
-            InitializeGridView(GvDetail, ViewSettingsOrders);
+            InitializeGridView(GvDetail, ViewSettingsDetails);
             GvDetail.AutoGenerateColumns = false;
-            InitializeGridView(GvFormulation, ViewSettingsOrders);
+            InitializeGridView(GvFormulation, ViewSettingsFormulations);
             GvFormulation.AutoGenerateColumns = false;
             InitializeGridView(GvWeight, ViewSettingsWeights);
             InitializeGridView(GvBarcode, ViewSettingsBarcodes);
@@ -2114,11 +2114,11 @@ namespace NipponPaint.OrderManager
                 //GvOrder.DataSource = GvOrderDataSource;
 
                 //GvDetailDataSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsDetails, BaseSettings.Facility.Plant));
-                Funcs.BindDataGridView(GvOrderDataSource, ViewSettingsOrders, GvDetail);
+                Funcs.BindDataGridView(GvOrderDataSource, ViewSettingsDetails, GvDetail);
                 //GvDetail.DataSource = GvDetailDataSource;
 
                 //GvFormulationDataSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsFormulations, BaseSettings.Facility.Plant));
-                Funcs.BindDataGridView(GvOrderDataSource, ViewSettingsOrders, GvFormulation);
+                Funcs.BindDataGridView(GvOrderDataSource, ViewSettingsFormulations, GvFormulation);
                 //GvFormulation.DataSource = GvFormulationDataSource;
 
                 GvOrderNumberDataSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrderNumbers, BaseSettings.Facility.Plant));
@@ -2677,6 +2677,8 @@ namespace NipponPaint.OrderManager
                     return GvDetail;
                 case TAB_INDEX_FORMULATION:
                     return GvFormulation;
+                case TAB_INDEX_CAN:
+                    return GvOrderNumber;
                 default:
                     return null;
             }
