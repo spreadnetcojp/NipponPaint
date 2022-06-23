@@ -113,7 +113,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         // テーブル
         private const string MAIN_TABLE = "Orders";
         // カラム
-        private const string COLUMN_ORDER_ID = "Order_id";
+        public const string COLUMN_ORDER_ID = "Order_id";
         private const string COLUMN_ORDER_NUMBER = "Order_Number";
         private const string COLUMN_COLOR_NAME = "Color_Name";
         private const string COLUMN_PRODUCT_CODE = "Product_Code";
@@ -135,7 +135,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string COLUMN_CAP_WEIGHT = "Cap_Weight";
         private const string COLUMN_HOLE_SIZE = "Hole_Size";
         private const string COLUMN_CAPPING_MACHINE = "Capping_Machine";
-        private const string COLUMN_STATUS = "Status";
+        public const string COLUMN_STATUS = "Status";
         private const string COLUMN_PREFILL_AMOUNT = "Prefill_Amount";
         private const string COLUMN_P_WEIGHT_TOLERANCE = "P_Weight_Tolerance";
         private const string COLUMN_N_WEIGHT_TOLERANCE = "N_Weight_Tolerance";
@@ -181,7 +181,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string COLUMN_COLORANT_19 = "Colorant_19";
         public const string COLUMN_WEIGHT_19 = "Weight_19";
         private const string COLUMN_HG_SS_SHIPPING_DATE = "HG_SS_Shipping_Date";
-        private const string COLUMN_Urgent = "Urgent";
+        public const string COLUMN_URGENT = "Urgent";
         private const string COLUMN_Product_Code = "Product_Code";
         private const string COLUMN_HG_ORDER_INVOICE_ID = "HG_Order_Invoice_ID";
         private const string COLUMN_HG_DATA_NUMBER = "HG_Data_Number";
@@ -214,17 +214,6 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string COLUMN_HG_DELIVERY_ADDRESS_KANJI = "HG_Delivery_Address_Kanji";
         private const string COLUMN_HG_DELIVERY_TELNO = "HG_Delivery_TelNo";
         private const string COLUMN_HG_DELIVERY_DATE = "HG_Delivery_Date";
-
-        #region ソート
-        // 運送区分
-        private const string SORT_DELIVERY_CODE = " Status, HG_SS_Shipping_Date, Sort_Order, HG_Sum_up_Key, HG_Product_Name, HG_HG_Delivery_Code ASC ";
-        // 順位コード
-        private const string SORT_RANKING = " Status, HG_SS_Shipping_Date, HG_Sum_up_Key, Sort_Order, HG_Product_Name ASC ";
-        // 担当者名
-        private const string SORT_ORDER_PERSON = " Operator_Code, Status, HG_Sum_up_Key, Sort_Order, HG_Product_Name ASC ";
-        // 初期
-        private const string SORT_DEFAUIT = "default";
-        #endregion
 
         #endregion
 
@@ -358,7 +347,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
             sql.Append($" {COLUMN_HG_SS_SHIPPING_DATE}        AS HG_SS_Shipping_Date ");
-            sql.Append($" ,{COLUMN_Urgent}                    AS Urgent ");
+            sql.Append($" ,{COLUMN_URGENT}                    AS Urgent ");
             sql.Append($" ,{COLUMN_Product_Code}              AS Product_Code ");
             sql.Append($" ,{COLUMN_HG_ORDER_INVOICE_ID}       AS HG_Order_Invoice_ID ");
             sql.Append($" ,{COLUMN_HG_DATA_NUMBER}            AS HG_Data_Number ");

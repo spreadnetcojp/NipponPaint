@@ -107,19 +107,14 @@ namespace NipponPaint.OrderManager
         /// </summary>
         private const int SELECTED_ROW = 0;
 
-        // カラム名
-        private const string COLUMN_NAME_STATUS = "Status";
-        private const string COLUMN_NAME_ORDER_ID = "Order_id";
-        private const string COLUMN_NAME_URGENT = "Urgent";
-
         #endregion
 
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettingsOrders = new List<GridViewSetting>()
         {
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "HG_HG_Delivery_Code", DisplayName = "運送区分", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_STATUS, DisplayName = "Status", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDER_ID, DisplayName = "Order_id", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = Sql.NpMain.Orders.COLUMN_STATUS, DisplayName = "Status", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = Sql.NpMain.Orders.COLUMN_ORDER_ID, DisplayName = "Order_id", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_HG_Shipping_ID", DisplayName = "配送ﾓｰﾄﾞ", Visible = true, Width = 100 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Product_Code", DisplayName = "製品ｺｰﾄﾞ", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Product_Name", DisplayName = "品名", Visible = true, Width = 500 } },
@@ -135,7 +130,7 @@ namespace NipponPaint.OrderManager
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Sum_up_Key", DisplayName = "順位コード", Visible = false, Width = 0 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Code", DisplayName = "担当者コード", Visible = false, Width = 0 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Sort_Order", DisplayName = "並び順", Visible = false, Width = 0 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_URGENT, DisplayName = "Urgent", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = Sql.NpMain.Orders.COLUMN_URGENT, DisplayName = "Urgent", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
         };
         private List<GridViewSetting> ViewSettingsWeights = new List<GridViewSetting>()
         {
@@ -145,8 +140,8 @@ namespace NipponPaint.OrderManager
         private List<GridViewSetting> ViewSettingsOrderNumbers = new List<GridViewSetting>()
         {
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Blank, ColumnName = "StatusColor", DisplayName = "StatusColor", Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_STATUS, DisplayName = "Status", Visible = false, Width = 35, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDER_ID, DisplayName = "Order_id", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = Sql.NpMain.Orders.COLUMN_STATUS, DisplayName = "Status", Visible = false, Width = 35, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = Sql.NpMain.Orders.COLUMN_ORDER_ID, DisplayName = "Order_id", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Product_Code", DisplayName = "製品コード", Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Number_of_cans", DisplayName = "缶数", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Order_Number", DisplayName = "注文番号", Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleCenter } },
@@ -196,7 +191,7 @@ namespace NipponPaint.OrderManager
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_18", DisplayName = "重量18", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_19", DisplayName = "着色剤19", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_19", DisplayName = "重量19", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_URGENT, DisplayName = "Urgent", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = Sql.NpMain.Orders.COLUMN_URGENT, DisplayName = "Urgent", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "CONVERT(DATE,HG_SS_Shipping_Date)", DisplayName = "SS出荷予定日日付型", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Product_Name", DisplayName = "品名", Visible = true, Width = 500 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "HG_HG_Delivery_Code", DisplayName = "運送区分", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
@@ -590,7 +585,7 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 // Order_idで検索する
-                var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDER_ID);
+                var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
                 var directionsData = new DataTable();
                 if (GvOrder.SelectedRows.Count > 0)
                 {
@@ -645,7 +640,7 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 // Order_idで検索する
-                var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDER_ID);
+                var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
                 var orderData = new DataTable();
                 if (GvOrder.SelectedRows.Count > 0)
                 {
@@ -691,8 +686,8 @@ namespace NipponPaint.OrderManager
                     switch (result)
                     {
                         case DialogResult.Yes:
-                            var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_STATUS);
-                            var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDER_ID);
+                            var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_STATUS);
+                            var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
                             var dgv = GvDetail;
                             if (dgv.SelectedRows.Count > 0)
                             {
@@ -1119,7 +1114,7 @@ namespace NipponPaint.OrderManager
                         default:
                             break;
                     }
-                    var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDER_ID);
+                    var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
                     if (dgv.SelectedRows.Count > 0)
                     {
                         // 選択している行を取得
@@ -1255,9 +1250,9 @@ namespace NipponPaint.OrderManager
             try
             {
                 // Statusで検索する
-                var columnStatusIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_STATUS);
+                var columnStatusIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_STATUS);
                 // Order_idで検索する
-                var columnOrderIdIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDER_ID);
+                var columnOrderIdIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
                 if (GvOrder.SelectedRows.Count > 0)
                 {
                     DataGridViewRow row = GvOrder.SelectedRows[0];
@@ -1459,7 +1454,7 @@ namespace NipponPaint.OrderManager
                 var vm = new ViewModels.LotRegister();
                 vm.Lot = HgTintingDirection.Value;
                 // Order_idで検索する
-                var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDER_ID);
+                var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
                 if (GvDetail.SelectedRows.Count > 0)
                 {
                     DataGridViewRow row = GvDetail.SelectedRows[0];
@@ -1496,7 +1491,7 @@ namespace NipponPaint.OrderManager
             {
                 var vm = new ViewModels.SelectDataNumber();
                 // Order_idで検索する
-                var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDER_ID);
+                var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
                 if (GvOrder.SelectedRows.Count > 0)
                 {
                     DataGridViewRow row = GvOrder.SelectedRows[0];
@@ -1647,9 +1642,9 @@ namespace NipponPaint.OrderManager
             try
             {
                 // Statusを取得する
-                var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_STATUS);
+                var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_STATUS);
                 // Urgentを取得する
-                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_URGENT);
+                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_URGENT);
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -1682,11 +1677,11 @@ namespace NipponPaint.OrderManager
             try
             {
                 // Statusを取得する
-                var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_STATUS);
+                var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_STATUS);
                 // Order_idで検索する
-                var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDER_ID);
+                var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
                 // Urgentを取得する
-                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_URGENT);
+                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_URGENT);
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -1800,11 +1795,11 @@ namespace NipponPaint.OrderManager
             try
             {
                 // Statusと取得する
-                var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_STATUS);
+                var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_STATUS);
                 // Order_idで検索する
-                var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDER_ID);
+                var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
                 // Urgentを取得する
-                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == COLUMN_NAME_URGENT);
+                var urgentColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_URGENT);
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -1868,11 +1863,11 @@ namespace NipponPaint.OrderManager
             try
             {
                 // Statusと取得する
-                var statusColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == COLUMN_NAME_STATUS);
+                var statusColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_STATUS);
                 // Order_idで検索する
-                var orderIdColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDER_ID);
+                var orderIdColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
                 // Urgentを取得する
-                var urgentColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == COLUMN_NAME_URGENT);
+                var urgentColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_URGENT);
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -2020,9 +2015,6 @@ namespace NipponPaint.OrderManager
             this.FormClosed += new FormClosedEventHandler(this.FrmMainClosed);
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(this.FormKeyDown);
-            //this.GvOrder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
-            //this.GvDetail.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvDetailDataBindingComplete);
-            //this.GvFormulation.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvFormulationDataBindingComplete);
             AddEvent();
             this.GvOrderNumber.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderNumberDataBindingComplete);
             this.GvBarcode.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvBarcodeDataBindingComplete);
@@ -2133,23 +2125,6 @@ namespace NipponPaint.OrderManager
                 GvOrder.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
                 cnt++;
             }
-            // ViewSettingsOrdersと同様になるので下記不要
-            //cnt = 0;
-            //foreach (var item in ViewSettingsOrderDetails)
-            //{
-            //    GvDetail.Columns[cnt].Width = item.Width;
-            //    GvDetail.Columns[cnt].Visible = item.Visible;
-            //    GvDetail.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-            //    cnt++;
-            //}
-            //cnt = 0;
-            //foreach (var item in ViewSettingsFormulations)
-            //{
-            //    GvFormulation.Columns[cnt].Width = item.Width;
-            //    GvFormulation.Columns[cnt].Visible = item.Visible;
-            //    GvFormulation.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-            //    cnt++;
-            //}
             cnt = 0;
             foreach (var item in ViewSettingsWeights)
             {
@@ -2246,31 +2221,18 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void DataGridViewFormatting(DataGridView dgv)
         {
-            //if (!dgv.Visible)
-            //{
-            //    return;
-            //}
             // 表示されてる画面でなければスルー
             if (dgv.Name != GetActiveGridViewName().Name)
             {
                 return;
             }
-            //if (!ViewGrid.Contains(dgv.Name))
-            //{
-            //    ViewGrid.Add(dgv.Name);
-            //    return;
-            //}
             Console.WriteLine(dgv.Name);
             ViewGrid = new List<string>();
             var rowHeight = 48;
-            //var fontSizeProductCode = 24;
-            //var fontSizeDefault = 12;
             switch (dgv.Name)
             {
                 case "GvOrder":
                     rowHeight = GVORDER_ROW_HEIGHT;
-                    //fontSizeProductCode = GVORDER_FONTSIZE_PRODUCTCODE;
-                    //fontSizeDefault = GVORDER_FONTSIZE_DEFAULT;
                     break;
             }
             foreach (DataGridViewRow row in dgv.Rows)
@@ -2281,36 +2243,7 @@ namespace NipponPaint.OrderManager
                 row.Cells[COLUMN_PRODUCT_CODE].Style.BackColor = Color.LightYellow;
                 row.Cells[COLUMN_PRODUCT_NAME].Style.WrapMode = DataGridViewTriState.True;
                 row.Cells[COLUMN_COLOR_SAMPLE].Style.WrapMode = DataGridViewTriState.True;
-                //var i = 0;
-                //foreach (var cell in row.Cells)
-                //{
-                //    switch (i)
-                //    {
-                //        case COLUMN_PRODUCT_CODE:
-                //            row.Cells[i].Style.Font = new Font(dgv.Font.Name, fontSizeProductCode);
-                //            break;
-                //        default:
-                //            row.Cells[i].Style.Font = new Font(dgv.Font.Name, fontSizeDefault);
-                //            break;
-                //    }
-                //    i++;
-                //}
                 row.Cells[COLUMN_PRODUCT_CODE].Style.ForeColor = Color.Black;
-
-                //DateTime.TryParse(row.Cells[COLUMN_VISIBLE_DELIVERY_DATE].Value.ToString(), out DateTime deliveryDate);
-                //int.TryParse(row.Cells[COLUMN_DELIVERY_CODE].Value.ToString(), out int deliveryCode);
-                //if (
-                //    DateTime.Today < deliveryDate
-                //    && (Sql.NpMain.Orders.DeliveryCode)deliveryCode == Sql.NpMain.Orders.DeliveryCode.Reuse
-                //   )
-                //{
-                //    row.Cells[COLUMN_SHIPPING_DATE].Style.BackColor = Color.Gold;
-                //    row.Cells[COLUMN_SHIPPING_DATE].Style.ForeColor = Color.Black;
-                //    row.Cells[COLUMN_VISIBLE_OPERATOR].Style.BackColor = Color.Gold;
-                //    row.Cells[COLUMN_VISIBLE_OPERATOR].Style.ForeColor = Color.Black;
-                //    row.Cells[COLUMN_DELIVERY_DATE].Style.BackColor = Color.Gold;
-                //    row.Cells[COLUMN_DELIVERY_DATE].Style.ForeColor = Color.Black;
-                //}
             }
         }
 
@@ -2445,7 +2378,7 @@ namespace NipponPaint.OrderManager
             label4.Text = $"{strTotal}t";
 
             //CCM配合待ち
-            DataRow[] ccm = dt.Select($"{COLUMN_NAME_STATUS} = 1");
+            DataRow[] ccm = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = 1");
             foreach (DataRow row in ccm)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -2459,7 +2392,7 @@ namespace NipponPaint.OrderManager
             label5.Text = $"{strTotal}t";
 
             //準備完
-            DataRow[] ready = dt.Select($"{COLUMN_NAME_STATUS} = 2");
+            DataRow[] ready = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = 2");
             foreach (DataRow row in ready)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -2473,7 +2406,7 @@ namespace NipponPaint.OrderManager
             label11.Text = $"{strTotal}t";
 
             //テスト缶実施中
-            DataRow[] testCan = dt.Select($"{COLUMN_NAME_STATUS} = 3");
+            DataRow[] testCan = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = 3");
             foreach (DataRow row in testCan)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -2487,7 +2420,7 @@ namespace NipponPaint.OrderManager
             label12.Text = $"{strTotal}t";
 
             //製造缶実施中
-            DataRow[] productCan = dt.Select($"{COLUMN_NAME_STATUS} = 4");
+            DataRow[] productCan = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = 4");
             foreach (DataRow row in productCan)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
