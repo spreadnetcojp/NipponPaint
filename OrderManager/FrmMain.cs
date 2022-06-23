@@ -49,20 +49,20 @@ namespace NipponPaint.OrderManager
         };
 
         private static DataTable GvOrderDataSource;
-        private static DataTable GvDetailDataSource;
-        private static DataTable GvFormulationDataSource;
+        //private static DataTable GvDetailDataSource;
+        //private static DataTable GvFormulationDataSource;
         private static DataTable GvOrderNumberDataSource;
         private static DataTable GvBarcodeDataCource;
 
         private const string Decimal_Place2 = "0.00";
         private const string Decimal_Place3 = "0.000";
 
-        private const int COLUMN_STATUS = 0;
-        private const int COLUMN_STATUS_COLOR = 2;
+        private const int COLUMN_STATUS = 1;
+        private const int COLUMN_STATUS_COLOR = 0;
         //private int COLUMN_PRODUCT_NAME = 0;
         //private int COLUMN_COLOR_NAME = 0;
-        private const int COLUMN_ORDER_ID = 1;
-        private const int COLUMN_DELIVERY_CODE = 2;
+        private const int COLUMN_ORDER_ID = 2;
+        private const int COLUMN_DELIVERY_CODE = 0;
         private const int COLUMN_SHIPPING_ID = 3;
         private const int COLUMN_PRODUCT_CODE = 4;
         private const int COLUMN_PRODUCT_NAME = 5;
@@ -101,6 +101,11 @@ namespace NipponPaint.OrderManager
         // 担当者名
         private const string SORT_ORDER_PERSON = "[担当者コード] , [Status] , [順位コード] , [並び順] , [品名] ASC";
 
+        /// <summary>
+        /// 選択行：1行選択なので値は「0」
+        /// </summary>
+        private const int SELECTED_ROW = 0;
+
         // カラム名
         private const string COLUMN_NAME_STATUS = "Status";
         private const string COLUMN_NAME_ORDER_ID = "Order_id";
@@ -111,9 +116,9 @@ namespace NipponPaint.OrderManager
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettingsOrders = new List<GridViewSetting>()
         {
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "HG_HG_Delivery_Code", DisplayName = "運送区分", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_STATUS, DisplayName = "Status", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDER_ID, DisplayName = "Order_id", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "HG_HG_Delivery_Code", DisplayName = "運送区分", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_HG_Shipping_ID", DisplayName = "配送ﾓｰﾄﾞ", Visible = true, Width = 100 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Product_Code", DisplayName = "製品ｺｰﾄﾞ", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Product_Name", DisplayName = "品名", Visible = true, Width = 500 } },
@@ -138,9 +143,9 @@ namespace NipponPaint.OrderManager
         };
         private List<GridViewSetting> ViewSettingsOrderNumbers = new List<GridViewSetting>()
         {
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Blank, ColumnName = "StatusColor", DisplayName = "StatusColor", Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_STATUS, DisplayName = "Status", Visible = false, Width = 35, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDER_ID, DisplayName = "Order_id", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Blank, ColumnName = "StatusColor", DisplayName = "StatusColor", Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Product_Code", DisplayName = "製品コード", Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Number_of_cans", DisplayName = "缶数", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Order_Number", DisplayName = "注文番号", Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleCenter } },
@@ -197,8 +202,8 @@ namespace NipponPaint.OrderManager
         };
         private List<GridViewSetting> ViewSettingsBarcodes = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "C.Order_id", DisplayName = "Order_id", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Barcode", DisplayName = "バーコード", Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "C.Order_id", DisplayName = "Order_id", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "C.Can_Number", DisplayName = "缶", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = "C.Status", DisplayName = "ステータス", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = "Test_Can", DisplayName = "テスト", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
@@ -1352,9 +1357,10 @@ namespace NipponPaint.OrderManager
                         break;
                 }
                 GvOrderDataSource.DefaultView.RowFilter = filter;
-                GvDetailDataSource.DefaultView.RowFilter = filter;
-                GvFormulationDataSource.DefaultView.RowFilter = filter;
                 GvOrderNumberDataSource.DefaultView.RowFilter = filter;
+                // GvOrderDataSourceのみで全て機能するので、下記の記述は不要
+                //GvDetailDataSource.DefaultView.RowFilter = filter;
+                //GvFormulationDataSource.DefaultView.RowFilter = filter;
             }
         }
 
@@ -1379,21 +1385,22 @@ namespace NipponPaint.OrderManager
                 switch (selectingTabIndex)
                 {
                     case TAB_INDEX_ORDER:
-                        gdvSelectedOrderId = Funcs.StrToInt(GvOrder.CurrentRow.Cells[COLUMN_ORDER_ID].Value.ToString());
+                        gdvSelectedOrderId = Funcs.StrToInt(GvOrder.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
                         break;
                     case TAB_INDEX_DETAIL:
-                        gdvSelectedOrderId = Funcs.StrToInt(GvDetail.CurrentRow.Cells[COLUMN_ORDER_ID].Value.ToString());
+                        gdvSelectedOrderId = Funcs.StrToInt(GvDetail.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
                         break;
                     case TAB_INDEX_FORMULATION:
-                        gdvSelectedOrderId = Funcs.StrToInt(GvFormulation.CurrentRow.Cells[COLUMN_ORDER_ID].Value.ToString());
+                        gdvSelectedOrderId = Funcs.StrToInt(GvFormulation.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
                         break;
                     case TAB_INDEX_CAN:
-                        gdvSelectedOrderId = Funcs.StrToInt(GvOrderNumber.CurrentRow.Cells[COLUMN_ORDER_ID].Value.ToString());
+                        gdvSelectedOrderId = Funcs.StrToInt(GvOrderNumber.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
                         break;
                     default:
-                        gdvSelectedOrderId = GvOrder.CurrentRow.Index;
+                        gdvSelectedOrderId = Funcs.StrToInt(GvOrder.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
                         break;
                 }
+
                 // ソート順切り替え
                 var sortCondition = string.Empty;
                 switch (rbtCheckInGroup.Name)
@@ -1411,9 +1418,10 @@ namespace NipponPaint.OrderManager
                         break;
                 }
                 GvOrderDataSource.DefaultView.Sort = sortCondition;
-                GvDetailDataSource.DefaultView.Sort = sortCondition;
-                GvFormulationDataSource.DefaultView.Sort = sortCondition;
                 GvOrderNumberDataSource.DefaultView.Sort = sortCondition;
+                // GvOrderDataSourceのみで全て機能するので、下記の記述は不要
+                //GvDetailDataSource.DefaultView.Sort = sortCondition;
+                //GvFormulationDataSource.DefaultView.Sort = sortCondition;
                 // 事前に選択していたデータ行へ移動
                 var getGridViewRowIndex = GetGridViewRowIndex(gdvSelectedOrderId.ToString(), COLUMN_ORDER_ID);
                 switch (selectingTabIndex)
@@ -1580,19 +1588,19 @@ namespace NipponPaint.OrderManager
                 switch (selectingTabIndex)
                 {
                     case TAB_INDEX_ORDER:
-                        gdvSelectedIndex = GvOrder.CurrentRow.Index;
+                        gdvSelectedIndex = GvOrder.SelectedRows[SELECTED_ROW].Index;
                         break;
                     case TAB_INDEX_DETAIL:
-                        gdvSelectedIndex = GvDetail.CurrentRow.Index;
+                        gdvSelectedIndex = GvDetail.SelectedRows[SELECTED_ROW].Index;
                         break;
                     case TAB_INDEX_FORMULATION:
-                        gdvSelectedIndex = GvFormulation.CurrentRow.Index;
+                        gdvSelectedIndex = GvFormulation.SelectedRows[SELECTED_ROW].Index;
                         break;
                     case TAB_INDEX_CAN:
-                        gdvSelectedIndex = GvOrderNumber.CurrentRow.Index;
+                        gdvSelectedIndex = GvOrderNumber.SelectedRows[SELECTED_ROW].Index;
                         break;
                     default:
-                        gdvSelectedIndex = GvOrder.CurrentRow.Index;
+                        gdvSelectedIndex = GvOrder.SelectedRows[SELECTED_ROW].Index;
                         break;
                 }
                 //現在選択中のタブを取得する
@@ -1612,6 +1620,7 @@ namespace NipponPaint.OrderManager
                         break;
                     case TAB_INDEX_CAN:
                         GvOrderNumber.CurrentCell = GvOrderNumber.Rows[gdvSelectedIndex].Cells[COLUMN_DELIVERY_CODE];
+                        GvOrderNumberFormatting(GvOrderNumber);
                         break;
                     default:
                         GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[COLUMN_DELIVERY_CODE];
@@ -2081,14 +2090,14 @@ namespace NipponPaint.OrderManager
             ColorName.SeparaterHighLimit = COLOR_NAME_HIGH_LIMIT;
 
             // DataGridViewの初期設定
-            var ViewSettingsOrderDetails = GridViewSettingCopy(ViewSettingsOrders);
-            var ViewSettingsFormulations = GridViewSettingCopy(ViewSettingsOrders);
-            var ViewSettingsDetails = GridViewSettingCopy(ViewSettingsOrders);
+            //var ViewSettingsOrderDetails = GridViewSettingCopy(ViewSettingsOrders);
+            //var ViewSettingsFormulations = GridViewSettingCopy(ViewSettingsOrders);
+            //var ViewSettingsDetails = GridViewSettingCopy(ViewSettingsOrders);
             InitializeGridView(GvOrder, ViewSettingsOrders);
             GvOrder.AutoGenerateColumns = false;
-            InitializeGridView(GvDetail, ViewSettingsOrderDetails);
+            InitializeGridView(GvDetail, ViewSettingsOrders);
             GvDetail.AutoGenerateColumns = false;
-            InitializeGridView(GvFormulation, ViewSettingsFormulations);
+            InitializeGridView(GvFormulation, ViewSettingsOrders);
             GvFormulation.AutoGenerateColumns = false;
             InitializeGridView(GvWeight, ViewSettingsWeights);
             InitializeGridView(GvBarcode, ViewSettingsBarcodes);
@@ -2103,15 +2112,16 @@ namespace NipponPaint.OrderManager
                 ColorExplanation(GvOrderDataSource);
                 //GvOrder.DataSource = GvOrderDataSource;
 
-                GvDetailDataSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsDetails, BaseSettings.Facility.Plant));
-                Funcs.BindDataGridView(GvDetailDataSource, ViewSettingsOrders, GvDetail);
+                //GvDetailDataSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsDetails, BaseSettings.Facility.Plant));
+                Funcs.BindDataGridView(GvOrderDataSource, ViewSettingsOrders, GvDetail);
                 //GvDetail.DataSource = GvDetailDataSource;
 
-                GvFormulationDataSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsFormulations, BaseSettings.Facility.Plant));
-                Funcs.BindDataGridView(GvFormulationDataSource, ViewSettingsOrders, GvFormulation);
+                //GvFormulationDataSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsFormulations, BaseSettings.Facility.Plant));
+                Funcs.BindDataGridView(GvOrderDataSource, ViewSettingsOrders, GvFormulation);
                 //GvFormulation.DataSource = GvFormulationDataSource;
 
                 GvOrderNumberDataSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrderNumbers, BaseSettings.Facility.Plant));
+                //Funcs.BindDataGridView(GvOrderNumberDataSource, ViewSettingsOrderNumbers, GvOrderNumber);
                 GvOrderNumber.DataSource = GvOrderNumberDataSource;
             }
             var cnt = 0;
@@ -2122,22 +2132,23 @@ namespace NipponPaint.OrderManager
                 GvOrder.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
                 cnt++;
             }
-            cnt = 0;
-            foreach (var item in ViewSettingsOrderDetails)
-            {
-                GvDetail.Columns[cnt].Width = item.Width;
-                GvDetail.Columns[cnt].Visible = item.Visible;
-                GvDetail.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-                cnt++;
-            }
-            cnt = 0;
-            foreach (var item in ViewSettingsFormulations)
-            {
-                GvFormulation.Columns[cnt].Width = item.Width;
-                GvFormulation.Columns[cnt].Visible = item.Visible;
-                GvFormulation.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-                cnt++;
-            }
+            // ViewSettingsOrdersと同様になるので下記不要
+            //cnt = 0;
+            //foreach (var item in ViewSettingsOrderDetails)
+            //{
+            //    GvDetail.Columns[cnt].Width = item.Width;
+            //    GvDetail.Columns[cnt].Visible = item.Visible;
+            //    GvDetail.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
+            //    cnt++;
+            //}
+            //cnt = 0;
+            //foreach (var item in ViewSettingsFormulations)
+            //{
+            //    GvFormulation.Columns[cnt].Width = item.Width;
+            //    GvFormulation.Columns[cnt].Visible = item.Visible;
+            //    GvFormulation.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
+            //    cnt++;
+            //}
             cnt = 0;
             foreach (var item in ViewSettingsWeights)
             {
@@ -2665,6 +2676,8 @@ namespace NipponPaint.OrderManager
                     return GvDetail;
                 case TAB_INDEX_FORMULATION:
                     return GvFormulation;
+                case TAB_INDEX_CAN:
+                    return GvOrderNumber;
                 default:
                     return null;
             }
