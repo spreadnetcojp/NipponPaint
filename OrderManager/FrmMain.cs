@@ -93,13 +93,14 @@ namespace NipponPaint.OrderManager
         private List<string> ViewGrid = new List<string>();
         //private const Log.ApplicationType MyApp = Log.ApplicationType.OrderManager;
 
-        // 各ソート
+        #region ソート
         // 運送区分
         private const string SORT_KUBUN = "[Status], [SS出荷予定日日付型], [並び順], [順位コード], [品名], [運送区分] ASC";
         // 順位コード
         private const string SORT_RANKING = "[Status] , [SS出荷予定日日付型] , [順位コード] , [並び順] , [品名] ASC";
         // 担当者名
         private const string SORT_ORDER_PERSON = "[担当者コード] , [Status] , [順位コード] , [並び順] , [品名] ASC";
+        #endregion
 
         /// <summary>
         /// 選択行：1行選択なので値は「0」
@@ -2676,8 +2677,6 @@ namespace NipponPaint.OrderManager
                     return GvDetail;
                 case TAB_INDEX_FORMULATION:
                     return GvFormulation;
-                case TAB_INDEX_CAN:
-                    return GvOrderNumber;
                 default:
                     return null;
             }
