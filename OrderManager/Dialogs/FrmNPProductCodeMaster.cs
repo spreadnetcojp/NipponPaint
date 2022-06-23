@@ -35,10 +35,10 @@ namespace NipponPaint.OrderManager.Dialogs
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "VAR_ID", DisplayName = "NP商品コードID", Visible = false, Width = 80, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Variety_Code_OLD", DisplayName = "NP商品コードマスターOLD", Visible = true, Width =120, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Package_OLD", DisplayName = "容量OLD", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Variety_Code_NEW", DisplayName = "NP商品コードマスターNEW", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Package_NEW", DisplayName = "容量NEW", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Variety_Code_OLD", DisplayName = "NP商品コードマスターOLD", Visible = true, Width =150, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Package_OLD", DisplayName = "容量OLD", Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Variety_Code_NEW", DisplayName = "NP商品コードマスターNEW", Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Package_NEW", DisplayName = "容量NEW", Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 

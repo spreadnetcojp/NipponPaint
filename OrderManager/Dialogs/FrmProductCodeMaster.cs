@@ -35,7 +35,7 @@ namespace NipponPaint.OrderManager.Dialogs
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "PRD_ID", DisplayName = "品名ID", Visible = false, Width = 80, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Product_No", DisplayName = "品名コード", Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Product_No", DisplayName = "品名コード", Visible = true, Width = 850, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
