@@ -29,6 +29,12 @@ namespace NipponPaint.NpCommon
         private static readonly Color BACK_COLOR = Color.Black;
         private static readonly Color FORE_COLOR = Color.White;
 
+        // フォントサイズ
+        private static int FONTSIZE_PRODUCT_CODE = 24;
+        private static int FONTSIZE_DEFAULT = 12;
+        private static int FONTSIZE_PRODUCT_CODE_GVORDER =16;
+        private static int FONTSIZE_DEFAULT_GVORDER = 8;
+
         #region 取得値設定先のコントロールを抽出する
         /// <summary>
         /// 取得値設定先のコントロールを抽出する
@@ -377,9 +383,24 @@ namespace NipponPaint.NpCommon
         }
         #endregion
 
-
+        #region
+        /// <summary>
+        /// 一覧表示用GridViewのカラム設定及びフォントサイズ設定
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="settings"></param>
+        /// <param name="gv"></param>
         public static void BindDataGridView(DataTable dt, List<Settings.GridViewSetting> settings, DataGridView gv)
         {
+            var fontSizeProductCode = FONTSIZE_PRODUCT_CODE;
+            var fontSizeDefault = FONTSIZE_DEFAULT;
+            switch (gv.Name)
+            {
+                case "GvOrder":
+                    fontSizeProductCode = FONTSIZE_PRODUCT_CODE_GVORDER;
+                    fontSizeDefault = FONTSIZE_DEFAULT_GVORDER;
+                    break;
+            }
             // テーブル設定を元にカラムの作成
             foreach (var setting in settings)
             {
@@ -387,14 +408,17 @@ namespace NipponPaint.NpCommon
                 col.Width = setting.Width;
                 col.Visible = setting.Visible;
                 col.DefaultCellStyle.Alignment = setting.alignment;
-                col.DataPropertyName = setting.ColumnName;
-                col.Name = setting.ColumnName;
-                col.HeaderText = setting.ColumnName;
-                // 色替えサンプル
+                col.DataPropertyName = setting.DisplayName;
+                col.Name = setting.DisplayName;
+                col.HeaderText = setting.DisplayName;
+                // フォントサイズ変更
                 switch (setting.ColumnName)
                 {
-                    case "BARCODE":
-                        col.DefaultCellStyle.ForeColor = Color.Red;
+                    case "Product_Code":
+                        col.DefaultCellStyle.Font = new Font(gv.Font.Name, fontSizeProductCode);
+                        break;
+                    default:
+                        col.DefaultCellStyle.Font = new Font(gv.Font.Name, fontSizeDefault);
                         break;
                 }
                 col.CellTemplate = new DataGridViewTextBoxCell();
@@ -407,6 +431,6 @@ namespace NipponPaint.NpCommon
             // DataGridViewのDataSourceはBindingSourceオブジェクトにする
             gv.DataSource = bindingSource;
         }
-
+        #endregion
     }
 }

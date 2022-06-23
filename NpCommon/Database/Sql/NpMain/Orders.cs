@@ -215,6 +215,15 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string COLUMN_HG_DELIVERY_TELNO = "HG_Delivery_TelNo";
         private const string COLUMN_HG_DELIVERY_DATE = "HG_Delivery_Date";
 
+        // ソート
+        // 運送区分
+        private const string SORT_DELIVERY_CODE = " Status, HG_SS_Shipping_Date, Sort_Order, HG_Sum_up_Key, HG_Product_Name, HG_HG_Delivery_Code ASC ";
+        // 順位コード
+        private const string SORT_RANKING = " Status, HG_SS_Shipping_Date, HG_Sum_up_Key, Sort_Order, HG_Product_Name ASC ";
+        // 担当者名
+        private const string SORT_ORDER_PERSON = " Operator_Code, Status, HG_Sum_up_Key, Sort_Order, HG_Product_Name ASC ";
+        // 初期
+        private const string SORT_DEFAUIT = "default";
         #endregion
 
         #region 参照系
@@ -436,7 +445,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
-        #region
+        #region 重量１～１９の取得
         /// <summary>
         /// 重量１～１９の取得
         /// </summary>
@@ -556,7 +565,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
-        #region
+        #region 注文開始
         /// <summary>
         /// 注文開始
         /// </summary>
@@ -612,7 +621,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
-        #region
+        #region テスト缶仕上がりボタンを押下した際のstatus更新
         /// <summary>
         /// テスト缶仕上がりボタンを押下した際のstatus更新
         /// </summary>
