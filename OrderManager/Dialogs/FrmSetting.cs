@@ -32,20 +32,20 @@ namespace NipponPaint.OrderManager.Dialogs
     public partial class FrmSetting : BaseForm
     {
         #region 定数
-        private const string DISPLAY_CCM_PAINT_NAME = "CCM品種名";
-        private const string DISPLAY_FORMAL_NAME = "正式品種名";
+        private const string DISPLAY_NAME_CCM_PAINT_NAME = "CCM品種名";
+        private const string DISPLAY_NAME_FORMAL_NAME = "正式品種名";
         //テーブル
         private const string FORLMAL_TABLE = Sql.Order.Formal.MAIN_TABLE;
         //カラム
-        private const string PAINT_NAME = Sql.Order.Formal.COLUMN_CCM_PAINT_NAME;
-        private const string FORMAL_NAME = Sql.Order.Formal.COLUMN_FORMAL_NAME;
+        private const string COLUMN_NAME_PAINT_NAME = Sql.Order.Formal.COLUMN_CCM_PAINT_NAME;
+        private const string COLUMN_NAME_FORMAL_NAME = Sql.Order.Formal.COLUMN_FORMAL_NAME;
         #endregion
 
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = PAINT_NAME, DisplayName = DISPLAY_CCM_PAINT_NAME, Visible = true, Width = 460, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = FORMAL_NAME, DisplayName = DISPLAY_FORMAL_NAME, Visible = true, Width = 460, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_PAINT_NAME, DisplayName = DISPLAY_NAME_CCM_PAINT_NAME, Visible = true, Width = 460, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_FORMAL_NAME, DisplayName = DISPLAY_NAME_FORMAL_NAME, Visible = true, Width = 460, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
@@ -83,7 +83,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void DgvListSelectionChanged(object sender, EventArgs e)
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == PAINT_NAME);
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == COLUMN_NAME_PAINT_NAME);
             var dgv = (DataGridView)sender;
             if (dgv.SelectedRows.Count > 0)
             {
@@ -432,7 +432,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void ValueSetting()
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == PAINT_NAME);
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == COLUMN_NAME_PAINT_NAME);
             if (DgvList.SelectedRows.Count > 0)
             {
                 // 選択している行を取得
@@ -510,8 +510,8 @@ namespace NipponPaint.OrderManager.Dialogs
                 try
                 {
                     // フォームで定義された、指定LOT設定先のコントロールを抽出する
-                    db.FromLabelTextBox(this.Controls, FORLMAL_TABLE, PAINT_NAME);
-                    db.FromLabelDropDown(this.Controls, FORLMAL_TABLE, PAINT_NAME);
+                    db.FromLabelTextBox(this.Controls, FORLMAL_TABLE, COLUMN_NAME_PAINT_NAME);
+                    db.FromLabelDropDown(this.Controls, FORLMAL_TABLE, COLUMN_NAME_PAINT_NAME);
                     db.Commit();
                 }
                 catch (Exception ex)
@@ -538,7 +538,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     try
                     {
                         //指定した1行のデータをデータベースから物理削除する
-                        db.Delete(TxtCCMPaintName.Value, FORLMAL_TABLE, PAINT_NAME);
+                        db.Delete(TxtCCMPaintName.Value, FORLMAL_TABLE, COLUMN_NAME_PAINT_NAME);
                         db.Commit();
                     }
                     catch (Exception ex)

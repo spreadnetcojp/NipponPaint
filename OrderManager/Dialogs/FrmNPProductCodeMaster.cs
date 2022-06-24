@@ -32,29 +32,29 @@ namespace NipponPaint.OrderManager.Dialogs
     public partial class FrmNPProductCodeMaster : BaseForm
     {
         #region 定数
-        private const string DISPLAY_VAR_ID = "NP商品コードID";
-        private const string DISPLAY_VARIETY_CODE_OLD = "NP商品コードマスターOLD";
-        private const string DISPLAY_PACKAGE_OLD = "容量OLD";
-        private const string DISPLAY_VARIETY_CODE_NEW = "NP商品コードマスターNEW";
-        private const string DISPLAY_PACKAGE_NEW = "容量NEW";
+        private const string DISPLAY_NAME_VAR_ID = "NP商品コードID";
+        private const string DISPLAY_NAME_VARIETY_CODE_OLD = "NP商品コードマスターOLD";
+        private const string DISPLAY_NAME_PACKAGE_OLD = "容量OLD";
+        private const string DISPLAY_NAME_VARIETY_CODE_NEW = "NP商品コードマスターNEW";
+        private const string DISPLAY_NAME_PACKAGE_NEW = "容量NEW";
         //テーブル
         private const string VARIETY_CODE_TABLE = Sql.NpMain.VarietyCode.MAIN_TABLE;
         //カラム
-        private const string VAR_ID = Sql.NpMain.VarietyCode.COLUMN_VAR_ID;
-        private const string VARIETY_CODE_OLD = Sql.NpMain.VarietyCode.COLUMN_VARIETY_CODE_OLD;
-        private const string PACKAGE_OLD = Sql.NpMain.VarietyCode.COLUMN_PACKAGE_OLD;
-        private const string VARIETY_CODE_NEW = Sql.NpMain.VarietyCode.COLUMN_VARIETY_CODE_NEW;
-        private const string PACKAGE_NEW = Sql.NpMain.VarietyCode.COLUMN_PACKAGE_NEW;
+        private const string COLUMN_NAME_VAR_ID = Sql.NpMain.VarietyCode.COLUMN_VAR_ID;
+        private const string COLUMN_NAME_VARIETY_CODE_OLD = Sql.NpMain.VarietyCode.COLUMN_VARIETY_CODE_OLD;
+        private const string COLUMN_NAME_PACKAGE_OLD = Sql.NpMain.VarietyCode.COLUMN_PACKAGE_OLD;
+        private const string COLUMN_NAME_VARIETY_CODE_NEW = Sql.NpMain.VarietyCode.COLUMN_VARIETY_CODE_NEW;
+        private const string COLUMN_NAME_PACKAGE_NEW = Sql.NpMain.VarietyCode.COLUMN_PACKAGE_NEW;
         #endregion
 
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = VAR_ID, DisplayName = DISPLAY_VAR_ID, Visible = false, Width = 80, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = VARIETY_CODE_OLD, DisplayName = DISPLAY_VARIETY_CODE_OLD, Visible = true, Width =150, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = PACKAGE_OLD, DisplayName = DISPLAY_PACKAGE_OLD, Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = VARIETY_CODE_NEW, DisplayName = DISPLAY_VARIETY_CODE_NEW, Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = PACKAGE_NEW, DisplayName = DISPLAY_PACKAGE_NEW, Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_VAR_ID, DisplayName = DISPLAY_NAME_VAR_ID, Visible = false, Width = 80, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_VARIETY_CODE_OLD, DisplayName = DISPLAY_NAME_VARIETY_CODE_OLD, Visible = true, Width =150, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_PACKAGE_OLD, DisplayName = DISPLAY_NAME_PACKAGE_OLD, Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_VARIETY_CODE_NEW, DisplayName = DISPLAY_NAME_VARIETY_CODE_NEW, Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_PACKAGE_NEW, DisplayName = DISPLAY_NAME_PACKAGE_NEW, Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
@@ -96,7 +96,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void DgvListSelectionChanged(object sender, EventArgs e)
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == VAR_ID);
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == COLUMN_NAME_VAR_ID);
             var dgv = (DataGridView)sender;
             if (dgv.SelectedRows.Count > 0)
             {
@@ -444,7 +444,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void ValueSetting()
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == VAR_ID);
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == COLUMN_NAME_VAR_ID);
             if (DgvList.SelectedRows.Count > 0)
             {
                 // 選択している行を取得
@@ -519,7 +519,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 try
                 {
                     // フォームで定義された、指定LOT設定先のコントロールを抽出する
-                    db.FromLabelTextBox(this.Controls, VARIETY_CODE_TABLE, VAR_ID);
+                    db.FromLabelTextBox(this.Controls, VARIETY_CODE_TABLE, COLUMN_NAME_VAR_ID);
 
                     db.Commit();
                 }
@@ -544,7 +544,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     try
                     {
                         //指定した1行のデータをデータベースから物理削除する
-                        db.Delete(TxtNPProductCodeID.Value, VARIETY_CODE_TABLE, VAR_ID);
+                        db.Delete(TxtNPProductCodeID.Value, VARIETY_CODE_TABLE, COLUMN_NAME_VAR_ID);
                         db.Commit();
                     }
                     catch (Exception ex)

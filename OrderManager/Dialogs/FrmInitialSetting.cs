@@ -31,17 +31,17 @@ namespace NipponPaint.OrderManager.Dialogs
     public partial class FrmInitialSetting : BaseForm
     {
         #region 定数
-        private const string DISPLAY_WHITE_CODE = "白コード";
+        private const string DISPLAY_NAME_WHITE_CODE = "白コード";
         //テーブル
         private const string DEFAULTS_TABLE = Sql.Order.Defaults.MAIN_TABLE;
         //カラム
-        private const string WHITE_CODE = Sql.Order.Defaults.COLUMN_WHITE_CODE;
+        private const string COLUMN_NAME_WHITE_CODE = Sql.Order.Defaults.COLUMN_WHITE_CODE;
         #endregion
 
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = WHITE_CODE, DisplayName = DISPLAY_WHITE_CODE, Visible = true, Width = 930, alignment = DataGridViewContentAlignment.MiddleLeft } },
+             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_WHITE_CODE, DisplayName = DISPLAY_NAME_WHITE_CODE, Visible = true, Width = 930, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
@@ -89,7 +89,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void DgvListSelectionChanged(object sender, EventArgs e)
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == WHITE_CODE);
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == COLUMN_NAME_WHITE_CODE);
             var dgv = (DataGridView)sender;
             if (dgv.SelectedRows.Count > 0)
             {
@@ -262,9 +262,9 @@ namespace NipponPaint.OrderManager.Dialogs
                         //新規作成時、エラーの場合はDataGridViewで既に存在する白コードを選択状態にしてユーザーに明示する
                         foreach (DataGridViewRow row in DgvList.Rows)
                         {
-                            if (DrpWhiteCode.DropDown.Text == row.Cells[DISPLAY_WHITE_CODE].Value.ToString())
+                            if (DrpWhiteCode.DropDown.Text == row.Cells[DISPLAY_NAME_WHITE_CODE].Value.ToString())
                             {
-                                DgvList.CurrentCell = row.Cells[DISPLAY_WHITE_CODE];
+                                DgvList.CurrentCell = row.Cells[DISPLAY_NAME_WHITE_CODE];
                             }
                         }
                         DgvList.Enabled = false;
@@ -668,7 +668,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// </summary>
         private void ValueSetting()
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == WHITE_CODE);
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == COLUMN_NAME_WHITE_CODE);
             if (DgvList.SelectedRows.Count > 0)
             {
                 // 選択している行を取得
@@ -758,8 +758,8 @@ namespace NipponPaint.OrderManager.Dialogs
                 {
                     DrpWhiteCode.Id = "";
                     // フォームで定義された、指定LOT設定先のコントロールを抽出する
-                    db.FromLabelDropDown(this.Controls, DEFAULTS_TABLE, WHITE_CODE);
-                    db.FromLabelNumericUpDown(this.Controls, DEFAULTS_TABLE, WHITE_CODE);
+                    db.FromLabelDropDown(this.Controls, DEFAULTS_TABLE, COLUMN_NAME_WHITE_CODE);
+                    db.FromLabelNumericUpDown(this.Controls, DEFAULTS_TABLE, COLUMN_NAME_WHITE_CODE);
                     db.Commit();
                 }
                 catch (Exception ex)
@@ -787,7 +787,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     try
                     {
                         //指定した1行のデータをデータベースから物理削除する
-                        db.Delete(TxtWhiteCode.Value, DEFAULTS_TABLE, WHITE_CODE);
+                        db.Delete(TxtWhiteCode.Value, DEFAULTS_TABLE, COLUMN_NAME_WHITE_CODE);
                         db.Commit();
                     }
                     catch (Exception ex)
@@ -813,7 +813,7 @@ namespace NipponPaint.OrderManager.Dialogs
             foreach (DataGridViewRow row in DgvList.Rows)
             {
                 //DefaultsテーブルにてDrpWhiteCodeコントロールで選択中の白コードの行数をカウントする
-                if (DrpWhiteCode.DropDown.Text == row.Cells[DISPLAY_WHITE_CODE].Value.ToString())
+                if (DrpWhiteCode.DropDown.Text == row.Cells[DISPLAY_NAME_WHITE_CODE].Value.ToString())
                 {
                     cnt++;
                 }

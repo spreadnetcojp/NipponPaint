@@ -32,20 +32,20 @@ namespace NipponPaint.OrderManager.Dialogs
     public partial class FrmProductCodeMaster : BaseForm
     {
         #region 定数
-        private const string DISPLAY_PRD_ID = "品名ID";
-        private const string DISPLAY_PRODUCT_NO = "品名コード";
+        private const string DISPLAY_NAME_PRD_ID = "品名ID";
+        private const string DISPLAY_NAME_PRODUCT_NO = "品名コード";
         //テーブル
         private const string PRODUCT_NO_MASTER_TABLE = Sql.NpMain.ProductNoMaster.MAIN_TABLE;
         //カラム
-        private const string PRD_ID = Sql.NpMain.ProductNoMaster.COLUMN_PRD_ID;
-        private const string PRODUCT_NO = Sql.NpMain.ProductNoMaster.COLUMN_PRODUCT_NO;
+        private const string COLUMN_NAME_PRD_ID = Sql.NpMain.ProductNoMaster.COLUMN_PRD_ID;
+        private const string COLUMN_NAME_PRODUCT_NO = Sql.NpMain.ProductNoMaster.COLUMN_PRODUCT_NO;
         #endregion
 
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = PRD_ID, DisplayName = DISPLAY_PRD_ID, Visible = false, Width = 80, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = PRODUCT_NO, DisplayName = DISPLAY_PRODUCT_NO, Visible = true, Width = 850, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_PRD_ID, DisplayName = DISPLAY_NAME_PRD_ID, Visible = false, Width = 80, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_PRODUCT_NO, DisplayName = DISPLAY_NAME_PRODUCT_NO, Visible = true, Width = 850, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
@@ -84,7 +84,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void DgvListSelectionChanged(object sender, EventArgs e)
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == PRD_ID);
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == COLUMN_NAME_PRD_ID);
             var dgv = (DataGridView)sender;
             if (dgv.SelectedRows.Count > 0)
             {
@@ -404,7 +404,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// </summary>
         private void ValueSetting()
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == PRD_ID);
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == COLUMN_NAME_PRD_ID);
             if (DgvList.SelectedRows.Count > 0)
             {
                 // 選択している行を取得
@@ -479,7 +479,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 try
                 {
                     // フォームで定義された、指定LOT設定先のコントロールを抽出する
-                    db.FromLabelTextBox(this.Controls, PRODUCT_NO_MASTER_TABLE, PRD_ID);
+                    db.FromLabelTextBox(this.Controls, PRODUCT_NO_MASTER_TABLE, COLUMN_NAME_PRD_ID);
                     db.Commit();
                 }
                 catch (Exception ex)
@@ -507,7 +507,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     try
                     {
                         //指定した1行のデータをデータベースから物理削除する
-                        db.Delete(TxtProductCodeID.Value, PRODUCT_NO_MASTER_TABLE, PRD_ID);
+                        db.Delete(TxtProductCodeID.Value, PRODUCT_NO_MASTER_TABLE, COLUMN_NAME_PRD_ID);
                         db.Commit();
                     }
                     catch (Exception ex)

@@ -31,21 +31,21 @@ namespace NipponPaint.OrderManager.Dialogs
     public partial class FrmCapType : BaseForm
     {
         #region 定数
-        private const string DISPLAY_CAP_TYPE = "キャップタイプ";
-        private const string DISPLAY_CAP_DESCRIPTION = "キャップ詳細";
+        private const string DISPLAY_NAME_CAP_TYPE = "キャップタイプ";
+        private const string DISPLAY_NAME_CAP_DESCRIPTION = "キャップ詳細";
         //テーブル
         private const string CAP_TYPES_TABLE = Sql.Order.CapTypes.MAIN_TABLE;
         //カラム
-        private const string CAP_TYPE = Sql.Order.CapTypes.COLUMN_CAP_TYPE;
-        private const string CAP_DESCRIPTION = Sql.Order.CapTypes.COLUMN_CAP_DESCRIPTION;
-        private const string CAPPING_MACHINE = Sql.Order.CapTypes.COLUMN_CAPPING_MACHINE;
+        private const string COLUMN_NAMECAP_TYPE = Sql.Order.CapTypes.COLUMN_CAP_TYPE;
+        private const string COLUMN_NAME_CAP_DESCRIPTION = Sql.Order.CapTypes.COLUMN_CAP_DESCRIPTION;
+        private const string COLUMN_NAME_CAPPING_MACHINE = Sql.Order.CapTypes.COLUMN_CAPPING_MACHINE;
         #endregion
 
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = CAP_TYPE, DisplayName = DISPLAY_CAP_TYPE, Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = CAP_DESCRIPTION, DisplayName = DISPLAY_CAP_DESCRIPTION, Visible = true, Width = 700, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAMECAP_TYPE, DisplayName = DISPLAY_NAME_CAP_TYPE, Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_CAP_DESCRIPTION, DisplayName = DISPLAY_NAME_CAP_DESCRIPTION, Visible = true, Width = 700, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
@@ -87,7 +87,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void DgvListSelectionChanged(object sender, EventArgs e)
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == CAP_TYPE);
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == COLUMN_NAMECAP_TYPE);
             var dgv = (DataGridView)sender;
             if (dgv.SelectedRows.Count > 0)
             {
@@ -124,7 +124,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     //キャップ詳細の保持動作
                     TxtCapDescription.Id = capType.ToString();
                     //手動キャッピング(1のとき（キャッパー)のときはチェックあり、1以外のとき（手動）はチェックなし）の保持動作
-                    int.TryParse(rec.Rows[0][CAPPING_MACHINE].ToString(), out int capping_Machine);
+                    int.TryParse(rec.Rows[0][COLUMN_NAME_CAPPING_MACHINE].ToString(), out int capping_Machine);
                     if (capping_Machine != 1)
                     {
                         ChkManualCapping.Visible = true;
@@ -495,7 +495,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// </summary>
         private void ValueSetting()
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == CAP_TYPE);
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == COLUMN_NAMECAP_TYPE);
             if (DgvList.SelectedRows.Count > 0)
             {
                 // 選択している行を取得
@@ -579,9 +579,9 @@ namespace NipponPaint.OrderManager.Dialogs
                 try
                 {
                     // フォームで定義された、指定LOT設定先のコントロールを抽出する
-                    db.FromLabelTextBox(this.Controls, CAP_TYPES_TABLE, CAP_TYPE);
-                    db.FromLabelDropDown(this.Controls, CAP_TYPES_TABLE, CAP_TYPE);
-                    db.FromLabelNumericUpDown(this.Controls, CAP_TYPES_TABLE, CAP_TYPE);
+                    db.FromLabelTextBox(this.Controls, CAP_TYPES_TABLE, COLUMN_NAMECAP_TYPE);
+                    db.FromLabelDropDown(this.Controls, CAP_TYPES_TABLE, COLUMN_NAMECAP_TYPE);
+                    db.FromLabelNumericUpDown(this.Controls, CAP_TYPES_TABLE, COLUMN_NAMECAP_TYPE);
 
                     db.Commit();
                 }
@@ -609,7 +609,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     try
                     {
                         //指定した1行のデータをデータベースから物理削除する
-                        db.Delete(TxtCapType.Value, CAP_TYPES_TABLE, CAP_TYPE);  //TxtCapType1
+                        db.Delete(TxtCapType.Value, CAP_TYPES_TABLE, COLUMN_NAMECAP_TYPE);  //TxtCapType1
                         db.Commit();
                     }
                     catch (Exception ex)
