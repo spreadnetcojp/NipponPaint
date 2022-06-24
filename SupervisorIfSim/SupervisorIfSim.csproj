@@ -54,9 +54,11 @@
     <Compile Include="Data\DropDownRow.cs" />
     <Compile Include="Data\RadioButtonItem.cs" />
     <Compile Include="Data\TextBoxItem.cs" />
-    <Compile Include="Dialogs\FrmEdit.cs" />
-    <Compile Include="Dialogs\FrmEdit.Designer.cs">
-      <DependentUpon>FrmEdit.cs</DependentUpon>
+    <Compile Include="FormControls\ThreeRadioButtons.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormControls\ThreeRadioButtons.Designer.cs">
+      <DependentUpon>ThreeRadioButtons.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -66,8 +68,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Dialogs\FrmEdit.resx">
-      <DependentUpon>FrmEdit.cs</DependentUpon>
+    <EmbeddedResource Include="FormControls\ThreeRadioButtons.resx">
+      <DependentUpon>ThreeRadioButtons.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>

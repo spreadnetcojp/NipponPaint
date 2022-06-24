@@ -785,3 +785,4 @@ OrderManager/bin/Debug/Log/OrderManager20220617.log
 .vs/NpToningSystem/FileContentIndex/cb5ca9c4-9c80-4cd1-9826-1fadd98dccb7.vsidx
 *.vsidx
 *.resources
+*.log
