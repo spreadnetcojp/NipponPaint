@@ -22,7 +22,7 @@ using NipponPaint.NpCommon.Database;
 namespace NipponPaint.OrderManager.Dialogs
 {
     /// <summary>
-    /// 注文開始ダイアログ
+    /// Lot登録ダイアログ
     /// </summary>
     public partial class FrmLotRegister : BaseForm
     {
