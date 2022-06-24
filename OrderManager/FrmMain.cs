@@ -680,6 +680,8 @@ namespace NipponPaint.OrderManager
             }
             try
             {
+                // Order_id取得
+                var gdvSelectedOrderId = GetOrderId();
                 using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                 {
                     DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
@@ -687,18 +689,16 @@ namespace NipponPaint.OrderManager
                     {
                         case DialogResult.Yes:
                             var statusColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_STATUS);
-                            var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
                             var dgv = GvDetail;
                             if (dgv.SelectedRows.Count > 0)
                             {
                                 // 選択している行を取得
                                 var selectedRow = dgv.SelectedRows[0];
                                 int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
-                                int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
                                 // 行取得のSQLを作成
                                 var parameters = new List<ParameterItem>()
                                 {
-                                    new ParameterItem("orderId", orderId),
+                                    new ParameterItem("orderId", gdvSelectedOrderId),
                                 };
                                 switch ((Sql.NpMain.Orders.OrderStatus)status)
                                 {
@@ -720,7 +720,7 @@ namespace NipponPaint.OrderManager
                                 }
                                 db.Commit();
                             }
-                            InitializeForm();
+                            BindDataGridViewAgain(db);
                             break;
                         case DialogResult.No:
                             break;
@@ -728,6 +728,7 @@ namespace NipponPaint.OrderManager
                             break;
                     }
                 }
+                FocusSelectedRow(gdvSelectedOrderId);
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -1097,6 +1098,8 @@ namespace NipponPaint.OrderManager
         {
             try
             {
+                // 選択している行のOrder_id取得
+                var gdvSelectedOrderId = GetOrderId();
                 using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                 {
                     DataGridView dgv = new DataGridView();
@@ -1117,19 +1120,19 @@ namespace NipponPaint.OrderManager
                     var orderIdColumnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
                     if (dgv.SelectedRows.Count > 0)
                     {
-                        // 選択している行を取得
-                        var selectedRow = dgv.SelectedRows[0];
-                        int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
                         // 行取得のSQLを作成
                         var parameters = new List<ParameterItem>()
                         {
-                            new ParameterItem("orderId", orderId),
+                            new ParameterItem("orderId", gdvSelectedOrderId),
                         };
                         db.DeleteOperator(Sql.NpMain.Orders.DeleteOperator(), parameters);
                         db.Commit();
                     }
+                    // 更新データを再バインド
+                    BindDataGridViewAgain(db);
                 }
-                InitializeForm();
+                // 事前に取得していたOrder_idを元に行を移動
+                FocusSelectedRow(gdvSelectedOrderId);
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
             }
             catch (Exception ex)
@@ -1375,28 +1378,8 @@ namespace NipponPaint.OrderManager
                 //ソート順(Panel2)のグループ内のチェックされているラジオボタンを取得する
                 var rbtCheckInGroup = panel2.Controls.OfType<RadioButton>()
                     .SingleOrDefault(rb => rb.Checked == true);
-
-                var gdvSelectedOrderId = 0;
-                //変更前に選択していた行のIdを取得
-                switch (selectingTabIndex)
-                {
-                    case TAB_INDEX_ORDER:
-                        gdvSelectedOrderId = Funcs.StrToInt(GvOrder.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
-                        break;
-                    case TAB_INDEX_DETAIL:
-                        gdvSelectedOrderId = Funcs.StrToInt(GvDetail.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
-                        break;
-                    case TAB_INDEX_FORMULATION:
-                        gdvSelectedOrderId = Funcs.StrToInt(GvFormulation.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
-                        break;
-                    case TAB_INDEX_CAN:
-                        gdvSelectedOrderId = Funcs.StrToInt(GvOrderNumber.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
-                        break;
-                    default:
-                        gdvSelectedOrderId = Funcs.StrToInt(GvOrder.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
-                        break;
-                }
-
+                // フォーカスしている行のOrder_id取得
+                var gdvSelectedOrderId = GetOrderId();
                 // ソート順切り替え
                 var sortCondition = string.Empty;
                 switch (rbtCheckInGroup.Name)
@@ -1419,25 +1402,7 @@ namespace NipponPaint.OrderManager
                 //GvDetailDataSource.DefaultView.Sort = sortCondition;
                 //GvFormulationDataSource.DefaultView.Sort = sortCondition;
                 // 事前に選択していたデータ行へ移動
-                var getGridViewRowIndex = GetGridViewRowIndex(gdvSelectedOrderId.ToString(), COLUMN_ORDER_ID);
-                switch (selectingTabIndex)
-                {
-                    case TAB_INDEX_ORDER:
-                        SetGridViewRowIndex(GvOrder, getGridViewRowIndex);
-                        break;
-                    case TAB_INDEX_DETAIL:
-                        SetGridViewRowIndex(GvDetail, getGridViewRowIndex);
-                        break;
-                    case TAB_INDEX_FORMULATION:
-                        SetGridViewRowIndex(GvFormulation, getGridViewRowIndex);
-                        break;
-                    case TAB_INDEX_CAN:
-                        SetGridViewRowIndex(GvOrderNumber, getGridViewRowIndex);
-                        break;
-                    default:
-                        SetGridViewRowIndex(GvOrder, getGridViewRowIndex);
-                        break;
-                }
+                FocusSelectedRow(gdvSelectedOrderId);
             }
         }
 
@@ -1453,27 +1418,29 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.LotRegister();
                 vm.Lot = HgTintingDirection.Value;
-                // Order_idで検索する
-                var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
+                
                 if (GvDetail.SelectedRows.Count > 0)
                 {
-                    DataGridViewRow row = GvDetail.SelectedRows[0];
-                    int.TryParse(row.Cells[columnIndex].Value.ToString(), out int orderId);
+                    // Order_idを取得する
+                    var gdvSelectedOrderId = GetOrderId();
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
                         // 行取得のSQLを作成
                         var parameters = new List<ParameterItem>()
                         {
-                            new ParameterItem("orderId", orderId),
+                            new ParameterItem("orderId", gdvSelectedOrderId),
                         };
                         var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(BaseSettings.Facility.Plant), parameters);
                         int.TryParse(rec.Rows[0]["HG_Data_Number"].ToString(), out int dataNumber);
                         vm.DataNumber = dataNumber;
+                        // 更新データを再バインド
+                        BindDataGridViewAgain(db);
                     }
+                    // 取得しているOrder_idの行にフォーカスを移動
+                    FocusSelectedRow(gdvSelectedOrderId);
                 }
                 FrmLotRegister frmLotRegister = new FrmLotRegister(vm);
                 frmLotRegister.ShowDialog();
-                InitializeForm();
             }
             catch (Exception ex)
             {
@@ -1609,18 +1576,38 @@ namespace NipponPaint.OrderManager
                     case TAB_INDEX_DETAIL:
                         GvDetail.CurrentCell = GvDetail.Rows[gdvSelectedIndex].Cells[COLUMN_DELIVERY_CODE];
                         DataGridViewFormatting(GvDetail);
+                        // ステータスを戻すボタンの活性/非活性
+                        var gdvSelectedStatus = Funcs.StrToInt(GvDetail.SelectedRows[SELECTED_ROW].Cells[COLUMN_STATUS].Value.ToString());
+                        switch (gdvSelectedStatus)
+                        {
+                            case (int)Sql.NpMain.Orders.OrderStatus.Ready:
+                            case (int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
+                            case (int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
+                                BtnStatusResume.Enabled = true;
+                                break;
+                            case (int)Sql.NpMain.Orders.OrderStatus.WaitingForToning:
+                            case (int)Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
+                                BtnStatusResume.Enabled = false;
+                                break;
+                            default:
+                                BtnStatusResume.Enabled = false;
+                                break;
+                        }
                         break;
                     case TAB_INDEX_FORMULATION:
                         GvFormulation.CurrentCell = GvFormulation.Rows[gdvSelectedIndex].Cells[COLUMN_DELIVERY_CODE];
                         DataGridViewFormatting(GvFormulation);
+                        BtnStatusResume.Enabled = false;
                         break;
                     case TAB_INDEX_CAN:
                         GvOrderNumber.CurrentCell = GvOrderNumber.Rows[gdvSelectedIndex].Cells[COLUMN_DELIVERY_CODE];
                         GvOrderNumberFormatting(GvOrderNumber);
+                        BtnStatusResume.Enabled = false;
                         break;
                     default:
                         GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[COLUMN_DELIVERY_CODE];
                         DataGridViewFormatting(GvOrder);
+                        BtnStatusResume.Enabled = false;
                         break;
                 }
             }
@@ -1652,8 +1639,9 @@ namespace NipponPaint.OrderManager
                     var selectedRow = dgv.SelectedRows[0];
                     int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
                     var urgentBool = Convert.ToBoolean(selectedRow.Cells[urgentColumnIndex].Value);
+                    var statusEnable = false;
                     //各種ボタンの表示制御
-                    ButtonsEnableSetting(status, urgentBool);
+                    ButtonsEnableSetting(status, urgentBool, statusEnable);
                 }
                 PutLog(Sentence.Messages.SelectRow);
             }
@@ -1769,7 +1757,8 @@ namespace NipponPaint.OrderManager
                             BorderHgVolumeCode.Visible = false;
                         }
                         //各種ボタンの表示制御
-                        ButtonsEnableSetting(status, urgentBool);
+                        var statusEnable = true;
+                        ButtonsEnableSetting(status, urgentBool, statusEnable);
                     }
                 }
                 PutLog(Sentence.Messages.SelectRow);
@@ -1837,7 +1826,8 @@ namespace NipponPaint.OrderManager
                             }
                         }
                         ////各種ボタンの表示制御
-                        ButtonsEnableSetting(status, urgentBool);
+                        var statusEnable = false;
+                        ButtonsEnableSetting(status, urgentBool, statusEnable);
                     }
                 }
                 PutLog(Sentence.Messages.SelectRow);
@@ -1901,7 +1891,9 @@ namespace NipponPaint.OrderManager
                             GvBarcode.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
                             cnt++;
                         }
-                        ButtonsEnableSetting(status, urgentBool);
+                        ////各種ボタンの表示制御
+                        var statusEnable = false;
+                        ButtonsEnableSetting(status, urgentBool, statusEnable);
                     }
                 }
                 PutLog(Sentence.Messages.SelectRow);
@@ -2361,8 +2353,8 @@ namespace NipponPaint.OrderManager
         private void ColorExplanation(DataTable dt)
         {
             //調色担当待ち
-            DataRow[] beforeSS = dt.Select($"[SS出荷予定日日付型] <= #{DateTime.Today}# AND Status = 0");
-            DataRow[] ss = dt.Select("Status = 0");
+            DataRow[] beforeSS = dt.Select($"[SS出荷予定日日付型] <= #{DateTime.Today}# AND {Sql.NpMain.Orders.COLUMN_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.WaitingForToning}");
+            DataRow[] ss = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.WaitingForToning}");
             double total = 0;
             string strTotal = string.Empty;
             foreach (DataRow row in ss)
@@ -2378,7 +2370,7 @@ namespace NipponPaint.OrderManager
             label4.Text = $"{strTotal}t";
 
             //CCM配合待ち
-            DataRow[] ccm = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = 1");
+            DataRow[] ccm = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation}");
             foreach (DataRow row in ccm)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -2392,7 +2384,7 @@ namespace NipponPaint.OrderManager
             label5.Text = $"{strTotal}t";
 
             //準備完
-            DataRow[] ready = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = 2");
+            DataRow[] ready = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.Ready}");
             foreach (DataRow row in ready)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -2406,7 +2398,7 @@ namespace NipponPaint.OrderManager
             label11.Text = $"{strTotal}t";
 
             //テスト缶実施中
-            DataRow[] testCan = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = 3");
+            DataRow[] testCan = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress}");
             foreach (DataRow row in testCan)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -2420,7 +2412,7 @@ namespace NipponPaint.OrderManager
             label12.Text = $"{strTotal}t";
 
             //製造缶実施中
-            DataRow[] productCan = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = 4");
+            DataRow[] productCan = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress}");
             foreach (DataRow row in productCan)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -2437,7 +2429,7 @@ namespace NipponPaint.OrderManager
         #endregion
 
         #region ボタン表示制御
-        private void ButtonsEnableSetting(int status, bool urgent = false)
+        private void ButtonsEnableSetting(int status, bool urgent = false, bool statusEnable = false)
         {
             switch ((Sql.NpMain.Orders.OrderStatus)status)
             {
@@ -2475,7 +2467,14 @@ namespace NipponPaint.OrderManager
                         BtnPrintInstructions.Enabled = false;
                         BtnPrint.Enabled = false;
                     }
-                    BtnStatusResume.Enabled = true;
+                    if (statusEnable)
+                    {
+                        BtnStatusResume.Enabled = true;
+                    }
+                    else
+                    {
+                        BtnStatusResume.Enabled = false;
+                    }
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
                     //BtnProcessDetail.Enabled = false;
@@ -2485,7 +2484,14 @@ namespace NipponPaint.OrderManager
                     BtnPrintInstructions.Enabled = false;
                     BtnPrintEmergency.Enabled = false;
                     BtnOrderStart.Enabled = false;
-                    BtnStatusResume.Enabled = true;
+                    if (statusEnable)
+                    {
+                        BtnStatusResume.Enabled = true;
+                    }
+                    else
+                    {
+                        BtnStatusResume.Enabled = false;
+                    }
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
                     //BtnProcessDetail.Enabled = false;
@@ -2495,7 +2501,14 @@ namespace NipponPaint.OrderManager
                     BtnPrintInstructions.Enabled = false;
                     BtnPrintEmergency.Enabled = false;
                     BtnOrderStart.Enabled = false;
-                    BtnStatusResume.Enabled = true;
+                    if (statusEnable)
+                    {
+                        BtnStatusResume.Enabled = true;
+                    }
+                    else
+                    {
+                        BtnStatusResume.Enabled = false;
+                    }
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
                     //BtnProcessDetail.Enabled = false;
@@ -2615,6 +2628,74 @@ namespace NipponPaint.OrderManager
                 default:
                     return null;
             }
+        }
+
+        /// <summary>
+        /// フォーカスしている行のOrder_idを取得
+        /// </summary>
+        /// <returns></returns>
+        private int GetOrderId()
+        {
+            var gdvSelectedOrderId = 0;
+            //変更前に選択していた行のIdを取得
+            switch (selectingTabIndex)
+            {
+                case TAB_INDEX_ORDER:
+                    gdvSelectedOrderId = Funcs.StrToInt(GvOrder.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
+                    break;
+                case TAB_INDEX_DETAIL:
+                    gdvSelectedOrderId = Funcs.StrToInt(GvDetail.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
+                    break;
+                case TAB_INDEX_FORMULATION:
+                    gdvSelectedOrderId = Funcs.StrToInt(GvFormulation.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
+                    break;
+                case TAB_INDEX_CAN:
+                    gdvSelectedOrderId = Funcs.StrToInt(GvOrderNumber.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
+                    break;
+                default:
+                    gdvSelectedOrderId = Funcs.StrToInt(GvOrder.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
+                    break;
+            }
+            return gdvSelectedOrderId;
+        }
+        /// <summary>
+        /// 取得していたOrder_idを元にフォーカスを移動
+        /// </summary>
+        /// <param name="gdvSelectedOrderId"></param>
+        private void FocusSelectedRow(int gdvSelectedOrderId)
+        {
+            var getGridViewRowIndex = GetGridViewRowIndex(gdvSelectedOrderId.ToString(), COLUMN_ORDER_ID);
+            switch (selectingTabIndex)
+            {
+                case TAB_INDEX_ORDER:
+                    SetGridViewRowIndex(GvOrder, getGridViewRowIndex);
+                    break;
+                case TAB_INDEX_DETAIL:
+                    SetGridViewRowIndex(GvDetail, getGridViewRowIndex);
+                    break;
+                case TAB_INDEX_FORMULATION:
+                    SetGridViewRowIndex(GvFormulation, getGridViewRowIndex);
+                    break;
+                case TAB_INDEX_CAN:
+                    SetGridViewRowIndex(GvOrderNumber, getGridViewRowIndex);
+                    break;
+                default:
+                    SetGridViewRowIndex(GvOrder, getGridViewRowIndex);
+                    break;
+            }
+        }
+        /// <summary>
+        /// 更新データ再バインド
+        /// </summary>
+        /// <param name="db"></param>
+        private void BindDataGridViewAgain(SqlBase db)
+        {
+            GvOrderDataSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrders, BaseSettings.Facility.Plant));
+            GvOrder.DataSource = GvOrderDataSource;
+            GvDetail.DataSource = GvOrderDataSource;
+            GvFormulation.DataSource = GvOrderDataSource;
+            GvOrderNumberDataSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrderNumbers, BaseSettings.Facility.Plant));
+            GvOrderNumber.DataSource = GvOrderNumberDataSource;
         }
     }
 }
