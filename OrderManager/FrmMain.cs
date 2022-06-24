@@ -621,7 +621,7 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                MessageBox.Show("緊急印刷がクリックされました");
+                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnPrintEmergencyClick);
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
