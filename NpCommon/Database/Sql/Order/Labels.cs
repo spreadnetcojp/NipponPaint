@@ -56,8 +56,8 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
                 sql.Append(item.SqlSentence);
                 cnt++;
             }
-            sql.Append($"FROM Labels ");
-            sql.Append($"ORDER BY Label_Type ");
+            sql.Append($"FROM {MAIN_TABLE} ");
+            sql.Append($"ORDER BY {COLUMN_LABEL_TYPE} ");
             return sql.ToString();
         }
         #endregion
@@ -70,7 +70,7 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
         public static string GetDetail()
         {
             var sql = new StringBuilder();
-            sql.Append($"SELECT * FROM Labels WHERE Label_Type = @labelType");
+            sql.Append($"SELECT * FROM {MAIN_TABLE} WHERE {COLUMN_LABEL_TYPE} = @labelType");
             return sql.ToString();
         }
         #endregion
