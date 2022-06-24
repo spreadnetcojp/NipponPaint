@@ -639,13 +639,14 @@ namespace NipponPaint.OrderManager
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                var orderId = 0;
                 // Order_idで検索する
                 var columnIndex = ViewSettingsOrders.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
                 var orderData = new DataTable();
                 if (GvOrder.SelectedRows.Count > 0)
                 {
                     DataGridViewRow row = GvOrder.SelectedRows[0];
-                    int.TryParse(row.Cells[columnIndex].Value.ToString(), out int orderId);
+                    int.TryParse(row.Cells[columnIndex].Value.ToString(), out orderId);
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
                         var parameters = new List<ParameterItem>()
@@ -660,6 +661,10 @@ namespace NipponPaint.OrderManager
                 var vm = new ViewModels.OrderStartData(orderData);
                 FrmOrderStart frmOrderStart = new FrmOrderStart(vm);
                 frmOrderStart.ShowDialog();
+                // ダイアログ閉後の再バインド
+                DialogCloseBinding();
+                // 事前に取得していたOrder_idを元にフォーカス移動
+                FocusSelectedRow(orderId);
             }
             catch (Exception ex)
             {
@@ -1418,11 +1423,11 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.LotRegister();
                 vm.Lot = HgTintingDirection.Value;
-                
+                var gdvSelectedOrderId = 0;
                 if (GvDetail.SelectedRows.Count > 0)
                 {
                     // Order_idを取得する
-                    var gdvSelectedOrderId = GetOrderId();
+                    gdvSelectedOrderId = GetOrderId();
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
                         // 行取得のSQLを作成
@@ -1433,14 +1438,14 @@ namespace NipponPaint.OrderManager
                         var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(BaseSettings.Facility.Plant), parameters);
                         int.TryParse(rec.Rows[0]["HG_Data_Number"].ToString(), out int dataNumber);
                         vm.DataNumber = dataNumber;
-                        // 更新データを再バインド
-                        BindDataGridViewAgain(db);
                     }
-                    // 取得しているOrder_idの行にフォーカスを移動
-                    FocusSelectedRow(gdvSelectedOrderId);
                 }
                 FrmLotRegister frmLotRegister = new FrmLotRegister(vm);
                 frmLotRegister.ShowDialog();
+                // ダイアログ閉後の再バインド
+                DialogCloseBinding();
+                // 事前に取得していたOrder_idを元にフォーカス移動
+                FocusSelectedRow(gdvSelectedOrderId);
             }
             catch (Exception ex)
             {
@@ -2696,6 +2701,17 @@ namespace NipponPaint.OrderManager
             GvFormulation.DataSource = GvOrderDataSource;
             GvOrderNumberDataSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrderNumbers, BaseSettings.Facility.Plant));
             GvOrderNumber.DataSource = GvOrderNumberDataSource;
+        }
+
+        /// <summary>
+        /// データ更新用ダイアログでデータ更新された場合の処理
+        /// </summary>
+        private void DialogCloseBinding()
+        {
+            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
+            {
+                BindDataGridViewAgain(db);
+            }
         }
     }
 }
