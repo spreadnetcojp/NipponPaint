@@ -129,6 +129,12 @@ namespace NipponPaint.NpCommon
             [Display(Order = (int)Log.LogType.Error, Description = "設定内容を保存できませんでした（エラー：{0}）")]
             SaveFailure,
 
+            /// <summary>
+            /// 「緊急印刷」ボタンをクリック
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Info, Description = "緊急印刷がクリックされました")]
+            BtnPrintEmergencyClick,
+
             #region DatabaseManager
             /// <summary>
             /// DatabaseManager 「閉じる」ボタンをクリック(設定を保存していない場合)
