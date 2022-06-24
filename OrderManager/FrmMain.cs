@@ -103,29 +103,6 @@ namespace NipponPaint.OrderManager
         #endregion
 
         /// <summary>
-        /// 選択タブ
-        /// </summary>
-        private enum TabSelectIndex
-        {
-            /// <summary>
-            /// 注文タブ
-            /// </summary>
-            ORDER,
-            /// <summary>
-            /// 詳細タブ
-            /// </summary>
-            DETAIL,
-            /// <summary>
-            /// 配合タブ
-            /// </summary>
-            FORMULATION,
-            /// <summary>
-            /// 缶タブ
-            /// </summary>
-            CAN,
-        }
-
-        /// <summary>
         /// 選択行：1行選択なので値は「0」
         /// </summary>
         private const int SELECTED_ROW = 0;
@@ -1089,7 +1066,8 @@ namespace NipponPaint.OrderManager
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
-                FrmLabelSelection frmLabelSelection = new FrmLabelSelection();
+                var vm = new ViewModels.LabelTypeData();
+                FrmLabelSelection frmLabelSelection = new FrmLabelSelection(vm);
                 frmLabelSelection.ShowDialog();
             }
             catch (Exception ex)
@@ -2643,26 +2621,7 @@ namespace NipponPaint.OrderManager
         private int GetOrderId()
         {
             var gdvSelectedOrderId = 0;
-            //変更前に選択していた行のIdを取得
-            switch (selectingTabIndex)
-            {
-                case (int)TabSelectIndex.ORDER:
-                    gdvSelectedOrderId = Funcs.StrToInt(GvOrder.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
-                    break;
-                case (int)TabSelectIndex.DETAIL:
-                    gdvSelectedOrderId = Funcs.StrToInt(GvDetail.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
-                    break;
-                case (int)TabSelectIndex.FORMULATION:
-                    gdvSelectedOrderId = Funcs.StrToInt(GvFormulation.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
-                    break;
-                case (int)TabSelectIndex.CAN:
-                    gdvSelectedOrderId = Funcs.StrToInt(GvOrderNumber.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
-                    break;
-                default:
-                    gdvSelectedOrderId = Funcs.StrToInt(GvOrder.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
-                    break;
-            }
-            return gdvSelectedOrderId;
+            return gdvSelectedOrderId = Funcs.StrToInt(GetActiveGridViewName().SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
         }
         /// <summary>
         /// 取得していたOrder_idを元にフォーカスを移動
@@ -2671,24 +2630,7 @@ namespace NipponPaint.OrderManager
         private void FocusSelectedRow(int gdvSelectedOrderId)
         {
             var getGridViewRowIndex = GetGridViewRowIndex(gdvSelectedOrderId.ToString(), COLUMN_ORDER_ID);
-            switch (selectingTabIndex)
-            {
-                case (int)TabSelectIndex.ORDER:
-                    SetGridViewRowIndex(GvOrder, getGridViewRowIndex);
-                    break;
-                case (int)TabSelectIndex.DETAIL:
-                    SetGridViewRowIndex(GvDetail, getGridViewRowIndex);
-                    break;
-                case (int)TabSelectIndex.FORMULATION:
-                    SetGridViewRowIndex(GvFormulation, getGridViewRowIndex);
-                    break;
-                case (int)TabSelectIndex.CAN:
-                    SetGridViewRowIndex(GvOrderNumber, getGridViewRowIndex);
-                    break;
-                default:
-                    SetGridViewRowIndex(GvOrder, getGridViewRowIndex);
-                    break;
-            }
+            SetGridViewRowIndex(GetActiveGridViewName(), getGridViewRowIndex);
         }
         /// <summary>
         /// 更新データ再バインド
