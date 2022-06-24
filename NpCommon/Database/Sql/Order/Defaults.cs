@@ -75,8 +75,8 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
             sql.Append($" ,CN.Can_Description ");
             sql.Append($" ,CP.Cap_Description ");
             sql.Append($"FROM {MAIN_TABLE} AS DF ");
-            sql.Append($"LEFT JOIN Can_types AS CN ON DF.Can_Type = CN.Can_Type  ");
-            sql.Append($"LEFT JOIN Cap_types AS CP ON DF.Cap_Type = CP.Cap_Type  ");
+            sql.Append($"LEFT JOIN {CanTypes.MAIN_TABLE} AS CN ON DF.{COLUMN_CAN_TYPE} = CN.{CanTypes.COLUMN_CAN_TYPE} ");
+            sql.Append($"LEFT JOIN {CapTypes.MAIN_TABLE} AS CP ON DF.{COLUMN_CAP_TYPE} = CP.{CapTypes.COLUMN_CAP_TYPE} ");
             sql.Append($"WHERE {COLUMN_WHITE_CODE} = @whiteCode ");
             return sql.ToString();
 

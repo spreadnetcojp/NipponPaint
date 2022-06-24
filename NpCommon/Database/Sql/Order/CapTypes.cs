@@ -24,7 +24,7 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
     {
         #region 定数
         // テーブル
-        private const string MAIN_TABLE = "Cap_types";
+        public const string MAIN_TABLE = "Cap_types";
         // カラム
         public const string COLUMN_CAP_TYPE = "Cap_Type";
         public const string COLUMN_CAP_DESCRIPTION = "Cap_Description";

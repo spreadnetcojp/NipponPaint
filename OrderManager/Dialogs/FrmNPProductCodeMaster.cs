@@ -31,14 +31,30 @@ namespace NipponPaint.OrderManager.Dialogs
     /// </summary>
     public partial class FrmNPProductCodeMaster : BaseForm
     {
+        #region 定数
+        private const string DISPLAY_VAR_ID = "NP商品コードID";
+        private const string DISPLAY_VARIETY_CODE_OLD = "NP商品コードマスターOLD";
+        private const string DISPLAY_PACKAGE_OLD = "容量OLD";
+        private const string DISPLAY_VARIETY_CODE_NEW = "NP商品コードマスターNEW";
+        private const string DISPLAY_PACKAGE_NEW = "容量NEW";
+        //テーブル
+        private const string VARIETY_CODE_TABLE = Sql.NpMain.VarietyCode.MAIN_TABLE;
+        //カラム
+        private const string VAR_ID = Sql.NpMain.VarietyCode.COLUMN_VAR_ID;
+        private const string VARIETY_CODE_OLD = Sql.NpMain.VarietyCode.COLUMN_VARIETY_CODE_OLD;
+        private const string PACKAGE_OLD = Sql.NpMain.VarietyCode.COLUMN_PACKAGE_OLD;
+        private const string VARIETY_CODE_NEW = Sql.NpMain.VarietyCode.COLUMN_VARIETY_CODE_NEW;
+        private const string PACKAGE_NEW = Sql.NpMain.VarietyCode.COLUMN_PACKAGE_NEW;
+        #endregion
+
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "VAR_ID", DisplayName = "NP商品コードID", Visible = false, Width = 80, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Variety_Code_OLD", DisplayName = "NP商品コードマスターOLD", Visible = true, Width =150, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Package_OLD", DisplayName = "容量OLD", Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Variety_Code_NEW", DisplayName = "NP商品コードマスターNEW", Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Package_NEW", DisplayName = "容量NEW", Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = VAR_ID, DisplayName = DISPLAY_VAR_ID, Visible = false, Width = 80, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = VARIETY_CODE_OLD, DisplayName = DISPLAY_VARIETY_CODE_OLD, Visible = true, Width =150, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = PACKAGE_OLD, DisplayName = DISPLAY_PACKAGE_OLD, Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = VARIETY_CODE_NEW, DisplayName = DISPLAY_VARIETY_CODE_NEW, Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = PACKAGE_NEW, DisplayName = DISPLAY_PACKAGE_NEW, Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
@@ -80,7 +96,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void DgvListSelectionChanged(object sender, EventArgs e)
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == "VAR_ID");
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == VAR_ID);
             var dgv = (DataGridView)sender;
             if (dgv.SelectedRows.Count > 0)
             {
@@ -159,7 +175,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 DataGridViewEnabled();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -178,7 +194,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 DataGridViewEnabled();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -192,7 +208,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                DialogResult result =  MessageBox.Show("[Selected Product No will be deleted, continue?]", "Confirm", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                DialogResult result = Messages.ShowDialog(Sentence.Messages.SelectedProductDeletedContinue);
                 switch (result)
                 {
                     case DialogResult.Yes:
@@ -209,7 +225,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 DataGridViewEnabled();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -229,7 +245,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -396,7 +412,6 @@ namespace NipponPaint.OrderManager.Dialogs
                     TxtNPProductCodeMasterBack.Value = "";
                     TxtVolumeBack.Value = "";
                     break;
-                    //
                 //更新
                 case DialogEditButtons.Mode.Modify:
                     //表示用コントロール
@@ -407,7 +422,6 @@ namespace NipponPaint.OrderManager.Dialogs
                     TxtNPProductCodeMasterBack.DataReadOnly = false;
                     TxtVolumeBack.DataReadOnly = false;
                     break;
-                    //
                 default:
                     // 表示用コントロール
                     TxtNPProductCodeID.Visible = true;
@@ -430,7 +444,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void ValueSetting()
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == "VAR_ID");
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == VAR_ID);
             if (DgvList.SelectedRows.Count > 0)
             {
                 // 選択している行を取得
@@ -483,7 +497,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 try
                 {
                     //入力したフォームの内容をデータベースに新規登録する
-                    db.Insert(this.Controls, "Variety_Code");
+                    db.Insert(this.Controls, VARIETY_CODE_TABLE);
                     db.Commit();
                 }
                 catch (Exception ex)
@@ -505,7 +519,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 try
                 {
                     // フォームで定義された、指定LOT設定先のコントロールを抽出する
-                    db.FromLabelTextBox(this.Controls, "Variety_Code", "VAR_ID");
+                    db.FromLabelTextBox(this.Controls, VARIETY_CODE_TABLE, VAR_ID);
 
                     db.Commit();
                 }
@@ -530,7 +544,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     try
                     {
                         //指定した1行のデータをデータベースから物理削除する
-                        db.Delete(TxtNPProductCodeID.Value, "Variety_Code", "VAR_ID");
+                        db.Delete(TxtNPProductCodeID.Value, VARIETY_CODE_TABLE, VAR_ID);
                         db.Commit();
                     }
                     catch (Exception ex)
@@ -562,7 +576,7 @@ namespace NipponPaint.OrderManager.Dialogs
         private bool InvalidMeg()
         {
             bool modeChangeFlg = true;
-            MessageBox.Show("不完全データ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Messages.ShowDialog(Sentence.Messages.IncompleteData);
             return modeChangeFlg;
         }
         #endregion

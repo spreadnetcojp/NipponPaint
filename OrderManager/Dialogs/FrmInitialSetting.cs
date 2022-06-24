@@ -30,10 +30,18 @@ namespace NipponPaint.OrderManager.Dialogs
     /// </summary>
     public partial class FrmInitialSetting : BaseForm
     {
+        #region 定数
+        private const string DISPLAY_WHITE_CODE = "白コード";
+        //テーブル
+        private const string DEFAULTS_TABLE = Sql.Order.Defaults.MAIN_TABLE;
+        //カラム
+        private const string WHITE_CODE = Sql.Order.Defaults.COLUMN_WHITE_CODE;
+        #endregion
+
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "White_Code", DisplayName = "白コード", Visible = true, Width = 930, alignment = DataGridViewContentAlignment.MiddleLeft } },
+             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = WHITE_CODE, DisplayName = DISPLAY_WHITE_CODE, Visible = true, Width = 930, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
@@ -81,7 +89,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void DgvListSelectionChanged(object sender, EventArgs e)
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == "White_Code");
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == WHITE_CODE);
             var dgv = (DataGridView)sender;
             if (dgv.SelectedRows.Count > 0)
             {
@@ -142,7 +150,7 @@ namespace NipponPaint.OrderManager.Dialogs
                         break;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -162,7 +170,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 DataGridViewEnabled();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -181,7 +189,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 DataGridViewEnabled();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -195,7 +203,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                DialogResult result = MessageBox.Show("白コードを削除します。処理を続けますか？", "Confirm", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                DialogResult result = Messages.ShowDialog(Sentence.Messages.SelectedWhiteCodeWillBeDeletedContinue);
                 switch (result)
                 {
                     case DialogResult.Yes:
@@ -212,7 +220,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 DataGridViewEnabled();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -232,7 +240,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -254,9 +262,9 @@ namespace NipponPaint.OrderManager.Dialogs
                         //新規作成時、エラーの場合はDataGridViewで既に存在する白コードを選択状態にしてユーザーに明示する
                         foreach (DataGridViewRow row in DgvList.Rows)
                         {
-                            if (DrpWhiteCode.DropDown.Text == row.Cells["白コード"].Value.ToString())
+                            if (DrpWhiteCode.DropDown.Text == row.Cells[DISPLAY_WHITE_CODE].Value.ToString())
                             {
-                                DgvList.CurrentCell = row.Cells["白コード"];
+                                DgvList.CurrentCell = row.Cells[DISPLAY_WHITE_CODE];
                             }
                         }
                         DgvList.Enabled = false;
@@ -610,7 +618,6 @@ namespace NipponPaint.OrderManager.Dialogs
                     NumMixingSpeed.Visible = true;
                     TxtWhiteCode.Value = "";
                     break;
-                    //
                 //更新
                 case DialogEditButtons.Mode.Modify:
                     // 表示用コントロール
@@ -632,7 +639,6 @@ namespace NipponPaint.OrderManager.Dialogs
                     NumMixingTime.Visible = true;
                     NumMixingSpeed.Visible = true;
                     break;
-                    //
                 default:
                     // 表示用コントロール
                     TxtWhiteCode.Visible = true;
@@ -662,12 +668,12 @@ namespace NipponPaint.OrderManager.Dialogs
         /// </summary>
         private void ValueSetting()
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == "White_Code");
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == WHITE_CODE);
             if (DgvList.SelectedRows.Count > 0)
             {
                 // 選択している行を取得
                 var selectedRow = DgvList.SelectedRows[0];
-                
+
                 using (var db = new SqlBase(SqlBase.DatabaseKind.ORDER, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                 {
                     // 行取得のSQLを作成
@@ -726,7 +732,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 try
                 {
                     //入力したフォームの内容をデータベースに新規登録する
-                    db.Insert(this.Controls, "Defaults");
+                    db.Insert(this.Controls, DEFAULTS_TABLE);
                     db.Commit();
                 }
                 catch (Exception ex)
@@ -752,8 +758,8 @@ namespace NipponPaint.OrderManager.Dialogs
                 {
                     DrpWhiteCode.Id = "";
                     // フォームで定義された、指定LOT設定先のコントロールを抽出する
-                    db.FromLabelDropDown(this.Controls, "Defaults", "White_Code");
-                    db.FromLabelNumericUpDown(this.Controls, "Defaults", "White_Code");
+                    db.FromLabelDropDown(this.Controls, DEFAULTS_TABLE, WHITE_CODE);
+                    db.FromLabelNumericUpDown(this.Controls, DEFAULTS_TABLE, WHITE_CODE);
                     db.Commit();
                 }
                 catch (Exception ex)
@@ -781,7 +787,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     try
                     {
                         //指定した1行のデータをデータベースから物理削除する
-                        db.Delete(TxtWhiteCode.Value, "Defaults", "White_Code");
+                        db.Delete(TxtWhiteCode.Value, DEFAULTS_TABLE, WHITE_CODE);
                         db.Commit();
                     }
                     catch (Exception ex)
@@ -807,13 +813,13 @@ namespace NipponPaint.OrderManager.Dialogs
             foreach (DataGridViewRow row in DgvList.Rows)
             {
                 //DefaultsテーブルにてDrpWhiteCodeコントロールで選択中の白コードの行数をカウントする
-                if (DrpWhiteCode.DropDown.Text == row.Cells["白コード"].Value.ToString())
+                if (DrpWhiteCode.DropDown.Text == row.Cells[DISPLAY_WHITE_CODE].Value.ToString())
                 {
                     cnt++;
                 }
             }
             //Deaultsテーブルに選択中の白コードが存在する場合　result = falseとする
-            if(cnt <= 0)
+            if (cnt <= 0)
             {
                 result = true;
             }
@@ -823,7 +829,7 @@ namespace NipponPaint.OrderManager.Dialogs
         private bool InvalidMeg()
         {
             bool modeChangeFlg = false;
-            MessageBox.Show("白コードを複写", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Messages.ShowDialog(Sentence.Messages.DuplicateWhiteCode);
             return modeChangeFlg;
         }
         #endregion

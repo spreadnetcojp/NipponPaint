@@ -399,7 +399,7 @@ namespace NipponPaint.NpCommon
             /// <summary>
             /// 白コードを複写
             /// </summary>
-            [Display(Order = (int)Log.LogType.Info, Description = "白コードを複写します")]
+            [Display(Order = (int)Log.LogType.Info, Description = "白コードを複写しています")]
             DuplicateWhiteCode,
 
             /// <summary>
@@ -849,7 +849,7 @@ namespace NipponPaint.NpCommon
             // <summary>
             /// CCMの品名を削除
             /// </summary>
-            [Display(Order = (int)Log.LogType.Info, Description = "CCMの品名を削除します")]
+            [Display(Order = (int)Log.LogType.Question, Description = "選択されたCCMの品名は削除されます。続けますか？")]
             SelectedCCMPaintNameWillBeDeletedContinue,
 
             // <summary>
@@ -1035,7 +1035,7 @@ namespace NipponPaint.NpCommon
             // <summary>
             /// 
             /// </summary>
-            [Display(Order = (int)Log.LogType.Info, Description = "選択した製品を削除します。処理を続けますか？")]
+            [Display(Order = (int)Log.LogType.Question, Description = "選択した製品を削除します。処理を続けますか？")]
             SelectedProductDeletedContinue,
 
             // <summary>

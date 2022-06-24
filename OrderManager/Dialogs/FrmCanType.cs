@@ -30,11 +30,21 @@ namespace NipponPaint.OrderManager.Dialogs
     /// </summary>
     public partial class FrmCanType : BaseForm
     {
+        #region 定数
+        private const string DISPLAY_CAN_TYPE = "缶タイプ";
+        private const string DISPLAY_CAN_DESCRIPTION = "缶詳細";
+        //テーブル
+        private const string CAN_TYPES_TABLE = Sql.Order.CanTypes.MAIN_TABLE;
+        //カラム
+        private const string CAN_TYPE = Sql.Order.CanTypes.COLUMN_CAN_TYPE;
+        private const string CAN_DESCRIPTION = Sql.Order.CanTypes.COLUMN_CAN_DESCRIPTION;
+        #endregion
+
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Can_Type", DisplayName = "缶タイプ", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Can_Description", DisplayName = "缶詳細", Visible = true, Width = 300, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = CAN_TYPE, DisplayName = DISPLAY_CAN_TYPE, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = CAN_DESCRIPTION, DisplayName = DISPLAY_CAN_DESCRIPTION, Visible = true, Width = 700, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
@@ -77,7 +87,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void DgvListSelectionChanged(object sender, EventArgs e)
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == "Can_Type");
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == CAN_TYPE);
             var dgv = (DataGridView)sender;
             if (dgv.SelectedRows.Count > 0)
             {
@@ -141,7 +151,7 @@ namespace NipponPaint.OrderManager.Dialogs
                         break;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -193,7 +203,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                DialogResult result = MessageBox.Show("選択された缶タイプは削除されます。続けますか？", "Confirm", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                DialogResult result = Messages.ShowDialog(Sentence.Messages.SelectedCanTypeWillBeDeletedContinue);
                 switch (result)
                 {
                     case DialogResult.Yes:
@@ -290,7 +300,7 @@ namespace NipponPaint.OrderManager.Dialogs
             NumNormalVolume.Location = TxtNormalVolume.Location;
             NumMaxVolume.Location = TxtMaxVolume.Location;
             // イベントの追加
-            this.Shown += new System. EventHandler(this.FrmCanTypeShown);
+            this.Shown += new System.EventHandler(this.FrmCanTypeShown);
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(this.FormKeyDown);
             this.dialogEditButtons.Create.Click += new EventHandler(this.BtnCreateClick);
@@ -406,7 +416,6 @@ namespace NipponPaint.OrderManager.Dialogs
                     NumMaxVolume.Visible = true;
                     TxtCanDescription.Value = "";
                     break;
-                    //
                 //更新
                 case DialogEditButtons.Mode.Modify:
                     // 表示用コントロール
@@ -422,7 +431,6 @@ namespace NipponPaint.OrderManager.Dialogs
                     NumNormalVolume.Visible = true;
                     NumMaxVolume.Visible = true;
                     break;
-                    //
                 default:
                     // 表示用コントロール
                     TxtCanType.TextAlign = HorizontalAlignment.Right;
@@ -450,7 +458,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// </summary>
         private void ValueSetting()
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == "Can_Type");
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == CAN_TYPE);
             if (DgvList.SelectedRows.Count > 0)
             {
                 // 選択している行を取得
@@ -511,7 +519,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 try
                 {
                     //入力したフォームの内容をデータベースに新規登録する
-                    db.Insert(this.Controls, "Can_types");
+                    db.Insert(this.Controls, CAN_TYPES_TABLE);
                     db.Commit();
                 }
                 catch (Exception ex)
@@ -536,10 +544,10 @@ namespace NipponPaint.OrderManager.Dialogs
                 try
                 {
                     // フォームで定義された、指定LOT設定先のコントロールを抽出する
-                    db.FromLabelTextBox(this.Controls, "Can_Types", "Can_Type");
-                    db.FromLabelDropDown(this.Controls, "Can_Types", "Can_Type");
-                    db.FromLabelNumericUpDown(this.Controls, "Can_Types", "Can_Type");
-                    
+                    db.FromLabelTextBox(this.Controls, CAN_TYPES_TABLE, CAN_TYPE);
+                    db.FromLabelDropDown(this.Controls, CAN_TYPES_TABLE, CAN_TYPE);
+                    db.FromLabelNumericUpDown(this.Controls, CAN_TYPES_TABLE, CAN_TYPE);
+
                     db.Commit();
                 }
                 catch (Exception ex)
@@ -562,11 +570,11 @@ namespace NipponPaint.OrderManager.Dialogs
             using (var db = new SqlBase(SqlBase.DatabaseKind.ORDER, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
             {
                 if (!string.IsNullOrEmpty(TxtCanType.Value))
-                {                   
+                {
                     try
                     {
                         //指定した1行のデータをデータベースから物理削除する
-                        db.Delete(TxtCanType.Value, "Can_types", "Can_Type");
+                        db.Delete(TxtCanType.Value, CAN_TYPES_TABLE, CAN_TYPE);
                         db.Commit();
                     }
                     catch (Exception ex)
@@ -598,7 +606,7 @@ namespace NipponPaint.OrderManager.Dialogs
         private bool InvalidMeg()
         {
             bool modeChangeFlg = true;
-            MessageBox.Show("不完全データ","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            Messages.ShowDialog(Sentence.Messages.IncompleteData);
             return modeChangeFlg;
         }
         #endregion

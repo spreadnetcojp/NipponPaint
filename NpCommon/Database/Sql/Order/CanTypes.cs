@@ -24,7 +24,7 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
     {
         #region　定数
         // テーブル
-        private const string MAIN_TABLE = "Can_types";
+        public const string MAIN_TABLE = "Can_types";
         // カラム
         public const string COLUMN_CAN_TYPE = "Can_Type";
         public const string COLUMN_CAN_DESCRIPTION = "Can_Description";

@@ -22,6 +22,15 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
 {
     public static class Formal
     {
+        #region 定数
+        //テーブル
+        public const string MAIN_TABLE = "Formal";
+        //カラム
+        public const string COLUMN_CCM_PAINT_NAME = "CCM_Paint_Name";
+        public const string COLUMN_FORMAL_NAME = "Formal_Name";
+        public const string COLUMN_LABEL_TYPE = "Label_Type";
+        #endregion
+
         #region 参照系
 
         #region 一覧データの取得
@@ -43,8 +52,8 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
                 sql.Append(item.SqlSentence);
                 cnt++;
             }
-            sql.Append($"FROM Formal ");
-            sql.Append($"ORDER BY CCM_Paint_Name ");
+            sql.Append($"FROM {MAIN_TABLE} ");
+            sql.Append($"ORDER BY {COLUMN_CCM_PAINT_NAME} ");
             return sql.ToString();
         }
         #endregion
@@ -60,10 +69,10 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
             sql.Append($"  FM.* ");
-            sql.Append($" ,LB.Label_Description ");
-            sql.Append($"FROM Formal AS FM ");
-            sql.Append($"LEFT JOIN Labels AS LB ON FM.Label_Type = LB.Label_Type  ");
-            sql.Append($"WHERE CCM_Paint_Name = @ccmPaintName ");
+            sql.Append($" ,LB.{Labels.COLUMN_LABLE_DESCRIPTION} ");
+            sql.Append($"FROM {MAIN_TABLE} AS FM ");
+            sql.Append($"LEFT JOIN {Labels.MAIN_TABLE} AS LB ON FM.{COLUMN_LABEL_TYPE} = LB.{Labels.COLUMN_LABEL_TYPE} ");
+            sql.Append($"WHERE {COLUMN_CCM_PAINT_NAME} = @ccmPaintName ");
             return sql.ToString();
         }
         #endregion
