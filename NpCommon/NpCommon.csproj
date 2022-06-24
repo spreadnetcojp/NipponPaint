@@ -67,7 +67,6 @@
     <Compile Include="Database\Sql\Order\Formal.cs" />
     <Compile Include="Database\Sql\Order\LabelEdit.cs" />
     <Compile Include="Database\Sql\Order\Labels.cs" />
-    <Compile Include="Database\Sql\Order\LabelSelections.cs" />
     <Compile Include="Database\Sql\SupervisorPc\Func.cs" />
     <Compile Include="Database\Sql\SupervisorPc\MergeItemDefine.cs" />
     <Compile Include="Database\Sql\SupervisorPc\TbBarcode.cs" />

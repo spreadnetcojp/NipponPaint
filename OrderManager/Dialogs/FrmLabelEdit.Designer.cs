@@ -629,7 +629,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtLabel.Name = "TxtLabel";
             this.TxtLabel.Size = new System.Drawing.Size(494, 30);
             this.TxtLabel.TabIndex = 2;
-            this.TxtLabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TxtLabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TxtLabel.TextBackColor = System.Drawing.SystemColors.Window;
             this.TxtLabel.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TxtLabel.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));

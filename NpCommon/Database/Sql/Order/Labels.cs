@@ -12,6 +12,7 @@
 #endregion
 //*****************************************************************************
 
+using NipponPaint.NpCommon.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,45 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
         #endregion
 
         #region 参照系
+
+        #region 一覧データの取得
+        /// <summary>
+        /// 一覧データの取得
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPreview(List<GridViewSetting> viewSettings)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            int cnt = 0;
+            foreach (var item in viewSettings)
+            {
+                if (cnt > 0)
+                {
+                    sql.Append(",");
+                }
+                sql.Append(item.SqlSentence);
+                cnt++;
+            }
+            sql.Append($"FROM Labels ");
+            sql.Append($"ORDER BY Label_Type ");
+            return sql.ToString();
+        }
+        #endregion
+
+        #region 詳細データの取得
+        /// <summary>
+        /// 詳細データの取得
+        /// </summary>
+        /// <returns></returns>
+        public static string GetDetail()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT * FROM Labels WHERE Label_Type = @labelType");
+            return sql.ToString();
+        }
+        #endregion
+
         #endregion
 
         #region 更新系
