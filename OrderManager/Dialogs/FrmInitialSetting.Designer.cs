@@ -126,16 +126,17 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // DrpWhiteCode
             // 
-            this.DrpWhiteCode.DatabaseColumnName = "White_Code";
-            this.DrpWhiteCode.DisplayMemberField = "";
+            this.DrpWhiteCode.DatabaseColumnName = "PRODUCT_NAME";
+            this.DrpWhiteCode.DisplayMemberField = "PRODUCT_NAME";
             this.DrpWhiteCode.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.DrpWhiteCode.Id = null;
             this.DrpWhiteCode.Location = new System.Drawing.Point(341, 9);
             this.DrpWhiteCode.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DrpWhiteCode.Name = "DrpWhiteCode";
+            this.DrpWhiteCode.SelectedValue = null;
             this.DrpWhiteCode.Size = new System.Drawing.Size(293, 31);
             this.DrpWhiteCode.TabIndex = 33;
-            this.DrpWhiteCode.TableName = "Defaults";
+            this.DrpWhiteCode.TableName = "Raw";
             this.DrpWhiteCode.TextBackColor = System.Drawing.SystemColors.Window;
             this.DrpWhiteCode.TextForeColor = System.Drawing.SystemColors.WindowText;
             this.DrpWhiteCode.Title = "白コード(&W)";
@@ -152,6 +153,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DrpCap_Type.Location = new System.Drawing.Point(341, 79);
             this.DrpCap_Type.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DrpCap_Type.Name = "DrpCap_Type";
+            this.DrpCap_Type.SelectedValue = null;
             this.DrpCap_Type.Size = new System.Drawing.Size(382, 31);
             this.DrpCap_Type.TabIndex = 32;
             this.DrpCap_Type.TableName = "Cap_types";
@@ -171,6 +173,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DrpCan_Type.Location = new System.Drawing.Point(341, 44);
             this.DrpCan_Type.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DrpCan_Type.Name = "DrpCan_Type";
+            this.DrpCan_Type.SelectedValue = null;
             this.DrpCan_Type.Size = new System.Drawing.Size(382, 31);
             this.DrpCan_Type.TabIndex = 31;
             this.DrpCan_Type.TableName = "Can_types";
@@ -315,7 +318,9 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // TxtCapType
             // 
+            this.TxtCapType.CodeBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtCapType.CodeControlName = "TxtCapType";
+            this.TxtCapType.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtCapType.CodeReadOnly = false;
             this.TxtCapType.CodeText = "";
             this.TxtCapType.CodeTextSize = new System.Drawing.Size(60, 30);
@@ -340,7 +345,9 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // TxtCanType
             // 
+            this.TxtCanType.CodeBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtCanType.CodeControlName = "TxtCanType";
+            this.TxtCanType.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtCanType.CodeReadOnly = false;
             this.TxtCanType.CodeText = "";
             this.TxtCanType.CodeTextSize = new System.Drawing.Size(60, 30);
