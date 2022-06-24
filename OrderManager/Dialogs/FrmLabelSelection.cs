@@ -29,11 +29,37 @@ namespace NipponPaint.OrderManager.Dialogs
     /// </summary>
     public partial class FrmLabelSelection : BaseForm
     {
+        #region 定数
+        private enum EditParameter
+        {
+            /// <summary>
+            /// 新規作成
+            /// </summary>
+            Create,
+            /// <summary>
+            /// 複写して新規作成
+            /// </summary>
+            CopyAndCreate,
+            /// <summary>
+            /// 修正
+            /// </summary>
+            Modify,
+        }
+
+        private const string DISPLAY_NAME_LABEL_TYPE = "ラベルタイプ";
+        private const string DISPLAY_NAME_LABEL_DESCRIPTION = "ラベル詳細";
+        //テーブル
+        private const string LABELS_TABLE = Sql.Order.Labels.MAIN_TABLE;
+        //カラム
+        private const string COLUMN_NAME_LABEL_TYPE = Sql.Order.Labels.COLUMN_LABEL_TYPE;
+        private const string COLUMN_NAME_LABEL_DESCRIPTION = Sql.Order.Labels.COLUMN_LABLE_DESCRIPTION;
+        #endregion
+
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Label_Type", DisplayName = "ラベルタイプ", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Label_Description", DisplayName = "ラベル詳細", Visible = true, Width = 820, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_LABEL_TYPE, DisplayName = DISPLAY_NAME_LABEL_TYPE, Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_LABEL_DESCRIPTION, DisplayName = DISPLAY_NAME_LABEL_DESCRIPTION, Visible = true, Width = 820, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
@@ -50,11 +76,7 @@ namespace NipponPaint.OrderManager.Dialogs
             TxtLabelDescription.Value = vm.LabelDescription;
         }
         #endregion
-        public FrmLabelSelection()
-        {
-            InitializeComponent();
-            InitializeForm();
-        }
+
         #region イベント
         /// <summary>
         /// ダイアログ表示後
@@ -72,7 +94,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void DgvListSelectionChanged(object sender, EventArgs e)
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == "Label_Type");
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == COLUMN_NAME_LABEL_TYPE);
             var dgv = (DataGridView)sender;
             if (dgv.SelectedRows.Count > 0)
             {
@@ -86,7 +108,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     {
                         new ParameterItem("labelType", labelType),
                     };
-                    var rec = db.Select(Sql.Order.LabelSelections.GetDetail(), parameter);
+                    var rec = db.Select(Sql.Order.Labels.GetDetail(), parameter);
                     // フォームで定義された、取得値設定先のコントロールを抽出する
                     db.ToLabelTextBox(this.Controls, rec.Rows);
                 }
@@ -138,13 +160,13 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.LabelEdit();
                 //新規作成
-                vm.Parameter = 0;
+                vm.Parameter = (int)EditParameter.Create;
                 //ラベルタイプ0"Template Label"を選択
                 vm.LabelType = 0;
                 FrmLabelEdit frmLabelEdit = new FrmLabelEdit(vm);
                 frmLabelEdit.ShowDialog();
-            } 
-            catch(Exception ex) 
+            }
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -161,7 +183,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.LabelEdit();
                 //複製して新規作成
-                vm.Parameter = 1;
+                vm.Parameter = (int)EditParameter.CopyAndCreate;
                 int.TryParse(TxtLabelType.Value, out int labelType);
                 vm.LabelType = labelType;
                 FrmLabelEdit frmLabelEdit = new FrmLabelEdit(vm);
@@ -183,7 +205,7 @@ namespace NipponPaint.OrderManager.Dialogs
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var vm = new ViewModels.LabelEdit();
-                vm.Parameter = 2;
+                vm.Parameter = (int)EditParameter.Modify;
                 int.TryParse(TxtLabelType.Value, out int labelType);
                 vm.LabelType = labelType;
                 FrmLabelEdit frmLabelEdit = new FrmLabelEdit(vm);
@@ -194,7 +216,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(ex);
             }
         }
-        //// <summary>
+        /// <summary>
         /// 削除ボタン(F4)
         /// </summary>
         /// <param name="sender"></param>
@@ -203,10 +225,19 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                MessageBox.Show("選択したラベルタイプを削除します。処理を続けますか？", "Confirm", MessageBoxButtons.YesNo);
+                var result = Messages.ShowDialog(Sentence.Messages.SelectedLabelTypeWillBeDeletedContinue);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        break;
+                    case DialogResult.No:
+                        break;
+                    default:
+                        break;
+                }
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 PutLog(ex);
             }
@@ -238,8 +269,6 @@ namespace NipponPaint.OrderManager.Dialogs
         /// </summary>
         private void InitializeForm()
         {
-            //コントロールの配置
-            this.PrinterSetting.Enter += new System.EventHandler(this.groupBox1_Enter);
             //イベントの追加
             this.Shown += new System.EventHandler(this.FrmLabelSelectionShown);
             this.KeyPreview = true;
@@ -300,23 +329,11 @@ namespace NipponPaint.OrderManager.Dialogs
             //DataGridViewの表示
             using (var db = new SqlBase(SqlBase.DatabaseKind.ORDER, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
-                var result = db.Select(Sql.Order.LabelSelections.GetPreview(ViewSettings));
+                var result = db.Select(Sql.Order.Labels.GetPreview(ViewSettings));
                 DgvList.DataSource = result;
             }
         }
         #endregion
-        private void NumEmptyCanWeight_Load(object sender, EventArgs e)
-        {
-
-        }
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }        
     }
 }
 #endregion
