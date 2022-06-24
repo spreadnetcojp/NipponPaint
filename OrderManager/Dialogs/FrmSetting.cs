@@ -31,11 +31,21 @@ namespace NipponPaint.OrderManager.Dialogs
     /// </summary>
     public partial class FrmSetting : BaseForm
     {
+        #region 定数
+        private const string DISPLAY_CCM_PAINT_NAME = "CCM品種名";
+        private const string DISPLAY_FORMAL_NAME = "正式品種名";
+        //テーブル
+        private const string FORLMAL_TABLE = Sql.Order.Formal.MAIN_TABLE;
+        //カラム
+        private const string PAINT_NAME = Sql.Order.Formal.COLUMN_CCM_PAINT_NAME;
+        private const string FORMAL_NAME = Sql.Order.Formal.COLUMN_FORMAL_NAME;
+        #endregion
+
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "CCM_Paint_Name", DisplayName = "CCM品種名", Visible = true, Width = 460, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Formal_Name", DisplayName = "正式品種名", Visible = true, Width = 460, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = PAINT_NAME, DisplayName = DISPLAY_CCM_PAINT_NAME, Visible = true, Width = 460, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = FORMAL_NAME, DisplayName = DISPLAY_FORMAL_NAME, Visible = true, Width = 460, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
@@ -73,7 +83,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void DgvListSelectionChanged(object sender, EventArgs e)
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == "CCM_Paint_Name");
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == PAINT_NAME);
             var dgv = (DataGridView)sender;
             if (dgv.SelectedRows.Count > 0)
             {
@@ -187,7 +197,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                DialogResult result = MessageBox.Show("CCMの品名を削除", "Confirm", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                DialogResult result = Messages.ShowDialog(Sentence.Messages.SelectedCCMPaintNameWillBeDeletedContinue);
                 switch (result)
                 {
                     case DialogResult.Yes:
@@ -391,7 +401,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     TxtCCMPaintName.Value = "";
                     TxtFormalPaintName.Value = "";
                     break;
-                 //更新
+                //更新
                 case DialogEditButtons.Mode.Modify:
                     // 表示用コントロール
                     TxtLabelType.Visible = false;
@@ -422,12 +432,12 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <param name="e"></param>
         private void ValueSetting()
         {
-            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == "CCM_Paint_Name");
+            var columnIndex = ViewSettings.FindIndex(x => x.ColumnName == PAINT_NAME);
             if (DgvList.SelectedRows.Count > 0)
             {
                 // 選択している行を取得
                 var selectedRow = DgvList.SelectedRows[0];
-                
+
                 using (var db = new SqlBase(SqlBase.DatabaseKind.ORDER, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                 {
                     // 行取得のSQLを作成
@@ -475,7 +485,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 try
                 {
                     //入力したフォームの内容をデータベースに新規登録する
-                    db.Insert(this.Controls, "Formal");
+                    db.Insert(this.Controls, FORLMAL_TABLE);
                     db.Commit();
                 }
                 catch (Exception ex)
@@ -500,8 +510,8 @@ namespace NipponPaint.OrderManager.Dialogs
                 try
                 {
                     // フォームで定義された、指定LOT設定先のコントロールを抽出する
-                    db.FromLabelTextBox(this.Controls, "Formal", "CCM_Paint_Name");
-                    db.FromLabelDropDown(this.Controls, "Formal", "CCM_Paint_Name");
+                    db.FromLabelTextBox(this.Controls, FORLMAL_TABLE, PAINT_NAME);
+                    db.FromLabelDropDown(this.Controls, FORLMAL_TABLE, PAINT_NAME);
                     db.Commit();
                 }
                 catch (Exception ex)
@@ -528,7 +538,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     try
                     {
                         //指定した1行のデータをデータベースから物理削除する
-                        db.Delete(TxtCCMPaintName.Value, "Formal", "CCM_Paint_Name");
+                        db.Delete(TxtCCMPaintName.Value, FORLMAL_TABLE, PAINT_NAME);
                         db.Commit();
                     }
                     catch (Exception ex)
@@ -560,7 +570,7 @@ namespace NipponPaint.OrderManager.Dialogs
         private bool InvalidMeg()
         {
             bool modeChangeFlg = false;
-            MessageBox.Show("不完全データ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Messages.ShowDialog(Sentence.Messages.IncompleteData);
             return modeChangeFlg;
         }
         #endregion
