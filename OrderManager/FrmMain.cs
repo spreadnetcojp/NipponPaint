@@ -103,6 +103,29 @@ namespace NipponPaint.OrderManager
         #endregion
 
         /// <summary>
+        /// 選択タブ
+        /// </summary>
+        private enum TabSelectIndex
+        {
+            /// <summary>
+            /// 注文タブ
+            /// </summary>
+            ORDER,
+            /// <summary>
+            /// 詳細タブ
+            /// </summary>
+            DETAIL,
+            /// <summary>
+            /// 配合タブ
+            /// </summary>
+            FORMULATION,
+            /// <summary>
+            /// 缶タブ
+            /// </summary>
+            CAN,
+        }
+
+        /// <summary>
         /// 選択行：1行選択なので値は「0」
         /// </summary>
         private const int SELECTED_ROW = 0;
@@ -621,7 +644,7 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnPrintEmergencyClick);
+                var result = Messages.ShowDialog(Sentence.Messages.BtnPrintEmergencyClick);
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -1582,8 +1605,7 @@ namespace NipponPaint.OrderManager
                         GvDetail.CurrentCell = GvDetail.Rows[gdvSelectedIndex].Cells[COLUMN_DELIVERY_CODE];
                         DataGridViewFormatting(GvDetail);
                         // ステータスを戻すボタンの活性/非活性
-                        var gdvSelectedStatus = Funcs.StrToInt(GvDetail.SelectedRows[SELECTED_ROW].Cells[COLUMN_STATUS].Value.ToString());
-                        switch (gdvSelectedStatus)
+                        switch (Funcs.StrToInt(GvDetail.SelectedRows[SELECTED_ROW].Cells[COLUMN_STATUS].Value.ToString()))
                         {
                             case (int)Sql.NpMain.Orders.OrderStatus.Ready:
                             case (int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
@@ -2472,14 +2494,7 @@ namespace NipponPaint.OrderManager
                         BtnPrintInstructions.Enabled = false;
                         BtnPrint.Enabled = false;
                     }
-                    if (statusEnable)
-                    {
-                        BtnStatusResume.Enabled = true;
-                    }
-                    else
-                    {
-                        BtnStatusResume.Enabled = false;
-                    }
+                    BtnStatusResume.Enabled = statusEnable;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
                     //BtnProcessDetail.Enabled = false;
@@ -2489,14 +2504,7 @@ namespace NipponPaint.OrderManager
                     BtnPrintInstructions.Enabled = false;
                     BtnPrintEmergency.Enabled = false;
                     BtnOrderStart.Enabled = false;
-                    if (statusEnable)
-                    {
-                        BtnStatusResume.Enabled = true;
-                    }
-                    else
-                    {
-                        BtnStatusResume.Enabled = false;
-                    }
+                    BtnStatusResume.Enabled = statusEnable;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
                     //BtnProcessDetail.Enabled = false;
@@ -2506,14 +2514,7 @@ namespace NipponPaint.OrderManager
                     BtnPrintInstructions.Enabled = false;
                     BtnPrintEmergency.Enabled = false;
                     BtnOrderStart.Enabled = false;
-                    if (statusEnable)
-                    {
-                        BtnStatusResume.Enabled = true;
-                    }
-                    else
-                    {
-                        BtnStatusResume.Enabled = false;
-                    }
+                    BtnStatusResume.Enabled = statusEnable;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
                     //BtnProcessDetail.Enabled = false;
@@ -2645,16 +2646,16 @@ namespace NipponPaint.OrderManager
             //変更前に選択していた行のIdを取得
             switch (selectingTabIndex)
             {
-                case TAB_INDEX_ORDER:
+                case (int)TabSelectIndex.ORDER:
                     gdvSelectedOrderId = Funcs.StrToInt(GvOrder.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
                     break;
-                case TAB_INDEX_DETAIL:
+                case (int)TabSelectIndex.DETAIL:
                     gdvSelectedOrderId = Funcs.StrToInt(GvDetail.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
                     break;
-                case TAB_INDEX_FORMULATION:
+                case (int)TabSelectIndex.FORMULATION:
                     gdvSelectedOrderId = Funcs.StrToInt(GvFormulation.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
                     break;
-                case TAB_INDEX_CAN:
+                case (int)TabSelectIndex.CAN:
                     gdvSelectedOrderId = Funcs.StrToInt(GvOrderNumber.SelectedRows[SELECTED_ROW].Cells[COLUMN_ORDER_ID].Value.ToString());
                     break;
                 default:
@@ -2672,16 +2673,16 @@ namespace NipponPaint.OrderManager
             var getGridViewRowIndex = GetGridViewRowIndex(gdvSelectedOrderId.ToString(), COLUMN_ORDER_ID);
             switch (selectingTabIndex)
             {
-                case TAB_INDEX_ORDER:
+                case (int)TabSelectIndex.ORDER:
                     SetGridViewRowIndex(GvOrder, getGridViewRowIndex);
                     break;
-                case TAB_INDEX_DETAIL:
+                case (int)TabSelectIndex.DETAIL:
                     SetGridViewRowIndex(GvDetail, getGridViewRowIndex);
                     break;
-                case TAB_INDEX_FORMULATION:
+                case (int)TabSelectIndex.FORMULATION:
                     SetGridViewRowIndex(GvFormulation, getGridViewRowIndex);
                     break;
-                case TAB_INDEX_CAN:
+                case (int)TabSelectIndex.CAN:
                     SetGridViewRowIndex(GvOrderNumber, getGridViewRowIndex);
                     break;
                 default:
