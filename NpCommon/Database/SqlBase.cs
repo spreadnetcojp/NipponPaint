@@ -229,7 +229,7 @@ namespace NipponPaint.NpCommon.Database
         /// <param name="sql"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public int Execute(string sql, List<ParameterItem> parameters = null)
+        public int Execute(string sql, List<ParameterItem> parameters)
         {
             return Execute(sql, ToSqlParams(parameters));
         }
