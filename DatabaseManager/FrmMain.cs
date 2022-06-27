@@ -36,13 +36,34 @@ namespace DatabaseManager
 {
     public partial class FrmMain : BaseForm
     {
+        #region 定数
+        private static readonly Color FORE_COLOR = Color.LimeGreen;
+        private static readonly Color REJECTED_FORE_COLOR = Color.FromArgb(250, 250, 0);
+        private static readonly Color REJECTED_AND_ACKONWLEDGED_FORE_COLOR = Color.FromArgb(130, 130, 0);
+
+
+        private const string DISPLAY_NAME_NOTIFY_MSG = "メッセージ";
+        private const string DISPLAY_NAME_RECEIVE_TIME = "時間(Time)";
+        private const string DISPLAY_NAME_REJECTED = "拒否";
+        private const string DISPLAY_NAME_ACKNOWLEDGED = "認識";
+
+        //テーブル
+
+        //カラム
+        private const string COLUMN_NAME_NOTIFY_MSG = Sql.NpMain.HgLog.COLUMN_NOTIFY_MSG;
+        private const string COLUMN_NAME_RECEIVE_TIME = Sql.NpMain.HgLog.COLUMN_RECEIVE_TIME;
+        private const string COLUMN_NAME_REJECTED = Sql.NpMain.HgLog.COLUMN_REJECTED;
+        private const string COLUMN_NAME_ACKNOWLEDGED = Sql.NpMain.HgLog.COLUMN_ACKNOWLEDGED;
+
+        #endregion
+
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Notify_Msg", DisplayName = "メッセージ", Visible = true, Width = 730, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "Receive_Time", DisplayName = "'時間(Time)'", Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "Rejected", DisplayName = "'拒否'", Visible = false, Width = 50, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "Acknowledged", DisplayName = "'認識'", Visible = false, Width = 50, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_NOTIFY_MSG, DisplayName = DISPLAY_NAME_NOTIFY_MSG, Visible = true, Width = 730, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = COLUMN_NAME_RECEIVE_TIME, DisplayName = $"'{DISPLAY_NAME_RECEIVE_TIME}'", Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = COLUMN_NAME_REJECTED, DisplayName = DISPLAY_NAME_REJECTED, Visible = false, Width = 50, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = COLUMN_NAME_ACKNOWLEDGED, DisplayName = DISPLAY_NAME_ACKNOWLEDGED, Visible = false, Width = 50, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
@@ -136,6 +157,18 @@ namespace DatabaseManager
         {
             try
             {
+                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.Databasemanager))
+                {
+                    var parameters = new List<ParameterItem>()
+                    {
+                        new ParameterItem("acknowledged1", true),
+                        new ParameterItem("acknowledged2", false),
+                    };
+                    db.Execute(Sql.NpMain.HgLog.Acknowledged(), parameters);
+                    db.Commit();
+                }
+                // DgvListの初期設定
+                InitializeDgvList();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -153,6 +186,27 @@ namespace DatabaseManager
         {
             try
             {
+                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.Databasemanager))
+                {
+                    var result = Messages.ShowDialog(Sentence.Messages.ClearLogFileInformation);
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            var parameters = new List<ParameterItem>()
+                            {
+
+                            };
+                            db.Execute(Sql.NpMain.HgLog.LogDelete(), parameters);
+                            db.Commit();
+                            break;
+                        case DialogResult.No:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                // DgvListの初期設定
+                InitializeDgvList();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -273,21 +327,8 @@ namespace DatabaseManager
             this.BtnHGServerStart.Click += new System.EventHandler(this.BtnHGServerStartClick);
             this.BtnHGServerStop.Click += new System.EventHandler(this.BtnHGServerStopClick);
             this.DgvList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DgvList_DataBindingComplete);
-            // DataGridViewの初期設定
-            InitializeGridView(DgvList);
-            // 一覧表示
-            PreviewData();
-            // 一覧レイアウトの設定
-            var cnt = 0;
-
-            foreach (var item in ViewSettings)
-            {
-                DgvList.Columns[cnt].Width = item.Width;
-                DgvList.Columns[cnt].SortMode = DataGridViewColumnSortMode.NotSortable;
-                DgvList.Columns[cnt].Visible = item.Visible;
-                DgvList.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-                cnt++;
-            }
+            // DgvListの初期設定
+            InitializeDgvList();
         }
         #endregion
 
@@ -308,6 +349,27 @@ namespace DatabaseManager
         }
         #endregion
 
+        #region // DgvListの初期設定
+        private void InitializeDgvList()
+        {
+            // DataGridViewの初期設定
+            InitializeGridView(DgvList);
+            // 一覧表示
+            PreviewData();
+            // 一覧レイアウトの設定
+            var cnt = 0;
+
+            foreach (var item in ViewSettings)
+            {
+                DgvList.Columns[cnt].Width = item.Width;
+                DgvList.Columns[cnt].SortMode = DataGridViewColumnSortMode.NotSortable;
+                DgvList.Columns[cnt].Visible = item.Visible;
+                DgvList.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
+                cnt++;
+            }
+        }
+        #endregion
+
         #region Datagridviewをバインドする
         /// <summary>
         /// Datagridviewをバインドする
@@ -318,29 +380,30 @@ namespace DatabaseManager
         {
             foreach (DataGridViewRow row in DgvList.Rows)
             {
-                Console.Write(row.Cells["メッセージ"].Value);
-                Console.Write(row.Cells["時間(Time)"].Value);
-                Console.Write(row.Cells["拒否"].Value);
-                Console.Write(row.Cells["認識"].Value);
+                Console.Write(row.Cells[DISPLAY_NAME_NOTIFY_MSG].Value);
+                Console.Write(row.Cells[DISPLAY_NAME_RECEIVE_TIME].Value);
+                Console.Write(row.Cells[DISPLAY_NAME_REJECTED].Value);
+                Console.Write(row.Cells[DISPLAY_NAME_ACKNOWLEDGED].Value);
 
-                int rejectedCell = Convert.ToInt32(row.Cells["拒否"].Value);
-                int acknowledgedCell = Convert.ToInt32(row.Cells["認識"].Value);
+                int rejectedCell = Convert.ToInt32(row.Cells[DISPLAY_NAME_REJECTED].Value);
+                int acknowledgedCell = Convert.ToInt32(row.Cells[DISPLAY_NAME_ACKNOWLEDGED].Value);
                 switch (rejectedCell)
                 {
+
                     case 0:
-                        row.DefaultCellStyle.ForeColor = Color.LimeGreen;
-                        row.DefaultCellStyle.SelectionForeColor = Color.LimeGreen;
+                        row.DefaultCellStyle.ForeColor = FORE_COLOR;
+                        row.DefaultCellStyle.SelectionForeColor = FORE_COLOR;
                         break;
                     case 1:
                         if (acknowledgedCell == 0)
                         {
-                            row.DefaultCellStyle.ForeColor = Color.FromArgb(250, 250, 0);
-                            row.DefaultCellStyle.SelectionForeColor = Color.FromArgb(250, 250, 0);
+                            row.DefaultCellStyle.ForeColor = REJECTED_FORE_COLOR;
+                            row.DefaultCellStyle.SelectionForeColor = REJECTED_FORE_COLOR;
                         }
                         else
                         {
-                            row.DefaultCellStyle.ForeColor = Color.FromArgb(130, 130, 0);
-                            row.DefaultCellStyle.SelectionForeColor = Color.FromArgb(130, 130, 0);
+                            row.DefaultCellStyle.ForeColor = REJECTED_AND_ACKONWLEDGED_FORE_COLOR;
+                            row.DefaultCellStyle.SelectionForeColor = REJECTED_AND_ACKONWLEDGED_FORE_COLOR;
                         }
                         break;
                     default:
@@ -352,22 +415,10 @@ namespace DatabaseManager
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            // DataGridViewの初期設定
-            InitializeGridView(DgvList);
-            // 一覧表示
-            PreviewData();
-            // 一覧レイアウトの設定
-            var cnt = 0;
-            DgvList.Rows[0].Frozen = true;
-
-            foreach (var item in ViewSettings)
-            {
-                DgvList.Columns[cnt].Width = item.Width;
-                DgvList.Columns[cnt].SortMode = DataGridViewColumnSortMode.NotSortable;
-                DgvList.Columns[cnt].Visible = item.Visible;
-                DgvList.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-                cnt++;
-            }
+            // DgvListの初期設定
+            InitializeDgvList();
         }
+
+
     }
 }
