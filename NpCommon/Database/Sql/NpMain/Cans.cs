@@ -163,6 +163,19 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
+        public static string GetCansFormulaRelease(string plant)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT C.Formula_Release ");
+            sql.Append($"FROM {SelectCans(plant)} ");
+            sql.Append($"WHERE C.Order_Number IN (@OrderNumber) ");
+            return sql.ToString();
+        }
+
+        #endregion
+
+        #region 更新系
+
         #region 色コード、吐出量、重量を初期化する
         /// <summary>
         /// 色コード、吐出量、重量を初期化する
@@ -255,5 +268,6 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         #endregion
 
         #endregion
+
     }
 }

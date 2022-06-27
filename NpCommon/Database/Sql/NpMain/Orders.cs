@@ -114,7 +114,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string MAIN_TABLE = "Orders";
         // カラム
         public const string COLUMN_ORDER_ID = "Order_id";
-        private const string COLUMN_ORDER_NUMBER = "Order_Number";
+        public const string COLUMN_ORDER_NUMBER = "Order_Number";
         private const string COLUMN_COLOR_NAME = "Color_Name";
         private const string COLUMN_PRODUCT_CODE = "Product_Code";
         private const string COLUMN_NUMBER_OF_CAN = "Number_of_cans";
