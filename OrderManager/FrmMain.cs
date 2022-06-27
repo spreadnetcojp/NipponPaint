@@ -107,149 +107,354 @@ namespace NipponPaint.OrderManager
         /// </summary>
         private const int SELECTED_ROW = 0;
 
+        #region 列定義定数(ColumnName)
+        private const string COLUMN_NAME_ORDERS_HG_HG_DELIVERY_CODE = Sql.NpMain.Orders.COLUMN_HG_HG_DELIVERY_CODE;
+        private const string COLUMN_NAME_ORDERS_STATUS = Sql.NpMain.Orders.COLUMN_STATUS;
+        private const string COLUMN_NAME_ORDERS_ORDER_ID = Sql.NpMain.Orders.COLUMN_ORDER_ID;
+        private const string COLUMN_NAME_ORDERS_HG_HG_SHIPPING_ID = Sql.NpMain.Orders.COLUMN_HG_HG_SHIPPING_ID;
+        private const string COLUMN_NAME_ORDERS_PRODUCT_CODE = Sql.NpMain.Orders.COLUMN_PRODUCT_CODE;
+        private const string COLUMN_NAME_ORDERS_HG_PRODUCT_NAME = Sql.NpMain.Orders.COLUMN_HG_PRODUCT_NAME;
+        private const string COLUMN_NAME_ORDERS_HG_VOLUME_CODE = Sql.NpMain.Orders.COLUMN_HG_VOLUME_CODE;
+        private const string COLUMN_NAME_ORDERS_NUMBER_OF_CAN = Sql.NpMain.Orders.COLUMN_NUMBER_OF_CAN;
+        private const string COLUMN_NAME_ORDERS_HG_SS_SHIPPING_DATE = Sql.NpMain.Orders.COLUMN_HG_SS_SHIPPING_DATE;
+        private const string COLUMN_NAME_ORDERS_OPERATOR_NAME = Sql.NpMain.Orders.COLUMN_OPERATOR_NAME;
+        private const string COLUMN_NAME_ORDERS_HG_DELIVERY_DATE = Sql.NpMain.Orders.COLUMN_HG_DELIVERY_DATE;
+        private const string COLUMN_NAME_ORDERS_HG_COLOR_SAMPLE = Sql.NpMain.Orders.COLUMN_HG_COLOR_SAMPLE;
+        private const string COLUMN_NAME_ORDERS_COLOR_NAME = Sql.NpMain.Orders.COLUMN_COLOR_NAME;
+        private const string COLUMN_NAME_ORDERS_HG_SUM_UP_KEY = Sql.NpMain.Orders.COLUMN_HG_SUM_UP_KEY;
+        private const string COLUMN_NAME_ORDERS_OPERATOR_CODE = Sql.NpMain.Orders.COLUMN_OPERATOR_CODE;
+        private const string COLUMN_NAME_ORDERS_SORT_ORDER = Sql.NpMain.Orders.COLUMN_SORT_ORDER;
+        private const string COLUMN_NAME_ORDERS_URGENT = Sql.NpMain.Orders.COLUMN_URGENT;
+        private const string COLUMN_NAME_ORDERS_STATUSCOLOR = Sql.NpMain.Orders.COLUMN_STATUSCOLOR;
+        private const string COLUMN_NAME_ORDERS_ORDER_NUMBER = Sql.NpMain.Orders.COLUMN_ORDER_NUMBER;
+        private const string COLUMN_NAME_ORDERS_REVISION = Sql.NpMain.Orders.COLUMN_REVISION;
+        private const string COLUMN_NAME_ORDERS_FORMULA_RELEASE = Sql.NpMain.Orders.COLUMN_FORMULA_RELEASE;
+        private const string COLUMN_NAME_ORDERS_WHITE_CODE = Sql.NpMain.Orders.COLUMN_WHITE_CODE;
+        private const string COLUMN_NAME_ORDERS_WHITE_WEIGHT = Sql.NpMain.Orders.COLUMN_WHITE_WEIGHT;
+        private const string COLUMN_NAME_ORDERS_COLORANT_1 = Sql.NpMain.Orders.COLUMN_COLORANT_1;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_1 = Sql.NpMain.Orders.COLUMN_WEIGHT_1;
+        private const string COLUMN_NAME_ORDERS_COLORANT_2 = Sql.NpMain.Orders.COLUMN_COLORANT_2;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_2 = Sql.NpMain.Orders.COLUMN_WEIGHT_2;
+        private const string COLUMN_NAME_ORDERS_COLORANT_3 = Sql.NpMain.Orders.COLUMN_COLORANT_3;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_3 = Sql.NpMain.Orders.COLUMN_WEIGHT_3;
+        private const string COLUMN_NAME_ORDERS_COLORANT_4 = Sql.NpMain.Orders.COLUMN_COLORANT_4;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_4 = Sql.NpMain.Orders.COLUMN_WEIGHT_4;
+        private const string COLUMN_NAME_ORDERS_COLORANT_5 = Sql.NpMain.Orders.COLUMN_COLORANT_5;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_5 = Sql.NpMain.Orders.COLUMN_WEIGHT_5;
+        private const string COLUMN_NAME_ORDERS_COLORANT_6 = Sql.NpMain.Orders.COLUMN_COLORANT_6;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_6 = Sql.NpMain.Orders.COLUMN_WEIGHT_6;
+        private const string COLUMN_NAME_ORDERS_COLORANT_7 = Sql.NpMain.Orders.COLUMN_COLORANT_7;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_7 = Sql.NpMain.Orders.COLUMN_WEIGHT_7;
+        private const string COLUMN_NAME_ORDERS_COLORANT_8 = Sql.NpMain.Orders.COLUMN_COLORANT_8;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_8 = Sql.NpMain.Orders.COLUMN_WEIGHT_8;
+        private const string COLUMN_NAME_ORDERS_COLORANT_9 = Sql.NpMain.Orders.COLUMN_COLORANT_9;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_9 = Sql.NpMain.Orders.COLUMN_WEIGHT_9;
+        private const string COLUMN_NAME_ORDERS_COLORANT_10 = Sql.NpMain.Orders.COLUMN_COLORANT_10;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_10 = Sql.NpMain.Orders.COLUMN_WEIGHT_10;
+        private const string COLUMN_NAME_ORDERS_COLORANT_11 = Sql.NpMain.Orders.COLUMN_COLORANT_11;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_11 = Sql.NpMain.Orders.COLUMN_WEIGHT_11;
+        private const string COLUMN_NAME_ORDERS_COLORANT_12 = Sql.NpMain.Orders.COLUMN_COLORANT_12;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_12 = Sql.NpMain.Orders.COLUMN_WEIGHT_12;
+        private const string COLUMN_NAME_ORDERS_COLORANT_13 = Sql.NpMain.Orders.COLUMN_COLORANT_13;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_13 = Sql.NpMain.Orders.COLUMN_WEIGHT_13;
+        private const string COLUMN_NAME_ORDERS_COLORANT_14 = Sql.NpMain.Orders.COLUMN_COLORANT_14;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_14 = Sql.NpMain.Orders.COLUMN_WEIGHT_14;
+        private const string COLUMN_NAME_ORDERS_COLORANT_15 = Sql.NpMain.Orders.COLUMN_COLORANT_15;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_15 = Sql.NpMain.Orders.COLUMN_WEIGHT_15;
+        private const string COLUMN_NAME_ORDERS_COLORANT_16 = Sql.NpMain.Orders.COLUMN_COLORANT_16;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_16 = Sql.NpMain.Orders.COLUMN_WEIGHT_16;
+        private const string COLUMN_NAME_ORDERS_COLORANT_17 = Sql.NpMain.Orders.COLUMN_COLORANT_17;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_17 = Sql.NpMain.Orders.COLUMN_WEIGHT_17;
+        private const string COLUMN_NAME_ORDERS_COLORANT_18 = Sql.NpMain.Orders.COLUMN_COLORANT_18;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_18 = Sql.NpMain.Orders.COLUMN_WEIGHT_18;
+        private const string COLUMN_NAME_ORDERS_COLORANT_19 = Sql.NpMain.Orders.COLUMN_COLORANT_19;
+        private const string COLUMN_NAME_ORDERS_WEIGHT_19 = Sql.NpMain.Orders.COLUMN_WEIGHT_19;
+        private const string COLUMN_NAME_CANS_BARCODE = Sql.NpMain.Cans.COLUMN_BARCODE;
+        private const string COLUMN_NAME_CANS_ORDER_ID = Sql.NpMain.Cans.COLUMN_ORDER_ID;
+        private const string COLUMN_NAME_CANS_CAN_NUMBER = Sql.NpMain.Cans.COLUMN_CAN_NUMBER;
+        private const string COLUMN_NAME_CANS_STATUS = Sql.NpMain.Cans.COLUMN_STATUS;
+        private const string COLUMN_NAME_CANS_TEST_CAN = Sql.NpMain.Cans.COLUMN_TEST_CAN;
+        private const string COLUMN_NAME_CANS_SAMPLE_PRESENT = Sql.NpMain.Cans.COLUMN_SAMPLE_PRESENT;
+        private const string COLUMN_NAME_CANS_FORMULA_RELEASE = Sql.NpMain.Cans.COLUMN_FORMULA_RELEASE;
+        private const string COLUMN_NAME_CANS_WHITE_CODE = Sql.NpMain.Cans.COLUMN_WHITE_CODE;
+        private const string COLUMN_NAME_CANS_WHITE_DISPENSED = Sql.NpMain.Cans.COLUMN_WHITE_DISPENSED;
+        private const string COLUMN_NAME_CANS_COLORANT_1 = Sql.NpMain.Cans.COLUMN_COLORANT_1;
+        private const string COLUMN_NAME_CANS_DISPENSED_1 = Sql.NpMain.Cans.COLUMN_DISPENSED_1;
+        private const string COLUMN_NAME_CANS_COLORANT_2 = Sql.NpMain.Cans.COLUMN_COLORANT_2;
+        private const string COLUMN_NAME_CANS_DISPENSED_2 = Sql.NpMain.Cans.COLUMN_DISPENSED_2;
+        private const string COLUMN_NAME_CANS_COLORANT_3 = Sql.NpMain.Cans.COLUMN_COLORANT_3;
+        private const string COLUMN_NAME_CANS_DISPENSED_3 = Sql.NpMain.Cans.COLUMN_DISPENSED_3;
+        private const string COLUMN_NAME_CANS_COLORANT_4 = Sql.NpMain.Cans.COLUMN_COLORANT_4;
+        private const string COLUMN_NAME_CANS_DISPENSED_4 = Sql.NpMain.Cans.COLUMN_DISPENSED_4;
+        private const string COLUMN_NAME_CANS_COLORANT_5 = Sql.NpMain.Cans.COLUMN_COLORANT_5;
+        private const string COLUMN_NAME_CANS_DISPENSED_5 = Sql.NpMain.Cans.COLUMN_DISPENSED_5;
+        private const string COLUMN_NAME_CANS_COLORANT_6 = Sql.NpMain.Cans.COLUMN_COLORANT_6;
+        private const string COLUMN_NAME_CANS_DISPENSED_6 = Sql.NpMain.Cans.COLUMN_DISPENSED_6;
+        private const string COLUMN_NAME_CANS_COLORANT_7 = Sql.NpMain.Cans.COLUMN_COLORANT_7;
+        private const string COLUMN_NAME_CANS_DISPENSED_7 = Sql.NpMain.Cans.COLUMN_DISPENSED_7;
+        private const string COLUMN_NAME_CANS_COLORANT_8 = Sql.NpMain.Cans.COLUMN_COLORANT_8;
+        private const string COLUMN_NAME_CANS_DISPENSED_8 = Sql.NpMain.Cans.COLUMN_DISPENSED_8;
+        private const string COLUMN_NAME_CANS_COLORANT_9 = Sql.NpMain.Cans.COLUMN_COLORANT_9;
+        private const string COLUMN_NAME_CANS_DISPENSED_9 = Sql.NpMain.Cans.COLUMN_DISPENSED_9;
+        private const string COLUMN_NAME_CANS_COLORANT_10 = Sql.NpMain.Cans.COLUMN_COLORANT_10;
+        private const string COLUMN_NAME_CANS_DISPENSED_10 = Sql.NpMain.Cans.COLUMN_DISPENSED_10;
+        private const string COLUMN_NAME_CANS_COLORANT_11 = Sql.NpMain.Cans.COLUMN_COLORANT_11;
+        private const string COLUMN_NAME_CANS_DISPENSED_11 = Sql.NpMain.Cans.COLUMN_DISPENSED_11;
+        private const string COLUMN_NAME_CANS_COLORANT_12 = Sql.NpMain.Cans.COLUMN_COLORANT_12;
+        private const string COLUMN_NAME_CANS_DISPENSED_12 = Sql.NpMain.Cans.COLUMN_DISPENSED_12;
+        private const string COLUMN_NAME_CANS_COLORANT_13 = Sql.NpMain.Cans.COLUMN_COLORANT_13;
+        private const string COLUMN_NAME_CANS_DISPENSED_13 = Sql.NpMain.Cans.COLUMN_DISPENSED_13;
+        private const string COLUMN_NAME_CANS_COLORANT_14 = Sql.NpMain.Cans.COLUMN_COLORANT_14;
+        private const string COLUMN_NAME_CANS_DISPENSED_14 = Sql.NpMain.Cans.COLUMN_DISPENSED_14;
+        private const string COLUMN_NAME_CANS_COLORANT_15 = Sql.NpMain.Cans.COLUMN_COLORANT_15;
+        private const string COLUMN_NAME_CANS_DISPENSED_15 = Sql.NpMain.Cans.COLUMN_DISPENSED_15;
+        private const string COLUMN_NAME_CANS_COLORANT_16 = Sql.NpMain.Cans.COLUMN_COLORANT_16;
+        private const string COLUMN_NAME_CANS_DISPENSED_16 = Sql.NpMain.Cans.COLUMN_DISPENSED_16;
+        private const string COLUMN_NAME_CANS_COLORANT_17 = Sql.NpMain.Cans.COLUMN_COLORANT_17;
+        private const string COLUMN_NAME_CANS_DISPENSED_17 = Sql.NpMain.Cans.COLUMN_DISPENSED_17;
+        private const string COLUMN_NAME_CANS_COLORANT_18 = Sql.NpMain.Cans.COLUMN_COLORANT_18;
+        private const string COLUMN_NAME_CANS_DISPENSED_18 = Sql.NpMain.Cans.COLUMN_DISPENSED_18;
+        private const string COLUMN_NAME_CANS_COLORANT_19 = Sql.NpMain.Cans.COLUMN_COLORANT_19;
+        private const string COLUMN_NAME_CANS_DISPENSED_19 = Sql.NpMain.Cans.COLUMN_DISPENSED_19;
+        private const string COLUMN_NAME_CANS_WHITE_WEIGHT = Sql.NpMain.Cans.COLUMN_WHITE_WEIGHT;
         #endregion
+        #region 列定義定数(DisplayName)
+        private const string DISPLAY_NAME_HG_HG_DELIVERY_CODE = "運送区分";
+        private const string DISPLAY_NAME_STATUS = "Status";
+        private const string DISPLAY_NAME_ORDER_ID = "Order_id";
+        private const string DISPLAY_NAME_HG_HG_SHIPPING_ID = "配送ﾓｰﾄﾞ";
+        private const string DISPLAY_NAME_PRODUCT_CODE = "製品ｺｰﾄﾞ";
+        private const string DISPLAY_NAME_HG_PRODUCT_NAME = "品名";
+        private const string DISPLAY_NAME_HG_VOLUME_CODE = "容量ｺｰﾄﾞ";
+        private const string DISPLAY_NAME_NUMBER_OF_CAN = "缶数";
+        private const string DISPLAY_NAME_HG_SS_SHIPPING_DATE = "SS出荷予定日";
+        private const string DISPLAY_NAME_HG_SS_SHIPPING_PATTERN = "SS出荷予定日日付型";
+        private const string DISPLAY_NAME_OPERATOR_NAME = "担当者";
+        private const string DISPLAY_NAME_HG_DELIVERY_DATE = "納期";
+        private const string DISPLAY_NAME_HG_DELIVERY_DATE_PATTERN = "納期日付型";
+        private const string DISPLAY_NAME_HG_COLOR_SAMPLE = "標準色見本";
+        private const string DISPLAY_NAME_COLOR_NAME = "色名";
+        private const string DISPLAY_NAME_HG_SUM_UP_KEY = "順位コード";
+        private const string DISPLAY_NAME_OPERATOR_CODE = "担当者コード";
+        private const string DISPLAY_NAME_SORT_ORDER = "並び順";
+        private const string DISPLAY_NAME_URGENT = "Urgent";
+        private const string DISPLAY_NAME_CODE = "コード";
+        private const string DISPLAY_NAME_WEIGHT = "重量[g]";
+        private const string DISPLAY_NAME_STATUSCOLOR = "StatusColor";
+        private const string DISPLAY_NAME_ORDER_NUMBER = "注文番号";
+        private const string DISPLAY_NAME_REVISION = "補正";
+        private const string DISPLAY_NAME_FORMULA_RELEASE = "配合受取";
+        private const string DISPLAY_NAME_WHITE_CODE = "白コード";
+        private const string DISPLAY_NAME_WHITE_WEIGHT = "白重量";
+        private const string DISPLAY_NAME_COLORANT_1 = "着色剤1";
+        private const string DISPLAY_NAME_WEIGHT_1 = "重量1";
+        private const string DISPLAY_NAME_COLORANT_2 = "着色剤2";
+        private const string DISPLAY_NAME_WEIGHT_2 = "重量2";
+        private const string DISPLAY_NAME_COLORANT_3 = "着色剤3";
+        private const string DISPLAY_NAME_WEIGHT_3 = "重量3";
+        private const string DISPLAY_NAME_COLORANT_4 = "着色剤4";
+        private const string DISPLAY_NAME_WEIGHT_4 = "重量4";
+        private const string DISPLAY_NAME_COLORANT_5 = "着色剤5";
+        private const string DISPLAY_NAME_WEIGHT_5 = "重量5";
+        private const string DISPLAY_NAME_COLORANT_6 = "着色剤6";
+        private const string DISPLAY_NAME_WEIGHT_6 = "重量6";
+        private const string DISPLAY_NAME_COLORANT_7 = "着色剤7";
+        private const string DISPLAY_NAME_WEIGHT_7 = "重量7";
+        private const string DISPLAY_NAME_COLORANT_8 = "着色剤8";
+        private const string DISPLAY_NAME_WEIGHT_8 = "重量8";
+        private const string DISPLAY_NAME_COLORANT_9 = "着色剤9";
+        private const string DISPLAY_NAME_WEIGHT_9 = "重量9";
+        private const string DISPLAY_NAME_COLORANT_10 = "着色剤10";
+        private const string DISPLAY_NAME_WEIGHT_10 = "重量10";
+        private const string DISPLAY_NAME_COLORANT_11 = "着色剤11";
+        private const string DISPLAY_NAME_WEIGHT_11 = "重量11";
+        private const string DISPLAY_NAME_COLORANT_12 = "着色剤12";
+        private const string DISPLAY_NAME_WEIGHT_12 = "重量12";
+        private const string DISPLAY_NAME_COLORANT_13 = "着色剤13";
+        private const string DISPLAY_NAME_WEIGHT_13 = "重量13";
+        private const string DISPLAY_NAME_COLORANT_14 = "着色剤14";
+        private const string DISPLAY_NAME_WEIGHT_14 = "重量14";
+        private const string DISPLAY_NAME_COLORANT_15 = "着色剤15";
+        private const string DISPLAY_NAME_WEIGHT_15 = "重量15";
+        private const string DISPLAY_NAME_COLORANT_16 = "着色剤16";
+        private const string DISPLAY_NAME_WEIGHT_16 = "重量16";
+        private const string DISPLAY_NAME_COLORANT_17 = "着色剤17";
+        private const string DISPLAY_NAME_WEIGHT_17 = "重量17";
+        private const string DISPLAY_NAME_COLORANT_18 = "着色剤18";
+        private const string DISPLAY_NAME_WEIGHT_18 = "重量18";
+        private const string DISPLAY_NAME_COLORANT_19 = "着色剤19";
+        private const string DISPLAY_NAME_WEIGHT_19 = "重量19";
+        private const string DISPLAY_NAME_BARCODE = "バーコード";
+        private const string DISPLAY_NAME_CAN_NUMBER = "缶";
+        private const string DISPLAY_NAME_CANS_STATUS = "ステータス";
+        private const string DISPLAY_NAME_TEST_CAN = "テスト";
+        private const string DISPLAY_NAME_SAMPLE_PRESENT = "サンプル";
+        private const string DISPLAY_NAME_CANS_FORMULA_RELEASE = "最新配合受取";
+        private const string DISPLAY_NAME_WHITE_DISPENSED = "白吐出";
+        private const string DISPLAY_NAME_DISPENSED_1 = "吐出1";
+        private const string DISPLAY_NAME_DISPENSED_2 = "吐出2";
+        private const string DISPLAY_NAME_DISPENSED_3 = "吐出3";
+        private const string DISPLAY_NAME_DISPENSED_4 = "吐出4";
+        private const string DISPLAY_NAME_DISPENSED_5 = "吐出5";
+        private const string DISPLAY_NAME_DISPENSED_6 = "吐出6";
+        private const string DISPLAY_NAME_DISPENSED_7 = "吐出7";
+        private const string DISPLAY_NAME_DISPENSED_8 = "吐出8";
+        private const string DISPLAY_NAME_DISPENSED_9 = "吐出9";
+        private const string DISPLAY_NAME_DISPENSED_10 = "吐出10";
+        private const string DISPLAY_NAME_DISPENSED_11 = "吐出11";
+        private const string DISPLAY_NAME_DISPENSED_12 = "吐出12";
+        private const string DISPLAY_NAME_DISPENSED_13 = "吐出13";
+        private const string DISPLAY_NAME_DISPENSED_14 = "吐出14";
+        private const string DISPLAY_NAME_DISPENSED_15 = "吐出15";
+        private const string DISPLAY_NAME_DISPENSED_16 = "吐出16";
+        private const string DISPLAY_NAME_DISPENSED_17 = "吐出17";
+        private const string DISPLAY_NAME_DISPENSED_18 = "吐出18";
+        private const string DISPLAY_NAME_DISPENSED_19 = "吐出19";
+        #endregion
+        #endregion
+
 
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettingsOrders = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "HG_HG_Delivery_Code", DisplayName = "運送区分", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = Sql.NpMain.Orders.COLUMN_STATUS, DisplayName = "Status", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = Sql.NpMain.Orders.COLUMN_ORDER_ID, DisplayName = "Order_id", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_HG_Shipping_ID", DisplayName = "配送ﾓｰﾄﾞ", Visible = true, Width = 100 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Product_Code", DisplayName = "製品ｺｰﾄﾞ", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Product_Name", DisplayName = "品名", Visible = true, Width = 500 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Volume_Code", DisplayName = "容量ｺｰﾄﾞ", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Number_of_cans", DisplayName = "缶数", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "FORMAT(CONVERT(DATE,HG_SS_Shipping_Date), 'MM/dd')", DisplayName = "SS出荷予定日", Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "CONVERT(DATE,HG_SS_Shipping_Date)", DisplayName = "SS出荷予定日日付型", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Name", DisplayName = "担当者", Visible = true, Width = 100 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "FORMAT(CONVERT(DATE,HG_Delivery_Date), 'MM/dd')", DisplayName = "納期", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "CONVERT(DATE,HG_Delivery_Date)", DisplayName = "納期日付型", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Color_Sample", DisplayName = "標準色見本", Visible = true, Width = 300 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Color_Name", DisplayName = "色名", Visible = false, Width = 0 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Sum_up_Key", DisplayName = "順位コード", Visible = false, Width = 0 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Code", DisplayName = "担当者コード", Visible = false, Width = 0 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Sort_Order", DisplayName = "並び順", Visible = false, Width = 0 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = Sql.NpMain.Orders.COLUMN_URGENT, DisplayName = "Urgent", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_HG_HG_DELIVERY_CODE, DisplayName = DISPLAY_NAME_HG_HG_DELIVERY_CODE, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_STATUS, DisplayName = DISPLAY_NAME_STATUS, Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_ORDER_ID, DisplayName = DISPLAY_NAME_ORDER_ID, Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_HG_HG_SHIPPING_ID, DisplayName = DISPLAY_NAME_HG_HG_SHIPPING_ID, Visible = true, Width = 100 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_PRODUCT_CODE, DisplayName = DISPLAY_NAME_PRODUCT_CODE, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_HG_PRODUCT_NAME, DisplayName = DISPLAY_NAME_HG_PRODUCT_NAME, Visible = true, Width = 500 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_HG_VOLUME_CODE, DisplayName = DISPLAY_NAME_HG_VOLUME_CODE, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_NUMBER_OF_CAN, DisplayName = DISPLAY_NAME_NUMBER_OF_CAN, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = $"FORMAT(CONVERT(DATE,{COLUMN_NAME_ORDERS_HG_SS_SHIPPING_DATE}), 'MM/dd')", DisplayName = DISPLAY_NAME_HG_SS_SHIPPING_DATE, Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = $"CONVERT(DATE,{COLUMN_NAME_ORDERS_HG_SS_SHIPPING_DATE})", DisplayName = DISPLAY_NAME_HG_SS_SHIPPING_PATTERN, Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_OPERATOR_NAME, DisplayName = DISPLAY_NAME_OPERATOR_NAME, Visible = true, Width = 100 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = $"FORMAT(CONVERT(DATE,{COLUMN_NAME_ORDERS_HG_DELIVERY_DATE}), 'MM/dd')", DisplayName = DISPLAY_NAME_HG_DELIVERY_DATE, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = $"CONVERT(DATE,{COLUMN_NAME_ORDERS_HG_DELIVERY_DATE})", DisplayName = DISPLAY_NAME_HG_DELIVERY_DATE_PATTERN, Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_HG_COLOR_SAMPLE, DisplayName = DISPLAY_NAME_HG_COLOR_SAMPLE, Visible = true, Width = 300 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_COLOR_NAME, DisplayName = DISPLAY_NAME_COLOR_NAME, Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_HG_SUM_UP_KEY, DisplayName = DISPLAY_NAME_HG_SUM_UP_KEY, Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_OPERATOR_CODE, DisplayName = DISPLAY_NAME_OPERATOR_CODE, Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_SORT_ORDER, DisplayName = DISPLAY_NAME_SORT_ORDER, Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_URGENT, DisplayName = DISPLAY_NAME_URGENT, Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
         };
         private List<GridViewSetting> ViewSettingsWeights = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Code", DisplayName = "コード", Visible = true, Width = 300, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight", DisplayName = "重量[g]", Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_WHITE_CODE, DisplayName = DISPLAY_NAME_CODE, Visible = true, Width = 300, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WHITE_WEIGHT, DisplayName = DISPLAY_NAME_WEIGHT, Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleRight } },
         };
         private List<GridViewSetting> ViewSettingsOrderNumbers = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Blank, ColumnName = "StatusColor", DisplayName = "StatusColor", Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = Sql.NpMain.Orders.COLUMN_STATUS, DisplayName = "Status", Visible = false, Width = 35, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = Sql.NpMain.Orders.COLUMN_ORDER_ID, DisplayName = "Order_id", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Product_Code", DisplayName = "製品コード", Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Number_of_cans", DisplayName = "缶数", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Order_Number", DisplayName = "注文番号", Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Revision", DisplayName = "補正", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Formula_Release", DisplayName = "配合受取", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Color_Name", DisplayName = "色名", Visible = false, Width = 0 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Sum_up_Key", DisplayName = "順位コード", Visible = false, Width = 0 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Code", DisplayName = "担当者コード", Visible = false, Width = 0 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Sort_Order", DisplayName = "並び順", Visible = false, Width = 0 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "White_Code", DisplayName = "白コード", Visible = true, Width = 95 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "White_Weight", DisplayName = "白重量", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_1", DisplayName = "着色剤1", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_1", DisplayName = "重量1", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_2", DisplayName = "着色剤2", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_2", DisplayName = "重量2", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_3", DisplayName = "着色剤3", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_3", DisplayName = "重量3", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_4", DisplayName = "着色剤4", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_4", DisplayName = "重量4", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_5", DisplayName = "着色剤5", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_5", DisplayName = "重量5", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_6", DisplayName = "着色剤6", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_6", DisplayName = "重量6", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_7", DisplayName = "着色剤7", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_7", DisplayName = "重量7", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_8", DisplayName = "着色剤8", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_8", DisplayName = "重量8", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_9", DisplayName = "着色剤9", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_9", DisplayName = "重量9", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_10", DisplayName = "着色剤10", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_10", DisplayName = "重量10", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_11", DisplayName = "着色剤11", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_11", DisplayName = "重量11", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_12", DisplayName = "着色剤12", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_12", DisplayName = "重量12", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_13", DisplayName = "着色剤13", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_13", DisplayName = "重量13", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_14", DisplayName = "着色剤14", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_14", DisplayName = "重量14", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_15", DisplayName = "着色剤15", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_15", DisplayName = "重量15", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_16", DisplayName = "着色剤16", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_16", DisplayName = "重量16", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_17", DisplayName = "着色剤17", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_17", DisplayName = "重量17", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_18", DisplayName = "着色剤18", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_18", DisplayName = "重量18", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Colorant_19", DisplayName = "着色剤19", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight_19", DisplayName = "重量19", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = Sql.NpMain.Orders.COLUMN_URGENT, DisplayName = "Urgent", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = "CONVERT(DATE,HG_SS_Shipping_Date)", DisplayName = "SS出荷予定日日付型", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Product_Name", DisplayName = "品名", Visible = true, Width = 500 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "HG_HG_Delivery_Code", DisplayName = "運送区分", Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Blank, ColumnName = COLUMN_NAME_ORDERS_STATUSCOLOR, DisplayName = DISPLAY_NAME_STATUSCOLOR, Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_STATUS, DisplayName = DISPLAY_NAME_STATUS, Visible = false, Width = 35, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_ORDER_ID, DisplayName = DISPLAY_NAME_ORDER_ID, Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_PRODUCT_CODE, DisplayName = DISPLAY_NAME_PRODUCT_CODE, Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_NUMBER_OF_CAN, DisplayName = DISPLAY_NAME_NUMBER_OF_CAN, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_ORDER_NUMBER, DisplayName = DISPLAY_NAME_ORDER_NUMBER, Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_REVISION, DisplayName = DISPLAY_NAME_REVISION, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = $"O.{COLUMN_NAME_ORDERS_FORMULA_RELEASE}", DisplayName = DISPLAY_NAME_FORMULA_RELEASE, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_COLOR_NAME, DisplayName = DISPLAY_NAME_COLOR_NAME, Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_HG_SUM_UP_KEY, DisplayName = DISPLAY_NAME_HG_SUM_UP_KEY, Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_OPERATOR_CODE, DisplayName = DISPLAY_NAME_OPERATOR_CODE, Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_SORT_ORDER, DisplayName = DISPLAY_NAME_SORT_ORDER, Visible = false, Width = 0 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_WHITE_CODE, DisplayName = DISPLAY_NAME_WHITE_CODE, Visible = true, Width = 95 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WHITE_WEIGHT, DisplayName = DISPLAY_NAME_WHITE_WEIGHT, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_1}", DisplayName = DISPLAY_NAME_COLORANT_1, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_1, DisplayName = DISPLAY_NAME_WEIGHT_1, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_2}", DisplayName = DISPLAY_NAME_COLORANT_2, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_2, DisplayName = DISPLAY_NAME_WEIGHT_2, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_3}", DisplayName = DISPLAY_NAME_COLORANT_3, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_3, DisplayName = DISPLAY_NAME_WEIGHT_3, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_4}", DisplayName = DISPLAY_NAME_COLORANT_4, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_4, DisplayName = DISPLAY_NAME_WEIGHT_4, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_5}", DisplayName = DISPLAY_NAME_COLORANT_5, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_5, DisplayName = DISPLAY_NAME_WEIGHT_5, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_6}", DisplayName = DISPLAY_NAME_COLORANT_6, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_6, DisplayName = DISPLAY_NAME_WEIGHT_6, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_7}", DisplayName = DISPLAY_NAME_COLORANT_7, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_7, DisplayName = DISPLAY_NAME_WEIGHT_7, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_8}", DisplayName = DISPLAY_NAME_COLORANT_8, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_8, DisplayName = DISPLAY_NAME_WEIGHT_8, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_9}", DisplayName = DISPLAY_NAME_COLORANT_9, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_9, DisplayName = DISPLAY_NAME_WEIGHT_9, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_10}", DisplayName = DISPLAY_NAME_COLORANT_10, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_10, DisplayName = DISPLAY_NAME_WEIGHT_10, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_11}", DisplayName = DISPLAY_NAME_COLORANT_11, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_11, DisplayName = DISPLAY_NAME_WEIGHT_11, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_12}", DisplayName = DISPLAY_NAME_COLORANT_12, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_12, DisplayName = DISPLAY_NAME_WEIGHT_12, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_13}", DisplayName = DISPLAY_NAME_COLORANT_13, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_13, DisplayName = DISPLAY_NAME_WEIGHT_13, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_14}", DisplayName = DISPLAY_NAME_COLORANT_14, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_14, DisplayName = DISPLAY_NAME_WEIGHT_14, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_15}", DisplayName = DISPLAY_NAME_COLORANT_15, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_15, DisplayName = DISPLAY_NAME_WEIGHT_15, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_16}", DisplayName = DISPLAY_NAME_COLORANT_16, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_16, DisplayName = DISPLAY_NAME_WEIGHT_16, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_17}", DisplayName = DISPLAY_NAME_COLORANT_17, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_17, DisplayName = DISPLAY_NAME_WEIGHT_17, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_18}", DisplayName = DISPLAY_NAME_COLORANT_18, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_18, DisplayName = DISPLAY_NAME_WEIGHT_18, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"O.{COLUMN_NAME_ORDERS_COLORANT_19}", DisplayName = DISPLAY_NAME_COLORANT_19, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_WEIGHT_19, DisplayName = DISPLAY_NAME_WEIGHT_19, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_URGENT, DisplayName = DISPLAY_NAME_URGENT, Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = $"CONVERT(DATE,{COLUMN_NAME_ORDERS_HG_SS_SHIPPING_DATE})", DisplayName = DISPLAY_NAME_HG_SS_SHIPPING_PATTERN, Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_HG_PRODUCT_NAME, DisplayName = DISPLAY_NAME_HG_PRODUCT_NAME, Visible = true, Width = 500 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_HG_HG_DELIVERY_CODE, DisplayName = DISPLAY_NAME_HG_HG_DELIVERY_CODE, Visible = true, Width = 100, alignment = DataGridViewContentAlignment.MiddleCenter } },
         };
         private List<GridViewSetting> ViewSettingsBarcodes = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Barcode", DisplayName = "バーコード", Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "C.Order_id", DisplayName = "Order_id", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "C.Can_Number", DisplayName = "缶", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = "C.Status", DisplayName = "ステータス", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = "Test_Can", DisplayName = "テスト", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = "Sample_Present", DisplayName = "サンプル", Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "C.Formula_Release", DisplayName = "最新配合受取", Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.White_Code", DisplayName = "白コード", Visible = true, Width = 95 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "White_Dispensed", DisplayName = "白吐出", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_1", DisplayName = "着色剤1", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_1", DisplayName = "吐出1", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_2", DisplayName = "着色剤2", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_2", DisplayName = "吐出2", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_3", DisplayName = "着色剤3", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_3", DisplayName = "吐出3", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_4", DisplayName = "着色剤4", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_4", DisplayName = "吐出4", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_5", DisplayName = "着色剤5", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_5", DisplayName = "吐出5", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_6", DisplayName = "着色剤6", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_6", DisplayName = "吐出6", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_7", DisplayName = "着色剤7", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_7", DisplayName = "吐出7", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_8", DisplayName = "着色剤8", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_8", DisplayName = "吐出8", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_9", DisplayName = "着色剤9", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_9", DisplayName = "吐出9", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_10", DisplayName = "着色剤10", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_10", DisplayName = "吐出10", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_11", DisplayName = "着色剤11", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_11", DisplayName = "吐出11", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_12", DisplayName = "着色剤12", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_12", DisplayName = "吐出12", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_13", DisplayName = "着色剤13", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_13", DisplayName = "吐出13", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_14", DisplayName = "着色剤14", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_14", DisplayName = "吐出14", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_15", DisplayName = "着色剤15", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_15", DisplayName = "吐出15", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_16", DisplayName = "着色剤16", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_16", DisplayName = "吐出16", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_17", DisplayName = "着色剤17", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_17", DisplayName = "吐出17", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_18", DisplayName = "着色剤18", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_18", DisplayName = "吐出18", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "C.Colorant_19", DisplayName = "着色剤19", Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Dispensed_19", DisplayName = "吐出19", Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_CANS_BARCODE, DisplayName = DISPLAY_NAME_BARCODE, Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = $"C.{COLUMN_NAME_CANS_ORDER_ID}", DisplayName = DISPLAY_NAME_ORDER_ID, Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_CAN_NUMBER, DisplayName = DISPLAY_NAME_CAN_NUMBER, Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = $"C.{COLUMN_NAME_CANS_STATUS}", DisplayName = DISPLAY_NAME_CANS_STATUS, Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = COLUMN_NAME_CANS_TEST_CAN, DisplayName = DISPLAY_NAME_TEST_CAN, Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = COLUMN_NAME_CANS_SAMPLE_PRESENT, DisplayName = DISPLAY_NAME_SAMPLE_PRESENT, Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = $"C.{COLUMN_NAME_CANS_FORMULA_RELEASE}", DisplayName = DISPLAY_NAME_CANS_FORMULA_RELEASE, Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName =$"C.{COLUMN_NAME_CANS_WHITE_CODE}", DisplayName = DISPLAY_NAME_WHITE_CODE, Visible = true, Width = 95 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_WHITE_DISPENSED, DisplayName = DISPLAY_NAME_WHITE_DISPENSED, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_1}", DisplayName = DISPLAY_NAME_COLORANT_1, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_1, DisplayName = DISPLAY_NAME_DISPENSED_1, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_2}", DisplayName = DISPLAY_NAME_COLORANT_2, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_2, DisplayName = DISPLAY_NAME_DISPENSED_2, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_3}", DisplayName = DISPLAY_NAME_COLORANT_3, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_3, DisplayName = DISPLAY_NAME_DISPENSED_3, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_4}", DisplayName = DISPLAY_NAME_COLORANT_4, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_4, DisplayName = DISPLAY_NAME_DISPENSED_4, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_5}", DisplayName = DISPLAY_NAME_COLORANT_5, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_5, DisplayName = DISPLAY_NAME_DISPENSED_5, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_6}", DisplayName = DISPLAY_NAME_COLORANT_6, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_6, DisplayName = DISPLAY_NAME_DISPENSED_6, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_7}", DisplayName = DISPLAY_NAME_COLORANT_7, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_7, DisplayName = DISPLAY_NAME_DISPENSED_7, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_8}", DisplayName = DISPLAY_NAME_COLORANT_8, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_8, DisplayName = DISPLAY_NAME_DISPENSED_8, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_9}", DisplayName = DISPLAY_NAME_COLORANT_9, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_9, DisplayName = DISPLAY_NAME_DISPENSED_9, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_10}", DisplayName = DISPLAY_NAME_COLORANT_10, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_10, DisplayName = DISPLAY_NAME_DISPENSED_10, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_11}", DisplayName = DISPLAY_NAME_COLORANT_11, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_11, DisplayName = DISPLAY_NAME_DISPENSED_11, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_12}", DisplayName = DISPLAY_NAME_COLORANT_12, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_12, DisplayName = DISPLAY_NAME_DISPENSED_12, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_13}", DisplayName = DISPLAY_NAME_COLORANT_13, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_13, DisplayName = DISPLAY_NAME_DISPENSED_13, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_14}", DisplayName = DISPLAY_NAME_COLORANT_14, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_14, DisplayName = DISPLAY_NAME_DISPENSED_14, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_15}", DisplayName = DISPLAY_NAME_COLORANT_15, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_15, DisplayName = DISPLAY_NAME_DISPENSED_15, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_16}", DisplayName = DISPLAY_NAME_COLORANT_16, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_16, DisplayName = DISPLAY_NAME_DISPENSED_16, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_17}", DisplayName = DISPLAY_NAME_COLORANT_17, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_17, DisplayName = DISPLAY_NAME_DISPENSED_17, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_18}", DisplayName = DISPLAY_NAME_COLORANT_18, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_18, DisplayName = DISPLAY_NAME_DISPENSED_18, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_19}", DisplayName = DISPLAY_NAME_COLORANT_19, Visible = true, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_DISPENSED_19, DisplayName = DISPLAY_NAME_DISPENSED_19, Visible = true, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
         };
         private List<GridViewSetting> ViewSettingsWeightDetails = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Code", DisplayName = "コード", Visible = true, Width = 550, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Weight", DisplayName = "重量[g]", Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_CANS_WHITE_CODE, DisplayName = DISPLAY_NAME_CODE, Visible = true, Width = 550, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_WHITE_WEIGHT, DisplayName = DISPLAY_NAME_WEIGHT, Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleRight } },
         };
         private List<GridViewSetting> ViewSettingsOutWeights = new List<GridViewSetting>()
         {
