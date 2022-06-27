@@ -192,11 +192,7 @@ namespace DatabaseManager
                     switch (result)
                     {
                         case DialogResult.Yes:
-                            var parameters = new List<ParameterItem>()
-                            {
-
-                            };
-                            db.Execute(Sql.NpMain.HgLog.LogDelete(), parameters);
+                            db.Execute(Sql.NpMain.HgLog.LogDelete());
                             db.Commit();
                             break;
                         case DialogResult.No:
@@ -358,7 +354,6 @@ namespace DatabaseManager
             PreviewData();
             // 一覧レイアウトの設定
             var cnt = 0;
-
             foreach (var item in ViewSettings)
             {
                 DgvList.Columns[cnt].Width = item.Width;
@@ -380,11 +375,6 @@ namespace DatabaseManager
         {
             foreach (DataGridViewRow row in DgvList.Rows)
             {
-                Console.Write(row.Cells[DISPLAY_NAME_NOTIFY_MSG].Value);
-                Console.Write(row.Cells[DISPLAY_NAME_RECEIVE_TIME].Value);
-                Console.Write(row.Cells[DISPLAY_NAME_REJECTED].Value);
-                Console.Write(row.Cells[DISPLAY_NAME_ACKNOWLEDGED].Value);
-
                 int rejectedCell = Convert.ToInt32(row.Cells[DISPLAY_NAME_REJECTED].Value);
                 int acknowledgedCell = Convert.ToInt32(row.Cells[DISPLAY_NAME_ACKNOWLEDGED].Value);
                 switch (rejectedCell)
