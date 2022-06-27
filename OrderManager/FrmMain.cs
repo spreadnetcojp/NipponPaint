@@ -217,7 +217,6 @@ namespace NipponPaint.OrderManager
         private const string COLUMN_NAME_CANS_COLORANT_19 = Sql.NpMain.Cans.COLUMN_COLORANT_19;
         private const string COLUMN_NAME_CANS_DISPENSED_19 = Sql.NpMain.Cans.COLUMN_DISPENSED_19;
         private const string COLUMN_NAME_CANS_WHITE_WEIGHT = Sql.NpMain.Cans.COLUMN_WHITE_WEIGHT;
-
         #endregion
         #region 列定義定数(DisplayName)
         private const string DISPLAY_NAME_HG_HG_DELIVERY_CODE = "運送区分";
