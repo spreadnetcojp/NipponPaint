@@ -218,9 +218,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_HG_PRODUCT_NAME = "HG_Product_Name";
         public const string COLUMN_HG_SUM_UP_KEY = "HG_Sum_up_Key";
         public const string COLUMN_OPERATOR_CODE = "Operator_Code";
-        public const string COLUMN_SORT_ORDER = "Sort_Order";
-        public const string COLUMN_CODE = "Code";
-        public const string COLUMN_WEIGHT = "Weight";
+        public const string COLUMN_SORT_ORDER = "Sort_Order";        
         public const string COLUMN_STATUSCOLOR = "StatusColor";
         public const string COLUMN_FORMULA_RELEASE = "Formula_Release";
         public const string COLUMN_WHITE_WEIGHT = "White_Weight";

@@ -216,7 +216,7 @@ namespace NipponPaint.OrderManager
         private const string COLUMN_NAME_CANS_DISPENSED_18 = Sql.NpMain.Cans.COLUMN_DISPENSED_18;
         private const string COLUMN_NAME_CANS_COLORANT_19 = Sql.NpMain.Cans.COLUMN_COLORANT_19;
         private const string COLUMN_NAME_CANS_DISPENSED_19 = Sql.NpMain.Cans.COLUMN_DISPENSED_19;
-        private const string COLUMN_NAME_CANS_COLUMN_WHITE_WEIGHT = Sql.NpMain.Cans.COLUMN_WHITE_WEIGHT;
+        private const string COLUMN_NAME_CANS_WHITE_WEIGHT = Sql.NpMain.Cans.COLUMN_WHITE_WEIGHT;
 
         #endregion
         #region 列定義定数(DisplayName)
@@ -455,7 +455,7 @@ namespace NipponPaint.OrderManager
         private List<GridViewSetting> ViewSettingsWeightDetails = new List<GridViewSetting>()
         {
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_CANS_WHITE_CODE, DisplayName = DISPLAY_NAME_CODE, Visible = true, Width = 550, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_COLUMN_WHITE_WEIGHT, DisplayName = DISPLAY_NAME_WEIGHT, Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_WHITE_WEIGHT, DisplayName = DISPLAY_NAME_WEIGHT, Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleRight } },
         };
         private List<GridViewSetting> ViewSettingsOutWeights = new List<GridViewSetting>()
         {
