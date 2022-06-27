@@ -32,15 +32,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.BtnBackUpStart1 = new System.Windows.Forms.Button();
+            this.BtnBackUpStartHourly = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.BtnBackUpStart2 = new System.Windows.Forms.Button();
+            this.BtnBackUpStartDaily = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
-            this.BtnBackUpStart3 = new System.Windows.Forms.Button();
+            this.BtnBackUpStartTrouble = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
@@ -83,7 +83,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.numericUpDown1);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.BtnBackUpStart1);
+            this.panel1.Controls.Add(this.BtnBackUpStartHourly);
             this.panel1.Font = new System.Drawing.Font("メイリオ", 11.25F);
             this.panel1.Location = new System.Drawing.Point(15, 15);
             this.panel1.Name = "panel1";
@@ -119,15 +119,15 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "時間毎のバックアップ";
             // 
-            // BtnBackUpStart1
+            // BtnBackUpStartHourly
             // 
-            this.BtnBackUpStart1.Font = new System.Drawing.Font("メイリオ", 11.25F);
-            this.BtnBackUpStart1.Location = new System.Drawing.Point(15, 110);
-            this.BtnBackUpStart1.Name = "BtnBackUpStart1";
-            this.BtnBackUpStart1.Size = new System.Drawing.Size(250, 40);
-            this.BtnBackUpStart1.TabIndex = 3;
-            this.BtnBackUpStart1.Text = "今バックアップ開始";
-            this.BtnBackUpStart1.UseVisualStyleBackColor = true;
+            this.BtnBackUpStartHourly.Font = new System.Drawing.Font("メイリオ", 11.25F);
+            this.BtnBackUpStartHourly.Location = new System.Drawing.Point(15, 110);
+            this.BtnBackUpStartHourly.Name = "BtnBackUpStartHourly";
+            this.BtnBackUpStartHourly.Size = new System.Drawing.Size(250, 40);
+            this.BtnBackUpStartHourly.TabIndex = 3;
+            this.BtnBackUpStartHourly.Text = "今バックアップ開始";
+            this.BtnBackUpStartHourly.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
@@ -136,7 +136,7 @@
             this.panel2.Controls.Add(this.dateTimePicker1);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.BtnBackUpStart2);
+            this.panel2.Controls.Add(this.BtnBackUpStartDaily);
             this.panel2.Font = new System.Drawing.Font("メイリオ", 11.25F);
             this.panel2.Location = new System.Drawing.Point(315, 15);
             this.panel2.Name = "panel2";
@@ -173,22 +173,22 @@
             this.label4.TabIndex = 5;
             this.label4.Text = "日毎のバックアップ";
             // 
-            // BtnBackUpStart2
+            // BtnBackUpStartDaily
             // 
-            this.BtnBackUpStart2.Font = new System.Drawing.Font("メイリオ", 11.25F);
-            this.BtnBackUpStart2.Location = new System.Drawing.Point(15, 110);
-            this.BtnBackUpStart2.Name = "BtnBackUpStart2";
-            this.BtnBackUpStart2.Size = new System.Drawing.Size(250, 40);
-            this.BtnBackUpStart2.TabIndex = 3;
-            this.BtnBackUpStart2.Text = "今バックアップ開始";
-            this.BtnBackUpStart2.UseVisualStyleBackColor = true;
+            this.BtnBackUpStartDaily.Font = new System.Drawing.Font("メイリオ", 11.25F);
+            this.BtnBackUpStartDaily.Location = new System.Drawing.Point(15, 110);
+            this.BtnBackUpStartDaily.Name = "BtnBackUpStartDaily";
+            this.BtnBackUpStartDaily.Size = new System.Drawing.Size(250, 40);
+            this.BtnBackUpStartDaily.TabIndex = 3;
+            this.BtnBackUpStartDaily.Text = "今バックアップ開始";
+            this.BtnBackUpStartDaily.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.BtnBackUpStart3);
+            this.panel3.Controls.Add(this.BtnBackUpStartTrouble);
             this.panel3.Font = new System.Drawing.Font("メイリオ", 11.25F);
             this.panel3.Location = new System.Drawing.Point(614, 15);
             this.panel3.Name = "panel3";
@@ -206,15 +206,15 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "トラブル発生時のデータベース保存";
             // 
-            // BtnBackUpStart3
+            // BtnBackUpStartTrouble
             // 
-            this.BtnBackUpStart3.Font = new System.Drawing.Font("メイリオ", 11.25F);
-            this.BtnBackUpStart3.Location = new System.Drawing.Point(15, 110);
-            this.BtnBackUpStart3.Name = "BtnBackUpStart3";
-            this.BtnBackUpStart3.Size = new System.Drawing.Size(250, 40);
-            this.BtnBackUpStart3.TabIndex = 3;
-            this.BtnBackUpStart3.Text = "今バックアップ開始";
-            this.BtnBackUpStart3.UseVisualStyleBackColor = true;
+            this.BtnBackUpStartTrouble.Font = new System.Drawing.Font("メイリオ", 11.25F);
+            this.BtnBackUpStartTrouble.Location = new System.Drawing.Point(15, 110);
+            this.BtnBackUpStartTrouble.Name = "BtnBackUpStartTrouble";
+            this.BtnBackUpStartTrouble.Size = new System.Drawing.Size(250, 40);
+            this.BtnBackUpStartTrouble.TabIndex = 3;
+            this.BtnBackUpStartTrouble.Text = "今バックアップ開始";
+            this.BtnBackUpStartTrouble.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
@@ -536,16 +536,16 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button BtnBackUpStart1;
+        private System.Windows.Forms.Button BtnBackUpStartHourly;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button BtnBackUpStart2;
+        private System.Windows.Forms.Button BtnBackUpStartDaily;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button BtnBackUpStart3;
+        private System.Windows.Forms.Button BtnBackUpStartTrouble;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;

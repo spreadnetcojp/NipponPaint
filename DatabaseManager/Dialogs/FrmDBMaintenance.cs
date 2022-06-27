@@ -32,7 +32,7 @@ namespace DatabaseManager.Dialogs
     /// <summary>
     /// データベースメンテナンス
     /// </summary>
-    public partial class FrmDBMaintenance : Form
+    public partial class FrmDBMaintenance : BaseForm
     {
         #region コンストラクタ
         public FrmDBMaintenance()
@@ -50,13 +50,13 @@ namespace DatabaseManager.Dialogs
             switch (e.KeyData)
             {
                 case Keys.T | Keys.Alt:
-                    BtnBackUpStart1.PerformClick();
+                    BtnBackUpStartHourly.PerformClick();
                     break;
                 case Keys.D | Keys.Alt:
-                    BtnBackUpStart2.PerformClick();
+                    BtnBackUpStartDaily.PerformClick();
                     break;
                 case Keys.E | Keys.Alt:
-                    BtnBackUpStart3.PerformClick();
+                    BtnBackUpStartTrouble.PerformClick();
                     break;
                 case Keys.H | Keys.Alt:
                     BtnHistoryDataDelete.PerformClick();
@@ -79,16 +79,15 @@ namespace DatabaseManager.Dialogs
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnBackUpStart1Click(object sender, EventArgs e)
+        private void BtnBackUpStartHourlyClick(object sender, EventArgs e)
         {
-            BaseForm baseForm = new BaseForm();
             try
             {
-                baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
-                baseForm.PutLog(ex);
+                PutLog(ex);
             }
         }
 
@@ -97,16 +96,15 @@ namespace DatabaseManager.Dialogs
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnBackUpStart2Click(object sender, EventArgs e)
+        private void BtnBackUpStartDailyClick(object sender, EventArgs e)
         {
-            BaseForm baseForm = new BaseForm();
             try
             {
-                baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
-                baseForm.PutLog(ex);
+                PutLog(ex);
             }
         }
 
@@ -115,16 +113,15 @@ namespace DatabaseManager.Dialogs
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnBackUpStart3Click(object sender, EventArgs e)
+        private void BtnBackUpStartTroubleClick(object sender, EventArgs e)
         {
-            BaseForm baseForm = new BaseForm();
             try
             {
-                baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
-                baseForm.PutLog(ex);
+                PutLog(ex);
             }
         }
 
@@ -135,14 +132,26 @@ namespace DatabaseManager.Dialogs
         /// <param name="e"></param>
         private void BtnHistoryDataDeleteClick(object sender, EventArgs e)
         {
-            BaseForm baseForm = new BaseForm();
             try
             {
-                baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.Databasemanager))
+                {
+                    var result = Messages.ShowDialog(Sentence.Messages.ErasePackTable);
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            break;
+                        case DialogResult.No:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
-                baseForm.PutLog(ex);
+                PutLog(ex);
             }
         }
 
@@ -159,14 +168,26 @@ namespace DatabaseManager.Dialogs
         /// <param name="e"></param>
         private void BtnDataReturnClick(object sender, EventArgs e)
         {
-            BaseForm baseForm = new BaseForm();
             try
             {
-                baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.Databasemanager))
+                {
+                    var result = Messages.ShowDialog(Sentence.Messages.RestoreSelectedTables);
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            break;
+                        case DialogResult.No:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
             {
-                baseForm.PutLog(ex);
+                PutLog(ex);
             }
         }
 
@@ -177,16 +198,15 @@ namespace DatabaseManager.Dialogs
         /// <param name="e"></param>
         private void BtnSaveSettingsClick(object sender, EventArgs e)
         {
-            BaseForm baseForm = new BaseForm();
             try
             {
-                baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 //SaveSettings/RestoreSettingsボタンをEnabled = false にする
                 ButtonEnabledFalse();
             }
             catch (Exception ex)
             {
-                baseForm.PutLog(ex);
+                PutLog(ex);
             }
         }
 
@@ -197,16 +217,17 @@ namespace DatabaseManager.Dialogs
         /// <param name="e"></param>
         private void BtnRestoreSettingsClick(object sender, EventArgs e)
         {
-            BaseForm baseForm = new BaseForm();
             try
             {
-                baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                //mainテーブルを取得して画面に表示する
+                PreviewData();
                 //SaveSettings/RestoreSettingsボタンをEnabled = false にする
                 ButtonEnabledFalse();
             }
             catch (Exception ex)
             {
-                baseForm.PutLog(ex);
+                PutLog(ex);
             }
         }
 
@@ -217,10 +238,9 @@ namespace DatabaseManager.Dialogs
         /// <param name="e"></param>
         private void BtnCloseClick(object sender, EventArgs e)
         {
-            BaseForm baseForm = new BaseForm();
             try
             {
-                baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
 
                 //SaveSettings/RestoreSettingsボタンをEnabled = false にする
@@ -228,7 +248,7 @@ namespace DatabaseManager.Dialogs
             }
             catch (Exception ex)
             {
-                baseForm.PutLog(ex);
+                PutLog(ex);
             }
         }
 
@@ -245,6 +265,8 @@ namespace DatabaseManager.Dialogs
         #endregion
 
         #region private functions
+
+        #region 画面の初期化
         /// <summary>
         /// 画面の初期化
         /// </summary>
@@ -252,9 +274,9 @@ namespace DatabaseManager.Dialogs
         {
             // イベントの追加
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmKeyDown);
-            this.BtnBackUpStart1.Click += new System.EventHandler(this.BtnBackUpStart1Click);
-            this.BtnBackUpStart2.Click += new System.EventHandler(this.BtnBackUpStart2Click);
-            this.BtnBackUpStart3.Click += new System.EventHandler(this.BtnBackUpStart3Click);
+            this.BtnBackUpStartHourly.Click += new System.EventHandler(this.BtnBackUpStartHourlyClick);
+            this.BtnBackUpStartDaily.Click += new System.EventHandler(this.BtnBackUpStartDailyClick);
+            this.BtnBackUpStartTrouble.Click += new System.EventHandler(this.BtnBackUpStartTroubleClick);
             this.BtnHistoryDataDelete.Click += new System.EventHandler(this.BtnHistoryDataDeleteClick);
             this.BtnDataReturn.Click += new System.EventHandler(this.BtnDataReturnClick);
             this.BtnClose.Click += new System.EventHandler(this.BtnCloseClick);
@@ -358,6 +380,6 @@ namespace DatabaseManager.Dialogs
         }
         #endregion
 
-
+        #endregion
     }
 }
