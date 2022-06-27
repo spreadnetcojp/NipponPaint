@@ -25,6 +25,57 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
 {
     public static class Cans
     {
+        #region 定数
+        // カラム
+        public const string COLUMN_BARCODE = "Barcode";
+        public const string COLUMN_ORDER_ID = "Order_id";
+        public const string COLUMN_CAN_NUMBER = "Can_Number";
+        public const string COLUMN_STATUS = "Status";
+        public const string COLUMN_TEST_CAN = "Test_Can";
+        public const string COLUMN_SAMPLE_PRESENT = "Sample_Present";
+        public const string COLUMN_FORMULA_RELEASE = "Formula_Release";
+        public const string COLUMN_WHITE_CODE = "White_Code";
+        public const string COLUMN_WHITE_DISPENSED = "White_Dispensed";
+        public const string COLUMN_COLORANT_1 = "Colorant_1";
+        public const string COLUMN_DISPENSED_1 = "Dispensed_1";
+        public const string COLUMN_COLORANT_2 = "Colorant_2";
+        public const string COLUMN_DISPENSED_2 = "Dispensed_2";
+        public const string COLUMN_COLORANT_3 = "Colorant_3";
+        public const string COLUMN_DISPENSED_3 = "Dispensed_3";
+        public const string COLUMN_COLORANT_4 = "Colorant_4";
+        public const string COLUMN_DISPENSED_4 = "Dispensed_4";
+        public const string COLUMN_COLORANT_5 = "Colorant_5";
+        public const string COLUMN_DISPENSED_5 = "Dispensed_5";
+        public const string COLUMN_COLORANT_6 = "Colorant_6";
+        public const string COLUMN_DISPENSED_6 = "Dispensed_6";
+        public const string COLUMN_COLORANT_7 = "Colorant_7";
+        public const string COLUMN_DISPENSED_7 = "Dispensed_7";
+        public const string COLUMN_COLORANT_8 = "Colorant_8";
+        public const string COLUMN_DISPENSED_8 = "Dispensed_8";
+        public const string COLUMN_COLORANT_9 = "Colorant_9";
+        public const string COLUMN_DISPENSED_9 = "Dispensed_9";
+        public const string COLUMN_COLORANT_10 = "Colorant_10";
+        public const string COLUMN_DISPENSED_10 = "Dispensed_10";
+        public const string COLUMN_COLORANT_11 = "Colorant_11";
+        public const string COLUMN_DISPENSED_11 = "Dispensed_11";
+        public const string COLUMN_COLORANT_12 = "Colorant_12";
+        public const string COLUMN_DISPENSED_12 = "Dispensed_12";
+        public const string COLUMN_COLORANT_13 = "Colorant_13";
+        public const string COLUMN_DISPENSED_13 = "Dispensed_13";
+        public const string COLUMN_COLORANT_14 = "Colorant_14";
+        public const string COLUMN_DISPENSED_14 = "Dispensed_14";
+        public const string COLUMN_COLORANT_15 = "Colorant_15";
+        public const string COLUMN_DISPENSED_15 = "Dispensed_15";
+        public const string COLUMN_COLORANT_16 = "Colorant_16";
+        public const string COLUMN_DISPENSED_16 = "Dispensed_16";
+        public const string COLUMN_COLORANT_17 = "Colorant_17";
+        public const string COLUMN_DISPENSED_17 = "Dispensed_17";
+        public const string COLUMN_COLORANT_18 = "Colorant_18";
+        public const string COLUMN_DISPENSED_18 = "Dispensed_18";
+        public const string COLUMN_COLORANT_19 = "Colorant_19";
+        public const string COLUMN_DISPENSED_19 = "Dispensed_19";
+        public const string COLUMN_WHITE_WEIGHT = "White_Weight";
+        #endregion
         #region 参照系
 
         #region 注文番号による一覧データ取得
