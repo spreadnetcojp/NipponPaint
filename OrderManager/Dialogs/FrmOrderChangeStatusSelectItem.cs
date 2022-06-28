@@ -56,6 +56,11 @@ namespace NipponPaint.OrderManager.Dialogs
 
 
         #region イベント
+        /// <summary>
+        /// オーダーを変更するボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnChangeStatusClick(object sender, EventArgs e)
         {
             try
@@ -68,6 +73,11 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(ex);
             }
         }
+        /// <summary>
+        /// 閉じるボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void BtnCloseClick(object sender, EventArgs e)
         {
             try
@@ -101,7 +111,7 @@ namespace NipponPaint.OrderManager.Dialogs
             }
             var cnt = 0;
             // DataGridViewのスタイル設定
-            GvChangeOrders.ColumnHeadersVisible = false;
+            GvChangeOrders.ColumnHeadersVisible = true;
             GvChangeOrders.EditMode = DataGridViewEditMode.EditProgrammatically;
             // チェックボックスカラム追加
             var checkboxColumn = new DataGridViewCheckBoxColumn();
