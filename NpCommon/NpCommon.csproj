@@ -51,11 +51,13 @@
     <Compile Include="Database\ParameterItem.cs" />
     <Compile Include="Database\SqlBase.cs" />
     <Compile Include="Database\Sql\NpMain\Cans.cs" />
+    <Compile Include="Database\Sql\NpMain\CansArchive.cs" />
     <Compile Include="Database\Sql\NpMain\Colors.cs" />
     <Compile Include="Database\Sql\NpMain\Delivery.cs" />
     <Compile Include="Database\Sql\NpMain\HgLog.cs" />
     <Compile Include="Database\Sql\NpMain\MainSet.cs" />
     <Compile Include="Database\Sql\NpMain\Operators.cs" />
+    <Compile Include="Database\Sql\NpMain\OrderArchive.cs" />
     <Compile Include="Database\Sql\NpMain\Orders.cs" />
     <Compile Include="Database\Sql\NpMain\Plants.cs" />
     <Compile Include="Database\Sql\NpMain\PlantsSettings.cs" />
