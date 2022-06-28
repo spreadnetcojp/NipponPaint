@@ -70,6 +70,9 @@ namespace DatabaseManager.Dialogs
                 case Keys.O | Keys.Alt:
                     BtnRestoreSettings.PerformClick();
                     break;
+                case Keys.Escape:
+                    BtnClose.PerformClick();
+                    break;
                 default:
                     break;
             }
