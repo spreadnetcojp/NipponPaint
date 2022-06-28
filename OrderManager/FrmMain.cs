@@ -899,7 +899,7 @@ namespace NipponPaint.OrderManager
                     switch (result)
                     {
                         case DialogResult.Yes:
-                            var statusColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_STATUS);
+                            var statusColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_STATUS);
                             var dgv = GvDetail;
                             if (dgv.SelectedRows.Count > 0)
                             {
@@ -968,13 +968,10 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                var orders = new List<object>();
                 // 注文番号カラムインデックスの取得
-                var orderNumberColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_NUMBER);
+                var orderNumberColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_ORDER_NUMBER);
                 // 注文番号取得
                 var orderNumber = GetActiveGridViewName().SelectedRows[SELECTED_ROW].Cells[orderNumberColumnIndex].Value.ToString();
-                List<string> orderNumbers = new List<string>();
-                orderNumbers.Add(orderNumber);
                 //クリック時にCtrlキーが押されているか判別する
                 switch (Control.ModifierKeys)
                 {
@@ -989,19 +986,7 @@ namespace NipponPaint.OrderManager
                         switch (result)
                         {
                             case DialogResult.Yes:
-                                orders = GetCansFormulaReleaseFlg(orderNumbers);
-                                foreach (List<int> order in orders)
-                                {
-
-                                }
-                                result = Messages.ShowDialog(Sentence.Messages.SomeCansHaventBeenDispensedWithLastReleaseCloseOrder, OrderNumber.Value);
-                                switch (result)
-                                {
-                                    case DialogResult.Yes:
-                                        break;
-                                    case DialogResult.No:
-                                        break;
-                                }
+                                DeleteOrdersConfirmation(orderNumber);
                                 break;
                             case DialogResult.No:
                                 break;
@@ -2901,9 +2886,74 @@ namespace NipponPaint.OrderManager
             }
         }
 
-        private List<object> GetCansFormulaReleaseFlg(List<string> orderNumbers)
+        private void DeleteOrdersConfirmation(string orderNumber)
         {
-            var orderCans = new List<object>();
+            // メソッド内定数
+            const int formulaReleaseColumn = 0;
+            // 最終配合チェック用
+            var formulaReleaseCheckNum = 0;
+            List<string> orderNumbers = new List<string>();
+            orderNumbers.Add(orderNumber);
+            // 注文番号用のリスト作成
+            List<DataTable> orders = GetCansFormulaReleaseFlg(orderNumbers);
+            foreach (var order in orders)
+            {
+                foreach (DataRow row in order.Rows)
+                {
+                    // formula_Releaseが「0」を数える
+                    if (int.Parse(row[formulaReleaseColumn].ToString()) == 0)
+                    {
+                        formulaReleaseCheckNum++;
+                    }
+                }
+                // 全ての缶に最終配合が吐出されておればそのままDelete
+                if (formulaReleaseCheckNum == 0)
+                {
+                    DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()));
+                    ProductionEndPrint();
+                }
+                else
+                {
+                    // 最終配合が吐出されていない缶があれば再度確認
+                    DialogResult result = Messages.ShowDialog(Sentence.Messages.SomeCansHaventBeenDispensedWithLastReleaseCloseOrder);
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            // 完了通知を出すか確認　←　Yes:完了（正常）、　No:製造中止
+                            result = Messages.ShowDialog(Sentence.Messages.NotifyOrderAsCompletelyProduced);
+                            switch (result)
+                            {
+                                case DialogResult.Yes:
+                                    DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()));
+                                    ProductionEndPrint();
+                                    break;
+                                case DialogResult.No:
+                                    var canselFlg = 1;
+                                    var status = 7;
+                                    DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()), status, canselFlg);
+                                    ProductionEndPrint();
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        case DialogResult.No:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Cansの最終配合確認
+        /// </summary>
+        /// <param name="orderNumbers"></param>
+        /// <returns></returns>
+        private List<DataTable> GetCansFormulaReleaseFlg(List<string> orderNumbers)
+        {
+            var orderCans = new List<DataTable>();
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
                 foreach (string orderNumber in orderNumbers)
@@ -2918,5 +2968,42 @@ namespace NipponPaint.OrderManager
             return orderCans;
         }
 
+        /// <summary>
+        /// 注文を閉じる実施
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <param name="status"></param>
+        /// <param name="cancelFlg"></param>
+        private void DeleteOrders(int orderId, int status = (int)Sql.NpMain.Orders.OrderStatus.ProductionCompleted, int cancelFlg = 0)
+        {
+            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+            {
+                var parameters = new List<ParameterItem>()
+                {
+                    new ParameterItem("@OrderId", orderId),
+                    new ParameterItem("@Status", status),
+                };
+                db.Execute(Sql.NpMain.Orders.DeleteOrders(cancelFlg), parameters);
+                db.Commit();
+                BindDataGridViewAgain(db);
+            }
+        }
+
+        /// <summary>
+        /// プリントの出力確認
+        /// </summary>
+        private void ProductionEndPrint()
+        {
+            DialogResult result = Messages.ShowDialog(Sentence.Messages.PrintOrderProductionReport);
+            switch (result)
+            {
+                case DialogResult.Yes:
+                    break;
+                case DialogResult.No:
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

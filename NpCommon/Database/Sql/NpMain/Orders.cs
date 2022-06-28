@@ -55,6 +55,18 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             /// </summary>
             [Display(Description = "製造缶実施中")]
             ManufacturingCansInProgress = 4,
+            /// <summary>
+            /// 完了（正常）
+            /// </summary>
+            ProductionCompleted = 5,
+            /// <summary>
+            /// 完了（アーカイブに移動予定）
+            /// </summary>
+            ProductionCompletedMoveArchive = 6,
+            /// <summary>
+            /// 製造中止
+            /// </summary>
+            Discontinued = 7,
         }
         /// <summary>
         /// 配送区分
@@ -223,6 +235,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_STATUSCOLOR = "StatusColor";
         public const string COLUMN_FORMULA_RELEASE = "Formula_Release";
         public const string COLUMN_WHITE_WEIGHT = "White_Weight";
+        private const string COLUMN_HG_CANCEL = "HG_Cancel";
 
         #endregion
 
@@ -633,6 +646,27 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($" {MAIN_TABLE} ");
             sql.Append($"SET ");
             sql.Append($" {COLUMN_STATUS}        = @Status ");
+            sql.Append($"WHERE {COLUMN_ORDER_ID} = @OrderId ");
+            return sql.ToString();
+        }
+        #endregion
+
+        #region テスト缶仕上がりボタンを押下した際のstatus更新
+        /// <summary>
+        /// テスト缶仕上がりボタンを押下した際のstatus更新
+        /// </summary>
+        /// <returns></returns>
+        public static string DeleteOrders(int cancelFlg)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"UPDATE ");
+            sql.Append($" {MAIN_TABLE} ");
+            sql.Append($"SET ");
+            sql.Append($"  {COLUMN_STATUS}        = @Status ");
+            if (cancelFlg != 0)
+            {
+                sql.Append($" ,{COLUMN_HG_CANCEL} = {cancelFlg} ");
+            }
             sql.Append($"WHERE {COLUMN_ORDER_ID} = @OrderId ");
             return sql.ToString();
         }
