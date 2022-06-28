@@ -1140,6 +1140,19 @@ namespace NipponPaint.NpCommon
             [Display(Order = (int)Log.LogType.Info, Description = "履歴をデータベースから削除します")]
             DeleteOrderFromArchive,
 
+            //↓↓追加で作成　重複する内容が見つかれば削除します。
+            // <summary>
+            /// データ復帰
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Question, Description = "選択したデータを復元しますか？")]
+            RestoreSelectedTables,
+
+            // <summary>
+            /// 履歴データ削除
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Question, Description = "アーカイブから履歴データを削除しますか？")]
+            ErasePackTable,
+            //↑↑追加で作成　重複する内容が見つかれば削除します。
 
             #endregion
         }
