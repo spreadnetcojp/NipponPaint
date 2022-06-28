@@ -46,6 +46,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var frmOrderCloseSelectItems = new FrmOrderCloseSelectItems(NpCommon.Database.Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation);
                 frmOrderCloseSelectItems.ShowDialog();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -64,6 +65,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var frmOrderCloseSelectItems = new FrmOrderCloseSelectItems(NpCommon.Database.Sql.NpMain.Orders.OrderStatus.TestCanInProgress);
                 frmOrderCloseSelectItems.ShowDialog();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -82,6 +84,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var frmOrderCloseSelectItems = new FrmOrderCloseSelectItems(NpCommon.Database.Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress);
                 frmOrderCloseSelectItems.ShowDialog();
+                this.Close();
             }
             catch (Exception ex)
             {

@@ -972,6 +972,9 @@ namespace NipponPaint.OrderManager
                 var orderNumberColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_ORDER_NUMBER);
                 // 注文番号取得
                 var orderNumber = GetActiveGridViewName().SelectedRows[SELECTED_ROW].Cells[orderNumberColumnIndex].Value.ToString();
+                // 注文番号をリスト化
+                List<string> orderNumbers = new List<string>();
+                orderNumbers.Add(orderNumber);
                 //クリック時にCtrlキーが押されているか判別する
                 switch (Control.ModifierKeys)
                 {
@@ -986,7 +989,7 @@ namespace NipponPaint.OrderManager
                         switch (result)
                         {
                             case DialogResult.Yes:
-                                DeleteOrdersConfirmation(orderNumber);
+                                DeleteOrdersConfirmation(orderNumbers);
                                 break;
                             case DialogResult.No:
                                 break;
@@ -996,6 +999,10 @@ namespace NipponPaint.OrderManager
                         break;
                 }
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
+                {
+                    BindDataGridViewAgain(db);
+                }
             }
             catch (Exception ex)
             {
@@ -2886,14 +2893,16 @@ namespace NipponPaint.OrderManager
             }
         }
 
-        private void DeleteOrdersConfirmation(string orderNumber)
+        /// <summary>
+        /// 注文を閉じる実施
+        /// </summary>
+        /// <param name="orderNumbers"></param>
+        public void DeleteOrdersConfirmation(List<string> orderNumbers)
         {
             // メソッド内定数
             const int formulaReleaseColumn = 0;
             // 最終配合チェック用
             var formulaReleaseCheckNum = 0;
-            List<string> orderNumbers = new List<string>();
-            orderNumbers.Add(orderNumber);
             // 注文番号用のリスト作成
             List<DataTable> orders = GetCansFormulaReleaseFlg(orderNumbers);
             foreach (var order in orders)
@@ -2910,7 +2919,6 @@ namespace NipponPaint.OrderManager
                 if (formulaReleaseCheckNum == 0)
                 {
                     DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()));
-                    ProductionEndPrint();
                 }
                 else
                 {
@@ -2925,13 +2933,11 @@ namespace NipponPaint.OrderManager
                             {
                                 case DialogResult.Yes:
                                     DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()));
-                                    ProductionEndPrint();
                                     break;
                                 case DialogResult.No:
                                     var canselFlg = 1;
                                     var status = 7;
                                     DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()), status, canselFlg);
-                                    ProductionEndPrint();
                                     break;
                                 default:
                                     break;
@@ -2944,10 +2950,11 @@ namespace NipponPaint.OrderManager
                     }
                 }
             }
+            ProductionEndPrint();
         }
 
         /// <summary>
-        /// Cansの最終配合確認
+        /// Cansの最終配合取得
         /// </summary>
         /// <param name="orderNumbers"></param>
         /// <returns></returns>
@@ -2985,7 +2992,6 @@ namespace NipponPaint.OrderManager
                 };
                 db.Execute(Sql.NpMain.Orders.DeleteOrders(cancelFlg), parameters);
                 db.Commit();
-                BindDataGridViewAgain(db);
             }
         }
 

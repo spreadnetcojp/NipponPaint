@@ -109,6 +109,12 @@ namespace NipponPaint.NpCommon
             BtnOrderCloseClicked,
 
             /// <summary>
+            /// 「注文を閉じる」ボタンをクリック
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Question, Description = "選択されたオーダーがクローズされます。続けてよいですか？")]
+            BtnOrderCloseMultipleClicked,
+
+            /// <summary>
             /// 「ステータスを戻す」ボタンをクリック
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "オーダーのステータスを\"CCM配合待ち\"に変更しますか？")]
