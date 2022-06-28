@@ -22,34 +22,47 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
 {
     public static class MainSet
     {
+        #region 定数
+        //テーブル
+        public const string MAIN_TABLE = "Main_Set";
+        //カラム
+        public const string COLUMN_MAIN_SET_ID = "Main_Set_Id";
+        public const string COLUMN_COLOR_STATION_AREA_CODE = "Color_Station_Area_Code";
+        public const string COLUMN_TRK_CURRENT_FIRST = "TRK_Current_First";
+        public const string COLUMN_TRK_CURRENT_LAST = "TRK_Current_Last";
+        public const string COLUMN_TRK_LATEST_USED = "TRK_Latest_Used";
+        public const string COLUMN_TRK_NEXT_FIRST = "TRK_Next_First";
+        public const string COLUMN_TRK_NEXT_LAST = "TRK_Next_Last";
+        public const string COLUMN_TRK_DEPARTURE_CODE = "TRK_Departure_Code";
+        public const string COLUMN_TRK_DEPARTURE_NAME = "TRK_Departure_Name";
+        public const string COLUMN_FTP_DELAY_CHECK = "FTP_Delay_Check";
+        public const string COLUMN_AUTO_CLOSE_ORDERS = "Auto_Close_Orders";
+        public const string COLUMN_ARCHIVE_PERMANENCE = "Archive_Permanence";
+        public const string COLUMN_CSV_PATH = "CSV_Path";
+        public const string COLUMN_CSV_DAY = "CSV_Day";
+        public const string COLUMN_CSV_TIME = "CSV_Time";
+        public const string COLUMN_BCK_DAILY_TIME = "BCK_Daily_Time";
+        public const string COLUMN_BCK_WEEKLY_TIME = "BCK_Weekly_Time";
+        #endregion
+
+        #region 参照系
+        #region 一覧データの取得
         /// <summary>
-        /// メイン設定の一覧を表示
+        /// 一覧データの取得
         /// </summary>
         /// <returns></returns>
         public static string GetPreview()
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
-            sql.Append($" Main_Set_Id ");
-            sql.Append($",Color_Station_Area_Code ");
-            sql.Append($",TRK_Current_First ");
-            sql.Append($",TRK_Current_Last ");
-            sql.Append($",TRK_Latest_Used ");
-            sql.Append($",TRK_Next_First ");
-            sql.Append($",TRK_Next_Last ");
-            sql.Append($",TRK_Departure_Code ");
-            sql.Append($",TRK_Departure_Name ");
-            sql.Append($",FTP_Delay_Check ");
-            sql.Append($",Auto_Close_Orders ");
-            sql.Append($",Archive_Permanence ");
-            sql.Append($",CSV_Path ");
-            sql.Append($",CSV_Day ");
-            sql.Append($",CSV_Time ");
-            sql.Append($",BCK_Daily_Time ");
-            sql.Append($",BCK_Weekly_Time ");
-            sql.Append($"FROM Main_Set ");
-
+            sql.Append($"* ");
+            sql.Append($"FROM {MAIN_TABLE} ");
             return sql.ToString();
         }
+        #endregion
+        #endregion
+
+        #region 更新系
+        #endregion
     }
 }

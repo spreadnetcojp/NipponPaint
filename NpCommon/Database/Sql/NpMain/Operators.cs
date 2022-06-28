@@ -22,11 +22,20 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
 {
     public static class Operators
     {
+        #region 定数
+        //テーブル
+        public const string MAIN_TABLE = "Operators";
+        //カラム
+        public const string COLUMN_OPERATORS_ID = "Operators_Id";
+        public const string COLUMN_OPERATOR_NAME = "Operator_Name";
+        public const string COLUMN_OPERATOR_CODE = "Operator_Code";
+        #endregion
+
         #region 参照系
 
-        #region 一覧データの習得(FrmMixingColorsOperators)
+        #region 一覧データの取得(FrmMixingColorsOperators)
         /// <summary>
-        /// 担当者テーブルの一覧を取得(FrmMixingColorsOperators)
+        /// 一覧データの取得(FrmMixingColorsOperators)
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
@@ -35,15 +44,14 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
             sql.Append($"* ");
-            sql.Append($"FROM Operators ");
-
+            sql.Append($"FROM {MAIN_TABLE} ");
             return sql.ToString();
         }
         #endregion
 
-        #region 一覧データの習得(FrmOperators)
+        #region 一覧データの取得(FrmOperators)
         /// <summary>
-        /// 担当者テーブルの一覧を取得(FrmOperators)
+        /// 一覧データの取得(FrmOperators)
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
@@ -61,14 +69,14 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
                 sql.Append(item.SqlSentence);
                 cnt++;
             }
-            sql.Append($"FROM Operators ");
-            sql.Append($"WHERE Operator_Name <> '' ");　　　　　//空白の担当者の欄は表示させない
-            sql.Append($"ORDER BY Operators_Id ");
+            sql.Append($"FROM {MAIN_TABLE} ");
+            sql.Append($"WHERE {COLUMN_OPERATOR_NAME} <> '' ");　　　　　//空白の担当者の欄は表示させない
+            sql.Append($"ORDER BY {COLUMN_OPERATORS_ID} ");
             return sql.ToString();
         }
         #endregion
 
-        #region 詳細データの習得(FrmOperators)
+        #region 詳細データの取得(FrmOperators)
         /// <summary>
         /// 詳細データの取得(FrmOperators)
         /// </summary>
@@ -76,7 +84,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public static string GetDetail()
         {
             var sql = new StringBuilder();
-            sql.Append($"SELECT * FROM Operators WHERE Operators_Id = @operatorsId");
+            sql.Append($"SELECT * FROM {MAIN_TABLE} WHERE {COLUMN_OPERATORS_ID} = @operatorsId");
             return sql.ToString();
         }
         #endregion

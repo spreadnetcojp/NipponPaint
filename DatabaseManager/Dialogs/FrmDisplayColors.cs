@@ -236,7 +236,10 @@ namespace DatabaseManager.Dialogs
                 try
                 {
                     // フォームで定義された、取得値設定先のコントロールを抽出する
-                    db.FromLabelColorsDiaLog(this.Controls, "Colors", "RGB", "RF_Display_Colors");
+                    db.FromLabelColorsDiaLog(this.Controls,
+                                            Sql.NpMain.Colors.MAIN_TABLE,
+                                            Sql.NpMain.Colors.COLUMN_RGB,
+                                            Sql.NpMain.Colors.COLUMN_RF_DISPLAY_COLORS);
                     db.Commit();
                 }
                 catch (Exception ex)
