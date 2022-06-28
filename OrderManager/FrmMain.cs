@@ -791,7 +791,7 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 // Order_idで検索する
-                var columnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
+                var columnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_ORDER_ID);
                 var directionsData = new DataTable();
                 if (GvOrder.SelectedRows.Count > 0)
                 {
@@ -847,7 +847,7 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var orderId = 0;
                 // Order_idで検索する
-                var columnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
+                var columnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_ORDER_ID);
                 var orderData = new DataTable();
                 if (GvOrder.SelectedRows.Count > 0)
                 {
@@ -1242,8 +1242,8 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.CCMSimulatorData();
                 int selectedindex = tabMain.SelectedIndex;
-                var productCodeColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == "Product_Code");
-                var productCode2ColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == "Product_Code");
+                var productCodeColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_PRODUCT_CODE);
+                var productCode2ColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_PRODUCT_CODE);
                 string CodeP = string.Empty;
                 switch (selectedindex)
                 {
@@ -1341,7 +1341,7 @@ namespace NipponPaint.OrderManager
                         default:
                             break;
                     }
-                    var orderIdColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
+                    var orderIdColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_ORDER_ID);
                     if (dgv.SelectedRows.Count > 0)
                     {
                         // 行取得のSQLを作成
@@ -1477,9 +1477,9 @@ namespace NipponPaint.OrderManager
             try
             {
                 // Statusで検索する
-                var columnStatusIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_STATUS);
+                var columnStatusIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_STATUS);
                 // Order_idで検索する
-                var columnOrderIdIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
+                var columnOrderIdIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_ORDER_ID);
                 if (GvOrder.SelectedRows.Count > 0)
                 {
                     DataGridViewRow row = GvOrder.SelectedRows[0];
@@ -1682,7 +1682,7 @@ namespace NipponPaint.OrderManager
             {
                 var vm = new ViewModels.SelectDataNumber();
                 // Order_idで検索する
-                var columnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
+                var columnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_ORDER_ID);
                 if (GvOrder.SelectedRows.Count > 0)
                 {
                     DataGridViewRow row = GvOrder.SelectedRows[0];
@@ -1852,9 +1852,9 @@ namespace NipponPaint.OrderManager
             try
             {
                 // Statusを取得する
-                var statusColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_STATUS);
+                var statusColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_STATUS);
                 // Urgentを取得する
-                var urgentColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_URGENT);
+                var urgentColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_URGENT);
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -1888,11 +1888,11 @@ namespace NipponPaint.OrderManager
             try
             {
                 // Statusを取得する
-                var statusColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_STATUS);
+                var statusColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_STATUS);
                 // Order_idで検索する
-                var orderIdColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
+                var orderIdColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_ORDER_ID);
                 // Urgentを取得する
-                var urgentColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_URGENT);
+                var urgentColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_URGENT);
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -2007,11 +2007,11 @@ namespace NipponPaint.OrderManager
             try
             {
                 // Statusと取得する
-                var statusColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_STATUS);
+                var statusColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_STATUS);
                 // Order_idで検索する
-                var orderIdColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
+                var orderIdColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_ORDER_ID);
                 // Urgentを取得する
-                var urgentColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_URGENT);
+                var urgentColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_URGENT);
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -2076,11 +2076,11 @@ namespace NipponPaint.OrderManager
             try
             {
                 // Statusと取得する
-                var statusColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_STATUS);
+                var statusColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_STATUS);
                 // Order_idで検索する
-                var orderIdColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_ORDER_ID);
+                var orderIdColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_ORDER_ID);
                 // Urgentを取得する
-                var urgentColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == Sql.NpMain.Orders.COLUMN_URGENT);
+                var urgentColumnIndex = ViewSettingsOrderNumbers.FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_URGENT);
                 var dgv = (DataGridView)sender;
                 if (dgv.SelectedRows.Count > 0)
                 {
@@ -2576,8 +2576,8 @@ namespace NipponPaint.OrderManager
         private void ColorExplanation(DataTable dt)
         {
             //調色担当待ち
-            DataRow[] beforeSS = dt.Select($"[SS出荷予定日日付型] <= #{DateTime.Today}# AND {Sql.NpMain.Orders.COLUMN_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.WaitingForToning}");
-            DataRow[] ss = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.WaitingForToning}");
+            DataRow[] beforeSS = dt.Select($"[SS出荷予定日日付型] <= #{DateTime.Today}# AND {COLUMN_NAME_ORDERS_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.WaitingForToning}");
+            DataRow[] ss = dt.Select($"{COLUMN_NAME_ORDERS_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.WaitingForToning}");
             double total = 0;
             string strTotal = string.Empty;
             foreach (DataRow row in ss)
@@ -2593,7 +2593,7 @@ namespace NipponPaint.OrderManager
             label4.Text = $"{strTotal}t";
 
             //CCM配合待ち
-            DataRow[] ccm = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation}");
+            DataRow[] ccm = dt.Select($"{COLUMN_NAME_ORDERS_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation}");
             foreach (DataRow row in ccm)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -2607,7 +2607,7 @@ namespace NipponPaint.OrderManager
             label5.Text = $"{strTotal}t";
 
             //準備完
-            DataRow[] ready = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.Ready}");
+            DataRow[] ready = dt.Select($"{COLUMN_NAME_ORDERS_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.Ready}");
             foreach (DataRow row in ready)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -2621,7 +2621,7 @@ namespace NipponPaint.OrderManager
             label11.Text = $"{strTotal}t";
 
             //テスト缶実施中
-            DataRow[] testCan = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress}");
+            DataRow[] testCan = dt.Select($"{COLUMN_NAME_ORDERS_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress}");
             foreach (DataRow row in testCan)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
@@ -2635,7 +2635,7 @@ namespace NipponPaint.OrderManager
             label12.Text = $"{strTotal}t";
 
             //製造缶実施中
-            DataRow[] productCan = dt.Select($"{Sql.NpMain.Orders.COLUMN_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress}");
+            DataRow[] productCan = dt.Select($"{COLUMN_NAME_ORDERS_STATUS} = {(int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress}");
             foreach (DataRow row in productCan)
             {
                 int.TryParse(row[COLUMN_VOLUME_CODE].ToString().Replace("K", ""), out int weight);
