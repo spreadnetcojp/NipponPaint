@@ -104,7 +104,9 @@ namespace NipponPaint.OrderManager.Dialogs
                 var frmMain = new FrmMain();
                 // 注文番号をリスト化
                 var orderNumbers = new List<string>();
+                // 注文番号のIndex取得
                 var orderNumberIndex = GvCloseOrders.Columns[COLUMN_NAME_ORDERS_ORDER_NUMBER].Index;
+                // 選択している注文番号をリストに格納
                 foreach (DataGridViewRow row in GvCloseOrders.Rows)
                 {
                     if (Convert.ToBoolean(row.Cells[CHECKEDBOX_COLUMN].Value))
