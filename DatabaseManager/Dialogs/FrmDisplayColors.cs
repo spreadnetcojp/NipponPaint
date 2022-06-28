@@ -31,7 +31,7 @@ namespace DatabaseManager.Dialogs
     /// <summary>
     /// 表示色
     /// </summary>
-    public partial class FrmDisplayColors : Form
+    public partial class FrmDisplayColors : BaseForm
     {
 
         #region コンストラクタ
@@ -69,10 +69,9 @@ namespace DatabaseManager.Dialogs
         /// <param name="e"></param>
         private void BtnSettingSaveClick(object sender, EventArgs e)
         {
-            BaseForm baseForm = new BaseForm();
             try
             {
-                baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 //画面上で変更された色をDBへ反映する
                 RegistData();
                 //保存/元に戻すボタンをEnabled = false にする
@@ -80,7 +79,7 @@ namespace DatabaseManager.Dialogs
             }
             catch (Exception ex)
             {
-                baseForm.PutLog(ex);
+                PutLog(ex);
             }
         }
 
@@ -91,10 +90,9 @@ namespace DatabaseManager.Dialogs
         /// <param name="e"></param>
         private void BtnSettingInitializeClick(object sender, EventArgs e)
         {
-            BaseForm baseForm = new BaseForm();
             try
             {
-                baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 //色マスターを全件取得して画面に表示する
                 PreviewData();
                 //保存/元に戻すボタンをEnabled = false にする
@@ -102,7 +100,7 @@ namespace DatabaseManager.Dialogs
             }
             catch (Exception ex)
             {
-                baseForm.PutLog(ex);
+                PutLog(ex);
             }
         }
 
@@ -119,15 +117,14 @@ namespace DatabaseManager.Dialogs
             }
             else
             {
-                BaseForm baseForm = new BaseForm();
                 try
                 {
-                    baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                    PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                     this.Close();
                 }
                 catch (Exception ex)
                 {
-                    baseForm.PutLog(ex);
+                    PutLog(ex);
                 }
             }
         }
@@ -146,6 +143,7 @@ namespace DatabaseManager.Dialogs
 
         #region private functions
 
+        #region 画面の初期化
         /// <summary>
         /// 画面の初期化
         /// </summary>
@@ -245,8 +243,7 @@ namespace DatabaseManager.Dialogs
                 {
                     db.Rollback();
                     // ログ出力とエラーメッセージ
-                    BaseForm baseForm = new BaseForm();
-                    baseForm.PutLog(ex);
+                    PutLog(ex);
                 }
             }
         }
@@ -271,6 +268,8 @@ namespace DatabaseManager.Dialogs
                 }
             }
         }
+        #endregion
+
         #endregion
     }
 }

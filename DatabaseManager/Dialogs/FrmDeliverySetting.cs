@@ -31,7 +31,7 @@ namespace DatabaseManager.Dialogs
     /// <summary>
     /// 配達設定
     /// </summary>
-    public partial class FrmDeliverySetting : Form
+    public partial class FrmDeliverySetting : BaseForm
     {
 
         #region コンストラクタ
@@ -69,19 +69,17 @@ namespace DatabaseManager.Dialogs
         /// <param name="e"></param>
         private void BtnSettingSaveClick(object sender, EventArgs e)
         {
-            BaseForm baseForm = new BaseForm();
             try
             {
-                baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 // 画面上で変更された配達設定をDBへ反映する
                 RegistData();
                 //保存/元に戻すボタンをEnabled = false にする
                 ButtonEnabledFalse();
-
             }
             catch (Exception ex)
             {
-                baseForm.PutLog(ex);
+                PutLog(ex);
             }
         }
 
@@ -92,10 +90,9 @@ namespace DatabaseManager.Dialogs
         /// <param name="e"></param>
         private void BtnSettingInitializeClick(object sender, EventArgs e)
         {
-            BaseForm baseForm = new BaseForm();
             try
             {
-                baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 //配送区分マスターを全件取得して画面に表示する
                 PreviewData();
                 //保存/元に戻すボタンをEnabled = false にする
@@ -103,7 +100,7 @@ namespace DatabaseManager.Dialogs
             }
             catch (Exception ex)
             {
-                baseForm.PutLog(ex);
+                PutLog(ex);
             }
         }
 
@@ -120,15 +117,14 @@ namespace DatabaseManager.Dialogs
             }
             else
             {
-                BaseForm baseForm = new BaseForm();
                 try
                 {
-                    baseForm.PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                    PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                     this.Close();
                 }
                 catch (Exception ex)
                 {
-                    baseForm.PutLog(ex);
+                    PutLog(ex);
                 }
             }
         }
@@ -147,6 +143,7 @@ namespace DatabaseManager.Dialogs
 
         #region private functions
 
+        #region 画面の初期化
         /// <summary>
         /// 画面の初期化
         /// </summary>
@@ -257,6 +254,9 @@ namespace DatabaseManager.Dialogs
                 }
             }
         }
+        #endregion
+
+        #region 取得した配送区分マスターのSortOrderから、チェックを入れるラジオボタンを選ぶ
         /// <summary>
         /// 取得した配送区分マスターのSortOrderから、チェックを入れるラジオボタンを選ぶ
         /// </summary>
@@ -317,8 +317,7 @@ namespace DatabaseManager.Dialogs
                 {
                     db.Rollback();
                     // ログ出力とエラーメッセージ
-                    BaseForm baseForm = new BaseForm();
-                    baseForm.PutLog(ex);
+                    PutLog(ex);
                 }
             }
         }
@@ -360,5 +359,6 @@ namespace DatabaseManager.Dialogs
         }
         #endregion
 
+        #endregion
     }
 }
