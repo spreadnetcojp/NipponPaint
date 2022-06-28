@@ -140,6 +140,14 @@ namespace DatabaseManager.Dialogs
                     switch (result)
                     {
                         case DialogResult.Yes:
+                            var dt = new DateTime(DateOfBCKWeeklyTime.Value.Year, DateOfBCKWeeklyTime.Value.Month, DateOfBCKWeeklyTime.Value.Day, 0, 0, 0);
+                            var parameters = new List<ParameterItem>()
+                            {
+                                new ParameterItem("productionDate", dt),
+                            };
+                            db.Execute(Sql.NpMain.CansArchive.DeleteArchive(), parameters);
+                            db.Execute(Sql.NpMain.OrderArchive.DeleteArchive(), parameters);
+                            db.Commit();
                             break;
                         case DialogResult.No:
                             break;

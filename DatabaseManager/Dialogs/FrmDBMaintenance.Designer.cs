@@ -30,11 +30,11 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.BCKDailyTime = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnBackUpStartHourly = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.TimeOfBCKWeeklyTime = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.BtnBackUpStartDaily = new System.Windows.Forms.Button();
@@ -42,7 +42,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.BtnBackUpStartTrouble = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.DateOfBCKWeeklyTime = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.BtnHistoryDataDelete = new System.Windows.Forms.Button();
@@ -67,7 +67,7 @@
             this.BtnRestoreSettings = new System.Windows.Forms.Button();
             this.BtnSaveSettings = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BCKDailyTime)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -81,7 +81,7 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.numericUpDown1);
+            this.panel1.Controls.Add(this.BCKDailyTime);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.BtnBackUpStartHourly);
             this.panel1.Font = new System.Drawing.Font("メイリオ", 11.25F);
@@ -100,13 +100,13 @@
             this.label2.TabIndex = 33;
             this.label2.Text = "バックアップ間隔(時)";
             // 
-            // numericUpDown1
+            // BCKDailyTime
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("メイリオ", 11.25F);
-            this.numericUpDown1.Location = new System.Drawing.Point(15, 70);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(129, 30);
-            this.numericUpDown1.TabIndex = 33;
+            this.BCKDailyTime.Font = new System.Drawing.Font("メイリオ", 11.25F);
+            this.BCKDailyTime.Location = new System.Drawing.Point(15, 70);
+            this.BCKDailyTime.Name = "BCKDailyTime";
+            this.BCKDailyTime.Size = new System.Drawing.Size(129, 30);
+            this.BCKDailyTime.TabIndex = 33;
             // 
             // label1
             // 
@@ -133,7 +133,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.dateTimePicker1);
+            this.panel2.Controls.Add(this.TimeOfBCKWeeklyTime);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.BtnBackUpStartDaily);
@@ -143,14 +143,14 @@
             this.panel2.Size = new System.Drawing.Size(283, 160);
             this.panel2.TabIndex = 33;
             // 
-            // dateTimePicker1
+            // TimeOfBCKWeeklyTime
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker1.Location = new System.Drawing.Point(15, 70);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.ShowUpDown = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(129, 30);
-            this.dateTimePicker1.TabIndex = 34;
+            this.TimeOfBCKWeeklyTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.TimeOfBCKWeeklyTime.Location = new System.Drawing.Point(15, 70);
+            this.TimeOfBCKWeeklyTime.Name = "TimeOfBCKWeeklyTime";
+            this.TimeOfBCKWeeklyTime.ShowUpDown = true;
+            this.TimeOfBCKWeeklyTime.Size = new System.Drawing.Size(129, 30);
+            this.TimeOfBCKWeeklyTime.TabIndex = 34;
             // 
             // label3
             // 
@@ -220,7 +220,7 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.dateTimePicker2);
+            this.panel4.Controls.Add(this.DateOfBCKWeeklyTime);
             this.panel4.Controls.Add(this.label7);
             this.panel4.Controls.Add(this.label8);
             this.panel4.Controls.Add(this.BtnHistoryDataDelete);
@@ -230,13 +230,13 @@
             this.panel4.Size = new System.Drawing.Size(283, 160);
             this.panel4.TabIndex = 35;
             // 
-            // dateTimePicker2
+            // DateOfBCKWeeklyTime
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(15, 70);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(250, 30);
-            this.dateTimePicker2.TabIndex = 34;
+            this.DateOfBCKWeeklyTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateOfBCKWeeklyTime.Location = new System.Drawing.Point(15, 70);
+            this.DateOfBCKWeeklyTime.Name = "DateOfBCKWeeklyTime";
+            this.DateOfBCKWeeklyTime.Size = new System.Drawing.Size(250, 30);
+            this.DateOfBCKWeeklyTime.TabIndex = 34;
             // 
             // label7
             // 
@@ -519,7 +519,7 @@
             this.Text = "データベースメンテナンス";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BCKDailyTime)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -538,7 +538,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnBackUpStartHourly;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown BCKDailyTime;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -558,8 +558,8 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button BtnRestoreSettings;
         private System.Windows.Forms.Button BtnSaveSettings;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker TimeOfBCKWeeklyTime;
+        private System.Windows.Forms.DateTimePicker DateOfBCKWeeklyTime;
         private NipponPaint.NpCommon.FormControls.CheckTextButton ChkTxtBtn12;
         private NipponPaint.NpCommon.FormControls.CheckTextButton ChkTxtBtn11;
         private NipponPaint.NpCommon.FormControls.CheckTextButton ChkTxtBtn3;
