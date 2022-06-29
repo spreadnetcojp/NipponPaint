@@ -22,8 +22,21 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
 {
     public static class Plants
     {
+        #region 定数
+        //テーブル
+        public const string MAIN_TABLE = "Plants";
+        //カラム
+        public const string COLUMN_PLANT_ID = "Plant_ID";
+        public const string COLUMN_PLANT_DESCRIPTION = "Plant_Description";
+        public const string COLUMN_DAILY_CAPABILITY = "Daily_Capability";
+        public const string COLUMN_DAILY_WORKING_TIME = "Daily_Working_Time";
+        public const string COLUMN_START_WORKING_TIME = "Start_Working_Time";
+        #endregion
+
+        #region 参照系
+        #region 一覧データの取得
         /// <summary>
-        /// 工場テーブルの一覧を取得
+        /// 一覧データの取得
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
@@ -31,11 +44,14 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
-            sql.Append($" Plant_ID, Plant_Description ");
-            sql.Append($",Daily_Capability, Daily_Working_Time, Start_Working_Time ");
-            sql.Append($"FROM Plants ");
-
+            sql.Append($"* ");
+            sql.Append($"FROM {MAIN_TABLE} ");
             return sql.ToString();
         }
+        #endregion
+        #endregion
+
+        #region 更新系
+        #endregion
     }
 }

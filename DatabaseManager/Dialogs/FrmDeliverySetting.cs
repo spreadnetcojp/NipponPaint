@@ -310,7 +310,13 @@ namespace DatabaseManager.Dialogs
                 try
                 {
                     // フォームで定義された、取得値設定先のコントロールを抽出する
-                    db.FromDeliveryClassification(this.Controls, "Delivery", "HG_Delivery_Kanji", "Default_Delivery_Time", "Sort_Order", "Must_Notify", "HG_Delivery_Code");
+                    db.FromDeliveryClassification(this.Controls,
+                                            Sql.NpMain.Delivery.MAIN_TABLE,
+                                            Sql.NpMain.Delivery.COLUMN_HG_DELIVERY_KANJI,
+                                            Sql.NpMain.Delivery.COLUMN_DEFAULT_DELIVERY_TIME,
+                                            Sql.NpMain.Delivery.COLUMN_SORT_ORDER,
+                                            Sql.NpMain.Delivery.COLUMN_MUST_NOTIFY,
+                                            Sql.NpMain.Delivery.COLUMN_HG_DELIVERY_CODE);
                     db.Commit();
                 }
                 catch (Exception ex)
