@@ -287,7 +287,6 @@ namespace NipponPaint.OrderManager
             this.tabOrder.Controls.Add(this.GvOrder);
             this.tabOrder.Location = new System.Drawing.Point(4, 29);
             this.tabOrder.Name = "tabOrder";
-            this.tabOrder.Padding = new System.Windows.Forms.Padding(3);
             this.tabOrder.Size = new System.Drawing.Size(1663, 932);
             this.tabOrder.TabIndex = 0;
             this.tabOrder.Text = "注文";
@@ -307,11 +306,11 @@ namespace NipponPaint.OrderManager
             this.GvOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GvOrder.ContextMenuStrip = this.contextMenuStrip;
             this.GvOrder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GvOrder.Location = new System.Drawing.Point(3, 3);
+            this.GvOrder.Location = new System.Drawing.Point(0, 0);
             this.GvOrder.Name = "GvOrder";
             this.GvOrder.ReadOnly = true;
             this.GvOrder.RowTemplate.Height = 21;
-            this.GvOrder.Size = new System.Drawing.Size(1655, 924);
+            this.GvOrder.Size = new System.Drawing.Size(1661, 930);
             this.GvOrder.TabIndex = 0;
             // 
             // contextMenuStrip
@@ -398,7 +397,6 @@ namespace NipponPaint.OrderManager
             this.tabDetail.Controls.Add(this.splitDetail);
             this.tabDetail.Location = new System.Drawing.Point(4, 29);
             this.tabDetail.Name = "tabDetail";
-            this.tabDetail.Padding = new System.Windows.Forms.Padding(3);
             this.tabDetail.Size = new System.Drawing.Size(1663, 932);
             this.tabDetail.TabIndex = 1;
             this.tabDetail.Text = "詳細";
@@ -406,7 +404,7 @@ namespace NipponPaint.OrderManager
             // splitDetail
             // 
             this.splitDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitDetail.Location = new System.Drawing.Point(3, 3);
+            this.splitDetail.Location = new System.Drawing.Point(0, 0);
             this.splitDetail.Name = "splitDetail";
             this.splitDetail.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -417,8 +415,8 @@ namespace NipponPaint.OrderManager
             // splitDetail.Panel2
             // 
             this.splitDetail.Panel2.Controls.Add(this.pnlDetailItems);
-            this.splitDetail.Size = new System.Drawing.Size(1655, 924);
-            this.splitDetail.SplitterDistance = 396;
+            this.splitDetail.Size = new System.Drawing.Size(1661, 930);
+            this.splitDetail.SplitterDistance = 398;
             this.splitDetail.SplitterWidth = 3;
             this.splitDetail.TabIndex = 0;
             // 
@@ -433,7 +431,7 @@ namespace NipponPaint.OrderManager
             this.GvDetail.Name = "GvDetail";
             this.GvDetail.ReadOnly = true;
             this.GvDetail.RowTemplate.Height = 21;
-            this.GvDetail.Size = new System.Drawing.Size(1655, 396);
+            this.GvDetail.Size = new System.Drawing.Size(1661, 398);
             this.GvDetail.TabIndex = 0;
             // 
             // pnlDetailItems
@@ -442,7 +440,7 @@ namespace NipponPaint.OrderManager
             this.pnlDetailItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDetailItems.Location = new System.Drawing.Point(0, 0);
             this.pnlDetailItems.Name = "pnlDetailItems";
-            this.pnlDetailItems.Size = new System.Drawing.Size(1655, 525);
+            this.pnlDetailItems.Size = new System.Drawing.Size(1661, 529);
             this.pnlDetailItems.TabIndex = 0;
             // 
             // tabDetailSub
@@ -454,7 +452,7 @@ namespace NipponPaint.OrderManager
             this.tabDetailSub.Location = new System.Drawing.Point(0, 0);
             this.tabDetailSub.Name = "tabDetailSub";
             this.tabDetailSub.SelectedIndex = 0;
-            this.tabDetailSub.Size = new System.Drawing.Size(1655, 525);
+            this.tabDetailSub.Size = new System.Drawing.Size(1661, 529);
             this.tabDetailSub.TabIndex = 0;
             // 
             // tabDetail1
@@ -503,7 +501,7 @@ namespace NipponPaint.OrderManager
             this.tabDetail1.Location = new System.Drawing.Point(4, 32);
             this.tabDetail1.Name = "tabDetail1";
             this.tabDetail1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDetail1.Size = new System.Drawing.Size(1647, 489);
+            this.tabDetail1.Size = new System.Drawing.Size(1653, 493);
             this.tabDetail1.TabIndex = 0;
             this.tabDetail1.Text = "詳細１";
             // 

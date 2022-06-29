@@ -73,7 +73,6 @@ namespace NipponPaint.OrderManager.Dialogs
             this.GvCloseOrders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GvCloseOrders.Location = new System.Drawing.Point(0, 0);
             this.GvCloseOrders.Name = "GvCloseOrders";
-            this.GvCloseOrders.ReadOnly = true;
             this.GvCloseOrders.RowTemplate.Height = 21;
             this.GvCloseOrders.Size = new System.Drawing.Size(1182, 759);
             this.GvCloseOrders.TabIndex = 0;
