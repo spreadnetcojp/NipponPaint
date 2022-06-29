@@ -107,6 +107,11 @@ namespace NipponPaint.OrderManager
         /// </summary>
         private const int SELECTED_ROW = 0;
 
+        /// <summary>
+        /// 注文のキャンセルフラグ
+        /// </summary>
+        private const int ORDER_CANCEL_FLG = 1;
+
         #region 列定義定数(ColumnName)
         private const string COLUMN_NAME_ORDERS_HG_HG_DELIVERY_CODE = Sql.NpMain.Orders.COLUMN_HG_HG_DELIVERY_CODE;
         private const string COLUMN_NAME_ORDERS_STATUS = Sql.NpMain.Orders.COLUMN_STATUS;
@@ -1749,7 +1754,7 @@ namespace NipponPaint.OrderManager
             // 一覧にデータがない場合は処理をしない
             if (GvOrder.CurrentRow != null)
             {
-                //SelectDataGridViewRowByProductCode();
+                SelectDataGridViewRowByProductCode();
                 int gdvSelectedIndex = 0;
                 //変更前に選択していたタブを取得
                 switch (selectingTabIndex)
@@ -2481,7 +2486,7 @@ namespace NipponPaint.OrderManager
         /// <returns></returns>
         private int GetGridViewRowIndexByProductCode(string productCode)
         {
-            return GetGridViewRowIndex(productCode, COLUMN_PRODUCT_CODE);
+            return GetGridViewRowIndex(productCode, GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_PRODUCT_CODE));
         }
         #endregion
 
@@ -2934,8 +2939,8 @@ namespace NipponPaint.OrderManager
                                     DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()));
                                     break;
                                 case DialogResult.No:
-                                    var canselFlg = 1;
-                                    var status = 7;
+                                    var canselFlg = ORDER_CANCEL_FLG;
+                                    var status = (int)Sql.NpMain.Orders.OrderStatus.Discontinued;
                                     DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()), status, canselFlg);
                                     break;
                                 default:

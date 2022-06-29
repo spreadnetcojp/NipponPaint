@@ -233,7 +233,10 @@ namespace DatabaseManager.Dialogs
                 try
                 {
                     // フォームで定義された、取得値設定先のコントロールを抽出する
-                    db.FromLabelTextBoxDb(this.Controls, "Operators", "Operator_Name", "Operator_Code");
+                    db.FromLabelTextBoxDb(this.Controls,
+                                        Sql.NpMain.Operators.MAIN_TABLE,
+                                        Sql.NpMain.Operators.COLUMN_OPERATOR_NAME,
+                                        Sql.NpMain.Operators.COLUMN_OPERATOR_CODE);
                     db.Commit();
                 }
                 catch (Exception ex)

@@ -22,8 +22,18 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
 {
     public static class Colors
     {
+        #region 定数
+        //テーブル
+        public const string MAIN_TABLE = "Colors";
+        //カラム
+        public const string COLUMN_RGB = "RGB";
+        public const string COLUMN_RF_DISPLAY_COLORS = "RF_Display_Colors";
+        #endregion
+
+        #region 参照系
+        #region 一覧データの取得
         /// <summary>
-        /// 色マスターの一覧を表示
+        /// 一覧データの取得
         /// </summary>
         /// <returns></returns>
         public static string GetPreview()
@@ -31,9 +41,13 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
             sql.Append($"* ");
-            sql.Append($"FROM Colors ");
-
+            sql.Append($"FROM {MAIN_TABLE} ");
             return sql.ToString();
         }
+        #endregion
+        #endregion
+
+        #region 更新系
+        #endregion
     }
 }

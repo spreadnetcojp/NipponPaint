@@ -37,10 +37,10 @@ namespace DatabaseManager
     public partial class FrmMain : BaseForm
     {
         #region 定数
+        private static readonly Color BACK_COLOR = Color.Red;
         private static readonly Color FORE_COLOR = Color.LimeGreen;
         private static readonly Color REJECTED_FORE_COLOR = Color.FromArgb(250, 250, 0);
         private static readonly Color REJECTED_AND_ACKONWLEDGED_FORE_COLOR = Color.FromArgb(130, 130, 0);
-
 
         private const string DISPLAY_NAME_NOTIFY_MSG = "メッセージ";
         private const string DISPLAY_NAME_RECEIVE_TIME = "時間(Time)";
@@ -301,6 +301,69 @@ namespace DatabaseManager
                 PutLog(ex);
             }
         }
+
+        /// <summary>
+        /// Datagridviewをバインドする
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DgvList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in DgvList.Rows)
+            {
+                int rejectedCell = Convert.ToInt32(row.Cells[DISPLAY_NAME_REJECTED].Value);
+                int acknowledgedCell = Convert.ToInt32(row.Cells[DISPLAY_NAME_ACKNOWLEDGED].Value);
+                switch (rejectedCell)
+                {
+                    case 0:
+                        row.DefaultCellStyle.ForeColor = FORE_COLOR;
+                        row.DefaultCellStyle.SelectionForeColor = FORE_COLOR;
+                        break;
+                    case 1:
+                        if (acknowledgedCell == 0)
+                        {
+                            row.DefaultCellStyle.ForeColor = REJECTED_FORE_COLOR;
+                            row.DefaultCellStyle.SelectionForeColor = REJECTED_FORE_COLOR;
+                        }
+                        else
+                        {
+                            row.DefaultCellStyle.ForeColor = REJECTED_AND_ACKONWLEDGED_FORE_COLOR;
+                            row.DefaultCellStyle.SelectionForeColor = REJECTED_AND_ACKONWLEDGED_FORE_COLOR;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// データ更新サイクル
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TimerTick(object sender, EventArgs e)
+        {
+            // DgvListの初期設定
+            InitializeDgvList();
+        }
+
+        /// <summary>
+        /// サーバーステータスの赤点滅
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TmrPnlServerStatusBlinkingTick(object sender, EventArgs e)
+        {
+            if (PnlServerStatus.BackColor != BACK_COLOR)
+            {
+                PnlServerStatus.BackColor = BACK_COLOR;
+            }
+            else
+            {
+                PnlServerStatus.BackColor = Color.White;
+            }
+        }
         #endregion
 
         #region private functions
@@ -323,11 +386,11 @@ namespace DatabaseManager
             this.BtnHGServerStart.Click += new System.EventHandler(this.BtnHGServerStartClick);
             this.BtnHGServerStop.Click += new System.EventHandler(this.BtnHGServerStopClick);
             this.DgvList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DgvList_DataBindingComplete);
+            this.Timer.Tick += new System.EventHandler(this.TimerTick);
+            this.TmrPnlServerStatusBlinking.Tick += new System.EventHandler(this.TmrPnlServerStatusBlinkingTick);
             // DgvListの初期設定
             InitializeDgvList();
         }
-        #endregion
-
         #endregion
 
         #region 一覧表示
@@ -345,7 +408,10 @@ namespace DatabaseManager
         }
         #endregion
 
-        #region // DgvListの初期設定
+        #region DgvListの初期設定
+        /// <summary>
+        /// DgvListの初期設定
+        /// </summary>
         private void InitializeDgvList()
         {
             // DataGridViewの初期設定
@@ -365,50 +431,6 @@ namespace DatabaseManager
         }
         #endregion
 
-        #region Datagridviewをバインドする
-        /// <summary>
-        /// Datagridviewをバインドする
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DgvList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            foreach (DataGridViewRow row in DgvList.Rows)
-            {
-                int rejectedCell = Convert.ToInt32(row.Cells[DISPLAY_NAME_REJECTED].Value);
-                int acknowledgedCell = Convert.ToInt32(row.Cells[DISPLAY_NAME_ACKNOWLEDGED].Value);
-                switch (rejectedCell)
-                {
-
-                    case 0:
-                        row.DefaultCellStyle.ForeColor = FORE_COLOR;
-                        row.DefaultCellStyle.SelectionForeColor = FORE_COLOR;
-                        break;
-                    case 1:
-                        if (acknowledgedCell == 0)
-                        {
-                            row.DefaultCellStyle.ForeColor = REJECTED_FORE_COLOR;
-                            row.DefaultCellStyle.SelectionForeColor = REJECTED_FORE_COLOR;
-                        }
-                        else
-                        {
-                            row.DefaultCellStyle.ForeColor = REJECTED_AND_ACKONWLEDGED_FORE_COLOR;
-                            row.DefaultCellStyle.SelectionForeColor = REJECTED_AND_ACKONWLEDGED_FORE_COLOR;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
         #endregion
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            // DgvListの初期設定
-            InitializeDgvList();
-        }
-
-
     }
 }
