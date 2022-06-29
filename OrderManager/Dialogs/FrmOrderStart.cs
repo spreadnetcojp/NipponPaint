@@ -237,11 +237,7 @@ namespace NipponPaint.OrderManager.Dialogs
                         case DialogResult.Yes:
                             // Order_id取得・Order_idをキーに注文を戻す実施
                             int.TryParse(TxtOrderId.Value.ToString(), out int orderId);
-                            var parameters = new List<ParameterItem>()
-                            {
-                                new ParameterItem("orderId", orderId),
-                            };
-                            db.StatusResume(NpCommon.Database.Sql.NpMain.Orders.StatusResume(), parameters);
+                            db.StatusResume(NpCommon.Database.Sql.NpMain.Orders.StatusResume(orderId.ToString()));
                             db.Commit();
                             this.Close();
                             break;

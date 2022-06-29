@@ -891,6 +891,7 @@ namespace NipponPaint.OrderManager
             }
             try
             {
+                List<int> gdvSelectedOrderIds = new List<int>();
                 // Order_id取得
                 var gdvSelectedOrderId = GetOrderId();
                 using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
@@ -903,33 +904,11 @@ namespace NipponPaint.OrderManager
                             var dgv = GvDetail;
                             if (dgv.SelectedRows.Count > 0)
                             {
+                                gdvSelectedOrderIds.Add(gdvSelectedOrderId);
                                 // 選択している行を取得
                                 var selectedRow = dgv.SelectedRows[0];
                                 int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
-                                // 行取得のSQLを作成
-                                var parameters = new List<ParameterItem>()
-                                {
-                                    new ParameterItem("orderId", gdvSelectedOrderId),
-                                };
-                                switch ((Sql.NpMain.Orders.OrderStatus)status)
-                                {
-                                    case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
-                                        break;
-                                    case Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
-                                        break;
-                                    case Sql.NpMain.Orders.OrderStatus.Ready:
-                                        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
-                                        break;
-                                    case Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
-                                        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
-                                        break;
-                                    case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
-                                        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
-                                        break;
-                                    default:
-                                        break;
-                                }
-                                db.Commit();
+                                StatusResumeOrders(db, gdvSelectedOrderIds, status);
                             }
                             BindDataGridViewAgain(db);
                             break;
@@ -1021,6 +1000,7 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var form = new FrmOrderChangeStatusSelectItem();
                 form.ShowDialog();
+                DialogCloseBinding();
             }
             catch (Exception ex)
             {
@@ -3010,6 +2990,35 @@ namespace NipponPaint.OrderManager
                 default:
                     break;
             }
+        }
+
+        public void StatusResumeOrders(SqlBase db, List<int> gdvSelectedOrderIds, int status = 2 )
+        {
+            // 行取得のSQLを作成
+            var selectOrderIds = string.Join(",", gdvSelectedOrderIds);
+            //var parameters = new List<ParameterItem>()
+            //{
+            //    new ParameterItem("orderId", selectOrderIds),
+            //};
+            switch ((Sql.NpMain.Orders.OrderStatus)status)
+            {
+                case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
+                    break;
+                case Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
+                    break;
+                case Sql.NpMain.Orders.OrderStatus.Ready:
+                    db.StatusResume(Sql.NpMain.Orders.StatusResume(selectOrderIds));
+                    break;
+                case Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
+                    db.StatusResume(Sql.NpMain.Orders.StatusResume(selectOrderIds));
+                    break;
+                case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
+                    db.StatusResume(Sql.NpMain.Orders.StatusResume(selectOrderIds));
+                    break;
+                default:
+                    break;
+            }
+            db.Commit();
         }
     }
 }

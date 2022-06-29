@@ -1258,9 +1258,9 @@ namespace NipponPaint.NpCommon.Database
         #endregion
 
         #region データベース"NP_MAIN"のOrdersテーブルのStatusを変更する
-        public void StatusResume(string sql, List<ParameterItem> parameters = null)
+        public void StatusResume(string sql)
         {
-            Execute(sql, parameters);
+            Execute(sql);
         }
         #endregion
 

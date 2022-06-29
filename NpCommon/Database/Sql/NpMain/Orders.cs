@@ -501,7 +501,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// ステータスを戻す
         /// </summary>
         /// <returns></returns>
-        public static string StatusResume()
+        public static string StatusResume( string orderIds )
         {
             var sql = new StringBuilder();
             sql.Append($"UPDATE ");
@@ -552,7 +552,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($",Total_Weight = 0 ");
             sql.Append($"FROM Orders ");
             sql.Append($"WHERE ");
-            sql.Append($"order_id = @orderId");
+            sql.Append($"order_id IN ({orderIds})");
 
             return sql.ToString();
         }
