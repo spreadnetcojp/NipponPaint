@@ -78,6 +78,13 @@ namespace NipponPaint.NpCommon.Settings
         /// </summary>
         public SvUpdateType SvUpdate { get; set; } = SvUpdateType.None;
 
+        #region
+        /// <summary>
+        /// 缶タブ用ColumnName（吐出配合）
+        /// </summary>
+        private const string CANS_FORMULA_RELEASE = "C.Formula_Release";
+        #endregion
+
         #region コンストラクタ
         public GridViewSetting()
         {
@@ -109,7 +116,14 @@ namespace NipponPaint.NpCommon.Settings
                     case ColumnModeType.Blank:
                         return $"'' AS {DisplayName} ";
                     case ColumnModeType.Bit:
-                        return $"case {ColumnName} when 0 then N'{FALSE}' else N'{TRUE}' End AS {DisplayName}";
+                        switch ($"{ColumnName}")
+                        {
+                            // 缶タブ内最終配合の表示専用SQL
+                            case CANS_FORMULA_RELEASE:
+                                return $"case when {ColumnName} = O.{Database.Sql.NpMain.Orders.COLUMN_FORMULA_RELEASE} then N'{TRUE}' else N'{FALSE}' End AS {DisplayName}";
+                            default:
+                                return $"case {ColumnName} when 0 then N'{FALSE}' else N'{TRUE}' End AS {DisplayName}";
+                        }
                     default:
                         return $"{ColumnName} AS {DisplayName} ";
                 }
