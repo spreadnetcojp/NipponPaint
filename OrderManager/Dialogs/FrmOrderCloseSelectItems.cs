@@ -34,18 +34,47 @@ namespace NipponPaint.OrderManager.Dialogs
     /// </summary>
     public partial class FrmOrderCloseSelectItems : BaseForm
     {
+        #region 列定義定数(ColumnName)
+        private const string COLUMN_NAME_ORDERS_ORDER_ID = Sql.NpMain.Orders.COLUMN_ORDER_ID;
+        private const string COLUMN_NAME_ORDERS_PRODUCT_CODE = Sql.NpMain.Orders.COLUMN_PRODUCT_CODE;
+        private const string COLUMN_NAME_ORDERS_STATUS = Sql.NpMain.Orders.COLUMN_STATUS;
+        private const string COLUMN_NAME_ORDERS_OPERATOR_NAME = Sql.NpMain.Orders.COLUMN_OPERATOR_NAME;
+        private const string COLUMN_NAME_ORDERS_HG_PRODUCT_NAME = Sql.NpMain.Orders.COLUMN_HG_PRODUCT_NAME;
+        private const string COLUMN_NAME_ORDERS_HG_VOLUME_CODE = Sql.NpMain.Orders.COLUMN_HG_VOLUME_CODE;
+        private const string COLUMN_NAME_ORDERS_NUMBER_OF_CAN = Sql.NpMain.Orders.COLUMN_NUMBER_OF_CAN;
+        private const string COLUMN_NAME_ORDERS_ORDER_NUMBER = Sql.NpMain.Orders.COLUMN_ORDER_NUMBER;
+        private const string COLUMN_NAME_ORDERS_STATSU_TEXT = "StatusText";
+        #endregion
+
+        #region 列定義定数(DisplayName)
+        private const string DISPLAY_NAME_ORDER_ID = "Order_id";
+        private const string DISPLAY_NAME_STATUS = "Status";
+        private const string DISPLAY_NAME_PRODUCT_CODE = "製品ｺｰﾄﾞ";
+        private const string DISPLAY_NAME_HG_PRODUCT_NAME = "品名";
+        private const string DISPLAY_NAME_HG_VOLUME_CODE = "容量ｺｰﾄﾞ";
+        private const string DISPLAY_NAME_NUMBER_OF_CAN = "缶数";
+        private const string DISPLAY_NAME_OPERATOR_NAME = "担当者";
+        private const string DISPLAY_NAME_ORDER_NUMBER = "注文番号";
+        private const string DISPLAY_NAME_STATUS_TEXT = "ステータス";
+        #endregion
+
+        /// <summary>
+        /// 列の先頭に追加しているので、インデックスは「０」
+        /// </summary>
+        private const int CHECKEDBOX_COLUMN = 0;
+
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Order_id", DisplayName = "Order_id", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Product_Code", DisplayName = "製品ｺｰﾄﾞ", Visible = true, Width = 60, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Status", DisplayName = "Status", Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "StatusText", DisplayName = "ステータス", Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Name", DisplayName = "担当者", Visible = true, Width = 100 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Product_Name", DisplayName = "品名", Visible = true, Width = 560 } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "HG_Volume_Code", DisplayName = "容量ｺｰﾄﾞ", Visible = true, Width = 80, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Number_of_cans", DisplayName = "缶数", Visible = true, Width = 50, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "Order_Number", DisplayName = "注文番号", Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_ORDER_ID, DisplayName = DISPLAY_NAME_ORDER_ID, Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_PRODUCT_CODE, DisplayName = DISPLAY_NAME_PRODUCT_CODE, Visible = true, Width = 60, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_STATUS, DisplayName = DISPLAY_NAME_STATUS, Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_STATSU_TEXT, DisplayName = DISPLAY_NAME_STATUS_TEXT, Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_OPERATOR_NAME, DisplayName = DISPLAY_NAME_OPERATOR_NAME, Visible = true, Width = 100 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_HG_PRODUCT_NAME, DisplayName = DISPLAY_NAME_HG_PRODUCT_NAME, Visible = true, Width = 560 } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_ORDERS_HG_VOLUME_CODE, DisplayName = DISPLAY_NAME_HG_VOLUME_CODE, Visible = true, Width = 80, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_NUMBER_OF_CAN, DisplayName = DISPLAY_NAME_NUMBER_OF_CAN, Visible = true, Width = 50, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_ORDERS_ORDER_NUMBER, DisplayName = DISPLAY_NAME_ORDER_NUMBER, Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleCenter } },
         };
         #endregion
 
@@ -72,6 +101,30 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
+                var frmMain = new FrmMain();
+                // 注文番号をリスト化
+                var orderNumbers = new List<string>();
+                // 注文番号のIndex取得
+                var orderNumberIndex = GvCloseOrders.Columns[COLUMN_NAME_ORDERS_ORDER_NUMBER].Index;
+                // 選択している注文番号をリストに格納
+                foreach (DataGridViewRow row in GvCloseOrders.Rows)
+                {
+                    if (Convert.ToBoolean(row.Cells[CHECKEDBOX_COLUMN].Value))
+                    {
+                        orderNumbers.Add(row.Cells[orderNumberIndex].Value.ToString());
+                    }
+                }
+                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnOrderCloseMultipleClicked);
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        frmMain.DeleteOrdersConfirmation(orderNumbers);
+                        break;
+                    case DialogResult.No:
+                        break;
+                    default:
+                        break;
+                }
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }
@@ -98,6 +151,38 @@ namespace NipponPaint.OrderManager.Dialogs
             }
         }
         #endregion
+        /// <summary>
+        /// 全て選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChkSelectAllChecked(object sender, EventArgs e)
+        {
+            try
+            {
+                switch (((CheckBox)sender).CheckState)
+                {
+                    case CheckState.Checked:
+                        foreach (DataGridViewRow row in GvCloseOrders.Rows)
+                        {
+                            row.Cells[CHECKEDBOX_COLUMN].Value = true;
+                        }
+                        break;
+                    case CheckState.Unchecked:
+                        foreach (DataGridViewRow row in GvCloseOrders.Rows)
+                        {
+                            row.Cells[CHECKEDBOX_COLUMN].Value = false;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                PutLog(ex);
+            }
+        }
 
         #region private functions
 
@@ -119,7 +204,7 @@ namespace NipponPaint.OrderManager.Dialogs
             var cnt = 0;
             // DataGridViewのスタイル設定
             GvCloseOrders.ColumnHeadersVisible = false;
-            GvCloseOrders.EditMode = DataGridViewEditMode.EditProgrammatically;
+            //GvCloseOrders.EditMode = DataGridViewEditMode.EditProgrammatically;
             // チェックボックスカラム追加
             var checkboxColumn = new DataGridViewCheckBoxColumn();
             checkboxColumn.Name = "Selected";
@@ -135,6 +220,9 @@ namespace NipponPaint.OrderManager.Dialogs
                 GvCloseOrders.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
                 cnt++;
             }
+            GvCloseOrders.ReadOnly = false;
+            // 全て選択イベント追加
+            this.ChkSelectAll.CheckedChanged += new EventHandler(this.ChkSelectAllChecked);
         }
         #endregion
     }

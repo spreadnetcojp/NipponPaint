@@ -75,6 +75,8 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_COLORANT_19 = "Colorant_19";
         public const string COLUMN_DISPENSED_19 = "Dispensed_19";
         public const string COLUMN_WHITE_WEIGHT = "White_Weight";
+        public const string COLUMN_CANS_ID = "Cans_Id";
+        public const string COLUMN_ORDER_NUMBER = "Order_Number";
         #endregion
         #region 参照系
 
@@ -214,6 +216,21 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
+        public static string GetCansFormulaRelease(string plant)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            sql.Append($"  C.{COLUMN_FORMULA_RELEASE} ");
+            sql.Append($" ,C.{COLUMN_ORDER_ID} ");
+            sql.Append($"FROM {SelectCans(plant)} ");
+            sql.Append($"WHERE C.{COLUMN_ORDER_NUMBER} = @OrderNumber ");
+            return sql.ToString();
+        }
+
+        #endregion
+
+        #region 更新系
+
         #region 色コード、吐出量、重量を初期化する
         /// <summary>
         /// 色コード、吐出量、重量を初期化する
@@ -306,5 +323,6 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         #endregion
 
         #endregion
+
     }
 }
