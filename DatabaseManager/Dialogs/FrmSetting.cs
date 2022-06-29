@@ -518,30 +518,36 @@ namespace DatabaseManager.Dialogs
                 try
                 {
                     // フォームで定義された、工場の取得値設定先のコントロールを抽出する
-                    db.FromTabCtrlPagePlants(this.Controls, "Plants", "Plant_Description", "Daily_Capability", "Daily_Working_Time", "Start_Working_Time", "Plant_ID");
+                    db.FromTabCtrlPagePlants(this.Controls,
+                                             Sql.NpMain.Plants.MAIN_TABLE,
+                                             Sql.NpMain.Plants.COLUMN_PLANT_DESCRIPTION,
+                                             Sql.NpMain.Plants.COLUMN_DAILY_CAPABILITY,
+                                             Sql.NpMain.Plants.COLUMN_DAILY_WORKING_TIME,
+                                             Sql.NpMain.Plants.COLUMN_START_WORKING_TIME,
+                                             Sql.NpMain.Plants.COLUMN_PLANT_ID);
                     db.FromTabCtrlPagePlantsSetting(this.Controls,
-                                             "Plants_Settings",
-                                             "FTP_Server",
-                                             "FTP_User",
-                                             "FTP_Password",
-                                             "FTP_Port",
-                                             "FTP_Dir_Send",
-                                             "FTP_Dir_Receive",
-                                             "FTP_Dir_Notify",
-                                             "Enabled",
-                                             "TRK_Shipper_Code",
-                                             "TRK_Shipper_Address_1",
-                                             "TRK_Shipper_Address_2",
-                                             "TRK_Shipper_Company",
-                                             "TRK_Shipper_Subsidiary",
-                                             "TRK_Telephone_Number",
-                                             "id");
-                    db.FromLabelTextBox(this.Controls, "Main_Set", "Main_Set_Id");
-                    db.FromTextBoxEx(this.Controls, "Main_Set", "Main_Set_Id");
-                    db.FromLabelNumericUpDown(this.Controls, "Main_Set", "Main_Set_Id");
-                    db.FromLabelNumericUpDownMulti(this.Controls, "Main_Set", "Main_Set_Id");
-                    db.FromLabelCheckBoxSingle(this.Controls, "Main_Set", "Main_Set_Id");
-                    db.FromLabelDateTimePicker(this.Controls, "Main_Set", "Main_Set_Id");
+                                             Sql.NpMain.PlantsSettings.MAIN_TABLE,
+                                             Sql.NpMain.PlantsSettings.COLUMN_FTP_SERVER,
+                                             Sql.NpMain.PlantsSettings.COLUMN_FTP_USER,
+                                             Sql.NpMain.PlantsSettings.COLUMN_FTP_PASSWORD,
+                                             Sql.NpMain.PlantsSettings.COLUMN_FTP_PORT,
+                                             Sql.NpMain.PlantsSettings.COLUMN_FTP_DIR_SEND,
+                                             Sql.NpMain.PlantsSettings.COLUMN_FTP_DIR_RECEIVE,
+                                             Sql.NpMain.PlantsSettings.COLUMN_FTP_DIR_NOTIFY,
+                                             Sql.NpMain.PlantsSettings.COLUMN_ENABLED,
+                                             Sql.NpMain.PlantsSettings.COLUMN_TRK_SHIPPER_CODE,
+                                             Sql.NpMain.PlantsSettings.COLUMN_TRK_SHIPPER_ADDRESS_1,
+                                             Sql.NpMain.PlantsSettings.COLUMN_TRK_SHIPPER_ADDRESS_2,
+                                             Sql.NpMain.PlantsSettings.COLUMN_TRK_SHIPPER_COMPANY,
+                                             Sql.NpMain.PlantsSettings.COLUMN_TRK_SHIPPER_SUBSIDIARY,
+                                             Sql.NpMain.PlantsSettings.COLUMN_TRK_TELEPHONE_NUMBER,
+                                             Sql.NpMain.PlantsSettings.COLUMN_ID);
+                    db.FromLabelTextBox(this.Controls, Sql.NpMain.MainSet.MAIN_TABLE, Sql.NpMain.MainSet.COLUMN_MAIN_SET_ID);
+                    db.FromTextBoxEx(this.Controls, Sql.NpMain.MainSet.MAIN_TABLE, Sql.NpMain.MainSet.COLUMN_MAIN_SET_ID);
+                    db.FromLabelNumericUpDown(this.Controls, Sql.NpMain.MainSet.MAIN_TABLE, Sql.NpMain.MainSet.COLUMN_MAIN_SET_ID);
+                    db.FromLabelNumericUpDownMulti(this.Controls, Sql.NpMain.MainSet.MAIN_TABLE, Sql.NpMain.MainSet.COLUMN_MAIN_SET_ID);
+                    db.FromLabelCheckBoxSingle(this.Controls, Sql.NpMain.MainSet.MAIN_TABLE, Sql.NpMain.MainSet.COLUMN_MAIN_SET_ID);
+                    db.FromLabelDateTimePicker(this.Controls, Sql.NpMain.MainSet.MAIN_TABLE, Sql.NpMain.MainSet.COLUMN_MAIN_SET_ID);
                     db.Commit();
                 }
                 catch (Exception ex)
