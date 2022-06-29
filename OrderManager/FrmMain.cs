@@ -579,6 +579,11 @@ namespace NipponPaint.OrderManager
                         BtnProcessDetail.PerformClick();
                         break;
                     default:
+                        // Altキーを押された状態はアクセラレータキーなので何もしない
+                        if (e.Alt)
+                        {
+                            break;
+                        }
                         // KeyCodeを文字列に変換する。
                         // テンキーからの数値入力を想定して"NumPad"は削除する。
                         var keyValue = new KeysConverter().ConvertToString(e.KeyCode).Replace("NumPad", "");
