@@ -648,7 +648,6 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-
                 DataGridViewFormatting((DataGridView)sender);
                 PutLog(Sentence.Messages.PreviewData);
             }
