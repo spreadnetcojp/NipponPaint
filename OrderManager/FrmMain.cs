@@ -3027,10 +3027,15 @@ namespace NipponPaint.OrderManager
         {
             // 行取得のSQLを作成
             var selectOrderIds = string.Join(",", gdvSelectedOrderIds);
-            //var parameters = new List<ParameterItem>()
-            //{
-            //    new ParameterItem("orderId", selectOrderIds),
-            //};
+            var barcodes = new List<DataTable>();
+            foreach (var orderId in gdvSelectedOrderIds)
+            {
+                var parameters = new List<ParameterItem>()
+                {
+                    new ParameterItem("@Order_id", orderId),
+                };
+                barcodes.Add(db.Select(Sql.NpMain.Cans.GetBarcodes(BaseSettings.Facility.Plant),parameters));
+            }
             switch ((Sql.NpMain.Orders.OrderStatus)status)
             {
                 case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
@@ -3038,13 +3043,10 @@ namespace NipponPaint.OrderManager
                 case Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
                     break;
                 case Sql.NpMain.Orders.OrderStatus.Ready:
-                    db.StatusResume(Sql.NpMain.Orders.StatusResume(selectOrderIds));
-                    break;
                 case Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
-                    db.StatusResume(Sql.NpMain.Orders.StatusResume(selectOrderIds));
-                    break;
                 case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
                     db.StatusResume(Sql.NpMain.Orders.StatusResume(selectOrderIds));
+
                     break;
                 default:
                     break;

@@ -102,13 +102,13 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                List<int> OrderChange = new List<int>();
+                List<int> orderChange = new List<int>();
                 var orderIdIndex = GvChangeOrders.Columns["Order_id"].Index;
                 foreach (DataGridViewRow row in GvChangeOrders.Rows)
                 {
                     if (Convert.ToBoolean(row.Cells[CHECKEDBOX_COLUMN].Value))
                     {
-                        OrderChange.Add(Funcs.StrToInt(row.Cells[orderIdIndex].Value.ToString()));
+                        orderChange.Add(Funcs.StrToInt(row.Cells[orderIdIndex].Value.ToString()));
                     }
                 }
                 DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
@@ -118,7 +118,7 @@ namespace NipponPaint.OrderManager.Dialogs
                         using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                         {
                             var frmMain = new FrmMain();
-                            frmMain.StatusResumeOrders(db, OrderChange);
+                            frmMain.StatusResumeOrders(db, orderChange);
                         }
                         break;
                     case DialogResult.No:
@@ -197,28 +197,3 @@ namespace NipponPaint.OrderManager.Dialogs
         #endregion
     }
 }
-
-
-//var parameters = new List<ParameterItem>()
-//                                {
-//                                    new ParameterItem("orderId", gdvSelectedOrderId),
-//                                };
-//switch ((Sql.NpMain.Orders.OrderStatus)status)
-//{
-//    case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
-//        break;
-//    case Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
-//        break;
-//    case Sql.NpMain.Orders.OrderStatus.Ready:
-//        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
-//        break;
-//    case Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
-//        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
-//        break;
-//    case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
-//        db.StatusResume(Sql.NpMain.Orders.StatusResume(), parameters);
-//        break;
-//    default:
-//        break;
-//}
-//db.Commit();

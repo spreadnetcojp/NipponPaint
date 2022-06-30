@@ -227,6 +227,17 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             return sql.ToString();
         }
 
+        public static string GetBarcodes(string plant)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            sql.Append($" C.{COLUMN_BARCODE} ");
+            sql.Append($"FROM {SelectCans(plant)} ");
+            sql.Append($"WHERE C.{COLUMN_ORDER_ID} = @Order_id ");
+            return sql.ToString();
+        }
+
+
         #endregion
 
         #region 更新系
