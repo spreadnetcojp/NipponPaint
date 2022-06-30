@@ -904,29 +904,26 @@ namespace NipponPaint.OrderManager
                 List<int> gdvSelectedOrderIds = new List<int>();
                 // Order_id取得
                 var gdvSelectedOrderId = GetOrderId();
-                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
+                switch (result)
                 {
-                    DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
-                    switch (result)
-                    {
-                        case DialogResult.Yes:
-                            var statusColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_STATUS);
-                            var dgv = GvDetail;
-                            if (dgv.SelectedRows.Count > 0)
-                            {
-                                gdvSelectedOrderIds.Add(gdvSelectedOrderId);
-                                // 選択している行を取得
-                                var selectedRow = dgv.SelectedRows[0];
-                                int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
-                                StatusResumeOrders(db, gdvSelectedOrderIds, status);
-                            }
-                            BindDataGridViewAgain(db);
-                            break;
-                        case DialogResult.No:
-                            break;
-                        default:
-                            break;
-                    }
+                    case DialogResult.Yes:
+                        var statusColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_STATUS);
+                        var dgv = GvDetail;
+                        if (dgv.SelectedRows.Count > 0)
+                        {
+                            gdvSelectedOrderIds.Add(gdvSelectedOrderId);
+                            // 選択している行を取得
+                            var selectedRow = dgv.SelectedRows[0];
+                            int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
+                            StatusResumeOrders(gdvSelectedOrderIds, status);
+                        }
+                        DialogCloseBinding();
+                        break;
+                    case DialogResult.No:
+                        break;
+                    default:
+                        break;
                 }
                 FocusSelectedRow(gdvSelectedOrderId);
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
@@ -3028,19 +3025,32 @@ namespace NipponPaint.OrderManager
         }
         #endregion
 
-        public void StatusResumeOrders(SqlBase db, List<int> gdvSelectedOrderIds, int status = 2 )
+        public void StatusResumeOrders(List<int> gdvSelectedOrderIds, int status = 2)
         {
-            // 行取得のSQLを作成
+            // リストを配列化
             var selectOrderIds = string.Join(",", gdvSelectedOrderIds);
             var barcodes = new List<DataTable>();
-            foreach (var orderId in gdvSelectedOrderIds)
+            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
-                var parameters = new List<ParameterItem>()
+                foreach (var orderId in gdvSelectedOrderIds)
                 {
-                    new ParameterItem("@Order_id", orderId),
-                };
-                barcodes.Add(db.Select(Sql.NpMain.Cans.GetBarcodes(BaseSettings.Facility.Plant),parameters));
+                    var parameters = new List<ParameterItem>()
+                    {
+                        new ParameterItem("@Order_id", orderId),
+                    };
+                    barcodes.Add(db.Select(Sql.NpMain.Cans.GetBarcodes(BaseSettings.Facility.Plant), parameters));
+                }
             }
+            var a = new List<string>();
+            foreach (var orderId in barcodes)
+            {
+                foreach (DataRow barcode in orderId.Rows)
+                {
+                    a.Add(barcode.ItemArray[0].ToString());
+                }
+            }
+            var b = a;
+            //var = string.Join(",", barcodes);
             switch ((Sql.NpMain.Orders.OrderStatus)status)
             {
                 case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
@@ -3050,13 +3060,15 @@ namespace NipponPaint.OrderManager
                 case Sql.NpMain.Orders.OrderStatus.Ready:
                 case Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
                 case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
-                    db.StatusResume(Sql.NpMain.Orders.StatusResume(selectOrderIds));
-
+                    using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+                    {
+                        db.StatusResume(Sql.NpMain.Orders.StatusResume(selectOrderIds));
+                        db.Commit();
+                    }
                     break;
                 default:
                     break;
             }
-            db.Commit();
         }
     }
 }

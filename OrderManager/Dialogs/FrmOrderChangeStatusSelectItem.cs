@@ -115,18 +115,15 @@ namespace NipponPaint.OrderManager.Dialogs
                 switch (result)
                 {
                     case DialogResult.Yes:
-                        using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
-                        {
-                            var frmMain = new FrmMain();
-                            frmMain.StatusResumeOrders(db, orderChange);
-                        }
+                        var frmMain = new FrmMain();
+                        frmMain.StatusResumeOrders(orderChange);
                         break;
                     case DialogResult.No:
                         break;
                     default:
                         break;
                 }
-                        
+
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }
