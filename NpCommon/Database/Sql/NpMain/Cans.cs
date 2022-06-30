@@ -222,7 +222,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($"SELECT ");
             sql.Append($"  C.{COLUMN_FORMULA_RELEASE} ");
             sql.Append($" ,C.{COLUMN_ORDER_ID} ");
-            sql.Append($" ,O.{Sql.NpMain.Orders.COLUMN_STATUS} ");
+            sql.Append($" ,O.{Orders.COLUMN_STATUS} ");
             sql.Append($"FROM {SelectCans(plant)} ");
             sql.Append($"WHERE C.{COLUMN_ORDER_NUMBER} = @OrderNumber ");
             return sql.ToString();

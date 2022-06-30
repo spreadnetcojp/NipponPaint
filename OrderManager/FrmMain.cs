@@ -2925,8 +2925,6 @@ namespace NipponPaint.OrderManager
         {
             // メソッド内定数
             const int formulaReleaseColumn = 0;
-            // 最終配合チェック用
-            var formulaReleaseCheckNum = 0;
             // 注文番号用のリスト作成
             List<DataTable> orders = GetCansFormulaReleaseFlg(orderNumbers);
             foreach (var order in orders)
@@ -2939,16 +2937,10 @@ namespace NipponPaint.OrderManager
                         DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()));
                         break;
                     default:
-                        foreach (DataRow row in order.Rows)
-                        {
-                            // formula_Releaseが「0」を数える
-                            if (int.Parse(row[formulaReleaseColumn].ToString()) == 0)
-                            {
-                                formulaReleaseCheckNum++;
-                            }
-                        }
+                        // 最終配合チェック用
+                        var formulaReleaseCheckNum = order.AsEnumerable().Where(x =>  int.Parse(x[formulaReleaseColumn].ToString()) == 0).ToList();
                         // 全ての缶に最終配合が吐出されておればそのままDelete
-                        if (formulaReleaseCheckNum == 0)
+                        if (!formulaReleaseCheckNum.Any())
                         {
                             DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()));
                         }
