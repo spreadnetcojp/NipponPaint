@@ -648,6 +648,7 @@ namespace NipponPaint.OrderManager
         {
             try
             {
+
                 DataGridViewFormatting((DataGridView)sender);
                 PutLog(Sentence.Messages.PreviewData);
             }
@@ -894,11 +895,6 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void BtnStatusResumeClick(object sender, EventArgs e)
         {
-            // 詳細タブを開いていない時はスルー
-            if (tabMain.SelectedIndex != TAB_INDEX_DETAIL)
-            {
-                return;
-            }
             try
             {
                 // Order_id取得
@@ -2700,7 +2696,7 @@ namespace NipponPaint.OrderManager
                         BtnPrintInstructions.Enabled = false;
                         BtnPrint.Enabled = false;
                     }
-                    BtnStatusResume.Enabled = statusEnable;
+                    BtnStatusResume.Enabled = true;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
                     //BtnProcessDetail.Enabled = false;
@@ -2710,7 +2706,7 @@ namespace NipponPaint.OrderManager
                     BtnPrintInstructions.Enabled = false;
                     BtnPrintEmergency.Enabled = false;
                     BtnOrderStart.Enabled = false;
-                    BtnStatusResume.Enabled = statusEnable;
+                    BtnStatusResume.Enabled = true;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
                     //BtnProcessDetail.Enabled = false;
@@ -2720,7 +2716,7 @@ namespace NipponPaint.OrderManager
                     BtnPrintInstructions.Enabled = false;
                     BtnPrintEmergency.Enabled = false;
                     BtnOrderStart.Enabled = false;
-                    BtnStatusResume.Enabled = statusEnable;
+                    BtnStatusResume.Enabled = true;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
                     //BtnProcessDetail.Enabled = false;
@@ -2936,47 +2932,57 @@ namespace NipponPaint.OrderManager
             List<DataTable> orders = GetCansFormulaReleaseFlg(orderNumbers);
             foreach (var order in orders)
             {
-                foreach (DataRow row in order.Rows)
+                switch (order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_STATUS])
                 {
-                    // formula_Releaseが「0」を数える
-                    if (int.Parse(row[formulaReleaseColumn].ToString()) == 0)
-                    {
-                        formulaReleaseCheckNum++;
-                    }
-                }
-                // 全ての缶に最終配合が吐出されておればそのままDelete
-                if (formulaReleaseCheckNum == 0)
-                {
-                    DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()));
-                }
-                else
-                {
-                    // 最終配合が吐出されていない缶があれば再度確認
-                    DialogResult result = Messages.ShowDialog(Sentence.Messages.SomeCansHaventBeenDispensedWithLastReleaseCloseOrder);
-                    switch (result)
-                    {
-                        case DialogResult.Yes:
-                            // 完了通知を出すか確認　←　Yes:完了（正常）、　No:製造中止
-                            result = Messages.ShowDialog(Sentence.Messages.NotifyOrderAsCompletelyProduced);
+                    case (int)Sql.NpMain.Orders.OrderStatus.WaitingForToning:
+                    case (int)Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
+                        // ステータスが「調色担当者待ち」・「CCM配合待ち」の場合は、缶の確認なく削除
+                        DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()));
+                        break;
+                    default:
+                        foreach (DataRow row in order.Rows)
+                        {
+                            // formula_Releaseが「0」を数える
+                            if (int.Parse(row[formulaReleaseColumn].ToString()) == 0)
+                            {
+                                formulaReleaseCheckNum++;
+                            }
+                        }
+                        // 全ての缶に最終配合が吐出されておればそのままDelete
+                        if (formulaReleaseCheckNum == 0)
+                        {
+                            DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()));
+                        }
+                        else
+                        {
+                            // 最終配合が吐出されていない缶があれば再度確認
+                            DialogResult result = Messages.ShowDialog(Sentence.Messages.SomeCansHaventBeenDispensedWithLastReleaseCloseOrder);
                             switch (result)
                             {
                                 case DialogResult.Yes:
-                                    DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()));
+                                    // 完了通知を出すか確認　←　Yes:完了（正常）、　No:製造中止
+                                    result = Messages.ShowDialog(Sentence.Messages.NotifyOrderAsCompletelyProduced);
+                                    switch (result)
+                                    {
+                                        case DialogResult.Yes:
+                                            DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()));
+                                            break;
+                                        case DialogResult.No:
+                                            var canselFlg = ORDER_CANCEL_FLG;
+                                            var status = (int)Sql.NpMain.Orders.OrderStatus.Discontinued;
+                                            DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()), status, canselFlg);
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                     break;
                                 case DialogResult.No:
-                                    var canselFlg = ORDER_CANCEL_FLG;
-                                    var status = (int)Sql.NpMain.Orders.OrderStatus.Discontinued;
-                                    DeleteOrders(Funcs.StrToInt(order.Rows[SELECTED_ROW][COLUMN_NAME_ORDERS_ORDER_ID].ToString()), status, canselFlg);
                                     break;
                                 default:
                                     break;
                             }
-                            break;
-                        case DialogResult.No:
-                            break;
-                        default:
-                            break;
-                    }
+                        }
+                        break;
                 }
             }
             ProductionEndPrint();
