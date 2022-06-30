@@ -3025,8 +3025,9 @@ namespace NipponPaint.OrderManager
         public void StatusResumeOrders(List<int> gdvSelectedOrderIds, int status = 2)
         {
             // リストを配列化
+            // リストを配列化
             var selectOrderIds = string.Join(",", gdvSelectedOrderIds);
-            var barcodes = new List<DataTable>();
+            var barcodeBox = new List<DataTable>();
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
                 foreach (var orderId in gdvSelectedOrderIds)
@@ -3035,18 +3036,17 @@ namespace NipponPaint.OrderManager
                     {
                         new ParameterItem("@Order_id", orderId),
                     };
-                    barcodes.Add(db.Select(Sql.NpMain.Cans.GetBarcodes(BaseSettings.Facility.Plant), parameters));
+                    barcodeBox.Add(db.Select(Sql.NpMain.Cans.GetBarcodes(BaseSettings.Facility.Plant), parameters));
                 }
             }
-            var a = new List<string>();
-            foreach (var orderId in barcodes)
+            var barcodeList = new List<string>();
+            foreach (var barcodes in barcodeBox)
             {
-                foreach (DataRow barcode in orderId.Rows)
+                foreach (DataRow barcode in barcodes.Rows)
                 {
-                    a.Add(barcode.ItemArray[0].ToString());
+                    barcodeList.Add(barcode.ItemArray[0].ToString());
                 }
             }
-            var b = a;
             //var = string.Join(",", barcodes);
             switch ((Sql.NpMain.Orders.OrderStatus)status)
             {
