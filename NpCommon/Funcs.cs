@@ -32,7 +32,7 @@ namespace NipponPaint.NpCommon
         // フォントサイズ
         private static int FONTSIZE_PRODUCT_CODE = 24;
         private static int FONTSIZE_DEFAULT = 12;
-        private static int FONTSIZE_PRODUCT_CODE_GVORDER =16;
+        private static int FONTSIZE_PRODUCT_CODE_GVORDER = 16;
         private static int FONTSIZE_DEFAULT_GVORDER = 8;
 
         #region 取得値設定先のコントロールを抽出する
@@ -445,7 +445,7 @@ namespace NipponPaint.NpCommon
         public static bool EmphasisCellConfimation(DataGridViewRow row, int columnDelivaryCode, int columnShippingDay, int columnDelivarDayy)
         {
             // 配達区分が「３」以外の場合はFalse
-            if(StrToInt(row.Cells[columnDelivaryCode].Value.ToString()) != (int)Database.Sql.NpMain.Orders.DeliveryCode.Reuse)
+            if (StrToInt(row.Cells[columnDelivaryCode].Value.ToString()) != (int)Database.Sql.NpMain.Orders.DeliveryCode.Reuse)
             {
                 return false;
             }
