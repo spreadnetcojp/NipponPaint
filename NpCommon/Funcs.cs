@@ -32,7 +32,7 @@ namespace NipponPaint.NpCommon
         // フォントサイズ
         private static int FONTSIZE_PRODUCT_CODE = 24;
         private static int FONTSIZE_DEFAULT = 12;
-        private static int FONTSIZE_PRODUCT_CODE_GVORDER =16;
+        private static int FONTSIZE_PRODUCT_CODE_GVORDER = 16;
         private static int FONTSIZE_DEFAULT_GVORDER = 8;
 
         #region 取得値設定先のコントロールを抽出する
@@ -430,6 +430,37 @@ namespace NipponPaint.NpCommon
             bindingSource.DataSource = dt;
             // DataGridViewのDataSourceはBindingSourceオブジェクトにする
             gv.DataSource = bindingSource;
+        }
+        #endregion
+
+        #region 強調するセルの確認
+        /// <summary>
+        /// 強調するセルの確認
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="columnDelivaryCode"></param>
+        /// <param name="columnShippingDay"></param>
+        /// <param name="columnDelivarDayy"></param>
+        /// <returns></returns>
+        public static bool EmphasisCellConfimation(DataGridViewRow row, int columnDelivaryCode, int columnShippingDay, int columnDelivarDayy)
+        {
+            // 配達区分が「３」以外の場合はFalse
+            if (StrToInt(row.Cells[columnDelivaryCode].Value.ToString()) != (int)Database.Sql.NpMain.Orders.DeliveryCode.Reuse)
+            {
+                return false;
+            }
+            // SS出荷予定日が当日以前でなければFalse
+            if (DateTime.Parse(row.Cells[columnShippingDay].Value.ToString()) > DateTime.Today)
+            {
+                return false;
+            }
+            // 納期が翌日以降でなければFalse
+            if (!(DateTime.Parse(row.Cells[columnDelivarDayy].Value.ToString()) > DateTime.Today))
+            {
+                return false;
+            }
+            // 上記の条件を満たせばTrue
+            return true;
         }
         #endregion
     }

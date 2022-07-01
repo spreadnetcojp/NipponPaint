@@ -75,6 +75,7 @@ namespace NipponPaint.OrderManager
         private const int COLUMN_VISIBLE_DELIVERY_DATE = 12;
         private const int COLUMN_COLOR_SAMPLE = 13;
         private const int COLUMN_URGENT = 18;
+        private const int COLUMN_OPERATOR = 10;
 
         private const int TAB_INDEX_ORDER = 0;
         private const int TAB_INDEX_DETAIL = 1;
@@ -92,6 +93,11 @@ namespace NipponPaint.OrderManager
 
         private List<string> ViewGrid = new List<string>();
         //private const Log.ApplicationType MyApp = Log.ApplicationType.OrderManager;
+
+        /// <summary>
+        /// 強調するセルの背景色
+        /// </summary>
+        private readonly Color EMPHASIS_CELL_COLOR = Color.Orange;
 
         #region ソート
         // 運送区分
@@ -2464,6 +2470,12 @@ namespace NipponPaint.OrderManager
                 row.Cells[COLUMN_PRODUCT_NAME].Style.WrapMode = DataGridViewTriState.True;
                 row.Cells[COLUMN_COLOR_SAMPLE].Style.WrapMode = DataGridViewTriState.True;
                 row.Cells[COLUMN_PRODUCT_CODE].Style.ForeColor = Color.Black;
+                if (Funcs.EmphasisCellConfimation(row, COLUMN_DELIVERY_CODE, COLUMN_VISIBLE_SHIPPING_DATE, COLUMN_VISIBLE_DELIVERY_DATE))
+                {
+                    row.Cells[COLUMN_SHIPPING_DATE].Style.BackColor = EMPHASIS_CELL_COLOR;
+                    row.Cells[COLUMN_DELIVERY_DATE].Style.BackColor = EMPHASIS_CELL_COLOR;
+                    row.Cells[COLUMN_OPERATOR].Style.BackColor = EMPHASIS_CELL_COLOR;
+                }
             }
         }
 
