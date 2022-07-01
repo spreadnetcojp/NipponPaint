@@ -445,12 +445,12 @@ namespace NipponPaint.NpCommon
         public static bool EmphasisCellConfimation(DataGridViewRow row, int columnDelivaryCode, int columnShippingDay, int columnDelivarDayy)
         {
             // 配達区分が「３」以外の場合はFalse
-            if(!(StrToInt(row.Cells[columnDelivaryCode].Value.ToString()) == (int)Database.Sql.NpMain.Orders.DeliveryCode.Reuse))
+            if(StrToInt(row.Cells[columnDelivaryCode].Value.ToString()) != (int)Database.Sql.NpMain.Orders.DeliveryCode.Reuse)
             {
                 return false;
             }
             // SS出荷予定日が当日以前でなければFalse
-            if (!(DateTime.Parse(row.Cells[columnShippingDay].Value.ToString()) <= DateTime.Today))
+            if (DateTime.Parse(row.Cells[columnShippingDay].Value.ToString()) > DateTime.Today)
             {
                 return false;
             }
