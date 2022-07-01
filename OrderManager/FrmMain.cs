@@ -94,6 +94,11 @@ namespace NipponPaint.OrderManager
         private List<string> ViewGrid = new List<string>();
         //private const Log.ApplicationType MyApp = Log.ApplicationType.OrderManager;
 
+        /// <summary>
+        /// 強調するセルの背景色
+        /// </summary>
+        private Color EMPHASIS_CELL_COLOR = Color.Orange;
+
         #region ソート
         // 運送区分
         private const string SORT_KUBUN = "[Status], [SS出荷予定日日付型], [並び順], [順位コード], [品名], [運送区分] ASC";
@@ -2465,11 +2470,11 @@ namespace NipponPaint.OrderManager
                 row.Cells[COLUMN_PRODUCT_NAME].Style.WrapMode = DataGridViewTriState.True;
                 row.Cells[COLUMN_COLOR_SAMPLE].Style.WrapMode = DataGridViewTriState.True;
                 row.Cells[COLUMN_PRODUCT_CODE].Style.ForeColor = Color.Black;
-                if (Funcs.StrToInt(row.Cells[COLUMN_DELIVERY_CODE].Value.ToString()) == (int)Sql.NpMain.Orders.DeliveryCode.Reuse && DateTime.Parse(row.Cells[COLUMN_VISIBLE_SHIPPING_DATE].Value.ToString()) <= DateTime.Today && DateTime.Parse(row.Cells[COLUMN_VISIBLE_DELIVERY_DATE].Value.ToString()) > DateTime.Today)
+                if (Funcs.EmphasisCellConfimation(row, COLUMN_DELIVERY_CODE, COLUMN_VISIBLE_SHIPPING_DATE, COLUMN_VISIBLE_DELIVERY_DATE))
                 {
-                    row.Cells[COLUMN_SHIPPING_DATE].Style.BackColor = Color.Orange;
-                    row.Cells[COLUMN_DELIVERY_DATE].Style.BackColor = Color.Orange;
-                    row.Cells[COLUMN_OPERATOR].Style.BackColor = Color.Orange;
+                    row.Cells[COLUMN_SHIPPING_DATE].Style.BackColor = EMPHASIS_CELL_COLOR;
+                    row.Cells[COLUMN_DELIVERY_DATE].Style.BackColor = EMPHASIS_CELL_COLOR;
+                    row.Cells[COLUMN_OPERATOR].Style.BackColor = EMPHASIS_CELL_COLOR;
                 }
             }
         }

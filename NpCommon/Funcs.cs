@@ -432,5 +432,20 @@ namespace NipponPaint.NpCommon
             gv.DataSource = bindingSource;
         }
         #endregion
+
+        #region 強調するセルの確認
+        /// <summary>
+        /// 強調するセルの確認
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="columnDelivaryCode"></param>
+        /// <param name="columnShippingDay"></param>
+        /// <param name="columnDelivarDayy"></param>
+        /// <returns></returns>
+        public static bool EmphasisCellConfimation(DataGridViewRow row, int columnDelivaryCode, int columnShippingDay, int columnDelivarDayy)
+        {
+            return (StrToInt(row.Cells[columnDelivaryCode].Value.ToString()) == (int)Database.Sql.NpMain.Orders.DeliveryCode.Reuse && DateTime.Parse(row.Cells[columnShippingDay].Value.ToString()) <= DateTime.Today && DateTime.Parse(row.Cells[columnDelivarDayy].Value.ToString()) > DateTime.Today);
+        }
+        #endregion
     }
 }
