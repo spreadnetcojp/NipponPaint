@@ -97,7 +97,7 @@ namespace NipponPaint.OrderManager
         /// <summary>
         /// 強調するセルの背景色
         /// </summary>
-        private Color EMPHASIS_CELL_COLOR = Color.Orange;
+        private readonly Color EMPHASIS_CELL_COLOR = Color.Orange;
 
         #region ソート
         // 運送区分

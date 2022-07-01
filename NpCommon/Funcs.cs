@@ -444,7 +444,20 @@ namespace NipponPaint.NpCommon
         /// <returns></returns>
         public static bool EmphasisCellConfimation(DataGridViewRow row, int columnDelivaryCode, int columnShippingDay, int columnDelivarDayy)
         {
-            return (StrToInt(row.Cells[columnDelivaryCode].Value.ToString()) == (int)Database.Sql.NpMain.Orders.DeliveryCode.Reuse && DateTime.Parse(row.Cells[columnShippingDay].Value.ToString()) <= DateTime.Today && DateTime.Parse(row.Cells[columnDelivarDayy].Value.ToString()) > DateTime.Today);
+            var resalt = false;
+            if(StrToInt(row.Cells[columnDelivaryCode].Value.ToString()) != (int)Database.Sql.NpMain.Orders.DeliveryCode.Reuse)
+            {
+                return resalt;
+            }
+            if (DateTime.Parse(row.Cells[columnShippingDay].Value.ToString()) > DateTime.Today)
+            {
+                return resalt;
+            }
+            if (DateTime.Parse(row.Cells[columnDelivarDayy].Value.ToString()) > DateTime.Today)
+            {
+                return resalt = true;
+            }
+            return resalt;
         }
         #endregion
     }
