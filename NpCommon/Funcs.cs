@@ -444,20 +444,23 @@ namespace NipponPaint.NpCommon
         /// <returns></returns>
         public static bool EmphasisCellConfimation(DataGridViewRow row, int columnDelivaryCode, int columnShippingDay, int columnDelivarDayy)
         {
-            var resalt = false;
-            if(StrToInt(row.Cells[columnDelivaryCode].Value.ToString()) != (int)Database.Sql.NpMain.Orders.DeliveryCode.Reuse)
+            // 配達区分が「３」以外の場合はFalse
+            if(!(StrToInt(row.Cells[columnDelivaryCode].Value.ToString()) == (int)Database.Sql.NpMain.Orders.DeliveryCode.Reuse))
             {
-                return resalt;
+                return false;
             }
-            if (DateTime.Parse(row.Cells[columnShippingDay].Value.ToString()) > DateTime.Today)
+            // SS出荷予定日が当日以前でなければFalse
+            if (!(DateTime.Parse(row.Cells[columnShippingDay].Value.ToString()) <= DateTime.Today))
             {
-                return resalt;
+                return false;
             }
-            if (DateTime.Parse(row.Cells[columnDelivarDayy].Value.ToString()) > DateTime.Today)
+            // 納期が翌日以降でなければFalse
+            if (!(DateTime.Parse(row.Cells[columnDelivarDayy].Value.ToString()) > DateTime.Today))
             {
-                return resalt = true;
+                return false;
             }
-            return resalt;
+            // 上記の条件を満たせばTrue
+            return true;
         }
         #endregion
     }
