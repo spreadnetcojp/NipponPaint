@@ -99,6 +99,10 @@ namespace NipponPaint.OrderManager.Dialogs
         /// 重量リスト（１～１９)
         /// </summary>
         private Dictionary<string, double> weightList = new Dictionary<string, double>();
+        /// <summary>
+        /// ステータス
+        /// </summary>
+        int status = 2;
 
         private const decimal UPDOWN_NUM_DECIMAL = 0.1M;
         #endregion
@@ -114,7 +118,6 @@ namespace NipponPaint.OrderManager.Dialogs
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-                int status = 0;
                 int cappingStatus = 0;
                 // ラジオボタン選択・テスト缶or信頼できる配合でStatus変化
                 if (labelStatusRadioButtons1.Rbt1CheckState.Checked == true)
@@ -145,7 +148,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     int.TryParse(TxtOrderId.Value.ToString(), out int orderId);
                     weightList = GetItemWeight(db, orderId, overFilling);
                 }
-                if(overFilling > 0)
+                if (overFilling > 0)
                 {
                     TxtTotalWeight.Value = GetTotalWeight(weightList).ToString();
                 }
@@ -227,25 +230,22 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
+                var fimMain = new FrmMain();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+                // 確認ダイアログ表示
+                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnOrderBackClick);
+                switch (result)
                 {
-                    // 確認ダイアログ表示
-                    DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnOrderBackClick);
-                    switch (result)
-                    {
-                        case DialogResult.Yes:
-                            // Order_id取得・Order_idをキーに注文を戻す実施
-                            int.TryParse(TxtOrderId.Value.ToString(), out int orderId);
-                            db.StatusResume(NpCommon.Database.Sql.NpMain.Orders.StatusResume(orderId.ToString()));
-                            db.Commit();
-                            this.Close();
-                            break;
-                        case DialogResult.No:
-                            break;
-                        default:
-                            break;
-                    }
+                    case DialogResult.Yes:
+                        // Order_id取得・Order_idをキーに注文を戻す実施
+                        int.TryParse(TxtOrderId.Value.ToString(), out int orderId);
+                        fimMain.StatusResumeOrders(orderId, status);
+                        this.Close();
+                        break;
+                    case DialogResult.No:
+                        break;
+                    default:
+                        break;
                 }
             }
             catch (Exception ex)
@@ -350,7 +350,7 @@ namespace NipponPaint.OrderManager.Dialogs
             {
                 // 超過の値を計算できる値に変更
                 double overFillingValue = 1 + (Convert.ToDouble(overFilling) / 100);
-                foreach(var weightValue in weightValueList)
+                foreach (var weightValue in weightValueList)
                 {
                     // keyをカラム名に設定、Valueをoverfillingの値によって計算、小数点第４位四捨五入
                     weightKeyValue.Add($"Weight_{weightNumber}", Math.Round((weightValue * overFillingValue), 3, MidpointRounding.AwayFromZero));
@@ -379,7 +379,7 @@ namespace NipponPaint.OrderManager.Dialogs
         private static List<double> ConvertDataTableTolist(DataTable dt)
         {
             List<double> result = new List<double>();
-            foreach(double item in dt.Rows[0].ItemArray)
+            foreach (double item in dt.Rows[0].ItemArray)
             {
                 result.Add(item);
             }

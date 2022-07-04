@@ -116,7 +116,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 {
                     case DialogResult.Yes:
                         var frmMain = new FrmMain();
-                        frmMain.StatusResumeOrders(orderChange);
+                        frmMain.OrderTestCanToProduct(orderChange);
                         break;
                     case DialogResult.No:
                         break;

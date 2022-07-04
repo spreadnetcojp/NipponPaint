@@ -639,14 +639,14 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// テスト缶仕上がりボタンを押下した際のstatus更新
         /// </summary>
         /// <returns></returns>
-        public static string StatusProductionChange()
+        public static string StatusProductionChange(string value)
         {
             var sql = new StringBuilder();
             sql.Append($"UPDATE ");
             sql.Append($" {MAIN_TABLE} ");
             sql.Append($"SET ");
             sql.Append($" {COLUMN_STATUS}        = @Status ");
-            sql.Append($"WHERE {COLUMN_ORDER_ID} = @OrderId ");
+            sql.Append($"WHERE {COLUMN_ORDER_ID} = IN ({value}) ");
             return sql.ToString();
         }
         #endregion

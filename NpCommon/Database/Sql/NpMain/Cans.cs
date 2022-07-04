@@ -234,10 +234,9 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($"SELECT ");
             sql.Append($" C.{COLUMN_BARCODE} ");
             sql.Append($"FROM {SelectCans(plant)} ");
-            sql.Append($"WHERE C.{COLUMN_ORDER_ID} = @Order_id ");
+            sql.Append($"WHERE C.{COLUMN_ORDER_ID} = @OrderId ");
             return sql.ToString();
         }
-
 
         #endregion
 

@@ -27,6 +27,7 @@ using Sql = NipponPaint.NpCommon.Database.Sql;
 using System.Data;
 using System.Linq;
 using System.Diagnostics;
+using System.Data.SqlClient;
 #endregion
 
 namespace NipponPaint.OrderManager
@@ -896,7 +897,6 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                List<int> gdvSelectedOrderIds = new List<int>();
                 // Order_id取得
                 var gdvSelectedOrderId = GetOrderId();
                 DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
@@ -907,11 +907,10 @@ namespace NipponPaint.OrderManager
                         var dgv = GvDetail;
                         if (dgv.SelectedRows.Count > 0)
                         {
-                            gdvSelectedOrderIds.Add(gdvSelectedOrderId);
                             // 選択している行を取得
                             var selectedRow = dgv.SelectedRows[0];
                             int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
-                            StatusResumeOrders(gdvSelectedOrderIds, status);
+                            StatusResumeOrders(gdvSelectedOrderId, status);
                         }
                         DialogCloseBinding();
                         break;
@@ -1464,7 +1463,7 @@ namespace NipponPaint.OrderManager
                 var columnOrderIdIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_ORDER_ID);
                 if (GvOrder.SelectedRows.Count > 0)
                 {
-                    DataGridViewRow row = GvOrder.SelectedRows[0];
+                    DataGridViewRow row = GvOrderNumber.SelectedRows[0];
                     // 選択行のStatus取得
                     int.TryParse(row.Cells[columnStatusIndex].Value.ToString(), out int status);
                     // テスト缶実施中のみ
@@ -1472,17 +1471,9 @@ namespace NipponPaint.OrderManager
                     {
                         // 選択行のOrder_id取得
                         int.TryParse(row.Cells[columnOrderIdIndex].Value.ToString(), out int orderId);
-                        using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
-                        {
-                            var parameters = new List<ParameterItem>()
-                            {
-                                new ParameterItem("@orderId", orderId),
-                                new ParameterItem("@status", (int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress),
-                            };
-                            // 選択している注文データのステイタスを変更
-                            db.Execute(Sql.NpMain.Orders.StatusProductionChange(), parameters);
-                            db.Commit();
-                        }
+                        var orderIdBox = new List<int>();
+                        orderIdBox.Add(orderId);
+                        OrderTestCanToProduct(orderIdBox);
                     }
                 }
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
@@ -2915,7 +2906,7 @@ namespace NipponPaint.OrderManager
                         break;
                     default:
                         // 最終配合チェック用
-                        var formulaReleaseCheckNum = order.AsEnumerable().Where(x =>  int.Parse(x[formulaReleaseColumn].ToString()) == 0).ToList();
+                        var formulaReleaseCheckNum = order.AsEnumerable().Where(x => int.Parse(x[formulaReleaseColumn].ToString()) == 0).ToList();
                         // 全ての缶に最終配合が吐出されておればそのままDelete
                         if (!formulaReleaseCheckNum.Any())
                         {
@@ -3022,32 +3013,28 @@ namespace NipponPaint.OrderManager
         }
         #endregion
 
-        public void StatusResumeOrders(List<int> gdvSelectedOrderIds, int status = 2)
+        public void StatusResumeOrders(int gdvSelectedOrderIds, int status)
         {
-            // リストを配列化
-            // リストを配列化
-            var selectOrderIds = string.Join(",", gdvSelectedOrderIds);
-            var barcodeBox = new List<DataTable>();
+            var dt = new DataTable();
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
-                foreach (var orderId in gdvSelectedOrderIds)
+                var parameters = new List<ParameterItem>()
                 {
-                    var parameters = new List<ParameterItem>()
-                    {
-                        new ParameterItem("@Order_id", orderId),
-                    };
-                    barcodeBox.Add(db.Select(Sql.NpMain.Cans.GetBarcodes(BaseSettings.Facility.Plant), parameters));
-                }
+                    new ParameterItem("@OrderId", gdvSelectedOrderIds),
+                };
+                dt = db.Select(Sql.NpMain.Cans.GetBarcodes(BaseSettings.Facility.Plant), parameters);
             }
-            var barcodeList = new List<string>();
-            foreach (var barcodes in barcodeBox)
+            var param = new List<SqlParameter>();
+            var values = new List<string>();
+            string column = "barcode";
+            var cnt = 1;
+            foreach (DataRow barcode in dt.Rows)
             {
-                foreach (DataRow barcode in barcodes.Rows)
-                {
-                    barcodeList.Add(barcode.ItemArray[0].ToString());
-                }
+                values.Add("@" + column + cnt.ToString());
+                param.Add(new SqlParameter(column + cnt.ToString(), barcode.ItemArray[0].ToString()));
+                cnt++;
             }
-            //var = string.Join(",", barcodes);
+            string sqlParameter = string.Join(",", values);
             switch ((Sql.NpMain.Orders.OrderStatus)status)
             {
                 case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
@@ -3059,13 +3046,34 @@ namespace NipponPaint.OrderManager
                 case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                     {
-                        db.StatusResume(Sql.NpMain.Orders.StatusResume(selectOrderIds));
+                        db.StatusResume(Sql.NpMain.Orders.StatusResume(gdvSelectedOrderIds.ToString()));
+                        db.Execute(Sql.NpMain.Cans.RemanufacturedCanByBarcode(sqlParameter), param);
                         db.Commit();
                     }
                     break;
                 default:
                     break;
             }
+        }
+        /// <summary>
+        /// テスト缶実施中を製造缶実施中へ移行
+        /// </summary>
+        /// <param name="orderId"></param>
+        public void OrderTestCanToProduct(List<int> orderIds)
+        {
+            string sqlParameter = string.Join(",", orderIds);
+            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+            {
+                var parameters = new List<ParameterItem>()
+                {
+                    new ParameterItem("@status", (int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress),
+                };
+                // 選択している注文データのステイタスを変更
+                db.Execute(Sql.NpMain.Orders.StatusProductionChange(sqlParameter), parameters);
+                db.Commit();
+            }
+            
+           
         }
     }
 }
