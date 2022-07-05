@@ -2838,7 +2838,7 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void TmrPnlColorExplanationBlinkingTick(object sender, EventArgs e)
         {
-            pnlColorExplanation.BackColor = !pnlColorExplanation.BackColor.Equals(ALERT_BACK_COLOR_RED) ? ALERT_BACK_COLOR_RED : ALERT_BACK_COLOR_WHITE;
+            pnlColorExplanation.BackColor = pnlColorExplanation.BackColor.Equals(ALERT_BACK_COLOR_WHITE) ? ALERT_BACK_COLOR_RED : ALERT_BACK_COLOR_WHITE;
         }
         #endregion
 
