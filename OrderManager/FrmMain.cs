@@ -44,8 +44,6 @@ namespace NipponPaint.OrderManager
             Color.Cyan,
             Color.Blue,
             Color.White,
-            Color.White,
-            Color.White,
         };
 
         private static DataTable GvOrderDataSource;
