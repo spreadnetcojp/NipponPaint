@@ -46,7 +46,6 @@ namespace NipponPaint.OrderManager
             Color.White,
         };
         private static readonly Color ALERT_BACK_COLOR_RED = Color.Red;
-        private static readonly Color ALERT_BACK_COLOR_WHITE = Color.White;
 
         private static DataTable GvOrderDataSource;
         //private static DataTable GvDetailDataSource;
@@ -480,6 +479,7 @@ namespace NipponPaint.OrderManager
         private string selectProductCode = string.Empty;
         private int selectingTabIndex = 0;
         private Dictionary<string, int> tbColorNameSetting = new Dictionary<string, int>();
+        private Color controlColor;
         #endregion
 
         #region コンストラクタ
@@ -487,12 +487,6 @@ namespace NipponPaint.OrderManager
         {
             InitializeComponent();
             InitializeForm();
-            lblStatus1.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.WaitingForToning];
-            lblStatus2.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation];
-            lblStatus3.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.Ready];
-            lblStatus4.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress];
-            lblStatus5.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress];
-            lblStatus5.ForeColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.ProductionCompleted];
         }
         #endregion
 
@@ -2298,6 +2292,14 @@ namespace NipponPaint.OrderManager
             this.GvFormulation.SelectionChanged += new EventHandler(this.GvFormulation_SelectionChanged);
             this.GvOrderNumber.SelectionChanged += new EventHandler(this.GvOrderNumber_SelectionChanged);
             this.GvBarcode.SelectionChanged += new EventHandler(this.GvBarcode_SelectionChanged);
+            // 背景色の定義
+            lblStatus1.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.WaitingForToning];
+            lblStatus2.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation];
+            lblStatus3.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.Ready];
+            lblStatus4.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress];
+            lblStatus5.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress];
+            lblStatus5.ForeColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.ProductionCompleted];
+            controlColor = pnlColorExplanation.BackColor;
             // ラベルの固定文言を設定
             lblStatus1.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.WaitingForToning);
             lblStatus2.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation);
@@ -2838,7 +2840,7 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void TmrPnlColorExplanationBlinkingTick(object sender, EventArgs e)
         {
-            pnlColorExplanation.BackColor = pnlColorExplanation.BackColor.Equals(ALERT_BACK_COLOR_WHITE) ? ALERT_BACK_COLOR_RED : ALERT_BACK_COLOR_WHITE;
+            pnlColorExplanation.BackColor = !pnlColorExplanation.BackColor.Equals(ALERT_BACK_COLOR_RED) ? ALERT_BACK_COLOR_RED : controlColor;
         }
         #endregion
 
