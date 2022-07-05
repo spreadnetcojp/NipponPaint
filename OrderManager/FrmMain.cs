@@ -45,6 +45,8 @@ namespace NipponPaint.OrderManager
             Color.Blue,
             Color.White,
         };
+        private static readonly Color ALERT_BACK_COLOR_RED = Color.Red;
+        private static readonly Color ALERT_BACK_COLOR_WHITE = Color.White;
 
         private static DataTable GvOrderDataSource;
         //private static DataTable GvDetailDataSource;
@@ -490,7 +492,7 @@ namespace NipponPaint.OrderManager
             lblStatus3.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.Ready];
             lblStatus4.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress];
             lblStatus5.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress];
-            lblStatus5.ForeColor = Color.White;
+            lblStatus5.ForeColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.ProductionCompleted];
         }
         #endregion
 
@@ -2836,7 +2838,7 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void TmrPnlColorExplanationBlinkingTick(object sender, EventArgs e)
         {
-            pnlColorExplanation.BackColor = pnlColorExplanation.BackColor != StatusBackColorList[1] ? StatusBackColorList[1] : StatusBackColorList[5];
+            pnlColorExplanation.BackColor = !pnlColorExplanation.BackColor.Equals(ALERT_BACK_COLOR_RED) ? ALERT_BACK_COLOR_RED : ALERT_BACK_COLOR_WHITE;
         }
         #endregion
 

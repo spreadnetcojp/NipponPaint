@@ -37,7 +37,8 @@ namespace DatabaseManager
     public partial class FrmMain : BaseForm
     {
         #region 定数
-        private static readonly Color BACK_COLOR = Color.Red;
+        private static readonly Color ALERT_BACK_COLOR_RED = Color.Red;
+        private static readonly Color ALERT_BACK_COLOR_WHITE = Color.White;
         private static readonly Color FORE_COLOR = Color.LimeGreen;
         private static readonly Color REJECTED_FORE_COLOR = Color.FromArgb(250, 250, 0);
         private static readonly Color REJECTED_AND_ACKONWLEDGED_FORE_COLOR = Color.FromArgb(130, 130, 0);
@@ -355,7 +356,7 @@ namespace DatabaseManager
         /// <param name="e"></param>
         private void TmrPnlServerStatusBlinkingTick(object sender, EventArgs e)
         {
-            PnlServerStatus.BackColor = PnlServerStatus.BackColor != BACK_COLOR ? BACK_COLOR : Color.White;
+            PnlServerStatus.BackColor = !PnlServerStatus.BackColor.Equals(ALERT_BACK_COLOR_RED) ? ALERT_BACK_COLOR_RED : ALERT_BACK_COLOR_WHITE;
         }
         #endregion
 
