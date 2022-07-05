@@ -2288,6 +2288,7 @@ namespace NipponPaint.OrderManager
             this.GvDetail.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.GvFormulation.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.ヘルプHToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemHelpFormClick);
+            this.TmrPnlColorExplanationBlinking.Tick += new System.EventHandler(this.TmrPnlColorExplanationBlinkingTick);
             //ラベル(仮)のイベントハンドラー
             this.ToolStripMenuItemLabelSelection.Click += new EventHandler(this.ToolStripMenuItemLabelSelectionClick);
             this.BtnLotRegister.Click += new EventHandler(this.BtnLotRegisterClick);
@@ -2829,6 +2830,16 @@ namespace NipponPaint.OrderManager
             this.GvDetail.DataBindingComplete -= new DataGridViewBindingCompleteEventHandler(this.GvDetailDataBindingComplete);
             this.GvFormulation.DataBindingComplete -= new DataGridViewBindingCompleteEventHandler(this.GvFormulationDataBindingComplete);
         }
+
+        /// <summary>
+        /// サーバーステータスの赤点滅
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TmrPnlColorExplanationBlinkingTick(object sender, EventArgs e)
+        {
+            pnlColorExplanation.BackColor = pnlColorExplanation.BackColor != StatusBackColorList[1] ? StatusBackColorList[1] : StatusBackColorList[5];
+        }
         #endregion
 
         #region 表示されている画面のName取得
@@ -2950,7 +2961,7 @@ namespace NipponPaint.OrderManager
                         break;
                     default:
                         // 最終配合チェック用
-                        var formulaReleaseCheckNum = order.AsEnumerable().Where(x =>  int.Parse(x[formulaReleaseColumn].ToString()) == 0).ToList();
+                        var formulaReleaseCheckNum = order.AsEnumerable().Where(x => int.Parse(x[formulaReleaseColumn].ToString()) == 0).ToList();
                         // 全ての缶に最終配合が吐出されておればそのままDelete
                         if (!formulaReleaseCheckNum.Any())
                         {

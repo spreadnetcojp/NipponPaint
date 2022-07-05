@@ -30,7 +30,7 @@ namespace NipponPaint.OrderManager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.tabOrder = new System.Windows.Forms.TabPage();
             this.GvOrder = new System.Windows.Forms.DataGridView();
@@ -232,6 +232,7 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemCCMSimulator = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemLabelSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.ヘルプHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TmrPnlColorExplanationBlinking = new System.Windows.Forms.Timer(this.components);
             this.tabOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GvOrder)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -295,14 +296,14 @@ namespace NipponPaint.OrderManager
             // 
             this.GvOrder.AllowUserToAddRows = false;
             this.GvOrder.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.GvOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GvOrder.ContextMenuStrip = this.contextMenuStrip;
             this.GvOrder.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1471,7 +1472,7 @@ namespace NipponPaint.OrderManager
             this.tabDetail2.Location = new System.Drawing.Point(4, 22);
             this.tabDetail2.Name = "tabDetail2";
             this.tabDetail2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDetail2.Size = new System.Drawing.Size(1647, 499);
+            this.tabDetail2.Size = new System.Drawing.Size(1653, 503);
             this.tabDetail2.TabIndex = 1;
             this.tabDetail2.Text = "詳細２";
             // 
@@ -2082,7 +2083,7 @@ namespace NipponPaint.OrderManager
             this.tabDetail3.Controls.Add(this.HgLineNumber);
             this.tabDetail3.Location = new System.Drawing.Point(4, 22);
             this.tabDetail3.Name = "tabDetail3";
-            this.tabDetail3.Size = new System.Drawing.Size(1647, 499);
+            this.tabDetail3.Size = new System.Drawing.Size(1653, 503);
             this.tabDetail3.TabIndex = 2;
             this.tabDetail3.Text = "詳細３";
             // 
@@ -4107,6 +4108,11 @@ namespace NipponPaint.OrderManager
             this.ヘルプHToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.ヘルプHToolStripMenuItem.Text = "ヘルプ(&H)";
             // 
+            // TmrPnlColorExplanationBlinking
+            // 
+            this.TmrPnlColorExplanationBlinking.Enabled = true;
+            this.TmrPnlColorExplanationBlinking.Interval = 1000;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -4380,6 +4386,7 @@ namespace NipponPaint.OrderManager
         private NpCommon.FormControls.PanelBorder BorderHgVolumeCode;
         private NpCommon.FormControls.LabelCodeText labelCodeText1;
         private NpCommon.FormControls.LabelTextSeparate ColorName;
+        private System.Windows.Forms.Timer TmrPnlColorExplanationBlinking;
     }
 }
 

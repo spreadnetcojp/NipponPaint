@@ -355,14 +355,7 @@ namespace DatabaseManager
         /// <param name="e"></param>
         private void TmrPnlServerStatusBlinkingTick(object sender, EventArgs e)
         {
-            if (PnlServerStatus.BackColor != BACK_COLOR)
-            {
-                PnlServerStatus.BackColor = BACK_COLOR;
-            }
-            else
-            {
-                PnlServerStatus.BackColor = Color.White;
-            }
+            PnlServerStatus.BackColor = PnlServerStatus.BackColor != BACK_COLOR ? BACK_COLOR : Color.White;
         }
         #endregion
 
