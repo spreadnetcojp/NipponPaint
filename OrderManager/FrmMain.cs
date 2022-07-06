@@ -479,7 +479,7 @@ namespace NipponPaint.OrderManager
         private string selectProductCode = string.Empty;
         private int selectingTabIndex = 0;
         private Dictionary<string, int> tbColorNameSetting = new Dictionary<string, int>();
-        private Color controlColor;
+        private Color alertBackColorControl;
         #endregion
 
         #region コンストラクタ
@@ -2299,7 +2299,7 @@ namespace NipponPaint.OrderManager
             lblStatus4.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress];
             lblStatus5.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress];
             lblStatus5.ForeColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.ProductionCompleted];
-            controlColor = pnlColorExplanation.BackColor;
+            alertBackColorControl = pnlColorExplanation.BackColor;
             // ラベルの固定文言を設定
             lblStatus1.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.WaitingForToning);
             lblStatus2.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation);
@@ -2840,7 +2840,7 @@ namespace NipponPaint.OrderManager
         /// <param name="e"></param>
         private void TmrPnlColorExplanationBlinkingTick(object sender, EventArgs e)
         {
-            pnlColorExplanation.BackColor = !pnlColorExplanation.BackColor.Equals(ALERT_BACK_COLOR_RED) ? ALERT_BACK_COLOR_RED : controlColor;
+            pnlColorExplanation.BackColor = !pnlColorExplanation.BackColor.Equals(ALERT_BACK_COLOR_RED) ? ALERT_BACK_COLOR_RED : alertBackColorControl;
         }
         #endregion
 
