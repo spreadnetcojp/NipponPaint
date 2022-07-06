@@ -131,7 +131,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 // ラベルタイプ取得
                 int.TryParse(DropDownLabelType.SelectedValue.ToString(), out int labelSelectValue);
                 // 缶タイプ取得
-                string a = DropDownCanType.SelectedValue.ToString();
                 int.TryParse(DropDownCanType.SelectedValue.ToString(), out int canSelectValue);
                 // キャップタイプ取得
                 int.TryParse(DropDownCapType.SelectedValue.ToString(), out int capSelectValue);

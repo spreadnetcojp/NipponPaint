@@ -1258,6 +1258,10 @@ namespace NipponPaint.NpCommon.Database
         #endregion
 
         #region データベース"NP_MAIN"のOrdersテーブルのStatusを変更する
+        /// <summary>
+        /// データベース"NP_MAIN"のOrdersテーブルのStatusを変更する
+        /// </summary>
+        /// <param name="sql"></param>
         public void StatusResume(string sql)
         {
             Execute(sql);

@@ -25,6 +25,7 @@ using NipponPaint.OrderManager.Dialogs;
 using NipponPaint.NpCommon.Settings;
 using Sql = NipponPaint.NpCommon.Database.Sql;
 using System.Data;
+using System.Linq;
 #endregion
 
 namespace NipponPaint.OrderManager.Dialogs
@@ -70,22 +71,10 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                switch (((CheckBox)sender).CheckState)
+                foreach (DataGridViewRow row in GvChangeOrders.Rows)
                 {
-                    case CheckState.Checked:
-                        foreach (DataGridViewRow row in GvChangeOrders.Rows)
-                        {
-                            row.Cells[CHECKEDBOX_COLUMN].Value = true;　　　　　//チェックが入っていない項目は全てチェックが入る
-                        }
-                        break;
-                    case CheckState.Unchecked:
-                        foreach (DataGridViewRow row in GvChangeOrders.Rows)
-                        {
-                            row.Cells[CHECKEDBOX_COLUMN].Value = false;　　　　 //チェックが入っている項目は全てチェックが消える
-                        }
-                        break;
-                    default:
-                        break;
+                    // チェックがはいっていない項目は全てチェックが入り、元からチェックを入れていた項目は全てチェックが消える
+                    row.Cells[CHECKEDBOX_COLUMN].Value = ((CheckBox)sender).CheckState == CheckState.Checked ? true : false;
                 }
             }
             catch (Exception ex)
@@ -103,7 +92,7 @@ namespace NipponPaint.OrderManager.Dialogs
             try
             {
                 // オーダーIDをリスト化
-                List<int> orderChange = new List<int>();
+                var orderChange = new List<int>();
                 // オーダーIDのインデックスを習得
                 var orderIdIndex = GvChangeOrders.Columns["Order_id"].Index;
                 // 選択している注文番号をリストに格納
@@ -114,7 +103,7 @@ namespace NipponPaint.OrderManager.Dialogs
                         orderChange.Add(Funcs.StrToInt(row.Cells[orderIdIndex].Value.ToString()));
                     }
                 }
-                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);　　　　　
+                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
                 switch (result)
                 {
                     case DialogResult.Yes:　　　　　//YESを押した場合、チェックが入っているステータスは一括変更（テスト缶実施中→缶製造実施中)

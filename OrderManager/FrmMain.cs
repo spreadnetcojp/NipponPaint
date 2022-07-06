@@ -1471,9 +1471,7 @@ namespace NipponPaint.OrderManager
                     {
                         // 選択行のOrder_id取得
                         int.TryParse(row.Cells[columnOrderIdIndex].Value.ToString(), out int orderId);
-                        var orderIdBox = new List<int>();
-                        orderIdBox.Add(orderId);
-                        OrderTestCanToProduct(orderIdBox);
+                        OrderTestCanToProduct(new List<int>() { orderId });
                     }
                 }
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
@@ -3054,7 +3052,7 @@ namespace NipponPaint.OrderManager
             }
             var param = new List<SqlParameter>();
             var values = new List<string>();
-            string column = "barcode";
+            var column = "barcode";
             var cnt = 1;
             foreach (DataRow barcode in dt.Rows)
             {
@@ -3062,7 +3060,7 @@ namespace NipponPaint.OrderManager
                 param.Add(new SqlParameter(column + cnt.ToString(), barcode.ItemArray[0].ToString()));
                 cnt++;
             }
-            string sqlParameter = string.Join(",", values);　
+            var sqlParameter = string.Join(",", values);
             switch ((Sql.NpMain.Orders.OrderStatus)status)
             {
                 case Sql.NpMain.Orders.OrderStatus.WaitingForToning:

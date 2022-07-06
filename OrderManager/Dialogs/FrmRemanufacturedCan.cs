@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Collections;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -132,27 +133,20 @@ namespace NipponPaint.OrderManager.Dialogs
             {
                 using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                 {
-                    int a = checkedListBox1.CheckedItems.Count;
                     var cnt = 1;
                     //チェックされたアイテムを抽出する
                     if (checkedListBox1.CheckedItems.Count > 0)
                     {
                         foreach (int item in checkedListBox1.CheckedItems)
                         {
-                            int rowIndex = item - 1;
-                            string value = dt.Rows[rowIndex]["バーコード"].ToString();
+                            var value = dt.Rows[item - 1]["バーコード"].ToString();
                             values.Add("@" + column + cnt.ToString());
-
                             param.Add(new SqlParameter(column + cnt.ToString(), value));
                             cnt++;
                         }
-                        string sqlParameter = string.Join(",", values);
+                        var sqlParameter = string.Join(",", values);
                         db.Execute(NpCommon.Database.Sql.NpMain.Cans.RemanufacturedCanByBarcode(sqlParameter), param);
                         db.Commit();
-                    }
-                    else
-                    {
-
                     }
                     //更新が完了したあと、ダイアログを閉じる
                     PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);

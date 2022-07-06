@@ -216,6 +216,11 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
+        /// <summary>
+        /// オーダー番号による缶データの習得
+        /// </summary>
+        /// <param name="plant"></param>
+        /// <returns></returns>
         public static string GetCansFormulaRelease(string plant)
         {
             var sql = new StringBuilder();
@@ -228,6 +233,11 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             return sql.ToString();
         }
 
+        /// <summary>
+        /// オーダーIDによるバーコードの習得
+        /// </summary>
+        /// <param name="plant"></param>
+        /// <returns></returns>
         public static string GetBarcodes(string plant)
         {
             var sql = new StringBuilder();
