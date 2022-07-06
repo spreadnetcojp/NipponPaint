@@ -25,6 +25,7 @@ using NipponPaint.OrderManager.Dialogs;
 using NipponPaint.NpCommon.Settings;
 using Sql = NipponPaint.NpCommon.Database.Sql;
 using System.Data;
+using System.Linq;
 #endregion
 
 namespace NipponPaint.OrderManager.Dialogs
@@ -114,16 +115,19 @@ namespace NipponPaint.OrderManager.Dialogs
                         orderNumbers.Add(row.Cells[orderNumberIndex].Value.ToString());
                     }
                 }
-                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnOrderCloseMultipleClicked);
-                switch (result)
+                if (orderNumbers.Any())
                 {
-                    case DialogResult.Yes:
-                        frmMain.DeleteOrdersConfirmation(orderNumbers);
-                        break;
-                    case DialogResult.No:
-                        break;
-                    default:
-                        break;
+                    DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnOrderCloseMultipleClicked);
+                    switch (result)
+                    {
+                        case DialogResult.Yes:
+                            frmMain.DeleteOrdersConfirmation(orderNumbers);
+                            break;
+                        case DialogResult.No:
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
