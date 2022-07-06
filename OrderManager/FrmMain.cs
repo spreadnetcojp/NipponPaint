@@ -44,9 +44,8 @@ namespace NipponPaint.OrderManager
             Color.Cyan,
             Color.Blue,
             Color.White,
-            Color.White,
-            Color.White,
         };
+        private static readonly Color ALERT_BACK_COLOR_RED = Color.Red;
 
         private static DataTable GvOrderDataSource;
         //private static DataTable GvDetailDataSource;
@@ -480,6 +479,7 @@ namespace NipponPaint.OrderManager
         private string selectProductCode = string.Empty;
         private int selectingTabIndex = 0;
         private Dictionary<string, int> tbColorNameSetting = new Dictionary<string, int>();
+        private Color alertBackColorControl;
         #endregion
 
         #region コンストラクタ
@@ -487,12 +487,6 @@ namespace NipponPaint.OrderManager
         {
             InitializeComponent();
             InitializeForm();
-            lblStatus1.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.WaitingForToning];
-            lblStatus2.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation];
-            lblStatus3.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.Ready];
-            lblStatus4.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress];
-            lblStatus5.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress];
-            lblStatus5.ForeColor = Color.White;
         }
         #endregion
 
@@ -2288,6 +2282,7 @@ namespace NipponPaint.OrderManager
             this.GvDetail.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.GvFormulation.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.ヘルプHToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemHelpFormClick);
+            this.TmrPnlColorExplanationBlinking.Tick += new System.EventHandler(this.TmrPnlColorExplanationBlinkingTick);
             //ラベル(仮)のイベントハンドラー
             this.ToolStripMenuItemLabelSelection.Click += new EventHandler(this.ToolStripMenuItemLabelSelectionClick);
             this.BtnLotRegister.Click += new EventHandler(this.BtnLotRegisterClick);
@@ -2297,6 +2292,14 @@ namespace NipponPaint.OrderManager
             this.GvFormulation.SelectionChanged += new EventHandler(this.GvFormulation_SelectionChanged);
             this.GvOrderNumber.SelectionChanged += new EventHandler(this.GvOrderNumber_SelectionChanged);
             this.GvBarcode.SelectionChanged += new EventHandler(this.GvBarcode_SelectionChanged);
+            // 背景色の定義
+            lblStatus1.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.WaitingForToning];
+            lblStatus2.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation];
+            lblStatus3.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.Ready];
+            lblStatus4.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress];
+            lblStatus5.BackColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress];
+            lblStatus5.ForeColor = StatusBackColorList[(int)Sql.NpMain.Orders.OrderStatus.ProductionCompleted];
+            alertBackColorControl = pnlColorExplanation.BackColor;
             // ラベルの固定文言を設定
             lblStatus1.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.WaitingForToning);
             lblStatus2.Text = Messages.GetOrderStatusText(Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation);
@@ -2829,6 +2832,16 @@ namespace NipponPaint.OrderManager
             this.GvDetail.DataBindingComplete -= new DataGridViewBindingCompleteEventHandler(this.GvDetailDataBindingComplete);
             this.GvFormulation.DataBindingComplete -= new DataGridViewBindingCompleteEventHandler(this.GvFormulationDataBindingComplete);
         }
+
+        /// <summary>
+        /// サーバーステータスの赤点滅
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TmrPnlColorExplanationBlinkingTick(object sender, EventArgs e)
+        {
+            pnlColorExplanation.BackColor = !pnlColorExplanation.BackColor.Equals(ALERT_BACK_COLOR_RED) ? ALERT_BACK_COLOR_RED : alertBackColorControl;
+        }
         #endregion
 
         #region 表示されている画面のName取得
@@ -2950,7 +2963,7 @@ namespace NipponPaint.OrderManager
                         break;
                     default:
                         // 最終配合チェック用
-                        var formulaReleaseCheckNum = order.AsEnumerable().Where(x =>  int.Parse(x[formulaReleaseColumn].ToString()) == 0).ToList();
+                        var formulaReleaseCheckNum = order.AsEnumerable().Where(x => int.Parse(x[formulaReleaseColumn].ToString()) == 0).ToList();
                         // 全ての缶に最終配合が吐出されておればそのままDelete
                         if (!formulaReleaseCheckNum.Any())
                         {
