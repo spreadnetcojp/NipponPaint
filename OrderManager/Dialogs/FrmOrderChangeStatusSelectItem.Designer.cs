@@ -62,6 +62,7 @@
             this.ChkSelectAll.TabIndex = 5;
             this.ChkSelectAll.Text = "全て選択(&A)";
             this.ChkSelectAll.UseVisualStyleBackColor = true;
+            this.ChkSelectAll.CheckedChanged += new System.EventHandler(this.ChkSelectAll_CheckedChanged);
             // 
             // BtnClose
             // 
@@ -113,14 +114,15 @@
             // 
             // FrmOrderChangeStatusSelectItem
             // 
-            this.AcceptButton = this.BtnClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.BtnClose;
             this.ClientSize = new System.Drawing.Size(1184, 761);
             this.ControlBox = false;
             this.Controls.Add(this.PnlBtnChk);
             this.Controls.Add(this.PnlList);
             this.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FrmOrderChangeStatusSelectItem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ステータス一括変更";

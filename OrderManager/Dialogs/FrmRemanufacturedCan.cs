@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Collections;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -43,7 +44,6 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             PutLog(Sentence.Messages.OpenMainForm);
         }
-
         /// <summary>
         /// 選択中のCheckBoxより前のCheckBoxを全て選択状態にする
         /// </summary>
@@ -65,7 +65,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 cnt++;
             }
         }
-
         /// <summary>
         /// 選択中のCheckBoxより後のCheckBoxを全て選択状態にする
         /// </summary>
@@ -87,7 +86,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 cnt++;
             }
         }
-
         /// <summary>
         /// 全てのCheckBoxを選択状態にする
         /// </summary>
@@ -102,7 +100,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 cnt++;
             }
         }
-
         /// <summary>
         /// 全てのCheckBoxを非選択状態にする
         /// </summary>
@@ -117,7 +114,11 @@ namespace NipponPaint.OrderManager.Dialogs
                 cnt++;
             }
         }
-
+        /// <summary>
+        /// 缶の再製造ボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnRemanufacturedCan_Click(object sender, EventArgs e)
         {
 
@@ -130,19 +131,19 @@ namespace NipponPaint.OrderManager.Dialogs
                 {
                     var cnt = 1;
                     //チェックされたアイテムを抽出する
-                    foreach (int item in checkedListBox1.CheckedItems)
+                    if (checkedListBox1.CheckedItems.Count > 0)
                     {
-                        int rowIndex = item - 1;
-                        string value = dt.Rows[rowIndex]["バーコード"].ToString();
-                        values.Add("@" + column + cnt.ToString());
-
-                        param.Add(new SqlParameter(column + cnt.ToString(), value));
-                        cnt++;
+                        foreach (int item in checkedListBox1.CheckedItems)
+                        {
+                            var value = dt.Rows[item - 1]["バーコード"].ToString();
+                            values.Add("@" + column + cnt.ToString());
+                            param.Add(new SqlParameter(column + cnt.ToString(), value));
+                            cnt++;
+                        }
+                        var sqlParameter = string.Join(",", values);
+                        db.Execute(NpCommon.Database.Sql.NpMain.Cans.RemanufacturedCanByBarcode(sqlParameter), param);
+                        db.Commit();
                     }
-                    string sqlParameter = string.Join(",", values);
-                    db.Execute(NpCommon.Database.Sql.NpMain.Cans.RemanufacturedCanByBarcode(sqlParameter), param);
-                    db.Commit();
-
                     //更新が完了したあと、ダイアログを閉じる
                     PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                     this.Close();
@@ -153,7 +154,11 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(ex);
             }
         }
-
+        /// <summary>
+        /// 閉じるボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnClose_Click(object sender, EventArgs e)
         {
             try
