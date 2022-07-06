@@ -117,7 +117,11 @@ namespace NipponPaint.OrderManager.Dialogs
                 cnt++;
             }
         }
-
+        /// <summary>
+        /// 缶の再製造ボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnRemanufacturedCan_Click(object sender, EventArgs e)
         {
 
@@ -128,21 +132,28 @@ namespace NipponPaint.OrderManager.Dialogs
             {
                 using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                 {
+                    int a = checkedListBox1.CheckedItems.Count;
                     var cnt = 1;
                     //チェックされたアイテムを抽出する
-                    foreach (int item in checkedListBox1.CheckedItems)
+                    if (checkedListBox1.CheckedItems.Count > 0)
                     {
-                        int rowIndex = item - 1;
-                        string value = dt.Rows[rowIndex]["バーコード"].ToString();
-                        values.Add("@" + column + cnt.ToString());
+                        foreach (int item in checkedListBox1.CheckedItems)
+                        {
+                            int rowIndex = item - 1;
+                            string value = dt.Rows[rowIndex]["バーコード"].ToString();
+                            values.Add("@" + column + cnt.ToString());
 
-                        param.Add(new SqlParameter(column + cnt.ToString(), value));
-                        cnt++;
+                            param.Add(new SqlParameter(column + cnt.ToString(), value));
+                            cnt++;
+                        }
+                        string sqlParameter = string.Join(",", values);
+                        db.Execute(NpCommon.Database.Sql.NpMain.Cans.RemanufacturedCanByBarcode(sqlParameter), param);
+                        db.Commit();
                     }
-                    string sqlParameter = string.Join(",", values);
-                    db.Execute(NpCommon.Database.Sql.NpMain.Cans.RemanufacturedCanByBarcode(sqlParameter), param);
-                    db.Commit();
+                    else
+                    {
 
+                    }
                     //更新が完了したあと、ダイアログを閉じる
                     PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                     this.Close();

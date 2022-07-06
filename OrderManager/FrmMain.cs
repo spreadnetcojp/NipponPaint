@@ -2130,8 +2130,6 @@ namespace NipponPaint.OrderManager
                     var selectedRow = dgv.SelectedRows[0];
                     string barcode = selectedRow.Cells[barcodeColumnIndex].Value.ToString().Trim();
                     int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
-                    //string orderNumber = selectedRow.Cells[orderNumberColumnIndex].Value.ToString().Trim();
-
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
                         // 行取得のSQLを作成
@@ -2173,8 +2171,8 @@ namespace NipponPaint.OrderManager
                         {
                             if (column.ColumnName.Equals("白コード"))
                             {
-                                double.TryParse(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex]["白コード"].ToString(), out double canWhiteWeight);
-                                double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex]["白コード"].ToString(), out double orderWhiteWeight);
+                                double.TryParse(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex]["白吐出"].ToString(), out double canWhiteWeight);
+                                double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex]["白重量"].ToString(), out double orderWhiteWeight);
                                 GvOutWeight.Rows.Add(GvBarcodeDataCource.Rows[0]["白コード"], canWhiteWeight.ToString(Decimal_Place3), (orderWhiteWeight - canWhiteWeight).ToString(Decimal_Place3));
                             }
                             if (column.ColumnName.Equals($"吐出{cnt}"))
@@ -3025,6 +3023,11 @@ namespace NipponPaint.OrderManager
         }
         #endregion
 
+        /// <summary>
+        /// ステータス一括変更　実施
+        /// </summary>
+        /// <param name="gdvSelectedOrderIds"></param>
+        /// <param name="status"></param>
         public void StatusResumeOrders(int gdvSelectedOrderIds, int status)
         {
             var dt = new DataTable();
@@ -3046,7 +3049,7 @@ namespace NipponPaint.OrderManager
                 param.Add(new SqlParameter(column + cnt.ToString(), barcode.ItemArray[0].ToString()));
                 cnt++;
             }
-            string sqlParameter = string.Join(",", values);
+            string sqlParameter = string.Join(",", values);　
             switch ((Sql.NpMain.Orders.OrderStatus)status)
             {
                 case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
@@ -3059,7 +3062,7 @@ namespace NipponPaint.OrderManager
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                     {
                         db.StatusResume(Sql.NpMain.Orders.StatusResume(gdvSelectedOrderIds.ToString()));
-                        db.Execute(Sql.NpMain.Cans.RemanufacturedCanByBarcode(sqlParameter), param);
+                        db.Execute(Sql.NpMain.Cans.RemanufacturedCanByBarcode(sqlParameter), param);　　　　　// 缶のステータスを更新
                         db.Commit();
                     }
                     break;
@@ -3073,19 +3076,24 @@ namespace NipponPaint.OrderManager
         /// <param name="orderId"></param>
         public void OrderTestCanToProduct(List<int> orderIds)
         {
-            string sqlParameter = string.Join(",", orderIds);
-            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+            if (orderIds.Count > 0)　　　　　// チェックが入っていればボタンを押せば移行実施、チェックが入っていないorテスト缶実施中がそもそもない状態でボタンを押せばスルー
             {
-                var parameters = new List<ParameterItem>()
+                string sqlParameter = string.Join(",", orderIds);
+                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+                {
+                    var parameters = new List<ParameterItem>()
                 {
                     new ParameterItem("@status", (int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress),
                 };
-                // 選択している注文データのステイタスを変更
-                db.Execute(Sql.NpMain.Orders.StatusProductionChange(sqlParameter), parameters);
-                db.Commit();
+                    // 選択している注文データのステータスを変更
+                    db.Execute(Sql.NpMain.Orders.StatusProductionChange(sqlParameter), parameters);
+                    db.Commit();
+                }
             }
-            
-           
+            else
+            {
+
+            }
         }
     }
 }

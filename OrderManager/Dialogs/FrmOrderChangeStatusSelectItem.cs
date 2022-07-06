@@ -102,23 +102,26 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
+                // オーダーIDをリスト化
                 List<int> orderChange = new List<int>();
+                // オーダーIDのインデックスを習得
                 var orderIdIndex = GvChangeOrders.Columns["Order_id"].Index;
+                // 選択している注文番号をリストに格納
                 foreach (DataGridViewRow row in GvChangeOrders.Rows)
                 {
-                    if (Convert.ToBoolean(row.Cells[CHECKEDBOX_COLUMN].Value))
+                    if (Convert.ToBoolean(row.Cells[CHECKEDBOX_COLUMN].Value))　　　　　//チェックが入っているステータスを一括で変更
                     {
                         orderChange.Add(Funcs.StrToInt(row.Cells[orderIdIndex].Value.ToString()));
                     }
                 }
-                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
+                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);　　　　　
                 switch (result)
                 {
-                    case DialogResult.Yes:
+                    case DialogResult.Yes:　　　　　//YESを押した場合、チェックが入っているステータスは一括変更（テスト缶実施中→缶製造実施中)
                         var frmMain = new FrmMain();
                         frmMain.OrderTestCanToProduct(orderChange);
                         break;
-                    case DialogResult.No:
+                    case DialogResult.No:　　　　　 //Noを押した場合は、メッセージを閉じる
                         break;
                     default:
                         break;
