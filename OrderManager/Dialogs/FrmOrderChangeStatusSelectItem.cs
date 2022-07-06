@@ -115,7 +115,6 @@ namespace NipponPaint.OrderManager.Dialogs
                     default:
                         break;
                 }
-
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }

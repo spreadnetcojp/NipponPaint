@@ -3093,17 +3093,13 @@ namespace NipponPaint.OrderManager
                 using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                 {
                     var parameters = new List<ParameterItem>()
-                {
-                    new ParameterItem("@status", (int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress),
-                };
+                    {
+                        new ParameterItem("@status", (int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress),
+                    };
                     // 選択している注文データのステータスを変更
                     db.Execute(Sql.NpMain.Orders.StatusProductionChange(sqlParameter), parameters);
                     db.Commit();
                 }
-            }
-            else
-            {
-
             }
         }
     }

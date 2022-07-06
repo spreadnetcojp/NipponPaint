@@ -44,7 +44,6 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             PutLog(Sentence.Messages.OpenMainForm);
         }
-
         /// <summary>
         /// 選択中のCheckBoxより前のCheckBoxを全て選択状態にする
         /// </summary>
@@ -66,7 +65,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 cnt++;
             }
         }
-
         /// <summary>
         /// 選択中のCheckBoxより後のCheckBoxを全て選択状態にする
         /// </summary>
@@ -88,7 +86,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 cnt++;
             }
         }
-
         /// <summary>
         /// 全てのCheckBoxを選択状態にする
         /// </summary>
@@ -103,7 +100,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 cnt++;
             }
         }
-
         /// <summary>
         /// 全てのCheckBoxを非選択状態にする
         /// </summary>
@@ -158,7 +154,11 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(ex);
             }
         }
-
+        /// <summary>
+        /// 閉じるボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnClose_Click(object sender, EventArgs e)
         {
             try
