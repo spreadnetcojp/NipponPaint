@@ -231,7 +231,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_HG_PRODUCT_NAME = "HG_Product_Name";
         public const string COLUMN_HG_SUM_UP_KEY = "HG_Sum_up_Key";
         public const string COLUMN_OPERATOR_CODE = "Operator_Code";
-        public const string COLUMN_SORT_ORDER = "Sort_Order";        
+        public const string COLUMN_SORT_ORDER = "Sort_Order";
         public const string COLUMN_STATUSCOLOR = "StatusColor";
         public const string COLUMN_FORMULA_RELEASE = "Formula_Release";
         public const string COLUMN_WHITE_WEIGHT = "White_Weight";
@@ -501,7 +501,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// ステータスを戻す
         /// </summary>
         /// <returns></returns>
-        public static string StatusResume()
+        public static string StatusResume(string orderIds)
         {
             var sql = new StringBuilder();
             sql.Append($"UPDATE ");
@@ -552,7 +552,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($",Total_Weight = 0 ");
             sql.Append($"FROM Orders ");
             sql.Append($"WHERE ");
-            sql.Append($"order_id = @orderId");
+            sql.Append($"order_id IN ({orderIds})");
 
             return sql.ToString();
         }
@@ -639,14 +639,14 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// テスト缶仕上がりボタンを押下した際のstatus更新
         /// </summary>
         /// <returns></returns>
-        public static string StatusProductionChange()
+        public static string StatusProductionChange(string value)
         {
             var sql = new StringBuilder();
             sql.Append($"UPDATE ");
             sql.Append($" {MAIN_TABLE} ");
             sql.Append($"SET ");
             sql.Append($" {COLUMN_STATUS}        = @Status ");
-            sql.Append($"WHERE {COLUMN_ORDER_ID} = @OrderId ");
+            sql.Append($"WHERE {COLUMN_ORDER_ID}  IN ({value}) ");
             return sql.ToString();
         }
         #endregion

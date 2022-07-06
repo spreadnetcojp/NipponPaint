@@ -216,6 +216,11 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
+        /// <summary>
+        /// オーダー番号による缶データの習得
+        /// </summary>
+        /// <param name="plant"></param>
+        /// <returns></returns>
         public static string GetCansFormulaRelease(string plant)
         {
             var sql = new StringBuilder();
@@ -225,6 +230,21 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($" ,O.{Orders.COLUMN_STATUS} ");
             sql.Append($"FROM {SelectCans(plant)} ");
             sql.Append($"WHERE C.{COLUMN_ORDER_NUMBER} = @OrderNumber ");
+            return sql.ToString();
+        }
+
+        /// <summary>
+        /// オーダーIDによるバーコードの習得
+        /// </summary>
+        /// <param name="plant"></param>
+        /// <returns></returns>
+        public static string GetBarcodes(string plant)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            sql.Append($" C.{COLUMN_BARCODE} ");
+            sql.Append($"FROM {SelectCans(plant)} ");
+            sql.Append($"WHERE C.{COLUMN_ORDER_ID} = @OrderId ");
             return sql.ToString();
         }
 
