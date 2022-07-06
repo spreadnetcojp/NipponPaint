@@ -232,6 +232,7 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemCCMSimulator = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemLabelSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.ヘルプHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TmrPnlColorExplanationBlinking = new System.Windows.Forms.Timer(this.components);
             this.tabOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GvOrder)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -1471,7 +1472,7 @@ namespace NipponPaint.OrderManager
             this.tabDetail2.Location = new System.Drawing.Point(4, 22);
             this.tabDetail2.Name = "tabDetail2";
             this.tabDetail2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDetail2.Size = new System.Drawing.Size(1647, 499);
+            this.tabDetail2.Size = new System.Drawing.Size(1653, 503);
             this.tabDetail2.TabIndex = 1;
             this.tabDetail2.Text = "詳細２";
             // 
@@ -2082,7 +2083,7 @@ namespace NipponPaint.OrderManager
             this.tabDetail3.Controls.Add(this.HgLineNumber);
             this.tabDetail3.Location = new System.Drawing.Point(4, 22);
             this.tabDetail3.Name = "tabDetail3";
-            this.tabDetail3.Size = new System.Drawing.Size(1647, 499);
+            this.tabDetail3.Size = new System.Drawing.Size(1653, 503);
             this.tabDetail3.TabIndex = 2;
             this.tabDetail3.Text = "詳細３";
             // 
@@ -4107,6 +4108,11 @@ namespace NipponPaint.OrderManager
             this.ヘルプHToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.ヘルプHToolStripMenuItem.Text = "ヘルプ(&H)";
             // 
+            // TmrPnlColorExplanationBlinking
+            // 
+            this.TmrPnlColorExplanationBlinking.Enabled = true;
+            this.TmrPnlColorExplanationBlinking.Interval = 1000;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -4380,6 +4386,7 @@ namespace NipponPaint.OrderManager
         private NpCommon.FormControls.PanelBorder BorderHgVolumeCode;
         private NpCommon.FormControls.LabelCodeText labelCodeText1;
         private NpCommon.FormControls.LabelTextSeparate ColorName;
+        private System.Windows.Forms.Timer TmrPnlColorExplanationBlinking;
     }
 }
 
