@@ -14,8 +14,10 @@
 
 #region using defines
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using NipponPaint.NpCommon;
+using NipponPaint.NpCommon.Database;
 using NipponPaint.NpCommon.FormControls;
 #endregion
 
@@ -114,7 +116,39 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                Messages.ShowDialog(Sentence.Messages.SelectMaterialError);
+                var parameters = new List<ParameterItem>()
+                {
+                    new ParameterItem("@ColorName", TxtKanjiColorName.Value),
+                    new ParameterItem("@ProductCode", $"{DrpProductCodeLeft.DropDown.Text}{DrpProductCodeRight.Text}"),
+                    new ParameterItem("@PaintName", TxtPaintName.Value),
+                    new ParameterItem("@TintedColor", TxtColorFileName.Value),
+                    new ParameterItem("@LineName", TxtLine.Value),
+                    new ParameterItem("@Revision", NumUpDownCorrection.Value),
+                    new ParameterItem("@WhiteCode", DrpBaseSelect.Text),
+                    new ParameterItem("@WhiteWeight", TxtBaseValue.Text),
+                    new ParameterItem("@Colorant1", DrpColoarantSelect1.Text),
+                    new ParameterItem("@Weight1", TxtColoarantValue1.Text),
+                    new ParameterItem("@Colorant2", DrpColoarantSelect2.Text),
+                    new ParameterItem("@Weight2", TxtColoarantValue2.Text),
+                    new ParameterItem("@Colorant3", DrpColoarantSelect3.Text),
+                    new ParameterItem("@Weight3", TxtColoarantValue3.Text),
+                    new ParameterItem("@Colorant4", DrpColoarantSelect4.Text),
+                    new ParameterItem("@Weight4", TxtColoarantValue4.Text),
+                    new ParameterItem("@Colorant5", DrpColoarantSelect5.Text),
+                    new ParameterItem("@Weight5", TxtColoarantValue5.Text),
+                    new ParameterItem("@Colorant6", DrpColoarantSelect6.Text),
+                    new ParameterItem("@Weight6", TxtColoarantValue6.Text),
+                    new ParameterItem("@Colorant7", DrpColoarantSelect7.Text),
+                    new ParameterItem("@Weight7", TxtColoarantValue7.Text),
+                    new ParameterItem("@Colorant8", DrpColoarantSelect8.Text),
+                    new ParameterItem("@Weight8", TxtColoarantValue8.Text),
+                    new ParameterItem("@Colorant9", DrpColoarantSelect9.Text),
+                    new ParameterItem("@Weight9", TxtColoarantValue9.Text),
+                    new ParameterItem("@Colorant10", DrpColoarantSelect10.Text),
+                    new ParameterItem("@Weight10", TxtColoarantValue10.Text),
+                };
+                var a = parameters;
+                //Messages.ShowDialog(Sentence.Messages.SelectMaterialError);
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -184,6 +218,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 TxtBaseValue.Enabled = true;
                 FrmKeyPad frmKeyPad = new FrmKeyPad();
                 frmKeyPad.ShowDialog();
+                TxtBaseValue.Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
             }
             else
             {
@@ -197,6 +232,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 TxtColoarantValue1.Enabled = true;
                 FrmKeyPad frmKeyPad = new FrmKeyPad();
                 frmKeyPad.ShowDialog();
+                TxtColoarantValue1.Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
             }
             else
             {
@@ -210,6 +246,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 TxtColoarantValue2.Enabled = true;
                 FrmKeyPad frmKeyPad = new FrmKeyPad();
                 frmKeyPad.ShowDialog();
+                TxtColoarantValue2.Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
             }
             else
             {
@@ -223,6 +260,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 TxtColoarantValue3.Enabled = true;
                 FrmKeyPad frmKeyPad = new FrmKeyPad();
                 frmKeyPad.ShowDialog();
+                TxtColoarantValue3.Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
             }
             else
             {
@@ -236,6 +274,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 TxtColoarantValue4.Enabled = true;
                 FrmKeyPad frmKeyPad = new FrmKeyPad();
                 frmKeyPad.ShowDialog();
+                TxtColoarantValue4.Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
             }
             else
             {
@@ -249,6 +288,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 TxtColoarantValue5.Enabled = true;
                 FrmKeyPad frmKeyPad = new FrmKeyPad();
                 frmKeyPad.ShowDialog();
+                TxtColoarantValue5.Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
             }
             else
             {
@@ -262,6 +302,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 TxtColoarantValue6.Enabled = true;
                 FrmKeyPad frmKeyPad = new FrmKeyPad();
                 frmKeyPad.ShowDialog();
+                TxtColoarantValue6.Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
             }
             else
             {
@@ -275,6 +316,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 TxtColoarantValue7.Enabled = true;
                 FrmKeyPad frmKeyPad = new FrmKeyPad();
                 frmKeyPad.ShowDialog();
+                TxtColoarantValue7.Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
             }
             else
             {
@@ -288,6 +330,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 TxtColoarantValue8.Enabled = true;
                 FrmKeyPad frmKeyPad = new FrmKeyPad();
                 frmKeyPad.ShowDialog();
+                TxtColoarantValue8.Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
             }
             else
             {
@@ -301,6 +344,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 TxtColoarantValue9.Enabled = true;
                 FrmKeyPad frmKeyPad = new FrmKeyPad();
                 frmKeyPad.ShowDialog();
+                TxtColoarantValue9.Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
             }
             else
             {
@@ -314,6 +358,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 TxtColoarantValue10.Enabled = true;
                 FrmKeyPad frmKeyPad = new FrmKeyPad();
                 frmKeyPad.ShowDialog();
+                TxtColoarantValue10.Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
             }
             else
             {
@@ -327,6 +372,7 @@ namespace NipponPaint.OrderManager.Dialogs
             {
                 FrmKeyPad frmKeyPad = new FrmKeyPad();
                 frmKeyPad.ShowDialog();
+                ((TextBoxBase)sender).Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
             }
         }
         #endregion

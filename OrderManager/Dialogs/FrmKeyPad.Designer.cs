@@ -271,7 +271,7 @@ namespace NipponPaint.OrderManager.Dialogs
 
         #endregion
 
-        private System.Windows.Forms.Label NumLabel;
+        public System.Windows.Forms.Label NumLabel;
         private System.Windows.Forms.Button BtnInput7;
         private System.Windows.Forms.Button BtnInputPlusMinus;
         private System.Windows.Forms.Button BtnInput0;

@@ -164,22 +164,9 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                switch (((CheckBox)sender).CheckState)
+                foreach (DataGridViewRow row in GvCloseOrders.Rows)
                 {
-                    case CheckState.Checked:
-                        foreach (DataGridViewRow row in GvCloseOrders.Rows)
-                        {
-                            row.Cells[CHECKEDBOX_COLUMN].Value = true;
-                        }
-                        break;
-                    case CheckState.Unchecked:
-                        foreach (DataGridViewRow row in GvCloseOrders.Rows)
-                        {
-                            row.Cells[CHECKEDBOX_COLUMN].Value = false;
-                        }
-                        break;
-                    default:
-                        break;
+                    row.Cells[CHECKEDBOX_COLUMN].Value = ((CheckBox)sender).CheckState == CheckState.Checked ? true : false;
                 }
             }
             catch (Exception ex)

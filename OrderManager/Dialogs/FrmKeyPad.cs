@@ -309,7 +309,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                MessageBox.Show("入力を決定しました。");
+                //MessageBox.Show("入力を決定しました。");
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }

@@ -383,6 +383,20 @@ namespace NipponPaint.NpCommon
         }
         #endregion
 
+        #region キーパッドの入力値を返す（TryParse)
+        /// <summary>
+        /// キーパッドの入力値を返す（TryParse)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string StrToDecimal(string value)
+        {
+            decimal.TryParse(value, out decimal decimalVal);
+            var strValue = decimalVal.ToString("0.000");
+            return strValue;
+        }
+        #endregion
+
         #region
         /// <summary>
         /// 一覧表示用GridViewのカラム設定及びフォントサイズ設定
