@@ -38,7 +38,6 @@ namespace DatabaseManager
     {
         #region 定数
         private static readonly Color ALERT_BACK_COLOR_RED = Color.Red;
-        private static readonly Color ALERT_BACK_COLOR_WHITE = Color.White;
         private static readonly Color FORE_COLOR = Color.LimeGreen;
         private static readonly Color REJECTED_FORE_COLOR = Color.FromArgb(250, 250, 0);
         private static readonly Color REJECTED_AND_ACKONWLEDGED_FORE_COLOR = Color.FromArgb(130, 130, 0);
@@ -66,6 +65,10 @@ namespace DatabaseManager
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = COLUMN_NAME_REJECTED, DisplayName = DISPLAY_NAME_REJECTED, Visible = false, Width = 50, alignment = DataGridViewContentAlignment.MiddleLeft } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.DateTime, ColumnName = COLUMN_NAME_ACKNOWLEDGED, DisplayName = DISPLAY_NAME_ACKNOWLEDGED, Visible = false, Width = 50, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
+        #endregion
+
+        #region メンバ変数
+        private Color alertBackColorWhite;
         #endregion
 
         #region コンストラクタ
@@ -356,7 +359,7 @@ namespace DatabaseManager
         /// <param name="e"></param>
         private void TmrPnlServerStatusBlinkingTick(object sender, EventArgs e)
         {
-            PnlServerStatus.BackColor = PnlServerStatus.BackColor.Equals(ALERT_BACK_COLOR_WHITE) ? ALERT_BACK_COLOR_RED : ALERT_BACK_COLOR_WHITE;
+            PnlServerStatus.BackColor = !PnlServerStatus.BackColor.Equals(ALERT_BACK_COLOR_RED) ? ALERT_BACK_COLOR_RED : alertBackColorWhite;
         }
         #endregion
 
@@ -382,6 +385,8 @@ namespace DatabaseManager
             this.DgvList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.DgvList_DataBindingComplete);
             this.Timer.Tick += new System.EventHandler(this.TimerTick);
             this.TmrPnlServerStatusBlinking.Tick += new System.EventHandler(this.TmrPnlServerStatusBlinkingTick);
+            // 背景色の定義
+            alertBackColorWhite = PnlServerStatus.BackColor;
             // DgvListの初期設定
             InitializeDgvList();
         }
