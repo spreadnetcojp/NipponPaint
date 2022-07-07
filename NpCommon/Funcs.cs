@@ -35,6 +35,9 @@ namespace NipponPaint.NpCommon
         private static int FONTSIZE_PRODUCT_CODE_GVORDER = 16;
         private static int FONTSIZE_DEFAULT_GVORDER = 8;
 
+        // 表示桁数
+        private const string DECIMAL_POINT_THREE = "0.000";
+
         #region 取得値設定先のコントロールを抽出する
         /// <summary>
         /// 取得値設定先のコントロールを抽出する
@@ -392,7 +395,7 @@ namespace NipponPaint.NpCommon
         public static string StrToDecimal(string value)
         {
             decimal.TryParse(value, out decimal decimalVal);
-            var strValue = decimalVal.ToString("0.000");
+            var strValue = decimalVal.ToString(DECIMAL_POINT_THREE);
             return strValue;
         }
         #endregion

@@ -117,16 +117,9 @@ namespace NipponPaint.OrderManager.Dialogs
                 }
                 if (orderNumbers.Any())
                 {
-                    DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnOrderCloseMultipleClicked);
-                    switch (result)
+                    if (Messages.ShowDialog(Sentence.Messages.BtnOrderCloseMultipleClicked) == DialogResult.Yes)
                     {
-                        case DialogResult.Yes:
-                            frmMain.DeleteOrdersConfirmation(orderNumbers);
-                            break;
-                        case DialogResult.No:
-                            break;
-                        default:
-                            break;
+                        frmMain.DeleteOrdersConfirmation(orderNumbers);
                     }
                 }
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);

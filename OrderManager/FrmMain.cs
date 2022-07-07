@@ -2387,9 +2387,11 @@ namespace NipponPaint.OrderManager
             // データ表示部のコントロール制御
             Funcs.SetControlEnabled(this.Controls, true);
             // 画面の周期更新
+            this.BindTimer.Interval = BaseSettings.Display.PreviewCycleMillisecond;
             this.BindTimer.Tick += new EventHandler(this.BindTimerTick);
             BindTimerOnOrOff();
-            this.BindTimer.Interval = BaseSettings.Display.PreviewCycleMillisecond;
+            // 更新時間表示
+            PeriodicupdateTimeTextBox.Value = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             // ログ出力
             PutLog(Sentence.Messages.InitializedMainForm);
         }
@@ -3121,12 +3123,12 @@ namespace NipponPaint.OrderManager
         private void DisplayBindData()
         {
             // 画面の列定義取得
-            var ActiveGridView = GetActiveGridViewSetting();
+            var activeGridView = GetActiveGridViewSetting();
             // 表示画面のName取得
             var gridName = GetActiveGridViewName();
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
-                gridName.DataSource = db.Select(Sql.NpMain.Orders.GetPreview(ActiveGridView, BaseSettings.Facility.Plant));
+                gridName.DataSource = db.Select(Sql.NpMain.Orders.GetPreview(activeGridView, BaseSettings.Facility.Plant));
             }
         }
         #endregion
@@ -3141,7 +3143,7 @@ namespace NipponPaint.OrderManager
         {
             DisplayBindData();
             // 更新日時表示
-            labelTextBox1.Value = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+            PeriodicupdateTimeTextBox.Value = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
         }
         #endregion
 
@@ -3158,7 +3160,7 @@ namespace NipponPaint.OrderManager
                 BindTimer.Enabled = false;
                 return;
             }
-            BindTimer.Enabled = BindTimer.Enabled == true ? false : true;
+            BindTimer.Enabled = !BindTimer.Enabled;
         }
         #endregion
     }

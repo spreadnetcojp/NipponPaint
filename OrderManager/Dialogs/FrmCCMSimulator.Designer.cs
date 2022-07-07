@@ -230,7 +230,6 @@ namespace NipponPaint.OrderManager.Dialogs
             this.GrpInfo.TabIndex = 7;
             this.GrpInfo.TabStop = false;
             this.GrpInfo.Text = "一般情報";
-            this.GrpInfo.Enter += new System.EventHandler(this.GrpInfo_Enter);
             // 
             // DrpProductCodeRight
             // 
