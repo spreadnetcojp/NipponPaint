@@ -30,7 +30,6 @@ namespace NipponPaint.OrderManager.Dialogs
     {
         static string productCodeLeft;
         static string productCodeRight;
-
         #region コンストラクタ
         public FrmCCMSimulator(ViewModels.CCMSimulatorData vm)
         {
@@ -205,7 +204,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 PutLog(ex);
             }
         }
-
 
         /// <summary>
         /// 
