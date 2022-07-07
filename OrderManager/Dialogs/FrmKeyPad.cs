@@ -28,13 +28,19 @@ namespace NipponPaint.OrderManager.Dialogs
         #region 定数
         private const int NumLabelMaxValue = 25000;
         private const int NumLabelMinValue = 0;
+        private const string CancelNumber = "CANCEL";
         #endregion
 
         #region コンストラクタ
-        public FrmKeyPad()
+        public FrmKeyPad(string initialNumber)
         {
             InitializeComponent();
-            InitializeForm();
+            InitializeForm(initialNumber);
+        }
+
+        public FrmKeyPad(TextBox sender)
+        {
+            Sender = sender;
         }
         #endregion
 
@@ -44,6 +50,9 @@ namespace NipponPaint.OrderManager.Dialogs
         /// </summary>
         public bool LabelOverWrite = true;　　　　//NumLabelの上書きをする場合はtrue
         private bool NumPeriod = false;          //「.」の有無判定
+
+        public TextBox Sender { get; }
+
         /// <summary>
         /// キー操作
         /// </summary>
@@ -327,6 +336,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
+                NumLabel.Text = CancelNumber;
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }
@@ -341,7 +351,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <summary>
         /// 画面の初期化
         /// </summary>
-        private void InitializeForm()
+        private void InitializeForm(string initialNumber)
         {
             // イベントの追加
             this.KeyPreview = true;
@@ -363,6 +373,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnOK.Click += new EventHandler(this.BtnOKClick);
             this.BtnCancel.Click += new EventHandler(this.BtnCancelClick);
             this.ActiveControl = BtnOK;  //最初からフォーカスをOKボタンに標準
+            this.NumLabel.Text = initialNumber.ToString();
         }
         /// <summary>
         /// 入力値の最大値と最小値の決定

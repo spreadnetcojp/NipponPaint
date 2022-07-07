@@ -30,6 +30,7 @@ namespace NipponPaint.OrderManager.Dialogs
     {
         static string productCodeLeft;
         static string productCodeRight;
+        private const string CancelNumber = "CANCEL";
         #region コンストラクタ
         public FrmCCMSimulator(ViewModels.CCMSimulatorData vm)
         {
@@ -336,9 +337,13 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (e.Button == MouseButtons.Left)
             {
-                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                FrmKeyPad frmKeyPad = new FrmKeyPad(((TextBoxBase)sender).Text);
                 frmKeyPad.ShowDialog();
-                ((TextBoxBase)sender).Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
+                // Cancelが押された場合はTextを書き換えない
+                if (frmKeyPad.NumLabel.Text != CancelNumber)
+                {
+                    ((TextBoxBase)sender).Text = Funcs.KeyPadPush(frmKeyPad.NumLabel.Text);
+                }
             }
         }
         #endregion
@@ -2510,9 +2515,13 @@ namespace NipponPaint.OrderManager.Dialogs
         private void KeyPadPush(TextBox txt)
         {
             txt.Enabled = true;
-            FrmKeyPad frmKeyPad = new FrmKeyPad();
+            FrmKeyPad frmKeyPad = new FrmKeyPad(txt.Text);
             frmKeyPad.ShowDialog();
-            txt.Text = Funcs.StrToDecimal(frmKeyPad.NumLabel.Text);
+            // Cancelが押された場合はTextを書き換えない
+            if (frmKeyPad.NumLabel.Text != CancelNumber)
+            {
+                txt.Text = Funcs.KeyPadPush(frmKeyPad.NumLabel.Text);
+            }
         }
         #endregion
     }

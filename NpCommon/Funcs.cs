@@ -392,7 +392,7 @@ namespace NipponPaint.NpCommon
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string StrToDecimal(string value)
+        public static string KeyPadPush(string value)
         {
             decimal.TryParse(value, out decimal decimalVal);
             var strValue = decimalVal.ToString(DECIMAL_POINT_THREE);
