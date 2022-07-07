@@ -30,7 +30,7 @@ namespace NipponPaint.OrderManager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.tabOrder = new System.Windows.Forms.TabPage();
             this.GvOrder = new System.Windows.Forms.DataGridView();
@@ -298,14 +298,14 @@ namespace NipponPaint.OrderManager
             // 
             this.GvOrder.AllowUserToAddRows = false;
             this.GvOrder.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.GvOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GvOrder.ContextMenuStrip = this.contextMenuStrip;
             this.GvOrder.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -4122,18 +4122,18 @@ namespace NipponPaint.OrderManager
             this.PeriodicupdateTimeTextBox.DataEnabled = true;
             this.PeriodicupdateTimeTextBox.DataReadOnly = false;
             this.PeriodicupdateTimeTextBox.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.PeriodicupdateTimeTextBox.DataTextSize = new System.Drawing.Size(193, 30);
+            this.PeriodicupdateTimeTextBox.DataTextSize = new System.Drawing.Size(134, 30);
             this.PeriodicupdateTimeTextBox.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.PeriodicupdateTimeTextBox.Id = null;
             this.PeriodicupdateTimeTextBox.Label = "";
-            this.PeriodicupdateTimeTextBox.Location = new System.Drawing.Point(1547, 0);
+            this.PeriodicupdateTimeTextBox.Location = new System.Drawing.Point(1606, 0);
             this.PeriodicupdateTimeTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PeriodicupdateTimeTextBox.MaxByteLength = 65535;
             this.PeriodicupdateTimeTextBox.MaxLength = 0;
             this.PeriodicupdateTimeTextBox.Name = "PeriodicupdateTimeTextBox";
-            this.PeriodicupdateTimeTextBox.Size = new System.Drawing.Size(347, 26);
+            this.PeriodicupdateTimeTextBox.Size = new System.Drawing.Size(288, 26);
             this.PeriodicupdateTimeTextBox.TabIndex = 3;
-            this.PeriodicupdateTimeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.PeriodicupdateTimeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.PeriodicupdateTimeTextBox.TextBackColor = System.Drawing.SystemColors.Window;
             this.PeriodicupdateTimeTextBox.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PeriodicupdateTimeTextBox.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
