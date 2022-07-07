@@ -28,6 +28,8 @@ using System.Data;
 using System.Linq;
 using System.Diagnostics;
 using System.Data.SqlClient;
+using System.Windows.Threading;
+using NipponPaint.NpCommon.IniFile;
 #endregion
 
 namespace NipponPaint.OrderManager
@@ -2384,6 +2386,10 @@ namespace NipponPaint.OrderManager
             }
             // データ表示部のコントロール制御
             Funcs.SetControlEnabled(this.Controls, true);
+            // 画面の周期更新
+            this.BindTimer.Tick += new EventHandler(this.BindTimerTick);
+            BindTimerOnOrOff();
+            this.BindTimer.Interval = BaseSettings.Display.PreviewCycleMillisecond;
             // ログ出力
             PutLog(Sentence.Messages.InitializedMainForm);
         }
@@ -3034,6 +3040,7 @@ namespace NipponPaint.OrderManager
         }
         #endregion
 
+        #region ステータス一括変更　実施
         /// <summary>
         /// ステータス一括変更　実施
         /// </summary>
@@ -3081,6 +3088,9 @@ namespace NipponPaint.OrderManager
                     break;
             }
         }
+        #endregion
+
+        #region テスト缶実施中を製造缶実施中へ移行
         /// <summary>
         /// テスト缶実施中を製造缶実施中へ移行
         /// </summary>
@@ -3102,5 +3112,54 @@ namespace NipponPaint.OrderManager
                 }
             }
         }
+        #endregion
+
+        #region 表示画面の更新
+        /// <summary>
+        /// 表示画面の更新
+        /// </summary>
+        private void DisplayBindData()
+        {
+            // 画面の列定義取得
+            var ActiveGridView = GetActiveGridViewSetting();
+            // 表示画面のName取得
+            var gridName = GetActiveGridViewName();
+            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
+            {
+                gridName.DataSource = db.Select(Sql.NpMain.Orders.GetPreview(ActiveGridView, BaseSettings.Facility.Plant));
+            }
+        }
+        #endregion
+
+        #region GridViewの周期更新
+        /// <summary>
+        /// GridViewの周期更新
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BindTimerTick(object sender, EventArgs e)
+        {
+            DisplayBindData();
+            // 更新日時表示
+            labelTextBox1.Value = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+        }
+        #endregion
+
+        #region GridViewの周期更新のON/OFF
+        /// <summary>
+        /// GridViewの周期更新のON/OFF
+        /// </summary>
+        /// <returns></returns>
+        private void BindTimerOnOrOff()
+        {
+            // INIファイルのPreviewCycleが「0」の場合はタイマーOFF
+            if (BaseSettings.Display.PreviewCycleMillisecond == 0)
+            {
+                BindTimer.Enabled = false;
+                return;
+            }
+            BindTimer.Enabled = BindTimer.Enabled == true ? false : true;
+        }
+        #endregion
     }
 }

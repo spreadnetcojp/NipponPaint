@@ -397,7 +397,7 @@ namespace NipponPaint.NpCommon
         }
         #endregion
 
-        #region
+        #region 一覧表示用GridViewのカラム設定及びフォントサイズ設定
         /// <summary>
         /// 一覧表示用GridViewのカラム設定及びフォントサイズ設定
         /// </summary>
