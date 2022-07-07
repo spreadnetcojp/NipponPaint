@@ -29,11 +29,18 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         #endregion
 
         #region プロパティ
+        /// <summary>
+        /// 表示更新周期（秒）
+        /// </summary>
+        public int PreviewCycleSeconds { get { return _previewCycleSeconds; } }
+        public int PreviewCycleMillisecond { get { return _previewCycleMillisecond; } }
         public List<string> HgNoteStrList { get { return _hgNoteStrList; } }
         public List<string> ColorNameStrList { get { return _colorNameStrList; } }
         #endregion
 
         #region メンバ変数
+        private int _previewCycleSeconds = 10;
+        private int _previewCycleMillisecond = 10000;
         private List<string> _hgNoteStrList = new List<string>();
         private List<string> _colorNameStrList = new List<string>();
         #endregion
@@ -46,6 +53,12 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         public DisplaySection(string filePath)
         {
             var reader = new FileInterface(filePath);
+            var value = reader.GetItem(MySectionName, "PreviewCycle", "10");
+            if (!string.IsNullOrEmpty(value))
+            {
+                int.TryParse(value, out _previewCycleSeconds);
+                _previewCycleMillisecond = _previewCycleSeconds * 1000;
+            }
             var toningItems = reader.GetItem(MySectionName, "ToningAppKeyword", "");
             if (!string.IsNullOrEmpty(toningItems))
             {
