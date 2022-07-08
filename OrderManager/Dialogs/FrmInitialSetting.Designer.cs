@@ -126,7 +126,7 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // DrpWhiteCode
             // 
-            this.DrpWhiteCode.DatabaseColumnName = "PRODUCT_NAME";
+            this.DrpWhiteCode.DatabaseColumnName = "White_Code";
             this.DrpWhiteCode.DisplayMemberField = "PRODUCT_NAME";
             this.DrpWhiteCode.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.DrpWhiteCode.Id = null;
