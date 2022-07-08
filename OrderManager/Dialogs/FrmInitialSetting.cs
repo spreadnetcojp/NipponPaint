@@ -644,7 +644,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     }
                 }
                 //Deaultsテーブルに選択中の白コードが存在する場合　result = falseとする
-                result = cnt < 1;
+                result = !(cnt > 0);
             }
             else
             {
