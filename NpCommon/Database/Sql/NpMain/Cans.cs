@@ -80,7 +80,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         // 色コードが設定されているカラムのリスト
         public static readonly List<string[]> ColorColumns = new List<string[]>()
         {
-            new string[]{COLUMN_WHITE_CODE,COLUMN_WHITE_DISPENSED },
+            new string[]{ COLUMN_WHITE_CODE, COLUMN_WHITE_DISPENSED },
             new string[]{ COLUMN_COLORANT_1, COLUMN_DISPENSED_1 },
             new string[]{ COLUMN_COLORANT_2, COLUMN_DISPENSED_2 },
             new string[]{ COLUMN_COLORANT_3, COLUMN_DISPENSED_3 },
