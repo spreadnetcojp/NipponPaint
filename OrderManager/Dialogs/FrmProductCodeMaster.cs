@@ -44,8 +44,8 @@ namespace NipponPaint.OrderManager.Dialogs
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_PRD_ID, DisplayName = DISPLAY_NAME_PRD_ID, Visible = false, Width = 80, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_PRODUCT_NO, DisplayName = DISPLAY_NAME_PRODUCT_NO, Visible = true, Width = 850, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_PRD_ID, DisplayName = DISPLAY_NAME_PRD_ID, Visible = false, Width = 100, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_PRODUCT_NO, DisplayName = DISPLAY_NAME_PRODUCT_NO, Visible = true, Width = 930, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 

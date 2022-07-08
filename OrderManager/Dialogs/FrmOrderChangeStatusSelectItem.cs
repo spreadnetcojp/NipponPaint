@@ -103,7 +103,7 @@ namespace NipponPaint.OrderManager.Dialogs
                         orderChange.Add(Funcs.StrToInt(row.Cells[orderIdIndex].Value.ToString()));
                     }
                 }
-                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
+                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnChangeStatusClicked);
                 switch (result)
                 {
                     case DialogResult.Yes:　　　　　//YESを押した場合、チェックが入っているステータスは一括変更（テスト缶実施中→缶製造実施中)

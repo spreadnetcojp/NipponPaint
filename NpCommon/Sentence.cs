@@ -120,6 +120,12 @@ namespace NipponPaint.NpCommon
             [Display(Order = (int)Log.LogType.Question, Description = "オーダーのステータスを\"CCM配合待ち\"に変更しますか？")]
             BtnStatusResumeClicked,
 
+            /// <summary>
+            /// 「ステータスを変更する」ボタンをクリック
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Question, Description = "オーダーのステータスを\"缶製造実施中\"に変更しますか？")]
+            BtnChangeStatusClicked,
+
             [Display(Order = (int)Log.LogType.Error, Description = "原料選択でｴﾗｰ")]
             SelectMaterialError,
 

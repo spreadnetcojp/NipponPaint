@@ -45,7 +45,7 @@ namespace NipponPaint.OrderManager.Dialogs
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAMECAP_TYPE, DisplayName = DISPLAY_NAME_CAP_TYPE, Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_CAP_DESCRIPTION, DisplayName = DISPLAY_NAME_CAP_DESCRIPTION, Visible = true, Width = 700, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_CAP_DESCRIPTION, DisplayName = DISPLAY_NAME_CAP_DESCRIPTION, Visible = true, Width = 800, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
