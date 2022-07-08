@@ -3143,7 +3143,7 @@ namespace NipponPaint.OrderManager
         {
             DisplayBindData();
             // 更新日時表示
-            PeriodicupdateTimeTextBox.Value = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+            PeriodicupdateTimeTextBox.Value = DateTime.Now.ToString("HH:mm:ss");
         }
         #endregion
 
