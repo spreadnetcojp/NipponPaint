@@ -632,18 +632,26 @@ namespace NipponPaint.OrderManager.Dialogs
         private bool Validation()
         {
             bool result = false;
-            int cnt = 0;
-            foreach (DataGridViewRow row in DgvList.Rows)
+            if (dialogEditButtons.EditMode.Equals(DialogEditButtons.Mode.Create))
             {
-                //DefaultsテーブルにてDrpWhiteCodeコントロールで選択中の白コードの行数をカウントする
-                if (DrpWhiteCode.DropDown.Text == row.Cells[DISPLAY_NAME_WHITE_CODE].Value.ToString())
+                int cnt = 0;
+                foreach (DataGridViewRow row in DgvList.Rows)
                 {
-                    cnt++;
+                    //DefaultsテーブルにてDrpWhiteCodeコントロールで選択中の白コードの行数をカウントする
+                    if (DrpWhiteCode.DropDown.Text == row.Cells[DISPLAY_NAME_WHITE_CODE].Value.ToString())
+                    {
+                        cnt++;
+                    }
+                }
+                //Deaultsテーブルに選択中の白コードが存在する場合　result = falseとする
+                if (cnt < 1)
+                {
+                    result = true;
                 }
             }
-            //Deaultsテーブルに選択中の白コードが存在する場合　result = falseとする
-            if (cnt <= 0)
+            else
             {
+                // 修正の場合は白コードの重複チェックはしない
                 result = true;
             }
             return result;
