@@ -672,6 +672,48 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
+        #region
+        public static string CCMSimulatorDataUpdate()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"UPDATE Orders ");
+            sql.Append($"SET ");
+            sql.Append($" Paint_Name        = @PaintName ");
+            sql.Append($",Tinted_Color      = @TintedColor ");
+            sql.Append($",Index_Number      = @IndexNumber ");
+            sql.Append($",Line_Name         = @LineName ");
+            sql.Append($",Formula_Release   = @FormulaRelease ");
+            sql.Append($",Input_Can         = @InputCan ");
+            sql.Append($",Revision          = @Revision ");
+            sql.Append($",White_Code        = @WhiteCode ");
+            sql.Append($",White_Weight      = @WhiteWeight ");
+            sql.Append($",Colorant_1        = @Colorant1 ");
+            sql.Append($",Weight_1          = @Weight1 ");
+            sql.Append($",Colorant_2        = @Colorant2 ");
+            sql.Append($",Weight_2          = @Weight2 ");
+            sql.Append($",Colorant_3        = @Colorant3 ");
+            sql.Append($",Weight_3          = @Weight3 ");
+            sql.Append($",Colorant_4        = @Colorant4 ");
+            sql.Append($",Weight_4          = @Weight4 ");
+            sql.Append($",Colorant_5        = @Colorant5 ");
+            sql.Append($",Weight_5          = @Weight5 ");
+            sql.Append($",Colorant_6        = @Colorant6 ");
+            sql.Append($",Weight_6          = @Weight6 ");
+            sql.Append($",Colorant_7        = @Colorant7 ");
+            sql.Append($",Weight_7          = @Weight7 ");
+            sql.Append($",Colorant_8        = @Colorant8 ");
+            sql.Append($",Weight_8          = @Weight8 ");
+            sql.Append($",Colorant_9        = @Colorant9 ");
+            sql.Append($",Weight_9          = @Weight9 ");
+            sql.Append($",Colorant_10       = @Colorant10 ");
+            sql.Append($",Weight_10         = @Weight10 ");
+            sql.Append($",Total_Weight      = @TotalWeight ");
+            sql.Append($",CCM_color_Name    = @CCMColorName ");
+            sql.Append($"WHERE Product_Code = @ProductCode ");
+            return sql.ToString();
+        }
+        #endregion
+
         #endregion
     }
 }

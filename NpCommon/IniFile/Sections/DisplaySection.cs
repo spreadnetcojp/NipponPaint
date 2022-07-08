@@ -26,15 +26,25 @@ namespace NipponPaint.NpCommon.IniFile.Sections
     {
         #region 定数
         private const string MySectionName = "DISPLAY";
+        public const int AutoBindCancel = 1;
         #endregion
-
+        
         #region プロパティ
         /// <summary>
         /// 表示更新周期（秒）
         /// </summary>
         public int PreviewCycleSeconds { get { return _previewCycleSeconds; } }
+        /// <summary>
+        /// 表示更新周期（秒）
+        /// </summary>
         public int PreviewCycleMillisecond { get { return _previewCycleMillisecond; } }
+        /// <summary>
+        /// 
+        /// </summary>
         public List<string> HgNoteStrList { get { return _hgNoteStrList; } }
+        /// <summary>
+        /// 
+        /// </summary>
         public List<string> ColorNameStrList { get { return _colorNameStrList; } }
         #endregion
 

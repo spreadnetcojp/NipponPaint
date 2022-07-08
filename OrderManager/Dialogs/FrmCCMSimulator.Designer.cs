@@ -202,6 +202,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DrpProductCodeLeft.Location = new System.Drawing.Point(6, 101);
             this.DrpProductCodeLeft.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DrpProductCodeLeft.Name = "DrpProductCodeLeft";
+            this.DrpProductCodeLeft.SelectedValue = null;
             this.DrpProductCodeLeft.Size = new System.Drawing.Size(292, 31);
             this.DrpProductCodeLeft.TabIndex = 94;
             this.DrpProductCodeLeft.TableName = "";
@@ -563,7 +564,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(220, 54);
             this.BtnCancel.TabIndex = 9;
-            this.BtnCancel.Text = "キャンセル(&F6)";
+            this.BtnCancel.Text = "データ送信キャンセル(&F6)";
             this.BtnCancel.UseVisualStyleBackColor = true;
             // 
             // BtnCCMDataSend
