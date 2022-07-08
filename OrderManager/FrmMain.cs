@@ -786,7 +786,9 @@ namespace NipponPaint.OrderManager
                 tabMain.SelectedIndex = TAB_INDEX_DETAIL;
                 var vm = new ViewModels.LabelPrintData();
                 FrmLabelPrint frmLabelPrint = new FrmLabelPrint(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmLabelPrint.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -824,7 +826,9 @@ namespace NipponPaint.OrderManager
                 var vm = new ViewModels.DirectionsData(directionsData);
                 //MessageBox.Show("作業指示書印刷がクリックされました");
                 var frm = new Documents.ReportWorkInstruction.Preview(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frm.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -840,7 +844,9 @@ namespace NipponPaint.OrderManager
         {
             try
             {
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 var result = Messages.ShowDialog(Sentence.Messages.BtnPrintEmergencyClick);
+                BindTimerOnOrOff();　　　　　// 周期更新再開
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -879,7 +885,9 @@ namespace NipponPaint.OrderManager
                 // 注文データを元にビューモデル作成
                 var vm = new ViewModels.OrderStartData(orderData);
                 FrmOrderStart frmOrderStart = new FrmOrderStart(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmOrderStart.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
                 // ダイアログ閉後の再バインド
                 DialogCloseBinding();
                 // 事前に取得していたOrder_idを元にフォーカス移動
@@ -901,12 +909,14 @@ namespace NipponPaint.OrderManager
             {
                 // Order_id取得
                 var gdvSelectedOrderId = GetOrderId();
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
+                BindTimerOnOrOff();　　　　　// 周期更新再開
                 switch (result)
                 {
                     case DialogResult.Yes:
                         var statusColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_STATUS);
-                        var dgv = GvDetail;
+                        var dgv = GetActiveGridViewName();
                         if (dgv.SelectedRows.Count > 0)
                         {
                             // 選択している行を取得
@@ -939,7 +949,9 @@ namespace NipponPaint.OrderManager
         {
             PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             FrmOperators frmOperators = new FrmOperators();
+            BindTimerOnOrOff();　　　　　// 周期更新一時停止
             frmOperators.ShowDialog();
+            BindTimerOnOrOff();　　　　　// 周期更新再開
         }
         /// <summary>
         /// 注文を閉じる(F10)
@@ -963,7 +975,9 @@ namespace NipponPaint.OrderManager
                     //ctrlキーが押されている場合
                     case Keys.Control:
                         FrmOrderClose frmOrderClose = new FrmOrderClose();
+                        BindTimerOnOrOff();　　　　　// 周期更新一時停止
                         frmOrderClose.ShowDialog();
+                        BindTimerOnOrOff();　　　　　// 周期更新再開
                         break;
                     //ctrlキーが押されていない場合
                     default:
@@ -1002,7 +1016,9 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var form = new FrmOrderChangeStatusSelectItem();
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 form.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
                 DialogCloseBinding();
             }
             catch (Exception ex)
@@ -1021,7 +1037,9 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var form = new FrmHelp();
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 form.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1057,7 +1075,9 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.CanTypeData();
                 FrmCanType frmCanType = new FrmCanType(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmCanType.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1076,7 +1096,9 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.CapTypeData();
                 FrmCapType frmCapType = new FrmCapType(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmCapType.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1095,7 +1117,9 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.ProductCodeMasterData();
                 FrmProductCodeMaster frmProductCodeMaster = new FrmProductCodeMaster(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmProductCodeMaster.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1114,7 +1138,9 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.NPProductCodeMasterData();
                 FrmNPProductCodeMaster frmNPProductCodeMaster = new FrmNPProductCodeMaster(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmNPProductCodeMaster.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1133,7 +1159,9 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.InitialSettingData();
                 FrmInitialSetting frmInitialSetting = new FrmInitialSetting(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmInitialSetting.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1152,7 +1180,9 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.SettingData();
                 FrmSetting frmSetting = new FrmSetting(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmSetting.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1170,7 +1200,9 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 FrmSelectLabel frmSelectLabel = new FrmSelectLabel();
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmSelectLabel.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1188,7 +1220,9 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 FrmShipping frmShipping = new FrmShipping();
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmShipping.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1206,7 +1240,9 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 FrmCOMPort frmCOMPort = new FrmCOMPort();
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmCOMPort.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1250,7 +1286,9 @@ namespace NipponPaint.OrderManager
                     vm.ProductCodeRight = productCode[1].ToString();    　//CCMシミュレーター画面にて選択している製品コードの2文字目を表示
                 }
                 FrmCCMSimulator frmCCMSimulator = new FrmCCMSimulator(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmCCMSimulator.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1269,7 +1307,9 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.LabelTypeData();
                 FrmLabelSelection frmLabelSelection = new FrmLabelSelection(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmLabelSelection.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1288,7 +1328,9 @@ namespace NipponPaint.OrderManager
             {
                 //PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 //FrmOperators frmOperators = new FrmOperators();
+                //BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 //frmOperators.ShowDialog();
+                //BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1518,7 +1560,9 @@ namespace NipponPaint.OrderManager
                     vm.SelectedIndex = row.Index;
                 }
                 FrmRemanufacturedCan frmRemanufacturedCan = new FrmRemanufacturedCan(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmRemanufacturedCan.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
             }
             catch (Exception ex)
             {
@@ -1633,7 +1677,9 @@ namespace NipponPaint.OrderManager
                     }
                 }
                 FrmLotRegister frmLotRegister = new FrmLotRegister(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmLotRegister.ShowDialog();
+                BindTimerOnOrOff();　　　　　// 周期更新再開
                 // ダイアログ閉後の再バインド
                 DialogCloseBinding();
                 // 事前に取得していたOrder_idを元にフォーカス移動
@@ -1672,6 +1718,7 @@ namespace NipponPaint.OrderManager
                     }
                 }
                 var frmDataNumber = new FrmSelectDataNumber(vm);
+                BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 if (frmDataNumber.ShowDialog() == DialogResult.OK)
                 {
                     selectProductCode = vm.SelectedProductCode;
@@ -1684,6 +1731,7 @@ namespace NipponPaint.OrderManager
                         tabMain.SelectedIndex = TAB_INDEX_DETAIL;
                     }
                 }
+                BindTimerOnOrOff();　　　　　// 周期更新再開
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -3122,6 +3170,8 @@ namespace NipponPaint.OrderManager
         /// </summary>
         private void DisplayBindData()
         {
+            // フォーカスしている行のOrder_id取得
+            var gdvSelectedOrderId = GetOrderId();
             // 画面の列定義取得
             var activeGridView = GetActiveGridViewSetting();
             // 表示画面のName取得
@@ -3130,6 +3180,8 @@ namespace NipponPaint.OrderManager
             {
                 gridName.DataSource = db.Select(Sql.NpMain.Orders.GetPreview(activeGridView, BaseSettings.Facility.Plant));
             }
+            // 事前に選択していたデータ行へ移動
+            FocusSelectedRow(gdvSelectedOrderId);
         }
         #endregion
 
