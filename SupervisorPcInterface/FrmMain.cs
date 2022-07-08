@@ -77,56 +77,13 @@ namespace SupervisorPcInterface
         /// </summary>
         private void Execute()
         {
-            using (var dbs = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
-            {
-                try
-                {
-                    PutLog(Sentence.Messages.StartSupervisorInterface);
-                    // TB_BARCODEからバーコードデータを取得
-                    var barcodeRows = dbs.Select(TbBarcode.GetPreview());
-                    using (var dbn = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
-                    {
-                        foreach (DataRow barcodeRow in barcodeRows.Rows)
-                        {
-                            var barCode = barcodeRow[TbBarcode.BARCODE].ToString();
-                            // ERPのテーブルから情報収集
-                            // 行取得のSQLを作成
-                            var parameters = new List<ParameterItem>()
-                            {
-                                new ParameterItem("barcode", barCode),
-                            };
-                            // バーコードをキーにERPのテーブルから情報収集
-                            var dispenseDatas = dbn.Select(Cans.GetPreviewDispensedData(_settings.Facility.Plant), parameters);
-                            var dispenseRows = dispenseDatas.Select($"Barcode = '{barCode}'");
-                            //PutLog(Sentence.Messages.ExecuteSupervisorInterface, new string[] { barCode, dispenseRows.Count().ToString() });
-                            var cnt = 0;
-                            // SQLを作成してTB_BARCODE、TB_JOB、TB_FORMULAを更新
-                            foreach (DataRow dispenseRow in dispenseRows)
-                            {
-                                var updateDateTime = DateTime.Now;
-                                if (cnt == 0)
-                                {
-                                    //TB_BARCODE
-                                    dbs.Execute(SetSqlBarcode(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p0), p0);
-                                    //TB_JOB
-                                    dbs.Execute(SetSqlJob(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p1), p1);
-                                }
-                                //TB_FORMULA
-                                dbs.Execute(SetSqlFormura(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p2), p2);
-                                cnt++;
-                            }
-                        }
-                    }
-                    dbs.Commit();
-                    PutLog(Sentence.Messages.EndSupervisorInterface);
-                    LblStatus.Text = $"前回処理時刻：{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}";
-                }
-                catch (Exception ex)
-                {
-                    dbs.Rollback();
-                    PutLog(ex, false);
-                }
-            }
+            PutLog(Sentence.Messages.StartSupervisorInterface);
+            // ERP -> COROB
+            ToSupervisor();
+            // COROB -> ERP
+            FromSupervisor();
+            PutLog(Sentence.Messages.EndSupervisorInterface);
+            LblStatus.Text = $"前回処理時刻：{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}";
         }
 
         #region 更新SQL作成
@@ -294,6 +251,120 @@ namespace SupervisorPcInterface
             if (displayDialog)
             {
                 Messages.ShowDialog(Sentence.Messages.Exception, ex.Message);
+            }
+        }
+        #endregion
+
+        #region ERPからSupervisorPC(COROB)への書き込み
+        /// <summary>
+        /// ERPからSupervisorPC(COROB)への書き込み
+        /// </summary>
+        private void ToSupervisor()
+        {
+            using (var dbs = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
+            {
+                try
+                {
+                    // TB_BARCODEからバーコードデータを取得
+                    var barcodeRows = dbs.Select(TbBarcode.GetPreview());
+                    using (var dbn = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
+                    {
+                        foreach (DataRow barcodeRow in barcodeRows.Rows)
+                        {
+                            var barCode = barcodeRow[TbBarcode.BARCODE].ToString();
+                            // ERPのテーブルから情報収集
+                            // 行取得のSQLを作成
+                            var parameters = new List<ParameterItem>()
+                            {
+                                new ParameterItem("barcode", barCode),
+                            };
+                            // バーコードをキーにERPのテーブルから情報収集
+                            var dispenseDatas = dbn.Select(Cans.GetPreviewDispensedData(_settings.Facility.Plant), parameters);
+                            var dispenseRows = dispenseDatas.Select($"Barcode = '{barCode}' AND Code <> ''");
+                            //PutLog(Sentence.Messages.ExecuteSupervisorInterface, new string[] { barCode, dispenseRows.Count().ToString() });
+                            var cnt = 0;
+                            // SQLを作成してTB_BARCODE、TB_JOB、TB_FORMULAを更新
+                            foreach (DataRow dispenseRow in dispenseRows)
+                            {
+                                var updateDateTime = DateTime.Now;
+                                if (cnt == 0)
+                                {
+                                    // TB_BARCODE
+                                    dbs.Execute(SetSqlBarcode(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p0), p0);
+                                    // TB_JOB
+                                    dbs.Execute(SetSqlJob(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p1), p1);
+                                }
+                                // TB_FORMULA
+                                dbs.Execute(SetSqlFormura(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p2), p2);
+                                cnt++;
+                            }
+                        }
+                    }
+                    dbs.Commit();
+                }
+                catch (Exception ex)
+                {
+                    dbs.Rollback();
+                    PutLog(ex, false);
+                }
+            }
+        }
+        #endregion
+
+        #region SupervisorPC(COROB)からERPへの書き込み
+        /// <summary>
+        /// SupervisorPC(COROB)からERPへの書き込み
+        /// </summary>
+        private void FromSupervisor()
+        {
+            using (var dbn = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.SupervisorInterface))
+            {
+                try
+                {
+                    using (var dbs = new SqlBase(SqlBase.DatabaseKind.SUPERVISOR, SqlBase.TransactionUse.No, Log.ApplicationType.SupervisorInterface))
+                    {
+                        // TB_BARCODEからバーコードデータを取得
+                        var barcodeRows = dbs.Select(TbBarcode.GetPreview());
+                        foreach (DataRow barcodeRow in barcodeRows.Rows)
+                        {
+                            var barCode = barcodeRow[TbBarcode.BARCODE].ToString();
+                            // ERPのテーブルから情報収集
+                            // 行取得のSQLを作成
+                            var parameters = new List<ParameterItem>()
+                            {
+                                new ParameterItem("barcode", barCode),
+                            };
+                            // バーコードをキーにCOROBのテーブルから情報収集
+                            var dispenseDatas = dbs.Select(TbFormula.GetPreviewAll(), parameters);
+                            var cans = dbn.Select(Cans.GetDetailByBarcode(), parameters);
+                            if (cans.Rows.Count > 0)
+                            {
+                                var updateItems = new List<string>();
+                                foreach (var colorColumns in Cans.ColorColumns)
+                                {
+                                    var item = dispenseDatas.AsEnumerable().FirstOrDefault(x => x[TbFormula.PRD_CODE].ToString() == cans.Rows[0][colorColumns[0]].ToString());
+                                    if (item != null)
+                                    {
+                                        // TB_FORMULAテーブルの値を設定
+                                        parameters.Add(new ParameterItem(colorColumns[1], item[TbFormula.PRD_PREFILLED_QTY]));
+                                        updateItems.Add($"{colorColumns[1]} = @{colorColumns[1]}");
+                                    }
+                                }
+                                // 更新対象カラムがある場合のみCansをupdate
+                                if (updateItems.Any())
+                                {
+                                    dbn.Execute(Cans.SetDispensedFromSupervisor(updateItems), parameters);
+                                }
+                            }
+                        }
+                    }
+                    dbn.Commit();
+                }
+                catch (Exception ex)
+                {
+                    dbn.Rollback();
+                    PutLog(ex, false);
+                }
             }
         }
         #endregion
