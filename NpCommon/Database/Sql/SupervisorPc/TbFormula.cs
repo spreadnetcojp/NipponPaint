@@ -96,6 +96,84 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
             return sql.ToString();
         }
 
+        /// <summary>
+        /// 一覧取得
+        /// </summary>
+        /// <param name="barCode"></param>
+        /// <param name="processCode"></param>
+        /// <returns></returns>
+        public static string GetPreviewAll()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            sql.Append($"  BC.{TbBarcode.BARCODE} ");
+            sql.Append($" ,BC.{TbBarcode.PROCESS_CODE} ");
+            sql.Append($" ,BC.{TbBarcode.BRC_TIME_INSERTED} ");
+            sql.Append($" ,BC.{TbBarcode.BRC_TIME_PROCESSED} ");
+            sql.Append($" ,BC.{TbBarcode.BRC_STATUS} ");
+            sql.Append($" ,BC.{TbBarcode.BRC_ERR_1} ");
+            sql.Append($" ,BC.{TbBarcode.BRC_ERR_2} ");
+            sql.Append($" ,BC.{TbBarcode.BRC_ERR_3} ");
+            sql.Append($" ,JB.{TbJob.JOB_TIME_INSERTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_STATUS} ");
+            sql.Append($" ,JB.{TbJob.JOB_TARE_WEIGHT_EXPECTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_TARE_WEIGHT_DETECTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_TARE_WEIGHT_PERC_ERR_ADMITTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_GROSS_WEIGHT_EXPECTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_GROSS_WEIGHT_DETECTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_GROSS_WEIGHT_PERC_ERR_ADMITTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_NET_WEIGHT_EXPECTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_NET_WEIGHT_DETECTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_NET_WEIGHT_PERC_ERR_ADMITTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_TOT_COLORANT_WEIGHT_EXPECTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_TOT_COLORANT_WEIGHT_DETECTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_TOT_COLORANT_WEIGHT_PERC_ERR_ADMITTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_EXPECTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_DETECTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_PERC_ERR_ADMITTED} ");
+            sql.Append($" ,JB.{TbJob.JOB_MIXING} ");
+            sql.Append($" ,JB.{TbJob.JOB_MIXING_TIME} ");
+            sql.Append($" ,JB.{TbJob.JOB_MIXING_SPEED} ");
+            sql.Append($" ,JB.{TbJob.JOB_CAPPING} ");
+            sql.Append($" ,JB.{TbJob.JOB_LID_PLACING} ");
+            sql.Append($" ,JB.{TbJob.JOB_LID_CHECK} ");
+            sql.Append($" ,JB.{TbJob.JOB_PRINTING_1} ");
+            sql.Append($" ,JB.{TbJob.JOB_PRINTING_2} ");
+            sql.Append($" ,JB.{TbJob.JOB_PRINTING_3} ");
+            sql.Append($" ,JB.{TbJob.JOB_EXIT_POSITION} ");
+            sql.Append($" ,JB.{TbJob.JOB_TAG_1} ");
+            sql.Append($" ,JB.{TbJob.JOB_TAG_2} ");
+            sql.Append($" ,JB.{TbJob.JOB_TAG_3} ");
+            sql.Append($" ,JB.{TbJob.JOB_TAG_4} ");
+            sql.Append($" ,JB.{TbJob.JOB_TAG_5} ");
+            sql.Append($" ,JB.{TbJob.JOB_ERR_1} ");
+            sql.Append($" ,JB.{TbJob.JOB_ERR_2} ");
+            sql.Append($" ,JB.{TbJob.JOB_ERR_3} ");
+            sql.Append($" ,JB.{TbJob.JOB_ERR_4} ");
+            sql.Append($" ,JB.{TbJob.JOB_ERR_5} ");
+            sql.Append($" ,FM.{PRD_BARCODE} ");
+            sql.Append($" ,FM.{PRD_PROCESS_CODE} ");
+            sql.Append($" ,FM.{PRD_TIME_INSERTED} ");
+            sql.Append($" ,FM.{PRD_STATUS} ");
+            sql.Append($" ,FM.{PRD_CODE} ");
+            sql.Append($" ,FM.{PRD_DESC} ");
+            sql.Append($" ,FM.{PRD_SPECIFIC_GRAVITY} ");
+            sql.Append($" ,FM.{PRD_QTY_REQ} ");
+            sql.Append($" ,FM.{PRD_QTY_DISP} ");
+            sql.Append($" ,FM.{PRD_START_DISP} ");
+            sql.Append($" ,FM.{PRD_END_DISP} ");
+            sql.Append($" ,FM.{PRD_PRIORITY} ");
+            sql.Append($" ,FM.{PRD_NUM} ");
+            sql.Append($" ,FM.{PRD_ISPREFILLED} ");
+            sql.Append($" ,FM.{PRD_PREFILLED_QTY} ");
+            sql.Append($"FROM {MAIN_TABLE} AS FM ");
+            sql.Append($"INNER JOIN {TbBarcode.MAIN_TABLE} AS BC ON BC.{TbBarcode.BARCODE} = FM.{PRD_BARCODE} AND BC.{TbBarcode.PROCESS_CODE} = FM.{PRD_PROCESS_CODE} ");
+            sql.Append($"INNER JOIN {TbJob.MAIN_TABLE}     AS JB ON JB.{TbJob.JOB_BARCODE} = FM.{PRD_BARCODE} AND JB.{TbJob.JOB_PROCESS_CODE} = FM.{PRD_PROCESS_CODE} ");
+            sql.Append($"WHERE FM.{PRD_STATUS} <> 1 ");
+            sql.Append($"  AND FM.{PRD_BARCODE} = @barcode ");
+            return sql.ToString();
+        }
+
         #endregion
 
         #region 更新系

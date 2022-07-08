@@ -104,7 +104,7 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
         /// <param name="barCode"></param>
         /// <param name="processCode"></param>
         /// <returns></returns>
-        public static string GetPreviewAll(string barCode = "", string processCode = "")
+        public static string GetPreviewAll()
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
@@ -155,10 +155,6 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
             sql.Append($" ,JB.{TbJob.JOB_ERR_5} ");
             sql.Append($"FROM {MAIN_TABLE} AS BC ");
             sql.Append($"LEFT JOIN {TbJob.MAIN_TABLE} AS JB ON JB.{TbJob.JOB_BARCODE} = BC.{BARCODE} AND JB.{TbJob.JOB_PROCESS_CODE} = BC.{PROCESS_CODE} ");
-            if (barCode != "" && processCode != "")
-            {
-                sql.Append($"WHERE BC.{BARCODE} ='{barCode}' AND BC.{PROCESS_CODE} ='{processCode}' ");
-            }
             return sql.ToString();
         }
 
