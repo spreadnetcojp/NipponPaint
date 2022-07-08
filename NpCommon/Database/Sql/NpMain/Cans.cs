@@ -77,7 +77,32 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_WHITE_WEIGHT = "White_Weight";
         public const string COLUMN_CANS_ID = "Cans_Id";
         public const string COLUMN_ORDER_NUMBER = "Order_Number";
+        // 色コードが設定されているカラムのリスト
+        public static readonly List<string[]> ColorColumns = new List<string[]>()
+        {
+            new string[]{COLUMN_WHITE_CODE,COLUMN_WHITE_DISPENSED },
+            new string[]{ COLUMN_COLORANT_1, COLUMN_DISPENSED_1 },
+            new string[]{ COLUMN_COLORANT_2, COLUMN_DISPENSED_2 },
+            new string[]{ COLUMN_COLORANT_3, COLUMN_DISPENSED_3 },
+            new string[]{ COLUMN_COLORANT_4, COLUMN_DISPENSED_4 },
+            new string[]{ COLUMN_COLORANT_5, COLUMN_DISPENSED_5 },
+            new string[]{ COLUMN_COLORANT_6, COLUMN_DISPENSED_6 },
+            new string[]{ COLUMN_COLORANT_7, COLUMN_DISPENSED_7 },
+            new string[]{ COLUMN_COLORANT_8, COLUMN_DISPENSED_8 },
+            new string[]{ COLUMN_COLORANT_9, COLUMN_DISPENSED_9 },
+            new string[]{ COLUMN_COLORANT_10, COLUMN_DISPENSED_10 },
+            new string[]{ COLUMN_COLORANT_11, COLUMN_DISPENSED_11 },
+            new string[]{ COLUMN_COLORANT_12, COLUMN_DISPENSED_12 },
+            new string[]{ COLUMN_COLORANT_13, COLUMN_DISPENSED_13 },
+            new string[]{ COLUMN_COLORANT_14, COLUMN_DISPENSED_14 },
+            new string[]{ COLUMN_COLORANT_15, COLUMN_DISPENSED_15 },
+            new string[]{ COLUMN_COLORANT_16, COLUMN_DISPENSED_16 },
+            new string[]{ COLUMN_COLORANT_17, COLUMN_DISPENSED_17 },
+            new string[]{ COLUMN_COLORANT_18, COLUMN_DISPENSED_18 },
+            new string[]{ COLUMN_COLORANT_19, COLUMN_DISPENSED_19 },
+        };
         #endregion
+
         #region 参照系
 
         #region 注文番号による一覧データ取得
@@ -342,6 +367,14 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             return sql.ToString();
         }
         #endregion
+
+        public static string SetDispensedFromSupervisor(List<string> updateItems)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"UPDATE Cans SET {string.Join(" ,", updateItems)} ");
+            sql.Append($"WHERE Barcode = @barcode");
+            return sql.ToString();
+        }
 
         #endregion
 

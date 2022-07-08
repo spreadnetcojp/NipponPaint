@@ -543,6 +543,8 @@ namespace SupervisorIfSim
             };
             // ドロップダウン要素の生成
             CreateDropDownItems();
+            ClearDetail(_viewSettingsBarcode);
+            ClearDetail(_viewSettingsFormula);
             this.Shown += new EventHandler(this.FrmMainShown);
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(this.FormKeyDown);
