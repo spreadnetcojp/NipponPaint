@@ -25,6 +25,7 @@ using NipponPaint.OrderManager.Dialogs;
 using NipponPaint.NpCommon.Settings;
 using Sql = NipponPaint.NpCommon.Database.Sql;
 using System.Data;
+using System.Linq;
 #endregion
 
 namespace NipponPaint.OrderManager.Dialogs
@@ -114,16 +115,12 @@ namespace NipponPaint.OrderManager.Dialogs
                         orderNumbers.Add(row.Cells[orderNumberIndex].Value.ToString());
                     }
                 }
-                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnOrderCloseMultipleClicked);
-                switch (result)
+                if (orderNumbers.Any())
                 {
-                    case DialogResult.Yes:
+                    if (Messages.ShowDialog(Sentence.Messages.BtnOrderCloseMultipleClicked) == DialogResult.Yes)
+                    {
                         frmMain.DeleteOrdersConfirmation(orderNumbers);
-                        break;
-                    case DialogResult.No:
-                        break;
-                    default:
-                        break;
+                    }
                 }
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
@@ -160,22 +157,9 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                switch (((CheckBox)sender).CheckState)
+                foreach (DataGridViewRow row in GvCloseOrders.Rows)
                 {
-                    case CheckState.Checked:
-                        foreach (DataGridViewRow row in GvCloseOrders.Rows)
-                        {
-                            row.Cells[CHECKEDBOX_COLUMN].Value = true;
-                        }
-                        break;
-                    case CheckState.Unchecked:
-                        foreach (DataGridViewRow row in GvCloseOrders.Rows)
-                        {
-                            row.Cells[CHECKEDBOX_COLUMN].Value = false;
-                        }
-                        break;
-                    default:
-                        break;
+                    row.Cells[CHECKEDBOX_COLUMN].Value = ((CheckBox)sender).CheckState == CheckState.Checked ? true : false;
                 }
             }
             catch (Exception ex)

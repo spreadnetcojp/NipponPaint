@@ -35,6 +35,9 @@ namespace NipponPaint.NpCommon
         private static int FONTSIZE_PRODUCT_CODE_GVORDER = 16;
         private static int FONTSIZE_DEFAULT_GVORDER = 8;
 
+        // 表示桁数
+        private const string DECIMAL_POINT_THREE = "0.000";
+
         #region 取得値設定先のコントロールを抽出する
         /// <summary>
         /// 取得値設定先のコントロールを抽出する
@@ -383,7 +386,21 @@ namespace NipponPaint.NpCommon
         }
         #endregion
 
-        #region
+        #region キーパッドの入力値を返す（TryParse)
+        /// <summary>
+        /// キーパッドの入力値を返す（TryParse)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string KeyPadPush(string value)
+        {
+            decimal.TryParse(value, out decimal decimalVal);
+            var strValue = decimalVal.ToString(DECIMAL_POINT_THREE);
+            return strValue;
+        }
+        #endregion
+
+        #region 一覧表示用GridViewのカラム設定及びフォントサイズ設定
         /// <summary>
         /// 一覧表示用GridViewのカラム設定及びフォントサイズ設定
         /// </summary>

@@ -70,7 +70,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.NumLabel.Location = new System.Drawing.Point(12, 12);
             this.NumLabel.Name = "NumLabel";
             this.NumLabel.Size = new System.Drawing.Size(198, 23);
-            this.NumLabel.TabIndex = 7;
+            this.NumLabel.TabIndex = 0;
             this.NumLabel.Text = "0";
             // 
             // BtnInput7
@@ -79,7 +79,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnInput7.Location = new System.Drawing.Point(12, 52);
             this.BtnInput7.Name = "BtnInput7";
             this.BtnInput7.Size = new System.Drawing.Size(62, 43);
-            this.BtnInput7.TabIndex = 100;
+            this.BtnInput7.TabIndex = 8;
             this.BtnInput7.Text = "7";
             this.BtnInput7.UseVisualStyleBackColor = true;
             // 
@@ -90,7 +90,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnInputPlusMinus.Location = new System.Drawing.Point(148, 199);
             this.BtnInputPlusMinus.Name = "BtnInputPlusMinus";
             this.BtnInputPlusMinus.Size = new System.Drawing.Size(62, 43);
-            this.BtnInputPlusMinus.TabIndex = 101;
+            this.BtnInputPlusMinus.TabIndex = 12;
             this.BtnInputPlusMinus.Text = "+/-";
             this.BtnInputPlusMinus.UseVisualStyleBackColor = true;
             // 
@@ -100,7 +100,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnInput0.Location = new System.Drawing.Point(80, 199);
             this.BtnInput0.Name = "BtnInput0";
             this.BtnInput0.Size = new System.Drawing.Size(62, 43);
-            this.BtnInput0.TabIndex = 102;
+            this.BtnInput0.TabIndex = 1;
             this.BtnInput0.Text = "0";
             this.BtnInput0.UseVisualStyleBackColor = true;
             // 
@@ -110,7 +110,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnInputPeriod.Location = new System.Drawing.Point(12, 199);
             this.BtnInputPeriod.Name = "BtnInputPeriod";
             this.BtnInputPeriod.Size = new System.Drawing.Size(62, 43);
-            this.BtnInputPeriod.TabIndex = 103;
+            this.BtnInputPeriod.TabIndex = 11;
             this.BtnInputPeriod.Text = ".";
             this.BtnInputPeriod.UseVisualStyleBackColor = true;
             // 
@@ -120,7 +120,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnInput3.Location = new System.Drawing.Point(148, 150);
             this.BtnInput3.Name = "BtnInput3";
             this.BtnInput3.Size = new System.Drawing.Size(62, 43);
-            this.BtnInput3.TabIndex = 104;
+            this.BtnInput3.TabIndex = 4;
             this.BtnInput3.Text = "3";
             this.BtnInput3.UseVisualStyleBackColor = true;
             // 
@@ -130,7 +130,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnInput2.Location = new System.Drawing.Point(80, 150);
             this.BtnInput2.Name = "BtnInput2";
             this.BtnInput2.Size = new System.Drawing.Size(62, 43);
-            this.BtnInput2.TabIndex = 105;
+            this.BtnInput2.TabIndex = 3;
             this.BtnInput2.Text = "2";
             this.BtnInput2.UseVisualStyleBackColor = true;
             // 
@@ -140,7 +140,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnInput1.Location = new System.Drawing.Point(12, 150);
             this.BtnInput1.Name = "BtnInput1";
             this.BtnInput1.Size = new System.Drawing.Size(62, 43);
-            this.BtnInput1.TabIndex = 106;
+            this.BtnInput1.TabIndex = 2;
             this.BtnInput1.Text = "1";
             this.BtnInput1.UseVisualStyleBackColor = true;
             // 
@@ -150,7 +150,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnInput6.Location = new System.Drawing.Point(148, 101);
             this.BtnInput6.Name = "BtnInput6";
             this.BtnInput6.Size = new System.Drawing.Size(62, 43);
-            this.BtnInput6.TabIndex = 107;
+            this.BtnInput6.TabIndex = 7;
             this.BtnInput6.Text = "6";
             this.BtnInput6.UseVisualStyleBackColor = true;
             // 
@@ -160,7 +160,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnInput5.Location = new System.Drawing.Point(80, 101);
             this.BtnInput5.Name = "BtnInput5";
             this.BtnInput5.Size = new System.Drawing.Size(62, 43);
-            this.BtnInput5.TabIndex = 108;
+            this.BtnInput5.TabIndex = 6;
             this.BtnInput5.Text = "5";
             this.BtnInput5.UseVisualStyleBackColor = true;
             // 
@@ -170,7 +170,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnInput4.Location = new System.Drawing.Point(12, 101);
             this.BtnInput4.Name = "BtnInput4";
             this.BtnInput4.Size = new System.Drawing.Size(62, 43);
-            this.BtnInput4.TabIndex = 109;
+            this.BtnInput4.TabIndex = 5;
             this.BtnInput4.Text = "4";
             this.BtnInput4.UseVisualStyleBackColor = true;
             // 
@@ -180,7 +180,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnInput9.Location = new System.Drawing.Point(148, 52);
             this.BtnInput9.Name = "BtnInput9";
             this.BtnInput9.Size = new System.Drawing.Size(62, 43);
-            this.BtnInput9.TabIndex = 110;
+            this.BtnInput9.TabIndex = 10;
             this.BtnInput9.Text = "9";
             this.BtnInput9.UseVisualStyleBackColor = true;
             // 
@@ -190,7 +190,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnInput8.Location = new System.Drawing.Point(80, 52);
             this.BtnInput8.Name = "BtnInput8";
             this.BtnInput8.Size = new System.Drawing.Size(62, 43);
-            this.BtnInput8.TabIndex = 111;
+            this.BtnInput8.TabIndex = 9;
             this.BtnInput8.Text = "8";
             this.BtnInput8.UseVisualStyleBackColor = true;
             // 
@@ -200,7 +200,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnCA.Location = new System.Drawing.Point(12, 248);
             this.BtnCA.Name = "BtnCA";
             this.BtnCA.Size = new System.Drawing.Size(96, 43);
-            this.BtnCA.TabIndex = 112;
+            this.BtnCA.TabIndex = 15;
             this.BtnCA.Text = "CA(&A)";
             this.BtnCA.UseVisualStyleBackColor = true;
             // 
@@ -210,7 +210,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnC.Location = new System.Drawing.Point(114, 248);
             this.BtnC.Name = "BtnC";
             this.BtnC.Size = new System.Drawing.Size(96, 43);
-            this.BtnC.TabIndex = 113;
+            this.BtnC.TabIndex = 16;
             this.BtnC.Text = "C(&C)";
             this.BtnC.UseVisualStyleBackColor = true;
             // 
@@ -221,7 +221,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnCancel.Location = new System.Drawing.Point(114, 297);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(96, 43);
-            this.BtnCancel.TabIndex = 114;
+            this.BtnCancel.TabIndex = 14;
             this.BtnCancel.Text = "CANCEL";
             this.BtnCancel.UseVisualStyleBackColor = true;
             // 
@@ -231,7 +231,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.BtnOK.Location = new System.Drawing.Point(12, 297);
             this.BtnOK.Name = "BtnOK";
             this.BtnOK.Size = new System.Drawing.Size(96, 43);
-            this.BtnOK.TabIndex = 115;
+            this.BtnOK.TabIndex = 13;
             this.BtnOK.Text = "OK";
             this.BtnOK.UseVisualStyleBackColor = true;
             // 
@@ -271,7 +271,7 @@ namespace NipponPaint.OrderManager.Dialogs
 
         #endregion
 
-        private System.Windows.Forms.Label NumLabel;
+        public System.Windows.Forms.Label NumLabel;
         private System.Windows.Forms.Button BtnInput7;
         private System.Windows.Forms.Button BtnInputPlusMinus;
         private System.Windows.Forms.Button BtnInput0;

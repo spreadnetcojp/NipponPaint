@@ -14,8 +14,10 @@
 
 #region using defines
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using NipponPaint.NpCommon;
+using NipponPaint.NpCommon.Database;
 using NipponPaint.NpCommon.FormControls;
 #endregion
 
@@ -28,6 +30,7 @@ namespace NipponPaint.OrderManager.Dialogs
     {
         static string productCodeLeft;
         static string productCodeRight;
+        private const string CancelNumber = "CANCEL";
         #region コンストラクタ
         public FrmCCMSimulator(ViewModels.CCMSimulatorData vm)
         {
@@ -114,7 +117,38 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                Messages.ShowDialog(Sentence.Messages.SelectMaterialError);
+                var parameters = new List<ParameterItem>()
+                {
+                    new ParameterItem("@ColorName", TxtKanjiColorName.Value),
+                    new ParameterItem("@ProductCode", $"{DrpProductCodeLeft.DropDown.Text}{DrpProductCodeRight.Text}"),
+                    new ParameterItem("@PaintName", TxtPaintName.Value),
+                    new ParameterItem("@TintedColor", TxtColorFileName.Value),
+                    new ParameterItem("@LineName", TxtLine.Value),
+                    new ParameterItem("@Revision", NumUpDownCorrection.Value),
+                    new ParameterItem("@WhiteCode", DrpBaseSelect.Text),
+                    new ParameterItem("@WhiteWeight", TxtBaseValue.Text),
+                    new ParameterItem("@Colorant1", DrpColoarantSelect1.Text),
+                    new ParameterItem("@Weight1", TxtColoarantValue1.Text),
+                    new ParameterItem("@Colorant2", DrpColoarantSelect2.Text),
+                    new ParameterItem("@Weight2", TxtColoarantValue2.Text),
+                    new ParameterItem("@Colorant3", DrpColoarantSelect3.Text),
+                    new ParameterItem("@Weight3", TxtColoarantValue3.Text),
+                    new ParameterItem("@Colorant4", DrpColoarantSelect4.Text),
+                    new ParameterItem("@Weight4", TxtColoarantValue4.Text),
+                    new ParameterItem("@Colorant5", DrpColoarantSelect5.Text),
+                    new ParameterItem("@Weight5", TxtColoarantValue5.Text),
+                    new ParameterItem("@Colorant6", DrpColoarantSelect6.Text),
+                    new ParameterItem("@Weight6", TxtColoarantValue6.Text),
+                    new ParameterItem("@Colorant7", DrpColoarantSelect7.Text),
+                    new ParameterItem("@Weight7", TxtColoarantValue7.Text),
+                    new ParameterItem("@Colorant8", DrpColoarantSelect8.Text),
+                    new ParameterItem("@Weight8", TxtColoarantValue8.Text),
+                    new ParameterItem("@Colorant9", DrpColoarantSelect9.Text),
+                    new ParameterItem("@Weight9", TxtColoarantValue9.Text),
+                    new ParameterItem("@Colorant10", DrpColoarantSelect10.Text),
+                    new ParameterItem("@Weight10", TxtColoarantValue10.Text),
+                };
+                //Messages.ShowDialog(Sentence.Messages.SelectMaterialError);
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -181,9 +215,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (((ComboBox)sender).SelectedIndex > 0)
             {
-                TxtBaseValue.Enabled = true;
-                FrmKeyPad frmKeyPad = new FrmKeyPad();
-                frmKeyPad.ShowDialog();
+                KeyPadPush(TxtBaseValue);
             }
             else
             {
@@ -194,9 +226,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (((ComboBox)sender).SelectedIndex > 0)
             {
-                TxtColoarantValue1.Enabled = true;
-                FrmKeyPad frmKeyPad = new FrmKeyPad();
-                frmKeyPad.ShowDialog();
+                KeyPadPush(TxtColoarantValue1);
             }
             else
             {
@@ -207,9 +237,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (((ComboBox)sender).SelectedIndex > 0)
             {
-                TxtColoarantValue2.Enabled = true;
-                FrmKeyPad frmKeyPad = new FrmKeyPad();
-                frmKeyPad.ShowDialog();
+                KeyPadPush(TxtColoarantValue2);
             }
             else
             {
@@ -220,9 +248,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (((ComboBox)sender).SelectedIndex > 0)
             {
-                TxtColoarantValue3.Enabled = true;
-                FrmKeyPad frmKeyPad = new FrmKeyPad();
-                frmKeyPad.ShowDialog();
+                KeyPadPush(TxtColoarantValue3);
             }
             else
             {
@@ -233,9 +259,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (((ComboBox)sender).SelectedIndex > 0)
             {
-                TxtColoarantValue4.Enabled = true;
-                FrmKeyPad frmKeyPad = new FrmKeyPad();
-                frmKeyPad.ShowDialog();
+                KeyPadPush(TxtColoarantValue4);
             }
             else
             {
@@ -246,9 +270,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (((ComboBox)sender).SelectedIndex > 0)
             {
-                TxtColoarantValue5.Enabled = true;
-                FrmKeyPad frmKeyPad = new FrmKeyPad();
-                frmKeyPad.ShowDialog();
+                KeyPadPush(TxtColoarantValue5);
             }
             else
             {
@@ -259,9 +281,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (((ComboBox)sender).SelectedIndex > 0)
             {
-                TxtColoarantValue6.Enabled = true;
-                FrmKeyPad frmKeyPad = new FrmKeyPad();
-                frmKeyPad.ShowDialog();
+                KeyPadPush(TxtColoarantValue6);
             }
             else
             {
@@ -272,9 +292,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (((ComboBox)sender).SelectedIndex > 0)
             {
-                TxtColoarantValue7.Enabled = true;
-                FrmKeyPad frmKeyPad = new FrmKeyPad();
-                frmKeyPad.ShowDialog();
+                KeyPadPush(TxtColoarantValue7);
             }
             else
             {
@@ -285,9 +303,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (((ComboBox)sender).SelectedIndex > 0)
             {
-                TxtColoarantValue8.Enabled = true;
-                FrmKeyPad frmKeyPad = new FrmKeyPad();
-                frmKeyPad.ShowDialog();
+                KeyPadPush(TxtColoarantValue8);
             }
             else
             {
@@ -298,9 +314,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (((ComboBox)sender).SelectedIndex > 0)
             {
-                TxtColoarantValue9.Enabled = true;
-                FrmKeyPad frmKeyPad = new FrmKeyPad();
-                frmKeyPad.ShowDialog();
+                KeyPadPush(TxtColoarantValue9);
             }
             else
             {
@@ -311,9 +325,7 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (((ComboBox)sender).SelectedIndex > 0)
             {
-                TxtColoarantValue10.Enabled = true;
-                FrmKeyPad frmKeyPad = new FrmKeyPad();
-                frmKeyPad.ShowDialog();
+                KeyPadPush(TxtColoarantValue10);
             }
             else
             {
@@ -325,8 +337,13 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (e.Button == MouseButtons.Left)
             {
-                FrmKeyPad frmKeyPad = new FrmKeyPad();
+                FrmKeyPad frmKeyPad = new FrmKeyPad(((TextBoxBase)sender).Text);
                 frmKeyPad.ShowDialog();
+                // Cancelが押された場合はTextを書き換えない
+                if (frmKeyPad.NumLabel.Text != CancelNumber)
+                {
+                    ((TextBoxBase)sender).Text = Funcs.KeyPadPush(frmKeyPad.NumLabel.Text);
+                }
             }
         }
         #endregion
@@ -2490,10 +2507,23 @@ namespace NipponPaint.OrderManager.Dialogs
         }
         #endregion
 
-        private void GrpInfo_Enter(object sender, EventArgs e)
+        #region KeyPad入力処理
+        /// <summary>
+        /// KeyPad入力処理
+        /// </summary>
+        /// <param name="sender"></param>
+        private void KeyPadPush(TextBox txt)
         {
-
+            txt.Enabled = true;
+            FrmKeyPad frmKeyPad = new FrmKeyPad(txt.Text);
+            frmKeyPad.ShowDialog();
+            // Cancelが押された場合はTextを書き換えない
+            if (frmKeyPad.NumLabel.Text != CancelNumber)
+            {
+                txt.Text = Funcs.KeyPadPush(frmKeyPad.NumLabel.Text);
+            }
         }
+        #endregion
     }
 }
 

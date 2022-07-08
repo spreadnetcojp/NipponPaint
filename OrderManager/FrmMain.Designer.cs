@@ -233,6 +233,8 @@ namespace NipponPaint.OrderManager
             this.ToolStripMenuItemLabelSelection = new System.Windows.Forms.ToolStripMenuItem();
             this.ヘルプHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TmrPnlColorExplanationBlinking = new System.Windows.Forms.Timer(this.components);
+            this.BindTimer = new System.Windows.Forms.Timer(this.components);
+            this.PeriodicupdateTimeTextBox = new NipponPaint.NpCommon.FormControls.LabelTextBox();
             this.tabOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GvOrder)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -4113,11 +4115,40 @@ namespace NipponPaint.OrderManager
             this.TmrPnlColorExplanationBlinking.Enabled = true;
             this.TmrPnlColorExplanationBlinking.Interval = 1000;
             // 
+            // PeriodicupdateTimeTextBox
+            // 
+            this.PeriodicupdateTimeTextBox.DatabaseColumnName = "";
+            this.PeriodicupdateTimeTextBox.DataControlName = "TxtData";
+            this.PeriodicupdateTimeTextBox.DataEnabled = true;
+            this.PeriodicupdateTimeTextBox.DataReadOnly = false;
+            this.PeriodicupdateTimeTextBox.DataTextLocation = new System.Drawing.Point(154, 0);
+            this.PeriodicupdateTimeTextBox.DataTextSize = new System.Drawing.Size(134, 30);
+            this.PeriodicupdateTimeTextBox.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.PeriodicupdateTimeTextBox.Id = null;
+            this.PeriodicupdateTimeTextBox.Label = "";
+            this.PeriodicupdateTimeTextBox.Location = new System.Drawing.Point(1606, 0);
+            this.PeriodicupdateTimeTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PeriodicupdateTimeTextBox.MaxByteLength = 65535;
+            this.PeriodicupdateTimeTextBox.MaxLength = 0;
+            this.PeriodicupdateTimeTextBox.Name = "PeriodicupdateTimeTextBox";
+            this.PeriodicupdateTimeTextBox.Size = new System.Drawing.Size(288, 26);
+            this.PeriodicupdateTimeTextBox.TabIndex = 3;
+            this.PeriodicupdateTimeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PeriodicupdateTimeTextBox.TextBackColor = System.Drawing.SystemColors.Window;
+            this.PeriodicupdateTimeTextBox.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PeriodicupdateTimeTextBox.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.PeriodicupdateTimeTextBox.TextForeColor = System.Drawing.SystemColors.Window;
+            this.PeriodicupdateTimeTextBox.Title = "前回の更新時間";
+            this.PeriodicupdateTimeTextBox.TitleControlName = "LblTitle";
+            this.PeriodicupdateTimeTextBox.TitleSize = new System.Drawing.Size(154, 26);
+            this.PeriodicupdateTimeTextBox.Value = "";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1894, 991);
+            this.Controls.Add(this.PeriodicupdateTimeTextBox);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlFuncs);
             this.Controls.Add(this.menuStrip);
@@ -4387,6 +4418,8 @@ namespace NipponPaint.OrderManager
         private NpCommon.FormControls.LabelCodeText labelCodeText1;
         private NpCommon.FormControls.LabelTextSeparate ColorName;
         private System.Windows.Forms.Timer TmrPnlColorExplanationBlinking;
+        private System.Windows.Forms.Timer BindTimer;
+        private NpCommon.FormControls.LabelTextBox PeriodicupdateTimeTextBox;
     }
 }
 
