@@ -42,8 +42,8 @@ namespace NipponPaint.OrderManager.Dialogs
         /// </summary>//
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DgvList = new System.Windows.Forms.DataGridView();
             this.CCMPaintName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FormalPaintName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,26 +59,26 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // DgvList
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CCMPaintName,
             this.FormalPaintName});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgvList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgvList.DefaultCellStyle = dataGridViewCellStyle6;
             this.DgvList.EnableHeadersVisualStyles = false;
             this.DgvList.Location = new System.Drawing.Point(12, 12);
             this.DgvList.Name = "DgvList";
@@ -121,7 +121,8 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DrpLabels.Location = new System.Drawing.Point(9, 119);
             this.DrpLabels.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DrpLabels.Name = "DrpLabels";
-            this.DrpLabels.Size = new System.Drawing.Size(511, 31);
+            this.DrpLabels.SelectedValue = null;
+            this.DrpLabels.Size = new System.Drawing.Size(718, 31);
             this.DrpLabels.TabIndex = 27;
             this.DrpLabels.TableName = "Labels";
             this.DrpLabels.TextBackColor = System.Drawing.SystemColors.Window;
@@ -133,7 +134,9 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // TxtLabelType
             // 
+            this.TxtLabelType.CodeBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtLabelType.CodeControlName = "TxtLabelType";
+            this.TxtLabelType.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtLabelType.CodeReadOnly = false;
             this.TxtLabelType.CodeText = "";
             this.TxtLabelType.CodeTextSize = new System.Drawing.Size(80, 30);
@@ -141,12 +144,12 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtLabelType.DatabaseColumnName = "Label_Description";
             this.TxtLabelType.DataControlName = "TxtLabelDescription";
             this.TxtLabelType.DataReadOnly = false;
-            this.TxtLabelType.DataTextSize = new System.Drawing.Size(278, 30);
+            this.TxtLabelType.DataTextSize = new System.Drawing.Size(487, 30);
             this.TxtLabelType.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtLabelType.Location = new System.Drawing.Point(9, 79);
             this.TxtLabelType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TxtLabelType.Name = "TxtLabelType";
-            this.TxtLabelType.Size = new System.Drawing.Size(511, 30);
+            this.TxtLabelType.Size = new System.Drawing.Size(719, 30);
             this.TxtLabelType.TabIndex = 26;
             this.TxtLabelType.TextAlignCode = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtLabelType.TextAlignData = System.Windows.Forms.HorizontalAlignment.Left;

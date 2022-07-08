@@ -32,11 +32,11 @@
             this.BtnClose = new System.Windows.Forms.Button();
             this.BtnRemanufacturedCan = new System.Windows.Forms.Button();
             this.GrpBoxNumberOfCan = new System.Windows.Forms.GroupBox();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.BtnSelectClear = new System.Windows.Forms.Button();
             this.BtnSelectBack = new System.Windows.Forms.Button();
             this.BtnSelectBefore = new System.Windows.Forms.Button();
             this.BtnSelectAll = new System.Windows.Forms.Button();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.groupBox2.SuspendLayout();
             this.GrpBoxNumberOfCan.SuspendLayout();
             this.SuspendLayout();
@@ -87,6 +87,14 @@
             this.GrpBoxNumberOfCan.TabStop = false;
             this.GrpBoxNumberOfCan.Text = "缶数";
             // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(8, 31);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(204, 229);
+            this.checkedListBox1.TabIndex = 6;
+            // 
             // BtnSelectClear
             // 
             this.BtnSelectClear.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -131,14 +139,6 @@
             this.BtnSelectAll.Text = "全て";
             this.BtnSelectAll.UseVisualStyleBackColor = true;
             // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(8, 31);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(204, 229);
-            this.checkedListBox1.TabIndex = 6;
-            // 
             // FrmRemanufacturedCan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -148,6 +148,7 @@
             this.Controls.Add(this.GrpBoxNumberOfCan);
             this.Controls.Add(this.groupBox2);
             this.Name = "FrmRemanufacturedCan";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmRemanufacturedCan";
             this.groupBox2.ResumeLayout(false);
             this.GrpBoxNumberOfCan.ResumeLayout(false);

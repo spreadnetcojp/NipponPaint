@@ -42,8 +42,8 @@ namespace NipponPaint.OrderManager.Dialogs
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DgvList = new System.Windows.Forms.DataGridView();
             this.WhiteCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PnlControl = new System.Windows.Forms.Panel();
@@ -68,25 +68,25 @@ namespace NipponPaint.OrderManager.Dialogs
             // 
             // DgvList
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle41.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle41.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle41.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle41;
             this.DgvList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.WhiteCode});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgvList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle42.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle42.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle42.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgvList.DefaultCellStyle = dataGridViewCellStyle42;
             this.DgvList.EnableHeadersVisualStyles = false;
             this.DgvList.Location = new System.Drawing.Point(12, 12);
             this.DgvList.Name = "DgvList";
@@ -134,7 +134,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DrpWhiteCode.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DrpWhiteCode.Name = "DrpWhiteCode";
             this.DrpWhiteCode.SelectedValue = null;
-            this.DrpWhiteCode.Size = new System.Drawing.Size(293, 31);
+            this.DrpWhiteCode.Size = new System.Drawing.Size(714, 31);
             this.DrpWhiteCode.TabIndex = 33;
             this.DrpWhiteCode.TableName = "Raw";
             this.DrpWhiteCode.TextBackColor = System.Drawing.SystemColors.Window;
@@ -154,12 +154,12 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DrpCap_Type.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DrpCap_Type.Name = "DrpCap_Type";
             this.DrpCap_Type.SelectedValue = null;
-            this.DrpCap_Type.Size = new System.Drawing.Size(382, 31);
+            this.DrpCap_Type.Size = new System.Drawing.Size(714, 31);
             this.DrpCap_Type.TabIndex = 32;
             this.DrpCap_Type.TableName = "Cap_types";
             this.DrpCap_Type.TextBackColor = System.Drawing.SystemColors.Window;
             this.DrpCap_Type.TextForeColor = System.Drawing.SystemColors.WindowText;
-            this.DrpCap_Type.Title = "キャップタイプ(A)";
+            this.DrpCap_Type.Title = "キャップタイプ(&A)";
             this.DrpCap_Type.TitleControlName = "LblTitle";
             this.DrpCap_Type.TitleSize = new System.Drawing.Size(154, 31);
             this.DrpCap_Type.ValueMemberField = "Cap_Type";
@@ -174,12 +174,12 @@ namespace NipponPaint.OrderManager.Dialogs
             this.DrpCan_Type.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.DrpCan_Type.Name = "DrpCan_Type";
             this.DrpCan_Type.SelectedValue = null;
-            this.DrpCan_Type.Size = new System.Drawing.Size(382, 31);
+            this.DrpCan_Type.Size = new System.Drawing.Size(714, 31);
             this.DrpCan_Type.TabIndex = 31;
             this.DrpCan_Type.TableName = "Can_types";
             this.DrpCan_Type.TextBackColor = System.Drawing.SystemColors.Window;
             this.DrpCan_Type.TextForeColor = System.Drawing.SystemColors.WindowText;
-            this.DrpCan_Type.Title = "缶タイプ(T)";
+            this.DrpCan_Type.Title = "缶タイプ(&T)";
             this.DrpCan_Type.TitleControlName = "LblTitle";
             this.DrpCan_Type.TitleSize = new System.Drawing.Size(154, 31);
             this.DrpCan_Type.ValueMemberField = "Can_Type";
@@ -328,12 +328,12 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtCapType.DatabaseColumnName = "Cap_Description";
             this.TxtCapType.DataControlName = "TxtCapDescription";
             this.TxtCapType.DataReadOnly = false;
-            this.TxtCapType.DataTextSize = new System.Drawing.Size(170, 30);
+            this.TxtCapType.DataTextSize = new System.Drawing.Size(502, 30);
             this.TxtCapType.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtCapType.Location = new System.Drawing.Point(9, 79);
             this.TxtCapType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TxtCapType.Name = "TxtCapType";
-            this.TxtCapType.Size = new System.Drawing.Size(382, 30);
+            this.TxtCapType.Size = new System.Drawing.Size(714, 30);
             this.TxtCapType.TabIndex = 26;
             this.TxtCapType.TextAlignCode = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtCapType.TextAlignData = System.Windows.Forms.HorizontalAlignment.Left;
@@ -355,12 +355,12 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtCanType.DatabaseColumnName = "Can_Description";
             this.TxtCanType.DataControlName = "TxtCanDescription";
             this.TxtCanType.DataReadOnly = false;
-            this.TxtCanType.DataTextSize = new System.Drawing.Size(170, 30);
+            this.TxtCanType.DataTextSize = new System.Drawing.Size(502, 30);
             this.TxtCanType.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtCanType.Location = new System.Drawing.Point(9, 44);
             this.TxtCanType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TxtCanType.Name = "TxtCanType";
-            this.TxtCanType.Size = new System.Drawing.Size(382, 30);
+            this.TxtCanType.Size = new System.Drawing.Size(714, 30);
             this.TxtCanType.TabIndex = 25;
             this.TxtCanType.TextAlignCode = System.Windows.Forms.HorizontalAlignment.Right;
             this.TxtCanType.TextAlignData = System.Windows.Forms.HorizontalAlignment.Left;
@@ -489,7 +489,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtWhiteCode.DataEnabled = true;
             this.TxtWhiteCode.DataReadOnly = false;
             this.TxtWhiteCode.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.TxtWhiteCode.DataTextSize = new System.Drawing.Size(139, 30);
+            this.TxtWhiteCode.DataTextSize = new System.Drawing.Size(560, 30);
             this.TxtWhiteCode.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtWhiteCode.Id = "";
             this.TxtWhiteCode.Label = "";
@@ -498,7 +498,7 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtWhiteCode.MaxByteLength = 65535;
             this.TxtWhiteCode.MaxLength = 0;
             this.TxtWhiteCode.Name = "TxtWhiteCode";
-            this.TxtWhiteCode.Size = new System.Drawing.Size(293, 30);
+            this.TxtWhiteCode.Size = new System.Drawing.Size(714, 30);
             this.TxtWhiteCode.TabIndex = 19;
             this.TxtWhiteCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TxtWhiteCode.TextBackColor = System.Drawing.SystemColors.Window;
