@@ -123,7 +123,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string DATABASE_NP_MAIN = "NP_MAIN";
         private const string DATABASE_ORDER = "ORDER_"; //ORDER_xx  ←　xxはPlantの値をSQL内で指定する
         // テーブル
-        private const string MAIN_TABLE = "Orders";
+        public const string MAIN_TABLE = "Orders";
         // カラム
         public const string COLUMN_ORDER_ID = "Order_id";
         public const string COLUMN_ORDER_NUMBER = "Order_Number";
@@ -132,6 +132,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_NUMBER_OF_CAN = "Number_of_cans";
 
         private const string COLUMN_PAINT_NAME = "Paint_Name";
+        public const string COLUMN_INPUT_CAN = "Input_Can";
         public const string COLUMN_WHITE_CODE = "White_Code";
         public const string COLUMN_REVISION = "Revision";
         public const string COLUMN_TOTAL_WEIGHT = "Total_Weight";
@@ -150,11 +151,11 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string COLUMN_CAPPING_MACHINE = "Capping_Machine";
         public const string COLUMN_STATUS = "Status";
         private const string COLUMN_PREFILL_AMOUNT = "Prefill_Amount";
-        private const string COLUMN_P_WEIGHT_TOLERANCE = "P_Weight_Tolerance";
+        public const string COLUMN_P_WEIGHT_TOLERANCE = "P_Weight_Tolerance";
         private const string COLUMN_N_WEIGHT_TOLERANCE = "N_Weight_Tolerance";
         private const string COLUMN_QUALITY_SAMPLE = "Quality_Sample";
-        private const string COLUMN_MIXING_TIME = "Mixing_Time";
-        private const string COLUMN_MIXING_SPEED = "Mixing_Speed";
+        public const string COLUMN_MIXING_TIME = "Mixing_Time";
+        public const string COLUMN_MIXING_SPEED = "Mixing_Speed";
         public const string COLUMN_COLORANT_1 = "Colorant_1";
         public const string COLUMN_WEIGHT_1 = "Weight_1";
         public const string COLUMN_COLORANT_2 = "Colorant_2";
@@ -220,7 +221,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string COLUMN_HG_SALES_BRANCH_NAME = "HG_Sales_Branch_Name";
         private const string COLUMN_HG_CUSTOMER_CODE = "HG_Customer_Code";
         private const string COLUMN_HG_CUSTOMER_NAME_KANJI = "HG_Customer_Name_Kanji";
-        private const string COLUMN_HG_SS_CODE = "HG_SS_Code";
+        public const string COLUMN_HG_SS_CODE = "HG_SS_Code";
         private const string COLUMN_HG_TRUCK_COMPANY_NAME = "HG_Truck_Company_Name";
         public const string COLUMN_HG_HG_SHIPPING_ID = "HG_HG_Shipping_ID";
         private const string COLUMN_HG_DELIVERY_NAME_KANJI = "HG_Delivery_Name_Kanji";
@@ -237,6 +238,9 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_WHITE_WEIGHT = "White_Weight";
         private const string COLUMN_HG_CANCEL = "HG_Cancel";
 
+        // テスト缶
+        public const int INPUT_CAN_YES = 1;
+        public const int TEST_CAN_YES = 1;
         #endregion
 
         #region 参照系

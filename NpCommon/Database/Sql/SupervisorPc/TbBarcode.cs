@@ -48,6 +48,8 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
             new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = BRC_ERR_2 },
             new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = BRC_ERR_3 },
         };
+
+        public const int STATUS_ERP_PROCESSED = 1;
         #endregion
 
         #region メンバ変数

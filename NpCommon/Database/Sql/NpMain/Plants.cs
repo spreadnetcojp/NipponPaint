@@ -31,6 +31,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_DAILY_CAPABILITY = "Daily_Capability";
         public const string COLUMN_DAILY_WORKING_TIME = "Daily_Working_Time";
         public const string COLUMN_START_WORKING_TIME = "Start_Working_Time";
+        public const string COLUMN_SS_CODE = "SS_Code";
         #endregion
 
         #region 参照系
