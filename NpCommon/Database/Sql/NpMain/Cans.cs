@@ -252,7 +252,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($" * ");
             sql.Append($"FROM {MAIN_TABLE} AS C ");
             sql.Append($"LEFT JOIN {Orders.MAIN_TABLE} AS O ON O.{Orders.COLUMN_ORDER_ID} = C.{COLUMN_ORDER_ID} ");
-            sql.Append($"WHERE Barcode = @barcode");
+            sql.Append($"WHERE {COLUMN_BARCODE} = @barcode");
             return sql.ToString();
         }
         #endregion

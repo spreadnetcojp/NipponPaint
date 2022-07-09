@@ -280,7 +280,7 @@ namespace SupervisorPcInterface
                             };
                             // バーコードをキーにERPのテーブルから情報収集
                             var dispenseDatas = dbn.Select(Cans.GetPreviewDispensedData(_settings.Facility.Plant), parameters);
-                            var dispenseRows = dispenseDatas.Select($"Barcode = '{barCode}' AND Code <> ''");
+                            var dispenseRows = dispenseDatas.Select($"{Cans.COLUMN_BARCODE} = '{barCode}' AND {Cans.COLUMN_CODE} <> ''");
                             //PutLog(Sentence.Messages.ExecuteSupervisorInterface, new string[] { barCode, dispenseRows.Count().ToString() });
                             var cnt = 0;
                             // SQLを作成してTB_BARCODE、TB_JOB、TB_FORMULAを更新
