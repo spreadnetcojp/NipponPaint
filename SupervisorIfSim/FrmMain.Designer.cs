@@ -415,7 +415,6 @@ namespace SupervisorIfSim
             this.TxtPrdPrefilledQty.Name = "TxtPrdPrefilledQty";
             this.TxtPrdPrefilledQty.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdPrefilledQty.TabIndex = 31;
-            this.TxtPrdPrefilledQty.Text = "1234567890123456789012345";
             // 
             // TxtPrdNum
             // 
@@ -425,7 +424,6 @@ namespace SupervisorIfSim
             this.TxtPrdNum.Name = "TxtPrdNum";
             this.TxtPrdNum.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdNum.TabIndex = 27;
-            this.TxtPrdNum.Text = "1234567890123456789012345";
             // 
             // TxtPrdPriority
             // 
@@ -435,7 +433,6 @@ namespace SupervisorIfSim
             this.TxtPrdPriority.Name = "TxtPrdPriority";
             this.TxtPrdPriority.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdPriority.TabIndex = 25;
-            this.TxtPrdPriority.Text = "1234567890123456789012345";
             // 
             // TxtPrdEndDisp
             // 
@@ -446,7 +443,6 @@ namespace SupervisorIfSim
             this.TxtPrdEndDisp.Name = "TxtPrdEndDisp";
             this.TxtPrdEndDisp.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdEndDisp.TabIndex = 23;
-            this.TxtPrdEndDisp.Text = "1234567890123456789012345";
             // 
             // TxtPrdStartDisp
             // 
@@ -457,7 +453,6 @@ namespace SupervisorIfSim
             this.TxtPrdStartDisp.Name = "TxtPrdStartDisp";
             this.TxtPrdStartDisp.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdStartDisp.TabIndex = 21;
-            this.TxtPrdStartDisp.Text = "1234567890123456789012345";
             // 
             // label17
             // 
@@ -534,7 +529,6 @@ namespace SupervisorIfSim
             this.TxtPrdQtyDisp.Name = "TxtPrdQtyDisp";
             this.TxtPrdQtyDisp.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdQtyDisp.TabIndex = 19;
-            this.TxtPrdQtyDisp.Text = "1234567890123456789012345";
             // 
             // label23
             // 
@@ -555,7 +549,6 @@ namespace SupervisorIfSim
             this.TxtPrdQtyReq.Name = "TxtPrdQtyReq";
             this.TxtPrdQtyReq.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdQtyReq.TabIndex = 17;
-            this.TxtPrdQtyReq.Text = "1234567890123456789012345";
             // 
             // TxtPrdSpecificGravity
             // 
@@ -565,7 +558,6 @@ namespace SupervisorIfSim
             this.TxtPrdSpecificGravity.Name = "TxtPrdSpecificGravity";
             this.TxtPrdSpecificGravity.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdSpecificGravity.TabIndex = 15;
-            this.TxtPrdSpecificGravity.Text = "1234567890123456789012345";
             // 
             // TxtPrdDesc
             // 
@@ -575,7 +567,6 @@ namespace SupervisorIfSim
             this.TxtPrdDesc.Name = "TxtPrdDesc";
             this.TxtPrdDesc.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdDesc.TabIndex = 11;
-            this.TxtPrdDesc.Text = "1234567890123456789012345";
             // 
             // TxtPrdCode
             // 
@@ -587,7 +578,6 @@ namespace SupervisorIfSim
             this.TxtPrdCode.ReadOnly = true;
             this.TxtPrdCode.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdCode.TabIndex = 9;
-            this.TxtPrdCode.Text = "1234567890123456789012345";
             // 
             // label11
             // 
@@ -663,7 +653,6 @@ namespace SupervisorIfSim
             this.TxtPrdTimeInserted.Name = "TxtPrdTimeInserted";
             this.TxtPrdTimeInserted.Size = new System.Drawing.Size(258, 25);
             this.TxtPrdTimeInserted.TabIndex = 4;
-            this.TxtPrdTimeInserted.Text = "1234567890123456789012345";
             // 
             // label9
             // 
@@ -1089,7 +1078,6 @@ namespace SupervisorIfSim
             this.TxtJobErr5.Name = "TxtJobErr5";
             this.TxtJobErr5.Size = new System.Drawing.Size(200, 25);
             this.TxtJobErr5.TabIndex = 103;
-            this.TxtJobErr5.Text = "1234567890123456789012345";
             // 
             // label67
             // 
@@ -1109,7 +1097,6 @@ namespace SupervisorIfSim
             this.TxtJobErr2.Name = "TxtJobErr2";
             this.TxtJobErr2.Size = new System.Drawing.Size(200, 25);
             this.TxtJobErr2.TabIndex = 97;
-            this.TxtJobErr2.Text = "1234567890123456789012345";
             // 
             // TxtJobTag5
             // 
@@ -1117,7 +1104,6 @@ namespace SupervisorIfSim
             this.TxtJobTag5.Name = "TxtJobTag5";
             this.TxtJobTag5.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTag5.TabIndex = 93;
-            this.TxtJobTag5.Text = "1234567890123456789012345";
             // 
             // TxtJobTag4
             // 
@@ -1125,7 +1111,6 @@ namespace SupervisorIfSim
             this.TxtJobTag4.Name = "TxtJobTag4";
             this.TxtJobTag4.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTag4.TabIndex = 91;
-            this.TxtJobTag4.Text = "1234567890123456789012345";
             // 
             // TxtJobTag3
             // 
@@ -1133,7 +1118,6 @@ namespace SupervisorIfSim
             this.TxtJobTag3.Name = "TxtJobTag3";
             this.TxtJobTag3.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTag3.TabIndex = 89;
-            this.TxtJobTag3.Text = "1234567890123456789012345";
             // 
             // TxtJobTag2
             // 
@@ -1141,7 +1125,6 @@ namespace SupervisorIfSim
             this.TxtJobTag2.Name = "TxtJobTag2";
             this.TxtJobTag2.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTag2.TabIndex = 87;
-            this.TxtJobTag2.Text = "1234567890123456789012345";
             // 
             // TxtJobTag1
             // 
@@ -1149,7 +1132,6 @@ namespace SupervisorIfSim
             this.TxtJobTag1.Name = "TxtJobTag1";
             this.TxtJobTag1.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTag1.TabIndex = 85;
-            this.TxtJobTag1.Text = "1234567890123456789012345";
             // 
             // label58
             // 
@@ -1224,7 +1206,6 @@ namespace SupervisorIfSim
             this.TxtJobErr1.Name = "TxtJobErr1";
             this.TxtJobErr1.Size = new System.Drawing.Size(200, 25);
             this.TxtJobErr1.TabIndex = 95;
-            this.TxtJobErr1.Text = "1234567890123456789012345";
             // 
             // TxtJobErr3
             // 
@@ -1233,7 +1214,6 @@ namespace SupervisorIfSim
             this.TxtJobErr3.Name = "TxtJobErr3";
             this.TxtJobErr3.Size = new System.Drawing.Size(200, 25);
             this.TxtJobErr3.TabIndex = 99;
-            this.TxtJobErr3.Text = "1234567890123456789012345";
             // 
             // label64
             // 
@@ -1264,7 +1244,6 @@ namespace SupervisorIfSim
             this.TxtJobErr4.Name = "TxtJobErr4";
             this.TxtJobErr4.Size = new System.Drawing.Size(200, 25);
             this.TxtJobErr4.TabIndex = 101;
-            this.TxtJobErr4.Text = "1234567890123456789012345";
             // 
             // label66
             // 
@@ -1283,7 +1262,6 @@ namespace SupervisorIfSim
             this.TxtJobMixingSpeed.Name = "TxtJobMixingSpeed";
             this.TxtJobMixingSpeed.Size = new System.Drawing.Size(200, 25);
             this.TxtJobMixingSpeed.TabIndex = 69;
-            this.TxtJobMixingSpeed.Text = "1234567890123456789012345";
             // 
             // TxtJobMixingTime
             // 
@@ -1291,7 +1269,6 @@ namespace SupervisorIfSim
             this.TxtJobMixingTime.Name = "TxtJobMixingTime";
             this.TxtJobMixingTime.Size = new System.Drawing.Size(200, 25);
             this.TxtJobMixingTime.TabIndex = 67;
-            this.TxtJobMixingTime.Text = "1234567890123456789012345";
             // 
             // label40
             // 
@@ -1473,7 +1450,6 @@ namespace SupervisorIfSim
             this.TxtJobTotGravimetricWeightPercErrAdmitted.Name = "TxtJobTotGravimetricWeightPercErrAdmitted";
             this.TxtJobTotGravimetricWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTotGravimetricWeightPercErrAdmitted.TabIndex = 63;
-            this.TxtJobTotGravimetricWeightPercErrAdmitted.Text = "1234567890123456789012345";
             // 
             // TxtJobTotGravimetricWeightDetected
             // 
@@ -1482,7 +1458,6 @@ namespace SupervisorIfSim
             this.TxtJobTotGravimetricWeightDetected.Name = "TxtJobTotGravimetricWeightDetected";
             this.TxtJobTotGravimetricWeightDetected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTotGravimetricWeightDetected.TabIndex = 61;
-            this.TxtJobTotGravimetricWeightDetected.Text = "1234567890123456789012345";
             // 
             // TxtJobTotGravimetricWeightExpected
             // 
@@ -1490,7 +1465,6 @@ namespace SupervisorIfSim
             this.TxtJobTotGravimetricWeightExpected.Name = "TxtJobTotGravimetricWeightExpected";
             this.TxtJobTotGravimetricWeightExpected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTotGravimetricWeightExpected.TabIndex = 59;
-            this.TxtJobTotGravimetricWeightExpected.Text = "1234567890123456789012345";
             // 
             // TxtJobTotColorantWeightPercErrAdmitted
             // 
@@ -1498,7 +1472,6 @@ namespace SupervisorIfSim
             this.TxtJobTotColorantWeightPercErrAdmitted.Name = "TxtJobTotColorantWeightPercErrAdmitted";
             this.TxtJobTotColorantWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTotColorantWeightPercErrAdmitted.TabIndex = 56;
-            this.TxtJobTotColorantWeightPercErrAdmitted.Text = "1234567890123456789012345";
             // 
             // label48
             // 
@@ -1551,7 +1524,6 @@ namespace SupervisorIfSim
             this.TxtJobTotColorantWeightDetected.Name = "TxtJobTotColorantWeightDetected";
             this.TxtJobTotColorantWeightDetected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTotColorantWeightDetected.TabIndex = 54;
-            this.TxtJobTotColorantWeightDetected.Text = "1234567890123456789012345";
             // 
             // label53
             // 
@@ -1570,7 +1542,6 @@ namespace SupervisorIfSim
             this.TxtJobTotColorantWeightExpected.Name = "TxtJobTotColorantWeightExpected";
             this.TxtJobTotColorantWeightExpected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTotColorantWeightExpected.TabIndex = 52;
-            this.TxtJobTotColorantWeightExpected.Text = "1234567890123456789012345";
             // 
             // label54
             // 
@@ -1589,7 +1560,6 @@ namespace SupervisorIfSim
             this.TxtJobNetWeightPercErrAdmitted.Name = "TxtJobNetWeightPercErrAdmitted";
             this.TxtJobNetWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
             this.TxtJobNetWeightPercErrAdmitted.TabIndex = 49;
-            this.TxtJobNetWeightPercErrAdmitted.Text = "1234567890123456789012345";
             // 
             // TxtJobNetWeightDetected
             // 
@@ -1598,7 +1568,6 @@ namespace SupervisorIfSim
             this.TxtJobNetWeightDetected.Name = "TxtJobNetWeightDetected";
             this.TxtJobNetWeightDetected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobNetWeightDetected.TabIndex = 47;
-            this.TxtJobNetWeightDetected.Text = "1234567890123456789012345";
             // 
             // TxtJobNetWeightExpected
             // 
@@ -1606,7 +1575,6 @@ namespace SupervisorIfSim
             this.TxtJobNetWeightExpected.Name = "TxtJobNetWeightExpected";
             this.TxtJobNetWeightExpected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobNetWeightExpected.TabIndex = 45;
-            this.TxtJobNetWeightExpected.Text = "1234567890123456789012345";
             // 
             // TxtJobGrossWeightPercErrAdmitted
             // 
@@ -1614,7 +1582,6 @@ namespace SupervisorIfSim
             this.TxtJobGrossWeightPercErrAdmitted.Name = "TxtJobGrossWeightPercErrAdmitted";
             this.TxtJobGrossWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
             this.TxtJobGrossWeightPercErrAdmitted.TabIndex = 42;
-            this.TxtJobGrossWeightPercErrAdmitted.Text = "1234567890123456789012345";
             // 
             // label25
             // 
@@ -1667,7 +1634,6 @@ namespace SupervisorIfSim
             this.TxtJobGrossWeightDetected.Name = "TxtJobGrossWeightDetected";
             this.TxtJobGrossWeightDetected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobGrossWeightDetected.TabIndex = 40;
-            this.TxtJobGrossWeightDetected.Text = "1234567890123456789012345";
             // 
             // label30
             // 
@@ -1686,7 +1652,6 @@ namespace SupervisorIfSim
             this.TxtJobGrossWeightExpected.Name = "TxtJobGrossWeightExpected";
             this.TxtJobGrossWeightExpected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobGrossWeightExpected.TabIndex = 38;
-            this.TxtJobGrossWeightExpected.Text = "1234567890123456789012345";
             // 
             // TxtJobTareWeightPercErrAdmitted
             // 
@@ -1694,7 +1659,6 @@ namespace SupervisorIfSim
             this.TxtJobTareWeightPercErrAdmitted.Name = "TxtJobTareWeightPercErrAdmitted";
             this.TxtJobTareWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTareWeightPercErrAdmitted.TabIndex = 35;
-            this.TxtJobTareWeightPercErrAdmitted.Text = "1234567890123456789012345";
             // 
             // TxtJobTareWeightDetected
             // 
@@ -1703,7 +1667,6 @@ namespace SupervisorIfSim
             this.TxtJobTareWeightDetected.Name = "TxtJobTareWeightDetected";
             this.TxtJobTareWeightDetected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTareWeightDetected.TabIndex = 33;
-            this.TxtJobTareWeightDetected.Text = "1234567890123456789012345";
             // 
             // TxtJobTareWeightExpected
             // 
@@ -1711,7 +1674,6 @@ namespace SupervisorIfSim
             this.TxtJobTareWeightExpected.Name = "TxtJobTareWeightExpected";
             this.TxtJobTareWeightExpected.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTareWeightExpected.TabIndex = 31;
-            this.TxtJobTareWeightExpected.Text = "1234567890123456789012345";
             // 
             // label31
             // 
@@ -1774,7 +1736,6 @@ namespace SupervisorIfSim
             this.TxtJobTimeInserted.Name = "TxtJobTimeInserted";
             this.TxtJobTimeInserted.Size = new System.Drawing.Size(200, 25);
             this.TxtJobTimeInserted.TabIndex = 25;
-            this.TxtJobTimeInserted.Text = "1234567890123456789012345";
             // 
             // label10
             // 
@@ -1817,7 +1778,6 @@ namespace SupervisorIfSim
             this.TxtBrcTimeProcessed.Name = "TxtBrcTimeProcessed";
             this.TxtBrcTimeProcessed.Size = new System.Drawing.Size(200, 25);
             this.TxtBrcTimeProcessed.TabIndex = 11;
-            this.TxtBrcTimeProcessed.Text = "1234567890123456789012345";
             // 
             // TxtBrcTimeInserted
             // 
@@ -1826,7 +1786,6 @@ namespace SupervisorIfSim
             this.TxtBrcTimeInserted.Name = "TxtBrcTimeInserted";
             this.TxtBrcTimeInserted.Size = new System.Drawing.Size(200, 25);
             this.TxtBrcTimeInserted.TabIndex = 8;
-            this.TxtBrcTimeInserted.Text = "1234567890123456789012345";
             // 
             // label5
             // 
@@ -1867,7 +1826,6 @@ namespace SupervisorIfSim
             this.TxtBrcErr3.Name = "TxtBrcErr3";
             this.TxtBrcErr3.Size = new System.Drawing.Size(200, 25);
             this.TxtBrcErr3.TabIndex = 20;
-            this.TxtBrcErr3.Text = "1234567890123456789012345";
             // 
             // TxtBrcErr2
             // 
@@ -1875,7 +1833,6 @@ namespace SupervisorIfSim
             this.TxtBrcErr2.Name = "TxtBrcErr2";
             this.TxtBrcErr2.Size = new System.Drawing.Size(200, 25);
             this.TxtBrcErr2.TabIndex = 18;
-            this.TxtBrcErr2.Text = "1234567890123456789012345";
             // 
             // TxtBrcErr1
             // 
@@ -1883,7 +1840,6 @@ namespace SupervisorIfSim
             this.TxtBrcErr1.Name = "TxtBrcErr1";
             this.TxtBrcErr1.Size = new System.Drawing.Size(200, 25);
             this.TxtBrcErr1.TabIndex = 16;
-            this.TxtBrcErr1.Text = "1234567890123456789012345";
             // 
             // label8
             // 
@@ -1926,7 +1882,6 @@ namespace SupervisorIfSim
             this.TxtProcessCode.ReadOnly = true;
             this.TxtProcessCode.Size = new System.Drawing.Size(200, 25);
             this.TxtProcessCode.TabIndex = 3;
-            this.TxtProcessCode.Text = "1234567890123456789012345";
             // 
             // TxtBarcode
             // 
@@ -1936,7 +1891,6 @@ namespace SupervisorIfSim
             this.TxtBarcode.ReadOnly = true;
             this.TxtBarcode.Size = new System.Drawing.Size(200, 25);
             this.TxtBarcode.TabIndex = 1;
-            this.TxtBarcode.Text = "1234567890123456789012345";
             // 
             // label4
             // 
