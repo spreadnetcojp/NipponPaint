@@ -26,6 +26,8 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
     public static class Cans
     {
         #region 定数
+        // テーブル
+        private const string MAIN_TABLE = "Cans";
         // カラム
         public const string COLUMN_BARCODE = "Barcode";
         public const string COLUMN_ORDER_ID = "Order_id";
@@ -36,6 +38,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_FORMULA_RELEASE = "Formula_Release";
         public const string COLUMN_WHITE_CODE = "White_Code";
         public const string COLUMN_WHITE_DISPENSED = "White_Dispensed";
+        public const string COLUMN_WHITE_WEIGHT = "White_Weight";
         public const string COLUMN_COLORANT_1 = "Colorant_1";
         public const string COLUMN_DISPENSED_1 = "Dispensed_1";
         public const string COLUMN_COLORANT_2 = "Colorant_2";
@@ -74,9 +77,18 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_DISPENSED_18 = "Dispensed_18";
         public const string COLUMN_COLORANT_19 = "Colorant_19";
         public const string COLUMN_DISPENSED_19 = "Dispensed_19";
-        public const string COLUMN_WHITE_WEIGHT = "White_Weight";
         public const string COLUMN_CANS_ID = "Cans_Id";
         public const string COLUMN_ORDER_NUMBER = "Order_Number";
+        public const string COLUMN_ERRORS_1 = "Errors_1";
+        public const string COLUMN_ERRORS_2 = "Errors_2";
+        public const string COLUMN_ERRORS_3 = "Errors_3";
+        // 別名
+        public const string COLUMN_CODE = "Code";
+        public const string COLUMN_INDEX = "Row_Index";
+        public const string COLUMN_COLORANT = "Colorant";
+        public const string COLUMN_WEIGHT = "Weight";
+        public const string COLUMN_DISPENSED = "Dispensed";
+        public const string COLUMN_ERRORS = "Errors";
         // 色コードが設定されているカラムのリスト
         public static readonly List<string[]> ColorColumns = new List<string[]>()
         {
@@ -141,10 +153,10 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public static string GetPreviewDispensed(string plant)
         {
             var sql = new StringBuilder();
-            sql.Append($"SELECT C.Cans_id, C.Barcode, C.Order_id, C.White_Code AS Code, 0 As Row_Index, C.White_Weight AS Weight, C.White_Dispensed AS Dispensed FROM {SelectCans(plant)}  ");
+            sql.Append($"SELECT C.{COLUMN_CANS_ID}, C.{COLUMN_BARCODE}, C.{COLUMN_ORDER_ID}, C.{COLUMN_WHITE_CODE} AS {COLUMN_CODE}, 0 As {COLUMN_INDEX}, C.{COLUMN_WHITE_WEIGHT} AS {COLUMN_WEIGHT}, C.{COLUMN_WHITE_DISPENSED} AS {COLUMN_DISPENSED} FROM {SelectCans(plant)}  ");
             for (var cnt = 1; cnt < 20; cnt++)
             {
-                sql.Append($"UNION ALL SELECT C.Cans_id, C.Barcode, C.Order_id, C.Colorant_{cnt} AS Code, {cnt} As Row_Index, C.Weight_{cnt} AS Weight, C.Dispensed_{cnt} AS Dispensed FROM {SelectCans(plant)} ");
+                sql.Append($"UNION ALL SELECT C.{COLUMN_CANS_ID}, C.{COLUMN_BARCODE}, C.{COLUMN_ORDER_ID}, C.{COLUMN_COLORANT}_{cnt} AS {COLUMN_CODE}, {cnt} As {COLUMN_INDEX}, C.{COLUMN_WEIGHT}_{cnt} AS {COLUMN_WEIGHT}, C.{COLUMN_DISPENSED}_{cnt} AS {COLUMN_DISPENSED} FROM {SelectCans(plant)} ");
             }
             return sql.ToString();
         }
@@ -159,27 +171,31 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
-            sql.Append($"  TB0.Barcode ");
-            sql.Append($" ,TB0.Code ");
-            sql.Append($" ,TB0.Weight ");
-            sql.Append($" ,TB0.Dispensed ");
-            sql.Append($" ,TB1.Errors_1 ");
-            sql.Append($" ,TB1.Errors_2 ");
-            sql.Append($" ,TB1.Errors_3 ");
-            sql.Append($" ,TB2.Mixing_Time ");
-            sql.Append($" ,TB2.Mixing_Speed ");
-            sql.Append($" ,TB2.Cap_Type ");
-            sql.Append($" ,TB1.Can_Number ");
+            sql.Append($"  TB0.{COLUMN_BARCODE} ");
+            sql.Append($" ,TB0.{COLUMN_CODE} ");
+            sql.Append($" ,TB0.{COLUMN_WEIGHT} ");
+            sql.Append($" ,TB0.{COLUMN_DISPENSED} ");
+            sql.Append($" ,TB1.{COLUMN_ERRORS_1} ");
+            sql.Append($" ,TB1.{COLUMN_ERRORS_2} ");
+            sql.Append($" ,TB1.{COLUMN_ERRORS_3} ");
+            sql.Append($" ,TB2.{Orders.COLUMN_MIXING_TIME} ");
+            sql.Append($" ,TB2.{Orders.COLUMN_MIXING_SPEED} ");
+            sql.Append($" ,TB2.{Orders.COLUMN_INPUT_CAN} ");
+            sql.Append($" ,TB2.{Orders.COLUMN_P_WEIGHT_TOLERANCE} ");
+            sql.Append($" ,TB1.{COLUMN_CAN_NUMBER} ");
+            sql.Append($" ,TB1.{COLUMN_TEST_CAN} ");
+            sql.Append($" ,ISNULL(TB1.{COLUMN_ERRORS_1}, 0) + ISNULL(TB1.{COLUMN_ERRORS_2}, 0) + ISNULL(TB1.{COLUMN_ERRORS_3}, 0) AS {COLUMN_ERRORS} ");
             sql.Append($"FROM ({GetPreviewDispensed(plant)}) AS TB0 ");
-            sql.Append($"INNER JOIN Cans   AS TB1 ON TB1.Cans_id  = TB0.Cans_id ");
-            sql.Append($"INNER JOIN Orders AS TB2 ON TB2.Order_id = TB0.Order_id ");
-            sql.Append($"WHERE TB0.Barcode = @barcode ");
+            sql.Append($"INNER JOIN {MAIN_TABLE}             AS TB1 ON TB1.{COLUMN_CANS_ID}  = TB0.{COLUMN_CANS_ID} ");
+            sql.Append($"INNER JOIN {Orders.MAIN_TABLE}      AS TB2 ON TB2.{Orders.COLUMN_ORDER_ID} = TB0.{COLUMN_ORDER_ID} ");
+            sql.Append($"WHERE TB0.{COLUMN_BARCODE} = @barcode ");
             sql.Append($"ORDER BY ");
-            sql.Append($"  TB0.Order_id ");
-            sql.Append($" ,TB0.Barcode ");
+            sql.Append($"  TB0.{COLUMN_ORDER_ID} ");
+            sql.Append($" ,TB0.{COLUMN_BARCODE} ");
             return sql.ToString();
         }
         #endregion
+
         #region バーコードで調合状況を取得
         /// <summary>
         /// バーコードで調合状況を取得
@@ -221,9 +237,9 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private static string SelectCans(string plant)
         {
             var sql = new StringBuilder();
-            sql.Append($"Cans AS C ");
-            sql.Append($"INNER JOIN Orders AS O ON O.Order_id = C.Order_id ");
-            sql.Append($"INNER JOIN (SELECT SS_Code FROM Plants WHERE REPLACE(Plant_Description, ' ', '') = '{plant}')  AS P ON P.SS_Code = O.HG_SS_Code ");
+            sql.Append($"{MAIN_TABLE} AS C ");
+            sql.Append($"INNER JOIN {Orders.MAIN_TABLE} AS O ON O.{Orders.COLUMN_ORDER_ID} = C.{COLUMN_ORDER_ID} ");
+            sql.Append($"INNER JOIN (SELECT {Plants.COLUMN_SS_CODE} FROM {Plants.MAIN_TABLE} WHERE REPLACE({Plants.COLUMN_PLANT_DESCRIPTION}, ' ', '') = '{plant}')  AS P ON P.{Plants.COLUMN_SS_CODE} = O.{Orders.COLUMN_HG_SS_CODE} ");
             return sql.ToString();
         }
         #endregion
@@ -234,8 +250,8 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
             sql.Append($" * ");
-            sql.Append($"FROM Cans AS C ");
-            sql.Append($"LEFT JOIN Orders AS O ON O.Order_id = C.Order_id ");
+            sql.Append($"FROM {MAIN_TABLE} AS C ");
+            sql.Append($"LEFT JOIN {Orders.MAIN_TABLE} AS O ON O.{Orders.COLUMN_ORDER_ID} = C.{COLUMN_ORDER_ID} ");
             sql.Append($"WHERE Barcode = @barcode");
             return sql.ToString();
         }
