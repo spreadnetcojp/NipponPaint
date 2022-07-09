@@ -786,3 +786,4 @@ OrderManager/bin/Debug/Log/OrderManager20220617.log
 *.vsidx
 *.resources
 *.log
+*.dll
