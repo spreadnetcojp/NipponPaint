@@ -4138,7 +4138,7 @@ namespace NipponPaint.OrderManager
             this.PeriodicupdateTimeTextBox.TextBorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PeriodicupdateTimeTextBox.TextFont = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.PeriodicupdateTimeTextBox.TextForeColor = System.Drawing.SystemColors.Window;
-            this.PeriodicupdateTimeTextBox.Title = "前回の更新時間";
+            this.PeriodicupdateTimeTextBox.Title = "前回の更新時刻";
             this.PeriodicupdateTimeTextBox.TitleControlName = "LblTitle";
             this.PeriodicupdateTimeTextBox.TitleSize = new System.Drawing.Size(154, 26);
             this.PeriodicupdateTimeTextBox.Value = "";
