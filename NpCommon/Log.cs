@@ -91,6 +91,9 @@ namespace NipponPaint.NpCommon
             [Display(Description = "SupervisorInterface")]
             SupervisorInterface,
         }
+        // ログ作成先フォルダ
+        private const string SUB_FOLDER = "Log";
+        private const string FILE_DATE_FORMAT = "yyyyMMdd";
         #endregion
 
         #region public static function
@@ -130,12 +133,12 @@ namespace NipponPaint.NpCommon
             }
 #endif
             // ファイルパスの生成
-            string folderPath = Path.Combine(Application.StartupPath, "Log");
+            string folderPath = Path.Combine(Application.StartupPath, SUB_FOLDER);
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
-            string filePath = Path.Combine(folderPath, $"{applicationTypeText}{DateTime.Now.ToString("yyyyMMdd")}.log");
+            string filePath = Path.Combine(folderPath, $"{applicationTypeText}{DateTime.Now.ToString(FILE_DATE_FORMAT)}.log");
             // 出力処理
             using (StreamWriter writer = new StreamWriter(filePath, true))
             {
@@ -157,6 +160,48 @@ namespace NipponPaint.NpCommon
             else
             {
                 return Write(messegeId, applicationType, new string[] { addtionalInfo });
+            }
+        }
+        #endregion
+
+        #region ログクリーンアップ処理
+        /// <summary>
+        /// ログクリーンアップ処理
+        /// </summary>
+        /// <param name="settings"></param>
+        /// <param name="applicationType"></param>
+        public static void CleanUp(IniFile.Settings settings, ApplicationType applicationType)
+        {
+            try
+            {
+                // フォルダ存在確認
+                string folderPath = Path.Combine(Application.StartupPath, SUB_FOLDER);
+                if (!Directory.Exists(folderPath))
+                {
+                    return;
+                }
+                // 保持日付
+                var targetDate = int.Parse(DateTime.Now.AddDays(-settings.Log.RetentionPeriodDays).ToString(FILE_DATE_FORMAT));
+                // アプリケーション種別を取得
+                var applicationTypeText = Messages.GetApplicationTypeText(applicationType);
+                var files = Directory.GetFiles(Path.Combine(folderPath));
+                foreach (var file in files)
+                {
+                    var info = new FileInfo(file);
+                    var fileDate = info.Name.Replace(applicationTypeText, "").Replace(info.Extension, "");
+                    if (int.TryParse(fileDate, out var date))
+                    {
+                        if (date < targetDate)
+                        {
+                            File.Delete(file);
+                        }
+                    }
+                }
+                Write(Sentence.Messages.LogCleanupComplate, applicationType);
+            }
+            catch (Exception ex)
+            {
+                Write(Sentence.Messages.LogCleanupFailure, applicationType, ex.Message);
             }
         }
         #endregion

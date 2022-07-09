@@ -44,6 +44,8 @@ namespace SupervisorPcInterface
         {
             InitializeComponent();
             _settings = new Settings();
+            // ログファイルのクリーンアップ
+            Log.CleanUp(_settings, Log.ApplicationType.SupervisorInterface);
         }
 
         /// <summary>
@@ -79,8 +81,10 @@ namespace SupervisorPcInterface
         {
             PutLog(Sentence.Messages.StartSupervisorInterface);
             // ERP -> COROB
+            PutLog(Sentence.Messages.ExecuteSupervisorInterface, "ERP to COROB");
             ToSupervisor();
             // COROB -> ERP
+            PutLog(Sentence.Messages.ExecuteSupervisorInterface, "COROB to ERP");
             FromSupervisor();
             PutLog(Sentence.Messages.EndSupervisorInterface);
             LblStatus.Text = $"前回処理時刻：{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}";

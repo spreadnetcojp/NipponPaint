@@ -31,14 +31,22 @@ namespace NipponPaint.OrderManager
     /// </summary>
     public class BaseForm : Form
     {
-
+        #region プロパティ
         public Settings BaseSettings { get; set; }
+        #endregion
 
+        #region コンストラクタ
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public BaseForm()
         {
             // アプリ定義ファイル読み込み
             BaseSettings = new Settings();
+            // ログファイルのクリーンアップ
+            Log.CleanUp(BaseSettings, Log.ApplicationType.OrderManager);
         }
+        #endregion
 
         #region DataGridViewの初期設定
         /// <summary>
