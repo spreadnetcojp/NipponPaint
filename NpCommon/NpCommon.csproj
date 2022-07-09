@@ -222,6 +222,7 @@
     <Compile Include="IniFile\Sections\DisplaySection.cs" />
     <Compile Include="IniFile\Sections\FacilitySection.cs" />
     <Compile Include="IniFile\Sections\GridSection.cs" />
+    <Compile Include="IniFile\Sections\LogSection.cs" />
     <Compile Include="IniFile\Sections\PrinterSection.cs" />
     <Compile Include="IniFile\Sections\SupervisorInterfaceSection.cs" />
     <Compile Include="IniFile\Settings.cs" />
