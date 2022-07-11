@@ -492,6 +492,17 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
+        #region
+        public static string GetStatusByProductCode()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT {COLUMN_STATUS} ");
+            sql.Append($"FROM {MAIN_TABLE} ");
+            sql.Append($"WHERE {COLUMN_PRODUCT_CODE} = @ProductCode ");
+            return sql.ToString();
+        }
+        #endregion
+
         #endregion
 
         #region 更新系
@@ -673,13 +684,12 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         #endregion
 
         #region
-        public static string CCMSimulatorDataUpdate()
+        public static string CCMSimulatorDataUpdate(bool updateFlg)
         {
             var sql = new StringBuilder();
             sql.Append($"UPDATE Orders ");
             sql.Append($"SET ");
-            sql.Append($" Paint_Name        = @PaintName ");
-            sql.Append($",Tinted_Color      = @TintedColor ");
+            sql.Append($" Tinted_Color      = @TintedColor ");
             sql.Append($",Index_Number      = @IndexNumber ");
             sql.Append($",Line_Name         = @LineName ");
             sql.Append($",Formula_Release   = @FormulaRelease ");
@@ -708,7 +718,11 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($",Colorant_10       = @Colorant10 ");
             sql.Append($",Weight_10         = @Weight10 ");
             sql.Append($",Total_Weight      = @TotalWeight ");
-            sql.Append($",CCM_color_Name    = @CCMColorName ");
+            if (updateFlg)
+            {
+                sql.Append($",Paint_Name        = @PaintName ");
+                sql.Append($",CCM_color_Name    = @CCMColorName ");
+            }
             sql.Append($"WHERE Product_Code = @ProductCode ");
             return sql.ToString();
         }

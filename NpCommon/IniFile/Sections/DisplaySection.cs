@@ -35,11 +35,11 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         /// </summary>
         public int PreviewCycleSeconds { get { return _previewCycleSeconds; } }
         /// <summary>
-        /// 表示更新周期（秒）
+        /// 表示更新周期（ミリ秒）
         /// </summary>
         public int PreviewCycleMillisecond { get { return _previewCycleMillisecond; } }
         /// <summary>
-        /// 
+        /// 調色適用のLabelTextBoxコントロールに設定された値List
         /// </summary>
         public List<string> HgNoteStrList { get { return _hgNoteStrList; } }
         /// <summary>

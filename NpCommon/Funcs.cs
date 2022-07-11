@@ -386,6 +386,19 @@ namespace NipponPaint.NpCommon
         }
         #endregion
 
+        #region stringからdecimalへ変換（TryParse)
+        /// <summary>
+        /// stringからdoubleへ変換（TryParse)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static decimal StrToDecimal(string value)
+        {
+            decimal.TryParse(value, out decimal decimalVal);
+            return decimalVal;
+        }
+        #endregion
+
         #region キーパッドの入力値を返す（TryParse)
         /// <summary>
         /// キーパッドの入力値を返す（TryParse)

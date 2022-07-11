@@ -55,6 +55,35 @@ namespace NipponPaint.OrderManager.Dialogs
             ChkFixedCan,
         }
 
+        private enum LastFormulaRelease
+        {
+            /// <summary>
+            /// リリース前
+            /// </summary>
+            BeforeRelease,
+            /// <summary>
+            /// リリース
+            /// </summary>
+            Release,
+            /// <summary>
+            /// 修正
+            /// </summary>
+            FixedRelease,
+        }
+
+        /// <summary>
+        /// 空缶
+        /// </summary>
+        private const string Chk_Empty_Can = "ChkEmptyCan";
+        /// <summary>
+        /// 充填缶
+        /// </summary>
+        private const string Chk_Filled_Can = "ChkFilledCan";
+        /// <summary>
+        /// 修正缶
+        /// </summary>
+        private const string Chk_Fixed_Can = "ChkFixedCan";
+
         #region コンストラクタ
         public FrmCCMSimulator(ViewModels.CCMSimulatorData vm)
         {
@@ -141,6 +170,8 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
+                var inputCan = false;
+                var formulaRelease = (int)LastFormulaRelease.BeforeRelease;
                 if (string.IsNullOrEmpty(TxtPaintName.Value) || string.IsNullOrEmpty(TxtKanjiColorName.Value))
                 {
                     // 色名及び品名が空の場合は処理をしない
@@ -153,16 +184,55 @@ namespace NipponPaint.OrderManager.Dialogs
                     Messages.ShowDialog(Sentence.Messages.SelectMaterialError);
                     return;
                 }
-
+                // 選択している投入缶の種類取得
+                var selectPutCan = SelectPutCan();
+                // 選択した投入缶によって更新しないカラムが発生する
+                var UpdateFlg = true;
+                // 選択した投入缶によって更新データ変更
+                switch (selectPutCan)
+                {
+                    case RdoStatusChange.ChkEmptyCan:
+                        formulaRelease = (int)LastFormulaRelease.Release;
+                        break;
+                    case RdoStatusChange.ChkFilledCan:
+                        formulaRelease = (int)LastFormulaRelease.Release;
+                        inputCan = true;
+                        break;
+                    case RdoStatusChange.ChkFixedCan:
+                        formulaRelease = (int)LastFormulaRelease.FixedRelease;
+                        inputCan = true;
+                        UpdateFlg = false;
+                        break;
+                }
+                // 総重量の取得
+                var totalWeight = GetTotalWeight();
+                // ステータス取得
+                var status = GetStatus();
+                // 取得したステータスによって更新するステータスを変更
+                switch (status)
+                {
+                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
+                        status = (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.Ready;
+                        break;
+                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.Ready:
+                        status = (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.TestCanInProgress;
+                        break;
+                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
+                        status = (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress;
+                        break;
+                    default:
+                        break;
+                }
                 var parameters = new List<ParameterItem>()
                 {
                     new ParameterItem("@ProductCode", $"{DrpProductCodeLeft.DropDown.Text}{DrpProductCodeRight.Text}"),
+                    new ParameterItem("@Status", status),
                     new ParameterItem("@PaintName", TxtPaintName.Value),
                     new ParameterItem("@TintedColor", TxtColorFileName.Value),
                     new ParameterItem("@IndexNumber", TxtIndexNumber.Value),
                     new ParameterItem("@LineName", TxtLine.Value),
-                    new ParameterItem("@FormulaRelease", FORMULA_RELEASE),
-                    new ParameterItem("@InputCan", false),
+                    new ParameterItem("@FormulaRelease", formulaRelease),
+                    new ParameterItem("@InputCan", inputCan),
                     new ParameterItem("@Revision", NumUpDownCorrection.Value),
                     new ParameterItem("@WhiteCode", DrpBaseSelect.Text),
                     new ParameterItem("@WhiteWeight", TxtBaseValue.Text),
@@ -186,13 +256,13 @@ namespace NipponPaint.OrderManager.Dialogs
                     new ParameterItem("@Weight9", TxtColoarantValue9.Text),
                     new ParameterItem("@Colorant10", DrpColoarantSelect10.Text),
                     new ParameterItem("@Weight10", TxtColoarantValue10.Text),
-                    new ParameterItem("@TotalWeight", 10),
+                    new ParameterItem("@TotalWeight", totalWeight),
                     new ParameterItem("@CCMColorName", TxtKanjiColorName.Value),
                 };
                 using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                 {
-                    db.Execute(NpCommon.Database.Sql.NpMain.Orders.CCMSimulatorDataUpdate(), parameters);
-                    db.Commit();
+                    //db.Execute(NpCommon.Database.Sql.NpMain.Orders.CCMSimulatorDataUpdate(UpdateFlg), parameters);
+                    //db.Commit();
                 }
                 //Messages.ShowDialog(Sentence.Messages.SelectMaterialError);
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
@@ -582,6 +652,51 @@ namespace NipponPaint.OrderManager.Dialogs
             return whiteCodeList.ToArray();
         }
         #endregion
+
+        private RdoStatusChange SelectPutCan()
+        {
+            var rbtCheckInGroup = GrpBoxPutCan.Controls.OfType<RadioButton>().SingleOrDefault(rb => rb.Checked == true);
+            switch (rbtCheckInGroup.Name)
+            {
+                case Chk_Empty_Can:
+                    return RdoStatusChange.ChkEmptyCan;
+                case Chk_Filled_Can:
+                    return RdoStatusChange.ChkFilledCan;
+                case Chk_Fixed_Can:
+                    return RdoStatusChange.ChkFixedCan;
+            }
+            return RdoStatusChange.ChkEmptyCan;
+        }
+
+        private string GetTotalWeight()
+        {
+            var totalWeght = (Funcs.StrToDecimal(TxtBaseValue.Text)
+                              + Funcs.StrToDecimal(TxtColoarantValue1.Text)
+                              + Funcs.StrToDecimal(TxtColoarantValue2.Text)
+                              + Funcs.StrToDecimal(TxtColoarantValue3.Text)
+                              + Funcs.StrToDecimal(TxtColoarantValue4.Text)
+                              + Funcs.StrToDecimal(TxtColoarantValue5.Text)
+                              + Funcs.StrToDecimal(TxtColoarantValue6.Text)
+                              + Funcs.StrToDecimal(TxtColoarantValue7.Text)
+                              + Funcs.StrToDecimal(TxtColoarantValue8.Text)
+                              + Funcs.StrToDecimal(TxtColoarantValue9.Text)
+                              + Funcs.StrToDecimal(TxtColoarantValue10.Text)
+                              );
+            return totalWeght.ToString();
+        }
+
+        private int GetStatus()
+        {
+            var result = 0;
+            var parameter = new List<ParameterItem>()
+            {
+                new ParameterItem("@ProductCode", $"{DrpProductCodeLeft.DropDown.Text}{DrpProductCodeRight.Text}"),
+            };
+            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
+            {
+                return result = Funcs.StrToInt(db.Select(NpCommon.Database.Sql.NpMain.Orders.GetStatusByProductCode(), parameter).ToString());
+            }
+        }
     }
 }
 
