@@ -21,6 +21,7 @@ using System.Linq;
 using NipponPaint.NpCommon;
 using NipponPaint.NpCommon.Database;
 using NipponPaint.NpCommon.FormControls;
+using System.Text;
 #endregion
 
 namespace NipponPaint.OrderManager.Dialogs
@@ -36,9 +37,12 @@ namespace NipponPaint.OrderManager.Dialogs
         // 製品コード　左・右
         private readonly string[] PRODUCT_CODE_LEFT = { "A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "U", "V", "W" };
         private readonly string[] PRODUCT_CODE_RIGHT = { "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+        // 取得データ１件の為、Indexは「0」
+        private const int SELECT_DATE = 0;
 
-        private const string FORMULA_RELEASE = "1";
-
+        /// <summary>
+        /// 投入缶の種類
+        /// </summary>
         private enum RdoStatusChange
         {
             /// <summary>
@@ -54,7 +58,9 @@ namespace NipponPaint.OrderManager.Dialogs
             /// </summary>
             ChkFixedCan,
         }
-
+        /// <summary>
+        /// 配合の状態
+        /// </summary>
         private enum LastFormulaRelease
         {
             /// <summary>
@@ -172,6 +178,9 @@ namespace NipponPaint.OrderManager.Dialogs
             {
                 var inputCan = false;
                 var formulaRelease = (int)LastFormulaRelease.BeforeRelease;
+                var status = 0;
+                // 選択した項目によって更新しないカラムが発生する
+                var UpdateFlg = true;
                 if (string.IsNullOrEmpty(TxtPaintName.Value) || string.IsNullOrEmpty(TxtKanjiColorName.Value))
                 {
                     // 色名及び品名が空の場合は処理をしない
@@ -184,10 +193,26 @@ namespace NipponPaint.OrderManager.Dialogs
                     Messages.ShowDialog(Sentence.Messages.SelectMaterialError);
                     return;
                 }
+                // データ取得
+                var dt = GetData();
+                // order_id取得
+                var orderId = int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_ORDER_ID].ToString());
+                // 取得したステータスによって更新するカラムを変更
+                switch (int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_STATUS].ToString()))
+                {
+                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
+                        status = (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.Ready;
+                        break;
+                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.Ready:
+                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
+                        UpdateFlg = false;
+                        break;
+                    default:
+                        UpdateFlg = false;
+                        break;
+                }
                 // 選択している投入缶の種類取得
                 var selectPutCan = SelectPutCan();
-                // 選択した投入缶によって更新しないカラムが発生する
-                var UpdateFlg = true;
                 // 選択した投入缶によって更新データ変更
                 switch (selectPutCan)
                 {
@@ -204,28 +229,13 @@ namespace NipponPaint.OrderManager.Dialogs
                         UpdateFlg = false;
                         break;
                 }
+                var colorans = GetColorants(orderId);
                 // 総重量の取得
-                var totalWeight = GetTotalWeight();
-                // ステータス取得
-                var status = GetStatus();
-                // 取得したステータスによって更新するステータスを変更
-                switch (status)
-                {
-                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
-                        status = (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.Ready;
-                        break;
-                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.Ready:
-                        status = (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.TestCanInProgress;
-                        break;
-                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
-                        status = (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress;
-                        break;
-                    default:
-                        break;
-                }
+                var totalWeight = GetTotalWeight(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_TOTAL_WEIGHT]);
+
                 var parameters = new List<ParameterItem>()
                 {
-                    new ParameterItem("@ProductCode", $"{DrpProductCodeLeft.DropDown.Text}{DrpProductCodeRight.Text}"),
+                    new ParameterItem("@OrderId", orderId),
                     new ParameterItem("@Status", status),
                     new ParameterItem("@PaintName", TxtPaintName.Value),
                     new ParameterItem("@TintedColor", TxtColorFileName.Value),
@@ -261,8 +271,8 @@ namespace NipponPaint.OrderManager.Dialogs
                 };
                 using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                 {
-                    //db.Execute(NpCommon.Database.Sql.NpMain.Orders.CCMSimulatorDataUpdate(UpdateFlg), parameters);
-                    //db.Commit();
+                    db.Execute(NpCommon.Database.Sql.NpMain.Orders.CCMSimulatorDataUpdate(UpdateFlg, colorans), parameters);
+                    db.Commit();
                 }
                 //Messages.ShowDialog(Sentence.Messages.SelectMaterialError);
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
@@ -653,6 +663,11 @@ namespace NipponPaint.OrderManager.Dialogs
         }
         #endregion
 
+        #region 選択している投入缶の種類取得
+        /// <summary>
+        /// 選択している投入缶の種類取得
+        /// </summary>
+        /// <returns></returns>
         private RdoStatusChange SelectPutCan()
         {
             var rbtCheckInGroup = GrpBoxPutCan.Controls.OfType<RadioButton>().SingleOrDefault(rb => rb.Checked == true);
@@ -667,8 +682,15 @@ namespace NipponPaint.OrderManager.Dialogs
             }
             return RdoStatusChange.ChkEmptyCan;
         }
+        #endregion
 
-        private string GetTotalWeight()
+        #region 総重量取得
+        /// <summary>
+        /// 総重量取得
+        /// </summary>
+        /// <param name="totalWeight"></param>
+        /// <returns>入力値と元データの総重量の合計</returns>
+        private string GetTotalWeight(object totalWeight)
         {
             var totalWeght = (Funcs.StrToDecimal(TxtBaseValue.Text)
                               + Funcs.StrToDecimal(TxtColoarantValue1.Text)
@@ -681,22 +703,52 @@ namespace NipponPaint.OrderManager.Dialogs
                               + Funcs.StrToDecimal(TxtColoarantValue8.Text)
                               + Funcs.StrToDecimal(TxtColoarantValue9.Text)
                               + Funcs.StrToDecimal(TxtColoarantValue10.Text)
+                              + Funcs.StrToDecimal(totalWeight.ToString())
                               );
             return totalWeght.ToString();
         }
+        #endregion
 
-        private int GetStatus()
+        #region 製品コードから注文情報取得
+        /// <summary>
+        /// 製品コードから注文情報取得
+        /// </summary>
+        /// <returns></returns>
+        private List<DataTable> GetData()
         {
-            var result = 0;
+            var result = new List<DataTable>();
             var parameter = new List<ParameterItem>()
             {
                 new ParameterItem("@ProductCode", $"{DrpProductCodeLeft.DropDown.Text}{DrpProductCodeRight.Text}"),
             };
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
-                return result = Funcs.StrToInt(db.Select(NpCommon.Database.Sql.NpMain.Orders.GetStatusByProductCode(), parameter).ToString());
+                result.Add(db.Select(NpCommon.Database.Sql.NpMain.Orders.GetDataByProductCode(), parameter));
             }
+            return result;
         }
+        #endregion
+
+        #region 白コード・着色剤コード取得
+        /// <summary>
+        /// 白コード・着色剤コード取得
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        private DataTable GetColorants(int orderId)
+        {
+            var weightlist = new DataTable();
+            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
+            {
+                var parameter = new List<ParameterItem>()
+                {
+                    new ParameterItem("@OrderId", orderId),
+                };
+                weightlist = db.Select(NpCommon.Database.Sql.NpMain.Orders.GetWeightDatebyOrderId(), parameter);
+            }
+            return weightlist;
+        }
+        #endregion
     }
 }
 

@@ -18,6 +18,7 @@ using System.Linq;
 using System.Text;
 using NipponPaint.NpCommon.Settings;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 #endregion
 
 namespace NipponPaint.NpCommon.Database.Sql.NpMain
@@ -237,10 +238,24 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_FORMULA_RELEASE = "Formula_Release";
         public const string COLUMN_WHITE_WEIGHT = "White_Weight";
         private const string COLUMN_HG_CANCEL = "HG_Cancel";
+        private const string COLUMN_CCM_COLOR_NAME = "CCM_color_Name";
+        private const string COLUMN_TINTED_COLOR = "Tinted_Color";
+        private const string COLUMN_INDEX_NUMBER = "Index_Number";
+        private const string COLUMN_LINE_NAME = "Line_Name";
 
         // テスト缶
         public const int INPUT_CAN_YES = 1;
         public const int TEST_CAN_YES = 1;
+
+        #region CCMシュミレータでの更新用
+        private const string COLUMN_COLORANT = "Colorant_";
+        private const string COLUMN_WEIGHT = "Weight_";
+        private const string NEW_COLOR = "Colorant";
+        private const string NEW_WEIGHT = "Weight";
+        private const string WHITE_CODE = "WhiteCode";
+        private const string WHITE_WEIGHT = "WhiteWeight";
+        #endregion
+
         #endregion
 
         #region 参照系
@@ -497,12 +512,54 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         #endregion
 
         #region
-        public static string GetStatusByProductCode()
+        /// <summary>
+        /// 製造コードでレコード取得
+        /// </summary>
+        /// <returns></returns>
+        public static string GetWeightDatebyOrderId()
         {
             var sql = new StringBuilder();
-            sql.Append($"SELECT {COLUMN_STATUS} ");
+            sql.Append($"SELECT ");
+            sql.Append($" {COLUMN_WHITE_CODE} ");
+            sql.Append($" ,{COLUMN_COLORANT_1} ");
+            sql.Append($" ,{COLUMN_COLORANT_2} ");
+            sql.Append($" ,{COLUMN_COLORANT_3} ");
+            sql.Append($" ,{COLUMN_COLORANT_4} ");
+            sql.Append($" ,{COLUMN_COLORANT_5} ");
+            sql.Append($" ,{COLUMN_COLORANT_6} ");
+            sql.Append($" ,{COLUMN_COLORANT_7} ");
+            sql.Append($" ,{COLUMN_COLORANT_8} ");
+            sql.Append($" ,{COLUMN_COLORANT_9} ");
+            sql.Append($" ,{COLUMN_COLORANT_10} ");
+            sql.Append($" ,{COLUMN_COLORANT_11} ");
+            sql.Append($" ,{COLUMN_COLORANT_12} ");
+            sql.Append($" ,{COLUMN_COLORANT_13} ");
+            sql.Append($" ,{COLUMN_COLORANT_14} ");
+            sql.Append($" ,{COLUMN_COLORANT_15} ");
+            sql.Append($" ,{COLUMN_COLORANT_16} ");
+            sql.Append($" ,{COLUMN_COLORANT_17} ");
+            sql.Append($" ,{COLUMN_COLORANT_18} ");
+            sql.Append($" ,{COLUMN_COLORANT_19} ");
             sql.Append($"FROM {MAIN_TABLE} ");
-            sql.Append($"WHERE {COLUMN_PRODUCT_CODE} = @ProductCode ");
+            sql.Append($"WHERE {COLUMN_ORDER_ID} = @orderId");
+            return sql.ToString();
+        }
+        #endregion
+
+        #region
+        /// <summary>
+        /// Order_idでWeight情報取得
+        /// </summary>
+        /// <returns></returns>
+        public static string GetDataByProductCode()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            sql.Append($" {COLUMN_ORDER_ID} ");
+            sql.Append($" ,{COLUMN_STATUS} ");
+            sql.Append($" ,{COLUMN_TOTAL_WEIGHT} ");
+            sql.Append($"FROM {MAIN_TABLE} ");
+            sql.Append($"WHERE {COLUMN_ORDER_ID} = (SELECT max({COLUMN_ORDER_ID}) FROM {MAIN_TABLE} WHERE {COLUMN_PRODUCT_CODE} = @ProductCode) ");
             return sql.ToString();
         }
         #endregion
@@ -688,46 +745,63 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         #endregion
 
         #region
-        public static string CCMSimulatorDataUpdate(bool updateFlg)
+        public static string CCMSimulatorDataUpdate(bool UpdateFlg, DataTable weightlist)
         {
+            // colorant番号（0はwhite_code)
+            var count = 0;
+            // 入力color番号（0はwhite_code)
+            var newCount = 0;
             var sql = new StringBuilder();
-            sql.Append($"UPDATE Orders ");
+            sql.Append($"UPDATE {MAIN_TABLE} ");
             sql.Append($"SET ");
-            sql.Append($" Tinted_Color      = @TintedColor ");
-            sql.Append($",Index_Number      = @IndexNumber ");
-            sql.Append($",Line_Name         = @LineName ");
-            sql.Append($",Formula_Release   = @FormulaRelease ");
-            sql.Append($",Input_Can         = @InputCan ");
-            sql.Append($",Revision          = @Revision ");
-            sql.Append($",White_Code        = @WhiteCode ");
-            sql.Append($",White_Weight      = @WhiteWeight ");
-            sql.Append($",Colorant_1        = @Colorant1 ");
-            sql.Append($",Weight_1          = @Weight1 ");
-            sql.Append($",Colorant_2        = @Colorant2 ");
-            sql.Append($",Weight_2          = @Weight2 ");
-            sql.Append($",Colorant_3        = @Colorant3 ");
-            sql.Append($",Weight_3          = @Weight3 ");
-            sql.Append($",Colorant_4        = @Colorant4 ");
-            sql.Append($",Weight_4          = @Weight4 ");
-            sql.Append($",Colorant_5        = @Colorant5 ");
-            sql.Append($",Weight_5          = @Weight5 ");
-            sql.Append($",Colorant_6        = @Colorant6 ");
-            sql.Append($",Weight_6          = @Weight6 ");
-            sql.Append($",Colorant_7        = @Colorant7 ");
-            sql.Append($",Weight_7          = @Weight7 ");
-            sql.Append($",Colorant_8        = @Colorant8 ");
-            sql.Append($",Weight_8          = @Weight8 ");
-            sql.Append($",Colorant_9        = @Colorant9 ");
-            sql.Append($",Weight_9          = @Weight9 ");
-            sql.Append($",Colorant_10       = @Colorant10 ");
-            sql.Append($",Weight_10         = @Weight10 ");
-            sql.Append($",Total_Weight      = @TotalWeight ");
-            if (updateFlg)
+            sql.Append($" {COLUMN_FORMULA_RELEASE}   = @FormulaRelease ");
+            sql.Append($",{COLUMN_INPUT_CAN}         = @InputCan ");
+            sql.Append($",{COLUMN_REVISION}          = @Revision ");
+            foreach (var item in weightlist.Rows[0].ItemArray)
             {
-                sql.Append($",Paint_Name        = @PaintName ");
-                sql.Append($",CCM_color_Name    = @CCMColorName ");
+                if (item.ToString() == "" || item == null)
+                {
+                    if (newCount == 0)
+                    {
+                        switch (count)
+                        {
+                            case 0:
+                                sql.Append($",{COLUMN_WHITE_CODE} = @{WHITE_CODE} ");
+                                sql.Append($",{COLUMN_WHITE_WEIGHT} = @{WHITE_WEIGHT} ");
+                                newCount++;
+                                break;
+                            default:
+                                sql.Append($",{COLUMN_COLORANT}{count} = @{WHITE_CODE} ");
+                                sql.Append($",{COLUMN_WEIGHT}{count} = @{WHITE_WEIGHT} ");
+                                newCount++;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        sql.Append($",{COLUMN_COLORANT}{count} = @{NEW_COLOR}{newCount} ");
+                        sql.Append($",{COLUMN_WEIGHT}{count} = @{NEW_WEIGHT}{newCount} ");
+                        newCount++;
+                    }
+                }
+                count++;
+                // 最大入力数１０
+                if (newCount == 10)
+                {
+                    break;
+                }
             }
-            sql.Append($"WHERE Product_Code = @ProductCode ");
+            sql.Append($",{COLUMN_TOTAL_WEIGHT}      = @TotalWeight ");
+            if (UpdateFlg)
+            {
+                sql.Append($",{COLUMN_PAINT_NAME}        = @PaintName ");
+                sql.Append($",{COLUMN_CCM_COLOR_NAME}    = @CCMColorName ");
+                sql.Append($",{COLUMN_TINTED_COLOR}      = @TintedColor ");
+                sql.Append($",{COLUMN_INDEX_NUMBER}      = @IndexNumber ");
+                sql.Append($",{COLUMN_LINE_NAME}         = @LineName ");
+                sql.Append($",{COLUMN_STATUS}            = @Status ");
+            }
+            sql.Append($"WHERE {COLUMN_ORDER_ID} = @OrderId ");
             return sql.ToString();
         }
         #endregion
