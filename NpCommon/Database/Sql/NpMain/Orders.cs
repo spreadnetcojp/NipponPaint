@@ -254,6 +254,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string NEW_WEIGHT = "Weight";
         private const string WHITE_CODE = "WhiteCode";
         private const string WHITE_WEIGHT = "WhiteWeight";
+        private const int MAX_ITEM = 10;
         #endregion
 
         #endregion
@@ -793,7 +794,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
                 }
                 count++;
                 // 最大入力数１０
-                if (newCount > 10)
+                if (newCount > MAX_ITEM)
                 {
                     break;
                 }
