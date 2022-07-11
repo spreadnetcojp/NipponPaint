@@ -248,13 +248,48 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const int TEST_CAN_YES = 1;
 
         #region CCMシュミレータでの更新用
-        private const string COLUMN_COLORANT = "Colorant_";
-        private const string COLUMN_WEIGHT = "Weight_";
-        private const string NEW_COLOR = "Colorant";
-        private const string NEW_WEIGHT = "Weight";
-        private const string WHITE_CODE = "WhiteCode";
-        private const string WHITE_WEIGHT = "WhiteWeight";
-        private const int MAX_ITEM = 10;
+        /// <summary>
+        /// 入力項目の最大値
+        /// </summary>
+        private const int MAX_ITEM = 11;
+        /// <summary>
+        /// カラムの最大値
+        /// </summary>
+        private const int MAX_COLUMN = 19;
+        /// <summary>
+        /// 白コード・着色剤コードのカラムリスト化
+        /// </summary>
+        public static readonly List<string[]> ColorColumns = new List<string[]>()
+        {
+            new string[]{ COLUMN_WHITE_CODE, COLUMN_WHITE_WEIGHT },
+            new string[]{ COLUMN_COLORANT_1, COLUMN_WEIGHT_1 },
+            new string[]{ COLUMN_COLORANT_2, COLUMN_WEIGHT_2 },
+            new string[]{ COLUMN_COLORANT_3, COLUMN_WEIGHT_3 },
+            new string[]{ COLUMN_COLORANT_4, COLUMN_WEIGHT_4 },
+            new string[]{ COLUMN_COLORANT_5, COLUMN_WEIGHT_5 },
+            new string[]{ COLUMN_COLORANT_6, COLUMN_WEIGHT_6 },
+            new string[]{ COLUMN_COLORANT_7, COLUMN_WEIGHT_7 },
+            new string[]{ COLUMN_COLORANT_8, COLUMN_WEIGHT_8 },
+            new string[]{ COLUMN_COLORANT_9, COLUMN_WEIGHT_9 },
+            new string[]{ COLUMN_COLORANT_10, COLUMN_WEIGHT_10 },
+            new string[]{ COLUMN_COLORANT_11, COLUMN_WEIGHT_11 },
+            new string[]{ COLUMN_COLORANT_12, COLUMN_WEIGHT_12 },
+            new string[]{ COLUMN_COLORANT_13, COLUMN_WEIGHT_13 },
+            new string[]{ COLUMN_COLORANT_14, COLUMN_WEIGHT_14 },
+            new string[]{ COLUMN_COLORANT_15, COLUMN_WEIGHT_15 },
+            new string[]{ COLUMN_COLORANT_16, COLUMN_WEIGHT_16 },
+            new string[]{ COLUMN_COLORANT_17, COLUMN_WEIGHT_17 },
+            new string[]{ COLUMN_COLORANT_18, COLUMN_WEIGHT_18 },
+            new string[]{ COLUMN_COLORANT_19, COLUMN_WEIGHT_19 },
+        };
+        /// <summary>
+        /// リストインデックス（着色剤コード）
+        /// </summary>
+        private const int ColorColumnsColorantIndex = 0;
+        /// <summary>
+        /// リストインデックス（着色剤重量）
+        /// </summary>
+        private const int ColorColumnsWeightColorantIndex = 1;
         #endregion
 
         #endregion
@@ -752,49 +787,20 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// <param name="UpdateFlg"></param>
         /// <param name="weightlist"></param>
         /// <returns></returns>
-        public static string CCMSimulatorDataUpdate(bool UpdateFlg, DataTable weightlist)
+        public static string CCMSimulatorDataUpdate(bool UpdateFlg, int colorantCount)
         {
-            // colorant番号（0はwhite_code)
-            var count = 0;
-            // 入力color番号（0はwhite_code)
-            var newCount = 0;
             var sql = new StringBuilder();
             sql.Append($"UPDATE {MAIN_TABLE} ");
             sql.Append($"SET ");
             sql.Append($" {COLUMN_FORMULA_RELEASE}   = @FormulaRelease ");
             sql.Append($",{COLUMN_INPUT_CAN}         = @InputCan ");
             sql.Append($",{COLUMN_REVISION}          = @Revision ");
-            // 元データに追加する項目
-            foreach (var item in weightlist.Rows[0].ItemArray)
+            var startIndex = colorantCount;
+            for(var i = 0; i < MAX_ITEM; i++)
             {
-                if (item.ToString() == "" || item == null)
-                {
-                    if (newCount == 0)
-                    {
-                        switch (count)
-                        {
-                            case 0:
-                                sql.Append($",{COLUMN_WHITE_CODE} = @{WHITE_CODE} ");
-                                sql.Append($",{COLUMN_WHITE_WEIGHT} = @{WHITE_WEIGHT} ");
-                                newCount++;
-                                break;
-                            default:
-                                sql.Append($",{COLUMN_COLORANT}{count} = @{WHITE_CODE} ");
-                                sql.Append($",{COLUMN_WEIGHT}{count} = @{WHITE_WEIGHT} ");
-                                newCount++;
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        sql.Append($",{COLUMN_COLORANT}{count} = @{NEW_COLOR}{newCount} ");
-                        sql.Append($",{COLUMN_WEIGHT}{count} = @{NEW_WEIGHT}{newCount} ");
-                        newCount++;
-                    }
-                }
-                count++;
-                // 最大入力数１０
-                if (newCount > MAX_ITEM)
+                sql.Append($",{ColorColumns[startIndex + i][ColorColumnsColorantIndex]} = @{ColorColumns[i][ColorColumnsColorantIndex]}");
+                sql.Append($",{ColorColumns[startIndex + i][ColorColumnsWeightColorantIndex]} = @{ColorColumns[i][ColorColumnsWeightColorantIndex]}");
+                if (startIndex + i == MAX_COLUMN)
                 {
                     break;
                 }

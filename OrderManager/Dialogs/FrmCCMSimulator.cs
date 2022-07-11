@@ -34,12 +34,21 @@ namespace NipponPaint.OrderManager.Dialogs
         static string productCodeLeft;
         static string productCodeRight;
         private const string CancelNumber = "CANCEL";
-        // 製品コード　左・右
+        /// <summary>
+        /// 製品コード　左
+        /// </summary>
         private readonly string[] PRODUCT_CODE_LEFT = { "A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "U", "V", "W" };
+        /// <summary>
+        /// 製品コード　右
+        /// </summary>
         private readonly string[] PRODUCT_CODE_RIGHT = { "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-        // 取得データ１件の為、Indexは「0」
+        /// <summary>
+        /// 取得データ１件の為、Indexは「0」
+        /// </summary>
         private const int SELECT_DATE = 0;
-        // ドロップダウンの初期選択
+        /// <summary>
+        /// ドロップダウンの初期選択
+        /// </summary>
         private const int SELECT_INDEX = 0;
 
         /// <summary>
@@ -231,7 +240,7 @@ namespace NipponPaint.OrderManager.Dialogs
                         UpdateFlg = false;
                         break;
                 }
-                var colorans = GetColorants(orderId);
+                var colorantCount = GetColorantsCount(orderId);
                 // 総重量の取得
                 var totalWeight = GetTotalWeight(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_TOTAL_WEIGHT]);
 
@@ -246,34 +255,34 @@ namespace NipponPaint.OrderManager.Dialogs
                     new ParameterItem("@FormulaRelease", formulaRelease),
                     new ParameterItem("@InputCan", inputCan),
                     new ParameterItem("@Revision", NumUpDownCorrection.Value),
-                    new ParameterItem("@WhiteCode", DrpBaseSelect.Text),
-                    new ParameterItem("@WhiteWeight", TxtBaseValue.Text),
-                    new ParameterItem("@Colorant1", DrpColoarantSelect1.Text),
-                    new ParameterItem("@Weight1", TxtColoarantValue1.Text),
-                    new ParameterItem("@Colorant2", DrpColoarantSelect2.Text),
-                    new ParameterItem("@Weight2", TxtColoarantValue2.Text),
-                    new ParameterItem("@Colorant3", DrpColoarantSelect3.Text),
-                    new ParameterItem("@Weight3", TxtColoarantValue3.Text),
-                    new ParameterItem("@Colorant4", DrpColoarantSelect4.Text),
-                    new ParameterItem("@Weight4", TxtColoarantValue4.Text),
-                    new ParameterItem("@Colorant5", DrpColoarantSelect5.Text),
-                    new ParameterItem("@Weight5", TxtColoarantValue5.Text),
-                    new ParameterItem("@Colorant6", DrpColoarantSelect6.Text),
-                    new ParameterItem("@Weight6", TxtColoarantValue6.Text),
-                    new ParameterItem("@Colorant7", DrpColoarantSelect7.Text),
-                    new ParameterItem("@Weight7", TxtColoarantValue7.Text),
-                    new ParameterItem("@Colorant8", DrpColoarantSelect8.Text),
-                    new ParameterItem("@Weight8", TxtColoarantValue8.Text),
-                    new ParameterItem("@Colorant9", DrpColoarantSelect9.Text),
-                    new ParameterItem("@Weight9", TxtColoarantValue9.Text),
-                    new ParameterItem("@Colorant10", DrpColoarantSelect10.Text),
-                    new ParameterItem("@Weight10", TxtColoarantValue10.Text),
+                    new ParameterItem("@White_Code", DrpBaseSelect.Text),
+                    new ParameterItem("@White_Weight", TxtBaseValue.Text),
+                    new ParameterItem("@Colorant_1", DrpColoarantSelect1.Text),
+                    new ParameterItem("@Weight_1", TxtColoarantValue1.Text),
+                    new ParameterItem("@Colorant_2", DrpColoarantSelect2.Text),
+                    new ParameterItem("@Weight_2", TxtColoarantValue2.Text),
+                    new ParameterItem("@Colorant_3", DrpColoarantSelect3.Text),
+                    new ParameterItem("@Weight_3", TxtColoarantValue3.Text),
+                    new ParameterItem("@Colorant_4", DrpColoarantSelect4.Text),
+                    new ParameterItem("@Weight_4", TxtColoarantValue4.Text),
+                    new ParameterItem("@Colorant_5", DrpColoarantSelect5.Text),
+                    new ParameterItem("@Weight_5", TxtColoarantValue5.Text),
+                    new ParameterItem("@Colorant_6", DrpColoarantSelect6.Text),
+                    new ParameterItem("@Weight_6", TxtColoarantValue6.Text),
+                    new ParameterItem("@Colorant_7", DrpColoarantSelect7.Text),
+                    new ParameterItem("@Weight_7", TxtColoarantValue7.Text),
+                    new ParameterItem("@Colorant_8", DrpColoarantSelect8.Text),
+                    new ParameterItem("@Weight_8", TxtColoarantValue8.Text),
+                    new ParameterItem("@Colorant_9", DrpColoarantSelect9.Text),
+                    new ParameterItem("@Weight_9", TxtColoarantValue9.Text),
+                    new ParameterItem("@Colorant_10", DrpColoarantSelect10.Text),
+                    new ParameterItem("@Weight_10", TxtColoarantValue10.Text),
                     new ParameterItem("@TotalWeight", totalWeight),
                     new ParameterItem("@CCMColorName", TxtKanjiColorName.Value),
                 };
                 using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                 {
-                    db.Execute(NpCommon.Database.Sql.NpMain.Orders.CCMSimulatorDataUpdate(UpdateFlg, colorans), parameters);
+                    db.Execute(NpCommon.Database.Sql.NpMain.Orders.CCMSimulatorDataUpdate(UpdateFlg, colorantCount), parameters);
                     db.Commit();
                 }
                 //Messages.ShowDialog(Sentence.Messages.SelectMaterialError);
@@ -731,13 +740,13 @@ namespace NipponPaint.OrderManager.Dialogs
         }
         #endregion
 
-        #region 白コード・着色剤コード取得
+        #region 白コード・着色剤コード登録済み数取得
         /// <summary>
-        /// 白コード・着色剤コード取得
+        /// 白コード・着色剤コード登録済み数取得
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
-        private DataTable GetColorants(int orderId)
+        private int GetColorantsCount(int orderId)
         {
             var weightlist = new DataTable();
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
@@ -748,7 +757,9 @@ namespace NipponPaint.OrderManager.Dialogs
                 };
                 weightlist = db.Select(NpCommon.Database.Sql.NpMain.Orders.GetColorantbyOrderId(), parameter);
             }
-            return weightlist;
+            // 値のある物のみ取得
+            var result = weightlist.Rows[SELECT_DATE].ItemArray.AsEnumerable().Where(x => x.ToString() != "");
+            return result.Count();
         }
         #endregion
     }
