@@ -44,6 +44,8 @@ namespace SupervisorPcInterface
         {
             InitializeComponent();
             _settings = new Settings();
+            // ログファイルのクリーンアップ
+            Log.CleanUp(_settings, Log.ApplicationType.SupervisorInterface);
         }
 
         /// <summary>
@@ -79,8 +81,10 @@ namespace SupervisorPcInterface
         {
             PutLog(Sentence.Messages.StartSupervisorInterface);
             // ERP -> COROB
+            PutLog(Sentence.Messages.ExecuteSupervisorInterface, "ERP to COROB");
             ToSupervisor();
             // COROB -> ERP
+            PutLog(Sentence.Messages.ExecuteSupervisorInterface, "COROB to ERP");
             FromSupervisor();
             PutLog(Sentence.Messages.EndSupervisorInterface);
             LblStatus.Text = $"前回処理時刻：{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}";
@@ -107,18 +111,18 @@ namespace SupervisorPcInterface
             items.Find(x => x.Key == TbFormula.PRD_PROCESS_CODE).Value = barcodeRow[TbBarcode.PROCESS_CODE].ToString();
             items.Find(x => x.Key == TbFormula.PRD_TIME_INSERTED).Value = updateDateTime;
             items.Find(x => x.Key == TbFormula.PRD_STATUS).Value = 0;
-            items.Find(x => x.Key == TbFormula.PRD_CODE).Value = dispenseRow["Code"];
-            items.Find(x => x.Key == TbFormula.PRD_DESC).Value = dispenseRow["Code"];
+            items.Find(x => x.Key == TbFormula.PRD_CODE).Value = dispenseRow[Cans.COLUMN_CODE];
+            items.Find(x => x.Key == TbFormula.PRD_DESC).Value = dispenseRow[Cans.COLUMN_CODE];
             items.Find(x => x.Key == TbFormula.PRD_UM).Value = 1;
             items.Find(x => x.Key == TbFormula.PRD_SPECIFIC_GRAVITY).Value = DBNull.Value;
-            items.Find(x => x.Key == TbFormula.PRD_QTY_REQ).Value = dispenseRow["Weight"];
+            items.Find(x => x.Key == TbFormula.PRD_QTY_REQ).Value = dispenseRow[Cans.COLUMN_WEIGHT];
             items.Find(x => x.Key == TbFormula.PRD_QTY_DISP).Value = (float)0;
             items.Find(x => x.Key == TbFormula.PRD_START_DISP).Value = DBNull.Value;
             items.Find(x => x.Key == TbFormula.PRD_END_DISP).Value = DBNull.Value;
             items.Find(x => x.Key == TbFormula.PRD_PRIORITY).Value = DBNull.Value;
             items.Find(x => x.Key == TbFormula.PRD_NUM).Value = DBNull.Value;
             items.Find(x => x.Key == TbFormula.PRD_ISPREFILLED).Value = 1;
-            items.Find(x => x.Key == TbFormula.PRD_PREFILLED_QTY).Value = dispenseRow["Dispensed"];
+            items.Find(x => x.Key == TbFormula.PRD_PREFILLED_QTY).Value = dispenseRow[Cans.COLUMN_DISPENSED];
             parameters = new List<ParameterItem>();
             parameters.AddRange(items);
             // SQL返却
@@ -145,10 +149,10 @@ namespace SupervisorPcInterface
             parameters.Add(new ParameterItem($"{TbBarcode.BARCODE}", barcodeRow[TbBarcode.BARCODE].ToString()));
             parameters.Add(new ParameterItem($"{TbBarcode.PROCESS_CODE}", barcodeRow[TbBarcode.PROCESS_CODE].ToString()));
             parameters.Add(new ParameterItem($"{TbBarcode.BRC_TIME_PROCESSED}", updateDateTime));
-            parameters.Add(new ParameterItem($"{TbBarcode.BRC_STATUS}", 1));
-            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_1}", dispenseRow["Errors_1"]));
-            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_2}", dispenseRow["Errors_2"]));
-            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_3}", dispenseRow["Errors_3"]));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_STATUS}", TbBarcode.STATUS_ERP_PROCESSED));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_1}", dispenseRow[Cans.COLUMN_ERRORS_1]));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_2}", dispenseRow[Cans.COLUMN_ERRORS_2]));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_3}", dispenseRow[Cans.COLUMN_ERRORS_3]));
             // SQL返却
             return sql;
         }
@@ -173,41 +177,41 @@ namespace SupervisorPcInterface
             items.Find(x => x.Key == TbJob.JOB_PROCESS_CODE).Value = barcodeRow[TbBarcode.PROCESS_CODE].ToString();
             items.Find(x => x.Key == TbJob.JOB_TIME_INSERTED).Value = updateDateTime;
             items.Find(x => x.Key == TbJob.JOB_STATUS).Value = 0;
-            items.Find(x => x.Key == TbJob.JOB_TARE_WEIGHT_EXPECTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_TARE_WEIGHT_DETECTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_TARE_WEIGHT_PERC_ERR_ADMITTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_GROSS_WEIGHT_EXPECTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_GROSS_WEIGHT_DETECTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_GROSS_WEIGHT_PERC_ERR_ADMITTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_NET_WEIGHT_EXPECTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_NET_WEIGHT_DETECTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_NET_WEIGHT_PERC_ERR_ADMITTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_TOT_COLORANT_WEIGHT_EXPECTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_TOT_COLORANT_WEIGHT_DETECTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_TOT_COLORANT_WEIGHT_PERC_ERR_ADMITTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_EXPECTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_DETECTED).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_PERC_ERR_ADMITTED).Value = DBNull.Value;
+            items.Find(x => x.Key == TbJob.JOB_TARE_WEIGHT_EXPECTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_TARE_WEIGHT_DETECTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_TARE_WEIGHT_PERC_ERR_ADMITTED).Value = dispenseRow[Orders.COLUMN_P_WEIGHT_TOLERANCE];
+            items.Find(x => x.Key == TbJob.JOB_GROSS_WEIGHT_EXPECTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_GROSS_WEIGHT_DETECTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_GROSS_WEIGHT_PERC_ERR_ADMITTED).Value = dispenseRow[Orders.COLUMN_P_WEIGHT_TOLERANCE];
+            items.Find(x => x.Key == TbJob.JOB_NET_WEIGHT_EXPECTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_NET_WEIGHT_DETECTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_NET_WEIGHT_PERC_ERR_ADMITTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_TOT_COLORANT_WEIGHT_EXPECTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_TOT_COLORANT_WEIGHT_DETECTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_TOT_COLORANT_WEIGHT_PERC_ERR_ADMITTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_EXPECTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_DETECTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_PERC_ERR_ADMITTED).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_MIXING).Value = 1;
-            items.Find(x => x.Key == TbJob.JOB_MIXING_TIME).Value = dispenseRow["Mixing_Time"];
-            items.Find(x => x.Key == TbJob.JOB_MIXING_SPEED).Value = dispenseRow["Mixing_Speed"]; // TODO：計算
-            items.Find(x => x.Key == TbJob.JOB_CAPPING).Value = dispenseRow["Cap_Type"].ToString() == "0" ? 0 : 1;
-            items.Find(x => x.Key == TbJob.JOB_LID_PLACING).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_LID_CHECK).Value = DBNull.Value;
+            items.Find(x => x.Key == TbJob.JOB_MIXING_TIME).Value = dispenseRow[Orders.COLUMN_MIXING_TIME];
+            items.Find(x => x.Key == TbJob.JOB_MIXING_SPEED).Value = dispenseRow[Orders.COLUMN_MIXING_SPEED]; // TODO：計算
+            items.Find(x => x.Key == TbJob.JOB_CAPPING).Value = dispenseRow[Orders.COLUMN_INPUT_CAN].ToString() == Orders.INPUT_CAN_YES.ToString() ? 1 : 0;
+            items.Find(x => x.Key == TbJob.JOB_LID_PLACING).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_LID_CHECK).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_PRINTING_1).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_PRINTING_2).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_PRINTING_3).Value = 0;
-            items.Find(x => x.Key == TbJob.JOB_EXIT_POSITION).Value = dispenseRow["Can_Number"].ToString() == "1" ? 2 : 1;
-            items.Find(x => x.Key == TbJob.JOB_TAG_1).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_TAG_2).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_TAG_3).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_TAG_4).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_TAG_5).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_ERR_1).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_ERR_2).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_ERR_3).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_ERR_4).Value = DBNull.Value;
-            items.Find(x => x.Key == TbJob.JOB_ERR_5).Value = DBNull.Value;
+            items.Find(x => x.Key == TbJob.JOB_EXIT_POSITION).Value = dispenseRow[Cans.COLUMN_TEST_CAN].ToString() == Orders.TEST_CAN_YES.ToString() ? 2 : 1;
+            items.Find(x => x.Key == TbJob.JOB_TAG_1).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_TAG_2).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_TAG_3).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_TAG_4).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_TAG_5).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_ERR_1).Value = string.Empty;
+            items.Find(x => x.Key == TbJob.JOB_ERR_2).Value = string.Empty;
+            items.Find(x => x.Key == TbJob.JOB_ERR_3).Value = string.Empty;
+            items.Find(x => x.Key == TbJob.JOB_ERR_4).Value = string.Empty;
+            items.Find(x => x.Key == TbJob.JOB_ERR_5).Value = string.Empty;
             parameters = new List<ParameterItem>();
             parameters.AddRange(items);
             // SQL返却
@@ -280,7 +284,7 @@ namespace SupervisorPcInterface
                             };
                             // バーコードをキーにERPのテーブルから情報収集
                             var dispenseDatas = dbn.Select(Cans.GetPreviewDispensedData(_settings.Facility.Plant), parameters);
-                            var dispenseRows = dispenseDatas.Select($"Barcode = '{barCode}' AND Code <> ''");
+                            var dispenseRows = dispenseDatas.Select($"{Cans.COLUMN_BARCODE} = '{barCode}' AND {Cans.COLUMN_CODE} <> ''");
                             //PutLog(Sentence.Messages.ExecuteSupervisorInterface, new string[] { barCode, dispenseRows.Count().ToString() });
                             var cnt = 0;
                             // SQLを作成してTB_BARCODE、TB_JOB、TB_FORMULAを更新

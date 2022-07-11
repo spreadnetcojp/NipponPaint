@@ -171,7 +171,7 @@ namespace NipponPaint.NpCommon
             /// <summary>
             /// Supervisor I/F 処理実行
             /// </summary>
-            [Display(Order = (int)Log.LogType.Info, Description = "Supervisor I/F 処理を実行します（バーコード：{0}、件数：{1}）")]
+            [Display(Order = (int)Log.LogType.Info, Description = "Supervisor I/F 処理を実行します（{0}）")]
             ExecuteSupervisorInterface,
             /// <summary>
             /// Supervisor I/F 処理終了
@@ -1161,6 +1161,20 @@ namespace NipponPaint.NpCommon
             //↑↑追加で作成　重複する内容が見つかれば削除します。
 
             #endregion
+
+            #region ログクリーンアップ
+            /// <summary>
+            /// ログ削除失敗
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Error, Description = "ログのクリーンアップに失敗しました（エラー：{0}）")]
+            LogCleanupFailure,
+            /// <summary>
+            /// ログ削除失敗
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Error, Description = "ログをクリーンアップしました")]
+            LogCleanupComplate,
+            #endregion
+
         }
     }
 }

@@ -20,6 +20,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NipponPaint.NpCommon;
+using NipponPaint.NpCommon.IniFile;
 #endregion
 
 namespace DatabaseManager
@@ -29,6 +30,24 @@ namespace DatabaseManager
     /// </summary>
     public class BaseForm : Form
     {
+        #region プロパティ
+        public Settings BaseSettings { get; set; }
+        #endregion
+
+        #region コンストラクタ
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        public BaseForm()
+        {
+            // アプリ定義ファイル読み込み
+            BaseSettings = new Settings();
+            // ログファイルのクリーンアップ
+            Log.CleanUp(BaseSettings, Log.ApplicationType.Databasemanager);
+        }
+        #endregion
+
+        #region ログ出力
         /// <summary>
         /// ログ出力
         /// </summary>
@@ -65,6 +84,8 @@ namespace DatabaseManager
                 Messages.ShowDialog(Sentence.Messages.Exception, ex.Message);
             }
         }
+        #endregion
+
         #region DataGridViewの初期設定
         /// <summary>
         /// DataGridViewの初期設定
@@ -82,5 +103,6 @@ namespace DatabaseManager
             target.ReadOnly = true;
         }
         #endregion
+
     }
 }

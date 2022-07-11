@@ -208,7 +208,7 @@ namespace SupervisorIfSim
             this.LblPreviewTime.Location = new System.Drawing.Point(137, 17);
             this.LblPreviewTime.Name = "LblPreviewTime";
             this.LblPreviewTime.Size = new System.Drawing.Size(248, 18);
-            this.LblPreviewTime.TabIndex = 4;
+            this.LblPreviewTime.TabIndex = 2;
             this.LblPreviewTime.Text = "秒周期で更新（最終更新時刻：hh:mm:ss）";
             this.LblPreviewTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -218,7 +218,7 @@ namespace SupervisorIfSim
             this.LblCycle.Location = new System.Drawing.Point(120, 17);
             this.LblCycle.Name = "LblCycle";
             this.LblCycle.Size = new System.Drawing.Size(22, 18);
-            this.LblCycle.TabIndex = 3;
+            this.LblCycle.TabIndex = 1;
             this.LblCycle.Text = "10";
             this.LblCycle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -228,7 +228,7 @@ namespace SupervisorIfSim
             this.BtnPreview.Location = new System.Drawing.Point(1779, 8);
             this.BtnPreview.Name = "BtnPreview";
             this.BtnPreview.Size = new System.Drawing.Size(98, 35);
-            this.BtnPreview.TabIndex = 2;
+            this.BtnPreview.TabIndex = 3;
             this.BtnPreview.Text = "一覧更新(F10)";
             this.BtnPreview.UseVisualStyleBackColor = true;
             // 
@@ -237,7 +237,7 @@ namespace SupervisorIfSim
             this.BtnTimer.Location = new System.Drawing.Point(6, 8);
             this.BtnTimer.Name = "BtnTimer";
             this.BtnTimer.Size = new System.Drawing.Size(98, 35);
-            this.BtnTimer.TabIndex = 1;
+            this.BtnTimer.TabIndex = 0;
             this.BtnTimer.Text = "開始(F9)";
             this.BtnTimer.UseVisualStyleBackColor = true;
             // 
@@ -300,7 +300,7 @@ namespace SupervisorIfSim
             this.BtnPrdTimeInserted.Location = new System.Drawing.Point(159, 82);
             this.BtnPrdTimeInserted.Name = "BtnPrdTimeInserted";
             this.BtnPrdTimeInserted.Size = new System.Drawing.Size(75, 26);
-            this.BtnPrdTimeInserted.TabIndex = 203;
+            this.BtnPrdTimeInserted.TabIndex = 5;
             this.BtnPrdTimeInserted.Text = "現在日時";
             this.BtnPrdTimeInserted.UseVisualStyleBackColor = true;
             this.BtnPrdTimeInserted.Click += new System.EventHandler(this.BtnPrdTimeInserted_Click);
@@ -311,7 +311,7 @@ namespace SupervisorIfSim
             this.BtnRegistFormulaCorob.Location = new System.Drawing.Point(303, 10);
             this.BtnRegistFormulaCorob.Name = "BtnRegistFormulaCorob";
             this.BtnRegistFormulaCorob.Size = new System.Drawing.Size(109, 35);
-            this.BtnRegistFormulaCorob.TabIndex = 200;
+            this.BtnRegistFormulaCorob.TabIndex = 2;
             this.BtnRegistFormulaCorob.Text = "COROB登録(F7)";
             this.BtnRegistFormulaCorob.UseVisualStyleBackColor = true;
             this.BtnRegistFormulaCorob.Click += new System.EventHandler(this.BtnRegistFormulaCorob_Click);
@@ -322,7 +322,7 @@ namespace SupervisorIfSim
             this.BtnRegistFormulaErp.Location = new System.Drawing.Point(191, 10);
             this.BtnRegistFormulaErp.Name = "BtnRegistFormulaErp";
             this.BtnRegistFormulaErp.Size = new System.Drawing.Size(109, 35);
-            this.BtnRegistFormulaErp.TabIndex = 75;
+            this.BtnRegistFormulaErp.TabIndex = 1;
             this.BtnRegistFormulaErp.Text = "ERP登録(F6)";
             this.BtnRegistFormulaErp.UseVisualStyleBackColor = true;
             this.BtnRegistFormulaErp.Click += new System.EventHandler(this.BtnRegistFormulaErp_Click);
@@ -342,7 +342,7 @@ namespace SupervisorIfSim
             this.RdbPrdIsprefilled.SecondButtonText = "true";
             this.RdbPrdIsprefilled.SecondButtonVisible = true;
             this.RdbPrdIsprefilled.Size = new System.Drawing.Size(220, 25);
-            this.RdbPrdIsprefilled.TabIndex = 199;
+            this.RdbPrdIsprefilled.TabIndex = 29;
             this.RdbPrdIsprefilled.ThirdButtonDefault = 2;
             this.RdbPrdIsprefilled.ThirdButtonLeftPosition = 150;
             this.RdbPrdIsprefilled.ThirdButtonText = "エラー";
@@ -364,7 +364,7 @@ namespace SupervisorIfSim
             this.RdbPrdUm.SecondButtonText = "ｃｃ";
             this.RdbPrdUm.SecondButtonVisible = true;
             this.RdbPrdUm.Size = new System.Drawing.Size(220, 25);
-            this.RdbPrdUm.TabIndex = 199;
+            this.RdbPrdUm.TabIndex = 13;
             this.RdbPrdUm.ThirdButtonDefault = 2;
             this.RdbPrdUm.ThirdButtonLeftPosition = 150;
             this.RdbPrdUm.ThirdButtonText = "エラー";
@@ -386,7 +386,7 @@ namespace SupervisorIfSim
             this.RdbPrdStatus.SecondButtonText = "吐出完了";
             this.RdbPrdStatus.SecondButtonVisible = true;
             this.RdbPrdStatus.Size = new System.Drawing.Size(220, 25);
-            this.RdbPrdStatus.TabIndex = 199;
+            this.RdbPrdStatus.TabIndex = 7;
             this.RdbPrdStatus.ThirdButtonDefault = 2;
             this.RdbPrdStatus.ThirdButtonLeftPosition = 150;
             this.RdbPrdStatus.ThirdButtonText = "エラー";
@@ -403,7 +403,7 @@ namespace SupervisorIfSim
             this.label39.Location = new System.Drawing.Point(2, 3);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(415, 50);
-            this.label39.TabIndex = 46;
+            this.label39.TabIndex = 0;
             this.label39.Text = "■TB_FORMURA";
             this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -414,8 +414,7 @@ namespace SupervisorIfSim
             this.TxtPrdPrefilledQty.Location = new System.Drawing.Point(159, 422);
             this.TxtPrdPrefilledQty.Name = "TxtPrdPrefilledQty";
             this.TxtPrdPrefilledQty.Size = new System.Drawing.Size(258, 25);
-            this.TxtPrdPrefilledQty.TabIndex = 74;
-            this.TxtPrdPrefilledQty.Text = "1234567890123456789012345";
+            this.TxtPrdPrefilledQty.TabIndex = 31;
             // 
             // TxtPrdNum
             // 
@@ -424,8 +423,7 @@ namespace SupervisorIfSim
             this.TxtPrdNum.Location = new System.Drawing.Point(159, 370);
             this.TxtPrdNum.Name = "TxtPrdNum";
             this.TxtPrdNum.Size = new System.Drawing.Size(258, 25);
-            this.TxtPrdNum.TabIndex = 70;
-            this.TxtPrdNum.Text = "1234567890123456789012345";
+            this.TxtPrdNum.TabIndex = 27;
             // 
             // TxtPrdPriority
             // 
@@ -434,8 +432,7 @@ namespace SupervisorIfSim
             this.TxtPrdPriority.Location = new System.Drawing.Point(159, 344);
             this.TxtPrdPriority.Name = "TxtPrdPriority";
             this.TxtPrdPriority.Size = new System.Drawing.Size(258, 25);
-            this.TxtPrdPriority.TabIndex = 68;
-            this.TxtPrdPriority.Text = "1234567890123456789012345";
+            this.TxtPrdPriority.TabIndex = 25;
             // 
             // TxtPrdEndDisp
             // 
@@ -445,8 +442,7 @@ namespace SupervisorIfSim
             this.TxtPrdEndDisp.Location = new System.Drawing.Point(159, 318);
             this.TxtPrdEndDisp.Name = "TxtPrdEndDisp";
             this.TxtPrdEndDisp.Size = new System.Drawing.Size(258, 25);
-            this.TxtPrdEndDisp.TabIndex = 66;
-            this.TxtPrdEndDisp.Text = "1234567890123456789012345";
+            this.TxtPrdEndDisp.TabIndex = 23;
             // 
             // TxtPrdStartDisp
             // 
@@ -456,8 +452,7 @@ namespace SupervisorIfSim
             this.TxtPrdStartDisp.Location = new System.Drawing.Point(159, 292);
             this.TxtPrdStartDisp.Name = "TxtPrdStartDisp";
             this.TxtPrdStartDisp.Size = new System.Drawing.Size(258, 25);
-            this.TxtPrdStartDisp.TabIndex = 64;
-            this.TxtPrdStartDisp.Text = "1234567890123456789012345";
+            this.TxtPrdStartDisp.TabIndex = 21;
             // 
             // label17
             // 
@@ -466,7 +461,7 @@ namespace SupervisorIfSim
             this.label17.Location = new System.Drawing.Point(2, 422);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(155, 25);
-            this.label17.TabIndex = 73;
+            this.label17.TabIndex = 30;
             this.label17.Text = "PRD_PREFILLED_QTY";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -477,7 +472,7 @@ namespace SupervisorIfSim
             this.label18.Location = new System.Drawing.Point(2, 396);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(155, 25);
-            this.label18.TabIndex = 71;
+            this.label18.TabIndex = 28;
             this.label18.Text = "PRD_ISPREFILLED";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -488,7 +483,7 @@ namespace SupervisorIfSim
             this.label19.Location = new System.Drawing.Point(2, 370);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(155, 25);
-            this.label19.TabIndex = 69;
+            this.label19.TabIndex = 26;
             this.label19.Text = "PRD_NUM";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -499,7 +494,7 @@ namespace SupervisorIfSim
             this.label20.Location = new System.Drawing.Point(2, 344);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(155, 25);
-            this.label20.TabIndex = 67;
+            this.label20.TabIndex = 24;
             this.label20.Text = "PRD_PRIORITY";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -510,7 +505,7 @@ namespace SupervisorIfSim
             this.label21.Location = new System.Drawing.Point(2, 318);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(155, 25);
-            this.label21.TabIndex = 65;
+            this.label21.TabIndex = 22;
             this.label21.Text = "PRD_END_DISP";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -521,7 +516,7 @@ namespace SupervisorIfSim
             this.label22.Location = new System.Drawing.Point(2, 292);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(155, 25);
-            this.label22.TabIndex = 63;
+            this.label22.TabIndex = 20;
             this.label22.Text = "PRD_START_DISP";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -533,8 +528,7 @@ namespace SupervisorIfSim
             this.TxtPrdQtyDisp.Location = new System.Drawing.Point(159, 266);
             this.TxtPrdQtyDisp.Name = "TxtPrdQtyDisp";
             this.TxtPrdQtyDisp.Size = new System.Drawing.Size(258, 25);
-            this.TxtPrdQtyDisp.TabIndex = 62;
-            this.TxtPrdQtyDisp.Text = "1234567890123456789012345";
+            this.TxtPrdQtyDisp.TabIndex = 19;
             // 
             // label23
             // 
@@ -543,7 +537,7 @@ namespace SupervisorIfSim
             this.label23.Location = new System.Drawing.Point(2, 266);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(155, 25);
-            this.label23.TabIndex = 61;
+            this.label23.TabIndex = 18;
             this.label23.Text = "PRD_QTY_DISP";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -554,8 +548,7 @@ namespace SupervisorIfSim
             this.TxtPrdQtyReq.Location = new System.Drawing.Point(159, 240);
             this.TxtPrdQtyReq.Name = "TxtPrdQtyReq";
             this.TxtPrdQtyReq.Size = new System.Drawing.Size(258, 25);
-            this.TxtPrdQtyReq.TabIndex = 60;
-            this.TxtPrdQtyReq.Text = "1234567890123456789012345";
+            this.TxtPrdQtyReq.TabIndex = 17;
             // 
             // TxtPrdSpecificGravity
             // 
@@ -564,8 +557,7 @@ namespace SupervisorIfSim
             this.TxtPrdSpecificGravity.Location = new System.Drawing.Point(159, 214);
             this.TxtPrdSpecificGravity.Name = "TxtPrdSpecificGravity";
             this.TxtPrdSpecificGravity.Size = new System.Drawing.Size(258, 25);
-            this.TxtPrdSpecificGravity.TabIndex = 58;
-            this.TxtPrdSpecificGravity.Text = "1234567890123456789012345";
+            this.TxtPrdSpecificGravity.TabIndex = 15;
             // 
             // TxtPrdDesc
             // 
@@ -574,8 +566,7 @@ namespace SupervisorIfSim
             this.TxtPrdDesc.Location = new System.Drawing.Point(159, 162);
             this.TxtPrdDesc.Name = "TxtPrdDesc";
             this.TxtPrdDesc.Size = new System.Drawing.Size(258, 25);
-            this.TxtPrdDesc.TabIndex = 54;
-            this.TxtPrdDesc.Text = "1234567890123456789012345";
+            this.TxtPrdDesc.TabIndex = 11;
             // 
             // TxtPrdCode
             // 
@@ -586,8 +577,7 @@ namespace SupervisorIfSim
             this.TxtPrdCode.Name = "TxtPrdCode";
             this.TxtPrdCode.ReadOnly = true;
             this.TxtPrdCode.Size = new System.Drawing.Size(258, 25);
-            this.TxtPrdCode.TabIndex = 52;
-            this.TxtPrdCode.Text = "1234567890123456789012345";
+            this.TxtPrdCode.TabIndex = 9;
             // 
             // label11
             // 
@@ -596,7 +586,7 @@ namespace SupervisorIfSim
             this.label11.Location = new System.Drawing.Point(2, 240);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(155, 25);
-            this.label11.TabIndex = 59;
+            this.label11.TabIndex = 16;
             this.label11.Text = "PRD_QTY_REQ";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -607,7 +597,7 @@ namespace SupervisorIfSim
             this.label12.Location = new System.Drawing.Point(2, 214);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(155, 25);
-            this.label12.TabIndex = 57;
+            this.label12.TabIndex = 14;
             this.label12.Text = "PRD_SPECIFIC_GRAVITY";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -618,7 +608,7 @@ namespace SupervisorIfSim
             this.label13.Location = new System.Drawing.Point(2, 188);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(155, 25);
-            this.label13.TabIndex = 55;
+            this.label13.TabIndex = 12;
             this.label13.Text = "UM";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -629,7 +619,7 @@ namespace SupervisorIfSim
             this.label14.Location = new System.Drawing.Point(2, 162);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(155, 25);
-            this.label14.TabIndex = 53;
+            this.label14.TabIndex = 10;
             this.label14.Text = "PRD_DESC";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -640,7 +630,7 @@ namespace SupervisorIfSim
             this.label15.Location = new System.Drawing.Point(2, 136);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(155, 25);
-            this.label15.TabIndex = 51;
+            this.label15.TabIndex = 8;
             this.label15.Text = "PRD_CODE";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -651,7 +641,7 @@ namespace SupervisorIfSim
             this.label16.Location = new System.Drawing.Point(2, 110);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(155, 25);
-            this.label16.TabIndex = 49;
+            this.label16.TabIndex = 6;
             this.label16.Text = "PRD_STATUS";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -662,8 +652,7 @@ namespace SupervisorIfSim
             this.TxtPrdTimeInserted.Location = new System.Drawing.Point(159, 56);
             this.TxtPrdTimeInserted.Name = "TxtPrdTimeInserted";
             this.TxtPrdTimeInserted.Size = new System.Drawing.Size(258, 25);
-            this.TxtPrdTimeInserted.TabIndex = 48;
-            this.TxtPrdTimeInserted.Text = "1234567890123456789012345";
+            this.TxtPrdTimeInserted.TabIndex = 4;
             // 
             // label9
             // 
@@ -672,7 +661,7 @@ namespace SupervisorIfSim
             this.label9.Location = new System.Drawing.Point(2, 56);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(155, 25);
-            this.label9.TabIndex = 47;
+            this.label9.TabIndex = 3;
             this.label9.Text = "TIME_INSERTED";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -819,7 +808,7 @@ namespace SupervisorIfSim
             this.BtnJobTimeInserted.Location = new System.Drawing.Point(159, 348);
             this.BtnJobTimeInserted.Name = "BtnJobTimeInserted";
             this.BtnJobTimeInserted.Size = new System.Drawing.Size(75, 26);
-            this.BtnJobTimeInserted.TabIndex = 203;
+            this.BtnJobTimeInserted.TabIndex = 26;
             this.BtnJobTimeInserted.Text = "現在日時";
             this.BtnJobTimeInserted.UseVisualStyleBackColor = true;
             this.BtnJobTimeInserted.Click += new System.EventHandler(this.BtnJobTimeInserted_Click);
@@ -829,7 +818,7 @@ namespace SupervisorIfSim
             this.BtnBrcTimeProcessed.Location = new System.Drawing.Point(365, 137);
             this.BtnBrcTimeProcessed.Name = "BtnBrcTimeProcessed";
             this.BtnBrcTimeProcessed.Size = new System.Drawing.Size(75, 26);
-            this.BtnBrcTimeProcessed.TabIndex = 202;
+            this.BtnBrcTimeProcessed.TabIndex = 12;
             this.BtnBrcTimeProcessed.Text = "現在日時";
             this.BtnBrcTimeProcessed.UseVisualStyleBackColor = true;
             this.BtnBrcTimeProcessed.Click += new System.EventHandler(this.BtnBrcTimeProcessed_Click);
@@ -839,7 +828,7 @@ namespace SupervisorIfSim
             this.BtnBrcTimeInserted.Location = new System.Drawing.Point(365, 111);
             this.BtnBrcTimeInserted.Name = "BtnBrcTimeInserted";
             this.BtnBrcTimeInserted.Size = new System.Drawing.Size(75, 26);
-            this.BtnBrcTimeInserted.TabIndex = 201;
+            this.BtnBrcTimeInserted.TabIndex = 9;
             this.BtnBrcTimeInserted.Text = "現在日時";
             this.BtnBrcTimeInserted.UseVisualStyleBackColor = true;
             this.BtnBrcTimeInserted.Click += new System.EventHandler(this.BtnBrcTimeInserted_Click);
@@ -849,7 +838,7 @@ namespace SupervisorIfSim
             this.BtnRegistJobCorob.Location = new System.Drawing.Point(245, 276);
             this.BtnRegistJobCorob.Name = "BtnRegistJobCorob";
             this.BtnRegistJobCorob.Size = new System.Drawing.Size(109, 35);
-            this.BtnRegistJobCorob.TabIndex = 200;
+            this.BtnRegistJobCorob.TabIndex = 23;
             this.BtnRegistJobCorob.Text = "COROB更新(F5)";
             this.BtnRegistJobCorob.UseVisualStyleBackColor = true;
             this.BtnRegistJobCorob.Click += new System.EventHandler(this.BtnRegistJobCorob_Click);
@@ -859,7 +848,7 @@ namespace SupervisorIfSim
             this.BtnRegistBarcodeCorob.Location = new System.Drawing.Point(245, 65);
             this.BtnRegistBarcodeCorob.Name = "BtnRegistBarcodeCorob";
             this.BtnRegistBarcodeCorob.Size = new System.Drawing.Size(109, 35);
-            this.BtnRegistBarcodeCorob.TabIndex = 199;
+            this.BtnRegistBarcodeCorob.TabIndex = 6;
             this.BtnRegistBarcodeCorob.Text = "COROB更新(F3)";
             this.BtnRegistBarcodeCorob.UseVisualStyleBackColor = true;
             this.BtnRegistBarcodeCorob.Click += new System.EventHandler(this.BtnRegistBarcodeCorob_Click);
@@ -879,7 +868,7 @@ namespace SupervisorIfSim
             this.RdbJobExitPosition.SecondButtonText = "テスト出口";
             this.RdbJobExitPosition.SecondButtonVisible = true;
             this.RdbJobExitPosition.Size = new System.Drawing.Size(200, 25);
-            this.RdbJobExitPosition.TabIndex = 198;
+            this.RdbJobExitPosition.TabIndex = 83;
             this.RdbJobExitPosition.ThirdButtonDefault = 3;
             this.RdbJobExitPosition.ThirdButtonLeftPosition = 150;
             this.RdbJobExitPosition.ThirdButtonText = "エラー";
@@ -901,7 +890,7 @@ namespace SupervisorIfSim
             this.RdbJobPrinting3.SecondButtonText = "プリンター使用";
             this.RdbJobPrinting3.SecondButtonVisible = true;
             this.RdbJobPrinting3.Size = new System.Drawing.Size(200, 25);
-            this.RdbJobPrinting3.TabIndex = 197;
+            this.RdbJobPrinting3.TabIndex = 81;
             this.RdbJobPrinting3.ThirdButtonDefault = 2;
             this.RdbJobPrinting3.ThirdButtonLeftPosition = 150;
             this.RdbJobPrinting3.ThirdButtonText = "エラー";
@@ -923,7 +912,7 @@ namespace SupervisorIfSim
             this.RdbJobPrinting2.SecondButtonText = "プリンター使用";
             this.RdbJobPrinting2.SecondButtonVisible = true;
             this.RdbJobPrinting2.Size = new System.Drawing.Size(200, 25);
-            this.RdbJobPrinting2.TabIndex = 196;
+            this.RdbJobPrinting2.TabIndex = 79;
             this.RdbJobPrinting2.ThirdButtonDefault = 2;
             this.RdbJobPrinting2.ThirdButtonLeftPosition = 150;
             this.RdbJobPrinting2.ThirdButtonText = "エラー";
@@ -945,7 +934,7 @@ namespace SupervisorIfSim
             this.RdbJobPrinting1.SecondButtonText = "プリンター使用";
             this.RdbJobPrinting1.SecondButtonVisible = true;
             this.RdbJobPrinting1.Size = new System.Drawing.Size(200, 25);
-            this.RdbJobPrinting1.TabIndex = 195;
+            this.RdbJobPrinting1.TabIndex = 77;
             this.RdbJobPrinting1.ThirdButtonDefault = 2;
             this.RdbJobPrinting1.ThirdButtonLeftPosition = 150;
             this.RdbJobPrinting1.ThirdButtonText = "エラー";
@@ -967,7 +956,7 @@ namespace SupervisorIfSim
             this.RdbJobLidCheck.SecondButtonText = "蓋確認を行う";
             this.RdbJobLidCheck.SecondButtonVisible = true;
             this.RdbJobLidCheck.Size = new System.Drawing.Size(200, 25);
-            this.RdbJobLidCheck.TabIndex = 194;
+            this.RdbJobLidCheck.TabIndex = 75;
             this.RdbJobLidCheck.ThirdButtonDefault = 2;
             this.RdbJobLidCheck.ThirdButtonLeftPosition = 150;
             this.RdbJobLidCheck.ThirdButtonText = "エラー";
@@ -989,7 +978,7 @@ namespace SupervisorIfSim
             this.RdbJobLidPlacing.SecondButtonText = "蓋が必要な缶";
             this.RdbJobLidPlacing.SecondButtonVisible = true;
             this.RdbJobLidPlacing.Size = new System.Drawing.Size(200, 25);
-            this.RdbJobLidPlacing.TabIndex = 193;
+            this.RdbJobLidPlacing.TabIndex = 73;
             this.RdbJobLidPlacing.ThirdButtonDefault = 2;
             this.RdbJobLidPlacing.ThirdButtonLeftPosition = 150;
             this.RdbJobLidPlacing.ThirdButtonText = "エラー";
@@ -1011,7 +1000,7 @@ namespace SupervisorIfSim
             this.RdbJobCapping.SecondButtonText = "栓が必要な缶";
             this.RdbJobCapping.SecondButtonVisible = true;
             this.RdbJobCapping.Size = new System.Drawing.Size(200, 25);
-            this.RdbJobCapping.TabIndex = 192;
+            this.RdbJobCapping.TabIndex = 71;
             this.RdbJobCapping.ThirdButtonDefault = 2;
             this.RdbJobCapping.ThirdButtonLeftPosition = 150;
             this.RdbJobCapping.ThirdButtonText = "エラー";
@@ -1033,7 +1022,7 @@ namespace SupervisorIfSim
             this.RdbJobMixing.SecondButtonText = "攪拌する";
             this.RdbJobMixing.SecondButtonVisible = true;
             this.RdbJobMixing.Size = new System.Drawing.Size(200, 25);
-            this.RdbJobMixing.TabIndex = 191;
+            this.RdbJobMixing.TabIndex = 65;
             this.RdbJobMixing.ThirdButtonDefault = 2;
             this.RdbJobMixing.ThirdButtonLeftPosition = 150;
             this.RdbJobMixing.ThirdButtonText = "エラー";
@@ -1055,7 +1044,7 @@ namespace SupervisorIfSim
             this.RdbBrcStatus.SecondButtonText = "ERP処理済";
             this.RdbBrcStatus.SecondButtonVisible = true;
             this.RdbBrcStatus.Size = new System.Drawing.Size(200, 22);
-            this.RdbBrcStatus.TabIndex = 190;
+            this.RdbBrcStatus.TabIndex = 14;
             this.RdbBrcStatus.ThirdButtonDefault = 2;
             this.RdbBrcStatus.ThirdButtonLeftPosition = 177;
             this.RdbBrcStatus.ThirdButtonText = "エラー";
@@ -1067,7 +1056,7 @@ namespace SupervisorIfSim
             this.BtnRegistBarcodeErp.Location = new System.Drawing.Point(133, 65);
             this.BtnRegistBarcodeErp.Name = "BtnRegistBarcodeErp";
             this.BtnRegistBarcodeErp.Size = new System.Drawing.Size(109, 35);
-            this.BtnRegistBarcodeErp.TabIndex = 189;
+            this.BtnRegistBarcodeErp.TabIndex = 5;
             this.BtnRegistBarcodeErp.Text = "ERP更新(F2)";
             this.BtnRegistBarcodeErp.UseVisualStyleBackColor = true;
             this.BtnRegistBarcodeErp.Click += new System.EventHandler(this.BtnRegistBarcodeErp_Click);
@@ -1077,7 +1066,7 @@ namespace SupervisorIfSim
             this.BtnRegistJobErp.Location = new System.Drawing.Point(133, 276);
             this.BtnRegistJobErp.Name = "BtnRegistJobErp";
             this.BtnRegistJobErp.Size = new System.Drawing.Size(109, 35);
-            this.BtnRegistJobErp.TabIndex = 188;
+            this.BtnRegistJobErp.TabIndex = 22;
             this.BtnRegistJobErp.Text = "ERP登録(F4)";
             this.BtnRegistJobErp.UseVisualStyleBackColor = true;
             this.BtnRegistJobErp.Click += new System.EventHandler(this.BtnRegistJobErp_Click);
@@ -1088,8 +1077,7 @@ namespace SupervisorIfSim
             this.TxtJobErr5.Location = new System.Drawing.Point(520, 816);
             this.TxtJobErr5.Name = "TxtJobErr5";
             this.TxtJobErr5.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobErr5.TabIndex = 187;
-            this.TxtJobErr5.Text = "1234567890123456789012345";
+            this.TxtJobErr5.TabIndex = 103;
             // 
             // label67
             // 
@@ -1098,7 +1086,7 @@ namespace SupervisorIfSim
             this.label67.Location = new System.Drawing.Point(363, 816);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(155, 25);
-            this.label67.TabIndex = 186;
+            this.label67.TabIndex = 102;
             this.label67.Text = "ERR_5";
             this.label67.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1108,48 +1096,42 @@ namespace SupervisorIfSim
             this.TxtJobErr2.Location = new System.Drawing.Point(520, 738);
             this.TxtJobErr2.Name = "TxtJobErr2";
             this.TxtJobErr2.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobErr2.TabIndex = 181;
-            this.TxtJobErr2.Text = "1234567890123456789012345";
+            this.TxtJobErr2.TabIndex = 97;
             // 
             // TxtJobTag5
             // 
             this.TxtJobTag5.Location = new System.Drawing.Point(520, 686);
             this.TxtJobTag5.Name = "TxtJobTag5";
             this.TxtJobTag5.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTag5.TabIndex = 177;
-            this.TxtJobTag5.Text = "1234567890123456789012345";
+            this.TxtJobTag5.TabIndex = 93;
             // 
             // TxtJobTag4
             // 
             this.TxtJobTag4.Location = new System.Drawing.Point(520, 660);
             this.TxtJobTag4.Name = "TxtJobTag4";
             this.TxtJobTag4.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTag4.TabIndex = 175;
-            this.TxtJobTag4.Text = "1234567890123456789012345";
+            this.TxtJobTag4.TabIndex = 91;
             // 
             // TxtJobTag3
             // 
             this.TxtJobTag3.Location = new System.Drawing.Point(520, 634);
             this.TxtJobTag3.Name = "TxtJobTag3";
             this.TxtJobTag3.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTag3.TabIndex = 173;
-            this.TxtJobTag3.Text = "1234567890123456789012345";
+            this.TxtJobTag3.TabIndex = 89;
             // 
             // TxtJobTag2
             // 
             this.TxtJobTag2.Location = new System.Drawing.Point(520, 608);
             this.TxtJobTag2.Name = "TxtJobTag2";
             this.TxtJobTag2.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTag2.TabIndex = 171;
-            this.TxtJobTag2.Text = "1234567890123456789012345";
+            this.TxtJobTag2.TabIndex = 87;
             // 
             // TxtJobTag1
             // 
             this.TxtJobTag1.Location = new System.Drawing.Point(520, 582);
             this.TxtJobTag1.Name = "TxtJobTag1";
             this.TxtJobTag1.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTag1.TabIndex = 169;
-            this.TxtJobTag1.Text = "1234567890123456789012345";
+            this.TxtJobTag1.TabIndex = 85;
             // 
             // label58
             // 
@@ -1158,7 +1140,7 @@ namespace SupervisorIfSim
             this.label58.Location = new System.Drawing.Point(363, 738);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(155, 25);
-            this.label58.TabIndex = 180;
+            this.label58.TabIndex = 96;
             this.label58.Text = "ERR_2";
             this.label58.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1169,7 +1151,7 @@ namespace SupervisorIfSim
             this.label59.Location = new System.Drawing.Point(363, 686);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(155, 25);
-            this.label59.TabIndex = 176;
+            this.label59.TabIndex = 92;
             this.label59.Text = "TAG_5";
             this.label59.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1180,7 +1162,7 @@ namespace SupervisorIfSim
             this.label60.Location = new System.Drawing.Point(363, 660);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(155, 25);
-            this.label60.TabIndex = 174;
+            this.label60.TabIndex = 90;
             this.label60.Text = "TAG_4";
             this.label60.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1191,7 +1173,7 @@ namespace SupervisorIfSim
             this.label61.Location = new System.Drawing.Point(363, 634);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(155, 25);
-            this.label61.TabIndex = 172;
+            this.label61.TabIndex = 88;
             this.label61.Text = "TAG_3";
             this.label61.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1202,7 +1184,7 @@ namespace SupervisorIfSim
             this.label62.Location = new System.Drawing.Point(363, 608);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(155, 25);
-            this.label62.TabIndex = 170;
+            this.label62.TabIndex = 86;
             this.label62.Text = "TAG_2";
             this.label62.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1213,7 +1195,7 @@ namespace SupervisorIfSim
             this.label63.Location = new System.Drawing.Point(363, 582);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(155, 25);
-            this.label63.TabIndex = 168;
+            this.label63.TabIndex = 84;
             this.label63.Text = "TAG_1";
             this.label63.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1223,8 +1205,7 @@ namespace SupervisorIfSim
             this.TxtJobErr1.Location = new System.Drawing.Point(520, 712);
             this.TxtJobErr1.Name = "TxtJobErr1";
             this.TxtJobErr1.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobErr1.TabIndex = 179;
-            this.TxtJobErr1.Text = "1234567890123456789012345";
+            this.TxtJobErr1.TabIndex = 95;
             // 
             // TxtJobErr3
             // 
@@ -1232,8 +1213,7 @@ namespace SupervisorIfSim
             this.TxtJobErr3.Location = new System.Drawing.Point(520, 764);
             this.TxtJobErr3.Name = "TxtJobErr3";
             this.TxtJobErr3.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobErr3.TabIndex = 183;
-            this.TxtJobErr3.Text = "1234567890123456789012345";
+            this.TxtJobErr3.TabIndex = 99;
             // 
             // label64
             // 
@@ -1242,7 +1222,7 @@ namespace SupervisorIfSim
             this.label64.Location = new System.Drawing.Point(363, 712);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(155, 25);
-            this.label64.TabIndex = 178;
+            this.label64.TabIndex = 94;
             this.label64.Text = "ERR_1";
             this.label64.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1253,7 +1233,7 @@ namespace SupervisorIfSim
             this.label65.Location = new System.Drawing.Point(363, 764);
             this.label65.Name = "label65";
             this.label65.Size = new System.Drawing.Size(155, 25);
-            this.label65.TabIndex = 182;
+            this.label65.TabIndex = 98;
             this.label65.Text = "ERR_3";
             this.label65.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1263,8 +1243,7 @@ namespace SupervisorIfSim
             this.TxtJobErr4.Location = new System.Drawing.Point(520, 790);
             this.TxtJobErr4.Name = "TxtJobErr4";
             this.TxtJobErr4.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobErr4.TabIndex = 185;
-            this.TxtJobErr4.Text = "1234567890123456789012345";
+            this.TxtJobErr4.TabIndex = 101;
             // 
             // label66
             // 
@@ -1273,7 +1252,7 @@ namespace SupervisorIfSim
             this.label66.Location = new System.Drawing.Point(363, 790);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(155, 25);
-            this.label66.TabIndex = 184;
+            this.label66.TabIndex = 100;
             this.label66.Text = "ERR_4";
             this.label66.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1282,16 +1261,14 @@ namespace SupervisorIfSim
             this.TxtJobMixingSpeed.Location = new System.Drawing.Point(520, 374);
             this.TxtJobMixingSpeed.Name = "TxtJobMixingSpeed";
             this.TxtJobMixingSpeed.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobMixingSpeed.TabIndex = 153;
-            this.TxtJobMixingSpeed.Text = "1234567890123456789012345";
+            this.TxtJobMixingSpeed.TabIndex = 69;
             // 
             // TxtJobMixingTime
             // 
             this.TxtJobMixingTime.Location = new System.Drawing.Point(520, 348);
             this.TxtJobMixingTime.Name = "TxtJobMixingTime";
             this.TxtJobMixingTime.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobMixingTime.TabIndex = 151;
-            this.TxtJobMixingTime.Text = "1234567890123456789012345";
+            this.TxtJobMixingTime.TabIndex = 67;
             // 
             // label40
             // 
@@ -1300,7 +1277,7 @@ namespace SupervisorIfSim
             this.label40.Location = new System.Drawing.Point(363, 504);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(155, 25);
-            this.label40.TabIndex = 162;
+            this.label40.TabIndex = 78;
             this.label40.Text = "PRINTING_2";
             this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1311,7 +1288,7 @@ namespace SupervisorIfSim
             this.label41.Location = new System.Drawing.Point(363, 452);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(155, 25);
-            this.label41.TabIndex = 158;
+            this.label41.TabIndex = 74;
             this.label41.Text = "LID_CHECK";
             this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1322,7 +1299,7 @@ namespace SupervisorIfSim
             this.label42.Location = new System.Drawing.Point(363, 426);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(155, 25);
-            this.label42.TabIndex = 156;
+            this.label42.TabIndex = 72;
             this.label42.Text = "LID_PLACING";
             this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1333,7 +1310,7 @@ namespace SupervisorIfSim
             this.label43.Location = new System.Drawing.Point(363, 400);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(155, 25);
-            this.label43.TabIndex = 154;
+            this.label43.TabIndex = 70;
             this.label43.Text = "CAPPING";
             this.label43.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1344,7 +1321,7 @@ namespace SupervisorIfSim
             this.label44.Location = new System.Drawing.Point(363, 374);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(155, 25);
-            this.label44.TabIndex = 152;
+            this.label44.TabIndex = 68;
             this.label44.Text = "MIXING_SPEED";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1355,7 +1332,7 @@ namespace SupervisorIfSim
             this.label45.Location = new System.Drawing.Point(363, 348);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(155, 25);
-            this.label45.TabIndex = 150;
+            this.label45.TabIndex = 66;
             this.label45.Text = "MIXING_TIME";
             this.label45.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1366,7 +1343,7 @@ namespace SupervisorIfSim
             this.label46.Location = new System.Drawing.Point(363, 322);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(155, 25);
-            this.label46.TabIndex = 148;
+            this.label46.TabIndex = 64;
             this.label46.Text = "MIXING";
             this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1377,7 +1354,7 @@ namespace SupervisorIfSim
             this.label47.Location = new System.Drawing.Point(363, 478);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(155, 25);
-            this.label47.TabIndex = 160;
+            this.label47.TabIndex = 76;
             this.label47.Text = "PRINTING_1";
             this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1388,7 +1365,7 @@ namespace SupervisorIfSim
             this.label51.Location = new System.Drawing.Point(363, 530);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(155, 25);
-            this.label51.TabIndex = 164;
+            this.label51.TabIndex = 80;
             this.label51.Text = "PRINTING_3";
             this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1399,7 +1376,7 @@ namespace SupervisorIfSim
             this.label28.Location = new System.Drawing.Point(363, 556);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(155, 25);
-            this.label28.TabIndex = 166;
+            this.label28.TabIndex = 82;
             this.label28.Text = "EXIT_POSITION";
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1410,7 +1387,7 @@ namespace SupervisorIfSim
             this.DrpJobStatus.Location = new System.Drawing.Point(159, 374);
             this.DrpJobStatus.Name = "DrpJobStatus";
             this.DrpJobStatus.Size = new System.Drawing.Size(200, 26);
-            this.DrpJobStatus.TabIndex = 112;
+            this.DrpJobStatus.TabIndex = 28;
             // 
             // label57
             // 
@@ -1419,7 +1396,7 @@ namespace SupervisorIfSim
             this.label57.Location = new System.Drawing.Point(2, 816);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(357, 25);
-            this.label57.TabIndex = 139;
+            this.label57.TabIndex = 57;
             this.label57.Text = "TOT_GRAVIMETRIC_WEIGHT";
             this.label57.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
@@ -1430,7 +1407,7 @@ namespace SupervisorIfSim
             this.label24.Location = new System.Drawing.Point(2, 712);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(357, 25);
-            this.label24.TabIndex = 132;
+            this.label24.TabIndex = 50;
             this.label24.Text = "TOT_COLORANT_WEIGHT";
             this.label24.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
@@ -1441,7 +1418,7 @@ namespace SupervisorIfSim
             this.label56.Location = new System.Drawing.Point(2, 608);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(357, 25);
-            this.label56.TabIndex = 125;
+            this.label56.TabIndex = 43;
             this.label56.Text = "NET_WEIGHT";
             this.label56.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
@@ -1452,7 +1429,7 @@ namespace SupervisorIfSim
             this.label32.Location = new System.Drawing.Point(2, 504);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(357, 25);
-            this.label32.TabIndex = 147;
+            this.label32.TabIndex = 36;
             this.label32.Text = "GROSS_WEIGHT";
             this.label32.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
@@ -1463,7 +1440,7 @@ namespace SupervisorIfSim
             this.label36.Location = new System.Drawing.Point(2, 400);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(357, 25);
-            this.label36.TabIndex = 146;
+            this.label36.TabIndex = 29;
             this.label36.Text = "TARE_WEIGHT";
             this.label36.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
@@ -1472,8 +1449,7 @@ namespace SupervisorIfSim
             this.TxtJobTotGravimetricWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 894);
             this.TxtJobTotGravimetricWeightPercErrAdmitted.Name = "TxtJobTotGravimetricWeightPercErrAdmitted";
             this.TxtJobTotGravimetricWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTotGravimetricWeightPercErrAdmitted.TabIndex = 145;
-            this.TxtJobTotGravimetricWeightPercErrAdmitted.Text = "1234567890123456789012345";
+            this.TxtJobTotGravimetricWeightPercErrAdmitted.TabIndex = 63;
             // 
             // TxtJobTotGravimetricWeightDetected
             // 
@@ -1481,24 +1457,21 @@ namespace SupervisorIfSim
             this.TxtJobTotGravimetricWeightDetected.Location = new System.Drawing.Point(159, 868);
             this.TxtJobTotGravimetricWeightDetected.Name = "TxtJobTotGravimetricWeightDetected";
             this.TxtJobTotGravimetricWeightDetected.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTotGravimetricWeightDetected.TabIndex = 143;
-            this.TxtJobTotGravimetricWeightDetected.Text = "1234567890123456789012345";
+            this.TxtJobTotGravimetricWeightDetected.TabIndex = 61;
             // 
             // TxtJobTotGravimetricWeightExpected
             // 
             this.TxtJobTotGravimetricWeightExpected.Location = new System.Drawing.Point(159, 842);
             this.TxtJobTotGravimetricWeightExpected.Name = "TxtJobTotGravimetricWeightExpected";
             this.TxtJobTotGravimetricWeightExpected.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTotGravimetricWeightExpected.TabIndex = 141;
-            this.TxtJobTotGravimetricWeightExpected.Text = "1234567890123456789012345";
+            this.TxtJobTotGravimetricWeightExpected.TabIndex = 59;
             // 
             // TxtJobTotColorantWeightPercErrAdmitted
             // 
             this.TxtJobTotColorantWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 790);
             this.TxtJobTotColorantWeightPercErrAdmitted.Name = "TxtJobTotColorantWeightPercErrAdmitted";
             this.TxtJobTotColorantWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTotColorantWeightPercErrAdmitted.TabIndex = 138;
-            this.TxtJobTotColorantWeightPercErrAdmitted.Text = "1234567890123456789012345";
+            this.TxtJobTotColorantWeightPercErrAdmitted.TabIndex = 56;
             // 
             // label48
             // 
@@ -1507,7 +1480,7 @@ namespace SupervisorIfSim
             this.label48.Location = new System.Drawing.Point(2, 894);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(155, 25);
-            this.label48.TabIndex = 144;
+            this.label48.TabIndex = 62;
             this.label48.Text = "PERC_ERR_ADMITTED";
             this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1518,7 +1491,7 @@ namespace SupervisorIfSim
             this.label49.Location = new System.Drawing.Point(2, 868);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(155, 25);
-            this.label49.TabIndex = 142;
+            this.label49.TabIndex = 60;
             this.label49.Text = "DETECTED";
             this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1529,7 +1502,7 @@ namespace SupervisorIfSim
             this.label50.Location = new System.Drawing.Point(2, 842);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(155, 25);
-            this.label50.TabIndex = 140;
+            this.label50.TabIndex = 58;
             this.label50.Text = "EXPECTED";
             this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1540,7 +1513,7 @@ namespace SupervisorIfSim
             this.label52.Location = new System.Drawing.Point(2, 790);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(155, 25);
-            this.label52.TabIndex = 137;
+            this.label52.TabIndex = 55;
             this.label52.Text = "PERC_ERR_ADMITTED";
             this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1550,8 +1523,7 @@ namespace SupervisorIfSim
             this.TxtJobTotColorantWeightDetected.Location = new System.Drawing.Point(159, 764);
             this.TxtJobTotColorantWeightDetected.Name = "TxtJobTotColorantWeightDetected";
             this.TxtJobTotColorantWeightDetected.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTotColorantWeightDetected.TabIndex = 136;
-            this.TxtJobTotColorantWeightDetected.Text = "1234567890123456789012345";
+            this.TxtJobTotColorantWeightDetected.TabIndex = 54;
             // 
             // label53
             // 
@@ -1560,7 +1532,7 @@ namespace SupervisorIfSim
             this.label53.Location = new System.Drawing.Point(2, 764);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(155, 25);
-            this.label53.TabIndex = 135;
+            this.label53.TabIndex = 53;
             this.label53.Text = "DETECTED";
             this.label53.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1569,8 +1541,7 @@ namespace SupervisorIfSim
             this.TxtJobTotColorantWeightExpected.Location = new System.Drawing.Point(159, 738);
             this.TxtJobTotColorantWeightExpected.Name = "TxtJobTotColorantWeightExpected";
             this.TxtJobTotColorantWeightExpected.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTotColorantWeightExpected.TabIndex = 134;
-            this.TxtJobTotColorantWeightExpected.Text = "1234567890123456789012345";
+            this.TxtJobTotColorantWeightExpected.TabIndex = 52;
             // 
             // label54
             // 
@@ -1579,7 +1550,7 @@ namespace SupervisorIfSim
             this.label54.Location = new System.Drawing.Point(2, 738);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(155, 25);
-            this.label54.TabIndex = 133;
+            this.label54.TabIndex = 51;
             this.label54.Text = "EXPECTED";
             this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1588,8 +1559,7 @@ namespace SupervisorIfSim
             this.TxtJobNetWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 686);
             this.TxtJobNetWeightPercErrAdmitted.Name = "TxtJobNetWeightPercErrAdmitted";
             this.TxtJobNetWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobNetWeightPercErrAdmitted.TabIndex = 131;
-            this.TxtJobNetWeightPercErrAdmitted.Text = "1234567890123456789012345";
+            this.TxtJobNetWeightPercErrAdmitted.TabIndex = 49;
             // 
             // TxtJobNetWeightDetected
             // 
@@ -1597,24 +1567,21 @@ namespace SupervisorIfSim
             this.TxtJobNetWeightDetected.Location = new System.Drawing.Point(159, 660);
             this.TxtJobNetWeightDetected.Name = "TxtJobNetWeightDetected";
             this.TxtJobNetWeightDetected.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobNetWeightDetected.TabIndex = 129;
-            this.TxtJobNetWeightDetected.Text = "1234567890123456789012345";
+            this.TxtJobNetWeightDetected.TabIndex = 47;
             // 
             // TxtJobNetWeightExpected
             // 
             this.TxtJobNetWeightExpected.Location = new System.Drawing.Point(159, 634);
             this.TxtJobNetWeightExpected.Name = "TxtJobNetWeightExpected";
             this.TxtJobNetWeightExpected.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobNetWeightExpected.TabIndex = 127;
-            this.TxtJobNetWeightExpected.Text = "1234567890123456789012345";
+            this.TxtJobNetWeightExpected.TabIndex = 45;
             // 
             // TxtJobGrossWeightPercErrAdmitted
             // 
             this.TxtJobGrossWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 582);
             this.TxtJobGrossWeightPercErrAdmitted.Name = "TxtJobGrossWeightPercErrAdmitted";
             this.TxtJobGrossWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobGrossWeightPercErrAdmitted.TabIndex = 124;
-            this.TxtJobGrossWeightPercErrAdmitted.Text = "1234567890123456789012345";
+            this.TxtJobGrossWeightPercErrAdmitted.TabIndex = 42;
             // 
             // label25
             // 
@@ -1623,7 +1590,7 @@ namespace SupervisorIfSim
             this.label25.Location = new System.Drawing.Point(2, 686);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(155, 25);
-            this.label25.TabIndex = 130;
+            this.label25.TabIndex = 48;
             this.label25.Text = "PERC_ERR_ADMITTED";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1634,7 +1601,7 @@ namespace SupervisorIfSim
             this.label26.Location = new System.Drawing.Point(2, 660);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(155, 25);
-            this.label26.TabIndex = 128;
+            this.label26.TabIndex = 46;
             this.label26.Text = "DETECTED";
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1645,7 +1612,7 @@ namespace SupervisorIfSim
             this.label27.Location = new System.Drawing.Point(2, 634);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(155, 25);
-            this.label27.TabIndex = 126;
+            this.label27.TabIndex = 44;
             this.label27.Text = "EXPECTED";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1656,7 +1623,7 @@ namespace SupervisorIfSim
             this.label29.Location = new System.Drawing.Point(2, 582);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(155, 25);
-            this.label29.TabIndex = 123;
+            this.label29.TabIndex = 41;
             this.label29.Text = "PERC_ERR_ADMITTED";
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1666,8 +1633,7 @@ namespace SupervisorIfSim
             this.TxtJobGrossWeightDetected.Location = new System.Drawing.Point(159, 556);
             this.TxtJobGrossWeightDetected.Name = "TxtJobGrossWeightDetected";
             this.TxtJobGrossWeightDetected.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobGrossWeightDetected.TabIndex = 122;
-            this.TxtJobGrossWeightDetected.Text = "1234567890123456789012345";
+            this.TxtJobGrossWeightDetected.TabIndex = 40;
             // 
             // label30
             // 
@@ -1676,7 +1642,7 @@ namespace SupervisorIfSim
             this.label30.Location = new System.Drawing.Point(2, 556);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(155, 25);
-            this.label30.TabIndex = 121;
+            this.label30.TabIndex = 39;
             this.label30.Text = "DETECTED";
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1685,16 +1651,14 @@ namespace SupervisorIfSim
             this.TxtJobGrossWeightExpected.Location = new System.Drawing.Point(159, 530);
             this.TxtJobGrossWeightExpected.Name = "TxtJobGrossWeightExpected";
             this.TxtJobGrossWeightExpected.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobGrossWeightExpected.TabIndex = 120;
-            this.TxtJobGrossWeightExpected.Text = "1234567890123456789012345";
+            this.TxtJobGrossWeightExpected.TabIndex = 38;
             // 
             // TxtJobTareWeightPercErrAdmitted
             // 
             this.TxtJobTareWeightPercErrAdmitted.Location = new System.Drawing.Point(159, 478);
             this.TxtJobTareWeightPercErrAdmitted.Name = "TxtJobTareWeightPercErrAdmitted";
             this.TxtJobTareWeightPercErrAdmitted.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTareWeightPercErrAdmitted.TabIndex = 118;
-            this.TxtJobTareWeightPercErrAdmitted.Text = "1234567890123456789012345";
+            this.TxtJobTareWeightPercErrAdmitted.TabIndex = 35;
             // 
             // TxtJobTareWeightDetected
             // 
@@ -1702,16 +1666,14 @@ namespace SupervisorIfSim
             this.TxtJobTareWeightDetected.Location = new System.Drawing.Point(159, 452);
             this.TxtJobTareWeightDetected.Name = "TxtJobTareWeightDetected";
             this.TxtJobTareWeightDetected.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTareWeightDetected.TabIndex = 116;
-            this.TxtJobTareWeightDetected.Text = "1234567890123456789012345";
+            this.TxtJobTareWeightDetected.TabIndex = 33;
             // 
             // TxtJobTareWeightExpected
             // 
             this.TxtJobTareWeightExpected.Location = new System.Drawing.Point(159, 426);
             this.TxtJobTareWeightExpected.Name = "TxtJobTareWeightExpected";
             this.TxtJobTareWeightExpected.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTareWeightExpected.TabIndex = 114;
-            this.TxtJobTareWeightExpected.Text = "1234567890123456789012345";
+            this.TxtJobTareWeightExpected.TabIndex = 31;
             // 
             // label31
             // 
@@ -1720,7 +1682,7 @@ namespace SupervisorIfSim
             this.label31.Location = new System.Drawing.Point(2, 530);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(155, 25);
-            this.label31.TabIndex = 119;
+            this.label31.TabIndex = 37;
             this.label31.Text = "EXPECTED";
             this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1731,7 +1693,7 @@ namespace SupervisorIfSim
             this.label33.Location = new System.Drawing.Point(2, 478);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(155, 25);
-            this.label33.TabIndex = 117;
+            this.label33.TabIndex = 34;
             this.label33.Text = "PERC_ERR_ADMITTED";
             this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1742,7 +1704,7 @@ namespace SupervisorIfSim
             this.label34.Location = new System.Drawing.Point(2, 452);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(155, 25);
-            this.label34.TabIndex = 115;
+            this.label34.TabIndex = 32;
             this.label34.Text = "DETECTED";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1753,7 +1715,7 @@ namespace SupervisorIfSim
             this.label35.Location = new System.Drawing.Point(2, 426);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(155, 25);
-            this.label35.TabIndex = 113;
+            this.label35.TabIndex = 30;
             this.label35.Text = "EXPECTED";
             this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1764,7 +1726,7 @@ namespace SupervisorIfSim
             this.label37.Location = new System.Drawing.Point(2, 374);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(155, 25);
-            this.label37.TabIndex = 111;
+            this.label37.TabIndex = 27;
             this.label37.Text = "JOB_STATUS";
             this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1773,8 +1735,7 @@ namespace SupervisorIfSim
             this.TxtJobTimeInserted.Location = new System.Drawing.Point(159, 322);
             this.TxtJobTimeInserted.Name = "TxtJobTimeInserted";
             this.TxtJobTimeInserted.Size = new System.Drawing.Size(200, 25);
-            this.TxtJobTimeInserted.TabIndex = 110;
-            this.TxtJobTimeInserted.Text = "1234567890123456789012345";
+            this.TxtJobTimeInserted.TabIndex = 25;
             // 
             // label10
             // 
@@ -1783,7 +1744,7 @@ namespace SupervisorIfSim
             this.label10.Location = new System.Drawing.Point(2, 322);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(155, 25);
-            this.label10.TabIndex = 109;
+            this.label10.TabIndex = 24;
             this.label10.Text = "TIME_INSERTED";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1795,7 +1756,7 @@ namespace SupervisorIfSim
             this.label55.Location = new System.Drawing.Point(2, 269);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(718, 50);
-            this.label55.TabIndex = 88;
+            this.label55.TabIndex = 21;
             this.label55.Text = "■TB_JOB";
             this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1807,7 +1768,7 @@ namespace SupervisorIfSim
             this.label38.Location = new System.Drawing.Point(2, 58);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(357, 50);
-            this.label38.TabIndex = 17;
+            this.label38.TabIndex = 4;
             this.label38.Text = "■TB_BARCODE";
             this.label38.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1816,8 +1777,7 @@ namespace SupervisorIfSim
             this.TxtBrcTimeProcessed.Location = new System.Drawing.Point(159, 137);
             this.TxtBrcTimeProcessed.Name = "TxtBrcTimeProcessed";
             this.TxtBrcTimeProcessed.Size = new System.Drawing.Size(200, 25);
-            this.TxtBrcTimeProcessed.TabIndex = 21;
-            this.TxtBrcTimeProcessed.Text = "1234567890123456789012345";
+            this.TxtBrcTimeProcessed.TabIndex = 11;
             // 
             // TxtBrcTimeInserted
             // 
@@ -1825,8 +1785,7 @@ namespace SupervisorIfSim
             this.TxtBrcTimeInserted.Location = new System.Drawing.Point(159, 111);
             this.TxtBrcTimeInserted.Name = "TxtBrcTimeInserted";
             this.TxtBrcTimeInserted.Size = new System.Drawing.Size(200, 25);
-            this.TxtBrcTimeInserted.TabIndex = 19;
-            this.TxtBrcTimeInserted.Text = "1234567890123456789012345";
+            this.TxtBrcTimeInserted.TabIndex = 8;
             // 
             // label5
             // 
@@ -1835,7 +1794,7 @@ namespace SupervisorIfSim
             this.label5.Location = new System.Drawing.Point(2, 163);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(155, 25);
-            this.label5.TabIndex = 22;
+            this.label5.TabIndex = 13;
             this.label5.Text = "BRC_STATUS";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1846,7 +1805,7 @@ namespace SupervisorIfSim
             this.label2.Location = new System.Drawing.Point(2, 137);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(155, 25);
-            this.label2.TabIndex = 20;
+            this.label2.TabIndex = 10;
             this.label2.Text = "TIME_PROCESSED";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1857,7 +1816,7 @@ namespace SupervisorIfSim
             this.label1.Location = new System.Drawing.Point(2, 111);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(155, 25);
-            this.label1.TabIndex = 18;
+            this.label1.TabIndex = 7;
             this.label1.Text = "TIME_INSERTED";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1866,24 +1825,21 @@ namespace SupervisorIfSim
             this.TxtBrcErr3.Location = new System.Drawing.Point(159, 241);
             this.TxtBrcErr3.Name = "TxtBrcErr3";
             this.TxtBrcErr3.Size = new System.Drawing.Size(200, 25);
-            this.TxtBrcErr3.TabIndex = 29;
-            this.TxtBrcErr3.Text = "1234567890123456789012345";
+            this.TxtBrcErr3.TabIndex = 20;
             // 
             // TxtBrcErr2
             // 
             this.TxtBrcErr2.Location = new System.Drawing.Point(159, 215);
             this.TxtBrcErr2.Name = "TxtBrcErr2";
             this.TxtBrcErr2.Size = new System.Drawing.Size(200, 25);
-            this.TxtBrcErr2.TabIndex = 27;
-            this.TxtBrcErr2.Text = "1234567890123456789012345";
+            this.TxtBrcErr2.TabIndex = 18;
             // 
             // TxtBrcErr1
             // 
             this.TxtBrcErr1.Location = new System.Drawing.Point(159, 189);
             this.TxtBrcErr1.Name = "TxtBrcErr1";
             this.TxtBrcErr1.Size = new System.Drawing.Size(200, 25);
-            this.TxtBrcErr1.TabIndex = 25;
-            this.TxtBrcErr1.Text = "1234567890123456789012345";
+            this.TxtBrcErr1.TabIndex = 16;
             // 
             // label8
             // 
@@ -1892,7 +1848,7 @@ namespace SupervisorIfSim
             this.label8.Location = new System.Drawing.Point(2, 241);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(155, 25);
-            this.label8.TabIndex = 28;
+            this.label8.TabIndex = 19;
             this.label8.Text = "ERR_3";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1903,7 +1859,7 @@ namespace SupervisorIfSim
             this.label7.Location = new System.Drawing.Point(2, 215);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(155, 25);
-            this.label7.TabIndex = 26;
+            this.label7.TabIndex = 17;
             this.label7.Text = "ERR_2";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1914,7 +1870,7 @@ namespace SupervisorIfSim
             this.label6.Location = new System.Drawing.Point(2, 189);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(155, 25);
-            this.label6.TabIndex = 24;
+            this.label6.TabIndex = 15;
             this.label6.Text = "ERR_1";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1925,8 +1881,7 @@ namespace SupervisorIfSim
             this.TxtProcessCode.Name = "TxtProcessCode";
             this.TxtProcessCode.ReadOnly = true;
             this.TxtProcessCode.Size = new System.Drawing.Size(200, 25);
-            this.TxtProcessCode.TabIndex = 7;
-            this.TxtProcessCode.Text = "1234567890123456789012345";
+            this.TxtProcessCode.TabIndex = 3;
             // 
             // TxtBarcode
             // 
@@ -1935,8 +1890,7 @@ namespace SupervisorIfSim
             this.TxtBarcode.Name = "TxtBarcode";
             this.TxtBarcode.ReadOnly = true;
             this.TxtBarcode.Size = new System.Drawing.Size(200, 25);
-            this.TxtBarcode.TabIndex = 5;
-            this.TxtBarcode.Text = "1234567890123456789012345";
+            this.TxtBarcode.TabIndex = 1;
             // 
             // label4
             // 
@@ -1945,7 +1899,7 @@ namespace SupervisorIfSim
             this.label4.Location = new System.Drawing.Point(2, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(155, 25);
-            this.label4.TabIndex = 6;
+            this.label4.TabIndex = 2;
             this.label4.Text = "PROCESS_CODE";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1956,7 +1910,7 @@ namespace SupervisorIfSim
             this.label3.Location = new System.Drawing.Point(2, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(155, 25);
-            this.label3.TabIndex = 4;
+            this.label3.TabIndex = 0;
             this.label3.Text = "BARCODE";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -1984,7 +1938,7 @@ namespace SupervisorIfSim
             this.GvBarcode.RowTemplate.Height = 21;
             this.GvBarcode.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GvBarcode.Size = new System.Drawing.Size(511, 893);
-            this.GvBarcode.TabIndex = 5;
+            this.GvBarcode.TabIndex = 0;
             // 
             // FrmMain
             // 

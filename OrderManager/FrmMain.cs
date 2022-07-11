@@ -2438,7 +2438,7 @@ namespace NipponPaint.OrderManager
             this.BindTimer.Interval = BaseSettings.Display.PreviewCycleMillisecond;
             this.BindTimer.Tick += new EventHandler(this.BindTimerTick);
             BindTimerOnOrOff();
-            // 更新時間表示
+            // 更新時刻表示
             PeriodicupdateTimeTextBox.Value = DateTime.Now.ToString("HH:mm:ss");
             // ログ出力
             PutLog(Sentence.Messages.InitializedMainForm);
