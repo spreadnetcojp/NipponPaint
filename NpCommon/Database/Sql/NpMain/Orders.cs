@@ -744,7 +744,13 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
-        #region
+        #region　CCMシュミレータからデータの更新
+        /// <summary>
+        /// CCMシュミレータからデータの更新
+        /// </summary>
+        /// <param name="UpdateFlg"></param>
+        /// <param name="weightlist"></param>
+        /// <returns></returns>
         public static string CCMSimulatorDataUpdate(bool UpdateFlg, DataTable weightlist)
         {
             // colorant番号（0はwhite_code)
@@ -757,6 +763,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($" {COLUMN_FORMULA_RELEASE}   = @FormulaRelease ");
             sql.Append($",{COLUMN_INPUT_CAN}         = @InputCan ");
             sql.Append($",{COLUMN_REVISION}          = @Revision ");
+            // 元データに追加する項目
             foreach (var item in weightlist.Rows[0].ItemArray)
             {
                 if (item.ToString() == "" || item == null)
