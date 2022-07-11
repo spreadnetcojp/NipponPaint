@@ -39,6 +39,8 @@ namespace NipponPaint.OrderManager.Dialogs
         private readonly string[] PRODUCT_CODE_RIGHT = { "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
         // 取得データ１件の為、Indexは「0」
         private const int SELECT_DATE = 0;
+        // ドロップダウンの初期選択
+        private const int SELECT_INDEX = 0;
 
         /// <summary>
         /// 投入缶の種類
@@ -548,77 +550,77 @@ namespace NipponPaint.OrderManager.Dialogs
                 /// <param name="sender"></param>
                 /// <param name="e"></param>
                 DrpBaseSelect.Items.AddRange(GetWhiteCode(db));
-                DrpBaseSelect.SelectedIndex = 0;
+                DrpBaseSelect.SelectedIndex = SELECT_INDEX;
                 /// <summary>
                 /// 着色剤1のドロップダウン
                 /// </summary>
                 /// <param name="sender"></param>
                 /// <param name="e"></param>
                 DrpColoarantSelect1.Items.AddRange(GetWhiteCode(db));
-                DrpColoarantSelect1.SelectedIndex = 0;
+                DrpColoarantSelect1.SelectedIndex = SELECT_INDEX;
                 /// <summary>
                 /// 着色剤2のドロップダウン
                 /// </summary>
                 /// <param name="sender"></param>
                 /// <param name="e"></param>
                 DrpColoarantSelect2.Items.AddRange(GetWhiteCode(db));
-                DrpColoarantSelect2.SelectedIndex = 0;
+                DrpColoarantSelect2.SelectedIndex = SELECT_INDEX;
                 /// <summary>
                 /// 着色剤3のドロップダウン
                 /// </summary>
                 /// <param name="sender"></param>
                 /// <param name="e"></param>
                 DrpColoarantSelect3.Items.AddRange(GetWhiteCode(db));
-                DrpColoarantSelect3.SelectedIndex = 0;
+                DrpColoarantSelect3.SelectedIndex = SELECT_INDEX;
                 /// <summary>
                 /// 着色剤4のドロップダウン
                 /// </summary>
                 /// <param name="sender"></param>
                 /// <param name="e"></param>
                 DrpColoarantSelect4.Items.AddRange(GetWhiteCode(db));
-                DrpColoarantSelect4.SelectedIndex = 0;
+                DrpColoarantSelect4.SelectedIndex = SELECT_INDEX;
                 /// <summary>
                 /// 着色剤5のドロップダウン
                 /// </summary>
                 /// <param name="sender"></param>
                 /// <param name="e"></param>
                 DrpColoarantSelect5.Items.AddRange(GetWhiteCode(db));
-                DrpColoarantSelect5.SelectedIndex = 0;
+                DrpColoarantSelect5.SelectedIndex = SELECT_INDEX;
                 /// <summary>
                 /// 着色剤6のドロップダウン
                 /// </summary>
                 /// <param name="sender"></param>
                 /// <param name="e"></param>
                 DrpColoarantSelect6.Items.AddRange(GetWhiteCode(db));
-                DrpColoarantSelect6.SelectedIndex = 0;
+                DrpColoarantSelect6.SelectedIndex = SELECT_INDEX;
                 /// <summary>
                 /// 着色剤7のドロップダウン
                 /// </summary>
                 /// <param name="sender"></param>
                 /// <param name="e"></param>
                 DrpColoarantSelect7.Items.AddRange(GetWhiteCode(db));
-                DrpColoarantSelect7.SelectedIndex = 0;
+                DrpColoarantSelect7.SelectedIndex = SELECT_INDEX;
                 /// <summary>
                 /// 着色剤8のドロップダウン
                 /// </summary>
                 /// <param name="sender"></param>
                 /// <param name="e"></param>
                 DrpColoarantSelect8.Items.AddRange(GetWhiteCode(db));
-                DrpColoarantSelect8.SelectedIndex = 0;
+                DrpColoarantSelect8.SelectedIndex = SELECT_INDEX;
                 /// <summary>
                 /// 着色剤9のドロップダウン
                 /// </summary>
                 /// <param name="sender"></param>
                 /// <param name="e"></param>
                 DrpColoarantSelect9.Items.AddRange(GetWhiteCode(db));
-                DrpColoarantSelect9.SelectedIndex = 0;
+                DrpColoarantSelect9.SelectedIndex = SELECT_INDEX;
                 /// <summary>
                 /// 着色剤10のドロップダウン
                 /// </summary>
                 /// <param name="sender"></param>
                 /// <param name="e"></param>
                 DrpColoarantSelect10.Items.AddRange(GetWhiteCode(db));
-                DrpColoarantSelect10.SelectedIndex = 0;
+                DrpColoarantSelect10.SelectedIndex = SELECT_INDEX;
             }
         }
         #endregion
