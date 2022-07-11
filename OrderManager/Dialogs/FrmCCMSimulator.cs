@@ -723,7 +723,7 @@ namespace NipponPaint.OrderManager.Dialogs
             };
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
-                result.Add(db.Select(NpCommon.Database.Sql.NpMain.Orders.GetDataByProductCode(), parameter));
+                result.Add(db.Select(NpCommon.Database.Sql.NpMain.Orders.GetDataByProductCodeToOrderId(), parameter));
             }
             return result;
         }
@@ -744,7 +744,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 {
                     new ParameterItem("@OrderId", orderId),
                 };
-                weightlist = db.Select(NpCommon.Database.Sql.NpMain.Orders.GetWeightDatebyOrderId(), parameter);
+                weightlist = db.Select(NpCommon.Database.Sql.NpMain.Orders.GetColorantbyOrderId(), parameter);
             }
             return weightlist;
         }

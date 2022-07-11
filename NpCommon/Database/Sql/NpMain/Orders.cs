@@ -513,10 +513,10 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
 
         #region
         /// <summary>
-        /// 製造コードでレコード取得
+        /// Order_idで白コード・着色剤コード取得
         /// </summary>
         /// <returns></returns>
-        public static string GetWeightDatebyOrderId()
+        public static string GetColorantbyOrderId()
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
@@ -548,10 +548,10 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
 
         #region
         /// <summary>
-        /// Order_idでWeight情報取得
+        /// 製品コードから情報取得
         /// </summary>
         /// <returns></returns>
-        public static string GetDataByProductCode()
+        public static string GetDataByProductCodeToOrderId()
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
