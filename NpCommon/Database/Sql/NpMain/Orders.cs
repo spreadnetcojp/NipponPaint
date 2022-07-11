@@ -793,7 +793,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
                 }
                 count++;
                 // 最大入力数１０
-                if (newCount == 10)
+                if (newCount > 10)
                 {
                     break;
                 }
