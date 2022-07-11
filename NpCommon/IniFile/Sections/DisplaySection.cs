@@ -28,7 +28,7 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         private const string MySectionName = "DISPLAY";
         public const int AutoBindCancel = 1;
         #endregion
-        
+
         #region プロパティ
         /// <summary>
         /// 表示更新周期（秒）
