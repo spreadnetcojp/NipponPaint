@@ -758,7 +758,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 weightlist = db.Select(NpCommon.Database.Sql.NpMain.Orders.GetColorantbyOrderId(), parameter);
             }
             // 値のある物のみ取得
-            var result = weightlist.Rows[SELECT_DATE].ItemArray.AsEnumerable().Where(x => x.ToString() != "");
+            var result = weightlist.Rows[SELECT_DATE].ItemArray.AsEnumerable().Where(x => !string.IsNullOrEmpty(x.ToString()));
             return result.Count();
         }
         #endregion
