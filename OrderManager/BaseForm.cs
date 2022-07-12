@@ -94,7 +94,19 @@ namespace NipponPaint.OrderManager
                 columnsWidth.Add(column.Width);
             }
             var reader = new FileInterface(BaseSettings.FilePath);
-            reader.SetItem("GRID", target.Name, columnsWidth.ToArray());
+            reader.SetItem(NpCommon.IniFile.Sections.GridSection.MySectionName, target.Name, columnsWidth.ToArray());
+        }
+        #endregion
+
+        #region 次の製品コードを保存する
+        /// <summary>
+        /// 次の製品コードを保存する
+        /// </summary>
+        /// <param name="target"></param>
+        public void SaveNextProductCode()
+        {
+            var reader = new FileInterface(BaseSettings.FilePath);
+            reader.SetItem(NpCommon.IniFile.Sections.FacilitySection.MySectionName, NpCommon.IniFile.Sections.FacilitySection.TitleLastProductCode, BaseSettings.Facility.NextProductCode);
         }
         #endregion
 
