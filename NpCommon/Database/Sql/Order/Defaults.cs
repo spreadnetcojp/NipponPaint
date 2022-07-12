@@ -79,11 +79,6 @@ namespace NipponPaint.NpCommon.Database.Sql.Order
             sql.Append($"LEFT JOIN {CapTypes.MAIN_TABLE} AS CP ON DF.{COLUMN_CAP_TYPE} = CP.{CapTypes.COLUMN_CAP_TYPE} ");
             sql.Append($"WHERE {COLUMN_WHITE_CODE} = @whiteCode ");
             return sql.ToString();
-
-
-
-
-
         }
         #endregion
 

@@ -3207,7 +3207,7 @@ namespace NipponPaint.OrderManager
         private void BindTimerOnOrOff()
         {
             // INIファイルのPreviewCycleが「0」の場合はタイマーOFFと、true/falseの反転処理
-            BindTimer.Enabled = BaseSettings.Display.PreviewCycleSeconds > 1 ? !BindTimer.Enabled : false;
+            BindTimer.Enabled = BaseSettings.Display.PreviewCycleSeconds > NpCommon.IniFile.Sections.DisplaySection.AutoBindCancel ? !BindTimer.Enabled : false;
         }
         #endregion
     }

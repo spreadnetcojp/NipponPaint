@@ -50,6 +50,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Database\ParameterItem.cs" />
     <Compile Include="Database\SqlBase.cs" />
+    <Compile Include="Database\Sql\IOSSUP\Raw.cs" />
     <Compile Include="Database\Sql\NpMain\Cans.cs" />
     <Compile Include="Database\Sql\NpMain\CansArchive.cs" />
     <Compile Include="Database\Sql\NpMain\Colors.cs" />
