@@ -290,6 +290,10 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// リストインデックス（着色剤重量）
         /// </summary>
         private const int ColorColumnsWeightColorantIndex = 1;
+        /// <summary>
+        /// 変更可能なステータス
+        /// </summary>
+        private const string DisplayStatus = "1, 2, 3, 4";
         #endregion
 
         #endregion
@@ -587,15 +591,17 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// 製品コードから情報取得
         /// </summary>
         /// <returns></returns>
-        public static string GetDataByProductCodeToOrderId()
+        public static string GetDataByProductCodeToOrderId(string plant)
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
             sql.Append($" {COLUMN_ORDER_ID} ");
             sql.Append($" ,{COLUMN_STATUS} ");
             sql.Append($" ,{COLUMN_TOTAL_WEIGHT} ");
-            sql.Append($"FROM {MAIN_TABLE} ");
-            sql.Append($"WHERE {COLUMN_ORDER_ID} = (SELECT max({COLUMN_ORDER_ID}) FROM {MAIN_TABLE} WHERE {COLUMN_PRODUCT_CODE} = @ProductCode) ");
+            sql.Append($" ,{COLUMN_FORMULA_RELEASE} ");
+            sql.Append($"FROM {SelectOrders(plant)} ");
+            sql.Append($"WHERE {COLUMN_STATUS} IN ({DisplayStatus}) ");
+            sql.Append($"AND {COLUMN_PRODUCT_CODE} = @ProductCode ");
             return sql.ToString();
         }
         #endregion

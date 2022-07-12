@@ -100,6 +100,12 @@ namespace NipponPaint.OrderManager.Dialogs
         /// 修正缶
         /// </summary>
         private const string Chk_Fixed_Can = "ChkFixedCan";
+        /// <summary>
+        /// 修正(入力不可)
+        /// </summary>
+        private const string CORRECTION = "correction";
+
+        private const string InitialValue = "0.000";
 
         #region コンストラクタ
         public FrmCCMSimulator(ViewModels.CCMSimulatorData vm)
@@ -188,7 +194,6 @@ namespace NipponPaint.OrderManager.Dialogs
             try
             {
                 var inputCan = false;
-                var formulaRelease = (int)LastFormulaRelease.BeforeRelease;
                 var status = 0;
                 // 選択した項目によって更新しないカラムが発生する
                 var UpdateFlg = true;
@@ -206,6 +211,12 @@ namespace NipponPaint.OrderManager.Dialogs
                 }
                 // データ取得
                 var dt = GetData();
+                // レコードがなければ実施しない
+                if (dt[SELECT_DATE].Rows.Count < 1)
+                {
+                    Messages.ShowDialog(Sentence.Messages.NoOrderWithMatchingProductCode);
+                    return;
+                }
                 // order_id取得
                 var orderId = int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_ORDER_ID].ToString());
                 // 取得したステータスによって更新するカラムを変更
@@ -216,34 +227,47 @@ namespace NipponPaint.OrderManager.Dialogs
                         break;
                     case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.Ready:
                     case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
+                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
                         UpdateFlg = false;
                         break;
                     default:
                         UpdateFlg = false;
                         break;
                 }
+                // dtからformulaRelease取得かつ更新用に　+1
+                var formulaRelease = int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_FORMULA_RELEASE].ToString()) + 1;
                 // 選択している投入缶の種類取得
                 var selectPutCan = SelectPutCan();
                 // 選択した投入缶によって更新データ変更
                 switch (selectPutCan)
                 {
                     case RdoStatusChange.ChkEmptyCan:
-                        formulaRelease = (int)LastFormulaRelease.Release;
                         break;
                     case RdoStatusChange.ChkFilledCan:
-                        formulaRelease = (int)LastFormulaRelease.Release;
                         inputCan = true;
                         break;
                     case RdoStatusChange.ChkFixedCan:
-                        formulaRelease = (int)LastFormulaRelease.FixedRelease;
-                        inputCan = true;
-                        UpdateFlg = false;
+                        switch (int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_STATUS].ToString()))
+                        {
+                            case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
+                                Messages.ShowDialog(Sentence.Messages.RejectedCorrectionForAnOrderWithNoFormula);
+                                return;
+                            default:
+                                UpdateFlg = false;
+                                break;
+                        }
                         break;
                 }
                 var colorantCount = GetColorantsCount(orderId);
                 // 総重量の取得
                 var totalWeight = GetTotalWeight(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_TOTAL_WEIGHT]);
-
+                if (ChkEmptyCan.Checked && TxtBaseValue.Text == InitialValue)
+                {
+                    if (Messages.ShowDialog(Sentence.Messages.WhiteWeightZeroEmptyCanProceedAnyway) == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
                 var parameters = new List<ParameterItem>()
                 {
                     new ParameterItem("@OrderId", orderId),
@@ -352,6 +376,14 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             if (((ComboBox)sender).SelectedIndex > 0)
             {
+                TxtBaseValue.Enabled = true;
+                // 投入缶の選択で充填缶を選択している場合キーパッドは開かない
+                if (!TxtBaseValue.Enabled)
+                {
+                    TxtBaseValue.Text = InitialValue;
+                    TxtBaseValue.ForeColor = System.Drawing.SystemColors.Window;
+                    return;
+                }
                 KeyPadPush(TxtBaseValue);
             }
             else
@@ -522,6 +554,9 @@ namespace NipponPaint.OrderManager.Dialogs
             this.TxtColoarantValue8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
             this.TxtColoarantValue9.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
             this.TxtColoarantValue10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TxtBaseValueMouseUp);
+            this.ChkFixedCan.CheckedChanged += new System.EventHandler(this.ChkFixedCan_CheckedChanged);
+            this.ChkFilledCan.CheckedChanged += new System.EventHandler(this.ChkFilledCan_CheckedChanged);
+            this.ChkEmptyCan.CheckedChanged += new System.EventHandler(this.ChkEmptyCan_CheckedChanged);
 
             Funcs.SetControlEnabled(this.Controls, true);
 
@@ -734,7 +769,7 @@ namespace NipponPaint.OrderManager.Dialogs
             };
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
-                result.Add(db.Select(NpCommon.Database.Sql.NpMain.Orders.GetDataByProductCodeToOrderId(), parameter));
+                result.Add(db.Select(NpCommon.Database.Sql.NpMain.Orders.GetDataByProductCodeToOrderId(BaseSettings.Facility.Plant), parameter));
             }
             return result;
         }
@@ -760,6 +795,79 @@ namespace NipponPaint.OrderManager.Dialogs
             // 値のある物のみ取得
             var result = weightlist.Rows[SELECT_DATE].ItemArray.AsEnumerable().Where(x => !string.IsNullOrEmpty(x.ToString()));
             return result.Count();
+        }
+        #endregion
+
+        #region 投入缶の種類（修正缶を選択した場合）
+        /// <summary>
+        /// 投入缶の種類（修正缶を選択した場合）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChkFixedCan_CheckedChanged(object sender, EventArgs e)
+        {
+            bool rdbChecked = ((RadioButton)sender).Checked;
+            if (rdbChecked)
+            {
+                TxtPaintName.Value = CORRECTION;
+                TxtKanjiColorName.Value = CORRECTION;
+                TxtPaintName.Enabled = false;
+                TxtKanjiColorName.Enabled = false;
+                TxtPaintName.TextForeColor = System.Drawing.SystemColors.ControlLight;
+                TxtKanjiColorName.TextForeColor = System.Drawing.SystemColors.ControlLight;
+            }
+            else
+            {
+                TxtPaintName.Enabled = true;
+                TxtKanjiColorName.Enabled = true;
+                TxtPaintName.TextForeColor = System.Drawing.SystemColors.Window;
+                TxtKanjiColorName.TextForeColor = System.Drawing.SystemColors.Window;
+            }
+        }
+        #endregion
+
+        #region 投入缶の種類（空缶を選択した場合）
+        /// <summary>
+        /// 投入缶の種類（空缶を選択した場合）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChkEmptyCan_CheckedChanged(object sender, EventArgs e)
+        {
+            RboCheckedChanged();
+        }
+        #endregion
+
+        #region 投入缶の種類（充填缶を選択した場合）
+        /// <summary>
+        /// 投入缶の種類（充填缶を選択した場合）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChkFilledCan_CheckedChanged(object sender, EventArgs e)
+        {
+            RboCheckedChanged();
+            bool rdbChecked = ((RadioButton)sender).Checked;
+            if (rdbChecked)
+            {
+                TxtBaseValue.Enabled = false;
+                TxtBaseValue.Text = InitialValue;
+            }
+            else
+            {
+                TxtBaseValue.Enabled = true;
+            }
+        }
+        #endregion
+
+        #region 投入缶の選択変更時（共通）
+        /// <summary>
+        /// 投入缶の選択変更時（共通）
+        /// </summary>
+        private void RboCheckedChanged()
+        {
+            TxtPaintName.Value = "";
+            TxtKanjiColorName.Value = "";
         }
         #endregion
     }
