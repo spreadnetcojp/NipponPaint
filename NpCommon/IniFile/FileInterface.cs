@@ -133,6 +133,16 @@ namespace NipponPaint.NpCommon.IniFile
         {
             IniFileHandler.WritePrivateProfileString(section, Key, string.Join(",", values), FilePath);
         }
+        /// <summary>
+        /// 文字列値の保存
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="Key"></param>
+        /// <param name="values"></param>
+        public void SetItem(string section, string Key, string value)
+        {
+            IniFileHandler.WritePrivateProfileString(section, Key, value, FilePath);
+        }
         #endregion
 
     }
