@@ -599,6 +599,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($" ,{COLUMN_STATUS} ");
             sql.Append($" ,{COLUMN_TOTAL_WEIGHT} ");
             sql.Append($" ,{COLUMN_FORMULA_RELEASE} ");
+            sql.Append($" ,{COLUMN_REVISION} ");
             sql.Append($"FROM {SelectOrders(plant)} ");
             sql.Append($"WHERE {COLUMN_STATUS} IN ({DisplayStatus}) ");
             sql.Append($"AND {COLUMN_PRODUCT_CODE} = @ProductCode ");

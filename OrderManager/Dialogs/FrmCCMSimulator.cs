@@ -219,21 +219,6 @@ namespace NipponPaint.OrderManager.Dialogs
                 }
                 // order_id取得
                 var orderId = int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_ORDER_ID].ToString());
-                // 取得したステータスによって更新するカラムを変更
-                switch (int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_STATUS].ToString()))
-                {
-                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
-                        status = (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.Ready;
-                        break;
-                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.Ready:
-                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
-                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
-                        UpdateFlg = false;
-                        break;
-                    default:
-                        UpdateFlg = false;
-                        break;
-                }
                 // dtからformulaRelease取得かつ更新用に　+1
                 var formulaRelease = int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_FORMULA_RELEASE].ToString()) + 1;
                 // 選択している投入缶の種類取得
@@ -267,6 +252,25 @@ namespace NipponPaint.OrderManager.Dialogs
                     {
                         return;
                     }
+                }
+                if (int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_STATUS].ToString()) == NumUpDownCorrection.Value)
+                {
+
+                }
+                // 取得したステータスによって更新するカラムを変更
+                switch (int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_STATUS].ToString()))
+                {
+                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
+                        status = (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.Ready;
+                        break;
+                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.Ready:
+                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
+                    case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
+                        UpdateFlg = false;
+                        break;
+                    default:
+                        UpdateFlg = false;
+                        break;
                 }
                 var parameters = new List<ParameterItem>()
                 {
