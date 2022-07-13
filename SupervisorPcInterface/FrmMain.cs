@@ -158,6 +158,34 @@ namespace SupervisorPcInterface
         }
 
         /// <summary>
+        /// TB_BARCODE更新（エラー時）
+        /// </summary>
+        /// <param name="barcodeRow"></param>
+        /// <param name="errorCode"></param>
+        /// <param name="updateDateTime"></param>
+        /// <param name="resultParameters"></param>
+        /// <returns></returns>
+        private string SetSqlBarcode(DataRow barcodeRow,
+                                     string[] errorCode,
+                                     DateTime updateDateTime,
+                                     out List<ParameterItem> parameters)
+        {
+            // SQL作成
+            var sql = TbBarcode.Update();
+            /// パラメータ設定
+            parameters = new List<ParameterItem>();
+            parameters.Add(new ParameterItem($"{TbBarcode.BARCODE}", barcodeRow[TbBarcode.BARCODE].ToString()));
+            parameters.Add(new ParameterItem($"{TbBarcode.PROCESS_CODE}", barcodeRow[TbBarcode.PROCESS_CODE].ToString()));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_TIME_PROCESSED}", updateDateTime));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_STATUS}", TbBarcode.STATUS_ERP_PROCESSED));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_1}", errorCode[0]));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_2}", errorCode[1]));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_3}", errorCode[2]));
+            // SQL返却
+            return sql;
+        }
+
+        /// <summary>
         /// TB_JOB更新
         /// </summary>
         /// <param name="barcodeRow"></param>
@@ -284,23 +312,32 @@ namespace SupervisorPcInterface
                             };
                             // バーコードをキーにERPのテーブルから情報収集
                             var dispenseDatas = dbn.Select(Cans.GetPreviewDispensedData(_settings.Facility.Plant), parameters);
-                            var dispenseRows = dispenseDatas.Select($"{Cans.COLUMN_BARCODE} = '{barCode}' AND {Cans.COLUMN_CODE} <> ''");
+                            var dispenseRows = dispenseDatas.Select($"{Cans.COLUMN_BARCODE} = '{barCode}' AND {Cans.COLUMN_CODE} <> '' AND {Cans.COLUMN_WEIGHT} <> {Cans.COLUMN_DISPENSED}");
                             //PutLog(Sentence.Messages.ExecuteSupervisorInterface, new string[] { barCode, dispenseRows.Count().ToString() });
                             var cnt = 0;
                             // SQLを作成してTB_BARCODE、TB_JOB、TB_FORMULAを更新
-                            foreach (DataRow dispenseRow in dispenseRows)
+                            if (dispenseRows != null && dispenseRows.Any())
                             {
-                                var updateDateTime = DateTime.Now;
-                                if (cnt == 0)
+                                foreach (DataRow dispenseRow in dispenseRows)
                                 {
-                                    // TB_BARCODE
-                                    dbs.Execute(SetSqlBarcode(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p0), p0);
-                                    // TB_JOB
-                                    dbs.Execute(SetSqlJob(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p1), p1);
+                                    var updateDateTime = DateTime.Now;
+                                    if (cnt == 0)
+                                    {
+                                        // TB_BARCODE
+                                        dbs.Execute(SetSqlBarcode(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p0), p0);
+                                        // TB_JOB
+                                        dbs.Execute(SetSqlJob(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p1), p1);
+                                    }
+                                    // TB_FORMULA
+                                    dbs.Execute(SetSqlFormura(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p2), p2);
+                                    cnt++;
                                 }
-                                // TB_FORMULA
-                                dbs.Execute(SetSqlFormura(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p2), p2);
-                                cnt++;
+                            }
+                            else
+                            {
+                                // TB_BARCODE（対象データがERPに存在しない）
+                                var updateDateTime = DateTime.Now;
+                                dbs.Execute(SetSqlBarcode(barcodeRow, new string[] { "1", "2", "3" }, updateDateTime, out List<ParameterItem> p0), p0);
                             }
                         }
                     }
