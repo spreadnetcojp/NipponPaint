@@ -178,6 +178,11 @@ namespace NipponPaint.NpCommon
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "Supervisor I/F 処理を終了します")]
             EndSupervisorInterface,
+            /// <summary>
+            /// COROB発行エラー検知
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Error, Description = "TB_JOBでエラーが発生しています（バーコード{0}：エラー内容{1}）")]
+            ErrorOnTbJob,
             #endregion
 
             #region 仕様文章一覧（Query-4)

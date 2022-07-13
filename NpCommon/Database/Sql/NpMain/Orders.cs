@@ -142,7 +142,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string COLUMN_LABEL_DESCRIPTION = "Label_Description";
         private const string COLUMN_CAN_TYPE = "Can_Type";
         private const string COLUMN_CAN_DESCRIPTION = "Can_Description";
-        private const string COLUMN_CAN_WEIGHT = "Can_Weight";
+        public const string COLUMN_CAN_WEIGHT = "Can_Weight";
         private const string COLUMN_CAN_NOMINAL = "Can_Nominal";
         private const string COLUMN_CAN_AVAILABLE = "Can_Available";
         private const string COLUMN_CAP_TYPE = "Cap_Type";
@@ -231,6 +231,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_HG_DELIVERY_DATE = "HG_Delivery_Date";
         public const string COLUMN_HG_HG_DELIVERY_CODE = "HG_HG_Delivery_Code";
         public const string COLUMN_HG_PRODUCT_NAME = "HG_Product_Name";
+        public const string COLUMN_HG_WEIGHT = "HG_Weight";
         public const string COLUMN_HG_SUM_UP_KEY = "HG_Sum_up_Key";
         public const string COLUMN_OPERATOR_CODE = "Operator_Code";
         public const string COLUMN_SORT_ORDER = "Sort_Order";
