@@ -115,10 +115,16 @@ namespace NipponPaint.NpCommon
             BtnOrderCloseMultipleClicked,
 
             /// <summary>
-            /// 「ステータスを戻す」ボタンをクリック
+            /// 準備缶（緑） or テスト缶実施中（水色） or 製造缶実施中（青）を選択中に「ステータスを戻す」ボタンをクリック
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "オーダーのステータスを\"CCM配合待ち\"に変更しますか？")]
             BtnStatusResumeClicked,
+
+            /// <summary>
+            /// CCM配合待ち（赤）を選択中に「ステータスを戻す」ボタンをクリック
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Question, Description = "オーダーのステータスを\"調色担当待ち\"に変更しますか？")]
+            BtnStatusResumeClickedWhenCCM,
 
             /// <summary>
             /// 「ステータスを変更する」ボタンをクリック

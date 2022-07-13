@@ -609,13 +609,21 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// ステータスを戻す
         /// </summary>
         /// <returns></returns>
-        public static string StatusResume(string orderIds)
+        public static string StatusResume(string orderIds,int status)
         {
             var sql = new StringBuilder();
             sql.Append($"UPDATE ");
             sql.Append($"Orders ");
             sql.Append($"SET ");
-            sql.Append($"Status = {(int)OrderStatus.WaitingForCCMformulation} ");
+            switch (status)
+            {
+                case (int)OrderStatus.WaitingForCCMformulation:
+                    sql.Append($"Status = {(int)OrderStatus.WaitingForToning} ");　　　　　// CCM配合待ち（赤）の場合は調色担当待ち（桃）へステータスを戻す
+                    break;
+                default:
+                    sql.Append($"Status = {(int)OrderStatus.WaitingForCCMformulation} ");
+                    break;
+            }
             sql.Append($",Formula_Release = 0 ");
             sql.Append($",White_Code = '' ");
             sql.Append($",White_Weight = 0 ");

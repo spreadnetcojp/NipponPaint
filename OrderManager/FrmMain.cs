@@ -910,18 +910,27 @@ namespace NipponPaint.OrderManager
                 // Order_id取得
                 var gdvSelectedOrderId = GetOrderId();
                 BindTimerOnOrOff();　　　　　// 周期更新一時停止
-                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
+                var result = new DialogResult();
+                var columnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_STATUS);
+                DataGridViewRow row = GetActiveGridViewName().SelectedRows[0];
+                int.TryParse(row.Cells[columnIndex].Value.ToString(), out int status);
+                switch (status)
+                {
+                    case (int)Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
+                        result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClickedWhenCCM);　　　　　// CCM配合待ち（赤）を選択していた場合の質問
+                        break;
+                    case (int)Sql.NpMain.Orders.OrderStatus.Ready:　　　　　　　　　　　　　　　　　　　　　　　　// 準備缶（緑）を選択していた場合の質問
+                    case (int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress:　　　　　　　　　　　　　　　　　 // テスト缶実施中（水色）を選択していた場合の質問
+                    case (int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:　　　　　　　　　　　　// 製造缶実施中（青）を選択していた場合の質問
+                        result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
+                        break;
+                }
                 BindTimerOnOrOff();　　　　　// 周期更新再開
                 switch (result)
                 {
                     case DialogResult.Yes:
-                        var statusColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_STATUS);
-                        var dgv = GetActiveGridViewName();
-                        if (dgv.SelectedRows.Count > 0)
+                        if (GetActiveGridViewName().SelectedRows.Count > 0)
                         {
-                            // 選択している行を取得
-                            var selectedRow = dgv.SelectedRows[0];
-                            int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
                             StatusResumeOrders(gdvSelectedOrderId, status);
                         }
                         DialogCloseBinding();
@@ -1516,6 +1525,8 @@ namespace NipponPaint.OrderManager
                         // 選択行のOrder_id取得
                         int.TryParse(row.Cells[columnOrderIdIndex].Value.ToString(), out int orderId);
                         OrderTestCanToProduct(new List<int>() { orderId });
+                        DialogCloseBinding();
+                        FocusSelectedRow(orderId);　　　　　//テスト仕上り実施し画面が切り替わった後もフォーカスを継続する
                     }
                 }
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
@@ -2711,7 +2722,7 @@ namespace NipponPaint.OrderManager
                     BtnPrintInstructions.Enabled = true;
                     BtnPrintEmergency.Enabled = true;
                     BtnOrderStart.Enabled = false;
-                    BtnStatusResume.Enabled = false;
+                    BtnStatusResume.Enabled = true;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
                     //BtnProcessDetail.Enabled = false;
@@ -3123,14 +3134,13 @@ namespace NipponPaint.OrderManager
                 case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
                     break;
                 case Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
-                    break;
                 case Sql.NpMain.Orders.OrderStatus.Ready:
                 case Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
                 case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                     {
-                        db.StatusResume(Sql.NpMain.Orders.StatusResume(gdvSelectedOrderIds.ToString()));
-                        db.Execute(Sql.NpMain.Cans.RemanufacturedCanByBarcode(sqlParameter), param);　　　　　// 缶のステータスを更新
+                        db.StatusResume(Sql.NpMain.Orders.StatusResume(gdvSelectedOrderIds.ToString(), status));　　　　　// ステータスを戻す
+                        db.Execute(Sql.NpMain.Cans.RemanufacturedCanByBarcode(sqlParameter), param);　　　　　　　　　　　 // 缶のステータスを更新
                         db.Commit();
                     }
                     break;
