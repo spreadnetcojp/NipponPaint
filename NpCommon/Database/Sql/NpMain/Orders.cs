@@ -293,7 +293,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// <summary>
         /// 変更可能なステータス
         /// </summary>
-        private const string DisplayStatus = "1, 2, 3, 4";
+        private static readonly string DisplayStatus = $"{(int)OrderStatus.WaitingForCCMformulation}, {(int)OrderStatus.Ready}, {(int)OrderStatus.TestCanInProgress}, {(int)OrderStatus.ManufacturingCansInProgress}";
         #endregion
 
         #endregion

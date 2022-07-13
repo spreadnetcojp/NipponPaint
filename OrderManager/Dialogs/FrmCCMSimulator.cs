@@ -111,7 +111,7 @@ namespace NipponPaint.OrderManager.Dialogs
         /// <summary>
         /// 目次番号が未入力の場合は「-1」で登録
         /// </summary>
-        private const string IndexNumberEmpty = "-1";
+        private const int IndexNumberEmpty = -1;
 
         #region コンストラクタ
         public FrmCCMSimulator(ViewModels.CCMSimulatorData vm)
@@ -310,7 +310,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 if (string.IsNullOrEmpty(TxtIndexNumber.Value))
                 {
                     // 目次番号が未入力の場合
-                    TxtIndexNumber.Value = IndexNumberEmpty;
+                    TxtIndexNumber.Value = $"{IndexNumberEmpty}";
                 }
                 var parameters = new List<ParameterItem>()
                 {
