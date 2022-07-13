@@ -1259,6 +1259,8 @@ namespace NipponPaint.OrderManager
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+                // Order_id取得
+                var gdvSelectedOrderId = GetOrderId();
                 var vm = new ViewModels.CCMSimulatorData();
                 int selectedindex = tabMain.SelectedIndex;
                 var productCodeColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_PRODUCT_CODE);
@@ -1289,6 +1291,10 @@ namespace NipponPaint.OrderManager
                 BindTimerOnOrOff();　　　　　// 周期更新一時停止
                 frmCCMSimulator.ShowDialog();
                 BindTimerOnOrOff();　　　　　// 周期更新再開
+                // ダイアログ閉後の再バインド
+                DialogCloseBinding();
+                // 事前に取得していたOrder_idを元にフォーカス移動
+                FocusSelectedRow(gdvSelectedOrderId);
             }
             catch (Exception ex)
             {

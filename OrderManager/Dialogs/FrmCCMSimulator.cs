@@ -104,8 +104,14 @@ namespace NipponPaint.OrderManager.Dialogs
         /// 修正(入力不可)
         /// </summary>
         private const string CORRECTION = "correction";
-
+        /// <summary>
+        /// 重量の初期値
+        /// </summary>
         private const string InitialValue = "0.000";
+        /// <summary>
+        /// 目次番号が未入力の場合は「-1」で登録
+        /// </summary>
+        private const string IndexNumberEmpty = "-1";
 
         #region コンストラクタ
         public FrmCCMSimulator(ViewModels.CCMSimulatorData vm)
@@ -193,8 +199,6 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
-                var inputCan = false;
-                var status = 0;
                 // 選択した項目によって更新しないカラムが発生する
                 var UpdateFlg = true;
                 if (string.IsNullOrEmpty(TxtPaintName.Value) || string.IsNullOrEmpty(TxtKanjiColorName.Value))
@@ -211,29 +215,64 @@ namespace NipponPaint.OrderManager.Dialogs
                 }
                 // データ取得
                 var dt = GetData();
-                // レコードがなければ実施しない
                 if (dt[SELECT_DATE].Rows.Count < 1)
                 {
+                    // dtにレコードがない場合
                     Messages.ShowDialog(Sentence.Messages.NoOrderWithMatchingProductCode);
                     return;
                 }
+
+                #region dtからデータ取得
                 // order_id取得
                 var orderId = int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_ORDER_ID].ToString());
-                // dtからformulaRelease取得かつ更新用に　+1
+                // formulaRelease取得かつ更新用に　+1
                 var formulaRelease = int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_FORMULA_RELEASE].ToString()) + 1;
+                // Input_Can取得
+                var inputCan = (bool)dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_INPUT_CAN];
+                // White_Code取得
+                var whiteCode = dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_WHITE_CODE].ToString();
+                // Status取得
+                var status = Funcs.StrToInt(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_STATUS].ToString());
+                // Total_Weigth取得
+                var totalWeight = dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_TOTAL_WEIGHT];
+                // Revision取得
+                var revision = Funcs.StrToInt(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_REVISION].ToString());
+                #endregion
+
                 // 選択している投入缶の種類取得
                 var selectPutCan = SelectPutCan();
                 // 選択した投入缶によって更新データ変更
                 switch (selectPutCan)
                 {
                     case RdoStatusChange.ChkEmptyCan:
+                        if (!string.IsNullOrEmpty(whiteCode))
+                        {
+                            // 元データにWhite_Codeの登録がある場合
+                            Messages.ShowDialog(Sentence.Messages.OrderAllowsCorrectionFormulaOnly);
+                            return;
+                        }
+                        if (TxtBaseValue.Text == InitialValue)
+                        {
+                            // 選択した投入缶が空缶かつベース重量が「0.000」の場合
+                            if (Messages.ShowDialog(Sentence.Messages.WhiteWeightZeroEmptyCanProceedAnyway) == DialogResult.No)
+                            {
+                                return;
+                            }
+                        }
                         break;
                     case RdoStatusChange.ChkFilledCan:
+                        if (!string.IsNullOrEmpty(whiteCode))
+                        {
+                            // 元データにWhite_Codeの登録がある場合
+                            Messages.ShowDialog(Sentence.Messages.OrderAllowsCorrectionFormulaOnly);
+                            return;
+                        }
                         inputCan = true;
                         break;
                     case RdoStatusChange.ChkFixedCan:
-                        switch (int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_STATUS].ToString()))
+                        switch (status)
                         {
+                            // 選択した投入缶が修正缶で、StatusがCCM配合待ちの場合
                             case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
                                 Messages.ShowDialog(Sentence.Messages.RejectedCorrectionForAnOrderWithNoFormula);
                                 return;
@@ -245,20 +284,10 @@ namespace NipponPaint.OrderManager.Dialogs
                 }
                 var colorantCount = GetColorantsCount(orderId);
                 // 総重量の取得
-                var totalWeight = GetTotalWeight(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_TOTAL_WEIGHT]);
-                if (ChkEmptyCan.Checked && TxtBaseValue.Text == InitialValue)
-                {
-                    if (Messages.ShowDialog(Sentence.Messages.WhiteWeightZeroEmptyCanProceedAnyway) == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-                if (int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_STATUS].ToString()) == NumUpDownCorrection.Value)
-                {
-
-                }
+                var totalWeightAddition = GetTotalWeight(totalWeight);
+                
                 // 取得したステータスによって更新するカラムを変更
-                switch (int.Parse(dt[SELECT_DATE].Rows[SELECT_DATE][NpCommon.Database.Sql.NpMain.Orders.COLUMN_STATUS].ToString()))
+                switch (status)
                 {
                     case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
                         status = (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.Ready;
@@ -266,11 +295,22 @@ namespace NipponPaint.OrderManager.Dialogs
                     case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.Ready:
                     case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
                     case (int)NpCommon.Database.Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
+                        if (revision == NumUpDownCorrection.Value)
+                        {
+                            // Revisionが登録値と入力値で変更がない場合
+                            Messages.ShowDialog(Sentence.Messages.DuplicateRevisionNumber);
+                            return;
+                        }
                         UpdateFlg = false;
                         break;
                     default:
                         UpdateFlg = false;
                         break;
+                }
+                if (string.IsNullOrEmpty(TxtIndexNumber.Value))
+                {
+                    // 目次番号が未入力の場合
+                    TxtIndexNumber.Value = IndexNumberEmpty;
                 }
                 var parameters = new List<ParameterItem>()
                 {
@@ -305,7 +345,7 @@ namespace NipponPaint.OrderManager.Dialogs
                     new ParameterItem("@Weight_9", TxtColoarantValue9.Text),
                     new ParameterItem("@Colorant_10", DrpColoarantSelect10.Text),
                     new ParameterItem("@Weight_10", TxtColoarantValue10.Text),
-                    new ParameterItem("@TotalWeight", totalWeight),
+                    new ParameterItem("@TotalWeight", totalWeightAddition),
                     new ParameterItem("@CCMColorName", TxtKanjiColorName.Value),
                 };
                 using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
@@ -315,6 +355,7 @@ namespace NipponPaint.OrderManager.Dialogs
                 }
                 //Messages.ShowDialog(Sentence.Messages.SelectMaterialError);
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -874,6 +915,7 @@ namespace NipponPaint.OrderManager.Dialogs
             TxtKanjiColorName.Value = "";
         }
         #endregion
+
     }
 }
 
