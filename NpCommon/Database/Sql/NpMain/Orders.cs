@@ -609,7 +609,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// ステータスを戻す
         /// </summary>
         /// <returns></returns>
-        public static string StatusResume(string orderIds,int status)
+        public static string StatusResume(string orderIds, int status)
         {
             var sql = new StringBuilder();
             sql.Append($"UPDATE ");
@@ -804,7 +804,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($",{COLUMN_INPUT_CAN}         = @InputCan ");
             sql.Append($",{COLUMN_REVISION}          = @Revision ");
             var startIndex = colorantCount;
-            for(var i = 0; i < MAX_ITEM; i++)
+            for (var i = 0; i < MAX_ITEM; i++)
             {
                 sql.Append($",{ColorColumns[startIndex + i][ColorColumnsColorantIndex]} = @{ColorColumns[i][ColorColumnsColorantIndex]}");
                 sql.Append($",{ColorColumns[startIndex + i][ColorColumnsWeightColorantIndex]} = @{ColorColumns[i][ColorColumnsWeightColorantIndex]}");
