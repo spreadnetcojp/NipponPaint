@@ -132,6 +132,9 @@ namespace NipponPaint.NpCommon
             [Display(Order = (int)Log.LogType.Question, Description = "オーダーのステータスを\"缶製造実施中\"に変更しますか？")]
             BtnChangeStatusClicked,
 
+            /// <summary>
+            /// 原料選択でｴﾗｰ
+            /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "原料選択でｴﾗｰ")]
             SelectMaterialError,
 
@@ -289,7 +292,7 @@ namespace NipponPaint.NpCommon
             [Display(Order = (int)Log.LogType.Error, Description = "CCMデータ受け取り拒絶：データフォーマットが違います")]
             WrongDataFormat,
 
-            // <summary>
+            /// <summary>
             /// Clear
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "Clearします")]
@@ -384,13 +387,13 @@ namespace NipponPaint.NpCommon
             [Display(Order = (int)Log.LogType.Error, Description = "データベースロールバックエラー")]
             DatabaseRollbackError,
 
-            // <summary>
+            /// <summary>
             /// 削除
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "削除します")]
             Delete,
 
-            // <summary>
+            /// <summary>
             /// 送り状No.エラー
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "送り状No.エラー")]
@@ -468,698 +471,698 @@ namespace NipponPaint.NpCommon
             [Display(Order = (int)Log.LogType.Error, Description = "荷札ラベルプリンターの通信(COM)ポート中にエラー")]
             ErrorWhileOpeningShippingLanbelPrinter,
 
-            // <summary>
+            /// <summary>
             /// エラー
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "エラー")]
             Errors,
 
-            // <summary>
+            /// <summary>
             /// FTP経由ファイル交換失敗
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "FTP経由ファイル交換失敗しました")]
             FTPFileProcessingFiled,
 
-            // <summary>
+            /// <summary>
             /// FTP経由ファイル交換成功
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "FTP経由ファイル交換成功しました")]
             FTPFileProcessingSuccess,
 
-            // <summary>
+            /// <summary>
             /// HG Systemとの接続設定
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "HG Systemとの接続設定")]
             HGSysyemConnectionParameters,
 
-            // <summary>
+            /// <summary>
             /// HG Systemデータサーバ非接続
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "HG Systemデータサーバ非接続")]
             HGSystemDataServerNotConnected,
 
-            // <summary>
+            /// <summary>
             /// HG Systemデータサーバスタート
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "HG Systemデータサーバスタート")]
             HGSystemDataServerStarted,
 
-            // <summary>
+            /// <summary>
             /// HG Systemファイルが重複
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "HG Systemファイルが重複しています")]
             HGSystemFileDuplicated,
 
-            // <summary>
+            /// <summary>
             /// HG Systemファイルが破棄
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "HG Systemファイルが破棄されました")]
             HGSystemFileRejected,
 
-            // <summary>
+            /// <summary>
             /// 不完全データ
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "不完全データ")]
             IncompleteData,
 
-            // <summary>
+            /// <summary>
             /// 初期化中
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "初期化中です")]
             Initializing,
 
-            // <summary>
+            /// <summary>
             /// 缶消失
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "缶が消失しました")]
             LostCan,
 
-            // <summary>
+            /// <summary>
             /// マスクされた
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "マスクされました")]
             Masked,
 
-            // <summary>
+            /// <summary>
             /// ミキシングができない
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "ミキシングができませんでした")]
             MixingImpossible,
 
-            // <summary>
+            /// <summary>
             /// 複写して新規作成
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "複写して新規作成します")]
             NewFromSelected,
 
-            // <summary>
+            /// <summary>
             /// 選択全削除
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "選択全削除します")]
             None,
 
-            // <summary>
+            /// <summary>
             /// チェックされていない
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "チェックされていません")]
             NotChecked,
 
-            // <summary>
+            /// <summary>
             /// パックされていない
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "パックされていません")]
             NotPacked,
 
-            // <summary>
+            /// <summary>
             /// 注文が完成したと通知しますか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "注文が完成したと通知しますか？")]
             NotifyOrderAsCompletelyProduced,
 
-            // <summary>
+            /// <summary>
             /// OK
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "OK")]
             OK,
 
-            // <summary>
+            /// <summary>
             /// 注文が見つからない
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "注文が見つかりません")]
             OrderNotFound,
 
-            // <summary>
+            /// <summary>
             /// 吐出許容量を超過
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "吐出許容量を超過しています")]
             OutOfRangeQuantity,
 
-            // <summary>
+            /// <summary>
             /// テーブルをパック
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "デーブルをパックします")]
             PackTables,
 
-            // <summary>
+            /// <summary>
             /// パックされた
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "パックされました")]
             Packed,
 
-            // <summary>
+            /// <summary>
             /// ペイントネームが見つからないため、デフォルト値が取込めない
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "ペイントネームが見つからないため、デフォルト値が取込めません")]
             PaintNameNotFoundDefaultValuesNotLoaded,
 
-            // <summary>
+            /// <summary>
             /// CCM配合待ち
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "CCM配合待ちです")]
             PendingAtCCM,
 
-            // <summary>
+            /// <summary>
             /// スタート待ち(PM)
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "スタート待ち(PM)です")]
             PendingAtPM,
 
-            // <summary>
+            /// <summary>
             /// 品名、色名を入れて下さい
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "品名、色名を入れてください")]
             PleaseInsertProductNameAndPaintName,
 
-            // <summary>
+            /// <summary>
             /// クローズの前に設定を保存してください
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "クローズの前に設定を保存してください")]
             PleaseSaveOrRestoreSettingsBeforeClosing,
 
-            // <summary>
+            /// <summary>
             /// 存在する
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "存在します")]
             Present,
 
-            // <summary>
+            /// <summary>
             /// プリント
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "プリントします")]
             Print,
 
-            // <summary>
+            /// <summary>
             /// 色名ラベルのプリント
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "色名ラベルをプリントします")]
             PrintAddOnLabel,
 
-            // <summary>
+            /// <summary>
             /// 色名ラベルのプリント
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "色名ラベルをプリントします")]
             PrintAddOnLabels,
 
-            // <summary>
+            /// <summary>
             /// バーコード印刷
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "バーコードを印刷します")]
             PrintBarcode,
 
-            // <summary>
+            /// <summary>
             /// 送り状No.一覧印刷
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "送り状No.の一覧を印刷します")]
             PrintFromCSVFile,
 
-            // <summary>
+            /// <summary>
             /// 作業指示書の印刷
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "作業指示書を印刷します")]
             PrintInstructionalSheet,
 
-            // <summary>
+            /// <summary>
             /// ラベル印刷
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "ラベルを印刷します")]
             PrintLabels,
 
-            // <summary>
+            /// <summary>
             /// 製品オーダーレポートをプリントしますか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "製品オーダーレポートをプリントしますか？")]
             PrintOrderProductionReport,
 
-            // <summary>
+            /// <summary>
             /// 製品ラベルのプリント
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "製品ラベルをプリントします")]
             PrintProductLabel,
 
-            // <summary>
+            /// <summary>
             /// 製品ラベルのプリント
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "製品ラベルをプリントします")]
             PrintProductLabels,
 
-            // <summary>
+            /// <summary>
             /// 控え板ラベル印刷
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "控え板ラベルを印刷します")]
             PrintSamplePlateLabels,
 
-            // <summary>
+            /// <summary>
             /// 荷札印刷
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "荷札を印刷します")]
             PrintShippingLabel,
 
-            // <summary>
+            /// <summary>
             /// 荷札ラベル印刷
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "荷札ラベルを印刷します")]
             PrintShippingLabels,
 
-            // <summary>
+            /// <summary>
             /// 最終配合で製造された
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "最終配合で製造されました")]
             ProducedWithLastReleaseFormula,
 
-            // <summary>
+            /// <summary>
             /// 古い配合で製造された
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "古い配合で製造されました")]
             ProducedWithOldReleaseFormula,
 
-            // <summary>
+            /// <summary>
             /// 製造完了
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "製造完了しました")]
             ProductionCompleted,
 
-            // <summary>
+            /// <summary>
             /// 検索結果を表示
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "検索結果を表示します")]
             QueryResultsDisplay,
 
-            // <summary>
+            /// <summary>
             /// 検索内容設定
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "検索内容を設定します")]
             QuerySettings,
 
-            // <summary>
+            /// <summary>
             /// 準備完
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "準備完了しました")]
             ReadyForProduction,
 
-            // <summary>
+            /// <summary>
             /// 注文破棄
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "注文を破棄します")]
             RejectOrders,
 
-            // <summary>
+            /// <summary>
             /// オーダーを削除しますか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "オーダーを削除しますか？")]
             RejectOrder,
 
-            // <summary>
+            /// <summary>
             /// Order Numberを削除しました
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "Order Numberを削除しました")]
             RejectOrderNumber,
 
-            // <summary>
+            /// <summary>
             /// 設定を元に戻す
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "設定を元に戻します")]
             RestoreSettings,
 
-            // <summary>
+            /// <summary>
             /// 缶の再製造
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "缶を再製造します")]
             RevertCan,
 
-            // <summary>
+            /// <summary>
             /// 注文を戻す
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "注文を戻します")]
             RevertOver,
 
-            // <summary>
+            /// <summary>
             /// 選択された缶を再製造しますか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "選択された缶を再製造しますか？")]
             RevertSelectedCan,
 
-            // <summary>
+            /// <summary>
             /// 選択された注文を戻しますか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "選択された注文を戻しますか？")]
             RevertSelectedOrder,
 
-            // <summary>
+            /// <summary>
             /// バックアップ地点まで戻る
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "バックアップ地点まで戻ります")]
             RollbackToBackupPoint,
 
-            // <summary>
+            /// <summary>
             /// HGサーバー作動
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "HGサーバーを作動します")]
             RunHGServer,
 
-            // <summary>
+            /// <summary>
             /// 検索実行
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "検索を実行します")]
             RunQuery,
 
-            // <summary>
+            /// <summary>
             /// 実行中
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "実行中です")]
             Runnning,
 
-            // <summary>
+            /// <summary>
             /// 製造缶実施中
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "製造缶実施中です")]
             RunningProductionCans,
 
-            // <summary>
+            /// <summary>
             /// テスト缶実施中
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "テスト缶実施中です")]
             RunnningProductionCans,
 
-            // <summary>
+            /// <summary>
             /// 保存
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "保存します")]
             Save,
 
-            // <summary>
+            /// <summary>
             /// 設定を保存
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "設定を保存します")]
             SaveSettings,
 
-            // <summary>
+            /// <summary>
             /// 選択された缶の穴とキャップが一致しない
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "選択された缶の穴とキャップが一致しません")]
             SelectedCanTypeBungholeAndSizeDoNotMuch,
 
-            // <summary>
+            /// <summary>
             /// 選択された缶タイプは削除されます。続けますか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "選択された缶タイプは削除されます。続けますか？")]
             SelectedCanTypeWillBeDeletedContinue,
 
-            // <summary>
+            /// <summary>
             /// 選択されたキャップタイプは削除されます。続けますか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "選択されたキャップタイプは削除されます。続けますか？")]
             SelectedCapTypeWillBeDeletedContinue,
 
-            // <summary>
+            /// <summary>
             /// CCMの品名を削除
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "選択されたCCMの品名は削除されます。続けますか？")]
             SelectedCCMPaintNameWillBeDeletedContinue,
 
-            // <summary>
+            /// <summary>
             /// 選択したラベルタイプを削除します。処理を続けますか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "選択したラベルタイプを削除します。処理を続けますか？")]
             SelectedLabelTypeWillBeDeletedContinue,
 
-            // <summary>
+            /// <summary>
             /// 選択されたオーダーがクローズされます。続けて良いですか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "選択されたオーダーがクローズされます。続けて良いですか？")]
             SelectedOrderWillBeClosedContinue,
 
-            // <summary>
+            /// <summary>
             /// 白コードを削除します。処理を続けますか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "白コードを削除します。処理を続けますか？")]
             SelectedWhiteCodeWillBeDeletedContinue,
 
-            // <summary>
+            /// <summary>
             /// CCMデータ送信
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "CCMデータを送信します")]
             SendCCMData,
 
-            // <summary>
+            /// <summary>
             /// HG Systemデータを送る
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "HG Systemデータを送ります")]
             SendHGSystemData,
 
-            // <summary>
+            /// <summary>
             /// 最終配合が吐出されていない缶があります！　それでもオーダーをクローズしますか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "最終配合が吐出されていない缶があります！　それでもオーダーをクローズしますか？")]
             SomeCansHaventBeenDispensedWithLastReleaseCloseOrder,
 
-            // <summary>
+            /// <summary>
             /// 注文開始
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "注文を開始します")]
             StartOrder,
 
-            // <summary>
+            /// <summary>
             /// HGサーバー停止
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "HGサーバーを停止します")]
             StopHGServer,
 
-            // <summary>
+            /// <summary>
             /// 停止中
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "停止中です")]
             Stopped,
 
-            // <summary>
+            /// <summary>
             /// 正常処理
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "正常処理されました")]
             SuccessfullyProduced,
 
-            // <summary>
+            /// <summary>
             /// 電話番号は1バイト数値コードのみ入力できます
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "電話番号は1バイト数値のみ入力できます")]
             TelephoneNumberOnlyAllowsSingleByteNumericalCharacters,
 
-            // <summary>
+            /// <summary>
             /// 'Kanji','漢字'と書かれたフィールドは2バイトコード文字を入力しなければなりません
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "'Kanji','漢字'と書かれたフィールドは2バイトコード文字を入力しなければなりません")]
             TheFieldsMarkedAsKanjiMustBeFilledWithDualByteCoded,
 
-            // <summary>
+            /// <summary>
             /// 本日および翌日の路線便配送決定
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "本日および翌日の路線配送便を決定します")]
             TruckCompanyDeliveriesScheduledForTodayTomorrow,
 
-            // <summary>
+            /// <summary>
             /// 路線便決定
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "路線便を決定します")]
             TruckCompanySettings,
 
-            // <summary>
+            /// <summary>
             /// 不明缶
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "不明缶")]
             UnknownCan,
 
-            // <summary>
+            /// <summary>
             /// 処理異常
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "処理異常")]
             UnsuccsessfullyProduced,
 
-            // <summary>
+            /// <summary>
             /// 調色担当待ち
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "調色担当待ちです")]
             WaitingOperatorAssignment,
 
-            // <summary>
+            /// <summary>
             /// 出庫
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "出庫します")]
             Warehouse,
 
-            // <summary>
+            /// <summary>
             /// 警告！！　送り状の番号残が100以下：
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "警告！！　送り状の番号残が100以下です：")]
             RemainingDeliveryOrderNumbers,
 
-            // <summary>
+            /// <summary>
             /// 白ベースコードが見つからないため、デフォルト値が取込めない
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "白ベースコードが見つからないため、デフォルト値が取込めません")]
             WhiteCodeNotFoundDefaultValueNotLoaded,
 
-            // <summary>
+            /// <summary>
             /// 充填缶の重量はゼロではないが、それをゼロとセット
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "充填缶の重量はゼロではありませんが、それをゼロとセットします")]
             WhiteWeightNotZeroWillBeSetToZero,
 
-            // <summary>
+            /// <summary>
             /// 空缶への白投入量が0です。続行しますか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "空缶への白投入量が0です。続行しますか？")]
             WhiteWeightZeroEmptyCanProceedAnyway,
 
-            // <summary>
+            /// <summary>
             /// 誤った缶の種類
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "誤った缶の種類")]
             WrongCanType,
 
-            // <summary>
+            /// <summary>
             /// 誤った入力時重量
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "誤った入力時重量")]
             WrongInputWeight,
 
-            // <summary>
+            /// <summary>
             /// 誤った出力重量
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "誤った出力重量")]
             WrongOutputWeight,
 
-            // <summary>
+            /// <summary>
             /// オペレーター削除
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "オペレーターを削除します")]
             DeleteOperator,
 
-            // <summary>
+            /// <summary>
             /// オーダーは削除されました！
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "オーダーは削除されました！")]
             OrdersDeleted,
 
-            // <summary>
+            /// <summary>
             /// オーダーのステタスを"CCM配合待ち"に変更しますか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "オーダーのステタスを'CCM配合待ち'に変更しますか？")]
             ChangeOrderStatusToWaitingCCMFormula,
 
-            // <summary>
+            /// <summary>
             /// オーダー削除
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "オーダーを削除します")]
             DeleteOrder,
 
-            // <summary>
+            /// <summary>
             /// 統計報告パスワード変更
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "統計報告パスワードを変更します")]
             ChangeStatisticReportPassword,
 
-            // <summary>
+            /// <summary>
             /// 
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "選択した製品を削除します。処理を続けますか？")]
             SelectedProductDeletedContinue,
 
-            // <summary>
+            /// <summary>
             /// データがありません
             /// </summary>
             [Display(Order = (int)Log.LogType.Error, Description = "データがありません")]
             MissingData,
 
-            // <summary>
+            /// <summary>
             /// 1オーダーのオーダークローズ
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "1オーダーのオーダーをクローズします")]
             CloseCurrentOrder,
 
-            // <summary>
+            /// <summary>
             /// CCM配合待ち(ST1)オーダークローズ
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "CCM配合待ち(ST1)のオーダーをクローズします")]
             CloseWaitingForCCMMormula,
 
-            // <summary>
+            /// <summary>
             /// テスト缶実施中(ST3)オーダークローズ
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "テスト缶実施中(ST3)のオーダーをクローズします")]
             CloseProductionOfTestCan,
 
-            // <summary>
+            /// <summary>
             /// 製造缶実施中(ST4)オーダークローズ
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "製造缶実施中(ST4)のオーダーをクローズします")]
             CloseProductionOfProduct,
 
-            // <summary>
+            /// <summary>
             /// 全て選択
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "全てを選択します")]
             SelectAll,
 
-            // <summary>
+            /// <summary>
             /// 選択したオーダーを削除しますか？
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "選択したオーダーを削除しますか？")]
             DeleteSelectedOrders,
 
-            // <summary>
+            /// <summary>
             /// 対象ファイル選択
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "対象ファイルを選択します")]
             SelectDestinationFile,
 
-            // <summary>
+            /// <summary>
             /// CSVファイル作成成功！
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "CSVファイル作成成功！")]
             FileCSVCreateSuccessfull,
 
-            // <summary>
+            /// <summary>
             /// FTPファイル取り込み工程成功(
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "FTPファイル取り込み工程成功(")]
             FTPFileProcessingIsSuccess,
 
-            // <summary>
+            /// <summary>
             /// 今バックアップ開始
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "今からバックアップを開始します")]
             ExecBackupNow,
 
-            // <summary>
+            /// <summary>
             /// データ復帰
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "データの復帰をします")]
             RestoreTables,
 
-            // <summary>
+            /// <summary>
             /// 履歴データ削除
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "履歴データを削除します")]
             PackTable,
 
-            // <summary>
+            /// <summary>
             /// トラブル発生時のデータベース保存
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "トラブル発生時のデータベースを保存します")]
             TroubleBackup,
 
-            // <summary>
+            /// <summary>
             /// 履歴をデータベースから削除
             /// </summary>
             [Display(Order = (int)Log.LogType.Info, Description = "履歴をデータベースから削除します")]
             DeleteOrderFromArchive,
 
             //↓↓追加で作成　重複する内容が見つかれば削除します。
-            // <summary>
+            /// <summary>
             /// データ復帰
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "選択したデータを復元しますか？")]
             RestoreSelectedTables,
 
-            // <summary>
+            /// <summary>
             /// 履歴データ削除
             /// </summary>
             [Display(Order = (int)Log.LogType.Question, Description = "アーカイブから履歴データを削除しますか？")]
