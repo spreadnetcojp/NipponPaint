@@ -618,7 +618,8 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             switch (status)
             {
                 case (int)OrderStatus.WaitingForCCMformulation:
-                    sql.Append($"Status = {(int)OrderStatus.WaitingForToning} ");　　　　　// CCM配合待ち（赤）の場合は調色担当待ち（桃）へステータスを戻す
+                    // CCM配合待ち（赤）の場合は調色担当待ち（桃）へステータスを戻す
+                    sql.Append($"Status = {(int)OrderStatus.WaitingForToning} ");
                     break;
                 default:
                     sql.Append($"Status = {(int)OrderStatus.WaitingForCCMformulation} ");
