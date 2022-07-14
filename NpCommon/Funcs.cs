@@ -31,9 +31,9 @@ namespace NipponPaint.NpCommon
 
         // フォントサイズ
         private static int FONTSIZE_PRODUCT_CODE = 24;
-        private static int FONTSIZE_DEFAULT = 12;
-        private static int FONTSIZE_PRODUCT_CODE_GVORDER = 16;
-        private static int FONTSIZE_DEFAULT_GVORDER = 8;
+        private static int FONTSIZE_DEFAULT = 18;
+        //private static int FONTSIZE_PRODUCT_CODE_GVORDER = 16;
+        //private static int FONTSIZE_DEFAULT_GVORDER = 8;
 
         // 表示桁数
         private const string DECIMAL_POINT_THREE = "0.000";
@@ -424,13 +424,13 @@ namespace NipponPaint.NpCommon
         {
             var fontSizeProductCode = FONTSIZE_PRODUCT_CODE;
             var fontSizeDefault = FONTSIZE_DEFAULT;
-            switch (gv.Name)
-            {
-                case "GvOrder":
-                    fontSizeProductCode = FONTSIZE_PRODUCT_CODE_GVORDER;
-                    fontSizeDefault = FONTSIZE_DEFAULT_GVORDER;
-                    break;
-            }
+            //switch (gv.Name)
+            //{
+            //    case "GvOrder":
+            //        fontSizeProductCode = FONTSIZE_PRODUCT_CODE_GVORDER;
+            //        fontSizeDefault = FONTSIZE_DEFAULT_GVORDER;
+            //        break;
+            //}
             // テーブル設定を元にカラムの作成
             foreach (var setting in settings)
             {
@@ -460,6 +460,34 @@ namespace NipponPaint.NpCommon
             bindingSource.DataSource = dt;
             // DataGridViewのDataSourceはBindingSourceオブジェクトにする
             gv.DataSource = bindingSource;
+        }
+        #endregion
+
+        #region 缶タブ用GridViewのカラム設定及びフォントサイズ設定
+        /// <summary>
+        /// 缶タブ用GridViewのカラム設定及びフォントサイズ設定
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="settings"></param>
+        /// <param name="gv"></param>
+        public static void CansDataGridView(List<Settings.GridViewSetting> settings, DataGridView gv)
+        {
+            var fontSizeDefault = FONTSIZE_DEFAULT;
+            // テーブル設定を元にカラムの作成
+            foreach (var setting in settings)
+            {
+                var col = new DataGridViewColumn();
+                col.Width = setting.Width;
+                col.Visible = setting.Visible;
+                col.DefaultCellStyle.Alignment = setting.alignment;
+                col.DataPropertyName = setting.DisplayName;
+                col.Name = setting.DisplayName;
+                col.HeaderText = setting.DisplayName;
+                col.DefaultCellStyle.Font = new Font(gv.Font.Name, fontSizeDefault);
+                // フォントサイズ変更
+                col.CellTemplate = new DataGridViewTextBoxCell();
+                gv.Columns.Add(col);
+            }
         }
         #endregion
 
