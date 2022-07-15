@@ -787,3 +787,5 @@ OrderManager/bin/Debug/Log/OrderManager20220617.log
 *.resources
 *.log
 *.dll
+*.xml
+*.cache
