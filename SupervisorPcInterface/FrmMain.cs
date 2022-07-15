@@ -158,6 +158,34 @@ namespace SupervisorPcInterface
         }
 
         /// <summary>
+        /// TB_BARCODE更新（エラー時）
+        /// </summary>
+        /// <param name="barcodeRow"></param>
+        /// <param name="errorCode"></param>
+        /// <param name="updateDateTime"></param>
+        /// <param name="resultParameters"></param>
+        /// <returns></returns>
+        private string SetSqlBarcode(DataRow barcodeRow,
+                                     string[] errorCode,
+                                     DateTime updateDateTime,
+                                     out List<ParameterItem> parameters)
+        {
+            // SQL作成
+            var sql = TbBarcode.Update();
+            /// パラメータ設定
+            parameters = new List<ParameterItem>();
+            parameters.Add(new ParameterItem($"{TbBarcode.BARCODE}", barcodeRow[TbBarcode.BARCODE].ToString()));
+            parameters.Add(new ParameterItem($"{TbBarcode.PROCESS_CODE}", barcodeRow[TbBarcode.PROCESS_CODE].ToString()));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_TIME_PROCESSED}", updateDateTime));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_STATUS}", TbBarcode.STATUS_ERP_PROCESSED));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_1}", errorCode[0]));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_2}", errorCode[1]));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_3}", errorCode[2]));
+            // SQL返却
+            return sql;
+        }
+
+        /// <summary>
         /// TB_JOB更新
         /// </summary>
         /// <param name="barcodeRow"></param>
@@ -177,7 +205,7 @@ namespace SupervisorPcInterface
             items.Find(x => x.Key == TbJob.JOB_PROCESS_CODE).Value = barcodeRow[TbBarcode.PROCESS_CODE].ToString();
             items.Find(x => x.Key == TbJob.JOB_TIME_INSERTED).Value = updateDateTime;
             items.Find(x => x.Key == TbJob.JOB_STATUS).Value = 0;
-            items.Find(x => x.Key == TbJob.JOB_TARE_WEIGHT_EXPECTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_TARE_WEIGHT_EXPECTED).Value = GetTareWeightExpected(dispenseRow);
             items.Find(x => x.Key == TbJob.JOB_TARE_WEIGHT_DETECTED).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_TARE_WEIGHT_PERC_ERR_ADMITTED).Value = dispenseRow[Orders.COLUMN_P_WEIGHT_TOLERANCE];
             items.Find(x => x.Key == TbJob.JOB_GROSS_WEIGHT_EXPECTED).Value = 0;
@@ -194,7 +222,7 @@ namespace SupervisorPcInterface
             items.Find(x => x.Key == TbJob.JOB_TOT_GRAVIMETRIC_WEIGHT_PERC_ERR_ADMITTED).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_MIXING).Value = 1;
             items.Find(x => x.Key == TbJob.JOB_MIXING_TIME).Value = dispenseRow[Orders.COLUMN_MIXING_TIME];
-            items.Find(x => x.Key == TbJob.JOB_MIXING_SPEED).Value = dispenseRow[Orders.COLUMN_MIXING_SPEED]; // TODO：計算
+            items.Find(x => x.Key == TbJob.JOB_MIXING_SPEED).Value = GetMixingSpeed(dispenseRow);
             items.Find(x => x.Key == TbJob.JOB_CAPPING).Value = dispenseRow[Orders.COLUMN_INPUT_CAN].ToString() == Orders.INPUT_CAN_YES.ToString() ? 1 : 0;
             items.Find(x => x.Key == TbJob.JOB_LID_PLACING).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_LID_CHECK).Value = 0;
@@ -284,23 +312,32 @@ namespace SupervisorPcInterface
                             };
                             // バーコードをキーにERPのテーブルから情報収集
                             var dispenseDatas = dbn.Select(Cans.GetPreviewDispensedData(_settings.Facility.Plant), parameters);
-                            var dispenseRows = dispenseDatas.Select($"{Cans.COLUMN_BARCODE} = '{barCode}' AND {Cans.COLUMN_CODE} <> ''");
+                            var dispenseRows = dispenseDatas.Select($"{Cans.COLUMN_BARCODE} = '{barCode}' AND {Cans.COLUMN_CODE} <> '' AND {Cans.COLUMN_WEIGHT} <> {Cans.COLUMN_DISPENSED}");
                             //PutLog(Sentence.Messages.ExecuteSupervisorInterface, new string[] { barCode, dispenseRows.Count().ToString() });
                             var cnt = 0;
                             // SQLを作成してTB_BARCODE、TB_JOB、TB_FORMULAを更新
-                            foreach (DataRow dispenseRow in dispenseRows)
+                            if (dispenseRows != null && dispenseRows.Any())
                             {
-                                var updateDateTime = DateTime.Now;
-                                if (cnt == 0)
+                                foreach (DataRow dispenseRow in dispenseRows)
                                 {
-                                    // TB_BARCODE
-                                    dbs.Execute(SetSqlBarcode(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p0), p0);
-                                    // TB_JOB
-                                    dbs.Execute(SetSqlJob(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p1), p1);
+                                    var updateDateTime = DateTime.Now;
+                                    if (cnt == 0)
+                                    {
+                                        // TB_BARCODE
+                                        dbs.Execute(SetSqlBarcode(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p0), p0);
+                                        // TB_JOB
+                                        dbs.Execute(SetSqlJob(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p1), p1);
+                                    }
+                                    // TB_FORMULA
+                                    dbs.Execute(SetSqlFormura(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p2), p2);
+                                    cnt++;
                                 }
-                                // TB_FORMULA
-                                dbs.Execute(SetSqlFormura(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p2), p2);
-                                cnt++;
+                            }
+                            else
+                            {
+                                // TB_BARCODE（対象データがERPに存在しない）
+                                var updateDateTime = DateTime.Now;
+                                dbs.Execute(SetSqlBarcode(barcodeRow, new string[] { "1", "2", "3" }, updateDateTime, out List<ParameterItem> p0), p0);
                             }
                         }
                     }
@@ -332,33 +369,40 @@ namespace SupervisorPcInterface
                         foreach (DataRow barcodeRow in barcodeRows.Rows)
                         {
                             var barCode = barcodeRow[TbBarcode.BARCODE].ToString();
-                            // ERPのテーブルから情報収集
-                            // 行取得のSQLを作成
-                            var parameters = new List<ParameterItem>()
+                            if (!IsError(barcodeRow, out List<string> errors))
                             {
-                                new ParameterItem("barcode", barCode),
-                            };
-                            // バーコードをキーにCOROBのテーブルから情報収集
-                            var dispenseDatas = dbs.Select(TbFormula.GetPreviewAll(), parameters);
-                            var cans = dbn.Select(Cans.GetDetailByBarcode(), parameters);
-                            if (cans.Rows.Count > 0)
-                            {
-                                var updateItems = new List<string>();
-                                foreach (var colorColumns in Cans.ColorColumns)
+                                // ERPのテーブルから情報収集
+                                // 行取得のSQLを作成
+                                var parameters = new List<ParameterItem>()
                                 {
-                                    var item = dispenseDatas.AsEnumerable().FirstOrDefault(x => x[TbFormula.PRD_CODE].ToString() == cans.Rows[0][colorColumns[0]].ToString());
-                                    if (item != null)
+                                    new ParameterItem("barcode", barCode),
+                                };
+                                // バーコードをキーにCOROBのテーブルから情報収集
+                                var dispenseDatas = dbs.Select(TbFormula.GetPreviewAll(), parameters);
+                                var cans = dbn.Select(Cans.GetDetailByBarcode(), parameters);
+                                if (cans.Rows.Count > 0)
+                                {
+                                    var updateItems = new List<string>();
+                                    foreach (var colorColumns in Cans.ColorColumns)
                                     {
-                                        // TB_FORMULAテーブルの値を設定
-                                        parameters.Add(new ParameterItem(colorColumns[1], item[TbFormula.PRD_PREFILLED_QTY]));
-                                        updateItems.Add($"{colorColumns[1]} = @{colorColumns[1]}");
+                                        var item = dispenseDatas.AsEnumerable().FirstOrDefault(x => x[TbFormula.PRD_CODE].ToString() == cans.Rows[0][colorColumns[0]].ToString());
+                                        if (item != null)
+                                        {
+                                            // TB_FORMULAテーブルの値を設定
+                                            parameters.Add(new ParameterItem(colorColumns[1], item[TbFormula.PRD_PREFILLED_QTY]));
+                                            updateItems.Add($"{colorColumns[1]} = @{colorColumns[1]}");
+                                        }
+                                    }
+                                    // 更新対象カラムがある場合のみCansをupdate
+                                    if (updateItems.Any())
+                                    {
+                                        dbn.Execute(Cans.SetDispensedFromSupervisor(updateItems), parameters);
                                     }
                                 }
-                                // 更新対象カラムがある場合のみCansをupdate
-                                if (updateItems.Any())
-                                {
-                                    dbn.Execute(Cans.SetDispensedFromSupervisor(updateItems), parameters);
-                                }
+                            }
+                            else
+                            {
+                                PutLog(Sentence.Messages.ErrorOnTbJob, new object[] { barCode, string.Join(",", errors) });
                             }
                         }
                     }
@@ -370,6 +414,70 @@ namespace SupervisorPcInterface
                     PutLog(ex, false);
                 }
             }
+        }
+        #endregion
+
+        #region COROBが更新したエラー内容のチェック
+        /// <summary>
+        /// エラーチェック対象カラム
+        /// </summary>
+        private readonly string[] ErrorCheckColumns = new string[]
+        {
+            TbJob.JOB_ERR_1,
+            TbJob.JOB_ERR_2,
+            TbJob.JOB_ERR_3,
+            TbJob.JOB_ERR_4,
+            TbJob.JOB_ERR_5,
+        };
+        /// <summary>
+        /// COROBが更新したエラー内容のチェック
+        /// </summary>
+        /// <param name="barcodeRow"></param>
+        /// <param name="messages"></param>
+        /// <returns></returns>
+        private bool IsError(DataRow barcodeRow, out List<string> messages)
+        {
+            messages = new List<string>();
+            foreach (var errorCheckColumn in ErrorCheckColumns)
+            {
+                if (!string.IsNullOrEmpty(barcodeRow[errorCheckColumn].ToString()))
+                {
+                    messages.Add($"{errorCheckColumn}[{barcodeRow[errorCheckColumn]}]");
+                }
+            }
+            if (messages.Any())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #region 理論上の風袋重量(グラム)
+        /// <summary>
+        /// 理論上の風袋重量(グラム)
+        /// </summary>
+        /// <param name="dispenseRow"></param>
+        /// <returns></returns>
+        private float GetTareWeightExpected(DataRow dispenseRow)
+        {
+            return float.Parse(dispenseRow[Orders.COLUMN_CAN_WEIGHT].ToString()) + float.Parse(dispenseRow[Orders.COLUMN_HG_WEIGHT].ToString());
+        }
+        #endregion
+
+        #region 撹拌スピード（％）
+        /// <summary>
+        /// 撹拌スピード（％）
+        /// </summary>
+        /// <param name="dispenseRow"></param>
+        /// <returns></returns>
+        private int GetMixingSpeed(DataRow dispenseRow)
+        {
+            var value = float.Parse(dispenseRow[Orders.COLUMN_MIXING_SPEED].ToString()) / float.Parse(_settings.SupervisorInterface.StandardMixingRpm.ToString());
+            return int.Parse(value.ToString());
         }
         #endregion
 

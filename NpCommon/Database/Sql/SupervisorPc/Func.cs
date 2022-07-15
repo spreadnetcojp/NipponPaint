@@ -27,35 +27,35 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
 
         public static string CreateMergeStatement(string tableName, List<MergeItemDefine> fields, out List<ParameterItem> parameters)
         {
-            var SelectItems = new List<string>();
-            var KeyItems = new List<string>();
-            var UpdateItems = new List<string>();
-            var InsertFields = new List<string>();
-            var InsertValues = new List<string>();
+            var selectItems = new List<string>();
+            var keyItems = new List<string>();
+            var updateItems = new List<string>();
+            var insertFields = new List<string>();
+            var insertValues = new List<string>();
             parameters = new List<ParameterItem>();
             foreach (var field in fields)
             {
-                SelectItems.Add($" @{field.Field} AS {field.Field} ");
+                selectItems.Add($" @{field.Field} AS {field.Field} ");
                 parameters.Add(new ParameterItem($"{field.Field}", null));
                 if (field.IsKey)
                 {
-                    KeyItems.Add($"{tableName}.{field.Field}=ITEMS.{field.Field}");
+                    keyItems.Add($"{tableName}.{field.Field}=ITEMS.{field.Field}");
                 }
                 if (field.IsUpdate)
                 {
-                    UpdateItems.Add($"{field.Field}=ITEMS.{field.Field}");
+                    updateItems.Add($"{field.Field}=ITEMS.{field.Field}");
                 }
                 if (field.IsInsert)
                 {
-                    InsertFields.Add($"{field.Field}");
-                    InsertValues.Add($"@{field.Field}");
+                    insertFields.Add($"{field.Field}");
+                    insertValues.Add($"@{field.Field}");
                 }
             }
             var sql = new StringBuilder();
-            sql.Append($"MERGE INTO {tableName} USING (SELECT {string.Join(",", SelectItems)}) AS ITEMS ");
-            sql.Append($"ON ({string.Join(" AND ", KeyItems)}) ");
-            sql.Append($"WHEN MATCHED THEN UPDATE SET {string.Join(",", UpdateItems)} ");
-            sql.Append($"WHEN NOT MATCHED THEN INSERT ({string.Join(",", InsertFields)}) VALUES ({string.Join(",", InsertValues)}); ");
+            sql.Append($"MERGE INTO {tableName} USING (SELECT {string.Join(",", selectItems)}) AS ITEMS ");
+            sql.Append($"ON ({string.Join(" AND ", keyItems)}) ");
+            sql.Append($"WHEN MATCHED THEN UPDATE SET {string.Join(",", updateItems)} ");
+            sql.Append($"WHEN NOT MATCHED THEN INSERT ({string.Join(",", insertFields)}) VALUES ({string.Join(",", insertValues)}); ");
             return sql.ToString();
         }
         public static string CreateInsertStatement(string tableName, List<MergeItemDefine> fields, out List<ParameterItem> parameters)
