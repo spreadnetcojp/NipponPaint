@@ -190,8 +190,18 @@ namespace NipponPaint.NpCommon
             /// <summary>
             /// COROB発行エラー検知
             /// </summary>
-            [Display(Order = (int)Log.LogType.Error, Description = "TB_JOBでエラーが発生しています（バーコード{0}：エラー内容{1}）")]
+            [Display(Order = (int)Log.LogType.Error, Description = "{0}でエラーが発生しています（バーコード：{1}、エラー内容：{2}）")]
             ErrorOnTbJob,
+            /// <summary>
+            /// テーブル更新
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Info, Description = "{0}を更新しました（バーコード：{1}）")]
+            ExecuteMergeBarcode,
+            /// <summary>
+            /// テーブル更新
+            /// </summary>
+            [Display(Order = (int)Log.LogType.Info, Description = "{0}を更新しました（バーコード：{1}、色：{2}）")]
+            ExecuteMergeFormula,
             #endregion
 
             #region 仕様文章一覧（Query-4)

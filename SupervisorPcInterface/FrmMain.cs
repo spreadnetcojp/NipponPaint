@@ -150,9 +150,9 @@ namespace SupervisorPcInterface
             parameters.Add(new ParameterItem($"{TbBarcode.PROCESS_CODE}", barcodeRow[TbBarcode.PROCESS_CODE].ToString()));
             parameters.Add(new ParameterItem($"{TbBarcode.BRC_TIME_PROCESSED}", updateDateTime));
             parameters.Add(new ParameterItem($"{TbBarcode.BRC_STATUS}", TbBarcode.STATUS_ERP_PROCESSED));
-            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_1}", dispenseRow[Cans.COLUMN_ERRORS_1]));
-            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_2}", dispenseRow[Cans.COLUMN_ERRORS_2]));
-            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_3}", dispenseRow[Cans.COLUMN_ERRORS_3]));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_1}", dispenseRow[Cans.COLUMN_ERRORS_1].ToString()));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_2}", dispenseRow[Cans.COLUMN_ERRORS_2].ToString()));
+            parameters.Add(new ParameterItem($"{TbBarcode.BRC_ERR_3}", dispenseRow[Cans.COLUMN_ERRORS_3].ToString()));
             // SQL返却
             return sql;
         }
@@ -325,11 +325,15 @@ namespace SupervisorPcInterface
                                     {
                                         // TB_BARCODE
                                         dbs.Execute(SetSqlBarcode(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p0), p0);
+                                        PutLog(Sentence.Messages.ExecuteMergeBarcode, new string[] { TbBarcode.MAIN_TABLE, barCode });
                                         // TB_JOB
                                         dbs.Execute(SetSqlJob(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p1), p1);
+                                        PutLog(Sentence.Messages.ExecuteMergeBarcode, new string[] { TbJob.MAIN_TABLE, barCode });
                                     }
                                     // TB_FORMULA
+                                    var prdCode = dispenseRow[Cans.COLUMN_CODE].ToString();
                                     dbs.Execute(SetSqlFormura(barcodeRow, dispenseRow, updateDateTime, out List<ParameterItem> p2), p2);
+                                    PutLog(Sentence.Messages.ExecuteMergeFormula, new string[] { TbFormula.MAIN_TABLE, barCode, prdCode });
                                     cnt++;
                                 }
                             }
@@ -338,6 +342,7 @@ namespace SupervisorPcInterface
                                 // TB_BARCODE（対象データがERPに存在しない）
                                 var updateDateTime = DateTime.Now;
                                 dbs.Execute(SetSqlBarcode(barcodeRow, new string[] { "1", "2", "3" }, updateDateTime, out List<ParameterItem> p0), p0);
+                                PutLog(Sentence.Messages.ErrorOnTbJob, new object[] { TbBarcode.MAIN_TABLE, barCode, "対象データがERPに存在しません" });
                             }
                         }
                     }
@@ -397,12 +402,13 @@ namespace SupervisorPcInterface
                                     if (updateItems.Any())
                                     {
                                         dbn.Execute(Cans.SetDispensedFromSupervisor(updateItems), parameters);
+                                        PutLog(Sentence.Messages.ExecuteMergeBarcode, new string[] { Cans.MAIN_TABLE, barCode });
                                     }
                                 }
                             }
                             else
                             {
-                                PutLog(Sentence.Messages.ErrorOnTbJob, new object[] { barCode, string.Join(",", errors) });
+                                PutLog(Sentence.Messages.ErrorOnTbJob, new object[] { TbJob.MAIN_TABLE, barCode, string.Join(",", errors) });
                             }
                         }
                     }
@@ -476,8 +482,8 @@ namespace SupervisorPcInterface
         /// <returns></returns>
         private int GetMixingSpeed(DataRow dispenseRow)
         {
-            var value = float.Parse(dispenseRow[Orders.COLUMN_MIXING_SPEED].ToString()) / float.Parse(_settings.SupervisorInterface.StandardMixingRpm.ToString());
-            return int.Parse(value.ToString());
+            var value = (float.Parse(dispenseRow[Orders.COLUMN_MIXING_SPEED].ToString()) * 100) / float.Parse(_settings.SupervisorInterface.StandardMixingRpm.ToString());
+            return (int)value;
         }
         #endregion
 

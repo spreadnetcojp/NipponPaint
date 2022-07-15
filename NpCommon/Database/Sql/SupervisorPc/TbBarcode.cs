@@ -88,9 +88,9 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
             sql.Append($" ,B.{BRC_TIME_INSERTED} ");
             sql.Append($" ,B.{BRC_TIME_PROCESSED} ");
             sql.Append($" ,B.{BRC_STATUS} ");
-            sql.Append($" ,B.{BRC_ERR_1} ");
-            sql.Append($" ,B.{BRC_ERR_2} ");
-            sql.Append($" ,B.{BRC_ERR_3} ");
+            sql.Append($" ,ISNULL(B.{BRC_ERR_1}, '0') AS {BRC_ERR_1} ");
+            sql.Append($" ,ISNULL(B.{BRC_ERR_2}, '0') AS {BRC_ERR_2} ");
+            sql.Append($" ,ISNULL(B.{BRC_ERR_3}, '0') AS {BRC_ERR_3} ");
             sql.Append($" ,ISNULL(J.{TbJob.JOB_STATUS}, 0) AS {TbJob.JOB_STATUS} ");
             sql.Append($" ,ISNULL(J.{TbJob.JOB_ERR_1}, '') AS {TbJob.JOB_ERR_1} ");
             sql.Append($" ,ISNULL(J.{TbJob.JOB_ERR_2}, '') AS {TbJob.JOB_ERR_2} ");
@@ -100,8 +100,17 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
             sql.Append($"FROM {MAIN_TABLE} AS B ");
             sql.Append($"LEFT JOIN {TbJob.MAIN_TABLE} AS J ON J.{TbJob.JOB_BARCODE} = B.{BARCODE} AND J.{TbJob.JOB_PROCESS_CODE} = B.{PROCESS_CODE} ");
             sql.Append($") AS TB0 ");
-            // TB_JOBのJOB_STATUSが1(缶は良好にラインを終了)以外のレコードを取得
-            sql.Append($"WHERE JOB_STATUS <> 1 ");
+            // TB_JOBのJOB_STATUSが1(缶は良好にラインを終了)以外、かつエラーが発生していないレコードを取得
+            sql.Append($"WHERE {TbJob.JOB_STATUS} <> 1 ");
+            // リカバリされたら処理対象
+            //sql.Append($"  AND {BRC_ERR_1} = '0' ");
+            //sql.Append($"  AND {BRC_ERR_2} = '0' ");
+            //sql.Append($"  AND {BRC_ERR_3} = '0' ");
+            sql.Append($"  AND {TbJob.JOB_ERR_1} = '' ");
+            sql.Append($"  AND {TbJob.JOB_ERR_2} = '' ");
+            sql.Append($"  AND {TbJob.JOB_ERR_3} = '' ");
+            sql.Append($"  AND {TbJob.JOB_ERR_4} = '' ");
+            sql.Append($"  AND {TbJob.JOB_ERR_5} = '' ");
             return sql.ToString();
         }
 

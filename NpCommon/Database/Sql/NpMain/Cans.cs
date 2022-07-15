@@ -27,7 +27,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
     {
         #region 定数
         // テーブル
-        private const string MAIN_TABLE = "Cans";
+        public const string MAIN_TABLE = "Cans";
         // カラム
         public const string COLUMN_BARCODE = "Barcode";
         public const string COLUMN_ORDER_ID = "Order_id";
