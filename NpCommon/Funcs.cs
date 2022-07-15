@@ -32,8 +32,6 @@ namespace NipponPaint.NpCommon
         // フォントサイズ
         private static int FONTSIZE_PRODUCT_CODE = 24;
         private static int FONTSIZE_DEFAULT = 18;
-        //private static int FONTSIZE_PRODUCT_CODE_GVORDER = 16;
-        //private static int FONTSIZE_DEFAULT_GVORDER = 8;
 
         // 表示桁数
         private const string DECIMAL_POINT_THREE = "0.000";
@@ -424,13 +422,6 @@ namespace NipponPaint.NpCommon
         {
             var fontSizeProductCode = FONTSIZE_PRODUCT_CODE;
             var fontSizeDefault = FONTSIZE_DEFAULT;
-            //switch (gv.Name)
-            //{
-            //    case "GvOrder":
-            //        fontSizeProductCode = FONTSIZE_PRODUCT_CODE_GVORDER;
-            //        fontSizeDefault = FONTSIZE_DEFAULT_GVORDER;
-            //        break;
-            //}
             // テーブル設定を元にカラムの作成
             foreach (var setting in settings)
             {
