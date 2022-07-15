@@ -30,10 +30,12 @@ namespace NipponPaint.NpCommon.IniFile.Sections
 
         #region プロパティ
         public int TickTime { get { return _tickTime; } }
+        public int StandardMixingRpm { get { return _standardMixingRpm; } }
         #endregion
 
         #region メンバ変数
         private int _tickTime = 10;
+        private int _standardMixingRpm = 150;
         #endregion
 
         #region コンストラクタ
@@ -45,6 +47,7 @@ namespace NipponPaint.NpCommon.IniFile.Sections
         {
             var reader = new FileInterface(filePath);
             _tickTime = int.Parse(reader.GetItem(MySectionName, "TickTime", _tickTime.ToString()));
+            _standardMixingRpm = int.Parse(reader.GetItem(MySectionName, "StandardMixingRpm", _standardMixingRpm.ToString()));
         }
         #endregion
     }
