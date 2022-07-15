@@ -77,7 +77,6 @@ namespace NipponPaint.OrderManager
             target.AllowUserToAddRows = false;
             target.AllowUserToDeleteRows = false;
             target.AllowUserToResizeRows = false;
-            target.AutoGenerateColumns = false;
             target.ReadOnly = true;
         }
         #endregion

@@ -37,10 +37,10 @@ namespace NipponPaint.NpCommon.FormControls
             // TxtData
             // 
             this.TxtData.Dock = System.Windows.Forms.DockStyle.Right;
-            this.TxtData.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TxtData.Font = new System.Drawing.Font("メイリオ", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtData.Location = new System.Drawing.Point(233, 0);
             this.TxtData.Name = "TxtData";
-            this.TxtData.Size = new System.Drawing.Size(278, 30);
+            this.TxtData.Size = new System.Drawing.Size(278, 43);
             this.TxtData.TabIndex = 3;
             // 
             // LblTitle
@@ -51,7 +51,7 @@ namespace NipponPaint.NpCommon.FormControls
             this.LblTitle.ForeColor = System.Drawing.Color.White;
             this.LblTitle.Location = new System.Drawing.Point(0, 0);
             this.LblTitle.Name = "LblTitle";
-            this.LblTitle.Size = new System.Drawing.Size(154, 30);
+            this.LblTitle.Size = new System.Drawing.Size(154, 43);
             this.LblTitle.TabIndex = 2;
             this.LblTitle.Text = "最終配合リリース";
             this.LblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -60,10 +60,10 @@ namespace NipponPaint.NpCommon.FormControls
             // 
             this.TxtCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.TxtCode.Dock = System.Windows.Forms.DockStyle.Left;
-            this.TxtCode.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TxtCode.Font = new System.Drawing.Font("メイリオ", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TxtCode.Location = new System.Drawing.Point(154, 0);
             this.TxtCode.Name = "TxtCode";
-            this.TxtCode.Size = new System.Drawing.Size(80, 30);
+            this.TxtCode.Size = new System.Drawing.Size(80, 43);
             this.TxtCode.TabIndex = 4;
             // 
             // LabelCodeText
@@ -76,7 +76,7 @@ namespace NipponPaint.NpCommon.FormControls
             this.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "LabelCodeText";
-            this.Size = new System.Drawing.Size(511, 30);
+            this.Size = new System.Drawing.Size(511, 43);
             this.ResumeLayout(false);
             this.PerformLayout();
 

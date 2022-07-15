@@ -30,7 +30,7 @@ namespace NipponPaint.OrderManager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.tabOrder = new System.Windows.Forms.TabPage();
             this.GvOrder = new System.Windows.Forms.DataGridView();
@@ -299,14 +299,14 @@ namespace NipponPaint.OrderManager
             // 
             this.GvOrder.AllowUserToAddRows = false;
             this.GvOrder.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GvOrder.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.GvOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GvOrder.ContextMenuStrip = this.contextMenuStrip;
             this.GvOrder.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -512,7 +512,7 @@ namespace NipponPaint.OrderManager
             // 
             this.ColorName.DatabaseColumnName = "Color_Name";
             this.ColorName.DataControlName = "PnlData";
-            this.ColorName.DatePanelSize = new System.Drawing.Size(1065, 39);
+            this.ColorName.DatePanelSize = new System.Drawing.Size(828, 31);
             this.ColorName.Font = new System.Drawing.Font("メイリオ", 9F);
             this.ColorName.Label1BackColor = System.Drawing.Color.White;
             this.ColorName.Label1ForeColor = System.Drawing.SystemColors.ControlText;
@@ -543,14 +543,14 @@ namespace NipponPaint.OrderManager
             this.labelCodeText1.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.labelCodeText1.CodeReadOnly = false;
             this.labelCodeText1.CodeText = "";
-            this.labelCodeText1.CodeTextSize = new System.Drawing.Size(50, 30);
+            this.labelCodeText1.CodeTextSize = new System.Drawing.Size(50, 43);
             this.labelCodeText1.DatabaseColumnCode = "HG_HG_Delivery_Code";
             this.labelCodeText1.DatabaseColumnName = "HG_HG_Shipping_ID";
             this.labelCodeText1.DataControlName = "txtData";
             this.labelCodeText1.DataReadOnly = false;
-            this.labelCodeText1.DataTextSize = new System.Drawing.Size(90, 30);
+            this.labelCodeText1.DataTextSize = new System.Drawing.Size(90, 43);
             this.labelCodeText1.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelCodeText1.Location = new System.Drawing.Point(623, 53);
+            this.labelCodeText1.Location = new System.Drawing.Point(623, 52);
             this.labelCodeText1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelCodeText1.Name = "labelCodeText1";
             this.labelCodeText1.Size = new System.Drawing.Size(293, 43);
@@ -738,12 +738,12 @@ namespace NipponPaint.OrderManager
             this.HgCustomerCode.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.HgCustomerCode.CodeReadOnly = false;
             this.HgCustomerCode.CodeText = "";
-            this.HgCustomerCode.CodeTextSize = new System.Drawing.Size(80, 30);
+            this.HgCustomerCode.CodeTextSize = new System.Drawing.Size(80, 43);
             this.HgCustomerCode.DatabaseColumnCode = "HG_Customer_Code";
             this.HgCustomerCode.DatabaseColumnName = "HG_Customer_Name_Kanji";
             this.HgCustomerCode.DataControlName = "txtData";
             this.HgCustomerCode.DataReadOnly = false;
-            this.HgCustomerCode.DataTextSize = new System.Drawing.Size(990, 30);
+            this.HgCustomerCode.DataTextSize = new System.Drawing.Size(990, 43);
             this.HgCustomerCode.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.HgCustomerCode.Location = new System.Drawing.Point(3, 485);
             this.HgCustomerCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -765,12 +765,12 @@ namespace NipponPaint.OrderManager
             this.HgSupplementalAddition.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.HgSupplementalAddition.CodeReadOnly = false;
             this.HgSupplementalAddition.CodeText = "";
-            this.HgSupplementalAddition.CodeTextSize = new System.Drawing.Size(80, 30);
+            this.HgSupplementalAddition.CodeTextSize = new System.Drawing.Size(80, 43);
             this.HgSupplementalAddition.DatabaseColumnCode = "HG_Supplemental_Addition";
             this.HgSupplementalAddition.DatabaseColumnName = "HG_Supplement_Dictation";
             this.HgSupplementalAddition.DataControlName = "txtData";
             this.HgSupplementalAddition.DataReadOnly = false;
-            this.HgSupplementalAddition.DataTextSize = new System.Drawing.Size(990, 30);
+            this.HgSupplementalAddition.DataTextSize = new System.Drawing.Size(990, 43);
             this.HgSupplementalAddition.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.HgSupplementalAddition.Location = new System.Drawing.Point(3, 437);
             this.HgSupplementalAddition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -848,12 +848,12 @@ namespace NipponPaint.OrderManager
             this.HgGlossAddition.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.HgGlossAddition.CodeReadOnly = false;
             this.HgGlossAddition.CodeText = "";
-            this.HgGlossAddition.CodeTextSize = new System.Drawing.Size(80, 30);
+            this.HgGlossAddition.CodeTextSize = new System.Drawing.Size(80, 43);
             this.HgGlossAddition.DatabaseColumnCode = "HG_Gloss_Addition";
             this.HgGlossAddition.DatabaseColumnName = "HG_Gloss_Dictation";
             this.HgGlossAddition.DataControlName = "txtData";
             this.HgGlossAddition.DataReadOnly = false;
-            this.HgGlossAddition.DataTextSize = new System.Drawing.Size(990, 30);
+            this.HgGlossAddition.DataTextSize = new System.Drawing.Size(990, 43);
             this.HgGlossAddition.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.HgGlossAddition.Location = new System.Drawing.Point(3, 389);
             this.HgGlossAddition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -1443,10 +1443,10 @@ namespace NipponPaint.OrderManager
             this.tabDetail2.Controls.Add(this.HgComments);
             this.tabDetail2.Controls.Add(this.FormulaRelease);
             this.tabDetail2.Controls.Add(this.PrefillAmount);
-            this.tabDetail2.Location = new System.Drawing.Point(4, 32);
+            this.tabDetail2.Location = new System.Drawing.Point(4, 22);
             this.tabDetail2.Name = "tabDetail2";
             this.tabDetail2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDetail2.Size = new System.Drawing.Size(1653, 630);
+            this.tabDetail2.Size = new System.Drawing.Size(1653, 640);
             this.tabDetail2.TabIndex = 1;
             this.tabDetail2.Text = "詳細２";
             // 
@@ -1625,7 +1625,7 @@ namespace NipponPaint.OrderManager
             this.HgDeliveryPointCode.DataEnabled = true;
             this.HgDeliveryPointCode.DataReadOnly = false;
             this.HgDeliveryPointCode.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.HgDeliveryPointCode.DataTextSize = new System.Drawing.Size(139, 43);
+            this.HgDeliveryPointCode.DataTextSize = new System.Drawing.Size(185, 43);
             this.HgDeliveryPointCode.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.HgDeliveryPointCode.Id = "";
             this.HgDeliveryPointCode.Label = "";
@@ -1634,7 +1634,7 @@ namespace NipponPaint.OrderManager
             this.HgDeliveryPointCode.MaxByteLength = 65535;
             this.HgDeliveryPointCode.MaxLength = 0;
             this.HgDeliveryPointCode.Name = "HgDeliveryPointCode";
-            this.HgDeliveryPointCode.Size = new System.Drawing.Size(293, 43);
+            this.HgDeliveryPointCode.Size = new System.Drawing.Size(339, 43);
             this.HgDeliveryPointCode.TabIndex = 93;
             this.HgDeliveryPointCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.HgDeliveryPointCode.TextBackColor = System.Drawing.SystemColors.Window;
@@ -1905,12 +1905,12 @@ namespace NipponPaint.OrderManager
             this.CapType.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.CapType.CodeReadOnly = false;
             this.CapType.CodeText = "";
-            this.CapType.CodeTextSize = new System.Drawing.Size(80, 30);
+            this.CapType.CodeTextSize = new System.Drawing.Size(80, 43);
             this.CapType.DatabaseColumnCode = "Cap_Type";
             this.CapType.DatabaseColumnName = "Cap_Description";
             this.CapType.DataControlName = "txtData";
             this.CapType.DataReadOnly = false;
-            this.CapType.DataTextSize = new System.Drawing.Size(1300, 30);
+            this.CapType.DataTextSize = new System.Drawing.Size(1300, 43);
             this.CapType.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.CapType.Location = new System.Drawing.Point(3, 149);
             this.CapType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -1932,12 +1932,12 @@ namespace NipponPaint.OrderManager
             this.CanType.CodeForeColor = System.Drawing.SystemColors.WindowText;
             this.CanType.CodeReadOnly = false;
             this.CanType.CodeText = "";
-            this.CanType.CodeTextSize = new System.Drawing.Size(80, 30);
+            this.CanType.CodeTextSize = new System.Drawing.Size(80, 43);
             this.CanType.DatabaseColumnCode = "Can_Type";
             this.CanType.DatabaseColumnName = "Can_Description";
             this.CanType.DataControlName = "txtData";
             this.CanType.DataReadOnly = false;
-            this.CanType.DataTextSize = new System.Drawing.Size(1300, 30);
+            this.CanType.DataTextSize = new System.Drawing.Size(1300, 43);
             this.CanType.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.CanType.Location = new System.Drawing.Point(3, 101);
             this.CanType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -2055,9 +2055,9 @@ namespace NipponPaint.OrderManager
             this.tabDetail3.Controls.Add(this.HgAdditionalNo2);
             this.tabDetail3.Controls.Add(this.HgAdditionalNo1);
             this.tabDetail3.Controls.Add(this.HgLineNumber);
-            this.tabDetail3.Location = new System.Drawing.Point(4, 32);
+            this.tabDetail3.Location = new System.Drawing.Point(4, 22);
             this.tabDetail3.Name = "tabDetail3";
-            this.tabDetail3.Size = new System.Drawing.Size(1653, 630);
+            this.tabDetail3.Size = new System.Drawing.Size(1653, 640);
             this.tabDetail3.TabIndex = 2;
             this.tabDetail3.Text = "詳細３";
             // 
@@ -2561,16 +2561,16 @@ namespace NipponPaint.OrderManager
             this.labelTextBox79.DataEnabled = true;
             this.labelTextBox79.DataReadOnly = false;
             this.labelTextBox79.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox79.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox79.DataTextSize = new System.Drawing.Size(347, 43);
             this.labelTextBox79.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox79.Id = "";
             this.labelTextBox79.Label = "";
-            this.labelTextBox79.Location = new System.Drawing.Point(313, 437);
+            this.labelTextBox79.Location = new System.Drawing.Point(514, 437);
             this.labelTextBox79.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelTextBox79.MaxByteLength = 65535;
             this.labelTextBox79.MaxLength = 0;
             this.labelTextBox79.Name = "labelTextBox79";
-            this.labelTextBox79.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox79.Size = new System.Drawing.Size(501, 43);
             this.labelTextBox79.TabIndex = 111;
             this.labelTextBox79.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox79.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2589,16 +2589,16 @@ namespace NipponPaint.OrderManager
             this.labelTextBox78.DataEnabled = true;
             this.labelTextBox78.DataReadOnly = false;
             this.labelTextBox78.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox78.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox78.DataTextSize = new System.Drawing.Size(347, 43);
             this.labelTextBox78.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox78.Id = "";
             this.labelTextBox78.Label = "";
-            this.labelTextBox78.Location = new System.Drawing.Point(313, 389);
+            this.labelTextBox78.Location = new System.Drawing.Point(514, 389);
             this.labelTextBox78.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelTextBox78.MaxByteLength = 65535;
             this.labelTextBox78.MaxLength = 0;
             this.labelTextBox78.Name = "labelTextBox78";
-            this.labelTextBox78.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox78.Size = new System.Drawing.Size(501, 43);
             this.labelTextBox78.TabIndex = 110;
             this.labelTextBox78.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox78.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2617,16 +2617,16 @@ namespace NipponPaint.OrderManager
             this.labelTextBox77.DataEnabled = true;
             this.labelTextBox77.DataReadOnly = false;
             this.labelTextBox77.DataTextLocation = new System.Drawing.Point(164, 0);
-            this.labelTextBox77.DataTextSize = new System.Drawing.Size(129, 43);
+            this.labelTextBox77.DataTextSize = new System.Drawing.Size(337, 43);
             this.labelTextBox77.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox77.Id = "";
             this.labelTextBox77.Label = "";
-            this.labelTextBox77.Location = new System.Drawing.Point(313, 341);
+            this.labelTextBox77.Location = new System.Drawing.Point(514, 340);
             this.labelTextBox77.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelTextBox77.MaxByteLength = 65535;
             this.labelTextBox77.MaxLength = 0;
             this.labelTextBox77.Name = "labelTextBox77";
-            this.labelTextBox77.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox77.Size = new System.Drawing.Size(501, 43);
             this.labelTextBox77.TabIndex = 109;
             this.labelTextBox77.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox77.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2645,16 +2645,16 @@ namespace NipponPaint.OrderManager
             this.labelTextBox76.DataEnabled = true;
             this.labelTextBox76.DataReadOnly = false;
             this.labelTextBox76.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox76.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox76.DataTextSize = new System.Drawing.Size(347, 43);
             this.labelTextBox76.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox76.Id = "";
             this.labelTextBox76.Label = "";
-            this.labelTextBox76.Location = new System.Drawing.Point(313, 293);
+            this.labelTextBox76.Location = new System.Drawing.Point(514, 293);
             this.labelTextBox76.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelTextBox76.MaxByteLength = 65535;
             this.labelTextBox76.MaxLength = 0;
             this.labelTextBox76.Name = "labelTextBox76";
-            this.labelTextBox76.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox76.Size = new System.Drawing.Size(501, 43);
             this.labelTextBox76.TabIndex = 108;
             this.labelTextBox76.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox76.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2673,16 +2673,16 @@ namespace NipponPaint.OrderManager
             this.labelTextBox75.DataEnabled = true;
             this.labelTextBox75.DataReadOnly = false;
             this.labelTextBox75.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox75.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox75.DataTextSize = new System.Drawing.Size(347, 43);
             this.labelTextBox75.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox75.Id = "";
             this.labelTextBox75.Label = "";
-            this.labelTextBox75.Location = new System.Drawing.Point(313, 245);
+            this.labelTextBox75.Location = new System.Drawing.Point(514, 245);
             this.labelTextBox75.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelTextBox75.MaxByteLength = 65535;
             this.labelTextBox75.MaxLength = 0;
             this.labelTextBox75.Name = "labelTextBox75";
-            this.labelTextBox75.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox75.Size = new System.Drawing.Size(501, 43);
             this.labelTextBox75.TabIndex = 107;
             this.labelTextBox75.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox75.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2701,16 +2701,16 @@ namespace NipponPaint.OrderManager
             this.labelTextBox74.DataEnabled = true;
             this.labelTextBox74.DataReadOnly = false;
             this.labelTextBox74.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox74.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox74.DataTextSize = new System.Drawing.Size(347, 43);
             this.labelTextBox74.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox74.Id = "";
             this.labelTextBox74.Label = "";
-            this.labelTextBox74.Location = new System.Drawing.Point(313, 197);
+            this.labelTextBox74.Location = new System.Drawing.Point(514, 197);
             this.labelTextBox74.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelTextBox74.MaxByteLength = 65535;
             this.labelTextBox74.MaxLength = 0;
             this.labelTextBox74.Name = "labelTextBox74";
-            this.labelTextBox74.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox74.Size = new System.Drawing.Size(501, 43);
             this.labelTextBox74.TabIndex = 106;
             this.labelTextBox74.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox74.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2729,16 +2729,16 @@ namespace NipponPaint.OrderManager
             this.labelTextBox73.DataEnabled = true;
             this.labelTextBox73.DataReadOnly = false;
             this.labelTextBox73.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox73.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox73.DataTextSize = new System.Drawing.Size(347, 43);
             this.labelTextBox73.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox73.Id = "";
             this.labelTextBox73.Label = "";
-            this.labelTextBox73.Location = new System.Drawing.Point(313, 149);
+            this.labelTextBox73.Location = new System.Drawing.Point(514, 149);
             this.labelTextBox73.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelTextBox73.MaxByteLength = 65535;
             this.labelTextBox73.MaxLength = 0;
             this.labelTextBox73.Name = "labelTextBox73";
-            this.labelTextBox73.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox73.Size = new System.Drawing.Size(501, 43);
             this.labelTextBox73.TabIndex = 105;
             this.labelTextBox73.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox73.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2757,7 +2757,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox62.DataEnabled = true;
             this.labelTextBox62.DataReadOnly = false;
             this.labelTextBox62.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox62.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox62.DataTextSize = new System.Drawing.Size(349, 43);
             this.labelTextBox62.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox62.Id = "";
             this.labelTextBox62.Label = "";
@@ -2766,7 +2766,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox62.MaxByteLength = 65535;
             this.labelTextBox62.MaxLength = 0;
             this.labelTextBox62.Name = "labelTextBox62";
-            this.labelTextBox62.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox62.Size = new System.Drawing.Size(503, 43);
             this.labelTextBox62.TabIndex = 104;
             this.labelTextBox62.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox62.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2785,7 +2785,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox61.DataEnabled = true;
             this.labelTextBox61.DataReadOnly = false;
             this.labelTextBox61.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox61.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox61.DataTextSize = new System.Drawing.Size(349, 43);
             this.labelTextBox61.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox61.Id = "";
             this.labelTextBox61.Label = "";
@@ -2794,7 +2794,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox61.MaxByteLength = 65535;
             this.labelTextBox61.MaxLength = 0;
             this.labelTextBox61.Name = "labelTextBox61";
-            this.labelTextBox61.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox61.Size = new System.Drawing.Size(503, 43);
             this.labelTextBox61.TabIndex = 103;
             this.labelTextBox61.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox61.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2813,7 +2813,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox60.DataEnabled = true;
             this.labelTextBox60.DataReadOnly = false;
             this.labelTextBox60.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox60.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox60.DataTextSize = new System.Drawing.Size(349, 43);
             this.labelTextBox60.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox60.Id = "";
             this.labelTextBox60.Label = "";
@@ -2822,7 +2822,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox60.MaxByteLength = 65535;
             this.labelTextBox60.MaxLength = 0;
             this.labelTextBox60.Name = "labelTextBox60";
-            this.labelTextBox60.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox60.Size = new System.Drawing.Size(503, 43);
             this.labelTextBox60.TabIndex = 102;
             this.labelTextBox60.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox60.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2841,7 +2841,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox59.DataEnabled = true;
             this.labelTextBox59.DataReadOnly = false;
             this.labelTextBox59.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox59.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox59.DataTextSize = new System.Drawing.Size(349, 43);
             this.labelTextBox59.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox59.Id = "";
             this.labelTextBox59.Label = "";
@@ -2850,7 +2850,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox59.MaxByteLength = 65535;
             this.labelTextBox59.MaxLength = 0;
             this.labelTextBox59.Name = "labelTextBox59";
-            this.labelTextBox59.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox59.Size = new System.Drawing.Size(503, 43);
             this.labelTextBox59.TabIndex = 101;
             this.labelTextBox59.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox59.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2869,7 +2869,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox58.DataEnabled = true;
             this.labelTextBox58.DataReadOnly = false;
             this.labelTextBox58.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox58.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox58.DataTextSize = new System.Drawing.Size(349, 43);
             this.labelTextBox58.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox58.Id = "";
             this.labelTextBox58.Label = "";
@@ -2878,7 +2878,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox58.MaxByteLength = 65535;
             this.labelTextBox58.MaxLength = 0;
             this.labelTextBox58.Name = "labelTextBox58";
-            this.labelTextBox58.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox58.Size = new System.Drawing.Size(503, 43);
             this.labelTextBox58.TabIndex = 100;
             this.labelTextBox58.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox58.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2897,7 +2897,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox57.DataEnabled = true;
             this.labelTextBox57.DataReadOnly = false;
             this.labelTextBox57.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox57.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox57.DataTextSize = new System.Drawing.Size(349, 43);
             this.labelTextBox57.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox57.Id = "";
             this.labelTextBox57.Label = "";
@@ -2906,7 +2906,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox57.MaxByteLength = 65535;
             this.labelTextBox57.MaxLength = 0;
             this.labelTextBox57.Name = "labelTextBox57";
-            this.labelTextBox57.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox57.Size = new System.Drawing.Size(503, 43);
             this.labelTextBox57.TabIndex = 99;
             this.labelTextBox57.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox57.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2925,7 +2925,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox56.DataEnabled = true;
             this.labelTextBox56.DataReadOnly = false;
             this.labelTextBox56.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox56.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox56.DataTextSize = new System.Drawing.Size(349, 43);
             this.labelTextBox56.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox56.Id = "";
             this.labelTextBox56.Label = "";
@@ -2934,7 +2934,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox56.MaxByteLength = 65535;
             this.labelTextBox56.MaxLength = 0;
             this.labelTextBox56.Name = "labelTextBox56";
-            this.labelTextBox56.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox56.Size = new System.Drawing.Size(503, 43);
             this.labelTextBox56.TabIndex = 98;
             this.labelTextBox56.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox56.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2953,7 +2953,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox55.DataEnabled = true;
             this.labelTextBox55.DataReadOnly = false;
             this.labelTextBox55.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox55.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox55.DataTextSize = new System.Drawing.Size(349, 43);
             this.labelTextBox55.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox55.Id = "";
             this.labelTextBox55.Label = "";
@@ -2962,7 +2962,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox55.MaxByteLength = 65535;
             this.labelTextBox55.MaxLength = 0;
             this.labelTextBox55.Name = "labelTextBox55";
-            this.labelTextBox55.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox55.Size = new System.Drawing.Size(503, 43);
             this.labelTextBox55.TabIndex = 97;
             this.labelTextBox55.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox55.TextBackColor = System.Drawing.SystemColors.Window;
@@ -2981,16 +2981,16 @@ namespace NipponPaint.OrderManager
             this.labelTextBox54.DataEnabled = true;
             this.labelTextBox54.DataReadOnly = false;
             this.labelTextBox54.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox54.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox54.DataTextSize = new System.Drawing.Size(347, 43);
             this.labelTextBox54.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox54.Id = "";
             this.labelTextBox54.Label = "";
-            this.labelTextBox54.Location = new System.Drawing.Point(313, 101);
+            this.labelTextBox54.Location = new System.Drawing.Point(514, 101);
             this.labelTextBox54.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.labelTextBox54.MaxByteLength = 65535;
             this.labelTextBox54.MaxLength = 0;
             this.labelTextBox54.Name = "labelTextBox54";
-            this.labelTextBox54.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox54.Size = new System.Drawing.Size(501, 43);
             this.labelTextBox54.TabIndex = 96;
             this.labelTextBox54.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox54.TextBackColor = System.Drawing.SystemColors.Window;
@@ -3009,7 +3009,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox53.DataEnabled = true;
             this.labelTextBox53.DataReadOnly = false;
             this.labelTextBox53.DataTextLocation = new System.Drawing.Point(154, 0);
-            this.labelTextBox53.DataTextSize = new System.Drawing.Size(139, 43);
+            this.labelTextBox53.DataTextSize = new System.Drawing.Size(349, 43);
             this.labelTextBox53.Font = new System.Drawing.Font("メイリオ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTextBox53.Id = "";
             this.labelTextBox53.Label = "";
@@ -3018,7 +3018,7 @@ namespace NipponPaint.OrderManager
             this.labelTextBox53.MaxByteLength = 65535;
             this.labelTextBox53.MaxLength = 0;
             this.labelTextBox53.Name = "labelTextBox53";
-            this.labelTextBox53.Size = new System.Drawing.Size(293, 43);
+            this.labelTextBox53.Size = new System.Drawing.Size(503, 43);
             this.labelTextBox53.TabIndex = 95;
             this.labelTextBox53.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.labelTextBox53.TextBackColor = System.Drawing.SystemColors.Window;
@@ -3149,9 +3149,9 @@ namespace NipponPaint.OrderManager
             this.panel5.Controls.Add(this.GvOutWeight);
             this.panel5.Controls.Add(this.GvWeightDetail);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 672);
+            this.panel5.Location = new System.Drawing.Point(0, 489);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(780, 208);
+            this.panel5.Size = new System.Drawing.Size(780, 391);
             this.panel5.TabIndex = 7;
             // 
             // GvOutWeight
@@ -3164,7 +3164,7 @@ namespace NipponPaint.OrderManager
             this.GvOutWeight.Name = "GvOutWeight";
             this.GvOutWeight.ReadOnly = true;
             this.GvOutWeight.RowTemplate.Height = 21;
-            this.GvOutWeight.Size = new System.Drawing.Size(433, 208);
+            this.GvOutWeight.Size = new System.Drawing.Size(433, 391);
             this.GvOutWeight.TabIndex = 15;
             // 
             // GvWeightDetail
@@ -3177,7 +3177,7 @@ namespace NipponPaint.OrderManager
             this.GvWeightDetail.Name = "GvWeightDetail";
             this.GvWeightDetail.ReadOnly = true;
             this.GvWeightDetail.RowTemplate.Height = 21;
-            this.GvWeightDetail.Size = new System.Drawing.Size(347, 208);
+            this.GvWeightDetail.Size = new System.Drawing.Size(347, 391);
             this.GvWeightDetail.TabIndex = 14;
             // 
             // panel8
@@ -3192,7 +3192,7 @@ namespace NipponPaint.OrderManager
             this.panel8.Controls.Add(this.labelTextBox10);
             this.panel8.Controls.Add(this.labelTextBox9);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(0, 500);
+            this.panel8.Location = new System.Drawing.Point(0, 317);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(780, 172);
             this.panel8.TabIndex = 6;
@@ -3431,7 +3431,7 @@ namespace NipponPaint.OrderManager
             this.GvOrderNumber.Name = "GvOrderNumber";
             this.GvOrderNumber.ReadOnly = true;
             this.GvOrderNumber.RowTemplate.Height = 21;
-            this.GvOrderNumber.Size = new System.Drawing.Size(780, 500);
+            this.GvOrderNumber.Size = new System.Drawing.Size(780, 317);
             this.GvOrderNumber.TabIndex = 5;
             // 
             // panel4
@@ -4093,7 +4093,6 @@ namespace NipponPaint.OrderManager
             // 
             // TmrPnlColorExplanationBlinking
             // 
-            this.TmrPnlColorExplanationBlinking.Enabled = true;
             this.TmrPnlColorExplanationBlinking.Interval = 1000;
             // 
             // PeriodicupdateTimeTextBox
