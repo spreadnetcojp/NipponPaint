@@ -786,9 +786,11 @@ namespace NipponPaint.OrderManager
                 tabMain.SelectedIndex = TAB_INDEX_DETAIL;
                 var vm = new ViewModels.LabelPrintData();
                 FrmLabelPrint frmLabelPrint = new FrmLabelPrint(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmLabelPrint.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -826,9 +828,11 @@ namespace NipponPaint.OrderManager
                 var vm = new ViewModels.DirectionsData(directionsData);
                 //MessageBox.Show("作業指示書印刷がクリックされました");
                 var frm = new Documents.ReportWorkInstruction.Preview(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frm.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -844,9 +848,11 @@ namespace NipponPaint.OrderManager
         {
             try
             {
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 var result = Messages.ShowDialog(Sentence.Messages.BtnPrintEmergencyClick);
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -885,9 +891,11 @@ namespace NipponPaint.OrderManager
                 // 注文データを元にビューモデル作成
                 var vm = new ViewModels.OrderStartData(orderData);
                 FrmOrderStart frmOrderStart = new FrmOrderStart(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmOrderStart.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
                 // ダイアログ閉後の再バインド
                 DialogCloseBinding();
                 // 事前に取得していたOrder_idを元にフォーカス移動
@@ -909,19 +917,34 @@ namespace NipponPaint.OrderManager
             {
                 // Order_id取得
                 var gdvSelectedOrderId = GetOrderId();
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
-                DialogResult result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新一時停止
+                BindTimerOnOrOff();
+                var result = new DialogResult();
+                var columnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_STATUS);
+                DataGridViewRow row = GetActiveGridViewName().SelectedRows[0];
+                int.TryParse(row.Cells[columnIndex].Value.ToString(), out int status);
+                switch (status)
+                {
+                    case (int)Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
+                        // CCM配合待ち（赤）を選択していた場合の質問
+                        result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClickedWhenCCM);
+                        break;
+                    // 準備缶（緑）を選択していた場合の質問
+                    case (int)Sql.NpMain.Orders.OrderStatus.Ready:
+                    // テスト缶実施中（水色）を選択していた場合の質問
+                    case (int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
+                    // 製造缶実施中（青）を選択していた場合の質問
+                    case (int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
+                        result = Messages.ShowDialog(Sentence.Messages.BtnStatusResumeClicked);
+                        break;
+                }
+                // 周期更新再開
+                BindTimerOnOrOff();
                 switch (result)
                 {
                     case DialogResult.Yes:
-                        var statusColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_STATUS);
-                        var dgv = GetActiveGridViewName();
-                        if (dgv.SelectedRows.Count > 0)
+                        if (GetActiveGridViewName().SelectedRows.Count > 0)
                         {
-                            // 選択している行を取得
-                            var selectedRow = dgv.SelectedRows[0];
-                            int.TryParse(selectedRow.Cells[statusColumnIndex].Value.ToString(), out int status);
                             StatusResumeOrders(gdvSelectedOrderId, status);
                         }
                         DialogCloseBinding();
@@ -949,9 +972,11 @@ namespace NipponPaint.OrderManager
         {
             PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             FrmOperators frmOperators = new FrmOperators();
-            BindTimerOnOrOff();　　　　　// 周期更新一時停止
+            // 周期更新一時停止
+            BindTimerOnOrOff();
             frmOperators.ShowDialog();
-            BindTimerOnOrOff();　　　　　// 周期更新再開
+            // 周期更新再開
+            BindTimerOnOrOff();
         }
         /// <summary>
         /// 注文を閉じる(F10)
@@ -975,9 +1000,11 @@ namespace NipponPaint.OrderManager
                     //ctrlキーが押されている場合
                     case Keys.Control:
                         FrmOrderClose frmOrderClose = new FrmOrderClose();
-                        BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                        // 周期更新一時停止
+                        BindTimerOnOrOff();
                         frmOrderClose.ShowDialog();
-                        BindTimerOnOrOff();　　　　　// 周期更新再開
+                        // 周期更新再開
+                        BindTimerOnOrOff();
                         break;
                     //ctrlキーが押されていない場合
                     default:
@@ -1016,9 +1043,11 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 var form = new FrmOrderChangeStatusSelectItem();
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 form.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
                 DialogCloseBinding();
             }
             catch (Exception ex)
@@ -1037,9 +1066,11 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var form = new FrmHelp();
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 form.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -1075,9 +1106,11 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.CanTypeData();
                 FrmCanType frmCanType = new FrmCanType(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmCanType.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -1096,9 +1129,11 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.CapTypeData();
                 FrmCapType frmCapType = new FrmCapType(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmCapType.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -1117,9 +1152,11 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.ProductCodeMasterData();
                 FrmProductCodeMaster frmProductCodeMaster = new FrmProductCodeMaster(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmProductCodeMaster.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -1138,9 +1175,11 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.NPProductCodeMasterData();
                 FrmNPProductCodeMaster frmNPProductCodeMaster = new FrmNPProductCodeMaster(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmNPProductCodeMaster.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -1159,9 +1198,11 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.InitialSettingData();
                 FrmInitialSetting frmInitialSetting = new FrmInitialSetting(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmInitialSetting.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -1180,9 +1221,11 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.SettingData();
                 FrmSetting frmSetting = new FrmSetting(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmSetting.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -1200,9 +1243,11 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 FrmSelectLabel frmSelectLabel = new FrmSelectLabel();
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmSelectLabel.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -1220,9 +1265,11 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 FrmShipping frmShipping = new FrmShipping();
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmShipping.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -1240,9 +1287,11 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 FrmCOMPort frmCOMPort = new FrmCOMPort();
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmCOMPort.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -1259,6 +1308,8 @@ namespace NipponPaint.OrderManager
             try
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
+                // Order_id取得
+                var gdvSelectedOrderId = GetOrderId();
                 var vm = new ViewModels.CCMSimulatorData();
                 int selectedindex = tabMain.SelectedIndex;
                 var productCodeColumnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_PRODUCT_CODE);
@@ -1282,13 +1333,21 @@ namespace NipponPaint.OrderManager
                 string productCode = CodeP;
                 if (productCode.Length == 2)
                 {
-                    vm.ProductCodeLeft = productCode[0].ToString();     　//CCMシミュレーター画面にて選択している製品コードの1文字目を表示
-                    vm.ProductCodeRight = productCode[1].ToString();    　//CCMシミュレーター画面にて選択している製品コードの2文字目を表示
+                    //CCMシミュレーター画面にて選択している製品コードの1文字目を表示
+                    vm.ProductCodeLeft = productCode[0].ToString();
+                    //CCMシミュレーター画面にて選択している製品コードの2文字目を表示
+                    vm.ProductCodeRight = productCode[1].ToString();
                 }
                 FrmCCMSimulator frmCCMSimulator = new FrmCCMSimulator(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmCCMSimulator.ShowDialog();
                 BindTimerOnOrOff();　　　　　// 周期更新再開
+                // ダイアログ閉後の再バインド
+                DialogCloseBinding();
+                // 事前に取得していたOrder_idを元にフォーカス移動
+                FocusSelectedRow(gdvSelectedOrderId);
+
             }
             catch (Exception ex)
             {
@@ -1307,9 +1366,11 @@ namespace NipponPaint.OrderManager
                 PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 var vm = new ViewModels.LabelTypeData();
                 FrmLabelSelection frmLabelSelection = new FrmLabelSelection(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmLabelSelection.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -1328,9 +1389,11 @@ namespace NipponPaint.OrderManager
             {
                 //PutLog(Sentence.Messages.ButtonClicked, ((ToolStripMenuItem)sender).Text);
                 //FrmOperators frmOperators = new FrmOperators();
-                //BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                //BindTimerOnOrOff();
                 //frmOperators.ShowDialog();
-                //BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                //BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -1516,6 +1579,9 @@ namespace NipponPaint.OrderManager
                         // 選択行のOrder_id取得
                         int.TryParse(row.Cells[columnOrderIdIndex].Value.ToString(), out int orderId);
                         OrderTestCanToProduct(new List<int>() { orderId });
+                        DialogCloseBinding();
+                        //テスト仕上り実施し画面が切り替わった後もフォーカスを継続する
+                        FocusSelectedRow(orderId);
                     }
                 }
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
@@ -1560,9 +1626,11 @@ namespace NipponPaint.OrderManager
                     vm.SelectedIndex = row.Index;
                 }
                 FrmRemanufacturedCan frmRemanufacturedCan = new FrmRemanufacturedCan(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmRemanufacturedCan.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
             }
             catch (Exception ex)
             {
@@ -1677,9 +1745,11 @@ namespace NipponPaint.OrderManager
                     }
                 }
                 FrmLotRegister frmLotRegister = new FrmLotRegister(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 frmLotRegister.ShowDialog();
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
                 // ダイアログ閉後の再バインド
                 DialogCloseBinding();
                 // 事前に取得していたOrder_idを元にフォーカス移動
@@ -1718,7 +1788,8 @@ namespace NipponPaint.OrderManager
                     }
                 }
                 var frmDataNumber = new FrmSelectDataNumber(vm);
-                BindTimerOnOrOff();　　　　　// 周期更新一時停止
+                // 周期更新一時停止
+                BindTimerOnOrOff();
                 if (frmDataNumber.ShowDialog() == DialogResult.OK)
                 {
                     selectProductCode = vm.SelectedProductCode;
@@ -1731,7 +1802,8 @@ namespace NipponPaint.OrderManager
                         tabMain.SelectedIndex = TAB_INDEX_DETAIL;
                     }
                 }
-                BindTimerOnOrOff();　　　　　// 周期更新再開
+                // 周期更新再開
+                BindTimerOnOrOff();
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
             }
             catch (Exception ex)
@@ -2711,7 +2783,7 @@ namespace NipponPaint.OrderManager
                     BtnPrintInstructions.Enabled = true;
                     BtnPrintEmergency.Enabled = true;
                     BtnOrderStart.Enabled = false;
-                    BtnStatusResume.Enabled = false;
+                    BtnStatusResume.Enabled = true;
                     BtnDecidePerson.Enabled = false;
                     BtnOrderClose.Enabled = true;
                     //BtnProcessDetail.Enabled = false;
@@ -3123,14 +3195,15 @@ namespace NipponPaint.OrderManager
                 case Sql.NpMain.Orders.OrderStatus.WaitingForToning:
                     break;
                 case Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
-                    break;
                 case Sql.NpMain.Orders.OrderStatus.Ready:
                 case Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
                 case Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                     {
-                        db.StatusResume(Sql.NpMain.Orders.StatusResume(gdvSelectedOrderIds.ToString()));
-                        db.Execute(Sql.NpMain.Cans.RemanufacturedCanByBarcode(sqlParameter), param);　　　　　// 缶のステータスを更新
+                        // ステータスを戻す
+                        db.StatusResume(Sql.NpMain.Orders.StatusResume(gdvSelectedOrderIds.ToString(), status));
+                        // 缶のステータスを更新
+                        db.Execute(Sql.NpMain.Cans.RemanufacturedCanByBarcode(sqlParameter), param);
                         db.Commit();
                     }
                     break;
@@ -3147,7 +3220,8 @@ namespace NipponPaint.OrderManager
         /// <param name="orderId"></param>
         public void OrderTestCanToProduct(List<int> orderIds)
         {
-            if (orderIds.Count > 0)　　　　　// チェックが入っていればボタンを押せば移行実施、チェックが入っていないorテスト缶実施中がそもそもない状態でボタンを押せばスルー
+            // チェックが入っていればボタンを押せば移行実施、チェックが入っていないorテスト缶実施中がそもそもない状態でボタンを押せばスルー
+            if (orderIds.Count > 0)
             {
                 string sqlParameter = string.Join(",", orderIds);
                 using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))

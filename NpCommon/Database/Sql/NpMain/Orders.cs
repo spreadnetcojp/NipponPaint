@@ -291,6 +291,10 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// リストインデックス（着色剤重量）
         /// </summary>
         private const int ColorColumnsWeightColorantIndex = 1;
+        /// <summary>
+        /// 変更可能なステータス
+        /// </summary>
+        private static readonly string DisplayStatus = $"{(int)OrderStatus.WaitingForCCMformulation}, {(int)OrderStatus.Ready}, {(int)OrderStatus.TestCanInProgress}, {(int)OrderStatus.ManufacturingCansInProgress}";
         #endregion
 
         #endregion
@@ -588,15 +592,20 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// 製品コードから情報取得
         /// </summary>
         /// <returns></returns>
-        public static string GetDataByProductCodeToOrderId()
+        public static string GetDataByProductCodeToOrderId(string plant)
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
             sql.Append($" {COLUMN_ORDER_ID} ");
             sql.Append($" ,{COLUMN_STATUS} ");
             sql.Append($" ,{COLUMN_TOTAL_WEIGHT} ");
-            sql.Append($"FROM {MAIN_TABLE} ");
-            sql.Append($"WHERE {COLUMN_ORDER_ID} = (SELECT max({COLUMN_ORDER_ID}) FROM {MAIN_TABLE} WHERE {COLUMN_PRODUCT_CODE} = @ProductCode) ");
+            sql.Append($" ,{COLUMN_FORMULA_RELEASE} ");
+            sql.Append($" ,{COLUMN_REVISION} ");
+            sql.Append($" ,{COLUMN_INPUT_CAN} ");
+            sql.Append($" ,{COLUMN_WHITE_CODE} ");
+            sql.Append($"FROM {SelectOrders(plant)} ");
+            sql.Append($"WHERE {COLUMN_STATUS} IN ({DisplayStatus}) ");
+            sql.Append($"AND {COLUMN_PRODUCT_CODE} = @ProductCode ");
             return sql.ToString();
         }
         #endregion
@@ -610,13 +619,22 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// ステータスを戻す
         /// </summary>
         /// <returns></returns>
-        public static string StatusResume(string orderIds)
+        public static string StatusResume(string orderIds, int status)
         {
             var sql = new StringBuilder();
             sql.Append($"UPDATE ");
             sql.Append($"Orders ");
             sql.Append($"SET ");
-            sql.Append($"Status = {(int)OrderStatus.WaitingForCCMformulation} ");
+            switch (status)
+            {
+                case (int)OrderStatus.WaitingForCCMformulation:
+                    // CCM配合待ち（赤）の場合は調色担当待ち（桃）へステータスを戻す
+                    sql.Append($"Status = {(int)OrderStatus.WaitingForToning} ");
+                    break;
+                default:
+                    sql.Append($"Status = {(int)OrderStatus.WaitingForCCMformulation} ");
+                    break;
+            }
             sql.Append($",Formula_Release = 0 ");
             sql.Append($",White_Code = '' ");
             sql.Append($",White_Weight = 0 ");
@@ -797,7 +815,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($",{COLUMN_INPUT_CAN}         = @InputCan ");
             sql.Append($",{COLUMN_REVISION}          = @Revision ");
             var startIndex = colorantCount;
-            for(var i = 0; i < MAX_ITEM; i++)
+            for (var i = 0; i < MAX_ITEM; i++)
             {
                 sql.Append($",{ColorColumns[startIndex + i][ColorColumnsColorantIndex]} = @{ColorColumns[i][ColorColumnsColorantIndex]}");
                 sql.Append($",{ColorColumns[startIndex + i][ColorColumnsWeightColorantIndex]} = @{ColorColumns[i][ColorColumnsWeightColorantIndex]}");
