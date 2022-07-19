@@ -253,7 +253,10 @@ namespace NipponPaint.OrderManager
         private const string DISPLAY_NAME_URGENT = "Urgent";
         private const string DISPLAY_NAME_CODE = "コード";
         private const string DISPLAY_NAME_WEIGHT = "重量[g]";
-        private const string DISPLAY_NAME_STATUSCOLOR = "StatusColor";
+        // ▼ 2022/07/19 A.Satou TODO:要確認
+        //private const string DISPLAY_NAME_STATUSCOLOR = "StatusColor";
+        private const string DISPLAY_NAME_STATUSCOLOR = "状態";
+        // ▲ 2022/07/19 A.Satou TODO:要確認
         private const string DISPLAY_NAME_ORDER_NUMBER = "注文番号";
         private const string DISPLAY_NAME_REVISION = "補正";
         private const string DISPLAY_NAME_FORMULA_RELEASE = "配合受取";
@@ -2553,7 +2556,9 @@ namespace NipponPaint.OrderManager
         {
             gv.ClearSelection();
             gv.Rows[rowIndex].Selected = true;
-            gv.FirstDisplayedScrollingRowIndex = rowIndex;
+            // ▼ 2022/07/19 A.Satou TODO:要確認
+            //gv.FirstDisplayedScrollingRowIndex = rowIndex;
+            // ▲ 2022/07/19 A.Satou TODO:要確認
         }
         #endregion
 
