@@ -417,13 +417,13 @@ namespace NipponPaint.OrderManager
         };
         private List<GridViewSetting> ViewSettingsBarcodes = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_CANS_BARCODE, DisplayName = DISPLAY_NAME_BARCODE, Visible = true, Width = 240, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_CANS_BARCODE, DisplayName = DISPLAY_NAME_BARCODE, Visible = true, Width = 330, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = $"C.{COLUMN_NAME_CANS_ORDER_ID}", DisplayName = DISPLAY_NAME_ORDER_ID, Visible = false, Width = 0, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_CAN_NUMBER, DisplayName = DISPLAY_NAME_CAN_NUMBER, Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = $"C.{COLUMN_NAME_CANS_STATUS}", DisplayName = DISPLAY_NAME_CANS_STATUS, Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = COLUMN_NAME_CANS_TEST_CAN, DisplayName = DISPLAY_NAME_TEST_CAN, Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = COLUMN_NAME_CANS_SAMPLE_PRESENT, DisplayName = DISPLAY_NAME_SAMPLE_PRESENT, Visible = true, Width = 120, alignment = DataGridViewContentAlignment.MiddleCenter } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = $"C.{COLUMN_NAME_CANS_FORMULA_RELEASE}", DisplayName = DISPLAY_NAME_CANS_FORMULA_RELEASE, Visible = true, Width = 130, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_CAN_NUMBER, DisplayName = DISPLAY_NAME_CAN_NUMBER, Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = $"C.{COLUMN_NAME_CANS_STATUS}", DisplayName = DISPLAY_NAME_CANS_STATUS, Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = COLUMN_NAME_CANS_TEST_CAN, DisplayName = DISPLAY_NAME_TEST_CAN, Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = COLUMN_NAME_CANS_SAMPLE_PRESENT, DisplayName = DISPLAY_NAME_SAMPLE_PRESENT, Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Bit, ColumnName = $"C.{COLUMN_NAME_CANS_FORMULA_RELEASE}", DisplayName = DISPLAY_NAME_CANS_FORMULA_RELEASE, Visible = true, Width = 110, alignment = DataGridViewContentAlignment.MiddleCenter } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName =$"C.{COLUMN_NAME_CANS_WHITE_CODE}", DisplayName = DISPLAY_NAME_WHITE_CODE, Visible = false, Width = 95 } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_WHITE_DISPENSED, DisplayName = DISPLAY_NAME_WHITE_DISPENSED, Visible = false, Width = 95, alignment = DataGridViewContentAlignment.MiddleRight } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = $"C.{COLUMN_NAME_CANS_COLORANT_1}", DisplayName = DISPLAY_NAME_COLORANT_1, Visible = false, Width = 95 , alignment = DataGridViewContentAlignment.MiddleRight} },
@@ -467,14 +467,14 @@ namespace NipponPaint.OrderManager
         };
         private List<GridViewSetting> ViewSettingsWeightDetails = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_CANS_WHITE_CODE, DisplayName = DISPLAY_NAME_CODE, Visible = true, Width = 550, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_WHITE_WEIGHT, DisplayName = DISPLAY_NAME_WEIGHT, Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_NAME_CANS_WHITE_CODE, DisplayName = DISPLAY_NAME_CODE, Visible = true, Width = 180, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = COLUMN_NAME_CANS_WHITE_WEIGHT, DisplayName = DISPLAY_NAME_WEIGHT, Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleRight } },
         };
         private List<GridViewSetting> ViewSettingsOutWeights = new List<GridViewSetting>()
         {
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "TB0.Code", DisplayName = "コード", Visible = true, Width = 450, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "TB0.Dispensed", DisplayName = "吐出[g]", Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "(TB2.Weight - TB0.Dispensed)", DisplayName = "重量[g]", Visible = true, Width = 200, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "TB0.Code", DisplayName = "コード", Visible = true, Width = 150, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "TB0.Dispensed", DisplayName = "吐出[g]", Visible = true, Width = 135, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = "(TB2.Weight - TB0.Dispensed)", DisplayName = "重量[g]", Visible = true, Width = 135, alignment = DataGridViewContentAlignment.MiddleRight } },
         };
         #endregion
 
@@ -634,6 +634,7 @@ namespace NipponPaint.OrderManager
                 PutLog(ex);
             }
         }
+
         private void GvOrderDataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -1892,43 +1893,27 @@ namespace NipponPaint.OrderManager
                         break;
                     case TAB_INDEX_DETAIL:
                         GvDetail.CurrentCell = GvDetail.Rows[gdvSelectedIndex].Cells[COLUMN_DELIVERY_CODE];
-                        DataGridViewFormatting(GvDetail);
-                        // ステータスを戻すボタンの活性/非活性
-                        switch (Funcs.StrToInt(GvDetail.SelectedRows[SELECTED_ROW].Cells[COLUMN_STATUS].Value.ToString()))
-                        {
-                            case (int)Sql.NpMain.Orders.OrderStatus.Ready:
-                            case (int)Sql.NpMain.Orders.OrderStatus.TestCanInProgress:
-                            case (int)Sql.NpMain.Orders.OrderStatus.ManufacturingCansInProgress:
-                                BtnStatusResume.Enabled = true;
-                                break;
-                            case (int)Sql.NpMain.Orders.OrderStatus.WaitingForToning:
-                            case (int)Sql.NpMain.Orders.OrderStatus.WaitingForCCMformulation:
-                                BtnStatusResume.Enabled = false;
-                                break;
-                            default:
-                                BtnStatusResume.Enabled = false;
-                                break;
-                        }
                         break;
                     case TAB_INDEX_FORMULATION:
                         GvFormulation.CurrentCell = GvFormulation.Rows[gdvSelectedIndex].Cells[COLUMN_DELIVERY_CODE];
                         DataGridViewFormatting(GvFormulation);
-                        BtnStatusResume.Enabled = false;
+                        GvBarcodeFormatting(GvWeight);
                         break;
                     case TAB_INDEX_CAN:
                         GvOrderNumber.CurrentCell = GvOrderNumber.Rows[gdvSelectedIndex].Cells[COLUMN_DELIVERY_CODE];
                         GvOrderNumberFormatting(GvOrderNumber);
-                        BtnStatusResume.Enabled = false;
+                        GvBarcodeFormatting(GvWeightDetail);
+                        GvBarcodeFormatting(GvOutWeight);
                         break;
                     default:
                         GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[COLUMN_DELIVERY_CODE];
                         DataGridViewFormatting(GvOrder);
-                        BtnStatusResume.Enabled = false;
                         break;
                 }
             }
             //現在選択中のタブ(変更後)のタブを保存する
             selectingTabIndex = tabMain.SelectedIndex;
+            DataSet();
         }
         /// <summary>
         /// 注文タブ内一覧の選択行変更イベント
@@ -2141,6 +2126,7 @@ namespace NipponPaint.OrderManager
                                 cnt++;
                             }
                         }
+                        GvBarcodeFormatting(GvWeight);
                         ////各種ボタンの表示制御
                         var statusEnable = false;
                         ButtonsEnableSetting(status, urgentBool, statusEnable);
@@ -2183,34 +2169,10 @@ namespace NipponPaint.OrderManager
                     int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
                     var urgentBool = Convert.ToBoolean(selectedRow.Cells[urgentColumnIndex].Value);
 
-                    using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
-                    {
-                        // 行取得のSQLを作成
-                        var parameters = new List<ParameterItem>()
-                        {
-                            new ParameterItem("orderId", orderId),
-                        };
-                        var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(BaseSettings.Facility.Plant), parameters);
-                        // フォームで定義された、取得値設定先のコントロールを抽出する
-                        db.ToLabelTextBox(this.Controls, rec.Rows);
-                        //Order_NumberでCansテーブルの一覧を表示する
-                        // Can一覧取得のSQLを作成
-                        GvBarcodeDataCource = db.Select(Sql.NpMain.Cans.GetPreviewByOrderId(ViewSettingsBarcodes, BaseSettings.Facility.Plant), parameters);
-                        GvBarcode.DataSource = GvBarcodeDataCource;
-                        var cnt = 0;
-                        foreach (var item in ViewSettingsBarcodes)
-                        {
-                            var column = new DataGridViewColumn();
-
-                            GvBarcode.Columns[cnt].Width = item.Width;
-                            GvBarcode.Columns[cnt].Visible = item.Visible;
-                            GvBarcode.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-                            cnt++;
-                        }
-                        ////各種ボタンの表示制御
-                        var statusEnable = false;
-                        ButtonsEnableSetting(status, urgentBool, statusEnable);
-                    }
+                    DataSet();
+                    ////各種ボタンの表示制御
+                    var statusEnable = false;
+                    ButtonsEnableSetting(status, urgentBool, statusEnable);
                 }
                 PutLog(Sentence.Messages.SelectRow);
             }
@@ -2277,6 +2239,7 @@ namespace NipponPaint.OrderManager
                                 cnt++;
                             }
                         }
+                        GvBarcodeFormatting(GvWeightDetail);
                         //GvOutWeightグリッドビューを表示する
                         GvOutWeight.Rows.Clear();
                         int GvOutWeightCurrentIndex = GvBarcode.CurrentRow.Index;
@@ -2287,16 +2250,17 @@ namespace NipponPaint.OrderManager
                             {
                                 double.TryParse(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex]["白吐出"].ToString(), out double canWhiteWeight);
                                 double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex]["白重量"].ToString(), out double orderWhiteWeight);
-                                GvOutWeight.Rows.Add(GvBarcodeDataCource.Rows[0]["白コード"], canWhiteWeight.ToString(Decimal_Place3), (orderWhiteWeight - canWhiteWeight).ToString(Decimal_Place3));
+                                GvOutWeight.Rows.Add(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex]["白コード"], canWhiteWeight.ToString(Decimal_Place3), (orderWhiteWeight - canWhiteWeight).ToString(Decimal_Place3));
                             }
                             if (column.ColumnName.Equals($"吐出{cnt}"))
                             {
                                 double.TryParse(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][$"吐出{cnt}"].ToString(), out double canWeight);
                                 double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][$"重量{cnt}"].ToString(), out double orderWeight);
-                                GvOutWeight.Rows.Add(GvBarcodeDataCource.Rows[0][$"着色剤{cnt}"], canWeight.ToString(Decimal_Place3), (orderWeight - canWeight).ToString(Decimal_Place3));
+                                GvOutWeight.Rows.Add(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][$"着色剤{cnt}"], canWeight.ToString(Decimal_Place3), (orderWeight - canWeight).ToString(Decimal_Place3));
                                 cnt++;
                             }
                         }
+                        GvBarcodeFormatting(GvOutWeight);
                     }
                 }
                 PutLog(Sentence.Messages.SelectRow);
@@ -2408,10 +2372,15 @@ namespace NipponPaint.OrderManager
             InitializeGridView(GvFormulation, ViewSettingsFormulations);
             GvFormulation.AutoGenerateColumns = false;
             InitializeGridView(GvWeight, ViewSettingsWeights);
+            GvWeight.AutoGenerateColumns = false;
             InitializeGridView(GvBarcode, ViewSettingsBarcodes);
+            GvBarcode.AutoGenerateColumns = false;
             InitializeGridView(GvOrderNumber, ViewSettingsOrderNumbers);
+            GvOrderNumber.AutoGenerateColumns = false;
             InitializeGridView(GvWeightDetail, ViewSettingsWeightDetails);
+            GvWeightDetail.AutoGenerateColumns = false;
             InitializeGridView(GvOutWeight, ViewSettingsOutWeights);
+            GvOutWeight.AutoGenerateColumns = false;
             // DataGridViewの表示
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
@@ -2429,81 +2398,13 @@ namespace NipponPaint.OrderManager
                 //GvFormulation.DataSource = GvFormulationDataSource;
 
                 GvOrderNumberDataSource = db.Select(Sql.NpMain.Orders.GetPreview(ViewSettingsOrderNumbers, BaseSettings.Facility.Plant));
-                //Funcs.BindDataGridView(GvOrderNumberDataSource, ViewSettingsOrderNumbers, GvOrderNumber);
-                GvOrderNumber.DataSource = GvOrderNumberDataSource;
+                Funcs.BindDataGridView(GvOrderNumberDataSource, ViewSettingsOrderNumbers, GvOrderNumber);
+                //GvOrderNumber.DataSource = GvOrderNumberDataSource;
             }
-            var cnt = 0;
-            foreach (var item in ViewSettingsOrders)
-            {
-                GvOrder.Columns[cnt].Width = item.Width;
-                GvOrder.Columns[cnt].Visible = item.Visible;
-                GvOrder.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-                cnt++;
-            }
-            cnt = 0;
-            foreach (var item in ViewSettingsWeights)
-            {
-                //GvWeight.Columns[cnt].Width = item.Width;
-                //GvWeight.Columns[cnt].Visible = item.Visible;
-                //GvWeight.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-                //GvWeight.Columns[cnt].HeaderText = item.DisplayName;
-                //cnt++;
-                var column = new DataGridViewColumn();
-                column.Name = item.ColumnName;
-                column.HeaderText = item.DisplayName;
-                column.Width = item.Width;
-                column.Visible = item.Visible;
-                column.DefaultCellStyle.Alignment = item.alignment;
-                column.CellTemplate = new DataGridViewTextBoxCell();
-                GvWeight.Columns.Add(column);
-                cnt++;
-
-            }
-            cnt = 0;
-            foreach (var item in ViewSettingsOrderNumbers)
-            {
-                GvOrderNumber.Columns[cnt].Width = item.Width;
-                GvOrderNumber.Columns[cnt].Visible = item.Visible;
-                GvOrderNumber.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
-                if (cnt <= COLUMN_STATUS_COLOR)
-                {
-                    GvOrderNumber.Columns[cnt].HeaderText = string.Empty;
-                }
-                else
-                {
-                    GvOrderNumber.Columns[cnt].HeaderText = item.DisplayName;
-                }
-                cnt++;
-                //var column = new DataGridViewColumn();
-                //column.Name = item.ColumnName;
-                //column.HeaderText = item.DisplayName;
-                //column.Width = item.Width;
-                //column.Visible = item.Visible;
-                //column.DefaultCellStyle.Alignment = item.alignment;
-                //GvOrderNumber.Columns.Add(column);
-            }
-            foreach (var item in ViewSettingsWeightDetails)
-            {
-                var column = new DataGridViewColumn();
-                column.Name = item.ColumnName;
-                column.HeaderText = item.DisplayName;
-                column.Width = item.Width;
-                column.Visible = item.Visible;
-                column.DefaultCellStyle.Alignment = item.alignment;
-                column.CellTemplate = new DataGridViewTextBoxCell();
-                GvWeightDetail.Columns.Add(column);
-            }
-            foreach (var item in ViewSettingsOutWeights)
-            {
-                var column = new DataGridViewColumn();
-                column.Name = item.ColumnName;
-                column.HeaderText = item.DisplayName;
-                column.Width = item.Width;
-                column.Visible = item.Visible;
-                column.DefaultCellStyle.Alignment = item.alignment;
-                column.CellTemplate = new DataGridViewTextBoxCell();
-                GvOutWeight.Columns.Add(column);
-            }
+            Funcs.CansDataGridView(ViewSettingsWeights, GvWeight);
+            Funcs.CansDataGridView(ViewSettingsBarcodes, GvBarcode);
+            Funcs.CansDataGridView(ViewSettingsWeightDetails, GvWeightDetail);
+            Funcs.CansDataGridView(ViewSettingsOutWeights, GvOutWeight);
             // データ表示部のコントロール制御
             Funcs.SetControlEnabled(this.Controls, true);
             // 画面の周期更新
@@ -2550,20 +2451,12 @@ namespace NipponPaint.OrderManager
             Console.WriteLine(dgv.Name);
             ViewGrid = new List<string>();
             var rowHeight = 48;
-            switch (dgv.Name)
-            {
-                case "GvOrder":
-                    rowHeight = GVORDER_ROW_HEIGHT;
-                    break;
-            }
             foreach (DataGridViewRow row in dgv.Rows)
             {
                 row.Height = rowHeight;
                 row.Cells[COLUMN_DELIVERY_CODE].Style.BackColor = StatusBackColorList[int.Parse(row.Cells[COLUMN_STATUS].Value.ToString())];
                 row.Cells[COLUMN_DELIVERY_CODE].Style.ForeColor = Color.Black;
                 row.Cells[COLUMN_PRODUCT_CODE].Style.BackColor = Color.LightYellow;
-                row.Cells[COLUMN_PRODUCT_NAME].Style.WrapMode = DataGridViewTriState.True;
-                row.Cells[COLUMN_COLOR_SAMPLE].Style.WrapMode = DataGridViewTriState.True;
                 row.Cells[COLUMN_PRODUCT_CODE].Style.ForeColor = Color.Black;
                 if (Funcs.EmphasisCellConfimation(row, COLUMN_DELIVERY_CODE, COLUMN_VISIBLE_SHIPPING_DATE, COLUMN_VISIBLE_DELIVERY_DATE))
                 {
@@ -2587,8 +2480,10 @@ namespace NipponPaint.OrderManager
             //    ViewGrid.Add(dgv.Name);
             //    return;
             //}
+            var rowHeight = 48;
             foreach (DataGridViewRow row in dgv.Rows)
             {
+                row.Height = rowHeight;
                 row.Cells[COLUMN_STATUS].Style.BackColor = StatusBackColorList[int.Parse(row.Cells[COLUMN_STATUS].Value.ToString())];
                 row.Cells[COLUMN_STATUS_COLOR].Style.BackColor = row.Cells[COLUMN_STATUS].Style.BackColor;
             }
@@ -2600,9 +2495,10 @@ namespace NipponPaint.OrderManager
             {
                 return;
             }
+            var rowHeight = 48;
             foreach (DataGridViewRow row in dgv.Rows)
             {
-
+                row.Height = rowHeight;
             }
         }
         #region 製品コードでDataGridViewの該当行を探す
@@ -3282,6 +3178,41 @@ namespace NipponPaint.OrderManager
         {
             // INIファイルのPreviewCycleが「0」の場合はタイマーOFFと、true/falseの反転処理
             BindTimer.Enabled = BaseSettings.Display.PreviewCycleSeconds > NpCommon.IniFile.Sections.DisplaySection.AutoBindCancel ? !BindTimer.Enabled : false;
+        }
+        #endregion
+
+        #region
+        /// <summary>
+        /// 缶タブへ遷移した際のデータセット
+        /// </summary>
+        private void DataSet()
+        {
+            var gdvSelectedOrderId = GetOrderId();
+            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
+            {
+                // 行取得のSQLを作成
+                var parameters = new List<ParameterItem>()
+                {
+                    new ParameterItem("orderId", gdvSelectedOrderId),
+                };
+                var rec = db.Select(Sql.NpMain.Orders.GetDetailByOrderId(BaseSettings.Facility.Plant), parameters);
+                // フォームで定義された、取得値設定先のコントロールを抽出する
+                db.ToLabelTextBox(this.Controls, rec.Rows);
+                //Order_NumberでCansテーブルの一覧を表示する
+                // Can一覧取得のSQLを作成
+                GvBarcodeDataCource = db.Select(Sql.NpMain.Cans.GetPreviewByOrderId(ViewSettingsBarcodes, BaseSettings.Facility.Plant), parameters);
+                GvBarcode.DataSource = GvBarcodeDataCource;
+                var cnt = 0;
+                foreach (var item in ViewSettingsBarcodes)
+                {
+                    var column = new DataGridViewColumn();
+
+                    GvBarcode.Columns[cnt].Width = item.Width;
+                    GvBarcode.Columns[cnt].Visible = item.Visible;
+                    GvBarcode.Columns[cnt].DefaultCellStyle.Alignment = item.alignment;
+                    cnt++;
+                }
+            }
         }
         #endregion
     }
