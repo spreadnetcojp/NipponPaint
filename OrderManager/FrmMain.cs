@@ -2226,7 +2226,9 @@ namespace NipponPaint.OrderManager
                         db.ToLabelTextBoxBarcode(list, rec.Rows);
                         //GvWeightDetailグリッドビューを表示する
                         GvWeightDetail.Rows.Clear();
-                        int GvWeightDetailCurrentIndex = GvOrderNumber.CurrentRow.Index;
+                        // フォーカスしているOrder_idでINDEXを取得
+                        var GvWeightDetailCurrentIndex = GetGridViewRowIndex(orderId.ToString(), COLUMN_ORDER_ID);
+
                         var cnt = 1;
                         foreach (DataColumn column in GvOrderNumberDataSource.Columns)
                         {
