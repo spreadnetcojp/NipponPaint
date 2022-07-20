@@ -78,6 +78,8 @@ namespace NipponPaint.OrderManager
         private const int COLUMN_COLOR_SAMPLE = 13;
         private const int COLUMN_URGENT = 18;
         private const int COLUMN_OPERATOR = 10;
+        // ViewSettingsBarcodes用
+        private const int COLUMN_BARCODE = 0;
 
         private const int TAB_INDEX_ORDER = 0;
         private const int TAB_INDEX_DETAIL = 1;
@@ -95,6 +97,8 @@ namespace NipponPaint.OrderManager
 
         private List<string> ViewGrid = new List<string>();
         //private const Log.ApplicationType MyApp = Log.ApplicationType.OrderManager;
+        // DateGridViewName
+        private const string DATE_GRID_VIEW_BARCODE = "GvBarcode";
 
         /// <summary>
         /// 強調するセルの背景色
@@ -2548,6 +2552,36 @@ namespace NipponPaint.OrderManager
         }
         #endregion
 
+        #region BarcodeのDataGridViewの該当行を探す
+        /// <summary>
+        /// BarcodeのDataGridViewの該当行を探す
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="cellIndex"></param>
+        /// <returns></returns>
+        private int GetBarcodeGridViewRowIndex(string code, int cellIndex)
+        {
+            var rowIndex = -1;
+            if (string.IsNullOrEmpty(code))
+            {
+                return rowIndex;
+            }
+            if (GvBarcode.SelectedRows.Count > 0)
+            {
+                rowIndex = GvBarcode.SelectedRows[SELECTED_ROW].Index;
+            }
+            foreach (DataGridViewRow row in GvBarcode.Rows)
+            {
+                if (row.Cells[cellIndex].Value.ToString() == code)
+                {
+                    rowIndex = row.Index;
+                    break;
+                }
+            }
+            return rowIndex;
+        }
+        #endregion
+
         #region DataGridViewの選択行を移動する
         /// <summary>
         /// DataGridViewの選択行を移動する
@@ -2895,6 +2929,18 @@ namespace NipponPaint.OrderManager
         }
         #endregion
 
+        #region フォーカスしている行のBarcodeを取得
+        /// <summary>
+        /// フォーカスしている行のBarcodeを取得
+        /// </summary>
+        /// <returns></returns>
+        private string GetBarcode()
+        {
+            var gdvSelectedBarcode = "";
+            return gdvSelectedBarcode = GvBarcode.SelectedRows[SELECTED_ROW].Cells[COLUMN_BARCODE].Value.ToString();
+        }
+        #endregion
+
         #region 取得していたOrder_idを元にフォーカスを移動
         /// <summary>
         /// 取得していたOrder_idを元にフォーカスを移動
@@ -2904,6 +2950,18 @@ namespace NipponPaint.OrderManager
         {
             var getGridViewRowIndex = GetGridViewRowIndex(gdvSelectedOrderId.ToString(), COLUMN_ORDER_ID);
             SetGridViewRowIndex(GetActiveGridViewName(), getGridViewRowIndex);
+        }
+        #endregion
+
+        #region 取得していたBarcideを元にフォーカスを移動
+        /// <summary>
+        /// 取得していたBarcideを元にフォーカスを移動
+        /// </summary>
+        /// <param name="gdvSelectedOrderId"></param>
+        private void FocusBarcodeSelectedRow(string gdvSelectedBarcode)
+        {
+            var getGridViewRowIndex = GetBarcodeGridViewRowIndex(gdvSelectedBarcode, COLUMN_BARCODE);
+            SetGridViewRowIndex(GvBarcode, getGridViewRowIndex);
         }
         #endregion
 
@@ -3147,18 +3205,22 @@ namespace NipponPaint.OrderManager
         /// </summary>
         private void DisplayBindData()
         {
+
             // フォーカスしている行のOrder_id取得
             var gdvSelectedOrderId = GetOrderId();
             // 画面の列定義取得
             var activeGridView = GetActiveGridViewSetting();
             // 表示画面のName取得
             var gridName = GetActiveGridViewName();
+            // barcode取得
+            var gdvBarcode = GetBarcode();
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
                 gridName.DataSource = db.Select(Sql.NpMain.Orders.GetPreview(activeGridView, BaseSettings.Facility.Plant));
             }
             // 事前に選択していたデータ行へ移動
             FocusSelectedRow(gdvSelectedOrderId);
+            FocusBarcodeSelectedRow(gdvBarcode);
         }
         #endregion
 
