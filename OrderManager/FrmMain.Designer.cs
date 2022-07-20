@@ -3580,7 +3580,6 @@ namespace NipponPaint.OrderManager
             this.BtnPrintInstructions.TabIndex = 12;
             this.BtnPrintInstructions.Text = "作業指示書の印刷(F5)";
             this.BtnPrintInstructions.UseVisualStyleBackColor = true;
-            this.BtnPrintInstructions.Click += new System.EventHandler(this.BtnPrintInstructions_Click);
             // 
             // BtnOrderStart
             // 
