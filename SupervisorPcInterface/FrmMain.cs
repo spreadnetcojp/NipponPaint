@@ -121,8 +121,12 @@ namespace SupervisorPcInterface
             items.Find(x => x.Key == TbFormula.PRD_END_DISP).Value = DBNull.Value;
             items.Find(x => x.Key == TbFormula.PRD_PRIORITY).Value = DBNull.Value;
             items.Find(x => x.Key == TbFormula.PRD_NUM).Value = DBNull.Value;
-            items.Find(x => x.Key == TbFormula.PRD_ISPREFILLED).Value = 1;
-            items.Find(x => x.Key == TbFormula.PRD_PREFILLED_QTY).Value = dispenseRow[Cans.COLUMN_DISPENSED];
+            // ▼ hotfix 2022/07/19 A.Satou
+            //items.Find(x => x.Key == TbFormula.PRD_ISPREFILLED).Value = 1;
+            //items.Find(x => x.Key == TbFormula.PRD_PREFILLED_QTY).Value = dispenseRow[Cans.COLUMN_DISPENSED];
+            items.Find(x => x.Key == TbFormula.PRD_ISPREFILLED).Value = 0;
+            items.Find(x => x.Key == TbFormula.PRD_PREFILLED_QTY).Value = 0;
+            // ▲ hotfix 2022/07/19 A.Satou
             parameters = new List<ParameterItem>();
             parameters.AddRange(items);
             // SQL返却
@@ -208,7 +212,10 @@ namespace SupervisorPcInterface
             items.Find(x => x.Key == TbJob.JOB_TARE_WEIGHT_EXPECTED).Value = GetTareWeightExpected(dispenseRow);
             items.Find(x => x.Key == TbJob.JOB_TARE_WEIGHT_DETECTED).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_TARE_WEIGHT_PERC_ERR_ADMITTED).Value = dispenseRow[Orders.COLUMN_P_WEIGHT_TOLERANCE];
-            items.Find(x => x.Key == TbJob.JOB_GROSS_WEIGHT_EXPECTED).Value = 0;
+            // ▼ hotfix 2022/07/19 A.Satou
+            //items.Find(x => x.Key == TbJob.JOB_GROSS_WEIGHT_EXPECTED).Value = 0;
+            items.Find(x => x.Key == TbJob.JOB_GROSS_WEIGHT_EXPECTED).Value = GetGrossWeightExpected(dispenseRow);
+            // ▲ hotfix 2022/07/19 A.Satou
             items.Find(x => x.Key == TbJob.JOB_GROSS_WEIGHT_DETECTED).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_GROSS_WEIGHT_PERC_ERR_ADMITTED).Value = dispenseRow[Orders.COLUMN_P_WEIGHT_TOLERANCE];
             items.Find(x => x.Key == TbJob.JOB_NET_WEIGHT_EXPECTED).Value = 0;
@@ -223,13 +230,19 @@ namespace SupervisorPcInterface
             items.Find(x => x.Key == TbJob.JOB_MIXING).Value = 1;
             items.Find(x => x.Key == TbJob.JOB_MIXING_TIME).Value = dispenseRow[Orders.COLUMN_MIXING_TIME];
             items.Find(x => x.Key == TbJob.JOB_MIXING_SPEED).Value = GetMixingSpeed(dispenseRow);
-            items.Find(x => x.Key == TbJob.JOB_CAPPING).Value = dispenseRow[Orders.COLUMN_INPUT_CAN].ToString() == Orders.INPUT_CAN_YES.ToString() ? 1 : 0;
+            // ▼ hotfix 2022/07/19 A.Satou
+            //items.Find(x => x.Key == TbJob.JOB_CAPPING).Value = dispenseRow[Orders.COLUMN_INPUT_CAN].ToString() == Orders.INPUT_CAN_YES.ToString() ? 1 : 0;
+            items.Find(x => x.Key == TbJob.JOB_CAPPING).Value = (bool)dispenseRow[Orders.COLUMN_INPUT_CAN] ? 1 : 0;
+            // ▲ hotfix 2022/07/19 A.Satou
             items.Find(x => x.Key == TbJob.JOB_LID_PLACING).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_LID_CHECK).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_PRINTING_1).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_PRINTING_2).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_PRINTING_3).Value = 0;
-            items.Find(x => x.Key == TbJob.JOB_EXIT_POSITION).Value = dispenseRow[Cans.COLUMN_TEST_CAN].ToString() == Orders.TEST_CAN_YES.ToString() ? 2 : 1;
+            // ▼ hotfix 2022/07/19 A.Satou
+            //items.Find(x => x.Key == TbJob.JOB_EXIT_POSITION).Value = dispenseRow[Cans.COLUMN_TEST_CAN].ToString() == Orders.TEST_CAN_YES.ToString() ? 2 : 1;
+            items.Find(x => x.Key == TbJob.JOB_EXIT_POSITION).Value = (bool)dispenseRow[Cans.COLUMN_TEST_CAN] ? 2 : 1;
+            // ▲ hotfix 2022/07/19 A.Satou
             items.Find(x => x.Key == TbJob.JOB_TAG_1).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_TAG_2).Value = 0;
             items.Find(x => x.Key == TbJob.JOB_TAG_3).Value = 0;
@@ -394,7 +407,10 @@ namespace SupervisorPcInterface
                                         if (item != null)
                                         {
                                             // TB_FORMULAテーブルの値を設定
-                                            parameters.Add(new ParameterItem(colorColumns[1], item[TbFormula.PRD_PREFILLED_QTY]));
+                                            // ▼ hotfix 2022/07/19 A.Satou
+                                            //parameters.Add(new ParameterItem(colorColumns[1], item[TbFormula.PRD_PREFILLED_QTY]));
+                                            parameters.Add(new ParameterItem(colorColumns[1], item[TbFormula.PRD_QTY_DISP]));
+                                            // ▲ hotfix 2022/07/19 A.Satou
                                             updateItems.Add($"{colorColumns[1]} = @{colorColumns[1]}");
                                         }
                                     }
@@ -462,17 +478,45 @@ namespace SupervisorPcInterface
         }
         #endregion
 
+        #region 理論上の缶のグロス重量(グラム)
+        /// <summary>
+        /// 理論上の缶のグロス重量(グラム)
+        /// </summary>
+        /// <param name="dispenseRow"></param>
+        /// <returns></returns>
+        private double GetGrossWeightExpected(DataRow dispenseRow)
+        {
+            return ToDouble(float.Parse(dispenseRow[Orders.COLUMN_CAN_WEIGHT].ToString()) + float.Parse(dispenseRow[Orders.COLUMN_TOTAL_WEIGHT].ToString()));
+        }
+        #endregion
+
         #region 理論上の風袋重量(グラム)
         /// <summary>
         /// 理論上の風袋重量(グラム)
         /// </summary>
         /// <param name="dispenseRow"></param>
         /// <returns></returns>
-        private float GetTareWeightExpected(DataRow dispenseRow)
+        // ▼ hotfix 2022/07/19 A.Satou
+        //private float GetTareWeightExpected(DataRow dispenseRow)
+        private double GetTareWeightExpected(DataRow dispenseRow)
+        // ▲ hotfix 2022/07/19 A.Satou
         {
-            return float.Parse(dispenseRow[Orders.COLUMN_CAN_WEIGHT].ToString()) + float.Parse(dispenseRow[Orders.COLUMN_HG_WEIGHT].ToString());
+            // ▼ hotfix 2022/07/19 A.Satou
+            //return float.Parse(dispenseRow[Orders.COLUMN_CAN_WEIGHT].ToString()) + float.Parse(dispenseRow[Orders.COLUMN_HG_WEIGHT].ToString());
+            return ToDouble(float.Parse(dispenseRow[Orders.COLUMN_CAN_WEIGHT].ToString()) + float.Parse(dispenseRow[Cans.COLUMN_WEIGHT].ToString()));
+            // ▲ hotfix 2022/07/19 A.Satou
         }
         #endregion
+
+        /// <summary>
+        /// float値を小数以下3桁の値に変更する
+        /// </summary>
+        /// <param name="fVal"></param>
+        /// <returns></returns>
+        private double ToDouble(float fVal)
+        {
+            return double.Parse(String.Format("{0:f3}", fVal));
+        }
 
         #region 撹拌スピード（％）
         /// <summary>

@@ -387,7 +387,7 @@ namespace SupervisorIfSim
             this.RdbPrdStatus.SecondButtonVisible = true;
             this.RdbPrdStatus.Size = new System.Drawing.Size(220, 25);
             this.RdbPrdStatus.TabIndex = 7;
-            this.RdbPrdStatus.ThirdButtonDefault = 2;
+            this.RdbPrdStatus.ThirdButtonDefault = -1;
             this.RdbPrdStatus.ThirdButtonLeftPosition = 150;
             this.RdbPrdStatus.ThirdButtonText = "エラー";
             this.RdbPrdStatus.ThirdButtonVisible = true;
