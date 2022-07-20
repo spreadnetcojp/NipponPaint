@@ -1691,33 +1691,9 @@ namespace NipponPaint.OrderManager
             bool rdbChecked = ((RadioButton)sender).Checked;
             if (rdbChecked)
             {
-                this.GvOrder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
-                //ソート順(Panel2)のグループ内のチェックされているラジオボタンを取得する
-                var rbtCheckInGroup = panel2.Controls.OfType<RadioButton>()
-                    .SingleOrDefault(rb => rb.Checked == true);
                 // フォーカスしている行のOrder_id取得
                 var gdvSelectedOrderId = GetOrderId();
-                // ソート順切り替え
-                var sortCondition = string.Empty;
-                switch (rbtCheckInGroup.Name)
-                {
-                    case "RdoSortKubun":
-                        sortCondition = $"{SORT_KUBUN}";
-                        break;
-                    case "RdoSortRanking":
-                        sortCondition = $"{SORT_RANKING}";
-                        break;
-                    case "RdoOrderPerson":
-                        sortCondition = $"{SORT_ORDER_PERSON}";
-                        break;
-                    default:
-                        break;
-                }
-                GvOrderDataSource.DefaultView.Sort = sortCondition;
-                GvOrderNumberDataSource.DefaultView.Sort = sortCondition;
-                // GvOrderDataSourceのみで全て機能するので、下記の記述は不要
-                //GvDetailDataSource.DefaultView.Sort = sortCondition;
-                //GvFormulationDataSource.DefaultView.Sort = sortCondition;
+                Sort();
                 // 事前に選択していたデータ行へ移動
                 FocusSelectedRow(gdvSelectedOrderId);
             }
@@ -3147,7 +3123,6 @@ namespace NipponPaint.OrderManager
         /// </summary>
         private void DisplayBindData()
         {
-
             // フォーカスしている行のOrder_id取得
             var gdvSelectedOrderId = GetOrderId();
             // 画面の列定義取得
@@ -3165,6 +3140,8 @@ namespace NipponPaint.OrderManager
             {
                 gridName.DataSource = db.Select(Sql.NpMain.Orders.GetPreview(activeGridView, BaseSettings.Facility.Plant));
             }
+            // ソート順
+            Sort();
             // 事前に選択していたデータ行へ移動
             FocusSelectedRow(gdvSelectedOrderId);
             if (gridName.Name == DATE_GRID_VIEW_ORDERNUMBER)
@@ -3303,6 +3280,34 @@ namespace NipponPaint.OrderManager
                 }
                 GvBarcodeFormatting(GvOutWeight);
             }
+        }
+        #endregion
+
+        #region ソート切り替え
+        /// <summary>
+        /// ソート切り替え
+        /// </summary>
+        private void Sort()
+        {
+            //ソート順(Panel2)のグループ内のチェックされているラジオボタンを取得する
+            var rbtCheckInGroup = panel2.Controls.OfType<RadioButton>().SingleOrDefault(rb => rb.Checked == true);
+            var sortCondition = string.Empty;
+            switch (rbtCheckInGroup.Name)
+            {
+                case "RdoSortKubun":
+                    sortCondition = $"{SORT_KUBUN}";
+                    break;
+                case "RdoSortRanking":
+                    sortCondition = $"{SORT_RANKING}";
+                    break;
+                case "RdoOrderPerson":
+                    sortCondition = $"{SORT_ORDER_PERSON}";
+                    break;
+                default:
+                    break;
+            }
+            GvOrderDataSource.DefaultView.Sort = sortCondition;
+            GvOrderNumberDataSource.DefaultView.Sort = sortCondition;
         }
         #endregion
     }
