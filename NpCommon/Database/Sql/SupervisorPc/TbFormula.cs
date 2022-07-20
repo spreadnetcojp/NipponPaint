@@ -169,8 +169,11 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
             sql.Append($"FROM {MAIN_TABLE} AS FM ");
             sql.Append($"INNER JOIN {TbBarcode.MAIN_TABLE} AS BC ON BC.{TbBarcode.BARCODE} = FM.{PRD_BARCODE} AND BC.{TbBarcode.PROCESS_CODE} = FM.{PRD_PROCESS_CODE} ");
             sql.Append($"INNER JOIN {TbJob.MAIN_TABLE}     AS JB ON JB.{TbJob.JOB_BARCODE} = FM.{PRD_BARCODE} AND JB.{TbJob.JOB_PROCESS_CODE} = FM.{PRD_PROCESS_CODE} ");
-            sql.Append($"WHERE FM.{PRD_STATUS} <> 1 ");
-            sql.Append($"  AND FM.{PRD_BARCODE} = @barcode ");
+            // ▼ hotfix 2022/07/19 A.Satou
+            //sql.Append($"WHERE FM.{PRD_STATUS} <> 1 ");
+            //sql.Append($"  AND FM.{PRD_BARCODE} = @barcode ");
+            sql.Append($"WHERE FM.{PRD_BARCODE} = @barcode ");
+            // ▲ hotfix 2022/07/19 A.Satou
             return sql.ToString();
         }
 

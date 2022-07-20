@@ -2558,9 +2558,7 @@ namespace NipponPaint.OrderManager
         {
             gv.ClearSelection();
             gv.Rows[rowIndex].Selected = true;
-            // ▼ 2022/07/19 A.Satou TODO:要確認
-            //gv.FirstDisplayedScrollingRowIndex = rowIndex;
-            // ▲ 2022/07/19 A.Satou TODO:要確認
+            gv.FirstDisplayedScrollingRowIndex = rowIndex;
         }
         #endregion
 

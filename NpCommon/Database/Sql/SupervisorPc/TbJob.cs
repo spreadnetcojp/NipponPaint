@@ -76,7 +76,10 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
             new MergeItemDefine(){ IsKey = true, IsInsert = true, IsUpdate = false, Field = JOB_PROCESS_CODE },
             new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = false, Field = JOB_TIME_INSERTED },
             new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = false, Field = JOB_STATUS },
-            new MergeItemDefine(){ IsKey = false, IsInsert = false, IsUpdate = false, Field = JOB_TARE_WEIGHT_EXPECTED },
+            // ▼ hotfix 2022/07/19 A.Satou
+            //new MergeItemDefine(){ IsKey = false, IsInsert = false, IsUpdate = false, Field = JOB_TARE_WEIGHT_EXPECTED },
+            new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = JOB_TARE_WEIGHT_EXPECTED },
+            // ▲ hotfix 2022/07/19 A.Satou
             new MergeItemDefine(){ IsKey = false, IsInsert = false, IsUpdate = false, Field = JOB_TARE_WEIGHT_DETECTED },
             new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = JOB_TARE_WEIGHT_PERC_ERR_ADMITTED },
             new MergeItemDefine(){ IsKey = false, IsInsert = true, IsUpdate = true, Field = JOB_GROSS_WEIGHT_EXPECTED },

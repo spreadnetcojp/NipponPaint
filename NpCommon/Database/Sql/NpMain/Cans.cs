@@ -184,6 +184,9 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($" ,TB2.{Orders.COLUMN_P_WEIGHT_TOLERANCE} ");
             sql.Append($" ,TB2.{Orders.COLUMN_CAN_WEIGHT} ");
             sql.Append($" ,TB2.{Orders.COLUMN_HG_WEIGHT} ");
+            // ▼ hotfix 2022/07/19 A.Satou
+            sql.Append($" ,TB2.{Orders.COLUMN_TOTAL_WEIGHT} ");
+            // ▲ hotfix 2022/07/19 A.Satou
             sql.Append($" ,TB1.{COLUMN_CAN_NUMBER} ");
             sql.Append($" ,TB1.{COLUMN_TEST_CAN} ");
             sql.Append($" ,ISNULL(TB1.{COLUMN_ERRORS_1}, 0) + ISNULL(TB1.{COLUMN_ERRORS_2}, 0) + ISNULL(TB1.{COLUMN_ERRORS_3}, 0) AS {COLUMN_ERRORS} ");
