@@ -351,7 +351,7 @@ namespace SupervisorIfSim
             // 
             // RdbPrdUm
             // 
-            this.RdbPrdUm.FirstButtonDefault = 0;
+            this.RdbPrdUm.FirstButtonDefault = 1;
             this.RdbPrdUm.FirstButtonLeftPosition = 0;
             this.RdbPrdUm.FirstButtonText = "グラム";
             this.RdbPrdUm.FirstButtonVisible = true;
@@ -359,7 +359,7 @@ namespace SupervisorIfSim
             this.RdbPrdUm.Location = new System.Drawing.Point(159, 188);
             this.RdbPrdUm.Margin = new System.Windows.Forms.Padding(0);
             this.RdbPrdUm.Name = "RdbPrdUm";
-            this.RdbPrdUm.SecondButtonDefault = 1;
+            this.RdbPrdUm.SecondButtonDefault = 0;
             this.RdbPrdUm.SecondButtonLeftPosition = 100;
             this.RdbPrdUm.SecondButtonText = "ｃｃ";
             this.RdbPrdUm.SecondButtonVisible = true;
