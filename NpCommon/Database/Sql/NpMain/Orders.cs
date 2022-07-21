@@ -246,7 +246,6 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_HG_PAINT_KIND_CODE = "HG_Paint_Kind_Code";
         public const string COLUMN_HG_THEME_CODE = "HG_Theme_Code";
 
-
         // テスト缶
         public const int INPUT_CAN_YES = 1;
         public const int TEST_CAN_YES = 1;
@@ -315,7 +314,6 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             DB,
             DR
         }
-
         private const int ZERO = 0;
         public const string PAINT_KIND_CODE = "順位コード";
         public const string THEME_CODE = "RF集計区分";
