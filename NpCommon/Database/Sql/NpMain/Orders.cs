@@ -200,7 +200,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string COLUMN_Product_Code = "Product_Code";
         private const string COLUMN_HG_ORDER_INVOICE_ID = "HG_Order_Invoice_ID";
         private const string COLUMN_HG_DATA_NUMBER = "HG_Data_Number";
-        private const string COLUMN_HG_TINTING_PRICE_RANK = "HG_Tinting_Price_Rank";
+        public const string COLUMN_HG_TINTING_PRICE_RANK = "HG_Tinting_Price_Rank";
         public const string COLUMN_OPERATOR_NAME = "Operator_Name";
         private const string COLUMN_HG_Order_Input_Date = "HG_Order_Input_Date";
         private const string COLUMN_HG_Order_Input_Time = "HG_Order_Input_Time";
@@ -243,6 +243,8 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string COLUMN_TINTED_COLOR = "Tinted_Color";
         private const string COLUMN_INDEX_NUMBER = "Index_Number";
         private const string COLUMN_LINE_NAME = "Line_Name";
+        public const string COLUMN_HG_PAINT_KIND_CODE = "HG_Paint_Kind_Code";
+        public const string COLUMN_HG_THEME_CODE = "HG_Theme_Code";
 
         // テスト缶
         public const int INPUT_CAN_YES = 1;
@@ -295,6 +297,41 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// 変更可能なステータス
         /// </summary>
         private static readonly string DisplayStatus = $"{(int)OrderStatus.WaitingForCCMformulation}, {(int)OrderStatus.Ready}, {(int)OrderStatus.TestCanInProgress}, {(int)OrderStatus.ManufacturingCansInProgress}";
+        #endregion
+
+        #region 出庫用
+        /// <summary>
+        /// 調色ランク
+        /// </summary>
+        public enum TintingPriceRank
+        {
+            A,
+            B,
+            C,
+            D,
+            DY,
+            DG,
+            DB,
+            DR
+        }
+        private const int THINTING_PRICE_RANK_COUNT_ZERO = 0;
+        public const string PAINT_KIND_CODE = "順位コード";
+        public const string THEME_CODE = "RF集計区分";
+        /// <summary>
+        /// 調色ランクリスト
+        /// </summary>
+        private static readonly List<string> TintingRankList = new List<string>()
+        {
+            TintingPriceRank.A.ToString(),
+            TintingPriceRank.B.ToString(),
+            TintingPriceRank.C.ToString(),
+            TintingPriceRank.D.ToString(),
+            TintingPriceRank.DY.ToString(),
+            TintingPriceRank.DG.ToString(),
+            TintingPriceRank.DB.ToString(),
+            TintingPriceRank.DR.ToString(),
+        };
+
         #endregion
 
         #endregion
@@ -552,7 +589,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
-        #region
+        #region　Order_idで白コード・着色剤コード取得
         /// <summary>
         /// Order_idで白コード・着色剤コード取得
         /// </summary>
@@ -587,7 +624,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         }
         #endregion
 
-        #region
+        #region　製品コードから情報取得
         /// <summary>
         /// 製品コードから情報取得
         /// </summary>
@@ -606,6 +643,43 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($"FROM {SelectOrders(plant)} ");
             sql.Append($"WHERE {COLUMN_STATUS} IN ({DisplayStatus}) ");
             sql.Append($"AND {COLUMN_PRODUCT_CODE} = @ProductCode ");
+            return sql.ToString();
+        }
+        #endregion
+
+        #region 出庫情報取得
+        /// <summary>
+        /// 出庫情報取得
+        /// </summary>
+        /// <param name="plant"></param>
+        /// <returns></returns>
+        public static string GetWareHouse(string plant)
+        {
+            var sql = new StringBuilder();
+            sql.Append($"SELECT ");
+            sql.Append($"  CodeGroup.{COLUMN_HG_PAINT_KIND_CODE} AS {PAINT_KIND_CODE} ");
+            sql.Append($" ,CodeGroup.{COLUMN_HG_THEME_CODE} AS {THEME_CODE} ");
+            foreach(var item in TintingRankList)
+            {
+                sql.Append($" ,SUM(CodeGroup.{item}) AS {item} ");
+            }
+            sql.Append($"FROM (");
+            sql.Append($"      SELECT ");
+            sql.Append($"          O.{COLUMN_HG_PAINT_KIND_CODE} ");
+            sql.Append($"         ,O.{COLUMN_HG_THEME_CODE} ");
+            foreach (var item in TintingRankList)
+            {
+                sql.Append($"         , CASE  ");
+                sql.Append($"             WHEN O.{COLUMN_HG_TINTING_PRICE_RANK} = '{item}'  ");
+                sql.Append($"                 THEN SUM(O.{COLUMN_NUMBER_OF_CAN})  ");
+                sql.Append($"             ELSE {THINTING_PRICE_RANK_COUNT_ZERO}  ");
+                sql.Append($"             END AS {item} ");
+            }
+            sql.Append($"     FROM {SelectOrders(plant)} ");
+            sql.Append($"     WHERE {COLUMN_STATUS} = {(int)OrderStatus.WaitingForCCMformulation} ");
+            sql.Append($"     GROUP BY O.{COLUMN_HG_PAINT_KIND_CODE}, O.{COLUMN_HG_THEME_CODE}, O.{COLUMN_HG_TINTING_PRICE_RANK} ) AS CodeGroup ");
+            sql.Append($"GROUP BY CodeGroup.{COLUMN_HG_PAINT_KIND_CODE}, CodeGroup.{COLUMN_HG_THEME_CODE} ");
+            sql.Append($"ORDER BY CodeGroup.{COLUMN_HG_PAINT_KIND_CODE}");
             return sql.ToString();
         }
         #endregion
