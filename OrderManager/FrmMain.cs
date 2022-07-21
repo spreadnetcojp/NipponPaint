@@ -78,6 +78,8 @@ namespace NipponPaint.OrderManager
         private const int COLUMN_COLOR_SAMPLE = 13;
         private const int COLUMN_URGENT = 18;
         private const int COLUMN_OPERATOR = 10;
+        // ViewSettingsBarcodes用
+        private const int COLUMN_BARCODE = 0;
 
         private const int TAB_INDEX_ORDER = 0;
         private const int TAB_INDEX_DETAIL = 1;
@@ -95,6 +97,8 @@ namespace NipponPaint.OrderManager
 
         private List<string> ViewGrid = new List<string>();
         //private const Log.ApplicationType MyApp = Log.ApplicationType.OrderManager;
+        // DateGridViewName
+        private const string DATE_GRID_VIEW_ORDERNUMBER = "GvOrderNumber";
 
         /// <summary>
         /// 強調するセルの背景色
@@ -119,6 +123,19 @@ namespace NipponPaint.OrderManager
         /// 注文のキャンセルフラグ
         /// </summary>
         private const int ORDER_CANCEL_FLG = 1;
+
+        // 調色剤
+        private const string WhiteCode = "白コード";
+        private const string WhiteWeight = "白重量";
+        private const string Colorant = "着色剤";
+        private const string Weight = "重量";
+        private const string WhiteDispensed = "白吐出";
+        private const string Dispensed = "吐出";
+
+        // ラジオボタン
+        private const string RdoSortKubunName = "RdoSortKubun";
+        private const string RdoSortRankingName = "RdoSortRanking";
+        private const string RdoOrderPersonName = "RdoOrderPerson";
 
         #region 列定義定数(ColumnName)
         private const string COLUMN_NAME_ORDERS_HG_HG_DELIVERY_CODE = Sql.NpMain.Orders.COLUMN_HG_HG_DELIVERY_CODE;
@@ -1687,33 +1704,9 @@ namespace NipponPaint.OrderManager
             bool rdbChecked = ((RadioButton)sender).Checked;
             if (rdbChecked)
             {
-                this.GvOrder.DataBindingComplete += new DataGridViewBindingCompleteEventHandler(this.GvOrderDataBindingComplete);
-                //ソート順(Panel2)のグループ内のチェックされているラジオボタンを取得する
-                var rbtCheckInGroup = panel2.Controls.OfType<RadioButton>()
-                    .SingleOrDefault(rb => rb.Checked == true);
                 // フォーカスしている行のOrder_id取得
                 var gdvSelectedOrderId = GetOrderId();
-                // ソート順切り替え
-                var sortCondition = string.Empty;
-                switch (rbtCheckInGroup.Name)
-                {
-                    case "RdoSortKubun":
-                        sortCondition = $"{SORT_KUBUN}";
-                        break;
-                    case "RdoSortRanking":
-                        sortCondition = $"{SORT_RANKING}";
-                        break;
-                    case "RdoOrderPerson":
-                        sortCondition = $"{SORT_ORDER_PERSON}";
-                        break;
-                    default:
-                        break;
-                }
-                GvOrderDataSource.DefaultView.Sort = sortCondition;
-                GvOrderNumberDataSource.DefaultView.Sort = sortCondition;
-                // GvOrderDataSourceのみで全て機能するので、下記の記述は不要
-                //GvDetailDataSource.DefaultView.Sort = sortCondition;
-                //GvFormulationDataSource.DefaultView.Sort = sortCondition;
+                Sort();
                 // 事前に選択していたデータ行へ移動
                 FocusSelectedRow(gdvSelectedOrderId);
             }
@@ -1907,6 +1900,7 @@ namespace NipponPaint.OrderManager
                         GvOrderNumberFormatting(GvOrderNumber);
                         GvBarcodeFormatting(GvWeightDetail);
                         GvBarcodeFormatting(GvOutWeight);
+                        DataSet();
                         break;
                     default:
                         GvOrder.CurrentCell = GvOrder.Rows[gdvSelectedIndex].Cells[COLUMN_DELIVERY_CODE];
@@ -1916,7 +1910,6 @@ namespace NipponPaint.OrderManager
             }
             //現在選択中のタブ(変更後)のタブを保存する
             selectingTabIndex = tabMain.SelectedIndex;
-            DataSet();
         }
         /// <summary>
         /// 注文タブ内一覧の選択行変更イベント
@@ -2209,64 +2202,8 @@ namespace NipponPaint.OrderManager
                     var selectedRow = dgv.SelectedRows[0];
                     string barcode = selectedRow.Cells[barcodeColumnIndex].Value.ToString().Trim();
                     int.TryParse(selectedRow.Cells[orderIdColumnIndex].Value.ToString(), out int orderId);
-                    using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
-                    {
-                        // 行取得のSQLを作成
-                        var parameters = new List<ParameterItem>()
-                        {
-                            new ParameterItem("barcode", barcode),
-                        };
-                        var rec = db.Select(Sql.NpMain.Cans.GetDetailByBarcode(), parameters);
-                        var list = new List<Control>();
-                        list.Add(Barcode);
-                        list.Add(TargetWeight);
-                        list.Add(OutWeight);
-                        list.Add(CansFormulaRelease);
-                        // フォームで定義された、取得値設定先のコントロールを抽出する
-                        db.ToLabelTextBoxBarcode(list, rec.Rows);
-                        //GvWeightDetailグリッドビューを表示する
-                        GvWeightDetail.Rows.Clear();
-                        // フォーカスしているOrder_idでINDEXを取得
-                        var GvWeightDetailCurrentIndex = GetGridViewRowIndex(orderId.ToString(), COLUMN_ORDER_ID);
-
-                        var cnt = 1;
-                        foreach (DataColumn column in GvOrderNumberDataSource.Columns)
-                        {
-                            if (column.ColumnName.Equals("白コード"))
-                            {
-                                double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex]["白重量"].ToString(), out double whiteWeight);
-                                GvWeightDetail.Rows.Add(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex]["白コード"], whiteWeight.ToString(Decimal_Place3));
-                            }
-                            if (column.ColumnName.Equals($"着色剤{cnt}"))
-                            {
-                                double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][$"重量{cnt}"].ToString(), out double weight);
-                                GvWeightDetail.Rows.Add(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][$"着色剤{cnt}"], weight.ToString(Decimal_Place3));
-                                cnt++;
-                            }
-                        }
-                        GvBarcodeFormatting(GvWeightDetail);
-                        //GvOutWeightグリッドビューを表示する
-                        GvOutWeight.Rows.Clear();
-                        int GvOutWeightCurrentIndex = GvBarcode.CurrentRow.Index;
-                        cnt = 1;
-                        foreach (DataColumn column in GvBarcodeDataCource.Columns)
-                        {
-                            if (column.ColumnName.Equals("白コード"))
-                            {
-                                double.TryParse(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex]["白吐出"].ToString(), out double canWhiteWeight);
-                                double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex]["白重量"].ToString(), out double orderWhiteWeight);
-                                GvOutWeight.Rows.Add(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex]["白コード"], canWhiteWeight.ToString(Decimal_Place3), (orderWhiteWeight - canWhiteWeight).ToString(Decimal_Place3));
-                            }
-                            if (column.ColumnName.Equals($"吐出{cnt}"))
-                            {
-                                double.TryParse(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][$"吐出{cnt}"].ToString(), out double canWeight);
-                                double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][$"重量{cnt}"].ToString(), out double orderWeight);
-                                GvOutWeight.Rows.Add(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][$"着色剤{cnt}"], canWeight.ToString(Decimal_Place3), (orderWeight - canWeight).ToString(Decimal_Place3));
-                                cnt++;
-                            }
-                        }
-                        GvBarcodeFormatting(GvOutWeight);
-                    }
+                    // 取得しているBarcodeでデータをセット
+                    SetBarcodeDisplay(barcode, orderId);
                 }
                 PutLog(Sentence.Messages.SelectRow);
             }
@@ -2537,6 +2474,36 @@ namespace NipponPaint.OrderManager
                 rowIndex = GvOrder.SelectedRows[0].Index;
             }
             foreach (DataGridViewRow row in GvOrder.Rows)
+            {
+                if (row.Cells[cellIndex].Value.ToString() == code)
+                {
+                    rowIndex = row.Index;
+                    break;
+                }
+            }
+            return rowIndex;
+        }
+        #endregion
+
+        #region BarcodeのDataGridViewの該当行を探す
+        /// <summary>
+        /// BarcodeのDataGridViewの該当行を探す
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="cellIndex"></param>
+        /// <returns></returns>
+        private int GetBarcodeGridViewRowIndex(string code, int cellIndex)
+        {
+            var rowIndex = -1;
+            if (string.IsNullOrEmpty(code))
+            {
+                return rowIndex;
+            }
+            if (GvBarcode.SelectedRows.Count > 0)
+            {
+                rowIndex = GvBarcode.SelectedRows[SELECTED_ROW].Index;
+            }
+            foreach (DataGridViewRow row in GvBarcode.Rows)
             {
                 if (row.Cells[cellIndex].Value.ToString() == code)
                 {
@@ -2893,6 +2860,18 @@ namespace NipponPaint.OrderManager
         }
         #endregion
 
+        #region フォーカスしている行のBarcodeを取得
+        /// <summary>
+        /// フォーカスしている行のBarcodeを取得
+        /// </summary>
+        /// <returns></returns>
+        private string GetBarcode()
+        {
+            var gdvSelectedBarcode = "";
+            return gdvSelectedBarcode = GvBarcode.SelectedRows[SELECTED_ROW].Cells[COLUMN_BARCODE].Value.ToString();
+        }
+        #endregion
+
         #region 取得していたOrder_idを元にフォーカスを移動
         /// <summary>
         /// 取得していたOrder_idを元にフォーカスを移動
@@ -2902,6 +2881,18 @@ namespace NipponPaint.OrderManager
         {
             var getGridViewRowIndex = GetGridViewRowIndex(gdvSelectedOrderId.ToString(), COLUMN_ORDER_ID);
             SetGridViewRowIndex(GetActiveGridViewName(), getGridViewRowIndex);
+        }
+        #endregion
+
+        #region 取得していたBarcideを元にフォーカスを移動
+        /// <summary>
+        /// 取得していたBarcideを元にフォーカスを移動
+        /// </summary>
+        /// <param name="gdvSelectedOrderId"></param>
+        private void FocusBarcodeSelectedRow(string gdvSelectedBarcode)
+        {
+            var getGridViewRowIndex = GetBarcodeGridViewRowIndex(gdvSelectedBarcode, COLUMN_BARCODE);
+            SetGridViewRowIndex(GvBarcode, getGridViewRowIndex);
         }
         #endregion
 
@@ -3151,12 +3142,27 @@ namespace NipponPaint.OrderManager
             var activeGridView = GetActiveGridViewSetting();
             // 表示画面のName取得
             var gridName = GetActiveGridViewName();
+            // barcode取得
+            var gdvBarcode = "";
+            if (gridName.Name == DATE_GRID_VIEW_ORDERNUMBER)
+            {
+                // 缶タブ表示中のみ実行
+                gdvBarcode = GetBarcode();
+            }
             using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
             {
                 gridName.DataSource = db.Select(Sql.NpMain.Orders.GetPreview(activeGridView, BaseSettings.Facility.Plant));
             }
+            // ソート順
+            Sort();
             // 事前に選択していたデータ行へ移動
             FocusSelectedRow(gdvSelectedOrderId);
+            if (gridName.Name == DATE_GRID_VIEW_ORDERNUMBER)
+            {
+                // 缶タブ表示中のみ実行
+                SetBarcodeDisplay(gdvBarcode, gdvSelectedOrderId);
+                FocusBarcodeSelectedRow(gdvBarcode);
+            }
         }
         #endregion
 
@@ -3186,7 +3192,7 @@ namespace NipponPaint.OrderManager
         }
         #endregion
 
-        #region
+        #region　缶タブへ遷移した際のデータセット
         /// <summary>
         /// 缶タブへ遷移した際のデータセット
         /// </summary>
@@ -3218,6 +3224,99 @@ namespace NipponPaint.OrderManager
                     cnt++;
                 }
             }
+        }
+        #endregion
+
+        #region　缶タブ内でバーコードを変更した際のデータセット
+        /// <summary>
+        /// 缶タブ内でバーコードを変更した際のデータセット
+        /// </summary>
+        /// <param name="barcode"></param>
+        /// <param name="orderId"></param>
+        private void SetBarcodeDisplay(string barcode, int orderId)
+        {
+            using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
+            {
+                // 行取得のSQLを作成
+                var parameters = new List<ParameterItem>()
+                {
+                    new ParameterItem("barcode", barcode),
+                };
+                var rec = db.Select(Sql.NpMain.Cans.GetDetailByBarcode(), parameters);
+                var list = new List<Control>() { Barcode, TargetWeight, OutWeight, CansFormulaRelease };
+                // フォームで定義された、取得値設定先のコントロールを抽出する
+                db.ToLabelTextBoxBarcode(list, rec.Rows);
+                //GvWeightDetailグリッドビューを表示する
+                GvWeightDetail.Rows.Clear();
+                // フォーカスしているOrder_idでINDEXを取得
+                var GvWeightDetailCurrentIndex = GetGridViewRowIndex(orderId.ToString(), COLUMN_ORDER_ID);
+
+                var cnt = 1;
+                foreach (DataColumn column in GvOrderNumberDataSource.Columns)
+                {
+                    if (column.ColumnName == WhiteCode)
+                    {
+                        double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][WhiteWeight].ToString(), out double whiteWeight);
+                        GvWeightDetail.Rows.Add(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][WhiteCode], whiteWeight.ToString(Decimal_Place3));
+                    }
+                    if (column.ColumnName == $"{Colorant}{cnt}")
+                    {
+                        double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][$"{Weight}{cnt}"].ToString(), out double weight);
+                        GvWeightDetail.Rows.Add(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][$"{Colorant}{cnt}"], weight.ToString(Decimal_Place3));
+                        cnt++;
+                    }
+                }
+                GvBarcodeFormatting(GvWeightDetail);
+                //GvOutWeightグリッドビューを表示する
+                GvOutWeight.Rows.Clear();
+                int GvOutWeightCurrentIndex = GetBarcodeGridViewRowIndex(barcode, COLUMN_BARCODE);
+                cnt = 1;
+                foreach (DataColumn column in GvBarcodeDataCource.Columns)
+                {
+                    if (column.ColumnName == WhiteCode)
+                    {
+                        double.TryParse(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][WhiteDispensed].ToString(), out double canWhiteWeight);
+                        double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][WhiteWeight].ToString(), out double orderWhiteWeight);
+                        GvOutWeight.Rows.Add(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][WhiteCode], canWhiteWeight.ToString(Decimal_Place3), (orderWhiteWeight - canWhiteWeight).ToString(Decimal_Place3));
+                    }
+                    if (column.ColumnName == $"{Dispensed}{cnt}")
+                    {
+                        double.TryParse(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][$"{Dispensed}{cnt}"].ToString(), out double canWeight);
+                        double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][$"{Weight}{cnt}"].ToString(), out double orderWeight);
+                        GvOutWeight.Rows.Add(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][$"{Colorant}{cnt}"], canWeight.ToString(Decimal_Place3), (orderWeight - canWeight).ToString(Decimal_Place3));
+                        cnt++;
+                    }
+                }
+                GvBarcodeFormatting(GvOutWeight);
+            }
+        }
+        #endregion
+
+        #region ソート切り替え
+        /// <summary>
+        /// ソート切り替え
+        /// </summary>
+        private void Sort()
+        {
+            //ソート順(Panel2)のグループ内のチェックされているラジオボタンを取得する
+            var rbtCheckInGroup = panel2.Controls.OfType<RadioButton>().SingleOrDefault(rb => rb.Checked == true);
+            var sortCondition = string.Empty;
+            switch (rbtCheckInGroup.Name)
+            {
+                case RdoSortKubunName:
+                    sortCondition = $"{SORT_KUBUN}";
+                    break;
+                case RdoSortRankingName:
+                    sortCondition = $"{SORT_RANKING}";
+                    break;
+                case RdoOrderPersonName:
+                    sortCondition = $"{SORT_ORDER_PERSON}";
+                    break;
+                default:
+                    break;
+            }
+            GvOrderDataSource.DefaultView.Sort = sortCondition;
+            GvOrderNumberDataSource.DefaultView.Sort = sortCondition;
         }
         #endregion
     }
