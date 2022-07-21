@@ -124,6 +124,19 @@ namespace NipponPaint.OrderManager
         /// </summary>
         private const int ORDER_CANCEL_FLG = 1;
 
+        // 調色剤
+        private const string WhiteCode = "白コード";
+        private const string WhiteWeight = "白重量";
+        private const string Colorant = "着色剤";
+        private const string Weight = "重量";
+        private const string WhiteDispensed = "白吐出";
+        private const string Dispensed = "吐出";
+
+        // ラジオボタン
+        private const string RdoSortKubunName = "RdoSortKubun";
+        private const string RdoSortRankingName = "RdoSortRanking";
+        private const string RdoOrderPersonName = "RdoOrderPerson";
+
         #region 列定義定数(ColumnName)
         private const string COLUMN_NAME_ORDERS_HG_HG_DELIVERY_CODE = Sql.NpMain.Orders.COLUMN_HG_HG_DELIVERY_CODE;
         private const string COLUMN_NAME_ORDERS_STATUS = Sql.NpMain.Orders.COLUMN_STATUS;
@@ -3230,11 +3243,7 @@ namespace NipponPaint.OrderManager
                     new ParameterItem("barcode", barcode),
                 };
                 var rec = db.Select(Sql.NpMain.Cans.GetDetailByBarcode(), parameters);
-                var list = new List<Control>();
-                list.Add(Barcode);
-                list.Add(TargetWeight);
-                list.Add(OutWeight);
-                list.Add(CansFormulaRelease);
+                var list = new List<Control>() { Barcode, TargetWeight, OutWeight, CansFormulaRelease };
                 // フォームで定義された、取得値設定先のコントロールを抽出する
                 db.ToLabelTextBoxBarcode(list, rec.Rows);
                 //GvWeightDetailグリッドビューを表示する
@@ -3245,15 +3254,15 @@ namespace NipponPaint.OrderManager
                 var cnt = 1;
                 foreach (DataColumn column in GvOrderNumberDataSource.Columns)
                 {
-                    if (column.ColumnName.Equals("白コード"))
+                    if (column.ColumnName == WhiteCode)
                     {
-                        double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex]["白重量"].ToString(), out double whiteWeight);
-                        GvWeightDetail.Rows.Add(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex]["白コード"], whiteWeight.ToString(Decimal_Place3));
+                        double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][WhiteWeight].ToString(), out double whiteWeight);
+                        GvWeightDetail.Rows.Add(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][WhiteCode], whiteWeight.ToString(Decimal_Place3));
                     }
-                    if (column.ColumnName.Equals($"着色剤{cnt}"))
+                    if (column.ColumnName == $"{Colorant}{cnt}")
                     {
-                        double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][$"重量{cnt}"].ToString(), out double weight);
-                        GvWeightDetail.Rows.Add(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][$"着色剤{cnt}"], weight.ToString(Decimal_Place3));
+                        double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][$"{Weight}{cnt}"].ToString(), out double weight);
+                        GvWeightDetail.Rows.Add(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][$"{Colorant}{cnt}"], weight.ToString(Decimal_Place3));
                         cnt++;
                     }
                 }
@@ -3264,17 +3273,17 @@ namespace NipponPaint.OrderManager
                 cnt = 1;
                 foreach (DataColumn column in GvBarcodeDataCource.Columns)
                 {
-                    if (column.ColumnName.Equals("白コード"))
+                    if (column.ColumnName == WhiteCode)
                     {
-                        double.TryParse(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex]["白吐出"].ToString(), out double canWhiteWeight);
-                        double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex]["白重量"].ToString(), out double orderWhiteWeight);
-                        GvOutWeight.Rows.Add(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex]["白コード"], canWhiteWeight.ToString(Decimal_Place3), (orderWhiteWeight - canWhiteWeight).ToString(Decimal_Place3));
+                        double.TryParse(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][WhiteDispensed].ToString(), out double canWhiteWeight);
+                        double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][WhiteWeight].ToString(), out double orderWhiteWeight);
+                        GvOutWeight.Rows.Add(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][WhiteCode], canWhiteWeight.ToString(Decimal_Place3), (orderWhiteWeight - canWhiteWeight).ToString(Decimal_Place3));
                     }
-                    if (column.ColumnName.Equals($"吐出{cnt}"))
+                    if (column.ColumnName == $"{Dispensed}{cnt}")
                     {
-                        double.TryParse(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][$"吐出{cnt}"].ToString(), out double canWeight);
-                        double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][$"重量{cnt}"].ToString(), out double orderWeight);
-                        GvOutWeight.Rows.Add(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][$"着色剤{cnt}"], canWeight.ToString(Decimal_Place3), (orderWeight - canWeight).ToString(Decimal_Place3));
+                        double.TryParse(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][$"{Dispensed}{cnt}"].ToString(), out double canWeight);
+                        double.TryParse(GvOrderNumberDataSource.Rows[GvWeightDetailCurrentIndex][$"{Weight}{cnt}"].ToString(), out double orderWeight);
+                        GvOutWeight.Rows.Add(GvBarcodeDataCource.Rows[GvOutWeightCurrentIndex][$"{Colorant}{cnt}"], canWeight.ToString(Decimal_Place3), (orderWeight - canWeight).ToString(Decimal_Place3));
                         cnt++;
                     }
                 }
@@ -3294,13 +3303,13 @@ namespace NipponPaint.OrderManager
             var sortCondition = string.Empty;
             switch (rbtCheckInGroup.Name)
             {
-                case "RdoSortKubun":
+                case RdoSortKubunName:
                     sortCondition = $"{SORT_KUBUN}";
                     break;
-                case "RdoSortRanking":
+                case RdoSortRankingName:
                     sortCondition = $"{SORT_RANKING}";
                     break;
-                case "RdoOrderPerson":
+                case RdoOrderPersonName:
                     sortCondition = $"{SORT_ORDER_PERSON}";
                     break;
                 default:
