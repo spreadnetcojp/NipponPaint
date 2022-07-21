@@ -29,41 +29,32 @@ namespace NipponPaint.OrderManager.Dialogs
     /// </summary>
     public partial class FrmShipping : BaseForm
     {
+        #region 定数
         private const string COLUMN_ORDERS_HG_PAINT_KIND_CODE = NpCommon.Database.Sql.NpMain.Orders.COLUMN_HG_PAINT_KIND_CODE;
         private const string COLUMN_ORDERS_HG_THEME_CODE = NpCommon.Database.Sql.NpMain.Orders.COLUMN_HG_THEME_CODE;
         private const string PAINT_KIND_CODE = NpCommon.Database.Sql.NpMain.Orders.PAINT_KIND_CODE;
         private const string THEME_CODE = NpCommon.Database.Sql.NpMain.Orders.THEME_CODE;
+        #endregion
 
-        /// <summary>
-        /// 調色ランク
-        /// </summary>
-        private enum TintingPriceRank
-        {
-            A,
-            B,
-            C,
-            D,
-            DY,
-            DG,
-            DB,
-            DR
-        }
-
+        #region メンバ変数
         private static DataTable DgvListDataSource;
+        #endregion
 
+        #region 列定義
         private List<GridViewSetting> ViewSettingsWareHouse = new List<GridViewSetting>()
         {
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_ORDERS_HG_PAINT_KIND_CODE, DisplayName = PAINT_KIND_CODE, Visible = true, Width = 135, alignment = DataGridViewContentAlignment.MiddleLeft } },
             { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_ORDERS_HG_THEME_CODE, DisplayName = THEME_CODE, Visible = true, Width = 135, alignment = DataGridViewContentAlignment.MiddleLeft } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = TintingPriceRank.A.ToString(), DisplayName = TintingPriceRank.A.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = TintingPriceRank.B.ToString(), DisplayName = TintingPriceRank.B.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = TintingPriceRank.C.ToString(), DisplayName = TintingPriceRank.C.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = TintingPriceRank.D.ToString(), DisplayName = TintingPriceRank.D.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = TintingPriceRank.DY.ToString(), DisplayName = TintingPriceRank.DY.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = TintingPriceRank.DG.ToString(), DisplayName = TintingPriceRank.DG.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = TintingPriceRank.DB.ToString(), DisplayName = TintingPriceRank.DB.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
-            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = TintingPriceRank.DR.ToString(), DisplayName = TintingPriceRank.DR.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.A.ToString(), DisplayName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.A.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.B.ToString(), DisplayName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.B.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.C.ToString(), DisplayName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.C.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.D.ToString(), DisplayName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.D.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.DY.ToString(), DisplayName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.DY.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.DG.ToString(), DisplayName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.DG.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.DB.ToString(), DisplayName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.DB.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
+            { new GridViewSetting() { ColumnType = GridViewSetting.ColumnModeType.Numeric, ColumnName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.DR.ToString(), DisplayName = NpCommon.Database.Sql.NpMain.Orders.TintingPriceRank.DR.ToString(), Visible = true, Width = 88, alignment = DataGridViewContentAlignment.MiddleRight } },
         };
+        #endregion
 
         #region コンストラクタ
         public FrmShipping()

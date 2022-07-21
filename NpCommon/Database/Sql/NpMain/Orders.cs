@@ -303,7 +303,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// <summary>
         /// 調色ランク
         /// </summary>
-        private enum TintingPriceRank
+        public enum TintingPriceRank
         {
             A,
             B,
@@ -314,9 +314,23 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             DB,
             DR
         }
-        private const int ZERO = 0;
+        private const int THINTING_PRICE_RANK_COUNT_ZERO = 0;
         public const string PAINT_KIND_CODE = "順位コード";
         public const string THEME_CODE = "RF集計区分";
+        /// <summary>
+        /// 調色ランクリスト
+        /// </summary>
+        private static readonly List<string> TintingRankList = new List<string>()
+        {
+            TintingPriceRank.A.ToString(),
+            TintingPriceRank.B.ToString(),
+            TintingPriceRank.C.ToString(),
+            TintingPriceRank.D.ToString(),
+            TintingPriceRank.DY.ToString(),
+            TintingPriceRank.DG.ToString(),
+            TintingPriceRank.DB.ToString(),
+            TintingPriceRank.DR.ToString(),
+        };
 
         #endregion
 
@@ -645,58 +659,22 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($"SELECT ");
             sql.Append($"  CodeGroup.{COLUMN_HG_PAINT_KIND_CODE} AS {PAINT_KIND_CODE} ");
             sql.Append($" ,CodeGroup.{COLUMN_HG_THEME_CODE} AS {THEME_CODE} ");
-            sql.Append($" ,SUM(CodeGroup.{TintingPriceRank.A}) AS {nameof(TintingPriceRank.A)} ");
-            sql.Append($" ,SUM(CodeGroup.{TintingPriceRank.B}) AS {nameof(TintingPriceRank.B)} ");
-            sql.Append($" ,SUM(CodeGroup.{TintingPriceRank.C}) AS {nameof(TintingPriceRank.C)} ");
-            sql.Append($" ,SUM(CodeGroup.{TintingPriceRank.D}) AS {nameof(TintingPriceRank.D)} ");
-            sql.Append($" ,SUM(CodeGroup.{TintingPriceRank.DY}) AS {nameof(TintingPriceRank.DY)} ");
-            sql.Append($" ,SUM(CodeGroup.{TintingPriceRank.DG}) AS {nameof(TintingPriceRank.DG)} ");
-            sql.Append($" ,SUM(CodeGroup.{TintingPriceRank.DB}) AS {nameof(TintingPriceRank.DB)} ");
-            sql.Append($" ,SUM(CodeGroup.{TintingPriceRank.DR}) AS {nameof(TintingPriceRank.DR)} ");
+            foreach(var item in TintingRankList)
+            {
+                sql.Append($" ,SUM(CodeGroup.{item}) AS {item} ");
+            }
             sql.Append($"FROM (");
             sql.Append($"      SELECT ");
             sql.Append($"          O.{COLUMN_HG_PAINT_KIND_CODE} ");
             sql.Append($"         ,O.{COLUMN_HG_THEME_CODE} ");
-            sql.Append($"         , CASE  ");
-            sql.Append($"             WHEN O.{COLUMN_HG_TINTING_PRICE_RANK} = '{TintingPriceRank.A}'  ");
-            sql.Append($"                 THEN SUM(O.{COLUMN_NUMBER_OF_CAN})  ");
-            sql.Append($"             ELSE {ZERO}  ");
-            sql.Append($"             END AS {nameof(TintingPriceRank.A)} ");
-            sql.Append($"         , CASE  ");
-            sql.Append($"             WHEN O.{COLUMN_HG_TINTING_PRICE_RANK} = '{TintingPriceRank.B}'  ");
-            sql.Append($"                 THEN SUM(O.{COLUMN_NUMBER_OF_CAN})  ");
-            sql.Append($"             ELSE {ZERO}  ");
-            sql.Append($"             END AS {nameof(TintingPriceRank.B)} ");
-            sql.Append($"         , CASE  ");
-            sql.Append($"             WHEN O.{COLUMN_HG_TINTING_PRICE_RANK} = '{TintingPriceRank.C}'  ");
-            sql.Append($"                 THEN SUM(O.{COLUMN_NUMBER_OF_CAN})  ");
-            sql.Append($"             ELSE {ZERO}  ");
-            sql.Append($"             END AS {nameof(TintingPriceRank.C)} ");
-            sql.Append($"         , CASE  ");
-            sql.Append($"             WHEN O.{COLUMN_HG_TINTING_PRICE_RANK} = '{TintingPriceRank.D}'  ");
-            sql.Append($"                 THEN SUM(O.{COLUMN_NUMBER_OF_CAN})  ");
-            sql.Append($"             ELSE {ZERO}  ");
-            sql.Append($"             END AS {nameof(TintingPriceRank.D)} ");
-            sql.Append($"         , CASE  ");
-            sql.Append($"             WHEN O.{COLUMN_HG_TINTING_PRICE_RANK} = '{TintingPriceRank.DY}'  ");
-            sql.Append($"                 THEN SUM(O.{COLUMN_NUMBER_OF_CAN})  ");
-            sql.Append($"             ELSE {ZERO}  ");
-            sql.Append($"             END AS {nameof(TintingPriceRank.DY)} ");
-            sql.Append($"         , CASE  ");
-            sql.Append($"             WHEN O.{COLUMN_HG_TINTING_PRICE_RANK} = '{TintingPriceRank.DG}'  ");
-            sql.Append($"                 THEN SUM(O.{COLUMN_NUMBER_OF_CAN})  ");
-            sql.Append($"             ELSE {ZERO}  ");
-            sql.Append($"             END AS {nameof(TintingPriceRank.DG)} ");
-            sql.Append($"         , CASE  ");
-            sql.Append($"             WHEN O.{COLUMN_HG_TINTING_PRICE_RANK} = '{TintingPriceRank.DB}'  ");
-            sql.Append($"                 THEN SUM(O.{COLUMN_NUMBER_OF_CAN})  ");
-            sql.Append($"             ELSE {ZERO}  ");
-            sql.Append($"             END AS {nameof(TintingPriceRank.DB)} ");
-            sql.Append($"         , CASE  ");
-            sql.Append($"             WHEN O.{COLUMN_HG_TINTING_PRICE_RANK} = '{TintingPriceRank.DR}'  ");
-            sql.Append($"                 THEN SUM(O.{COLUMN_NUMBER_OF_CAN})  ");
-            sql.Append($"             ELSE {ZERO}  ");
-            sql.Append($"             END AS {nameof(TintingPriceRank.DR)} ");
+            foreach (var item in TintingRankList)
+            {
+                sql.Append($"         , CASE  ");
+                sql.Append($"             WHEN O.{COLUMN_HG_TINTING_PRICE_RANK} = '{item}'  ");
+                sql.Append($"                 THEN SUM(O.{COLUMN_NUMBER_OF_CAN})  ");
+                sql.Append($"             ELSE {THINTING_PRICE_RANK_COUNT_ZERO}  ");
+                sql.Append($"             END AS {item} ");
+            }
             sql.Append($"     FROM {SelectOrders(plant)} ");
             sql.Append($"     WHERE {COLUMN_STATUS} = {(int)OrderStatus.WaitingForCCMformulation} ");
             sql.Append($"     GROUP BY O.{COLUMN_HG_PAINT_KIND_CODE}, O.{COLUMN_HG_THEME_CODE}, O.{COLUMN_HG_TINTING_PRICE_RANK} ) AS CodeGroup ");
