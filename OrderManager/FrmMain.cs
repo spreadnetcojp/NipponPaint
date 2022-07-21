@@ -3153,8 +3153,8 @@ namespace NipponPaint.OrderManager
             {
                 gridName.DataSource = db.Select(Sql.NpMain.Orders.GetPreview(activeGridView, BaseSettings.Facility.Plant));
             }
-            // ソート順
-            Sort();
+            // ソート順 7/21 Yoshimura 周期更新のフォーカスにバグが生じるので一旦コメントアウト後日修正
+            //Sort();
             // 事前に選択していたデータ行へ移動
             FocusSelectedRow(gdvSelectedOrderId);
             if (gridName.Name == DATE_GRID_VIEW_ORDERNUMBER)
