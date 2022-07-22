@@ -760,6 +760,10 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         #endregion
 
         #region オペレータ決定
+        /// <summary>
+        /// オペレータ決定
+        /// </summary>
+        /// <returns></returns>
         public static string DecideOperator()
         {
             var sql = new StringBuilder();

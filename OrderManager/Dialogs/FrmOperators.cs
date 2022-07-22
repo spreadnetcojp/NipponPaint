@@ -38,10 +38,8 @@ namespace NipponPaint.OrderManager.Dialogs
         #region 定数
         private const string COLUMN_OPERATORS_OPERATOR_CODE = Sql.NpMain.Operators.COLUMN_OPERATOR_CODE;
         private const string COLUMN_OPERATORS_OPERATOR_NAME = Sql.NpMain.Operators.COLUMN_OPERATOR_NAME;
-        private const string COULMN_OPERATORS_OPERATOR_ID = Sql.NpMain.Operators.COLUMN_OPERATORS_ID;
         private const string DISPLAY_OPERATOR_CODE = "' '";
         private const string DISPLAY_OPERATOR_NAME = "担当者";
-        private const string DISPLAY_OPERATOR_ID = "ID";
         /// <summary>
         /// 選択している行の取得用、1件選択なので「0」
         /// </summary>
@@ -139,7 +137,7 @@ namespace NipponPaint.OrderManager.Dialogs
         private void InitializeForm()
         {
             //コントロールの配置
-            
+
             //イベントの追加
             this.Shown += new System.EventHandler(this.FrmOperatorsShown);
             this.KeyPreview = true;
