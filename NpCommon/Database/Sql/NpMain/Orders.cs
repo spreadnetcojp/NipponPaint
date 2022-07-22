@@ -250,6 +250,14 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         // テスト缶
         public const int INPUT_CAN_YES = 1;
         public const int TEST_CAN_YES = 1;
+        /// <summary>
+        /// レコードが「True」に更新される際に使用
+        /// </summary>
+        public const int TRUE_FLG = 1;
+        /// <summary>
+        /// レコードが「False」に更新される際に使用
+        /// </summary>
+        public const int FALSE_FLG = 1;
 
         #region CCMシュミレータでの更新用
         /// <summary>
@@ -906,8 +914,8 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($"{MAIN_TABLE} ");
             sql.Append($"SET ");
             sql.Append($"{COLUMN_STATUS} = {(int)OrderStatus.Ready} ");
-            sql.Append($",{COLUMN_URGENT} = @Urgent ");
-            sql.Append($",{COLUMN_INSTRUCIONALSHEET} = @InstrucionalSheet ");
+            sql.Append($",{COLUMN_URGENT} = {TRUE_FLG} ");
+            sql.Append($",{COLUMN_INSTRUCIONALSHEET} = {TRUE_FLG} ");
             sql.Append($"WHERE ");
             sql.Append($"{COLUMN_ORDER_ID} = @OrderId");
             return sql.ToString();

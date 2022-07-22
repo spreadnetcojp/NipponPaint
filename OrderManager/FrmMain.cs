@@ -858,8 +858,6 @@ namespace NipponPaint.OrderManager
                 {
                     var urgentParameters = new List<ParameterItem>()
                     {
-                        new ParameterItem("@Urgent", 1),
-                        new ParameterItem("@InstrucionalSheet", 1),
                         new ParameterItem("@OrderId", orderId)
                     };
                     db.Execute(Sql.NpMain.Orders.PrintInstructions(), urgentParameters);
