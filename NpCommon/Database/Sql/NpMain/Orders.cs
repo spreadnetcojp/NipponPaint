@@ -257,7 +257,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// <summary>
         /// レコードが「False」に更新される際に使用
         /// </summary>
-        public const int FALSE_FLG = 1;
+        public const int FALSE_FLG = 0;
 
         #region CCMシュミレータでの更新用
         /// <summary>
