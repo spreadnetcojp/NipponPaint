@@ -992,12 +992,18 @@ namespace NipponPaint.OrderManager
         private void BtnDecidePerson_Click(object sender, EventArgs e)
         {
             PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
-            FrmOperators frmOperators = new FrmOperators();
+            // order_id取得
+            var orderId = GetOrderId();
+            FrmOperators frmOperators = new FrmOperators(orderId);
             // 周期更新一時停止
             BindTimerOnOrOff();
             frmOperators.ShowDialog();
             // 周期更新再開
             BindTimerOnOrOff();
+            // ダイアログ閉後の再バインド
+            DialogCloseBinding();
+            // 選択していたorderにフォーカスをあてる
+            FocusSelectedRow(orderId);
         }
         /// <summary>
         /// 注文を閉じる(F10)

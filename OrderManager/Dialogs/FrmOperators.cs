@@ -35,19 +35,37 @@ namespace NipponPaint.OrderManager.Dialogs
     /// </summary>
     public partial class FrmOperators : BaseForm
     {
+        #region 定数
+        private const string COLUMN_OPERATORS_OPERATOR_CODE = Sql.NpMain.Operators.COLUMN_OPERATOR_CODE;
+        private const string COLUMN_OPERATORS_OPERATOR_NAME = Sql.NpMain.Operators.COLUMN_OPERATOR_NAME;
+        private const string DISPLAY_OPERATOR_CODE = "' '";
+        private const string DISPLAY_OPERATOR_NAME = "担当者";
+        /// <summary>
+        /// 選択している行の取得用、1件選択なので「0」
+        /// </summary>
+        private const int SELECTED_ROW = 0;
+        private const int COLUMN_OPERATOR_CODE = 0;
+        private const int COLUMN_OPERATOR_NAME = 1;
+        #endregion
+
+        #region メンバ変数
+        private int orderId = 0;
+        #endregion
+
         #region DataGridViewの列定義
         private List<GridViewSetting> ViewSettings = new List<GridViewSetting>()
         {
-            { new GridViewSetting() {ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Code", DisplayName = "' '", Visible = true, Width = 35, alignment = DataGridViewContentAlignment.MiddleLeft } },     //担当者コード
-            { new GridViewSetting() {ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = "Operator_Name", DisplayName = "担当者", Visible = true, Width = 430, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() {ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_OPERATORS_OPERATOR_CODE, DisplayName = DISPLAY_OPERATOR_CODE, Visible = true, Width = 35, alignment = DataGridViewContentAlignment.MiddleLeft } },
+            { new GridViewSetting() {ColumnType = GridViewSetting.ColumnModeType.String, ColumnName = COLUMN_OPERATORS_OPERATOR_NAME, DisplayName = DISPLAY_OPERATOR_NAME, Visible = true, Width = 430, alignment = DataGridViewContentAlignment.MiddleLeft } },
         };
         #endregion
 
         #region コンストラクタ
-        public FrmOperators()
+        public FrmOperators(int id)
         {
             InitializeComponent();
             InitializeForm();
+            orderId = id;
         }
         #endregion
 
@@ -70,6 +88,21 @@ namespace NipponPaint.OrderManager.Dialogs
         {
             try
             {
+                // 選択した担当者のCODE取得
+                var operatorCode = DgvListLeft.SelectedRows[SELECTED_ROW].Cells[COLUMN_OPERATOR_CODE].Value.ToString();
+                // 選択した担当者のName取得
+                var operatorName = DgvListLeft.SelectedRows[SELECTED_ROW].Cells[COLUMN_OPERATOR_NAME].Value.ToString();
+                var paramaters = new List<ParameterItem>()
+                {
+                    new ParameterItem("@OperatorCode", operatorCode),
+                    new ParameterItem("@OperatorName", operatorName),
+                    new ParameterItem("@OrderId", orderId),
+                };
+                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+                {
+                    db.Execute(Sql.NpMain.Orders.DecideOperator(), paramaters);
+                    db.Commit();
+                }
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 this.Close();
             }
@@ -104,7 +137,7 @@ namespace NipponPaint.OrderManager.Dialogs
         private void InitializeForm()
         {
             //コントロールの配置
-            
+
             //イベントの追加
             this.Shown += new System.EventHandler(this.FrmOperatorsShown);
             this.KeyPreview = true;
