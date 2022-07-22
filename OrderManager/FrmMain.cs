@@ -818,6 +818,7 @@ namespace NipponPaint.OrderManager
                 PutLog(ex);
             }
         }
+        #region　作業指示書の印刷(F5) 現在はプレビュー画面が開くが、最終的には開かずに印刷を行えるように実装する、後日調べる
         /// <summary>
         /// 作業指示書の印刷(F5)
         /// </summary>
@@ -829,12 +830,13 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 // Order_idで検索する
+                var orderId = 0;
                 var columnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_ORDER_ID);
                 var directionsData = new DataTable();
                 if (GvOrder.SelectedRows.Count > 0)
                 {
                     DataGridViewRow row = GvOrder.SelectedRows[0];
-                    int.TryParse(row.Cells[columnIndex].Value.ToString(), out int orderId);
+                    int.TryParse(row.Cells[columnIndex].Value.ToString(), out orderId);
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
                         var parameters = new List<ParameterItem>()
@@ -851,15 +853,30 @@ namespace NipponPaint.OrderManager
                 var frm = new Documents.ReportWorkInstruction.Preview(vm);
                 // 周期更新一時停止
                 BindTimerOnOrOff();
+                // レコード更新
+                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+                {
+                    var urgentParameters = new List<ParameterItem>()
+                    {
+                        new ParameterItem("@OrderId", orderId)
+                    };
+                    db.Execute(Sql.NpMain.Orders.PrintInstructions(), urgentParameters);
+                    db.Commit();
+                }
                 frm.ShowDialog();
                 // 周期更新再開
                 BindTimerOnOrOff();
+                // ダイアログ閉後の再バインド
+                DialogCloseBinding();
+                // 選択していたorderにフォーカスをあてる
+                FocusSelectedRow(orderId);
             }
             catch (Exception ex)
             {
                 PutLog(ex);
             }
         }
+        #endregion
         /// <summary>
         /// 緊急印刷(F6)
         /// </summary>
@@ -2281,6 +2298,8 @@ namespace NipponPaint.OrderManager
             this.GvFormulation.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.ヘルプHToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemHelpFormClick);
             this.TmrPnlColorExplanationBlinking.Tick += new System.EventHandler(this.TmrPnlColorExplanationBlinkingTick);
+            this.GvOrder.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellDoubleClick);
+            this.GvFormulation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellDoubleClick);
             //ラベル(仮)のイベントハンドラー
             this.ToolStripMenuItemLabelSelection.Click += new EventHandler(this.ToolStripMenuItemLabelSelectionClick);
             this.BtnLotRegister.Click += new EventHandler(this.BtnLotRegisterClick);
@@ -2773,10 +2792,17 @@ namespace NipponPaint.OrderManager
 
         #endregion
 
-        private void BtnPrintInstructions_Click(object sender, EventArgs e)
+        #region 注文タブ、配合タブ一覧画面で行をダブルクリックした際、該当の詳細画面へ遷移
+        /// <summary>
+        /// 注文一覧、配合タブ画面で行をダブルクリックした際、該当の詳細画面へ遷移
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            tabMain.SelectedIndex = TAB_INDEX_DETAIL;
         }
+        #endregion
 
         #region イベントの追加/イベントの削除
         /// <summary>

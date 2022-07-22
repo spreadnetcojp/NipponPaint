@@ -245,10 +245,22 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string COLUMN_LINE_NAME = "Line_Name";
         public const string COLUMN_HG_PAINT_KIND_CODE = "HG_Paint_Kind_Code";
         public const string COLUMN_HG_THEME_CODE = "HG_Theme_Code";
+        public const string COLUMN_INSTRUCIONALSHEET = "InstrucionalSheet";
 
         // テスト缶
         public const int INPUT_CAN_YES = 1;
         public const int TEST_CAN_YES = 1;
+
+        #region Bit型
+        /// <summary>
+        /// レコードが「True」に更新される際に使用
+        /// </summary>
+        public const int TRUE_FLG = 1;
+        /// <summary>
+        /// レコードが「False」に更新される際に使用
+        /// </summary>
+        public const int FALSE_FLG = 0;
+        #endregion
 
         #region CCMシュミレータでの更新用
         /// <summary>
@@ -889,6 +901,26 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
                 sql.Append($" ,{COLUMN_HG_CANCEL} = {cancelFlg} ");
             }
             sql.Append($"WHERE {COLUMN_ORDER_ID} = @OrderId ");
+            return sql.ToString();
+        }
+        #endregion
+
+        #region 作業指示書の印刷実行時のレコード更新
+        /// <summary>
+        /// 作業指示書の印刷実行時のレコード更新
+        /// </summary>
+        /// <returns></returns>
+        public static string PrintInstructions()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"UPDATE ");
+            sql.Append($"{MAIN_TABLE} ");
+            sql.Append($"SET ");
+            sql.Append($"{COLUMN_STATUS} = {(int)OrderStatus.Ready} ");
+            sql.Append($",{COLUMN_URGENT} = {TRUE_FLG} ");
+            sql.Append($",{COLUMN_INSTRUCIONALSHEET} = {TRUE_FLG} ");
+            sql.Append($"WHERE ");
+            sql.Append($"{COLUMN_ORDER_ID} = @OrderId");
             return sql.ToString();
         }
         #endregion
