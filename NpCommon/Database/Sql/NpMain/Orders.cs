@@ -659,7 +659,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($"SELECT ");
             sql.Append($"  CodeGroup.{COLUMN_HG_PAINT_KIND_CODE} AS {PAINT_KIND_CODE} ");
             sql.Append($" ,CodeGroup.{COLUMN_HG_THEME_CODE} AS {THEME_CODE} ");
-            foreach(var item in TintingRankList)
+            foreach (var item in TintingRankList)
             {
                 sql.Append($" ,SUM(CodeGroup.{item}) AS {item} ");
             }
@@ -755,6 +755,22 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
             sql.Append($"WHERE ");
             sql.Append($"order_id IN ({orderIds})");
 
+            return sql.ToString();
+        }
+        #endregion
+
+        #region オペレータ決定
+        public static string DecideOperator()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"UPDATE ");
+            sql.Append($"{MAIN_TABLE} ");
+            sql.Append($"SET ");
+            sql.Append($"{COLUMN_STATUS} = {(int)OrderStatus.WaitingForCCMformulation} ");
+            sql.Append($",{COLUMN_OPERATOR_CODE} = @OperatorCode ");
+            sql.Append($",{COLUMN_OPERATOR_NAME} = @OperatorName ");
+            sql.Append($"WHERE ");
+            sql.Append($"{COLUMN_ORDER_ID} = @OrderId");
             return sql.ToString();
         }
         #endregion
