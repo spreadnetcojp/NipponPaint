@@ -854,15 +854,14 @@ namespace NipponPaint.OrderManager
                 // 周期更新一時停止
                 BindTimerOnOrOff();
                 // レコード更新
-                var urgentFlg = 1;
-                var instrucionalSheetFlg = 1;
-                var urgentParameters = new List<ParameterItem>()
+                using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
                 {
-                    new ParameterItem("@Urgent", urgentFlg),
-                    new ParameterItem("@InstrucionalSheet", instrucionalSheetFlg),
-                    new ParameterItem("@OrderId", orderId)
-                }; using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
-                {
+                    var urgentParameters = new List<ParameterItem>()
+                    {
+                        new ParameterItem("@Urgent", 1),
+                        new ParameterItem("@InstrucionalSheet", 1),
+                        new ParameterItem("@OrderId", orderId)
+                    };
                     db.Execute(Sql.NpMain.Orders.PrintInstructions(), urgentParameters);
                     db.Commit();
                 }
