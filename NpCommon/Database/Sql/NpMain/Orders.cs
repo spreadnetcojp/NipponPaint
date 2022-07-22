@@ -245,6 +245,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         private const string COLUMN_LINE_NAME = "Line_Name";
         public const string COLUMN_HG_PAINT_KIND_CODE = "HG_Paint_Kind_Code";
         public const string COLUMN_HG_THEME_CODE = "HG_Theme_Code";
+        public const string COLUMN_INSTRUCIONALSHEET = "InstrucionalSheet";
 
         // テスト缶
         public const int INPUT_CAN_YES = 1;
@@ -889,6 +890,26 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
                 sql.Append($" ,{COLUMN_HG_CANCEL} = {cancelFlg} ");
             }
             sql.Append($"WHERE {COLUMN_ORDER_ID} = @OrderId ");
+            return sql.ToString();
+        }
+        #endregion
+
+        #region 作業指示書の印刷実行時のレコード更新
+        /// <summary>
+        /// 作業指示書の印刷実行時のレコード更新
+        /// </summary>
+        /// <returns></returns>
+        public static string PrintInstructions()
+        {
+            var sql = new StringBuilder();
+            sql.Append($"UPDATE ");
+            sql.Append($"{MAIN_TABLE} ");
+            sql.Append($"SET ");
+            sql.Append($"{COLUMN_STATUS} = {(int)OrderStatus.Ready} ");
+            sql.Append($",{COLUMN_URGENT} = @Urgent ");
+            sql.Append($",{COLUMN_INSTRUCIONALSHEET} = @InstrucionalSheet ");
+            sql.Append($"WHERE ");
+            sql.Append($"{COLUMN_ORDER_ID} = @OrderId");
             return sql.ToString();
         }
         #endregion

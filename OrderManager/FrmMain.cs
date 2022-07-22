@@ -818,6 +818,7 @@ namespace NipponPaint.OrderManager
                 PutLog(ex);
             }
         }
+        #region　作業指示書の印刷(F5) 現在はプレビュー画面が開くが、最終的には開かずに印刷を行えるように実装する、後日調べる
         /// <summary>
         /// 作業指示書の印刷(F5)
         /// </summary>
@@ -829,12 +830,13 @@ namespace NipponPaint.OrderManager
             {
                 PutLog(Sentence.Messages.ButtonClicked, ((Button)sender).Text);
                 // Order_idで検索する
+                var orderId = 0;
                 var columnIndex = GetActiveGridViewSetting().FindIndex(x => x.ColumnName == COLUMN_NAME_ORDERS_ORDER_ID);
                 var directionsData = new DataTable();
                 if (GvOrder.SelectedRows.Count > 0)
                 {
                     DataGridViewRow row = GvOrder.SelectedRows[0];
-                    int.TryParse(row.Cells[columnIndex].Value.ToString(), out int orderId);
+                    int.TryParse(row.Cells[columnIndex].Value.ToString(), out orderId);
                     using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.No, Log.ApplicationType.OrderManager))
                     {
                         var parameters = new List<ParameterItem>()
@@ -851,15 +853,33 @@ namespace NipponPaint.OrderManager
                 var frm = new Documents.ReportWorkInstruction.Preview(vm);
                 // 周期更新一時停止
                 BindTimerOnOrOff();
+                // レコード更新
+                var urgentFlg = 1;
+                var instrucionalSheetFlg = 1;
+                var urgentParameters = new List<ParameterItem>()
+                {
+                    new ParameterItem("@Urgent", urgentFlg),
+                    new ParameterItem("@InstrucionalSheet", instrucionalSheetFlg),
+                    new ParameterItem("@OrderId", orderId)
+                }; using (var db = new SqlBase(SqlBase.DatabaseKind.NPMAIN, SqlBase.TransactionUse.Yes, Log.ApplicationType.OrderManager))
+                {
+                    db.Execute(Sql.NpMain.Orders.PrintInstructions(), urgentParameters);
+                    db.Commit();
+                }
                 frm.ShowDialog();
                 // 周期更新再開
                 BindTimerOnOrOff();
+                // ダイアログ閉後の再バインド
+                DialogCloseBinding();
+                // 選択していたorderにフォーカスをあてる
+                FocusSelectedRow(orderId);
             }
             catch (Exception ex)
             {
                 PutLog(ex);
             }
         }
+        #endregion
         /// <summary>
         /// 緊急印刷(F6)
         /// </summary>
