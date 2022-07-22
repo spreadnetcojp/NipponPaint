@@ -250,6 +250,8 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         // テスト缶
         public const int INPUT_CAN_YES = 1;
         public const int TEST_CAN_YES = 1;
+
+        #region Bit型
         /// <summary>
         /// レコードが「True」に更新される際に使用
         /// </summary>
@@ -258,6 +260,7 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         /// レコードが「False」に更新される際に使用
         /// </summary>
         public const int FALSE_FLG = 0;
+        #endregion
 
         #region CCMシュミレータでの更新用
         /// <summary>

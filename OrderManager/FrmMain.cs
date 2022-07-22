@@ -2298,6 +2298,8 @@ namespace NipponPaint.OrderManager
             this.GvFormulation.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Gv_CellMouseUp);
             this.ヘルプHToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemHelpFormClick);
             this.TmrPnlColorExplanationBlinking.Tick += new System.EventHandler(this.TmrPnlColorExplanationBlinkingTick);
+            this.GvOrder.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GvOrder_CellDoubleClick);
+            this.GvFormulation.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GvFormulation_CellDoubleClick);
             //ラベル(仮)のイベントハンドラー
             this.ToolStripMenuItemLabelSelection.Click += new EventHandler(this.ToolStripMenuItemLabelSelectionClick);
             this.BtnLotRegister.Click += new EventHandler(this.BtnLotRegisterClick);
@@ -2794,6 +2796,30 @@ namespace NipponPaint.OrderManager
         {
 
         }
+
+        #region 注文タブ一覧画面で行をダブルクリックした際、該当の詳細画面へ遷移
+        /// <summary>
+        /// 注文一覧画面で行をダブルクリックした際、該当の詳細画面へ遷移
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GvOrder_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tabMain.SelectedIndex = TAB_INDEX_DETAIL;
+        }
+        #endregion
+
+        #region 配合タブ一覧画面で行をダブルクリックした際、該当の詳細画面へ遷移
+        /// <summary>
+        /// 配合タブ一覧画面で行をダブルクリックした際、該当の詳細画面へ遷移
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GvFormulation_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tabMain.SelectedIndex = TAB_INDEX_DETAIL;
+        }
+        #endregion
 
         #region イベントの追加/イベントの削除
         /// <summary>
