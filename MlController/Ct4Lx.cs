@@ -62,6 +62,8 @@ namespace MlController
                 }
                 // レイアウトファイルの設定
                 _mlComponent.LayoutFile = layoutFileName;
+                // 1枚ごとカット
+                _mlComponent.MultiCut = 1;
             }
             catch (Exception ex)
             {

@@ -358,6 +358,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Documents\ReportWorkInstruction\ReportWorkInstruction.rdlc" />
+    <None Include="LabelLayouts\ColorName.mllayx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -408,5 +411,6 @@
       <Name>NpCommon</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

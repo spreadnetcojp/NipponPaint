@@ -1,0 +1,1071 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MLFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xml:space="preserve" xmlns="http://www.sato.co.jp/MLV5/MLFile">
+  <CreatorProductName>MLV5</CreatorProductName>
+  <CreatorProductVersion>Multi LABELIST V5 Ver.5.0(Rev.130401)</CreatorProductVersion>
+  <FileType>Layout</FileType>
+  <FileVersion>30</FileVersion>
+  <DefaultPrinter>SATO SR412</DefaultPrinter>
+  <CodePageName>Shift_JIS</CodePageName>
+  <FileInfoSettings>
+    <Title />
+    <Comment />
+    <UserName>A0004257</UserName>
+    <PathType>Absolute</PathType>
+  </FileInfoSettings>
+  <DesignSettings xmlns="SATO.MLV5.Common.Design.Data">
+    <DeviceType>SatoPrinter</DeviceType>
+    <PrinterModel>SR408</PrinterModel>
+    <PrinterDpm>8</PrinterDpm>
+    <PrinterBothSide>false</PrinterBothSide>
+    <SheetSettings>
+      <SheetTypeID>0</SheetTypeID>
+      <SensorType>IMarkLabel</SensorType>
+      <SheetWidth>101</SheetWidth>
+      <SheetHeight>41</SheetHeight>
+    </SheetSettings>
+    <MultipleSettings>
+      <IsMultiple>false</IsMultiple>
+      <Orientation>Horizontal</Orientation>
+      <Arrangement>Size</Arrangement>
+      <SheetWidth>80</SheetWidth>
+      <SheetHeight>80</SheetHeight>
+      <GapWidth>0</GapWidth>
+      <GapHeight>0</GapHeight>
+      <VerticalNumber>1</VerticalNumber>
+      <HorizontalNumber>1</HorizontalNumber>
+      <IsSplitSheetPerItem>false</IsSplitSheetPerItem>
+      <IsHeaderTailAnotherSheet>false</IsHeaderTailAnotherSheet>
+    </MultipleSettings>
+    <PrintDetailSettings>
+      <HasSpeed>false</HasSpeed>
+      <Speed />
+      <HasDepth>false</HasDepth>
+      <Depth />
+      <DepthRange>A</DepthRange>
+      <OffsetV>0</OffsetV>
+      <OffsetH>0</OffsetH>
+      <LabelGapV>24</LabelGapV>
+      <LabelGapL>12</LabelGapL>
+      <LabelGapR>12</LabelGapR>
+      <MarginTop>0</MarginTop>
+      <MarginLeft>0</MarginLeft>
+      <MarginBottom>0</MarginBottom>
+      <MarginRight>0</MarginRight>
+      <CutPos>0</CutPos>
+      <HasAreaFillDisplay>false</HasAreaFillDisplay>
+      <AreaFillTopRange>0</AreaFillTopRange>
+      <HasPerforatedLineDisplay>false</HasPerforatedLineDisplay>
+      <PerforatedLinePos>0</PerforatedLinePos>
+      <HasBackgroundImage>false</HasBackgroundImage>
+      <ImageEntryMethod>Capture</ImageEntryMethod>
+      <ImageFileName />
+      <ImagePixelWidth>0</ImagePixelWidth>
+      <ImagePixelHeight>0</ImagePixelHeight>
+      <SheetDirection>Forward</SheetDirection>
+      <IsRightFlow>false</IsRightFlow>
+      <IsDisabledClearingSheetSize>false</IsDisabledClearingSheetSize>
+      <IsPrintAreaExpansion>false</IsPrintAreaExpansion>
+      <IsMillarRotation>false</IsMillarRotation>
+      <PrinterKanjiCode>S_JIS</PrinterKanjiCode>
+    </PrintDetailSettings>
+    <BackPrintDetailSettings>
+      <HasDepth>false</HasDepth>
+      <Depth />
+      <DepthRange>A</DepthRange>
+      <HasBackgroundImage>false</HasBackgroundImage>
+      <ImageEntryMethod>Capture</ImageEntryMethod>
+      <ImageFileName />
+      <ImagePixelWidth>0</ImagePixelWidth>
+      <ImagePixelHeight>0</ImagePixelHeight>
+    </BackPrintDetailSettings>
+    <GlobalInformationFile />
+    <FrontSettings>
+      <DesignObjects>
+        <Text>
+          <Name>文字-1</Name>
+          <X>45</X>
+          <Y>48</Y>
+          <Rotation>Rotation0</Rotation>
+          <PrintColor>Black</PrintColor>
+          <PrintMode>Print</PrintMode>
+          <PrintConditionSettings>
+            <ConditionDataType>Variable</ConditionDataType>
+            <VariableReference>Local</VariableReference>
+            <VariableNumber>
+              <Number>0</Number>
+              <Child>0</Child>
+            </VariableNumber>
+            <ConditionType>Exist</ConditionType>
+            <GlobalCheckFileName />
+            <CheckTableName />
+            <ConditionNumber>1</ConditionNumber>
+          </PrintConditionSettings>
+          <IsHistorySave>false</IsHistorySave>
+          <CanMouseOperation>true</CanMouseOperation>
+          <SimpleGraphicAdjust>128</SimpleGraphicAdjust>
+          <DataType>Paste</DataType>
+          <PasteText>テスト</PasteText>
+          <VariableReference>Local</VariableReference>
+          <VariableNumber>
+            <Number>0</Number>
+            <Child>0</Child>
+          </VariableNumber>
+          <VariablePrefix />
+          <VariableSuffix />
+          <FontType>Windows</FontType>
+          <WindowsFontSettings>
+            <FontName>ＭＳ ゴシック</FontName>
+            <FontNameCaluture>ja-jp</FontNameCaluture>
+            <FontUIName>ＭＳ ゴシック</FontUIName>
+            <FontUINameCulture>ja-jp</FontUINameCulture>
+            <Weight>400</Weight>
+            <Style>Normal</Style>
+            <Stretch>5</Stretch>
+            <Win32FamilyName>ＭＳ ゴシック</Win32FamilyName>
+            <Win32FamilyNameCulture>ja-JP</Win32FamilyNameCulture>
+            <Win32FamilyUIName>ＭＳ ゴシック</Win32FamilyUIName>
+            <Win32FamilyUINameCulture>ja-JP</Win32FamilyUINameCulture>
+            <FontHeight>28</FontHeight>
+            <FontWidth>0</FontWidth>
+            <IsAutoFontWidth>true</IsAutoFontWidth>
+            <IsBold>false</IsBold>
+            <IsItalic>false</IsItalic>
+            <IsUnderLine>false</IsUnderLine>
+            <IsStrikethrough>false</IsStrikethrough>
+            <IsVertical>false</IsVertical>
+            <IsLineFeed>false</IsLineFeed>
+            <IsSharp>false</IsSharp>
+            <IsLigature>false</IsLigature>
+            <IsRightToLeft>false</IsRightToLeft>
+            <IsDpiAwareness>true</IsDpiAwareness>
+            <GdiCharSet>Default</GdiCharSet>
+            <FixedPitch>0</FixedPitch>
+            <LineFeedPitch>0</LineFeedPitch>
+            <LineFeedCharLength>0</LineFeedCharLength>
+            <LineFeedSymbol />
+            <LineFeedableSymbol />
+            <Angle>0</Angle>
+          </WindowsFontSettings>
+          <HasAreaDefinition>false</HasAreaDefinition>
+          <AreaSizeHeight>1</AreaSizeHeight>
+          <AreaSizeWidth>1</AreaSizeWidth>
+          <MaxAreaSizeHeight>20000</MaxAreaSizeHeight>
+          <MaxAreaSizeWidth>832</MaxAreaSizeWidth>
+          <AreaVerticalAlignment>Top</AreaVerticalAlignment>
+          <AreaHorizontalAlignment>Left</AreaHorizontalAlignment>
+          <CharControl>None</CharControl>
+          <BorderLineType>None</BorderLineType>
+          <BorderThickness>1</BorderThickness>
+          <IsUseDataAsTags>false</IsUseDataAsTags>
+          <CdAutomaticSettings>
+            <AddType>Batch</AddType>
+            <Modulus>10</Modulus>
+            <IsComplement>true</IsComplement>
+            <Replace>TenAndElevenToZero</Replace>
+            <Weight>13</Weight>
+            <IsRepeat>true</IsRepeat>
+          </CdAutomaticSettings>
+          <CheckDigitType>None</CheckDigitType>
+          <StartChar />
+          <StopChar />
+          <ForeGroundColor>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+            <IsVariable>false</IsVariable>
+            <DataType>Variable</DataType>
+            <VariableReference>Local</VariableReference>
+            <VariableNumber>
+              <Number>0</Number>
+              <Child>0</Child>
+            </VariableNumber>
+          </ForeGroundColor>
+          <BackGroundColor>
+            <Color>
+              <A>0</A>
+              <R>255</R>
+              <G>255</G>
+              <B>255</B>
+            </Color>
+            <IsVariable>false</IsVariable>
+            <DataType>Variable</DataType>
+            <VariableReference>Local</VariableReference>
+            <VariableNumber>
+              <Number>0</Number>
+              <Child>0</Child>
+            </VariableNumber>
+          </BackGroundColor>
+          <LineColor>
+            <Color>
+              <A>0</A>
+              <R>255</R>
+              <G>255</G>
+              <B>255</B>
+            </Color>
+            <IsVariable>false</IsVariable>
+            <DataType>Variable</DataType>
+            <VariableReference>Local</VariableReference>
+            <VariableNumber>
+              <Number>0</Number>
+              <Child>0</Child>
+            </VariableNumber>
+          </LineColor>
+        </Text>
+        <Text>
+          <Name>文字-2</Name>
+          <X>56</X>
+          <Y>179</Y>
+          <Rotation>Rotation0</Rotation>
+          <PrintColor>Black</PrintColor>
+          <PrintMode>Print</PrintMode>
+          <PrintConditionSettings>
+            <ConditionDataType>Variable</ConditionDataType>
+            <VariableReference>Local</VariableReference>
+            <VariableNumber>
+              <Number>0</Number>
+              <Child>0</Child>
+            </VariableNumber>
+            <ConditionType>Exist</ConditionType>
+            <GlobalCheckFileName />
+            <CheckTableName />
+            <ConditionNumber>1</ConditionNumber>
+          </PrintConditionSettings>
+          <IsHistorySave>false</IsHistorySave>
+          <CanMouseOperation>true</CanMouseOperation>
+          <SimpleGraphicAdjust>128</SimpleGraphicAdjust>
+          <DataType>Variable</DataType>
+          <PasteText />
+          <VariableReference>Local</VariableReference>
+          <VariableNumber>
+            <Number>1</Number>
+            <Child>0</Child>
+          </VariableNumber>
+          <VariablePrefix />
+          <VariableSuffix />
+          <FontType>Windows</FontType>
+          <WindowsFontSettings>
+            <FontName>ＭＳ ゴシック</FontName>
+            <FontNameCaluture>ja-jp</FontNameCaluture>
+            <FontUIName>ＭＳ ゴシック</FontUIName>
+            <FontUINameCulture>ja-jp</FontUINameCulture>
+            <Weight>400</Weight>
+            <Style>Normal</Style>
+            <Stretch>5</Stretch>
+            <Win32FamilyName>ＭＳ ゴシック</Win32FamilyName>
+            <Win32FamilyNameCulture>ja-JP</Win32FamilyNameCulture>
+            <Win32FamilyUIName>ＭＳ ゴシック</Win32FamilyUIName>
+            <Win32FamilyUINameCulture>ja-JP</Win32FamilyUINameCulture>
+            <FontHeight>28</FontHeight>
+            <FontWidth>0</FontWidth>
+            <IsAutoFontWidth>true</IsAutoFontWidth>
+            <IsBold>false</IsBold>
+            <IsItalic>false</IsItalic>
+            <IsUnderLine>false</IsUnderLine>
+            <IsStrikethrough>false</IsStrikethrough>
+            <IsVertical>false</IsVertical>
+            <IsLineFeed>false</IsLineFeed>
+            <IsSharp>false</IsSharp>
+            <IsLigature>false</IsLigature>
+            <IsRightToLeft>false</IsRightToLeft>
+            <IsDpiAwareness>true</IsDpiAwareness>
+            <GdiCharSet>Default</GdiCharSet>
+            <FixedPitch>0</FixedPitch>
+            <LineFeedPitch>0</LineFeedPitch>
+            <LineFeedCharLength>0</LineFeedCharLength>
+            <LineFeedSymbol />
+            <LineFeedableSymbol />
+            <Angle>0</Angle>
+          </WindowsFontSettings>
+          <HasAreaDefinition>false</HasAreaDefinition>
+          <AreaSizeHeight>2</AreaSizeHeight>
+          <AreaSizeWidth>2</AreaSizeWidth>
+          <MaxAreaSizeHeight>20000</MaxAreaSizeHeight>
+          <MaxAreaSizeWidth>832</MaxAreaSizeWidth>
+          <AreaVerticalAlignment>Top</AreaVerticalAlignment>
+          <AreaHorizontalAlignment>Left</AreaHorizontalAlignment>
+          <CharControl>None</CharControl>
+          <BorderLineType>None</BorderLineType>
+          <BorderThickness>2</BorderThickness>
+          <IsUseDataAsTags>false</IsUseDataAsTags>
+          <CdAutomaticSettings>
+            <AddType>Batch</AddType>
+            <Modulus>10</Modulus>
+            <IsComplement>true</IsComplement>
+            <Replace>TenAndElevenToZero</Replace>
+            <Weight>13</Weight>
+            <IsRepeat>true</IsRepeat>
+          </CdAutomaticSettings>
+          <CheckDigitType>None</CheckDigitType>
+          <StartChar />
+          <StopChar />
+          <ForeGroundColor>
+            <Color>
+              <A>255</A>
+              <R>0</R>
+              <G>0</G>
+              <B>0</B>
+            </Color>
+            <IsVariable>false</IsVariable>
+            <DataType>Variable</DataType>
+            <VariableReference>Local</VariableReference>
+            <VariableNumber>
+              <Number>0</Number>
+              <Child>0</Child>
+            </VariableNumber>
+          </ForeGroundColor>
+          <BackGroundColor>
+            <Color>
+              <A>0</A>
+              <R>255</R>
+              <G>255</G>
+              <B>255</B>
+            </Color>
+            <IsVariable>false</IsVariable>
+            <DataType>Variable</DataType>
+            <VariableReference>Local</VariableReference>
+            <VariableNumber>
+              <Number>0</Number>
+              <Child>0</Child>
+            </VariableNumber>
+          </BackGroundColor>
+          <LineColor>
+            <Color>
+              <A>0</A>
+              <R>255</R>
+              <G>255</G>
+              <B>255</B>
+            </Color>
+            <IsVariable>false</IsVariable>
+            <DataType>Variable</DataType>
+            <VariableReference>Local</VariableReference>
+            <VariableNumber>
+              <Number>0</Number>
+              <Child>0</Child>
+            </VariableNumber>
+          </LineColor>
+        </Text>
+      </DesignObjects>
+      <DesignGroups />
+    </FrontSettings>
+    <BackSettings>
+      <DesignObjects />
+      <DesignGroups />
+    </BackSettings>
+    <CoordinateUnit>Mm</CoordinateUnit>
+    <FrontDisplaySettings>
+      <ZoomRatio>155</ZoomRatio>
+      <AdjustScreen>true</AdjustScreen>
+      <SheetRotation>Rotation0</SheetRotation>
+      <ItemSettings>
+        <GridVisibility>false</GridVisibility>
+        <GridIntervalVertical>16</GridIntervalVertical>
+        <GridIntervalHorizontal>16</GridIntervalHorizontal>
+        <OutsidePalleteVisibility>Collapsed</OutsidePalleteVisibility>
+        <CenterPositionVisibility>false</CenterPositionVisibility>
+        <ObjectNameVisibility>false</ObjectNameVisibility>
+        <DisplayPositionType>Top</DisplayPositionType>
+        <DisplayRangeType>All</DisplayRangeType>
+        <DisplayNumberOfText>128</DisplayNumberOfText>
+      </ItemSettings>
+    </FrontDisplaySettings>
+    <BackDisplaySettings>
+      <ZoomRatio>100</ZoomRatio>
+      <AdjustScreen>true</AdjustScreen>
+      <SheetRotation>Rotation0</SheetRotation>
+      <ItemSettings>
+        <GridVisibility>false</GridVisibility>
+        <GridIntervalVertical>16</GridIntervalVertical>
+        <GridIntervalHorizontal>16</GridIntervalHorizontal>
+        <OutsidePalleteVisibility>Collapsed</OutsidePalleteVisibility>
+        <CenterPositionVisibility>false</CenterPositionVisibility>
+        <ObjectNameVisibility>false</ObjectNameVisibility>
+        <DisplayPositionType>Top</DisplayPositionType>
+        <DisplayRangeType>All</DisplayRangeType>
+        <DisplayNumberOfText>128</DisplayNumberOfText>
+      </ItemSettings>
+    </BackDisplaySettings>
+    <ColorPrinterSettings>
+      <DriverName />
+      <PaperKind>999</PaperKind>
+      <PaperSourceKind>256</PaperSourceKind>
+      <LandScape>false</LandScape>
+    </ColorPrinterSettings>
+  </DesignSettings>
+  <InputSettings xmlns="SATO.MLV5.Common.Input.Data">
+    <PrintOperationSettings>
+      <PrintSettings>
+        <SortingMarkCutType>Printer</SortingMarkCutType>
+        <PrintNumber>1</PrintNumber>
+        <PrintDataType>All</PrintDataType>
+        <PrintDataUnit>CurrentPage</PrintDataUnit>
+        <DividePrintJob>Disable</DividePrintJob>
+        <WindowsFontPrintType>Text</WindowsFontPrintType>
+      </PrintSettings>
+      <InputOperationSettings>
+        <InitialValueHead>LostFocus</InitialValueHead>
+        <InitialValueRow>LostFocus</InitialValueRow>
+        <IsInputCheck>false</IsInputCheck>
+        <IsFullFocusMove>false</IsFullFocusMove>
+      </InputOperationSettings>
+      <HeaderTailSettings>
+        <HasHeaderOutput>false</HasHeaderOutput>
+        <HeaderFileName />
+        <HeaderOutputTiming>Operation</HeaderOutputTiming>
+        <HasTailOutput>false</HasTailOutput>
+        <TailFileName />
+        <TailOutputTiming>Operation</TailOutputTiming>
+      </HeaderTailSettings>
+      <ErrorSettings>
+        <IsTableConvert>false</IsTableConvert>
+        <IsGraphicConvert>false</IsGraphicConvert>
+        <IsPriceRound>false</IsPriceRound>
+        <IsPriceCheck>false</IsPriceCheck>
+        <IsNumericalExpression>false</IsNumericalExpression>
+        <IsConditonJudgment>false</IsConditonJudgment>
+        <IsCheckDigit>false</IsCheckDigit>
+        <IsTaxEdit>false</IsTaxEdit>
+        <IsYenCommaEdit>false</IsYenCommaEdit>
+        <IsAddChar>false</IsAddChar>
+        <IsOdbcTableConvert>false</IsOdbcTableConvert>
+        <IsGetDateTimeEdit>false</IsGetDateTimeEdit>
+        <IsOutsidePaper>false</IsOutsidePaper>
+        <IsPrintPosition>false</IsPrintPosition>
+        <IsMultiByte>false</IsMultiByte>
+        <IsExChar>false</IsExChar>
+      </ErrorSettings>
+      <OtherSettings>
+        <IsPrintDialog>false</IsPrintDialog>
+        <IsFileDialog>true</IsFileDialog>
+        <IsSaveMessage>true</IsSaveMessage>
+        <IsPrintHistory>false</IsPrintHistory>
+        <IsPrintRecordCallKey>true</IsPrintRecordCallKey>
+        <IsSequenceHistory>false</IsSequenceHistory>
+        <IsFormOverlay>false</IsFormOverlay>
+        <IsPregeneratedCommands>false</IsPregeneratedCommands>
+        <IsEjectionCut>false</IsEjectionCut>
+        <IsGlobalSequenceShare>false</IsGlobalSequenceShare>
+        <IsLastLayoutEjectionCut>false</IsLastLayoutEjectionCut>
+        <IsAutoLayoutJudge>false</IsAutoLayoutJudge>
+        <FocusBehaviorAfterPrint>
+          <TargetPosition>MoveToTop</TargetPosition>
+        </FocusBehaviorAfterPrint>
+        <IsDetectBadBitmap>true</IsDetectBadBitmap>
+      </OtherSettings>
+    </PrintOperationSettings>
+    <ExternalFileSettings>
+      <FileName />
+      <FileType>Fixed</FileType>
+      <IsAuto>true</IsAuto>
+      <VariableFileSettings>
+        <EncodingType>ANSI</EncodingType>
+        <FileFormat>Csv</FileFormat>
+        <Separator />
+        <IsSkipFirstLine>false</IsSkipFirstLine>
+        <IsRemoveQuateMark>false</IsRemoveQuateMark>
+        <QuateMark>"</QuateMark>
+        <HeaderItemCount>1</HeaderItemCount>
+        <LineItemCount>1</LineItemCount>
+        <LineCount>1</LineCount>
+        <IsReadFieldEnd>true</IsReadFieldEnd>
+        <VariableFieldSettings>
+          <FieldItems>
+            <VariableFieldItem>
+              <ObjectID>ace12770-de3d-47eb-9266-936505e6fe3c</ObjectID>
+              <FieldNumber>1</FieldNumber>
+            </VariableFieldItem>
+            <VariableFieldItem>
+              <ObjectID>ConvertItem-Local-99999-0</ObjectID>
+              <FieldNumber>1</FieldNumber>
+            </VariableFieldItem>
+          </FieldItems>
+          <TargetSelection>All</TargetSelection>
+          <ConditionType>AND</ConditionType>
+          <ConditionItems />
+        </VariableFieldSettings>
+      </VariableFileSettings>
+      <FixedFileSettings>
+        <EncodingName>shift_jis</EncodingName>
+        <RecordSize>0</RecordSize>
+        <HeaderSize>13</HeaderSize>
+        <LineSize>6</LineSize>
+        <LineCount>1</LineCount>
+        <IsRangeOverRead>false</IsRangeOverRead>
+        <FixedFieldSettings>
+          <FieldItems>
+            <FixedFieldItem>
+              <ObjectID>ace12770-de3d-47eb-9266-936505e6fe3c</ObjectID>
+              <StartPos>1</StartPos>
+              <EndPos>13</EndPos>
+            </FixedFieldItem>
+            <FixedFieldItem>
+              <ObjectID>ConvertItem-Local-99999-0</ObjectID>
+              <StartPos>1</StartPos>
+              <EndPos>6</EndPos>
+            </FixedFieldItem>
+          </FieldItems>
+          <TargetSelection>All</TargetSelection>
+          <ConditionType>AND</ConditionType>
+          <ConditionItems />
+        </FixedFieldSettings>
+      </FixedFileSettings>
+    </ExternalFileSettings>
+    <OdbcSettings>
+      <DataSource />
+      <UserName />
+      <Password />
+      <TableName />
+      <IsManual>false</IsManual>
+      <SqlCommand />
+      <QuoteText>[</QuoteText>
+      <IsExcel>false</IsExcel>
+      <OdbcFields />
+      <TargetSelection>All</TargetSelection>
+      <ConditionType>AND</ConditionType>
+      <OdbcConditionItems />
+      <IsAutoRead>false</IsAutoRead>
+      <AutoReadObjectID />
+      <ExtractionItems />
+    </OdbcSettings>
+    <DisplaySettings>
+      <IsGrid>true</IsGrid>
+      <GridSpace>8</GridSpace>
+      <IsImage>false</IsImage>
+      <DisplayImageSettings>
+        <ImageFileName />
+        <ImagePixelWidth>0</ImagePixelWidth>
+        <ImagePixelHeight>0</ImagePixelHeight>
+        <ImageLayout>Display</ImageLayout>
+      </DisplayImageSettings>
+      <IsInputOrder>true</IsInputOrder>
+      <Zoom>100</Zoom>
+      <CanvasH>61</CanvasH>
+      <CanvasW>136</CanvasW>
+      <HeaderH>1</HeaderH>
+      <RowH>1</RowH>
+      <HeaderAreaColor>
+        <A>255</A>
+        <R>212</R>
+        <G>208</G>
+        <B>200</B>
+      </HeaderAreaColor>
+    </DisplaySettings>
+    <InputObjects>
+      <Input>
+        <ObjectID>ConvertItem-Local-99999-0</ObjectID>
+        <Name>発行枚数</Name>
+        <X>0</X>
+        <Y>36</Y>
+        <Width>0</Width>
+        <Height>0</Height>
+        <CanMouseOperation>true</CanMouseOperation>
+        <ZOrder>1</ZOrder>
+        <IsNameDisplay>true</IsNameDisplay>
+        <NameDisplayPos>Top</NameDisplayPos>
+        <TableDisplaySettings>
+          <IsTableDisplay>false</IsTableDisplay>
+          <TableReference>Local</TableReference>
+          <GlobalTableFile>C:\Users\A0004257\Documents\MLOCX\MLComponent\実用サンプル\VB2010\</GlobalTableFile>
+          <TableName />
+          <TableCell>A</TableCell>
+          <IsConverKey>false</IsConverKey>
+          <ConvertObjectID />
+          <IsAutoPopup>false</IsAutoPopup>
+          <PopUpLayoutSettings>
+            <PopUpHeight>0</PopUpHeight>
+            <PopUpWidth>0</PopUpWidth>
+            <Columns />
+          </PopUpLayoutSettings>
+        </TableDisplaySettings>
+        <EditDisplaySettings>
+          <IsEditDisplay>false</IsEditDisplay>
+          <IsFieldInsideDisplay>false</IsFieldInsideDisplay>
+          <DisplayPos>Right</DisplayPos>
+          <InputFontSettings>
+            <FontNameString>ＭＳ ゴシック</FontNameString>
+            <FontNameCaluture>ja-jp</FontNameCaluture>
+            <FontUIName>ＭＳ ゴシック</FontUIName>
+            <FontUINameCulture>ja-jp</FontUINameCulture>
+            <Weight>400</Weight>
+            <Style>Normal</Style>
+            <Stretch>5</Stretch>
+            <Win32FamilyName>ＭＳ ゴシック</Win32FamilyName>
+            <Win32FamilyNameCulture>ja-JP</Win32FamilyNameCulture>
+            <Win32FamilyUIName>ＭＳ ゴシック</Win32FamilyUIName>
+            <Win32FamilyUINameCulture>ja-JP</Win32FamilyUINameCulture>
+            <FontSize>11</FontSize>
+            <IsBold>false</IsBold>
+            <IsItalic>false</IsItalic>
+            <IsUnderLine>false</IsUnderLine>
+            <IsStrikethrough>false</IsStrikethrough>
+            <IsVertical>false</IsVertical>
+          </InputFontSettings>
+          <EditType>Price</EditType>
+          <PriceSettings>
+            <TaxEditSettings>
+              <IsEnabled>false</IsEnabled>
+              <Type>Included</Type>
+              <RoundType>RoundDown</RoundType>
+              <RoundPoint>OnePlaceOfDecimals</RoundPoint>
+              <IsFixed>false</IsFixed>
+              <TaxSelectionType>User</TaxSelectionType>
+              <TaxSelectionNumber>0</TaxSelectionNumber>
+              <TaxRate>0</TaxRate>
+              <TaxVariableReference xsi:nil="true" />
+            </TaxEditSettings>
+            <ZeroFilling>false</ZeroFilling>
+            <SpaceFilling>false</SpaceFilling>
+            <PriceSymbolSettings>
+              <IsEnabled>false</IsEnabled>
+              <PriceSymbolType>SingleByte</PriceSymbolType>
+              <PriceSymbol>\</PriceSymbol>
+              <IsZeroToEmpty>false</IsZeroToEmpty>
+            </PriceSymbolSettings>
+            <CommaEdit>None</CommaEdit>
+            <Alignment>None</Alignment>
+          </PriceSettings>
+        </EditDisplaySettings>
+        <InputCheckSettings>
+          <IsInputCheck>true</IsInputCheck>
+          <InputTypeCheck>Numeric</InputTypeCheck>
+          <IsInputRequired>false</IsInputRequired>
+          <IsCompletion>false</IsCompletion>
+          <OtherCheckType>None</OtherCheckType>
+        </InputCheckSettings>
+        <IsInputLengthLimit>false</IsInputLengthLimit>
+        <InputLength>6</InputLength>
+        <InputMaxLength>6</InputMaxLength>
+        <VariableLength>6</VariableLength>
+        <IsUsingPrintNumberSettings>false</IsUsingPrintNumberSettings>
+        <PrintNumberSettings>
+          <Expression />
+          <Operators />
+        </PrintNumberSettings>
+        <InputFontSettings>
+          <FontNameString>ＭＳ ゴシック</FontNameString>
+          <FontNameCaluture>ja-jp</FontNameCaluture>
+          <FontUIName>ＭＳ ゴシック</FontUIName>
+          <FontUINameCulture>ja-jp</FontUINameCulture>
+          <Weight>400</Weight>
+          <Style>Normal</Style>
+          <Stretch>5</Stretch>
+          <Win32FamilyName>ＭＳ ゴシック</Win32FamilyName>
+          <Win32FamilyNameCulture>ja-JP</Win32FamilyNameCulture>
+          <Win32FamilyUIName>ＭＳ ゴシック</Win32FamilyUIName>
+          <Win32FamilyUINameCulture>ja-JP</Win32FamilyUINameCulture>
+          <FontSize>11</FontSize>
+          <IsBold>false</IsBold>
+          <IsItalic>false</IsItalic>
+          <IsUnderLine>false</IsUnderLine>
+          <IsStrikethrough>false</IsStrikethrough>
+          <IsVertical>false</IsVertical>
+        </InputFontSettings>
+        <InitialValueSettings>
+          <InitialValue />
+          <BaseDate>System</BaseDate>
+          <DateOffset>
+            <InputPastOrFuture>Future</InputPastOrFuture>
+            <Year>0</Year>
+            <Month>0</Month>
+            <Day>0</Day>
+          </DateOffset>
+        </InitialValueSettings>
+        <IsClearAfterPrint>false</IsClearAfterPrint>
+        <IsHistorySave>false</IsHistorySave>
+        <IsIMEStart>false</IsIMEStart>
+        <IsSortingCutHeaderTailKey>false</IsSortingCutHeaderTailKey>
+        <HasInputGuid>false</HasInputGuid>
+        <InputGuidContent />
+        <HasToolTip>false</HasToolTip>
+        <ToolTipContent />
+        <CanDisplay>true</CanDisplay>
+        <CanInput>true</CanInput>
+        <InputOrder>2</InputOrder>
+        <CanTabStop>true</CanTabStop>
+        <IsRow>true</IsRow>
+        <IsPrintNumber>true</IsPrintNumber>
+        <VariableReference>Local</VariableReference>
+        <VariableNumber>
+          <Number>0</Number>
+          <Child>0</Child>
+        </VariableNumber>
+        <NameX>0</NameX>
+        <NameY>0</NameY>
+        <NameWidth>0</NameWidth>
+        <NameHeight>0</NameHeight>
+        <InputX>0</InputX>
+        <InputY>0</InputY>
+        <InputWidth>232</InputWidth>
+        <InputHeight>20</InputHeight>
+        <EditDisplayX>0</EditDisplayX>
+        <EditDisplayY>0</EditDisplayY>
+        <EditDisplayWidth>69</EditDisplayWidth>
+        <EditDisplayHeight>20</EditDisplayHeight>
+        <ForeColor>
+          <A>255</A>
+          <R>0</R>
+          <G>0</G>
+          <B>0</B>
+        </ForeColor>
+        <BackColor>
+          <A>0</A>
+          <R>255</R>
+          <G>255</G>
+          <B>255</B>
+        </BackColor>
+      </Input>
+      <Input>
+        <ObjectID>ace12770-de3d-47eb-9266-936505e6fe3c</ObjectID>
+        <Name>入力-1</Name>
+        <X>10</X>
+        <Y>5</Y>
+        <Width>116</Width>
+        <Height>46</Height>
+        <CanMouseOperation>true</CanMouseOperation>
+        <ZOrder>1</ZOrder>
+        <IsNameDisplay>true</IsNameDisplay>
+        <NameDisplayPos>Top</NameDisplayPos>
+        <TableDisplaySettings>
+          <IsTableDisplay>false</IsTableDisplay>
+          <TableReference>Local</TableReference>
+          <GlobalTableFile>C:\Users\A0004257\Documents\MLComponent\簡易サンプル\C#2010\</GlobalTableFile>
+          <TableName />
+          <TableCell>A</TableCell>
+          <IsConverKey>false</IsConverKey>
+          <ConvertObjectID />
+          <IsAutoPopup>false</IsAutoPopup>
+          <PopUpLayoutSettings>
+            <PopUpHeight>0</PopUpHeight>
+            <PopUpWidth>0</PopUpWidth>
+            <Columns />
+          </PopUpLayoutSettings>
+        </TableDisplaySettings>
+        <EditDisplaySettings>
+          <IsEditDisplay>false</IsEditDisplay>
+          <IsFieldInsideDisplay>true</IsFieldInsideDisplay>
+          <DisplayPos>Right</DisplayPos>
+          <InputFontSettings>
+            <FontNameString>メイリオ</FontNameString>
+            <FontNameCaluture>ja-jp</FontNameCaluture>
+            <FontUIName>メイリオ</FontUIName>
+            <FontUINameCulture>ja-jp</FontUINameCulture>
+            <Weight>400</Weight>
+            <Style>Normal</Style>
+            <Stretch>5</Stretch>
+            <Win32FamilyName>メイリオ</Win32FamilyName>
+            <Win32FamilyNameCulture>ja-JP</Win32FamilyNameCulture>
+            <Win32FamilyUIName>メイリオ</Win32FamilyUIName>
+            <Win32FamilyUINameCulture>ja-JP</Win32FamilyUINameCulture>
+            <FontSize>9</FontSize>
+            <IsBold>false</IsBold>
+            <IsItalic>false</IsItalic>
+            <IsUnderLine>false</IsUnderLine>
+            <IsStrikethrough>false</IsStrikethrough>
+            <IsVertical>false</IsVertical>
+          </InputFontSettings>
+          <EditType>Price</EditType>
+          <PriceSettings>
+            <TaxEditSettings>
+              <IsEnabled>false</IsEnabled>
+              <Type>Included</Type>
+              <RoundType>RoundDown</RoundType>
+              <RoundPoint>OnePlaceOfDecimals</RoundPoint>
+              <IsFixed>false</IsFixed>
+              <TaxSelectionType>User</TaxSelectionType>
+              <TaxSelectionNumber>0</TaxSelectionNumber>
+              <TaxRate>0</TaxRate>
+              <TaxVariableReference xsi:nil="true" />
+            </TaxEditSettings>
+            <ZeroFilling>false</ZeroFilling>
+            <SpaceFilling>false</SpaceFilling>
+            <PriceSymbolSettings>
+              <IsEnabled>false</IsEnabled>
+              <PriceSymbolType>SingleByte</PriceSymbolType>
+              <PriceSymbol>\</PriceSymbol>
+              <IsZeroToEmpty>false</IsZeroToEmpty>
+            </PriceSymbolSettings>
+            <CommaEdit>None</CommaEdit>
+            <Alignment>None</Alignment>
+          </PriceSettings>
+        </EditDisplaySettings>
+        <InputCheckSettings>
+          <IsInputCheck>false</IsInputCheck>
+          <InputTypeCheck>None</InputTypeCheck>
+          <IsInputRequired>false</IsInputRequired>
+          <IsCompletion>false</IsCompletion>
+          <OtherCheckType>None</OtherCheckType>
+        </InputCheckSettings>
+        <IsInputLengthLimit>true</IsInputLengthLimit>
+        <InputLength>13</InputLength>
+        <InputMaxLength>13</InputMaxLength>
+        <VariableLength>13</VariableLength>
+        <IsUsingPrintNumberSettings>false</IsUsingPrintNumberSettings>
+        <InputFontSettings>
+          <FontNameString>メイリオ</FontNameString>
+          <FontNameCaluture>ja-jp</FontNameCaluture>
+          <FontUIName>メイリオ</FontUIName>
+          <FontUINameCulture>ja-jp</FontUINameCulture>
+          <Weight>400</Weight>
+          <Style>Normal</Style>
+          <Stretch>5</Stretch>
+          <Win32FamilyName>メイリオ</Win32FamilyName>
+          <Win32FamilyNameCulture>ja-JP</Win32FamilyNameCulture>
+          <Win32FamilyUIName>メイリオ</Win32FamilyUIName>
+          <Win32FamilyUINameCulture>ja-JP</Win32FamilyUINameCulture>
+          <FontSize>9</FontSize>
+          <IsBold>false</IsBold>
+          <IsItalic>false</IsItalic>
+          <IsUnderLine>false</IsUnderLine>
+          <IsStrikethrough>false</IsStrikethrough>
+          <IsVertical>false</IsVertical>
+        </InputFontSettings>
+        <InitialValueSettings>
+          <InitialValue />
+          <BaseDate>Base</BaseDate>
+          <DateOffset>
+            <InputPastOrFuture>Future</InputPastOrFuture>
+            <Year>0</Year>
+            <Month>0</Month>
+            <Day>0</Day>
+          </DateOffset>
+        </InitialValueSettings>
+        <IsClearAfterPrint>false</IsClearAfterPrint>
+        <IsHistorySave>true</IsHistorySave>
+        <IsIMEStart>false</IsIMEStart>
+        <IsSortingCutHeaderTailKey>false</IsSortingCutHeaderTailKey>
+        <HasInputGuid>false</HasInputGuid>
+        <InputGuidContent />
+        <HasToolTip>false</HasToolTip>
+        <ToolTipContent />
+        <CanDisplay>true</CanDisplay>
+        <CanInput>true</CanInput>
+        <InputOrder>1</InputOrder>
+        <CanTabStop>true</CanTabStop>
+        <IsRow>false</IsRow>
+        <IsPrintNumber>false</IsPrintNumber>
+        <VariableReference>Local</VariableReference>
+        <VariableNumber>
+          <Number>1</Number>
+          <Child>0</Child>
+        </VariableNumber>
+        <NameX>10</NameX>
+        <NameY>5</NameY>
+        <NameWidth>37</NameWidth>
+        <NameHeight>18</NameHeight>
+        <InputX>10</InputX>
+        <InputY>23</InputY>
+        <InputWidth>116</InputWidth>
+        <InputHeight>28</InputHeight>
+        <EditDisplayX>10</EditDisplayX>
+        <EditDisplayY>5</EditDisplayY>
+        <EditDisplayWidth>116</EditDisplayWidth>
+        <EditDisplayHeight>28</EditDisplayHeight>
+        <ForeColor>
+          <A>255</A>
+          <R>0</R>
+          <G>0</G>
+          <B>0</B>
+        </ForeColor>
+        <BackColor>
+          <A>0</A>
+          <R>255</R>
+          <G>255</G>
+          <B>255</B>
+        </BackColor>
+      </Input>
+    </InputObjects>
+    <PreviewSettings>
+      <ZoomRatio>100</ZoomRatio>
+      <AdjustScreen>true</AdjustScreen>
+      <SheetRotation>Rotation0</SheetRotation>
+    </PreviewSettings>
+  </InputSettings>
+  <LastVariableNumber>1</LastVariableNumber>
+  <Variables>
+    <VariableItem xmlns="SATO.MLV5.Common.Variable.Data">
+      <Number>
+        <Number>1</Number>
+        <Child>0</Child>
+      </Number>
+      <Name>入力-1</Name>
+      <Length>13</Length>
+      <Type>Input</Type>
+      <InputSettings>
+        <InputType>Char</InputType>
+        <GraphicType>Local</GraphicType>
+      </InputSettings>
+      <FixSettings xsi:nil="true" />
+      <CopySettings xsi:nil="true" />
+      <JoinSettings xsi:nil="true" />
+      <SequenceSettings xsi:nil="true" />
+      <DateTimeSettings xsi:nil="true" />
+      <CalculateSettings xsi:nil="true" />
+      <ConditionSettings xsi:nil="true" />
+      <SymbolSettings xsi:nil="true" />
+      <SystemSettings xsi:nil="true" />
+      <CharacterSettings xsi:nil="true" />
+      <AISettingInfo xsi:nil="true" />
+      <EditParameter>
+        <TableConvertSettings>
+          <IsEnabled>false</IsEnabled>
+          <TableReference>Local</TableReference>
+          <GlobalTableFile />
+          <TableName />
+          <TableCell>A</TableCell>
+          <IsKeyItemEnabled>false</IsKeyItemEnabled>
+          <ConvertKey>
+            <Number>0</Number>
+            <Child>0</Child>
+          </ConvertKey>
+        </TableConvertSettings>
+        <RemoveLineFeed>false</RemoveLineFeed>
+        <RemoveCharacterSettings>
+          <IsEnabled>false</IsEnabled>
+          <RemoveChar />
+        </RemoveCharacterSettings>
+        <TaxEditSettings>
+          <IsEnabled>false</IsEnabled>
+          <Type>Included</Type>
+          <RoundType>RoundDown</RoundType>
+          <RoundPoint>OnePlaceOfDecimals</RoundPoint>
+          <IsFixed>false</IsFixed>
+          <TaxSelectionType>User</TaxSelectionType>
+          <TaxSelectionNumber>0</TaxSelectionNumber>
+          <TaxRate>0</TaxRate>
+          <TaxVariableReference xsi:nil="true" />
+        </TaxEditSettings>
+        <CommaEdit>None</CommaEdit>
+        <PriceSymbolSettings>
+          <IsEnabled>false</IsEnabled>
+          <PriceSymbolType>SingleByte</PriceSymbolType>
+          <PriceSymbol>\</PriceSymbol>
+          <IsZeroToEmpty>false</IsZeroToEmpty>
+        </PriceSymbolSettings>
+        <AddCharacterSettings>
+          <IsEnabled>false</IsEnabled>
+          <Position>Prefix</Position>
+          <AddChar />
+        </AddCharacterSettings>
+        <Alignment>None</Alignment>
+        <ReplaceSettings>
+          <IsEnabled>false</IsEnabled>
+          <Items />
+          <DoubleSubstitutionInvalidity>false</DoubleSubstitutionInvalidity>
+        </ReplaceSettings>
+        <ZeroFilling>false</ZeroFilling>
+        <SpecialEditSettings>
+          <IsEnabled>false</IsEnabled>
+          <LibraryName />
+          <ClassName />
+          <Argument />
+        </SpecialEditSettings>
+      </EditParameter>
+    </VariableItem>
+  </Variables>
+  <Tables />
+  <CheckTables />
+  <Graphics />
+  <SortSettings xsi:nil="true" xmlns="SATO.MLV5.Common.Sort.Data" />
+  <UpdateHistory xmlns="SATO.MLV5.Common.File.Data">
+    <Create>
+      <UpdateTime>2013-06-06T11:50:44.0107215+09:00</UpdateTime>
+      <Title />
+      <Comment />
+      <UserName>A0004257</UserName>
+      <ComputerName>L54079</ComputerName>
+      <OS>Microsoft Windows 7 Professional  Service Pack 1</OS>
+      <OSVersion>Microsoft Windows NT 6.1.7601 Service Pack 1</OSVersion>
+      <ApplicationName>MLコンバート</ApplicationName>
+      <ApplicationEdition>Standard</ApplicationEdition>
+      <ApplicationVersion>5.0.0.40858</ApplicationVersion>
+      <OperationMode>Advance</OperationMode>
+      <IsTrial>false</IsTrial>
+      <IsCompact>false</IsCompact>
+      <IsAutoSave>false</IsAutoSave>
+    </Create>
+    <Logs>
+      <UpdateHistoryItem>
+        <UpdateTime>2022-07-21T09:35:31.4526701+09:00</UpdateTime>
+        <Title />
+        <Comment />
+        <UserName>A0004257</UserName>
+        <ComputerName>DESKTOP-SATOU</ComputerName>
+        <OS>Microsoft Windows 10 Pro </OS>
+        <OSVersion>Microsoft Windows NT 6.2.9200.0</OSVersion>
+        <ApplicationName>MLデザイン</ApplicationName>
+        <ApplicationEdition>Standard</ApplicationEdition>
+        <ApplicationVersion>5.9.9.0</ApplicationVersion>
+        <OperationMode>Basic</OperationMode>
+        <IsTrial>true</IsTrial>
+        <IsCompact>false</IsCompact>
+        <IsAutoSave>false</IsAutoSave>
+      </UpdateHistoryItem>
+      <UpdateHistoryItem>
+        <UpdateTime>2013-06-12T14:55:51.1622519+09:00</UpdateTime>
+        <Title />
+        <Comment />
+        <UserName>A0004257</UserName>
+        <ComputerName>L54079</ComputerName>
+        <OS>Microsoft Windows 7 Professional  Service Pack 1</OS>
+        <OSVersion>Microsoft Windows NT 6.1.7601 Service Pack 1</OSVersion>
+        <ApplicationName>MLデザイン</ApplicationName>
+        <ApplicationEdition>Standard</ApplicationEdition>
+        <ApplicationVersion>5.0.0.40855</ApplicationVersion>
+        <OperationMode>Basic</OperationMode>
+        <IsTrial>false</IsTrial>
+        <IsCompact>false</IsCompact>
+        <IsAutoSave>false</IsAutoSave>
+      </UpdateHistoryItem>
+      <UpdateHistoryItem>
+        <UpdateTime>2013-06-12T14:52:15.3155047+09:00</UpdateTime>
+        <Title />
+        <Comment />
+        <UserName>A0004257</UserName>
+        <ComputerName>L54079</ComputerName>
+        <OS>Microsoft Windows 7 Professional  Service Pack 1</OS>
+        <OSVersion>Microsoft Windows NT 6.1.7601 Service Pack 1</OSVersion>
+        <ApplicationName>MLデザイン</ApplicationName>
+        <ApplicationEdition>Standard</ApplicationEdition>
+        <ApplicationVersion>5.0.0.40855</ApplicationVersion>
+        <OperationMode>Basic</OperationMode>
+        <IsTrial>false</IsTrial>
+        <IsCompact>false</IsCompact>
+        <IsAutoSave>false</IsAutoSave>
+      </UpdateHistoryItem>
+      <UpdateHistoryItem>
+        <UpdateTime>2013-06-06T11:57:03.5433355+09:00</UpdateTime>
+        <Title />
+        <Comment />
+        <UserName>A0004257</UserName>
+        <ComputerName>L54079</ComputerName>
+        <OS>Microsoft Windows 7 Professional  Service Pack 1</OS>
+        <OSVersion>Microsoft Windows NT 6.1.7601 Service Pack 1</OSVersion>
+        <ApplicationName>MLデザイン</ApplicationName>
+        <ApplicationEdition>Standard</ApplicationEdition>
+        <ApplicationVersion>5.0.0.40855</ApplicationVersion>
+        <OperationMode>Basic</OperationMode>
+        <IsTrial>false</IsTrial>
+        <IsCompact>false</IsCompact>
+        <IsAutoSave>false</IsAutoSave>
+      </UpdateHistoryItem>
+      <UpdateHistoryItem>
+        <UpdateTime>2013-06-06T11:50:44.0107215+09:00</UpdateTime>
+        <Title />
+        <Comment />
+        <UserName>A0004257</UserName>
+        <ComputerName>L54079</ComputerName>
+        <OS>Microsoft Windows 7 Professional  Service Pack 1</OS>
+        <OSVersion>Microsoft Windows NT 6.1.7601 Service Pack 1</OSVersion>
+        <ApplicationName>MLコンバート</ApplicationName>
+        <ApplicationEdition>Standard</ApplicationEdition>
+        <ApplicationVersion>5.0.0.40858</ApplicationVersion>
+        <OperationMode>Advance</OperationMode>
+        <IsTrial>false</IsTrial>
+        <IsCompact>false</IsCompact>
+        <IsAutoSave>false</IsAutoSave>
+      </UpdateHistoryItem>
+    </Logs>
+  </UpdateHistory>
+</MLFile>
