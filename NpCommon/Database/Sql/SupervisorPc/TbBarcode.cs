@@ -101,12 +101,13 @@ namespace NipponPaint.NpCommon.Database.Sql.SupervisorPc
             sql.Append($"LEFT JOIN {TbJob.MAIN_TABLE} AS J ON J.{TbJob.JOB_BARCODE} = B.{BARCODE} AND J.{TbJob.JOB_PROCESS_CODE} = B.{PROCESS_CODE} ");
             sql.Append($") AS TB0 ");
             // TB_JOBのJOB_STATUSが1(缶は良好にラインを終了)以外、かつエラーが発生していないレコードを取得
-            sql.Append($"WHERE {TbJob.JOB_STATUS} <> 1 ");
+            //sql.Append($"WHERE {TbJob.JOB_STATUS} <> 1 ");
             // リカバリされたら処理対象
             //sql.Append($"  AND {BRC_ERR_1} = '0' ");
             //sql.Append($"  AND {BRC_ERR_2} = '0' ");
             //sql.Append($"  AND {BRC_ERR_3} = '0' ");
-            sql.Append($"  AND {TbJob.JOB_ERR_1} = '' ");
+            // エラーが発生していないレコードを取得
+            sql.Append($"WHERE {TbJob.JOB_ERR_1} = '' ");
             sql.Append($"  AND {TbJob.JOB_ERR_2} = '' ");
             sql.Append($"  AND {TbJob.JOB_ERR_3} = '' ");
             sql.Append($"  AND {TbJob.JOB_ERR_4} = '' ");

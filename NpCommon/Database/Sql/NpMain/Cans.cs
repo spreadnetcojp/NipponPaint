@@ -41,42 +41,61 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         public const string COLUMN_WHITE_WEIGHT = "White_Weight";
         public const string COLUMN_COLORANT_1 = "Colorant_1";
         public const string COLUMN_DISPENSED_1 = "Dispensed_1";
+        public const string COLUMN_WEIGHT_1 = "Weight_1";
         public const string COLUMN_COLORANT_2 = "Colorant_2";
         public const string COLUMN_DISPENSED_2 = "Dispensed_2";
+        public const string COLUMN_WEIGHT_2 = "Weight_2";
         public const string COLUMN_COLORANT_3 = "Colorant_3";
         public const string COLUMN_DISPENSED_3 = "Dispensed_3";
+        public const string COLUMN_WEIGHT_3 = "Weight_3";
         public const string COLUMN_COLORANT_4 = "Colorant_4";
         public const string COLUMN_DISPENSED_4 = "Dispensed_4";
+        public const string COLUMN_WEIGHT_4 = "Weight_4";
         public const string COLUMN_COLORANT_5 = "Colorant_5";
         public const string COLUMN_DISPENSED_5 = "Dispensed_5";
+        public const string COLUMN_WEIGHT_5 = "Weight_5";
         public const string COLUMN_COLORANT_6 = "Colorant_6";
         public const string COLUMN_DISPENSED_6 = "Dispensed_6";
+        public const string COLUMN_WEIGHT_6 = "Weight_6";
         public const string COLUMN_COLORANT_7 = "Colorant_7";
         public const string COLUMN_DISPENSED_7 = "Dispensed_7";
+        public const string COLUMN_WEIGHT_7 = "Weight_7";
         public const string COLUMN_COLORANT_8 = "Colorant_8";
         public const string COLUMN_DISPENSED_8 = "Dispensed_8";
+        public const string COLUMN_WEIGHT_8 = "Weight_8";
         public const string COLUMN_COLORANT_9 = "Colorant_9";
         public const string COLUMN_DISPENSED_9 = "Dispensed_9";
+        public const string COLUMN_WEIGHT_9 = "Weight_9";
         public const string COLUMN_COLORANT_10 = "Colorant_10";
         public const string COLUMN_DISPENSED_10 = "Dispensed_10";
+        public const string COLUMN_WEIGHT_10 = "Weight_10";
         public const string COLUMN_COLORANT_11 = "Colorant_11";
         public const string COLUMN_DISPENSED_11 = "Dispensed_11";
+        public const string COLUMN_WEIGHT_11 = "Weight_11";
         public const string COLUMN_COLORANT_12 = "Colorant_12";
         public const string COLUMN_DISPENSED_12 = "Dispensed_12";
+        public const string COLUMN_WEIGHT_12 = "Weight_12";
         public const string COLUMN_COLORANT_13 = "Colorant_13";
         public const string COLUMN_DISPENSED_13 = "Dispensed_13";
+        public const string COLUMN_WEIGHT_13 = "Weight_13";
         public const string COLUMN_COLORANT_14 = "Colorant_14";
         public const string COLUMN_DISPENSED_14 = "Dispensed_14";
+        public const string COLUMN_WEIGHT_14 = "Weight_14";
         public const string COLUMN_COLORANT_15 = "Colorant_15";
         public const string COLUMN_DISPENSED_15 = "Dispensed_15";
+        public const string COLUMN_WEIGHT_15 = "Weight_15";
         public const string COLUMN_COLORANT_16 = "Colorant_16";
         public const string COLUMN_DISPENSED_16 = "Dispensed_16";
+        public const string COLUMN_WEIGHT_16 = "Weight_16";
         public const string COLUMN_COLORANT_17 = "Colorant_17";
         public const string COLUMN_DISPENSED_17 = "Dispensed_17";
+        public const string COLUMN_WEIGHT_17 = "Weight_17";
         public const string COLUMN_COLORANT_18 = "Colorant_18";
         public const string COLUMN_DISPENSED_18 = "Dispensed_18";
+        public const string COLUMN_WEIGHT_18 = "Weight_18";
         public const string COLUMN_COLORANT_19 = "Colorant_19";
         public const string COLUMN_DISPENSED_19 = "Dispensed_19";
+        public const string COLUMN_WEIGHT_19 = "Weight_19";
         public const string COLUMN_CANS_ID = "Cans_Id";
         public const string COLUMN_ORDER_NUMBER = "Order_Number";
         public const string COLUMN_ERRORS_1 = "Errors_1";
@@ -92,26 +111,26 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         // 色コードが設定されているカラムのリスト
         public static readonly List<string[]> ColorColumns = new List<string[]>()
         {
-            new string[]{ COLUMN_WHITE_CODE, COLUMN_WHITE_DISPENSED },
-            new string[]{ COLUMN_COLORANT_1, COLUMN_DISPENSED_1 },
-            new string[]{ COLUMN_COLORANT_2, COLUMN_DISPENSED_2 },
-            new string[]{ COLUMN_COLORANT_3, COLUMN_DISPENSED_3 },
-            new string[]{ COLUMN_COLORANT_4, COLUMN_DISPENSED_4 },
-            new string[]{ COLUMN_COLORANT_5, COLUMN_DISPENSED_5 },
-            new string[]{ COLUMN_COLORANT_6, COLUMN_DISPENSED_6 },
-            new string[]{ COLUMN_COLORANT_7, COLUMN_DISPENSED_7 },
-            new string[]{ COLUMN_COLORANT_8, COLUMN_DISPENSED_8 },
-            new string[]{ COLUMN_COLORANT_9, COLUMN_DISPENSED_9 },
-            new string[]{ COLUMN_COLORANT_10, COLUMN_DISPENSED_10 },
-            new string[]{ COLUMN_COLORANT_11, COLUMN_DISPENSED_11 },
-            new string[]{ COLUMN_COLORANT_12, COLUMN_DISPENSED_12 },
-            new string[]{ COLUMN_COLORANT_13, COLUMN_DISPENSED_13 },
-            new string[]{ COLUMN_COLORANT_14, COLUMN_DISPENSED_14 },
-            new string[]{ COLUMN_COLORANT_15, COLUMN_DISPENSED_15 },
-            new string[]{ COLUMN_COLORANT_16, COLUMN_DISPENSED_16 },
-            new string[]{ COLUMN_COLORANT_17, COLUMN_DISPENSED_17 },
-            new string[]{ COLUMN_COLORANT_18, COLUMN_DISPENSED_18 },
-            new string[]{ COLUMN_COLORANT_19, COLUMN_DISPENSED_19 },
+            new string[]{ COLUMN_WHITE_CODE, COLUMN_WHITE_DISPENSED, COLUMN_WHITE_WEIGHT},
+            new string[]{ COLUMN_COLORANT_1, COLUMN_DISPENSED_1, COLUMN_WEIGHT_1},
+            new string[]{ COLUMN_COLORANT_2, COLUMN_DISPENSED_2, COLUMN_WEIGHT_2},
+            new string[]{ COLUMN_COLORANT_3, COLUMN_DISPENSED_3, COLUMN_WEIGHT_3},
+            new string[]{ COLUMN_COLORANT_4, COLUMN_DISPENSED_4, COLUMN_WEIGHT_4},
+            new string[]{ COLUMN_COLORANT_5, COLUMN_DISPENSED_5, COLUMN_WEIGHT_5},
+            new string[]{ COLUMN_COLORANT_6, COLUMN_DISPENSED_6, COLUMN_WEIGHT_6},
+            new string[]{ COLUMN_COLORANT_7, COLUMN_DISPENSED_7, COLUMN_WEIGHT_7},
+            new string[]{ COLUMN_COLORANT_8, COLUMN_DISPENSED_8, COLUMN_WEIGHT_8},
+            new string[]{ COLUMN_COLORANT_9, COLUMN_DISPENSED_9, COLUMN_WEIGHT_9},
+            new string[]{ COLUMN_COLORANT_10, COLUMN_DISPENSED_10, COLUMN_WEIGHT_10},
+            new string[]{ COLUMN_COLORANT_11, COLUMN_DISPENSED_11, COLUMN_WEIGHT_11},
+            new string[]{ COLUMN_COLORANT_12, COLUMN_DISPENSED_12, COLUMN_WEIGHT_12},
+            new string[]{ COLUMN_COLORANT_13, COLUMN_DISPENSED_13, COLUMN_WEIGHT_13},
+            new string[]{ COLUMN_COLORANT_14, COLUMN_DISPENSED_14, COLUMN_WEIGHT_14},
+            new string[]{ COLUMN_COLORANT_15, COLUMN_DISPENSED_15, COLUMN_WEIGHT_15},
+            new string[]{ COLUMN_COLORANT_16, COLUMN_DISPENSED_16, COLUMN_WEIGHT_16},
+            new string[]{ COLUMN_COLORANT_17, COLUMN_DISPENSED_17, COLUMN_WEIGHT_17},
+            new string[]{ COLUMN_COLORANT_18, COLUMN_DISPENSED_18, COLUMN_WEIGHT_18},
+            new string[]{ COLUMN_COLORANT_19, COLUMN_DISPENSED_19, COLUMN_WEIGHT_19},
         };
         #endregion
 
@@ -254,7 +273,8 @@ namespace NipponPaint.NpCommon.Database.Sql.NpMain
         {
             var sql = new StringBuilder();
             sql.Append($"SELECT ");
-            sql.Append($" * ");
+            sql.Append($" C.* ");
+            sql.Append($" ,O.{Orders.COLUMN_FORMULA_RELEASE} AS {Orders.MAIN_TABLE}_{Orders.COLUMN_FORMULA_RELEASE} ");
             sql.Append($"FROM {MAIN_TABLE} AS C ");
             sql.Append($"LEFT JOIN {Orders.MAIN_TABLE} AS O ON O.{Orders.COLUMN_ORDER_ID} = C.{COLUMN_ORDER_ID} ");
             sql.Append($"WHERE {COLUMN_BARCODE} = @barcode");
