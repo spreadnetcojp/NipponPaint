@@ -316,6 +316,11 @@ namespace SupervisorPcInterface
                     {
                         foreach (DataRow barcodeRow in barcodeRows.Rows)
                         {
+                            // 良好に終了しているものは処理を行わない
+                            if ((int)barcodeRow[TbJob.JOB_STATUS] == 1)
+                            {
+                                continue;
+                            }
                             var barCode = barcodeRow[TbBarcode.BARCODE].ToString();
                             // ERPのテーブルから情報収集
                             // 行取得のSQLを作成
@@ -398,12 +403,16 @@ namespace SupervisorPcInterface
                                 // バーコードをキーにCOROBのテーブルから情報収集
                                 var dispenseDatas = dbs.Select(TbFormula.GetPreviewAll(), parameters);
                                 var cans = dbn.Select(Cans.GetDetailByBarcode(), parameters);
+                                var ordersFormulaRelease = "Orders_Formula_Release";
+                                var updateFormulaRelease = cans.Rows[0][ordersFormulaRelease];
+                                var tbJobStatus = dispenseDatas.Rows[0][TbJob.JOB_STATUS];
                                 if (cans.Rows.Count > 0)
                                 {
                                     var updateItems = new List<string>();
                                     foreach (var colorColumns in Cans.ColorColumns)
                                     {
-                                        var item = dispenseDatas.AsEnumerable().FirstOrDefault(x => x[TbFormula.PRD_CODE].ToString() == cans.Rows[0][colorColumns[0]].ToString());
+                                        // 調色剤・吐出と重量の差異・PROCESS_CODEで判断
+                                        var item = dispenseDatas.AsEnumerable().FirstOrDefault(x => x[TbFormula.PRD_CODE].ToString() == cans.Rows[0][colorColumns[0]].ToString() && cans.Rows[0][colorColumns[1]].ToString() != cans.Rows[0][colorColumns[2]].ToString() && barcodeRow[TbBarcode.PROCESS_CODE].ToString() == x[TbFormula.PRD_PROCESS_CODE].ToString());
                                         if (item != null)
                                         {
                                             // TB_FORMULAテーブルの値を設定
@@ -413,6 +422,12 @@ namespace SupervisorPcInterface
                                             // ▲ hotfix 2022/07/19 A.Satou
                                             updateItems.Add($"{colorColumns[1]} = @{colorColumns[1]}");
                                         }
+                                    }
+                                    // 良好にラインが終了した場合
+                                    if ((int)tbJobStatus == 1)
+                                    {
+                                        parameters.Add(new ParameterItem(Cans.COLUMN_FORMULA_RELEASE, (int)updateFormulaRelease));
+                                        updateItems.Add($"{Cans.COLUMN_FORMULA_RELEASE} = @{Cans.COLUMN_FORMULA_RELEASE}");
                                     }
                                     // 更新対象カラムがある場合のみCansをupdate
                                     if (updateItems.Any())
